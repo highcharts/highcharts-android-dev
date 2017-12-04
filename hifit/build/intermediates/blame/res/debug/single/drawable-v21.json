@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "/Users/mareklipert/Documents/prog/robota/lambdarocket/highcharts/highcharts-android/hifit/build/intermediates/res/merged/debug/drawable-v21/avd_hide_password.xml",
+        "source": "/Users/mareklipert/.android/build-cache/07b58b92fca2e567e8d7014abce96b7165565b8b/output/res/drawable-v21/avd_hide_password.xml"
+    },
+    {
+        "merged": "/Users/mareklipert/Documents/prog/robota/lambdarocket/highcharts/highcharts-android/hifit/build/intermediates/res/merged/debug/drawable-v21/abc_action_bar_item_background_material.xml",
+        "source": "/Users/mareklipert/.android/build-cache/a5bc1e98ca8acb4d0b937a2a51cf1a926b123ddc/output/res/drawable-v21/abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "/Users/mareklipert/Documents/prog/robota/lambdarocket/highcharts/highcharts-android/hifit/build/intermediates/res/merged/debug/drawable-v21/design_bottom_navigation_item_background.xml",
+        "source": "/Users/mareklipert/.android/build-cache/07b58b92fca2e567e8d7014abce96b7165565b8b/output/res/drawable-v21/design_bottom_navigation_item_background.xml"
+    },
+    {
+        "merged": "/Users/mareklipert/Documents/prog/robota/lambdarocket/highcharts/highcharts-android/hifit/build/intermediates/res/merged/debug/drawable-v21/abc_btn_colored_material.xml",
+        "source": "/Users/mareklipert/.android/build-cache/a5bc1e98ca8acb4d0b937a2a51cf1a926b123ddc/output/res/drawable-v21/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "/Users/mareklipert/Documents/prog/robota/lambdarocket/highcharts/highcharts-android/hifit/build/intermediates/res/merged/debug/drawable-v21/avd_show_password.xml",
+        "source": "/Users/mareklipert/.android/build-cache/07b58b92fca2e567e8d7014abce96b7165565b8b/output/res/drawable-v21/avd_show_password.xml"
+    },
+    {
+        "merged": "/Users/mareklipert/Documents/prog/robota/lambdarocket/highcharts/highcharts-android/hifit/build/intermediates/res/merged/debug/drawable-v21/abc_edit_text_material.xml",
+        "source": "/Users/mareklipert/.android/build-cache/a5bc1e98ca8acb4d0b937a2a51cf1a926b123ddc/output/res/drawable-v21/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/Users/mareklipert/Documents/prog/robota/lambdarocket/highcharts/highcharts-android/hifit/build/intermediates/res/merged/debug/drawable-v21/notification_action_background.xml",
+        "source": "/Users/mareklipert/.android/build-cache/a5bc1e98ca8acb4d0b937a2a51cf1a926b123ddc/output/res/drawable-v21/notification_action_background.xml"
+    },
+    {
+        "merged": "/Users/mareklipert/Documents/prog/robota/lambdarocket/highcharts/highcharts-android/hifit/build/intermediates/res/merged/debug/drawable-v21/design_password_eye.xml",
+        "source": "/Users/mareklipert/.android/build-cache/07b58b92fca2e567e8d7014abce96b7165565b8b/output/res/drawable-v21/design_password_eye.xml"
+    }
+]

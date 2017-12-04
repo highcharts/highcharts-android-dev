@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/mareklipert/Documents/prog/robota/lambdarocket/highcharts/highcharts-android/hifit/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media_narrow_custom.xml",
+        "source": "/Users/mareklipert/.android/build-cache/a5bc1e98ca8acb4d0b937a2a51cf1a926b123ddc/output/res/layout-v11/notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "/Users/mareklipert/Documents/prog/robota/lambdarocket/highcharts/highcharts-android/hifit/build/intermediates/res/merged/debug/layout-v11/notification_media_cancel_action.xml",
+        "source": "/Users/mareklipert/.android/build-cache/a5bc1e98ca8acb4d0b937a2a51cf1a926b123ddc/output/res/layout-v11/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/Users/mareklipert/Documents/prog/robota/lambdarocket/highcharts/highcharts-android/hifit/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media_custom.xml",
+        "source": "/Users/mareklipert/.android/build-cache/a5bc1e98ca8acb4d0b937a2a51cf1a926b123ddc/output/res/layout-v11/notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "/Users/mareklipert/Documents/prog/robota/lambdarocket/highcharts/highcharts-android/hifit/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media.xml",
+        "source": "/Users/mareklipert/.android/build-cache/a5bc1e98ca8acb4d0b937a2a51cf1a926b123ddc/output/res/layout-v11/notification_template_big_media.xml"
+    },
+    {
+        "merged": "/Users/mareklipert/Documents/prog/robota/lambdarocket/highcharts/highcharts-android/hifit/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media_narrow.xml",
+        "source": "/Users/mareklipert/.android/build-cache/a5bc1e98ca8acb4d0b937a2a51cf1a926b123ddc/output/res/layout-v11/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/Users/mareklipert/Documents/prog/robota/lambdarocket/highcharts/highcharts-android/hifit/build/intermediates/res/merged/debug/layout-v11/notification_media_action.xml",
+        "source": "/Users/mareklipert/.android/build-cache/a5bc1e98ca8acb4d0b937a2a51cf1a926b123ddc/output/res/layout-v11/notification_media_action.xml"
+    }
+]

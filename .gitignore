@@ -1,0 +1,10 @@
+highcharts-android/*.iml
+highcharts-android/local.properties
+highcharts-android/.idea
+highcharts-android/build
+highcharts-android/.gradle
+Release/Example/HighFit/build
+Release/Example/HighFit/*.iml
+Release/Example/HighFit/local.properties
+Release/Example/HighFit/.idea
+Release/Example/HighFit/.gradle

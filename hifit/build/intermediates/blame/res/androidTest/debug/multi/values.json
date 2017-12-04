@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "/Users/mareklipert/Documents/prog/robota/lambdarocket/highcharts/highcharts-android/hifit/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values/values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 45,
+                    "endOffset": 96
+                },
+                "from": {
+                    "file": "/Users/mareklipert/.android/build-cache/73a86142415cc3c11c01f0d304459f7ed9c6d31f/output/res/values/values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 229,
+                        "endColumn": 45,
+                        "endOffset": 270
+                    }
+                }
+            }
+        ]
+    }
+]

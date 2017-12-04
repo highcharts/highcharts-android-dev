@@ -1,0 +1,4 @@
+#Tue Sep 19 21:39:35 NZST 2017
+base.0=/Users/mareklipert/Documents/prog/robota/lambdarocket/highcharts/highcharts-android/hifit/build/intermediates/transforms/dex/debug/folders/1000/1f/main
+renamed.0=classes.dex
+file.0=/Users/mareklipert/Documents/prog/robota/lambdarocket/highcharts/highcharts-android/hifit/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex
