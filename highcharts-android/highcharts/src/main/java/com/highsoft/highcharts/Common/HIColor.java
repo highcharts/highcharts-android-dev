@@ -10,7 +10,6 @@ import java.util.*;
  * In case of questions, please contact sales@highsoft.com
  */
 
-
 /**
  * This class provides color management in chart. Initiate colors by its static methods.
  */
@@ -75,6 +74,28 @@ public class HIColor {
         radialGradientMap.put("stops", stops);
         return new HIColor(new HashMap<>(radialGradientMap));
     }
+
+    public static HIColor initWithLinearGradientTest(HIGradient gradient, HIStops stops){
+        Map<String, Object> linearGradientMap = new HashMap<>();
+        linearGradientMap.put("linearGradient", gradient.getGradient());
+        linearGradientMap.put("stops", stops.getStops());
+        return new HIColor(new HashMap<>(linearGradientMap));
+    }
+
+    public static HIColor initWithLinearGradientTest2(HIGradient gradient, LinkedList<HIStop> stops){
+        Map<String, Object> linearGradientMap = new HashMap<>();
+        linearGradientMap.put("linearGradient", gradient.getGradient());
+        linearGradientMap.put("stops", stops);
+        return new HIColor(new HashMap<>(linearGradientMap));
+    }
+
+    public static HIColor initWithRadoalGradientTest2(HIGradient gradient, LinkedList<HIStop> stops){
+        Map<String, Object> linearGradientMap = new HashMap<>();
+        linearGradientMap.put("radialGradient", gradient.getGradient());
+        linearGradientMap.put("stops", stops);
+        return new HIColor(new HashMap<>(linearGradientMap));
+    }
+
 
     /**
      * Method used in the HIGChartsClasses to get the gradient color
