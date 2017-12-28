@@ -6,16 +6,12 @@ import java.util.Map;
 /**Definition of the gradient, similar to SVG: object literal holds start position (x1, y1) and the end position (x2, y2) relative to the shape, where 0 means top/left and 1 is bottom/right. All positions are floats between 0 and 1.**/
 public class HIGradient {
 
-    /** Defaults to 0. **/
     private float x1;
-    /** Defaults to 0. **/
     private float x2;
-    /** Defaults to 0. **/
     private float y1;
-    /** Defaults to 1. **/
     private float y2;
 
-    /** Default constructor. Sets positions values to default ones. **/
+    /** Default constructor. Sets positions values to default ones: x1 = 0, x2 = 0, y1 = 0, y2 = 1 **/
     public HIGradient(){
         this.x1 = 0;
         this.x2 = 0;
@@ -23,10 +19,17 @@ public class HIGradient {
         this.y2 = 1;
     }
 
-    /** Sets positions to the desired values. Values must be in 0 - 1 range. **/
+    /** Sets positions to the desired values.
+     * @param x1 must be in [0..1] range
+     * @param x2 must be in [0..1] range
+     * @param y1 must be in [0..1] range
+     * @param y2 must be in [0..1] range
+     * @exception <code>IllegalArgumentException</code> if a param does not comply **/
     public HIGradient(float x1, float y1, float x2, float y2){
-        if(x1 < 0.0 || x1 > 1.0 || x2 < 0.0 || x2 > 1.0 || y1 < 0.0 || y1 > 1.0 || y2 < 0.0 || y2 > 1.0)
-            throw new IllegalArgumentException("Position of the gradient must be in 0 - 1 range");
+        checkForRange(x1, 0.0, 1.0);
+        checkForRange(x2, 0.0, 1.0);
+        checkForRange(y1, 0.0, 1.0);
+        checkForRange(y2, 0.0, 1.0);
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
@@ -35,7 +38,7 @@ public class HIGradient {
 
     private Map<String, Number> gradient = new HashMap<>();
 
-    /** Returns map representation of the gradient **/
+    /** @return  map representation of the gradient **/
     public Map getGradient(){
 
         gradient.put("x1", x1);
@@ -46,5 +49,9 @@ public class HIGradient {
         return gradient;
     }
 
+    private static checkForRange(float pos, float lowR, float uppR){
+        if(pos < lowR || pos > uppR)
+            throw new IllegalArgumentException(pos + "must be in [" + lowR + ".." + uppR + "] range")
+    }
 
 }
