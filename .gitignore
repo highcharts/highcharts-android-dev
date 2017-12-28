@@ -8,3 +8,4 @@ Release/Example/HighFit/*.iml
 Release/Example/HighFit/local.properties
 Release/Example/HighFit/.idea
 Release/Example/HighFit/.gradle
+.idea/
