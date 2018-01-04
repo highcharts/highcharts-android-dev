@@ -24,12 +24,12 @@ public class HIGradient {
      * @param x2 must be in [0..1] range
      * @param y1 must be in [0..1] range
      * @param y2 must be in [0..1] range
-     * @exception <code>IllegalArgumentException</code> if a param does not comply **/
+     * @exception IllegalArgumentException if a param does not comply **/
     public HIGradient(float x1, float y1, float x2, float y2){
-        checkForRange(x1, 0.0, 1.0);
-        checkForRange(x2, 0.0, 1.0);
-        checkForRange(y1, 0.0, 1.0);
-        checkForRange(y2, 0.0, 1.0);
+        checkForRange(x1, 0F, 1f);
+        checkForRange(x2, 0f, 1f);
+        checkForRange(y1, 0f, 1f);
+        checkForRange(y2, 0f, 1f);
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
@@ -49,9 +49,9 @@ public class HIGradient {
         return gradient;
     }
 
-    private static checkForRange(float pos, float lowR, float uppR){
+    private static void checkForRange(float pos, float lowR, float uppR){
         if(pos < lowR || pos > uppR)
-            throw new IllegalArgumentException(pos + "must be in [" + lowR + ".." + uppR + "] range")
+            throw new IllegalArgumentException(pos + "must be in [" + lowR + ".." + uppR + "] range");
     }
 
 }
