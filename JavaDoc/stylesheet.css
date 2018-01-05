@@ -122,7 +122,8 @@ Navigation bar styles
     margin:0;
 }
 .topNav {
-    background-color:#47475C;
+    background:#47475C url("highcharts.svg") no-repeat 98% 50%;
+    background-size: auto 65px;
     color:#eeeaea;
     float:left;
     padding:0;
@@ -131,11 +132,12 @@ Navigation bar styles
     height:2.8em;
     padding-top:10px;
     overflow:hidden;
-    font-size:12px; 
+    font-size:12px;
 }
 .bottomNav {
     margin-top:10px;
-    background-color:#47475C;
+    background:#47475C url("highcharts.svg") no-repeat right center;
+    background-size: auto 65px;
     color:#eeeaea;
     float:left;
     padding:0;
