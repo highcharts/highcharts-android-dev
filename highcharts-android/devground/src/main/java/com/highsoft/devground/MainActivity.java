@@ -5,12 +5,19 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
 import com.highsoft.highcharts.Common.HIColor;
+import com.highsoft.highcharts.Common.HIGradient;
+import com.highsoft.highcharts.Common.HIStop;
+import com.highsoft.highcharts.Common.HIStops;
 import com.highsoft.highcharts.Core.HIGChartView;
 import com.highsoft.highcharts.Core.HIGFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,59 +31,58 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HIChart chart = new HIChart();
-        chart.type = "area";
-        chart.inverted = true;
+        chart.type = "column";
+        chart.zoomType = "x";
+        chart.resetZoomButton = new HIResetZoomButton();
         options.chart = chart;
 
-        HITitle title = new HITitle();
-        title.text = "Average fruit consumption during one week";
-        options.title = title;
+        //Current way to initiate gradient color:
+        Map<String, Number> linearGradient = new HashMap<>();
+        linearGradient.put("x1", 0);
+        linearGradient.put("y1", 0);
+        linearGradient.put("x2", 0);
+        linearGradient.put("y2", 1);
+        List<List> stopsOld = new ArrayList<>();
+        List<Object> l1 = new LinkedList<>();
+        l1.add(0);
+        l1.add("rgb(66, 218, 113)");
+        List<Object> l2 = new LinkedList<>();
+        l2.add(1);
+        l2.add("rgb(80, 140, 200)");
+        stopsOld.add(l1);
+        stopsOld.add(l2);
+//        chart.backgroundColor = HIColor.initWithLinearGradient(gradientPoints, gradientColors);
 
-        HISubtitle subtitle = new HISubtitle();
-        subtitle.style = new HashMap<>();
-        subtitle.style.put("position", "absolute");
-        subtitle.style.put("right", "0px");
-        subtitle.style.put("bottom", "10px");
-        options.subtitle = subtitle;
 
-        final HIXAxis xaxis = new HIXAxis();
-        String[] days = new String[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
-        xaxis.categories = new ArrayList<>(Arrays.asList(days));
-        options.xAxis = new ArrayList<HIXAxis>(){{add(xaxis);}};
+        //new way to init Gradient test:
+        HIGradient gradient = new HIGradient(0,0,0,1);
 
-        final HIYAxis yaxis = new HIYAxis();
-        yaxis.title = new HITitle();
-        yaxis.title.text = "Number of units";
-        yaxis.labels = new HILabels();
-        yaxis.labels.formatter = new HIGFunction("function () { return this.value; }", true);
-        options.yAxis = new ArrayList<HIYAxis>(){{add(yaxis);}};
+        //stops v1
+        HIStops stops = new HIStops(new Object[] {0, "rgb(66, 218, 113)"}, new Object[] {1, "rgb(80, 140, 200)"});
 
-        HILegend legend = new HILegend();
-        legend.layout = "vertical";
-        legend.align = "right";
-        legend.verticalAlign = "top";
-        legend.x = -100;
-        legend.y = 100;
-        legend.floating = true;
-        legend.borderWidth = 1;
-        legend.backgroundColor = HIColor.initWithHexValue("FFFFFF");
-        options.legend = legend;
+        //stops v2 better!
+        LinkedList<HIStop> stopsNew = new LinkedList<>();
+        stopsNew.add(new HIStop(0.4f, HIColor.initWithRGB(66, 218, 113)));
+        stopsNew.add(new HIStop(1, HIColor.initWithRGB(80, 140, 200)));
 
-        HIPlotOptions plotOptions = new HIPlotOptions();
-        plotOptions.area = new HIArea();
-        plotOptions.area.fillOpacity = 0.5;
+        HIArea area = new HIArea();
+        area.data = new ArrayList<>(Arrays.asList(2990, 7150, 10640, 12920, 14400, 17600,
+                13560, 14850, 21640, 19410, 9560, 5440));
+        area.type = "area"; // this will not be needed in future release (need to add type to constructor)
+//        area.fillColor = HIColor.initWithLinearGradient(linearGradient, stopsOld); // old initialization
+//        area.fillColor = HIColor.initWithLinearGradientTest(gradient, stops); //stops v1
+        area.fillColor = HIColor.initWithLinearGradientTest2(gradient, stopsNew); //stops v2 better!
+        options.series = new ArrayList<HISeries>(Collections.singletonList(area));
 
-        HIArea area1 = new HIArea();
-        area1.name = "John";
-        Number[] data1 = new Number[] { 4, 3, 5, 4, 10, 12 };
-        area1.data = new ArrayList<>(Arrays.asList(data1));
-        HIArea area2 = new HIArea();
-        area2.name = "Jane";
-        Number[] data2 = new Number[] { 3, 4, 3, 3, 5, 4 };
-        area2.data = new ArrayList<>(Arrays.asList(data2));
-
-        options.series = new ArrayList<HISeries>(Arrays.asList(area1, area2));
-
+//        HISeries customSeries = new HISeries();
+//        customSeries.data = new ArrayList<>(Arrays.asList(4, 7, 2));
+//
+//        options.series = new ArrayList<>(Arrays.asList(area, customSeries));
+        HILang lang = new HILang();
+        lang.numericSymbols  = new ArrayList<>(Arrays.asList("万", "億"));
+        lang.numericSymbolMagnitude = 10000;
+        lang.resetZoom = "DUPA";
+        chartView.lang = lang;
         chartView.options = options;
     }
 }

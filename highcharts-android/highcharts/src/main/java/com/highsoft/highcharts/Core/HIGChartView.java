@@ -14,6 +14,8 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import com.highsoft.highcharts.Common.HIChartsClasses.HIGlobal;
+import com.highsoft.highcharts.Common.HIChartsClasses.HILang;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIOptions;
 import com.highsoft.highcharts.R;
 
@@ -53,6 +55,12 @@ public class HIGChartView extends RelativeLayout {
      *  This is needed to make interactions between chart and your application view.
      */
     private Activity activity;
+
+
+    ///lang and global test
+
+    public HILang lang;
+    public HIGlobal global;
 
     private WebView webView;
     private HIGHTML HTML;
@@ -116,8 +124,8 @@ public class HIGChartView extends RelativeLayout {
         }
 
         // Setting up the Chart layout params
-        if(params == null) params = new RelativeLayout.LayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        webView.setLayoutParams(params);
+//        if(params == null) params = new RelativeLayout.LayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+//        webView.setLayoutParams(params);
         this.addView(webView);
     }
 
@@ -192,6 +200,8 @@ public class HIGChartView extends RelativeLayout {
         // Load Highchart themes
         this.HTML.prepareJavaScript(this.theme, "js/themes/", suffix);
 
+        if(this.lang != null)
+            this.HTML.prepareLang(this.lang.getParams());
         this.HTML.prepareOptions(this.options.getParams());
         this.HTML.injectJavaScriptToHTML();
 

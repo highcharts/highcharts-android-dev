@@ -25,6 +25,8 @@ final class HIGHTML implements Serializable{
      */
     public String options;
 
+    public String lang;
+
     private String html_tmp;
     private String scripts;
     private HIGJavaScript js;
@@ -68,6 +70,10 @@ final class HIGHTML implements Serializable{
         this.scripts += String.format(template, prefix, js, suffix);
     }
 
+    void prepareLang(Map lang){
+        this.lang = this.js.JSObject(lang);
+    }
+
     /**
      *  Prepare options Java object to JS representation.
      *
@@ -93,7 +99,15 @@ final class HIGHTML implements Serializable{
      *  Last step preparing HTML. After this get HTML from 'HTML' property.
      */
     void injectJavaScriptToHTML() {
-        this.html = this.html.replace("{{script}}", this.scripts).replace("{{options}}", this.options);
+        if(this.lang != null){
+            this.html = this.html.replace("{{lang}}", this.lang);
+        System.out.println("GENERATED CHART OPTIONS\n" + this.lang);
+        } else {
+            this.html = this.html.replace("{{lang}}", "{ }");
+        }
+        this.html = this.html
+                .replace("{{script}}", this.scripts)
+                .replace("{{options}}", this.options);
 //        System.out.println("GENERATED CHART OPTIONS\n" + this.options);
     }
 

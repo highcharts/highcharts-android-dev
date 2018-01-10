@@ -11,7 +11,7 @@ import java.util.Map;
 class HIGDependency {
 
     /**
-     *  Prepares options object and adds requireds params.
+     *  Prepares options object and adds required params.
      *
      *  @param options object to prepare.
      *  @return prepared options object.
@@ -41,8 +41,12 @@ class HIGDependency {
      *  @return return plugin name to load.
      */
     static List pluginsForOptions(Map options) {
-        String chart = (String)((Map)options.get("chart")).get("type");
-        return (Charts.charts.get(chart) != null) ? Collections.singletonList(Charts.charts.get(chart)) : Collections.emptyList();
+        if(options.get("chart") == null)
+            return Collections.emptyList();
+        else{
+            String chart = (String)((Map)options.get("chart")).get("type");
+            return Collections.singletonList(Charts.charts.get(chart));
+        }
     }
 
 }

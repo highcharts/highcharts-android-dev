@@ -21,18 +21,13 @@
                     buttons: {
                         contextButton: {
                             menuItems: null,
-                            /*menuItems : [{
-                                text : "exp",
-                                onclick: function () {
-                                    this.exportChart();
-                                }
-                            }]*/
                             onclick: function(){
                                 jsint.showDialog();
                             }
                         }
                     }
-                }
+                },
+                lang: {{lang}}
             });
             var chart = new Highcharts.Chart({{options}});
         </script>
