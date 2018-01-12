@@ -3,6 +3,8 @@ package com.highsoft.highcharts.Core;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -29,6 +31,7 @@ final class HIGWebViewClient extends WebViewClient{
     }
 
     /** Method for opening credits in the web browser for newer API **/
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
         if(request.getUrl() != null && request.getUrl().toString().startsWith("http://")){

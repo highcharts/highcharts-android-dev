@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -26,6 +27,8 @@ final class HIGHTML implements Serializable{
     public String options;
 
     public String lang;
+
+    public String global;
 
     private String html_tmp;
     private String scripts;
@@ -74,6 +77,11 @@ final class HIGHTML implements Serializable{
         this.lang = this.js.JSObject(lang);
     }
 
+
+    void prepareGlobal(Map global) {
+        this.global = this.js.JSObject(global);
+    }
+
     /**
      *  Prepare options Java object to JS representation.
      *
@@ -101,14 +109,20 @@ final class HIGHTML implements Serializable{
     void injectJavaScriptToHTML() {
         if(this.lang != null){
             this.html = this.html.replace("{{lang}}", this.lang);
-        System.out.println("GENERATED CHART OPTIONS\n" + this.lang);
         } else {
             this.html = this.html.replace("{{lang}}", "{ }");
+        }
+        if(this.global != null){
+            this.html = this.html.replace("{{global}}", this.global);
+        } else {
+            this.html = this.html.replace("{{global}}", "{ }");
         }
         this.html = this.html
                 .replace("{{script}}", this.scripts)
                 .replace("{{options}}", this.options);
 //        System.out.println("GENERATED CHART OPTIONS\n" + this.options);
+//        System.out.println("GENERATED CHART LANG\n" + this.lang);
+//        System.out.println("GENERATED CHART GLOBAL\n" + this.global);
     }
 
     private String getContentsOfFile(Context context, String path) throws IOException {

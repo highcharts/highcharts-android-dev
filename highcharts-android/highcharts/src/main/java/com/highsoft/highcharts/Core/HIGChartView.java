@@ -4,12 +4,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.os.Build;
 import android.support.annotation.Dimension;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.webkit.ConsoleMessage;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -56,10 +60,14 @@ public class HIGChartView extends RelativeLayout {
      */
     private Activity activity;
 
-
-    ///lang and global test
-
+    /**
+     * Language object. It is used for all language specific matters.
+     */
     public HILang lang;
+
+    /**
+     * Global object. It contains global options that apply to the chart view but are not within other classes,
+     */
     public HIGlobal global;
 
     private WebView webView;
@@ -68,6 +76,7 @@ public class HIGChartView extends RelativeLayout {
     private int width;
     private int height;
     private boolean loaded = false;
+    private static final String ANSI_CYAN = (char)27 + "[36mCYAN ";
 
     /**
      * Basic constructor with default chart size
@@ -93,7 +102,7 @@ public class HIGChartView extends RelativeLayout {
     }
 
     private void initialize(final Context context) {
-//        this.debug = true;
+        this.debug = false;
         this.HTML = new HIGHTML();
         this.HTML.baseURL = "";
         HIGWebViewClient webViewClient = new HIGWebViewClient();
@@ -107,6 +116,8 @@ public class HIGChartView extends RelativeLayout {
         this.webView.getSettings().setJavaScriptEnabled(true);
         this.webView.getSettings().setDomStorageEnabled(true);
         this.webView.setWebViewClient(webViewClient);
+        //improve chart loading performance, CSS animations are loading faster!
+        this.webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
         // Adding exporting module to the chart
         HIGExportModule higExportModule = new HIGExportModule(activity, this.webView);
@@ -114,10 +125,18 @@ public class HIGChartView extends RelativeLayout {
         this.webView.setDownloadListener(higExportModule);
 
         //this handler is made for displaying logs from JS code in Android console
-        if(this.debug != null){
+        if(this.debug){
             this.webView.setWebChromeClient(new WebChromeClient(){
                 public boolean onConsoleMessage(ConsoleMessage cm){
-                    Log.d("JS log", cm.message() + " --From line " + cm.lineNumber() + " of " + cm.sourceId());
+                    Log.i("jsDebug", "turned ON");
+                    Log.e("libHC", cm.message() + " --From line " + cm.lineNumber() + " of " + cm.sourceId());
+                    return true;
+                }
+            });
+        } else {
+            this.webView.setWebChromeClient(new WebChromeClient(){
+                public boolean onConsoleMessage(ConsoleMessage cm){
+                    Log.e("libHC", cm.message());
                     return true;
                 }
             });
@@ -177,7 +196,7 @@ public class HIGChartView extends RelativeLayout {
             this.plugins = new ArrayList<>();
         }
 
-        String suffix = (this.debug != null) ? ".src.js" : ".js";
+        String suffix = (this.debug) ? ".src.js" : ".js";
 
         // Load Highchart main scripts.
         this.HTML.prepareJavaScript("highcharts", "js/", suffix);
@@ -202,6 +221,8 @@ public class HIGChartView extends RelativeLayout {
 
         if(this.lang != null)
             this.HTML.prepareLang(this.lang.getParams());
+        if(this.global != null)
+            this.HTML.prepareGlobal(this.global.getParams());
         this.HTML.prepareOptions(this.options.getParams());
         this.HTML.injectJavaScriptToHTML();
 
@@ -216,6 +237,7 @@ public class HIGChartView extends RelativeLayout {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void loadChartOptions() {
 
         this.HTML.prepareOptions(this.options.getParams());
@@ -232,6 +254,7 @@ public class HIGChartView extends RelativeLayout {
     /**
      * Method to reload the chart. Use it after updating the chart options.
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void reload() {
         this.loadChartOptions();
     }
