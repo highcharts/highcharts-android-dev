@@ -28,10 +28,6 @@ public class HIColor {
         this.map = map;
     }
 
-    public HIColor(){
-
-    }
-
     /**
      * Standard hex color value, for example FFFFFF for black and 000000 for white
      */
@@ -56,40 +52,37 @@ public class HIColor {
     public static HIColor initWithName(String name){
         return new HIColor(name);
     }
-    /**
-     * CSS-style linear gradient
-     */
+
+
+
+ /*   //OLD GRADIENTS
     public static HIColor initWithLinearGradient(Map gradient, List<List> stops){
         Map<String, Object> linearGradientMap = new HashMap<>();
         linearGradientMap.put("linearGradient", gradient);
         linearGradientMap.put("stops", stops);
         return new HIColor(new HashMap<>(linearGradientMap));
     }
-    /**
-     * CSS-style radial gradient
-     */
     public static HIColor initWithRadialGradient(Map gradient, List<List> stops){
         Map<String, Object> radialGradientMap = new HashMap<>();
         radialGradientMap.put("radialGradient", gradient);
         radialGradientMap.put("stops", stops);
         return new HIColor(new HashMap<>(radialGradientMap));
-    }
+    }*/
 
-    public static HIColor initWithLinearGradientTest(HIGradient gradient, HIStops stops){
-        Map<String, Object> linearGradientMap = new HashMap<>();
-        linearGradientMap.put("linearGradient", gradient.getGradient());
-        linearGradientMap.put("stops", stops.getStops());
-        return new HIColor(new HashMap<>(linearGradientMap));
-    }
-
-    public static HIColor initWithLinearGradientTest2(HIGradient gradient, LinkedList<HIStop> stops){
+    /**
+     * CSS-style linear gradient
+     */
+    public static HIColor initWithLinearGradient(HIGradient gradient, LinkedList<HIStop> stops){
         Map<String, Object> linearGradientMap = new HashMap<>();
         linearGradientMap.put("linearGradient", gradient.getGradient());
         linearGradientMap.put("stops", stops);
         return new HIColor(new HashMap<>(linearGradientMap));
     }
 
-    public static HIColor initWithRadoalGradientTest2(HIGradient gradient, LinkedList<HIStop> stops){
+    /**
+     * CSS-style radial gradient
+     */
+    public static HIColor initWithRadialGradient(HIGradient gradient, LinkedList<HIStop> stops){
         Map<String, Object> linearGradientMap = new HashMap<>();
         linearGradientMap.put("radialGradient", gradient.getGradient());
         linearGradientMap.put("stops", stops);

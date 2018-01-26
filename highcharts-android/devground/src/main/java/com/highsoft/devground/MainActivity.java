@@ -4,21 +4,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
-import com.highsoft.highcharts.Common.HIColor;
-import com.highsoft.highcharts.Common.HIGradient;
-import com.highsoft.highcharts.Common.HIStop;
-import com.highsoft.highcharts.Common.HIStops;
 import com.highsoft.highcharts.Core.HIGChartView;
-import com.highsoft.highcharts.Core.HIGFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
         //!!! new way to init Gradient test: !!!///
         HIGradient gradient = new HIGradient(0,0,0,1);
 
-        //stops v1
-        HIStops stops = new HIStops(new Object[] {0, "rgb(66, 218, 113)"}, new Object[] {1, "rgb(80, 140, 200)"});
         //stops v2 better!
         LinkedList<HIStop> stopsNew = new LinkedList<>();
         stopsNew.add(new HIStop(0.4f, HIColor.initWithRGB(66, 218, 113)));
