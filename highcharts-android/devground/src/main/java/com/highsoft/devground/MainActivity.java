@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         series.dataLabels = dataLabels;
         Date d = new Date();
         series.pointStart = d.UTC(2016,9,22,0,0,0);
-        series.pointInterval = 24 * 36e5;
+        series.pointInterval = 24 * 365;
         series.name = "UTC Midnight";
         series.tooltip = new HITooltip();
         series.tooltip.pointFormat = "UTC midnight = {point.x:%H:%M} local time";
