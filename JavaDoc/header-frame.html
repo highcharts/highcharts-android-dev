@@ -6,23 +6,11 @@
 <meta name="date" content="2018-01-26">
 <link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-<script type="text/javascript" src="script.js"></script>
 <script type="text/javascript" src="api.js"></script>
-    <script>
-        var state = '',
-            hasChildren = true,
-            product = 'Highcharts';
-        hasChildren = false;
-        hapi.createNavigation('#options', '#global-options', state, product);
-        hapi.createBody('#body', state, hasChildren);
-        hapi.initializeDropdowns('.menu', '.dropdown-link', '.body');
-        hapi.initializeSidebar('.sidebar', '.sidebar-link', '.body');
-        hapi.initializeSearchBar('.search', '.results', 'search.json');
-        hapi.simulateHistory();
-    </script>
 </head>
 
 <body>
+
      <div class="headerMain">
             <div class="row row-1">
                 <div id="sidebar-link" class="cell sidebar-link">
@@ -84,6 +72,14 @@
                         </div>
                     </div>
             </div>
-        </div>
+     <script>
+        var state = '',
+            hasChildren = true,
+            product = 'Highcharts';
+        hapi.initializeDropdowns('.menu', '.dropdown-link', '.body');
+    </script>
+
+</div>
+    
 </body>
 </html>

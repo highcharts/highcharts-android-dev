@@ -905,4 +905,7 @@ div.contentContainer ul.blockList li.blockList h2{
   padding-bottom: 10px;
 }
 
-
+#hd {
+  z-index: 1;
+  position: absolute;
+}
