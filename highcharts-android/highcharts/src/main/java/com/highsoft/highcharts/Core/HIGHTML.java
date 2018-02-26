@@ -66,7 +66,7 @@ final class HIGHTML implements Serializable{
         String jsFilePath = this.baseURL + jsFileName;
         File f = new File(jsFilePath);
         if(f.exists() && !f.isDirectory()) {
-            System.out.println(String.format("[ Highcharts ]: %s, dont exits!", jsFileName));
+            System.out.println(String.format("[ Highcharts ]: %s, dont exists!", jsFileName));
             return;
         }
 
