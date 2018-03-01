@@ -1,38 +1,31 @@
 /**
-* (c) 2009-2017 Highsoft AS
+* (c) 2009-2018 Highsoft AS
 *
 * License: www.highcharts.com/license
-* For commercial usage, a valid license is required. To purchase a license for Highcharts iOS, please see our website: https://shop.highsoft.com/
+* For commercial usage, a valid license is required. To purchase a license for Highcharts Android, please see our website: https://shop.highsoft.com/
 * In case of questions, please contact sales@highsoft.com
 */
-
 
 package com.highsoft.highcharts.Common.HIChartsClasses;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
-/**
-* description: States for a single point marker.
-*/
+
 public class HIStates implements HIChartsJSONSerializable { 
 
-
-/**
-* description: The appearance of the point marker when selected. In order to
-allow a point to be selected, set the series.allowPointSelect
-option to true.
-*/
+	public HIHover hover;
 	public HISelect select;
 
 /**
-* description: The hover state for a single point marker.
+The normal state of a single point marker. Currently only used
+for setting animation when returning to normal state from hover.
 */
-	public HIHover hover;
+	public HINormal normal;
 
 
 	public HIStates() {
@@ -42,11 +35,14 @@ option to true.
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
+		if (this.hover != null) {
+			params.put("hover", this.hover.getParams());
+		}
 		if (this.select != null) {
 			params.put("select", this.select.getParams());
 		}
-		if (this.hover != null) {
-			params.put("hover", this.hover.getParams());
+		if (this.normal != null) {
+			params.put("normal", this.normal.getParams());
 		}
 		return params;
 	}

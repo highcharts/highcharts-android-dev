@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
-import com.highsoft.highcharts.Core.HIGChartView;
+import com.highsoft.highcharts.Core.HIChartView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+        HIChartView chartView = (HIChartView) findViewById(R.id.hc);
         HIOptions options = new HIOptions();
 
        /* HIChart chart = new HIChart();
@@ -89,19 +89,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         //LANG tests
-//        HILang lang = new HILang();
-//        lang.numericSymbols  = new ArrayList<>(Arrays.asList("万", "億"));
-//        lang.numericSymbolMagnitude = 10000;
-//        lang.resetZoom = "Testest";
-//        chartView.lang = lang;
+        HILang lang = new HILang();
+        lang.numericSymbols  = new ArrayList<>(Arrays.asList("万", "億"));
+        lang.numericSymbolMagnitude = 10000;
+        lang.resetZoom = "Testest";
+        chartView.lang = lang;
 
-
-        //GLOBAL tests
-        HIGlobal global = new HIGlobal();
-//        global.useUTC = true;
-        global.timezone = "Europe/Oslo";
-        chartView.global = global;
-        System.out.println("A Tutaj: " + global.getParams());
 
         chartView.options = options;
     }

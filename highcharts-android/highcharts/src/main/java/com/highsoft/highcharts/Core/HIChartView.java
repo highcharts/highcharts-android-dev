@@ -35,7 +35,7 @@ import java.util.concurrent.CancellationException;
  *  required properties.
  */
 
-public class HIGChartView extends RelativeLayout {
+public class HIChartView extends RelativeLayout {
 
     /**
      *  Options are main configuration entry point for chart view, for more
@@ -83,7 +83,7 @@ public class HIGChartView extends RelativeLayout {
      *
      * @param c Context from Layout which will be containing chart
      */
-    public HIGChartView(Context c) {
+    public HIChartView(Context c) {
         super(c);
         this.activity = (Activity) c;
         initialize(c);
@@ -94,7 +94,7 @@ public class HIGChartView extends RelativeLayout {
      * @param c app context
      * @param attrs attributes from xml
      */
-    public HIGChartView(Context c, AttributeSet attrs){
+    public HIChartView(Context c, AttributeSet attrs){
         super(c, attrs);
         this.setWillNotDraw(false);
         this.activity = (Activity) c;

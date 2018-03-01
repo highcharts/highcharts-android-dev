@@ -22,7 +22,7 @@ final class HIGJavaScript{
         final Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .disableHtmlEscaping()
-                .registerTypeAdapter(HIGFunction.class, new FunctionStringSerializer())
+                .registerTypeAdapter(HIFunction.class, new FunctionStringSerializer())
                 .create();
 
         String gsonFormatted = gson.toJson(object);
@@ -35,11 +35,11 @@ final class HIGJavaScript{
     }
 
     /**
-     * Custom serializer which let Gson serialize HIGFunction class properly
+     * Custom serializer which let Gson serialize HIFunction class properly
      */
-    private class FunctionStringSerializer implements JsonSerializer<HIGFunction> {
+    private class FunctionStringSerializer implements JsonSerializer<HIFunction> {
         @Override
-        public JsonElement serialize(HIGFunction src, Type typeOfSrc, JsonSerializationContext context) {
+        public JsonElement serialize(HIFunction src, Type typeOfSrc, JsonSerializationContext context) {
             return new JsonPrimitive(src.getFunction());
         }
     }

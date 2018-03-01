@@ -1,48 +1,44 @@
 /**
-* (c) 2009-2017 Highsoft AS
+* (c) 2009-2018 Highsoft AS
 *
 * License: www.highcharts.com/license
-* For commercial usage, a valid license is required. To purchase a license for Highcharts iOS, please see our website: https://shop.highsoft.com/
+* For commercial usage, a valid license is required. To purchase a license for Highcharts Android, please see our website: https://shop.highsoft.com/
 * In case of questions, please contact sales@highsoft.com
 */
-
 
 package com.highsoft.highcharts.Common.HIChartsClasses;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
 
 
-/**
-* description: The back side of the frame around a 3D chart.
-*/
+
 public class HIBack implements HIChartsJSONSerializable { 
 
 
 /**
-* description: The color of the panel.
+The color of the panel.
 * default: transparent
 */
 	public HIColor color;
 
 /**
-* description: Whether to display the frame. Possible values are true, false,
+Whether to display the frame. Possible values are true, false,
 "auto" to display only the frames behind the data, and "default"
 to display faces behind the data based on the axis layout, ignoring
 the point of view.
-
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/scatter-frame/ : Auto frames
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/scatter-frame/ : Auto frames
 * accepted values: ["default", "auto", true, false]
 * default: default
 */
-	public Object /* Bool, String */ visible;
+	public Object /* Boolean|String */ visible;
 
 /**
-* description: The thickness of the panel.
+The thickness of the panel.
 * default: 1
 */
 	public Number size;

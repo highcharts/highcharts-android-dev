@@ -1,144 +1,147 @@
 /**
-* (c) 2009-2017 Highsoft AS
+* (c) 2009-2018 Highsoft AS
 *
 * License: www.highcharts.com/license
-* For commercial usage, a valid license is required. To purchase a license for Highcharts iOS, please see our website: https://shop.highsoft.com/
+* For commercial usage, a valid license is required. To purchase a license for Highcharts Android, please see our website: https://shop.highsoft.com/
 * In case of questions, please contact sales@highsoft.com
 */
-
 
 package com.highsoft.highcharts.Common.HIChartsClasses;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
 
 
+
 /**
-* description: A variablepie series. If the type option is not
+A variablepie series. If the type option is not
 specified, it is inherited from chart.type.
+
 For options that apply to multiple series, it is recommended to add
 them to the plotOptions.series options structure.
-To apply to all series of this specific type, apply it to plotOptions.
-variablepie.
+To apply to all series of this specific type, apply it to [plotOptions.
+variablepie](#plotOptions.variablepie).
 */
 
 public class HIVariablepie extends HISeries {
 
 /**
-* description: The minimum possible z value for the point's radius calculation. 
+The maximum possible z value for the point's radius calculation. If
+the point's Z value is bigger than zMax, the slice will be drawn
+according to the zMax value
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/zmin-zmax/ : Series limited by both zMin and zMax
+*/
+	public Number zMax;
+
+/**
+The minimum size of the points' radius related to chart's plotArea.
+If a number is set, it applies in pixels.
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/min-max-point-size/ : Example of minPointSize and maxPointSize
+https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/min-point-size-100/ : minPointSize set to 100
+*/
+	public Object /* String|Number */ minPointSize;
+
+/**
+Whether the pie slice's value should be represented by the area 
+or the radius of the slice. Can be either area or radius. The
+default, area, corresponds best to the human perception of the size
+of each pie slice.
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/sizeby/ : Difference between area and radius sizeBy
+* accepted values: ["area", "radius"]
+*/
+	public String sizeBy;
+
+/**
+The minimum possible z value for the point's radius calculation. 
 If the point's Z value is smaller than zMin, the slice will be drawn
 according to the zMin value.
-
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/zmin-5/ : zMin set to 5, smaller z values are treated as 5
-https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/zmin-zmax/ : Series limited by both zMin and zMax
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/zmin-5/ : zMin set to 5, smaller z values are treated as 5
+https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/zmin-zmax/ : Series limited by both zMin and zMax
 */
 	public Number zMin;
 
 /**
-* description: Equivalent to chart.ignoreHiddenSeries,
-this option tells whether the series shall be redrawn as if the
-hidden point were null.
-The default value changed from false to true with Highcharts
-3.0.
-
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-ignorehiddenpoint/ : True, the hiddden point is ignored
-* default: true
-*/
-	public Boolean ignoreHiddenPoint;
-
-/**
-* description: The maximum size of the points' radius related to chart's plotArea.
+The maximum size of the points' radius related to chart's plotArea.
 If a number is set, it applies in pixels.
-
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/min-max-point-size/ : Example of minPointSize and maxPointSize
-* default: 100%
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/min-max-point-size/ : Example of minPointSize and maxPointSize
 */
-	public Object /* String, Double */ maxPointSize;
+	public Object /* String|Number */ maxPointSize;
 
 /**
-* description: The diameter of the pie relative to the plot area. Can be a percentage
-or pixel value. Pixel values are given as integers. The default
-behaviour (as of 3.0) is to scale to the plot area and give room
-for data labels within the plot area. As a consequence, the size
-of the pie may vary when points are updated and data labels more
-around. In that case it is best to set a fixed value, for example
-"75%".
-
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-size/ : Smaller pie
-*/
-	public Object /* String, Double */ size;
-
-/**
-* description: The center of the pie chart relative to the plot area. Can be percentages
-or pixel values. The default behaviour (as of 3.0) is to center
-the pie so that all slices and data labels are within the plot area.
-As a consequence, the pie may actually jump around in a chart with
-dynamic values, as the data labels move. In that case, the center
-should be explicitly set, for example to ["50%", "50%"].
-
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-center/ : Centered at 100, 100
-* default: [null, null]
-*/
-	public ArrayList /* <String, Double> */ center;
-
-/**
-* description: The color of the border surrounding each slice. When null, the
+The color of the border surrounding each slice. When null, the
 border takes the same color as the slice fill. This can be used
 together with a borderWidth to fill drawing gaps created by antialiazing
 artefacts in borderless pies.
-In styled mode, the border stroke is given in the .highcharts-point class.
 
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-bordercolor-black/ : Black border
+In styled mode, the border stroke is given in the .highcharts-point class.
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-bordercolor-black/ : Black border
 * default: #ffffff
 */
 	public HIColor borderColor;
 
 /**
-* description: The size of the inner diameter for the pie. A size greater than 0
-renders a donut chart. Can be a percentage or pixel value. Percentages
-are relative to the pie size. Pixel values are given as integers.
-Note: in Highcharts < 4.1.2, the percentage was relative to the plot
-area, not the pie size.
-
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-innersize-80px/ : 80px inner size
-https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-innersize-50percent/ : 50% of the plot area
-https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/3d-pie-donut/ : 3D donut
-* default: 0
+The end angle of the pie in degrees where 0 is top and 90 is right.
+Defaults to startAngle plus 360.
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-semi-circle/ : Semi-circle donut
+* default: null
 */
-	public Object /* String, Double */ innerSize;
+	public Number endAngle;
 
 /**
-* description: The minimum size of the points' radius related to chart's plotArea.
-If a number is set, it applies in pixels.
+The size of the inner diameter for the pie. A size greater than 0
+renders a donut chart. Can be a percentage or pixel value. Percentages
+are relative to the pie size. Pixel values are given as integers.
 
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/min-max-point-size/ : Example of minPointSize and maxPointSize
-https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/min-point-size-100/ : minPointSize set to 100
-* default: 10%
+
+Note: in Highcharts < 4.1.2, the percentage was relative to the plot
+area, not the pie size.
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-innersize-80px/ : 80px inner size
+https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-innersize-50percent/ : 50% of the plot area
+https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/3d-pie-donut/ : 3D donut
+* default: 0
 */
-	public Object /* String, Double */ minPointSize;
+	public Object /* String|Number */ innerSize;
+
+/**
+The center of the pie chart relative to the plot area. Can be percentages
+or pixel values. The default behaviour (as of 3.0) is to center
+the pie so that all slices and data labels are within the plot area.
+As a consequence, the pie may actually jump around in a chart with
+dynamic values, as the data labels move. In that case, the center
+should be explicitly set, for example to ["50%", "50%"].
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-center/ : Centered at 100, 100
+* default: [null, null]
+*/
+	public ArrayList /* <String|Number> */ center;
 	public Boolean clip;
 
 /**
-* description: The thickness of a 3D pie. Requires highcharts-3d.js
+If a point is sliced, moved out from the center, how many pixels
+should it be moved?.
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-slicedoffset-20/ : 20px offset
+* default: 10
+*/
+	public Number slicedOffset;
+
+/**
+The thickness of a 3D pie. Requires highcharts-3d.js
 * default: 0
 */
 	public Number depth;
 
 /**
-* description: The start angle of the pie slices in degrees where 0 is top and 90
-right.
-
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-startangle-90/ : Start from right
-* default: 0
+A series specific or series type specific color set to use instead
+of the global colors.
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/ : Set default colors for all pies
 */
-	public Number startAngle;
+	public ArrayList<HIColor> colors;
 
 /**
-* description: The minimum size for a pie in response to auto margins. The pie will
+The minimum size for a pie in response to auto margins. The pie will
 try to shrink to make room for data labels in side the plot area,
  but only to this size.
 * default: 80
@@ -146,51 +149,53 @@ try to shrink to make room for data labels in side the plot area,
 	public Number minSize;
 
 /**
-* description: A series specific or series type specific color set to use instead
-of the global colors.
+The width of the border surrounding each slice.
 
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/ : Set default colors for all pies
+When setting the border width to 0, there may be small gaps between
+the slices due to SVG antialiasing artefacts. To work around this,
+keep the border width at 0.5 or 1, but set the borderColor to
+null instead.
+
+In styled mode, the border stroke width is given in the .highcharts-point class.
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-borderwidth/ : 3px border
+* default: 1
 */
-	public ArrayList<HIColor> colors;
+	public Number borderWidth;
+	public String legendType;
 
 /**
-* description: Whether the pie slice's value should be represented by the area 
-or the radius of the slice. Can be either area or radius. The
-default, area, corresponds best to the human perception of the size
-of each pie slice.
-
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/sizeby/ : Difference between area and radius sizeBy
-* accepted values: ["area", "radius"]
-* default: area
+The start angle of the pie slices in degrees where 0 is top and 90
+right.
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-startangle-90/ : Start from right
+* default: 0
 */
-	public String sizeBy;
+	public Number startAngle;
 
 /**
-* description: The end angle of the pie in degrees where 0 is top and 90 is right.
-Defaults to startAngle plus 360.
-
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-semi-circle/ : Semi-circle donut
-* default: null
+The diameter of the pie relative to the plot area. Can be a percentage
+or pixel value. Pixel values are given as integers. The default
+behaviour (as of 3.0) is to scale to the plot area and give room
+for data labels within the plot area.
+slicedOffset is also included 
+in the default size calculation. As a consequence, the size
+of the pie may vary when points are updated and data labels more
+around. In that case it is best to set a fixed value, for example
+"75%".
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-size/ : Smaller pie
 */
-	public Number endAngle;
+	public Object /* String|Number */ size;
 
 /**
-* description: If a point is sliced, moved out from the center, how many pixels
-should it be moved?.
+Equivalent to chart.ignoreHiddenSeries,
+this option tells whether the series shall be redrawn as if the
+hidden point were null.
 
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-slicedoffset-20/ : 20px offset
-* default: 10
+The default value changed from false to true with Highcharts
+3.0.
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-ignorehiddenpoint/ : True, the hiddden point is ignored
+* default: true
 */
-	public Number slicedOffset;
-
-/**
-* description: The maximum possible z value for the point's radius calculation. If
-the point's Z value is bigger than zMax, the slice will be drawn
-according to the zMax value
-
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/zmin-zmax/ : Series limited by both zMin and zMax
-*/
-	public Number zMax;
+	public Boolean ignoreHiddenPoint;
 
 
 	public HIVariablepie() {
@@ -201,17 +206,29 @@ according to the zMax value
 
 		Map<String, Object> params = new HashMap<>();
 		params = super.getParams();
+		if (this.zMax != null) {
+			params.put("zMax", this.zMax);
+		}
+		if (this.minPointSize != null) {
+			params.put("minPointSize", this.minPointSize);
+		}
+		if (this.sizeBy != null) {
+			params.put("sizeBy", this.sizeBy);
+		}
 		if (this.zMin != null) {
 			params.put("zMin", this.zMin);
-		}
-		if (this.ignoreHiddenPoint != null) {
-			params.put("ignoreHiddenPoint", this.ignoreHiddenPoint);
 		}
 		if (this.maxPointSize != null) {
 			params.put("maxPointSize", this.maxPointSize);
 		}
-		if (this.size != null) {
-			params.put("size", this.size);
+		if (this.borderColor != null) {
+			params.put("borderColor", this.borderColor.getData());
+		}
+		if (this.endAngle != null) {
+			params.put("endAngle", this.endAngle);
+		}
+		if (this.innerSize != null) {
+			params.put("innerSize", this.innerSize);
 		}
 		if (this.center != null) {
 			ArrayList<Object> array = new ArrayList<>();
@@ -225,26 +242,14 @@ according to the zMax value
 			}
 			params.put("center", array);
 		}
-		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor.getData());
-		}
-		if (this.innerSize != null) {
-			params.put("innerSize", this.innerSize);
-		}
-		if (this.minPointSize != null) {
-			params.put("minPointSize", this.minPointSize);
-		}
 		if (this.clip != null) {
 			params.put("clip", this.clip);
 		}
+		if (this.slicedOffset != null) {
+			params.put("slicedOffset", this.slicedOffset);
+		}
 		if (this.depth != null) {
 			params.put("depth", this.depth);
-		}
-		if (this.startAngle != null) {
-			params.put("startAngle", this.startAngle);
-		}
-		if (this.minSize != null) {
-			params.put("minSize", this.minSize);
 		}
 		if (this.colors != null) {
 			ArrayList<HIColor> array = new ArrayList<>();
@@ -253,17 +258,23 @@ according to the zMax value
 			}
 			params.put("colors", array);
 		}
-		if (this.sizeBy != null) {
-			params.put("sizeBy", this.sizeBy);
+		if (this.minSize != null) {
+			params.put("minSize", this.minSize);
 		}
-		if (this.endAngle != null) {
-			params.put("endAngle", this.endAngle);
+		if (this.borderWidth != null) {
+			params.put("borderWidth", this.borderWidth);
 		}
-		if (this.slicedOffset != null) {
-			params.put("slicedOffset", this.slicedOffset);
+		if (this.legendType != null) {
+			params.put("legendType", this.legendType);
 		}
-		if (this.zMax != null) {
-			params.put("zMax", this.zMax);
+		if (this.startAngle != null) {
+			params.put("startAngle", this.startAngle);
+		}
+		if (this.size != null) {
+			params.put("size", this.size);
+		}
+		if (this.ignoreHiddenPoint != null) {
+			params.put("ignoreHiddenPoint", this.ignoreHiddenPoint);
 		}
 		return params;
 	}

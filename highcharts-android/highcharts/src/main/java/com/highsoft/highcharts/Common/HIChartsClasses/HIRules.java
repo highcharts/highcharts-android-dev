@@ -1,35 +1,34 @@
 /**
-* (c) 2009-2017 Highsoft AS
+* (c) 2009-2018 Highsoft AS
 *
 * License: www.highcharts.com/license
-* For commercial usage, a valid license is required. To purchase a license for Highcharts iOS, please see our website: https://shop.highsoft.com/
+* For commercial usage, a valid license is required. To purchase a license for Highcharts Android, please see our website: https://shop.highsoft.com/
 * In case of questions, please contact sales@highsoft.com
 */
-
 
 package com.highsoft.highcharts.Common.HIChartsClasses;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
-/**
-* description: A set of rules for responsive settings. The rules are executed from
-the top down.
 
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/ : Axis changes
-
-*/
 public class HIRules implements HIChartsJSONSerializable { 
 
 
 /**
-* description: A full set of chart options to apply as overrides to the general
+Under which conditions the rule applies.
+*/
+	public HICondition condition;
+
+/**
+A full set of chart options to apply as overrides to the general
 chart options. The chart options are applied when the given rule
 is active.
+
 A special case is configuration objects that take arrays, for example
 xAxis, yAxis or series. For these
 collections, an id option is used to map the new option set to
@@ -37,18 +36,11 @@ an existing object. If an existing object of the same id is not found,
 the item of the same indexupdated. So for example, setting chartOptions
 with two series items without an id, will cause the existing chart's
 two series to be updated with respective options.
-
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/stock/demo/responsive/ : Stock chart
-https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/ : Axis
-https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/legend/ : Legend
-https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/classname/ : Class name
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/ : Axis
+https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/legend/ : Legend
+https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/classname/ : Class name
 */
 	public Object chartOptions;
-
-/**
-* description: Under which conditions the rule applies.
-*/
-	public HICondition condition;
 
 
 	public HIRules() {
@@ -58,11 +50,11 @@ https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/h
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.chartOptions != null) {
-			params.put("chartOptions", this.chartOptions);
-		}
 		if (this.condition != null) {
 			params.put("condition", this.condition.getParams());
+		}
+		if (this.chartOptions != null) {
+			params.put("chartOptions", this.chartOptions);
 		}
 		return params;
 	}

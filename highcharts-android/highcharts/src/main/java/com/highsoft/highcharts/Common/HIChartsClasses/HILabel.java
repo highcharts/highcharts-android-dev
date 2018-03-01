@@ -1,147 +1,135 @@
 /**
-* (c) 2009-2017 Highsoft AS
+* (c) 2009-2018 Highsoft AS
 *
 * License: www.highcharts.com/license
-* For commercial usage, a valid license is required. To purchase a license for Highcharts iOS, please see our website: https://shop.highsoft.com/
+* For commercial usage, a valid license is required. To purchase a license for Highcharts Android, please see our website: https://shop.highsoft.com/
 * In case of questions, please contact sales@highsoft.com
 */
-
 
 package com.highsoft.highcharts.Common.HIChartsClasses;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
-/**
-* description: Text labels for the plot bands
-*/
+
 public class HILabel implements HIChartsJSONSerializable { 
 
 
 /**
-* description: Allow labels to be placed distant to the graph if necessary,
-and draw a connector line to the graph.
-* default: True
+CSS styles for the text label.
+
+In styled mode, the labels are styled by the
+.highcharts-plot-line-label class.
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-style/ : Blue and bold label
 */
-	public Boolean connectorAllowed;
+	public HIStyle style;
 
 /**
-* description: An array of boxes to avoid when laying out the labels. Each 
-item has a left, right, top and bottom property.
+Vertical alignment of the label relative to the plot line. Can be
+one of "top", "middle" or "bottom".
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-verticalalign-middle/ : Vertically centered label
+* accepted values: ["top", "middle", "bottom"]
+* default: top
 */
-	public ArrayList boxesToAvoid;
+	public String verticalAlign;
 
 /**
-* description: Draw the label on the area of an area series. By default it
-is drawn on the area. Set it to false to draw it next to
-the graph instead.
+The text itself. A subset of HTML is supported.
 */
-	public Boolean onArea;
+	public String text;
 
 /**
-* description: For area-like series, allow the font size to vary so that
-small areas get a smaller font size. The default applies this
-effect to area-like series but not line-like series.
+Horizontal alignment of the label. Can be one of "left", "center"
+or "right".
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-align-right/ : Aligned to the right
+* default: left
 */
-	public Number maxFontSize;
+	public String align;
 
 /**
-* description: If the label is closer than this to a neighbour graph, draw a
-connector.
-* default: 24
+The text alignment for the label. While align determines where
+the texts anchor point is placed within the plot band, textAlign
+determines how the text is aligned against its anchor point. Possible
+values are "left", "center" and "right". Defaults to the same as
+the align option.
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-textalign/ : Text label in bottom position
 */
-	public Number connectorNeighbourDistance;
+	public String textAlign;
 
 /**
-* description: For area-like series, allow the font size to vary so that
+Vertical position of the text baseline relative to the alignment.
+ Default varies by orientation.
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-y/ : Label below the plot line
+*/
+	public Number y;
+
+/**
+Horizontal position relative the alignment. Default varies by orientation.
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-align-right/ : Aligned 10px from the right edge
+*/
+	public Number x;
+
+/**
+Rotation of the text label in degrees. Defaults to 0 for horizontal
+plot lines and 90 for vertical lines.
+* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-verticalalign-middle/ : Slanted text
+*/
+	public Number rotation;
+
+/**
+Whether to [use HTML](http://www.highcharts.com/docs/chart-concepts/labels-
+and-string-formatting#html) to render the labels.
+* default: false
+*/
+	public Boolean useHTML;
+
+/**
+For area-like series, allow the font size to vary so that
 small areas get a smaller font size. The default applies this
 effect to area-like series but not line-like series.
 */
 	public Number minFontSize;
 
 /**
-* description: Styles for the series label. The color defaults to the series
-color, or a contrast color if onArea.
+For area-like series, allow the font size to vary so that
+small areas get a smaller font size. The default applies this
+effect to area-like series but not line-like series.
 */
-	public HIStyle style;
+	public Number maxFontSize;
 
 /**
-* description: Enable the series label per series.
-* default: True
+Enable the series label per series.
 */
 	public Boolean enabled;
 
 /**
-* description: Whether to http://www.highcharts.com/docs/chart-concepts/labels-
-and-string-formatting#html : use HTML to render the labels.
-* default: false
+If the label is closer than this to a neighbour graph, draw a
+connector.
 */
-	public Boolean useHTML;
+	public Number connectorNeighbourDistance;
 
 /**
-* description: Horizontal position relative the alignment. Default varies by orientation.
-
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-label-align/ : Aligned 10px from the right edge
-https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/stock/xaxis/plotbands-label/ : Plot band with labels
+Draw the label on the area of an area series. By default it
+is drawn on the area. Set it to false to draw it next to
+the graph instead.
 */
-	public Number x;
+	public Boolean onArea;
 
 /**
-* description: Rotation of the text label in degrees .
-
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-label-rotation/ : Vertical text
-* default: 0
+An array of boxes to avoid when laying out the labels. Each 
+item has a left, right, top and bottom property.
 */
-	public Number rotation;
+	public ArrayList boxesToAvoid;
 
 /**
-* description: The string text itself. A subset of HTML is supported.
+Allow labels to be placed distant to the graph if necessary,
+and draw a connector line to the graph.
 */
-	public String text;
-
-/**
-* description: Vertical position of the text baseline relative to the alignment.
- Default varies by orientation.
-
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-label-y/ : Label on x axis
-https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/stock/xaxis/plotbands-label/ : Plot band with labels
-*/
-	public Number y;
-
-/**
-* description: Horizontal alignment of the label. Can be one of "left", "center"
-or "right".
-
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-label-align/ : Aligned to the right
-https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/stock/xaxis/plotbands-label/ : Plot band with labels
-* default: center
-*/
-	public String align;
-
-/**
-* description: The text alignment for the label. While align determines where
-the texts anchor point is placed within the plot band, textAlign
-determines how the text is aligned against its anchor point. Possible
-values are "left", "center" and "right". Defaults to the same as
-the align option.
-
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-label-rotation/ : Vertical text in center position but text-aligned left
-*/
-	public String textAlign;
-
-/**
-* description: Vertical alignment of the label relative to the plot band. Can be
-one of "top", "middle" or "bottom".
-
-* demo: https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-label-verticalalign/ : Vertically centered label
-https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/stock/xaxis/plotbands-label/ : Plot band with labels
-* default: top
-*/
-	public String verticalAlign;
+	public Boolean connectorAllowed;
 
 
 	public HILabel() {
@@ -151,8 +139,47 @@ https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/s
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.connectorAllowed != null) {
-			params.put("connectorAllowed", this.connectorAllowed);
+		if (this.style != null) {
+			params.put("style", this.style.getParams());
+		}
+		if (this.verticalAlign != null) {
+			params.put("verticalAlign", this.verticalAlign);
+		}
+		if (this.text != null) {
+			params.put("text", this.text);
+		}
+		if (this.align != null) {
+			params.put("align", this.align);
+		}
+		if (this.textAlign != null) {
+			params.put("textAlign", this.textAlign);
+		}
+		if (this.y != null) {
+			params.put("y", this.y);
+		}
+		if (this.x != null) {
+			params.put("x", this.x);
+		}
+		if (this.rotation != null) {
+			params.put("rotation", this.rotation);
+		}
+		if (this.useHTML != null) {
+			params.put("useHTML", this.useHTML);
+		}
+		if (this.minFontSize != null) {
+			params.put("minFontSize", this.minFontSize);
+		}
+		if (this.maxFontSize != null) {
+			params.put("maxFontSize", this.maxFontSize);
+		}
+		if (this.enabled != null) {
+			params.put("enabled", this.enabled);
+		}
+		if (this.connectorNeighbourDistance != null) {
+			params.put("connectorNeighbourDistance", this.connectorNeighbourDistance);
+		}
+		if (this.onArea != null) {
+			params.put("onArea", this.onArea);
 		}
 		if (this.boxesToAvoid != null) {
 			ArrayList<Object> array = new ArrayList<>();
@@ -166,47 +193,8 @@ https://jsfiddle.net/gh/library/pure/highcharts/highcharts/tree/master/samples/s
 			}
 			params.put("boxesToAvoid", array);
 		}
-		if (this.onArea != null) {
-			params.put("onArea", this.onArea);
-		}
-		if (this.maxFontSize != null) {
-			params.put("maxFontSize", this.maxFontSize);
-		}
-		if (this.connectorNeighbourDistance != null) {
-			params.put("connectorNeighbourDistance", this.connectorNeighbourDistance);
-		}
-		if (this.minFontSize != null) {
-			params.put("minFontSize", this.minFontSize);
-		}
-		if (this.style != null) {
-			params.put("style", this.style.getParams());
-		}
-		if (this.enabled != null) {
-			params.put("enabled", this.enabled);
-		}
-		if (this.useHTML != null) {
-			params.put("useHTML", this.useHTML);
-		}
-		if (this.x != null) {
-			params.put("x", this.x);
-		}
-		if (this.rotation != null) {
-			params.put("rotation", this.rotation);
-		}
-		if (this.text != null) {
-			params.put("text", this.text);
-		}
-		if (this.y != null) {
-			params.put("y", this.y);
-		}
-		if (this.align != null) {
-			params.put("align", this.align);
-		}
-		if (this.textAlign != null) {
-			params.put("textAlign", this.textAlign);
-		}
-		if (this.verticalAlign != null) {
-			params.put("verticalAlign", this.verticalAlign);
+		if (this.connectorAllowed != null) {
+			params.put("connectorAllowed", this.connectorAllowed);
 		}
 		return params;
 	}

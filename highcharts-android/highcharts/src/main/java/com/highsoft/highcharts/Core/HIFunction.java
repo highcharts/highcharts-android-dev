@@ -6,7 +6,7 @@ package com.highsoft.highcharts.Core;
 
 /**This class represents special type for Javascript functions in Highcharts Android Wrapper*/
 
-final public class HIGFunction {
+final public class HIFunction {
 
     private String function = "";
 
@@ -16,7 +16,7 @@ final public class HIGFunction {
      * @param functionInString example: function() { return "String representation"; }
      * @param useNow           use this flag to enable injection to Javascript
      */
-    public HIGFunction(String functionInString, Boolean useNow) {
+    public HIFunction(String functionInString, Boolean useNow) {
         if (useNow) {
             String template = "%s%s%s";
             String prefixnsuffix = "__xx__";
@@ -31,13 +31,13 @@ final public class HIGFunction {
      * Use this constructor to return the exact retutning statement for Javascript function
      * @param toReturn the exact String to return in the Javascript function
      */
-   /* public HIGFunction(String toReturn) {
+   /* public HIFunction(String toReturn) {
         String template = "%sfunction() { return '%s' ; } %s";
         this.function = String.format(template, prefix, toReturn, suffix);
     }*/
 
 
-    /*public HIGFunction(HIGFunctionalInterface function, String... arguments) {
+    /*public HIFunction(HIGFunctionalInterface function, String... arguments) {
         String template = "%sfunction() { return '%s' ; } %s";
         this.function = String.format(template, prefix, function.getString(), suffix);
         System.out.println(this.function);
