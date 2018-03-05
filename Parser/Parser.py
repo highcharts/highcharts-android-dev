@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
-# ************************************************
+# *********************************************
 # Created by Krzysztof Fryzlewicz, Marek Lipert
-#            Ihnat Moisieiev and Bartosz Gnacek
+#            Ihnat Moisieiev, Bartosz Gnacek
 #                   of Spinney
 #                 www.spinney.io
 #   
@@ -13,26 +13,29 @@
 import json
 import sys
 import os
+import re
 from bs4 import BeautifulSoup, SoupStrainer
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-tree = dict()
 structure = dict()
-groups = list()
 files = list()
 bridge = set()
 options = list()
-notHichartsObjects = list()
 classes = dict()
-filelicense = "/**\n* (c) 2009-2017 Highsoft AS\n*\n* License: www.highcharts.com/license\n" \
+comments = dict()
+types = dict()
+filelicense = "/**\n* (c) 2009-2018 Highsoft AS\n*\n* License: www.highcharts.com/license\n" \
               "* For commercial usage, a valid license is required. To purchase a license for Highcharts iOS, please see our website: https://shop.highsoft.com/\n" \
               "* In case of questions, please contact sales@highsoft.com\n*/\n\n"
 
+fileAndroidlicense = "/**\n* (c) 2009-2018 Highsoft AS\n*\n* License: www.highcharts.com/license\n" \
+              "* For commercial usage, a valid license is required. To purchase a license for Highcharts Android, please see our website: https://shop.highsoft.com/\n" \
+              "* In case of questions, please contact sales@highsoft.com\n*/\n\n"
 
 class HIChartsClass:
-    def __init__(self, name, data_type, description, demo, values, defaults, products):
+    def __init__(self, name, data_type, description, demo, values, defaults, products, extends, exclude, info, parent):
         self.name = name
         self.data_type = data_type
         self.description = description
@@ -40,23 +43,19 @@ class HIChartsClass:
         self.values = values
         self.defaults = defaults
         self.products = products
+        self.extends = extends
+        self.exclude = exclude
         self.properties = list()
-        self.extends = None
+        self.not_highcharts_properties = list()
         self.comment = None
-        self.checked = False
-        self.duplicate = False
-        self.group = None
-        x = name.split(".")
-        if len(x) == 1:
-            x = name.split("<")
-            if len(x) > 1:
-                self.extends = x[0]
-        elif len(x) == 2 and x[0] == "plotOptions" and x[1] != "series":
-            self.extends = "series"
+        self.checkedExtends = False
+        self.info = info
+        self.parent = parent
+
         if self.description:
-            self.comment = "/**\n* description: {0}\n".format(self.description)
+            self.comment = "/**\n{0}\n".format(self.description)
             if self.demo:
-                self.comment += "* demo: {0}\n".format(self.demo)
+                self.comment += "* demo: {0}".format(self.demo)
             if self.values:
                 self.comment += "* accepted values: {0}\n".format(self.values)
             self.comment = clean_comment(self.comment)
@@ -64,16 +63,35 @@ class HIChartsClass:
                 self.comment += "* default: {0}\n".format(self.defaults)
             self.comment += "*/\n"
 
-    def update(self, source):
-        self.data_type = source.data_type
-        self.description = source.description
-        self.demo = source.demo
-        self.values = source.values
-        self.defaults = source.defaults
+    def update(self, data_type, description, demo, values, defaults, products, extends, exclude):
+        if self.data_type is None:
+            self.data_type = data_type
+
+        if self.description is None:
+            self.description = description
+
+        if self.demo is None:
+            self.demo = demo
+
+        if self.values is None:
+            self.values = values
+
+        if self.defaults is None:
+            self.defaults = defaults
+
+        if self.products is None:
+            self.products = products
+
+        if self.extends is None:
+            self.extends = extends
+
+        if self.exclude is None:
+            self.exclude = exclude
+
         if self.description:
             self.comment = "/**\n* description: {0}\n".format(self.description)
             if self.demo:
-                self.comment += "* demo: {0}\n".format(self.demo)
+                self.comment += "* demo: {0}".format(self.demo)
             if self.values:
                 self.comment += "* accepted values: {0}\n".format(self.values)
             self.comment = clean_comment(self.comment)
@@ -83,6 +101,12 @@ class HIChartsClass:
 
     def add_property(self, variable):
         self.properties.append(variable)
+
+    def remove_property(self, variable):
+        self.properties.remove(variable)
+
+    def add_not_highcharts_property(self, variable):
+        self.not_highcharts_properties.append(get_last(variable))
 
 
 def clean_comment(comment):
@@ -114,12 +138,14 @@ class Node:
         self.info = info
         self.children = list()
         self.parent = parent
+
     def add_child(self, child):
         self.children.append(child)
 
     def update(self, parent, info):
         self.parent = parent
         self.info = info
+
 
 def get_type(x):
     return {
@@ -179,7 +205,9 @@ def get_type(x):
         "Array.<Array.<Mixed>>": 'NSArray<NSArray *>',
         "Object|Number": 'id /* id, NSNumber */',
         "umber": 'NSNumber',
-        "function|null": 'HIFunction'
+        "function|null": 'HIFunction',
+        #6.0.6
+        "Undefined|Number": 'NSNumber'
     }[str(x)]
 
 
@@ -190,272 +218,79 @@ def get_java_type(x):
         "Color": 'HIColor',
         "String": 'String',
         "Object": 'Object',
-        "Function": 'HIGFunction',
+        "Function": 'HIFunction',
         "Array<Number>": 'ArrayList<Number>',
         "Array<Object>": 'ArrayList',
         "Array": 'ArrayList',
         "Array<String>": 'ArrayList<String>',
-        "Boolean|Object": 'Object /* Boolean, Object */',
-        "String|Number": 'Object /* String, Double */',
+        "Boolean|Object": 'Object /* Boolean|Object */',
+        "String|Number": 'Object /* String|Number */',
         "Array<Array>": 'ArrayList<ArrayList>',
         "CSSObject": 'HashMap<String,String>',
         "Array<Color>": 'ArrayList<HIColor>',
-        "Array<Object|Array|Number>": 'ArrayList /* <Data, Double, ArrayList<>> */',
-        "Array<String|Number>": 'ArrayList<Object> /* <String, Double> */',
-        "Array<Object|Number>": 'ArrayList /* <Object, Double> */',
-        "Array<Object|Array>": 'ArrayList /* <Object, ArrayList<>> */',
-        "Number|String": 'Object /* String, Double */',
+        "Array<Object|Array|Number>": 'ArrayList /* <Data|Number|ArrayList> */',
+        "Array<String|Number>": 'ArrayList /* <String|Number> */',
+        "Array<Object|Number>": 'ArrayList /* <Object|Number> */',
+        "Array<Object|Array>": 'ArrayList /* <Object|ArrayList> */',
+        "Number|String": 'Object /* Number|String */',
         "String|HTMLElement": 'Object',
         "Array<Array<Mixed>>": 'ArrayList<ArrayList>',
-        "String|Object": 'Object /* String, Object */',
+        "String|Object": 'Object /* String|Object */',
         "Mixed": 'Object',
-        "Number|Boolean": 'Double /* Double, Boolean */',
+        "Number|Boolean": 'Object /* Boolean|String */',
         "": 'Object',
         "plotOptions.series.states": 'Object',
-        "Boolean|String": 'Object /* Bool, String */',
+        "Boolean|String": 'Object /* Boolean|String */',
         # nowe typy
-        "Object|Boolean": 'Object /* Object, Boolean */',
+        "Object|Boolean": 'Object /* Boolean|Object */',
         "String|Array.<String>": 'Object',
         "Array.<String>": 'ArrayList<String>',
-        "function": 'HIGFunction /* Function */',
+        "function": 'HIFunction',
         "String|function": 'String',
         "Array.<Object>": 'ArrayList',
-        "Array.<Number>": 'ArrayList<Double>',
+        "Array.<Number>": 'ArrayList<Number>',
         "Array.<Array>": 'ArrayList<ArrayList>',
         "Array.<Color>": 'ArrayList<HIColor>',
-        "Array.<Object|Array|Number>": 'ArrayList /* <Data, Double, ArrayList> */',
-        "Array.<String|Number>": 'ArrayList /* <String, Double> */',
+        "Array.<Object|Array|Number>": 'ArrayList /* <Object|Number|ArrayList> */',
+        "Array.<String|Number>": 'ArrayList /* <String|Number> */',
         "Array.<Object|Number>": 'ArrayList',
         "Array.<Object|Array>": 'ArrayList',
         "Array.<Array<Mixed>>": 'ArrayList<ArrayList>',
         "Array.<(Object|Number)>": 'ArrayList',
-        "Array.<(String|Number)>": 'ArrayList /* <String, Double> */',
+        "Array.<(String|Number)>": 'ArrayList /* <String|Number> */',
         "Array.<(Object|Array)>": 'ArrayList',
         "String|Array.<Object>": 'String',
         "String|undefined": 'String',
         "Array.<String>|Array.<Object>": 'ArrayList',
-        "String|Number|function": 'Object /* String, Double, HIGFunction */',
-        "Array.<(Object|Array|Number)>": 'ArrayList /* <Data, Double, ArrayList> */',
+        "String|Number|function": 'Object /* String|Number|HIFunction */',
+        "Array.<(Object|Array|Number)>": 'ArrayList /* <Object|Number|ArrayList> */',
         "String|null": 'String',
         "Array.<Array<Mixed>>": 'ArrayList<ArrayList>',
         "Array.<Array.<Mixed>>": 'ArrayList<ArrayList>',
-        "Object|Number": 'Object /* Object, Number */',
-        "umber": 'Double',
-        "function|null": 'HIGFunction'
+        "Object|Number": 'Object /* Object|Number */',
+        "umber": 'Number',
+        "function|null": 'HIFunction',
+        #6.0.6
+        "Undefined|Number": 'Number'
     }[str(x)]
 
 
 def upper_first(x):
     r = x[0].upper() + x[1:]
-    # if r == 'Point':
-    #     r = 'HIPoint'
     return r
-
-
-def lower_first(x):
-    return x[0].lower() + x[1:]
 
 
 def get_last(x):
     last = ''
-    s = x.split("<")
-    if len(s) > 1:
-        n = s[1].split(".")
-        last = n[len(n) - 1].replace(">", "")
-    else:
-        n = s[0].split(".")
-        last = n[len(n) - 1]
+    n = x.split(".")
+    last = n[len(n) - 1]
     if last == 'description':
         last = 'definition'
     return last
 
 
-def search_for_repetitions():
-    for key1 in structure:
-        if not structure[key1].checked:
-            search(key1)
-
-
-def search(key1):
-    duplicates = list()
-    for key2 in structure:
-        if key1 != key2:
-            if get_last(structure[key1].name) == get_last(structure[key1].name):
-                if structure[key1].data_type == structure[key2].data_type:
-                    if len(structure[key1].properties) == len(structure[key2].properties):
-                        if structure[key1].description == structure[key2].description:
-                            if key1 != "xAxis.breaks" and key2 != "xAxis.breaks":
-                                all = True
-                                for p1 in structure[key1].properties:
-                                    ok = False
-                                    for p2 in structure[key2].properties:
-                                        if get_last(p1.name) == get_last(p2.name):
-                                            ok = True
-                                    if not ok:
-                                        all = False
-                                if all:
-                                    duplicates.append(key2)
-    name = get_last(key1)
-    if name in structure:
-        x = key1.split(".")
-        if len(x) > 1:
-            name = x[len(x) - 2] + upper_first(x[len(x) - 1])
-        else:
-            name = 'HI' + name
-            
-    for i in duplicates:
-        structure[i].checked = True
-        structure[i].duplicate = True
-        structure[i].group = name
-
-
-def add_to_tree(source):
-    fullname = source["fullname"]
-    x = fullname.split(".")
-    parent = None
-    if len(x) > 1:
-        if x[len(x)-1] == '':
-            return
-        else:
-            x = x[:-1]
-            parent = ".".join(x)
-
-    node = Node(fullname, parent, source)
-
-    if fullname in tree:
-        tree[fullname].update(parent, source)
-    else:
-        tree[fullname] = node
-
-    if parent is None:
-        pass
-    else:
-        if parent in tree:
-            tree[parent].add_child(node)
-        else:
-            p = Node(parent, None, None)
-            tree[parent] = p
-            tree[parent].add_child(node)
-
-
-def print_tree():
-    count = 0
-    for node in tree:
-        print "node: " + node
-        if tree[node].parent:
-            print "Parent: " + tree[node].parent
-        else:
-            print "noParent"
-            count += 1
-        if tree[node].info and "returnType" in tree[node].info:
-            print "returnType: " + tree[node].info["returnType"]
-        else:
-            print tree[node].info
-        if tree[node].children:
-            print "Children: "
-            for child in tree[node].children:
-                print child.name + " | "
-    print "Classes: " + str(count)
-
-
-def num(s):
-    try:
-        return int(s)
-    except ValueError:
-        try:
-            return float(s)
-        except ValueError:
-            return None
-
-
-def create_class(node):
-    source = node.info
-    data_type = None
-    description = None
-    demo = None
-    values = None
-    defaults = None
-    products = None
-    if source:
-        if "description" in source:
-            description = source["description"]
-
-        if "values" in source and len(source["values"]) > 0:
-            values = source["values"]
-
-        if "defaults" in source:
-            defaults = source["defaults"]
-
-        if "demo" in source:
-            demo = source["demo"]
-
-        if "returnType" in source:
-            data_type = source["returnType"]
-
-        if "products" in source:
-            products = source["products"]
-            if 'highcharts' not in products:
-                okClass = ["x", "series"]
-                if node.name not in okClass:
-                    notHichartsObjects.append(node.name)
-                return None
-
-        name = node.name
-        if name == "id":
-            name = "ID"
-        elif name == "point":
-            name = "HIPoint"
-        elif name == "description":
-            name = "definition"
-
-        c = HIChartsClass(name, data_type, description, demo, values, defaults, products)
-        return c
-
-
-def create_structure():
-    for node in tree:
-        hi_class = create_class(tree[node])
-        if hi_class:
-            if node in structure:
-                structure[node].update(hi_class)
-            else:
-                structure[node] = hi_class
-            if tree[node].children:
-                if tree[node].parent:
-                    if tree[node].parent in structure:
-                        structure[tree[node].parent].add_property(hi_class)
-                    else:
-                        p = HIChartsClass(tree[node].parent, None, None, None, None, None, None)
-                        structure[tree[node].parent] = p
-                        structure[tree[node].parent].add_property(hi_class)
-            elif tree[node].parent:
-                if tree[node].parent in structure:
-                    structure[tree[node].parent].add_property(hi_class)
-                else:
-                    p = HIChartsClass(tree[node].parent, None, None, None, None, None, None)
-                    structure[tree[node].parent] = p
-                    structure[tree[node].parent].add_property(hi_class)
-
-
 def create_name(source):
-    if source in structure and structure[source].group:
-        source = structure[source].group
-
-    name = source.split("<")
-    if len(name) > 1:
-        name = name[1]
-        name = name.replace(">", "")
-    else:
-        name = name[0]
-    x = name.split(".")
-    name = ''
-    count = 0
-    for i in x:
-        if count == 0:
-            name += i
-            count += 1
-        else:
-            name += upper_first(i)
+    name = source.split(".")[-1]
     return name
 
 
@@ -463,16 +298,9 @@ def create_h_file(name):
     source = structure[name]
     h = None
     if source.properties:
-        if source.group:
-            if source.group not in groups:
-                groups.append(source.group)
-                h = format_to_h(source.group, source)
-                name = source.group
-        else:
-            h = format_to_h(name, source)
-
+        h = format_to_h(name, source)
         if h:
-            filename = "iOS/HIChartsClasses/HI{0}.h".format(upper_first(create_short_name(name)))
+            filename = "HIChartsClasses/HI{0}.h".format(upper_first(create_name(name)))
             files.append(upper_first(create_name(name)))
             with open(filename, "w") as h_file:
                 h_file.write(h)
@@ -482,35 +310,26 @@ def create_m_file(name):
     source = structure[name]
     m = None
     if source.properties:
-        if source.group:
-            m = format_to_m(source.group, source)
-            name = source.group
-        else:
-            m = format_to_m(name, source)
-
+        m = format_to_m(name, source)
         if m:
-            filename = "iOS/HIChartsClasses/HI{0}.m".format(upper_first(create_short_name(name)))
+            filename = "HIChartsClasses/HI{0}.m".format(upper_first(create_name(name)))
             with open(filename, "w") as m_file:
                 m_file.write(m)
 
 
-def create_short_name(source):
-    if source in structure and structure[source].group:
-        source = structure[source].group
-
-    name = source.split("<")
-    if len(name) > 1:
-        name = name[1]
-        name = name.replace(">", "")
-    else:
-        name = name[0]
-
-    name = name.split(".")[-1]
-
-    return name
+def create_java_file(name):
+    source = structure[name]
+    java = None
+    if source.properties:
+        java = format_to_java(name, source)
+        if java:
+            filename = "Android/HIChartsClasses/HI{0}.java".format(upper_first(create_name(name)))
+            files.append(upper_first(create_name(name)))
+            with open(filename, "w") as java_file:
+                java_file.write(java)
 
 
-def check_class_attributes(class_name, source):
+def added_new_properties(class_name, source):
     isUpdated = False
     isFirstMatch = True
 
@@ -522,6 +341,12 @@ def check_class_attributes(class_name, source):
             for class_property in class_properties:
                 if get_last(property.name) == get_last(class_property.name):
                     isExists = True
+                    if not class_property.properties and property.properties:
+                        class_property.properties = property.properties
+                        isUpdated = True
+                    if class_property.data_type is None and property.data_type is not None:
+                        class_property.data_type = property.data_type
+                        isUpdated = True
             if not isExists:
                 class_properties.append(property)
                 isUpdated = True
@@ -535,7 +360,7 @@ def check_class_attributes(class_name, source):
     return True
 
 
-def check_in_parent(field, source):
+def field_in_parent(field, source):
     in_parent = False
     if source.extends:
         if source.extends == "series":
@@ -543,12 +368,10 @@ def check_in_parent(field, source):
             for i in structure[extends_name].properties:
                 if get_last(field.name) == get_last(i.name):
                     in_parent = True
-                    print field.name
 
         for i in structure[source.extends].properties:
             if get_last(field.name) == get_last(i.name):
                 in_parent = True
-                print field.name
     return in_parent
 
 
@@ -558,26 +381,32 @@ def format_to_h(name, source):
     functionAdded = False
     htext = ""
 
-    class_name = "HI" + upper_first(create_short_name(name))
+    class_name = "HI" + upper_first(create_name(name))
 
-    if not check_class_attributes(class_name, source):
+    if class_name in comments:
+        htext += comments[class_name]
+    elif source.comment:
+        htext += source.comment
+        x = name.split(".")
+        if len(x) == 2 and x[0] == "plotOptions":
+            pass
+        else:
+            comments[class_name] = source.comment
+
+    if not added_new_properties(class_name, source):
         return None
 
     if source.extends is not None:
         imports += "#import \"{0}.h\"\n".format("HI" + upper_first(source.extends))
-        if source.comment:
-            htext += source.comment
         htext += "@interface {0}: {1}\n\n".format(class_name, "HI" + upper_first(source.extends))
     else:
-        if source.comment:
-            htext += source.comment
         htext += "@interface {0}: HIChartsJSONSerializable\n\n".format(class_name)
 
     bridge.add("#import \"{0}.h\"\n".format(class_name))
 
     for field in classes[class_name]:
 
-        if check_in_parent(field, source):
+        if field_in_parent(field, source):
             continue
 
         if field.comment:
@@ -586,31 +415,43 @@ def format_to_h(name, source):
             if "id" in str(get_type(field.data_type)) and "NSArray" not in str(get_type(field.data_type)) and not \
                     structure[
                         field.name].properties:
-                htext += "@property(nonatomic, readwrite) {0} {1};\n".format(get_type(field.data_type),
-                                                                             get_last(field.name))
+                type = "{0}".format(get_type(field.data_type))
+                types[field.name] = type
+
+                htext += "@property(nonatomic, readwrite) {0} {1};\n".format(type, get_last(field.name))
 
             elif "NSArray" in str(get_type(field.data_type)) and field.name.endswith(">.data"):
-                htext += "@property(nonatomic, readwrite) {0} *{1};\n".format(get_type(field.data_type),
-                                                                              get_last(field.name))
+                type = "{0} *".format(get_type(field.data_type))
+                types[field.name] = type
+
+                htext += "@property(nonatomic, readwrite) {0}{1};\n".format(type, get_last(field.name))
 
             elif "NSArray" in str(get_type(field.data_type)) and structure[field.name].properties:
-                htext += "@property(nonatomic, readwrite) {0} <{1} *> *{2};\n".format(get_type(field.data_type),
-                                                                                      "HI" + upper_first(
-                                                                                          create_short_name(
-                                                                                              field.name)),
-                                                                                      get_last(field.name))
-                imports += "#import \"{0}.h\"\n".format("HI" + upper_first(create_short_name(field.name)))
+                type = "{0} <{1} *> *".format(get_type(field.data_type), "HI" + upper_first(
+                                                                                          create_name(
+                                                                                              field.name)))
+                types[field.name] = type
+
+                htext += "@property(nonatomic, readwrite) {0}{1};\n".format(type, get_last(field.name))
+                imports += "#import \"{0}.h\"\n".format("HI" + upper_first(create_name(field.name)))
 
             elif "NSArray" in str(get_type(field.data_type)):
-                htext += "@property(nonatomic, readwrite) {0} *{1};\n".format(get_type(field.data_type),
-                                                                              get_last(field.name))
+                type = "{0} *".format(get_type(field.data_type))
+                types[field.name] = type
+
+                htext += "@property(nonatomic, readwrite) {0}{1};\n".format(type, get_last(field.name))
             elif field.data_type == "Object":
                 if structure[field.name].properties:
-                    htext += "@property(nonatomic, readwrite) {0} *{1};\n".format(
-                        "HI" + upper_first(create_short_name(field.name)), get_last(field.name))
-                    imports += "#import \"{0}.h\"\n".format("HI" + upper_first(create_short_name(field.name)))
+                    type = "{0} *".format("HI" + upper_first(create_name(field.name)))
+                    types[field.name] = type
+
+                    htext += "@property(nonatomic, readwrite) {0}{1};\n".format(type, get_last(field.name))
+                    imports += "#import \"{0}.h\"\n".format("HI" + upper_first(create_name(field.name)))
                 else:
-                    htext += "@property(nonatomic, readwrite) id {0};\n".format(get_last(field.name))
+                    type = "id"
+                    types[field.name] = type
+
+                    htext += "@property(nonatomic, readwrite) {0} {1};\n".format(type, get_last(field.name))
 
             else:
                 if get_type(field.data_type) == "HIColor" and not colorAdded:
@@ -618,19 +459,29 @@ def format_to_h(name, source):
                 if get_type(field.data_type) == "HIFunction" and not functionAdded:
                     functionAdded = True
                 if structure[field.name].properties:
-                    htext += "@property(nonatomic, readwrite) {0} *{1};\n".format(
-                        "HI" + upper_first(create_short_name(field.name)), get_last(field.name))
-                    imports += "#import \"{0}.h\"\n".format("HI" + upper_first(create_short_name(field.name)))
+                    type = "{0} *".format("HI" + upper_first(create_name(field.name)))
+                    types[field.name] = type
+
+                    htext += "@property(nonatomic, readwrite) {0}{1};\n".format(type, get_last(field.name))
+                    imports += "#import \"{0}.h\"\n".format("HI" + upper_first(create_name(field.name)))
                 else:
-                    htext += "@property(nonatomic, readwrite) {0} *{1};\n".format(get_type(field.data_type),
-                                                                                  get_last(field.name))
+                    type = "{0} *".format(get_type(field.data_type))
+                    types[field.name] = type
+
+                    htext += "@property(nonatomic, readwrite) {0}{1};\n".format(type, get_last(field.name))
         else:
             if not field.data_type and not structure[field.name].properties:
-                htext += "@property(nonatomic, readwrite) id {0};\n".format(get_last(field.name))
+                type = "id"
+                types[field.name] = type
+
+                htext += "@property(nonatomic, readwrite) {0} {1};\n".format(type, get_last(field.name))
             elif structure[field.name].properties:
-                name = create_short_name(field.name)
-                htext += "@property(nonatomic, readwrite) {0} *{1};\n".format("HI" + upper_first(name),
-                                                                              get_last(field.name))
+                name = create_name(field.name)
+
+                type = "{0} *".format("HI" + upper_first(name))
+                types[field.name] = type
+
+                htext += "@property(nonatomic, readwrite) {0}{1};\n".format(type, get_last(field.name))
                 imports += "#import \"{0}.h\"\n".format("HI" + upper_first(name))
 
     htext += "\n-(NSDictionary *)getParams;\n\n"
@@ -645,20 +496,47 @@ def format_to_h(name, source):
     return filelicense + imports + htext
 
 
-def format_to_m(name, source):
-    class_name = "HI" + upper_first(create_short_name(name))
+def create_setter(field):
+    setter_attribute = get_last(field.name)
+    setter_type = re.sub('\s/(.?)+/', '', types[field.name])
 
-    mtext = "#import \"{0}.h\"\n\n".format(class_name)
+    setter_text = "-(void)set{0}:({1}){2}".format(upper_first(setter_attribute), setter_type, setter_attribute) + " {\n"
+
+    if 'NSArray' in setter_type:
+        setter_text += "\t{0}oldValue = _{1};\n".format(setter_type, setter_attribute) + \
+                        "\t_{0} = {0};\n".format(setter_attribute) + \
+                       "\t[self updateArrayObject:oldValue newValue:{0} propertyName:@\"{0}\"];\n".format(setter_attribute)
+    elif 'HI' in setter_type:
+        setter_text += "\t{0}oldValue = _{1};\n".format(setter_type, setter_attribute) + \
+                       "\tif(self.{0})".format(setter_attribute) + " {\n" + \
+                       "\t\t[self removeObserver:self forKeyPath:@\"{0}.isUpdated\"];".format(setter_attribute) + "\n\t}\n" + \
+                       "\t_{0} = {0};\n".format(setter_attribute) + \
+                       "\t[self updateHIObject:oldValue newValue:{0} propertyName:@\"{0}\"];\n".format(setter_attribute)
+    else:
+        setter_text += "\t_{0} = {0};\n".format(setter_attribute) + \
+                       "\t[self updateNSObject:@\"{0}\"];\n".format(setter_attribute)
+
+    setter_text += "}"
+
+    return setter_text
+
+
+def format_to_m(name, source):
+    class_name = "HI" + upper_first(create_name(name))
+
+    mtext = "#import \"HIChartsJSONSerializableSubclass.h\"\n"
+    mtext += "#import \"{0}.h\"\n\n".format(class_name)
     mtext += "@implementation {0}\n\n".format(class_name)
 
     if source.extends:
         mtext += "-(instancetype)init {\n\tif (self = [super init]) {" + \
-                 "\n\t\tself.type = @\"{0}\";".format(create_short_name(name)) + \
+                 "\n\t\tself.type = @\"{0}\";".format(create_name(name)) + \
                  "\n\t\treturn self;\n\t} else {\n\t\treturn nil;\n\t}\n}\n"
     else:
         mtext += "-(instancetype)init {\n\treturn [super init];\n}\n"
     getParams = "\n-(NSDictionary *)getParams\n{\n\tNSMutableDictionary *params =" \
                 " [NSMutableDictionary dictionaryWithDictionary: "
+    setters_text = "\n# pragma mark - Setters\n"
     if source.extends:
         getParams += "[super getParams]];\n"
     else:
@@ -666,9 +544,8 @@ def format_to_m(name, source):
 
     for field in classes[class_name]:
 
-        if check_in_parent(field, source):
+        if field_in_parent(field, source):
             pass
-
         else:
             getParams += "\tif (self.{0})".format(get_last(field.name)) + " {\n"
             if structure[field.name].data_type:
@@ -706,17 +583,168 @@ def format_to_m(name, source):
                 getParams += "\t\tparams[@\"{0}\"] = [self.{1} getParams];\n".format(get_last(field.name),
                                                                                      get_last(field.name))
             getParams += "\t}\n"
+
+            setters_text += "\n" + create_setter(field) + "\n"
+
     getParams += "\treturn params;\n"
     getParams += "}\n"
     mtext += getParams
+    if setters_text != "\n# pragma mark - Setters\n":
+        mtext += setters_text
     mtext += "\n@end"
     return mtext
 
 
+def format_to_java(name, source):
+    class_name = "HI" + upper_first(create_name(name))
+
+    imports = ""
+    declaration = "\n"
+    fields = ""
+    constructor = ""
+    methods = ""
+    javatext = ""
+    colorAdded = False
+
+    imports += "package com.highsoft.highcharts.Common.HIChartsClasses;\n"
+    imports += "\nimport java.util.HashMap;"
+    imports += "\nimport java.util.Map;"
+    imports += "\nimport java.util.ArrayList;"
+    imports += "\nimport com.highsoft.highcharts.Core.HIFunction;"
+    imports += "\nimport com.highsoft.highcharts.Common.HIChartsJSONSerializable;"
+
+    if source.extends:
+        if class_name in comments:
+            declaration += comments[class_name]
+        elif source.comment:
+            declaration += source.comment
+            x = name.split(".")
+            if len(x) == 2 and x[0] == "plotOptions":
+                pass
+            else:
+                comments[class_name] = source.comment
+
+    if not added_new_properties(class_name, source):
+        return None
+
+    if source.extends is not None:
+        declaration += "\npublic class {0}".format(class_name)
+        declaration += " extends {0}".format("HI" + upper_first(source.extends)) + " {\n"
+        constructor += "\n\n\tpublic {0}".format(class_name) + "() {\n"
+        constructor += "\t\tsuper(); \n"
+        constructor += "\t\tthis.type = \"{0}\";".format(create_name(name))
+        constructor += "\n\t}\n"
+    else:
+        declaration += "public class {0}".format(class_name)
+        constructor += "\n\n\tpublic {0}".format(class_name) + "() {\n\n\t}\n"  # remove closing bracket
+        declaration += " implements HIChartsJSONSerializable { \n\n"
+
+    for field in classes[class_name]:
+
+        if field_in_parent(field, source):
+            continue
+
+        if field.comment:
+            fields += "\n{0}".format(field.comment)
+        if field.data_type:
+            if "Object" in str(get_java_type(field.data_type)) and "ArrayList" not in str(
+                    get_java_type(field.data_type)) and not \
+                    structure[field.name].properties:
+                fields += "\tpublic {0} {1};\n".format(get_java_type(field.data_type), get_last(field.name))
+
+            elif "ArrayList" in str(get_java_type(field.data_type)) and field.name.endswith(">.data"):
+                fields += "public {0} {1};\n".format(get_java_type(field.data_type),
+                                                     get_last(field.name))
+
+            elif "ArrayList" in str(get_java_type(field.data_type)) and structure[field.name].properties:
+                fields += "\tpublic {0} <{1}> {2};\n".format(
+                    get_java_type(field.data_type),
+                    "HI" + upper_first(create_name(field.name)),
+                    get_last(field.name))
+            elif "ArrayList" in str(get_java_type(field.data_type)):
+                fields += "\tpublic {0} {1};\n".format(get_java_type(field.data_type), get_last(field.name))
+            elif field.data_type == "Object":
+                if structure[field.name].properties:
+                    fields += "\tpublic {0} {1};\n".format("HI" + upper_first(create_name(field.name)),
+                                                           get_last(field.name))
+                else:
+                    fields += "\tpublic Object {0};\n".format(get_last(field.name))
+
+            else:
+                if get_java_type(field.data_type) == "HIColor" and not colorAdded:
+                    colorAdded = True
+                if structure[field.name].properties:
+                    fields += "\tpublic {0} {1};\n".format("HI" + upper_first(create_name(field.name)),
+                                                           get_last(field.name))
+                else:
+                    fields += "\tpublic {0} {1};\n".format(get_java_type(field.data_type), get_last(field.name))
+        else:
+            if not field.data_type and not structure[field.name].properties:
+                fields += "\tpublic Object {0};\n".format(get_last(field.name))
+            elif structure[field.name].properties:
+                name = create_name(field.name)
+                fields += "\tpublic {0} {1};\n".format("HI" + upper_first(name), get_last(field.name))
+    if colorAdded:
+        imports += "\nimport com.highsoft.highcharts.Common.HIColor;"
+    imports += "\n"
+
+    methods += "\n\tpublic Map<String, Object> getParams() {\n\n\t\tMap<String, Object> params =" \
+                   " new HashMap<>();\n"
+    if source.extends:
+        methods += "\t\tparams = super.getParams();\n"
+
+    for field in classes[class_name]:
+        if field_in_parent(field, source):
+            pass
+        else:
+            methods += "\t\tif (this.{0} != null)".format(get_last(field.name)) + " {\n"
+            if structure[field.name].data_type:
+                if get_java_type(structure[field.name].data_type) == 'HIColor':
+                    methods += "\t\t\tparams.put(\"{0}\", this.{1}.getData());\n".format(get_last(field.name),
+                                                                                             get_last(field.name))
+                elif get_java_type(structure[field.name].data_type) == 'ArrayList<HIColor>':
+                    methods += "\t\t\tArrayList<HIColor> array = new ArrayList<>();\n"
+                    methods += "\t\t\tfor (HIColor hiColor : this.{0})".format(get_last(field.name)) + " {\n"
+                    methods += "\t\t\t\tarray.add((HIColor) hiColor.getData());\n".format(
+                        get_last(field.name))
+                    methods += "\t\t\t}\n"
+                    methods += "\t\t\tparams.put(\"{0}\", array);\n".format(get_last(field.name))
+                elif 'ArrayList' in str(get_java_type(structure[field.name].data_type)):
+                    methods += "\t\t\tArrayList<Object> array = new ArrayList<>();\n"
+
+                    methods += "\t\t\tfor (Object obj : this.{0})".format(get_last(field.name)) + " {\n"
+                    methods += "\t\t\t\tif (obj instanceof HIChartsJSONSerializable)".format(
+                        get_last(field.name)) + " {\n"
+                    methods += "\t\t\t\t\tarray.add(((HIChartsJSONSerializable) obj).getParams());\n".format(
+                        get_last(field.name))
+                    methods += "\t\t\t\t}\n"
+                    methods += "\t\t\t\telse {\n\t\t\t\t\tarray.add(obj);\n"
+                    methods += "\t\t\t\t}\n"
+                    methods += "\t\t\t}\n"
+                    methods += "\t\t\tparams.put(\"{0}\", array);\n".format(get_last(field.name))
+                elif structure[field.name].properties:
+                    methods += "\t\t\tparams.put(\"{0}\", this.{1}.getParams());\n".format(get_last(field.name),
+                                                                                               get_last(field.name))
+                else:
+                    methods += "\t\t\tparams.put(\"{0}\", this.{1});\n".format(get_last(field.name),
+                                                                                   get_last(field.name))
+            elif structure[field.name].properties:
+                methods += "\t\t\tparams.put(\"{0}\", this.{1}.getParams());\n".format(get_last(field.name),
+                                                                                           get_last(field.name))
+            methods += "\t\t}\n"
+    methods += "\t\treturn params;\n"
+    methods += "\t}\n"
+    imports += "\n\n"
+
+    javatext += fileAndroidlicense + imports + declaration + fields + constructor + methods + "\n}"
+    return javatext
+
+
 def create_options_files():
     imports = "#import \"HIColor.h\"\n"
-    htext = "@interface HIOptions: NSObject\n\n"
-    mtext = "#import \"HIOptions.h\"\n\n@implementation HIOptions\n\n"
+    htext = "@interface HIOptions: HIChartsJSONSerializable\n\n"
+    mtext = "#import \"HIChartsJSONSerializableSubclass.h\"\n"
+    mtext += "#import \"HIOptions.h\"\n\n@implementation HIOptions\n\n"
     mtext += "-(instancetype)init {\n\tif (self = [super init]) {\n" \
              "\t\tHICredits *credits = [[HICredits alloc]init];\n" \
              "\t\tcredits.enabled = @true;\n" \
@@ -728,6 +756,7 @@ def create_options_files():
              "\treturn nil;\n" \
              "}\n\n"
     mtext += "-(NSDictionary *)getParams {\n\tNSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary: @{}];\n"
+    setters_text = "\n# pragma mark - Setters\n"
     for field in options:
         if field.name != 'global' and field.name != 'lang':
             if field.comment:
@@ -737,19 +766,30 @@ def create_options_files():
             if structure[field.name].data_type:
                 if "id" in str(get_type(field.data_type)) and "NSArray" not in str(get_type(field.data_type)):
                     if structure[field.name].properties:
-                        htext += "@property(nonatomic, readwrite) {0} *{1};\n\n".format("HI" + upper_first(create_name(field.name)), get_last(field.name))
+                        type = "{0} *".format("HI" + upper_first(create_name(field.name)))
+                        types[field.name] = type
+
+                        htext += "@property(nonatomic, readwrite) {0}{1};\n\n".format(type, get_last(field.name))
                     else:
-                        htext += "@property(nonatomic, readwrite) {0} {1};\n\n".format(get_type(field.data_type), get_last(field.name))
+                        type = "{0} ".format(get_type(field.data_type))
+                        types[field.name] = type
+
+                        htext += "@property(nonatomic, readwrite) {0}{1};\n\n".format(type, get_last(field.name))
                 elif "NSArray" in str(get_type(field.data_type)) and field.properties:
-                    htext += "@property(nonatomic, readwrite) {0}<{1} *> *{2};\n\n".format(get_type(field.data_type),
-                                                                                           "HI" + upper_first(create_name(field.name)),
-                                                                                           get_last(field.name))
+                    type = "{0}<{1} *> *".format(get_type(field.data_type), "HI" + upper_first(create_name(field.name)))
+                    types[field.name] = type
+
+                    htext += "@property(nonatomic, readwrite) {0}{1};\n\n".format(type, get_last(field.name))
                 else:
-                    htext += "@property(nonatomic, readwrite) {0} *{1};\n\n".format(get_type(field.data_type),
-                                                                                    get_last(field.name))
+                    type = "{0} *".format(get_type(field.data_type))
+                    types[field.name] = type
+
+                    htext += "@property(nonatomic, readwrite) {0}{1};\n\n".format(type, get_last(field.name))
             else:
-                htext += "@property(nonatomic, readwrite) {0} *{1};\n\n".format("HI" + upper_first(create_name(field.name)),
-                                                                                get_last(field.name))
+                type = "{0} *".format("HI" + upper_first(create_name(field.name)))
+                types[field.name] = type
+
+                htext += "@property(nonatomic, readwrite) {0}{1};\n\n".format(type, get_last(field.name))
     htext += "/**\n* Additional options that are not listed above but are accepted by API\n*/\n"
     htext += "@property(nonatomic, readwrite) NSDictionary *additionalOptions;\n"
     htext += "\n\n-(NSDictionary *)getParams;\n\n"
@@ -791,196 +831,26 @@ def create_options_files():
             elif structure[field.name].properties:
                 mtext += "\t\tparams[@\"{0}\"] = [self.{1} getParams];\n".format(get_last(field.name), get_last(field.name))
             mtext += "\t}\n"
+
+            setters_text += "\n" + create_setter(field) + "\n"
+
     mtext += "\tif (self.additionalOptions) {\n\t\t[params addEntriesFromDictionary: self.additionalOptions];\n\t}\n\n"
+
+    setters_text += "\n-(void)set{0}:({1}){2}".format("AdditionalOptions", "NSDictionary *", "additionalOptions") + " {\n" + \
+                  "\t_{0} = {0};\n".format("additionalOptions") + \
+                  "\t[self updateNSObject:@\"{0}\"];\n".format("additionalOptions") + \
+                  "}\n"
+
     mtext += "\treturn params;\n"
     mtext += "}\n"
+    mtext += setters_text
     mtext += "\n@end"
     imports += "\n\n"
     htext += "\n@end\n"
-    with open("iOS/HIChartsClasses/HIOptions.h", "w") as o:
+    with open("HIChartsClasses/HIOptions.h", "w") as o:
         o.write(imports + htext)
-    with open("iOS/HIChartsClasses/HIOptions.m", "w") as m:
+    with open("HIChartsClasses/HIOptions.m", "w") as m:
         m.write(mtext)
-
-
-def create_bridge_file():
-    text = ""
-    for field in bridge:
-        text += field
-    text += "#import \"HIColor.h\"\n"
-    text += "#import \"HIFunction.h\"\n"
-    text += "#import \"HIOptions.h\"\n"
-    with open("iOS/HIBridge.h", "w") as b:
-        b.write(text)
-
-
-def check_ends_in_not_highcharts(field):
-    for name in notHichartsObjects:
-        if field.startswith(name):
-            return False
-    return True
-
-
-def create_files():
-    if not os.path.exists("iOS/HIChartsClasses"):
-        os.makedirs("iOS/HIChartsClasses")
-    for field in structure:
-        if check_ends_in_not_highcharts(field):
-            if len(field.split(".")) == 1 and len(field.split(">")) == 1:
-                options.append(structure[field])
-            create_h_file(field)
-            create_m_file(field)
-    create_options_files()
-    create_bridge_file()
-
-################################
-###### JAVA STUFF IN HERE ######
-################################
-
-def create_java_file(name):
-    source = structure[name]
-    javaFile = None
-    if source.properties:
-        if source.group:
-            javaFile = format_to_java(source.group, source)
-            name = source.group
-        else:
-            javaFile = format_to_java(name, source)
-
-        if javaFile:
-            filename = "Android/HIChartsClasses/HI{0}.java".format(upper_first(create_short_name(name)))
-            with open(filename, "w") as java_file:
-                java_file.write(javaFile)
-
-
-def format_to_java(name, source):
-    class_name = "HI" + upper_first(create_short_name(name))
-
-    if not check_class_attributes(class_name, source):
-        return None
-
-    imports = ""
-    declaration = ""
-    fields = ""
-    constructor = ""
-    methods = ""
-    javaText = ""
-    colorAdded = False
-
-    imports += "\npackage com.highsoft.highcharts.Common.HIChartsClasses;\n"
-    imports += "\nimport java.util.HashMap;"
-    imports += "\nimport java.util.Map;"
-    imports += "\nimport java.util.ArrayList;"
-    imports += "\nimport com.highsoft.highcharts.Core.HIGFunction;"
-    imports += "\nimport com.highsoft.highcharts.Common.HIChartsJSONSerializable;"
-
-    if source.extends is not None:
-        if source.comment:
-            declaration += source.comment
-        declaration += "\npublic class {0}".format(class_name)
-        declaration += " extends {0}".format("HI" + upper_first(source.extends)) + " {\n"
-        constructor += "\n\n\tpublic {0}".format(class_name) + "() {\n"
-        constructor += "\t\tsuper(); \n"
-        constructor += "\t}\n"
-    else:
-        if source.comment:
-            declaration += source.comment
-        declaration += "public class {0}".format(class_name)
-        constructor += "\n\n\tpublic {0}".format(class_name) + "() {\n\n\t}\n"
-        declaration += " implements HIChartsJSONSerializable { \n\n"
-
-
-    for field in classes[class_name]:
-        if check_in_parent(field, source):
-            continue
-
-        if field.comment:
-            fields += "\n{0}".format(field.comment)
-        if field.data_type:
-            if "Object" in str(get_java_type(field.data_type)) and "ArrayList" not in str(get_java_type(field.data_type)) and not \
-                    structure[field.name].properties:
-                fields += "\tpublic {0} {1};\n".format(get_java_type(field.data_type), get_last(field.name))
-
-            elif "ArrayList" in str(get_java_type(field.data_type)) and field.name.endswith(">.data"):
-                fields += "public {0} {1};\n".format(get_java_type(field.data_type),
-                                                                              get_last(field.name))
-
-            elif "ArrayList" in str(get_java_type(field.data_type)) and structure[field.name].properties:
-                fields += "\tpublic {0} <{1}> {2};\n".format(
-                    get_java_type(field.data_type),
-                    "HI" + upper_first(create_short_name(field.name)),
-                    get_last(field.name))
-            elif "ArrayList" in str(get_java_type(field.data_type)):
-                fields += "\tpublic {0} {1};\n".format(get_java_type(field.data_type), get_last(field.name))
-            elif field.data_type == "Object":
-                if structure[field.name].properties:
-                    fields += "\tpublic {0} {1};\n".format("HI" + upper_first(create_short_name(field.name)), get_last(field.name))
-                else:
-                    fields += "\tpublic Object {0};\n".format(get_last(field.name))
-
-            else:
-                if get_java_type(field.data_type) == "HIColor" and not colorAdded:
-                    colorAdded = True
-                if structure[field.name].properties:
-                    fields += "\tpublic {0} {1};\n".format("HI" + upper_first(create_short_name(field.name)), get_last(field.name))
-                else:
-                    fields += "\tpublic {0} {1};\n".format(get_java_type(field.data_type), get_last(field.name))
-        else:
-            if not field.data_type and not structure[field.name].properties:
-                fields += "\tpublic Object {0};\n".format(get_last(field.name))
-            elif structure[field.name].properties:
-                name = create_short_name(field.name)
-                fields += "\tpublic {0} {1};\n".format("HI" + upper_first(name), get_last(field.name))
-    if colorAdded:
-        imports += "\nimport com.highsoft.highcharts.Common.HIColor;"
-    imports += "\n"
-
-    methods += "\n\tpublic Map<String, Object> getParams() {\n\n\t\tMap<String, Object> params =" \
-               " new HashMap<>();\n"
-    if source.extends:
-        methods += "\t\tparams = super.getParams();\n"
-
-    for field in classes[class_name]:
-        if check_in_parent(field, source):
-            pass
-        else:
-            methods += "\t\tif (this.{0} != null)".format(get_last(field.name)) + " {\n"
-            if structure[field.name].data_type:
-                if get_java_type(structure[field.name].data_type) == 'HIColor':
-                    methods += "\t\t\tparams.put(\"{0}\", this.{1}.getData());\n".format(get_last(field.name), get_last(field.name))
-                elif get_java_type(structure[field.name].data_type) == 'ArrayList<HIColor>':
-                    methods += "\t\t\tArrayList<HIColor> array = new ArrayList<>();\n"
-                    methods += "\t\t\tfor (HIColor hiColor : this.{0})".format(get_last(field.name)) + " {\n"
-                    methods += "\t\t\t\tarray.add((HIColor) hiColor.getData());\n".format(
-                        get_last(field.name))
-                    methods += "\t\t\t}\n"
-                    methods += "\t\t\tparams.put(\"{0}\", array);\n".format(get_last(field.name))
-                elif 'ArrayList' in str(get_java_type(structure[field.name].data_type)):
-                    methods += "\t\t\tArrayList<Object> array = new ArrayList<>();\n"
-
-                    methods += "\t\t\tfor (Object obj : this.{0})".format(get_last(field.name)) + " {\n"
-                    methods += "\t\t\t\tif (obj instanceof HIChartsJSONSerializable)".format(
-                        get_last(field.name)) + " {\n"
-                    methods += "\t\t\t\t\tarray.add(((HIChartsJSONSerializable) obj).getParams());\n".format(
-                        get_last(field.name))
-                    methods += "\t\t\t\t}\n"
-                    methods += "\t\t\t\telse {\n\t\t\t\t\tarray.add(obj);\n"
-                    methods += "\t\t\t\t}\n"
-                    methods += "\t\t\t}\n"
-                    methods += "\t\t\tparams.put(\"{0}\", array);\n".format(get_last(field.name))
-                elif structure[field.name].properties:
-                    methods += "\t\t\tparams.put(\"{0}\", this.{1}.getParams());\n".format(get_last(field.name), get_last(field.name))
-                else:
-                    methods += "\t\t\tparams.put(\"{0}\", this.{1});\n".format(get_last(field.name), get_last(field.name))
-            elif structure[field.name].properties:
-                methods += "\t\t\tparams.put(\"{0}\", this.{1}.getParams());\n".format(get_last(field.name), get_last(field.name))
-            methods += "\t\t}\n"
-    methods += "\t\treturn params;\n"
-    methods += "\t}\n"
-    imports += "\n\n"
-
-    javaText += filelicense + imports + declaration + fields + constructor + methods + "\n}"
-    return javaText
 
 
 def create_java_options_file():
@@ -997,12 +867,13 @@ def create_java_options_file():
     imports += "\nimport java.util.Map;"
     imports += "\nimport java.util.ArrayList;"
     imports += "\nimport com.highsoft.highcharts.Common.HIChartsJSONSerializable;"
+    imports += "\nimport com.highsoft.highcharts.Common.HIColor;"
 
     declaration += "public class HIOptions {\n\n"
     constructor += "public HIOptions {\n" \
              "\t\tHICredits credits = new HICredits();\n" \
              "\t\tcredits.enabled = true;\n" \
-             "\t\tcredits.text = \"Highcharts iOS\";\n" \
+             "\t\tcredits.text = \"Highcharts Android\";\n" \
              "\t\tcredits.href = \"http://www.highcharts.com/blog/mobile/\";\n" \
              "\t\tthis.credits = credits;\n" \
              "\t\treturn this;\n" \
@@ -1081,18 +952,50 @@ def create_java_options_file():
         j.write(javaText)
 
 
-def create_java_classes():
+def create_bridge_file():
+    text = ""
+    for field in bridge:
+        text += field
+    text += "#import \"HIColor.h\"\n"
+    text += "#import \"HIFunction.h\"\n"
+    text += "#import \"HIOptions.h\"\n"
+    with open("HIBridge.h", "w") as b:
+        b.write(text)
+
+
+def create_files_for_main_class(field):
+    main = create_name(field)
+    class_name = "HI" + upper_first(main)
+    if main in structure and class_name not in classes:
+        create_h_file(main)
+        create_m_file(main)
+
+
+def create_files():
+    if not os.path.exists("HIChartsClasses"):
+        os.makedirs("HIChartsClasses")
+    for field in structure:
+        create_files_for_main_class(field)
+        create_h_file(field)
+        create_m_file(field)
+    create_options_files()
+    create_bridge_file()
+
+
+def create_android_files_for_main_class(field):
+    main = create_name(field)
+    class_name = "HI" + upper_first(main)
+    if main in structure and class_name not in classes:
+        create_java_file(main)
+
+
+def create_android_files():
     if not os.path.exists("Android/HIChartsClasses"):
         os.makedirs("Android/HIChartsClasses")
     for field in structure:
-        if len(field.split(".")) == 1 and len(field.split(">")) == 1:
-            options.append(structure[field])
+        create_android_files_for_main_class(field)
         create_java_file(field)
     create_java_options_file()
-    # createBridgeFile()
-
-
-###### END OF JAVA STUFF ######
 
 
 def print_structure():
@@ -1103,28 +1006,17 @@ def print_structure():
         print text
 
 
-def get_documentation_name(name, doubleLast = True):
-    # it is v1
+def get_documentation_name(name, isProperties, doubleLast = True):
     ret = str(name)
     ret = ret.replace("description", "definition")
-    x = ret.split("<")
-
-    # uncomment to get v2
-    #if len(x) > 1:
-     #   x = x[0] + "-" + x[1]
-      #  x = x.replace(">", "")
-    #else:
-     #   x = x[0]
-    #x = x.split(".")
-
-    x = ret.split(".") # comment to get v2
+    x = ret.split(".")
     if len(x) > 1:
         ret = x[0]
         if len(x) > 2:
             for i in range(1, len(x) - 1):
                 ret += "-{0}".format(x[i])
         if doubleLast:
-            if structure[name].properties:
+            if isProperties:
                 ret += "-{0}".format(x[len(x) - 1])
             else:
                 ret += "--{0}".format(x[len(x) - 1])
@@ -1135,48 +1027,90 @@ def get_documentation_name(name, doubleLast = True):
     return ret
 
 
+def add_entry_to_documentation(documentation, field, source):
+    entry = dict()
+    name = get_last(field)
+    returnType = ""
+    isParent = False
+    isProperties = False
+    doclet = None
+
+    if "doclet" in source.info:
+        doclet = source.info["doclet"]
+
+    if source.properties:
+        isParent = True
+        returnType = "HI" + upper_first(create_name(field))
+    elif source.data_type:
+        returnType = get_type(source.data_type)
+
+    parent = None
+    if source.parent:
+        parent = source.parent
+
+    if source.properties:
+        isProperties = source.properties
+
+    entry["_id"] = get_documentation_name(field, isProperties)
+    entry["fullname"] = field.replace("description", "definition")
+    entry["title"] = name.replace("description", "definition")
+    if source.description and source.description != "":
+        entry["description"] = source.description
+    if source.demo:
+        demo = ""
+        lines = source.demo.splitlines()
+        for line in lines:
+            items = line.split(" : ")
+            for item in items:
+                if "https://" in item:
+                    demo += "{}{}{}".format("<a href=\"", item, "\">")
+                else:
+                    demo += "{}{}".format(item.rstrip(), "</a>\n")
+        entry["demo"] = demo
+    if source.defaults:
+        entry["defaults"] = source.defaults
+    if source.values:
+        entry["values"] = source.values
+    if doclet and "since" in doclet:
+        entry["since"] = doclet["since"]
+    entry["deprecated"] = doclet["deprecated"] if doclet and "deprecated" in doclet else False
+    if doclet and "see" in doclet:
+        seeAlso = ""
+        for see in doclet["see"]:
+            m = re.search('\[(.+)\]\((.+)\)', see)
+            if m:
+                if seeAlso != "":
+                    seeAlso += ", <a href=\"{}\">{}</a>".format(m.group(2), m.group(1))
+                else:
+                    seeAlso += "<p><a href=\"{}\">{}</a>".format(m.group(2), m.group(1))
+            else:
+                seeAlso += "<p>{}".format(see)
+        if seeAlso != "":
+            seeAlso += "</p>\n"
+        entry["seeAlso"] = seeAlso
+    if returnType != "":
+        entry["returnType"] = returnType
+    entry["isParent"] = isParent
+    if parent:
+        entry["parent"] = parent
+    documentation.append(entry)
+
+
+def add_to_documentation(documentation, field, parent):
+    add_entry_to_documentation(documentation, field, structure[parent])
+    if structure[parent].properties:
+        for property in structure[parent].properties:
+            if field != "series":
+                children = "{0}.{1}".format(field, get_last(property.name))
+                add_to_documentation(documentation, children, property.name)
+
+
 def generate_documentation():
     documentation = list()
+
     for field in structure:
-        entry = dict()
-        name = get_last(field)
-        if name == "global" or name == "lang":
-            continue
-        returnType = ""
-        isParent = False
-        fullname = tree[field].info["fullname"]
-        if structure[field].properties:
-            isParent = True
-            returnType = "HI" + upper_first(create_name(field))
-        elif structure[field].data_type:
-            returnType = get_type(structure[field].data_type)
-        parent = None
-        if tree[field].parent:
-            parent = tree[field].parent
-            if parent == "global" or parent == "lang":
-                continue
-        entry["_id"] = get_documentation_name(field)
-        entry["fullname"] = fullname.replace("description", "definition")
-        entry["title"] = name.replace("description", "definition")
-        if structure[field].description and structure[field].description != "":
-            entry["description"] = structure[field].description
-        if structure[field].demo:
-            entry["demo"] = structure[field].demo
-        if structure[field].defaults:
-            entry["defaults"] = structure[field].defaults
-        if structure[field].values:
-            entry["values"] = structure[field].values
-        if tree[field].info and "since" in tree[field].info:
-            entry["since"] = tree[field].info["since"]
-        entry["deprecated"] = tree[field].info["deprecated"] if tree[field].info and "deprecated" in tree[field].info else False
-        if tree[field].info and "seeAlso" in tree[field].info:
-            entry["seeAlso"] = tree[field].info["seeAlso"]
-        if returnType != "":
-            entry["returnType"] = returnType
-        entry["isParent"] = isParent
-        if parent:
-            entry["parent"] = get_documentation_name(parent, False)
-        documentation.append(entry)
+        add_to_documentation(documentation, field, field)
+
     entry = dict()
     entry["_id"] = "options--additionalOptions"
     entry["fullname"] = "options.additionalOptions"
@@ -1185,84 +1119,239 @@ def generate_documentation():
     entry["returnType"] = "NSDictionary"
     entry["isParent"] = False
     documentation.append(entry)
-    with open('iOS/APIDocs.json', 'w') as json_file:
+    with open('APIDocs.json', 'w') as json_file:
         json.dump(documentation, json_file)
 
 
-def generate_java_documentation():
-    documentation = list()
-    for field in structure:
-        entry = dict()
-        name = get_last(field)
-        if name == "global" or name == "lang":
-            continue
-        returnType = ""
-        isParent = False
-        fullname = tree[field].info["fullname"]
-        if structure[field].properties:
-            isParent = True
-            returnType = "HI" + upper_first(create_short_name(field))
-        elif structure[field].data_type:
-            returnType = get_java_type(structure[field].data_type)
-        parent = None
-        if tree[field].parent:
-            parent = tree[field].parent
-            if parent == "global" or parent == "lang":
-                continue
-        entry["_id"] = get_documentation_name(field)
-        entry["fullname"] = fullname.replace("description", "definition")
-        entry["title"] = name.replace("description", "definition")
-        if structure[field].description and structure[field].description != "":
-            entry["description"] = structure[field].description
-        if structure[field].demo:
-            entry["demo"] = structure[field].demo
-        if structure[field].defaults:
-            entry["defaults"] = structure[field].defaults
-        if structure[field].values:
-            entry["values"] = structure[field].values
-        if tree[field].info and "since" in tree[field].info:
-            entry["since"] = tree[field].info["since"]
-        entry["deprecated"] = tree[field].info["deprecated"] if tree[field].info and "deprecated" in tree[field].info else False
-        if tree[field].info and "seeAlso" in tree[field].info:
-            entry["seeAlso"] = tree[field].info["seeAlso"]
-        if returnType != "":
-            entry["returnType"] = returnType
-        entry["isParent"] = isParent
+def merge_extended_properties(field):
+    class_name = structure[field].name
+    if structure[field].extends and not structure[field].checkedExtends:
+        for extends in structure[field].extends.split(","):
+            parent = structure[extends]
+            structure[field].not_highcharts_properties += parent.not_highcharts_properties
+            if parent.extends:
+                merge_extended_properties(parent.name)
+            for parent_property in parent.properties:
+                property_name = "{0}.{1}".format(class_name, get_last(parent_property.name))
+                isExist = False
+                for property in structure[field].properties:
+                    if property.name == property_name:
+                        isExist = True
+                        property.update(parent_property.data_type, parent_property.description, parent_property.demo,
+                                        parent_property.values, parent_property.defaults, parent_property.products,
+                                        parent_property.extends, parent_property.exclude)
+
+                    if get_last(property.name) in parent.not_highcharts_properties:
+                        if property.products:
+                            if 'highcharts' not in property.products:
+                                structure[field].remove_property(property)
+                        else:
+                            structure[field].remove_property(property)
+
+                if structure[field].exclude:
+                    if get_last(parent_property.name) not in structure[field].exclude and not isExist:
+                        structure[field].add_property(parent_property)
+                elif not isExist:
+                    structure[field].add_property(parent_property)
+
+    structure[field].checkedExtends = True
+    structure[field].extends = None
+    x = class_name.split(".")
+    if len(x) == 2:
+        if x[0] == "series" or x[0] == "plotOptions" and x[1] != "series":
+            structure[field].extends = "series"
+
+
+def create_class(node):
+    source = node.info
+    parent = node.parent
+    data_type = None
+    description = None
+    demo = None
+    values = None
+    defaults = None
+    products = None
+    extends = None
+    exclude = None
+    if source:
+        if "doclet" in source:
+            doclet = source["doclet"]
+
+            if "description" in doclet:
+                description = doclet["description"]
+                description = re.sub(r'`\s*(.*?)\s*`', r'\1', description)
+                description = re.sub(r'(\[(.*?)\]\(#.*?\))', r'\2', description)
+                description = description.replace("\r", "\n")
+
+            if "values" in doclet and len(doclet["values"]) > 0:
+                values = doclet["values"]
+
+            if "defaultByProduct" in doclet:
+                defaultByProduct = doclet["defaultByProduct"]
+                if "highcharts" in defaultByProduct:
+                    defaults = defaultByProduct["highcharts"]
+
+            if "defaultvalue" in doclet:
+                defaults = doclet["defaultvalue"].replace("\r", "\n")
+
+            if "samples" in doclet:
+                samples = doclet["samples"]
+                demo = ""
+                for sample in samples:
+                    name = ""
+                    value = ""
+                    attr_products = None
+                    for attr_sample in sample:
+                        if attr_sample == "name":
+                            name = sample[attr_sample]
+                        elif attr_sample == "value":
+                            value = sample[attr_sample]
+                        elif attr_sample == "products":
+                            attr_products = sample[attr_sample]
+                    if attr_products is None or "highcharts" in attr_products:
+                        demo += "https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/{0} : {1}\n".format(value, name)
+                if demo == "":
+                    demo = None
+
+            if "type" in doclet:
+                type = doclet["type"]
+                if len(type["names"]) == 1:
+                    data_type = type["names"][0]
+                elif len(type["names"]) == 2:
+                    data_type = type["names"][0] + "|" + type["names"][1]
+                elif len(type["names"]) == 3:
+                    data_type = type["names"][0] + "|" + type["names"][1] + "|" + type["names"][2]
+
+            if "products" in doclet:
+                products = doclet["products"]
+                if 'highcharts' not in products:
+                    if node.parent:
+                        structure[node.parent].add_not_highcharts_property(node.name)
+                    return None
+
+            if "extends" in doclet:
+                extends = doclet["extends"].replace("{", "").replace("}", "")
+
+            if "exclude" in doclet:
+                exclude = doclet["exclude"]
+
+            if "deprecated" in doclet:
+                if doclet["deprecated"]:
+                    return None
+
+        name = node.name
+        if name == "id":
+            name = "ID"
+        elif name == "point":
+            name = "HIPoint"
+        elif name == "description":
+            name = "definition"
+
+        c = HIChartsClass(name, data_type, description, demo, values, defaults, products, extends, exclude, source, parent)
+        return c
+
+
+def add_to_structure(name, source, parent):
+    if parent == None:
+        if name != None and name != "" and name != "_meta":
+            fullname = name
+        else:
+            return
+    else:
+        fullname = "{0}.{1}".format(parent, name)
+        if structure[parent].exclude and name in structure[parent].exclude:
+            return
+
+    node = Node(fullname, parent, source)
+
+    hi_class = create_class(node)
+
+    if hi_class:
+
+        if hi_class.name == "series":
+            hi_class.data_type = "Array.<Object>"
+
+        structure[node.name] = hi_class
+
         if parent:
-            entry["parent"] = get_documentation_name(parent, False)
-        documentation.append(entry)
-    entry = dict()
-    entry["_id"] = "options--additionalOptions"
-    entry["fullname"] = "options.additionalOptions"
-    entry["title"] = "additionalOptions"
-    entry["description"] = "Additional options that are not listed but are accepted by API"
-    entry["returnType"] = "NSDictionary"
-    entry["isParent"] = False
-    documentation.append(entry)
-    with open('Android/APIDocs.json', 'w') as json_file:
-        json.dump(documentation, json_file)
+            if parent != "series":
+                structure[parent].add_property(hi_class)
+        else:
+            options.append(hi_class)
+
+        if "children" in source:
+            childrens = source["children"]
+            for children in childrens:
+                add_to_structure(children, childrens[children], fullname)
+
+
+def add_additions_to_series():
+    with open('addition_to_series.js') as data_file:
+        data = json.load(data_file)
+
+    if "series" not in structure:
+        structure["series"] = HIChartsClass("series", "Array.<Object>", "General options for all series types.", None, None, None, ["highcharts"], None, None)
+
+    for field in data:
+        name = None
+        data_type = None
+        description = None
+        demo = None
+        values = None
+        defaults = None
+        products = None
+
+        if "fullname" in field:
+            name = field["fullname"]
+
+        if "description" in field:
+            description = field["description"]
+
+        if "values" in field and len(field["values"]) > 0:
+            values = field["values"]
+
+        if "defaults" in field:
+            defaults = field["defaults"]
+
+        if "demo" in field:
+            demo = field["demo"]
+
+        if "returnType" in field:
+            data_type = field["returnType"]
+
+        if "products" in field:
+            products = field["products"]
+
+        if "parent" in field:
+            parent = field["parent"]
+
+        hi_class = HIChartsClass(name, data_type, description, demo, values, defaults, products, None, None, field, parent)
+
+        if hi_class:
+            structure[name] = hi_class
+
+            if parent == "series":
+                structure[parent].add_property(hi_class)
+
+
+def create_structure():
+    with open('tree.json') as data_file:
+        data = json.load(data_file)
+
+    for field in data:
+        add_to_structure(field, data[field], None)
+
+    add_additions_to_series()
+
+    for field in structure:
+        merge_extended_properties(field)
 
 
 def main():
-    with open('HighchartsJSON.js') as data_file:
-        data = json.load(data_file)
-    count = 0
-    for field in data:
-        count += 1
-        add_to_tree(field)
-    # print_tree()
     create_structure()
-    # search_for_repetitions()
-    # print_structure()
-
-    # iOS parsing:
     # create_files()
     # generate_documentation()
-
-    # Android parsing:
-    create_java_classes()
-    generate_java_documentation()
-
+    create_android_files()
 
 
 if __name__ == "__main__":
