@@ -120,7 +120,7 @@ final class HIGHTML implements Serializable{
         this.html = this.html
                 .replace("{{script}}", this.scripts)
                 .replace("{{options}}", this.options);
-//        System.out.println("GENERATED CHART OPTIONS\n" + this.options);
+        System.out.println("GENERATED CHART OPTIONS\n" + this.options);
 //        System.out.println("GENERATED CHART LANG\n" + this.lang);
 //        System.out.println("GENERATED CHART GLOBAL\n" + this.global);
     }

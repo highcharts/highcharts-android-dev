@@ -236,6 +236,10 @@ public class HIChartView extends RelativeLayout {
         this.loaded = true;
     }
 
+    public void setJavascriptHandler(String className){
+        this.webView.addJavascriptInterface(className.getClass(), "androidHandler");
+    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void loadChartOptions() {

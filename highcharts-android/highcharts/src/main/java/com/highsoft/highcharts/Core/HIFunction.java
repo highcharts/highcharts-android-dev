@@ -4,6 +4,9 @@ package com.highsoft.highcharts.Core;
  * Created by Bartosz on 13.09.2017.
  */
 
+import android.support.v7.app.AlertDialog;
+import android.webkit.JavascriptInterface;
+
 /**This class represents special type for Javascript functions in Highcharts Android Wrapper*/
 
 final public class HIFunction {
@@ -47,4 +50,8 @@ final public class HIFunction {
         return function;
     }
 
+   /* @JavascriptInterface
+    public Object androidHandler(Object object){
+        return object;
+    }*/
 }

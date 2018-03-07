@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.AlertDialog;
 import android.util.Base64;
 import android.webkit.DownloadListener;
 import android.webkit.JavascriptInterface;
@@ -118,5 +119,15 @@ final class HIGExportModule implements DownloadListener {
                     }
                 })
                 .create().show();*/
+    }
+
+    @JavascriptInterface
+    public void createDialog(Object object){
+        System.out.println("Otrzymany obiekt: " + object.toString());
+        System.out.println("obiekt w stringu: " + object);
+        new AlertDialog.Builder(this.activity)
+                .setTitle("Clicked value:")
+                .setMessage((String)object)
+                .create().show();
     }
 }
