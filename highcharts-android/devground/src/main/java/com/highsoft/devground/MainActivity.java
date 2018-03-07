@@ -12,9 +12,12 @@ import com.highsoft.highcharts.Common.HIChartsClasses.HIExporting;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIOptions;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIPlotOptions;
 import com.highsoft.highcharts.Common.HIChartsClasses.HISeries;
+import com.highsoft.highcharts.Common.HIChartsClasses.HISpline;
 import com.highsoft.highcharts.Common.HIChartsClasses.HITooltip;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIXAxis;
 import com.highsoft.highcharts.Common.HIColor;
+import com.highsoft.highcharts.Common.HIGradient;
+import com.highsoft.highcharts.Common.HIStop;
 import com.highsoft.highcharts.Core.HIChartView;
 import com.highsoft.highcharts.Core.HIFunction;
 
@@ -22,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
+import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,19 +44,15 @@ public class MainActivity extends AppCompatActivity {
         options.xAxis = new ArrayList<>(Collections.singletonList(hixAxis));
 
 
-        HISeries series = new HISeries();
-        series.data = new ArrayList<>(Arrays.asList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15));
-        HIDataLabels dataLabels = new HIDataLabels();
-        dataLabels.enabled = true;
-        dataLabels.format = "{x:%H:%M}";
-        series.dataLabels = dataLabels;
-        Date d = new Date();
-        series.pointStart = d.UTC(2016,9,22,0,0,0);
-        series.pointInterval = 24 * 365;
-        series.name = "UTC Midnight";
-        series.tooltip = new HITooltip();
-        series.tooltip.pointFormat = "UTC midnight = {point.x:%H:%M} local time";
-        options.series = new ArrayList<>(Collections.singletonList(series));
+        HISpline series = new HISpline();
+        series.data = new ArrayList<>(Arrays.asList(0,5,8,9,3,5,4,4,2,10));
+        series.name = "Colors test 1";
+
+        HISpline series2 = new HISpline();
+        series2.data = new ArrayList<>(Arrays.asList(4,2,6,7,2,3,3,7,9,1));
+        series2.name = "Colors test";
+
+        options.series = new ArrayList<HISeries>(Arrays.asList(series, series2));
 
         options.chart = new HIChart();
         options.chart.backgroundColor = HIColor.initWithRGBA(255,255,255, 0.0);
@@ -71,6 +71,14 @@ public class MainActivity extends AppCompatActivity {
         );
 
 //        chartView.options.exporting.enabled = false;
+
+        options.colors = new ArrayList<>();
+        options.colors.add(HIColor.initWithRGB(255, 0, 0));
+//        options.colors.add(HIColor.initWithRGB(0, 0, 255));
+        LinkedList<HIStop> stops = new LinkedList<>();
+        stops.add(new HIStop(0.4f, HIColor.initWithRGB(66, 218, 113)));
+        stops.add(new HIStop(1, HIColor.initWithRGB(80, 140, 200)));
+        options.colors.add(HIColor.initWithLinearGradient(new HIGradient(), stops));
 
         chartView.options = options;
         chartView.options.exporting = new HIExporting();

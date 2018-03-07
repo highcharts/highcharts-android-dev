@@ -357,10 +357,13 @@ public Map<String, Object> getParams() {
 		if (this.accessibility != null) {
 			params.put("accessibility", this.accessibility.getParams());
 		}
-		if (this.colors != null) {
-			ArrayList<HIColor> array = new ArrayList<>();
+		if (this.colors != null) {  //BUG here
+//			ArrayList<HIColor> array = new ArrayList<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (HIColor hiColor : this.colors) {
-				array.add((HIColor) hiColor.getData());
+//				array.add((HIColor) hiColor.getData());
+				array.add(hiColor.getData());
+//				array.add(hiColor);
 			}
 			params.put("colors", array);
 		}
