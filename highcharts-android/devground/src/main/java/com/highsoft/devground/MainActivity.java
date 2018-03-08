@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
         options.series = new ArrayList<HISeries>(Arrays.asList(series, series2));
 
-        options.chart = new HIChart();
-        options.chart.backgroundColor = HIColor.initWithRGBA(255,255,255, 0.0);
+//        options.chart = new HIChart();
+//        options.chart.backgroundColor = HIColor.initWithRGBA(255,255,255, 0.0);
 
         options.plotOptions = new HIPlotOptions();
         options.plotOptions.series = series;
@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         options.colors.add(HIColor.initWithLinearGradient(new HIGradient(), stops));
 
         chartView.options = options;
+//        chartView.options.chart.backgroundColor = HIColor.initWithRGB(255,255,255);
         chartView.options.exporting = new HIExporting();
         chartView.options.exporting.enabled = false;
     }

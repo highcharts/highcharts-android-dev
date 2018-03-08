@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.Dimension;
 import android.support.annotation.RequiresApi;
@@ -113,6 +114,7 @@ public class HIChartView extends RelativeLayout {
             e.printStackTrace();
         }
         this.webView = new WebView(context);
+        this.webView.setBackgroundColor(Color.TRANSPARENT);
         this.webView.getSettings().setJavaScriptEnabled(true);
         this.webView.getSettings().setDomStorageEnabled(true);
         this.webView.setWebViewClient(webViewClient);
