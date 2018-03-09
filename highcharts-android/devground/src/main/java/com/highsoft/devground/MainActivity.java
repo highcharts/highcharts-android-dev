@@ -11,6 +11,7 @@ import com.highsoft.highcharts.Common.HIChartsClasses.HIEvents;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIExporting;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIOptions;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIPlotOptions;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIPoint;
 import com.highsoft.highcharts.Common.HIChartsClasses.HISeries;
 import com.highsoft.highcharts.Common.HIChartsClasses.HISpline;
 import com.highsoft.highcharts.Common.HIChartsClasses.HITooltip;
@@ -21,6 +22,8 @@ import com.highsoft.highcharts.Common.HIStop;
 import com.highsoft.highcharts.Core.HIChartView;
 import com.highsoft.highcharts.Core.HIFunction;
 
+import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -35,6 +38,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         HIChartView chartView = (HIChartView) findViewById(R.id.hc);
+
+
+//        try {
+//            chartView.setJavascriptHandler(JavascriptMethods.class.getName());
+//        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
+//            e.printStackTrace();
+//        }
+
+
         HIOptions options = new HIOptions();
 
 //        chartView.plugins = new ArrayList<>(Arrays.asList("moment.min", "moment-timezone-with-data-2012-2022.min"));
@@ -59,18 +71,44 @@ public class MainActivity extends AppCompatActivity {
 
         options.plotOptions = new HIPlotOptions();
         options.plotOptions.series = series;
-        options.plotOptions.series.events = new HIEvents();
-        options.plotOptions.series.events.click = new HIFunction(
-                "function() { " +
-//                        "var message = 'Clicked x: ' + this.x + ', y ' + this.y;" +
-                        "var message = 'Hello from JS';" +
-                        "console.log(message); " +
-                        "jsint.createDialog(message); " +
-                        "}",
-                true
-        );
+//        options.plotOptions.series.events = new HIEvents();
+//        options.plotOptions.series.events.click = new HIFunction(
+        options.plotOptions.series.point = new HIPoint();
+        options.plotOptions.series.point.events = new HIEvents();
+//        options.plotOptions.series.point.events.click = new HIFunction(
+////                "function() { " +
+//////                        "var message = 'Clicked x: ' + this.x + ', y ' + this.y;" +
+////                        "var message = 'Hello from JS';" +
+////                        "console.log(message); " +
+////                        "jsint.createDialog(message); " +
+////                        "}",
+//                "function() { " +
+//                        "var y = this.y;" +
+//                        "Android.createDialog(y); }",
+//                true
+//        );
+//        options.plotOptions.series.point.events.click = new HIFunction(
+//                () -> {
+//                    System.out.println("Lambda runned from Android!");
+////                    new android.app.AlertDialog.Builder(getApplicationContext())
+////                            .setTitle("Clicked value:")
+////                            .setMessage("Brawo, udalo sie")
+////                            .create().show();
+////                    return 0;
+//                }, chartView
+//        );
+        options.plotOptions.series.point.events.click = new HIFunction(
+                    () -> {
+                        new AlertDialog.Builder(this)
+                                .setTitle("Information")
+                                .setMessage("You've just clicked series: ")
+                                .create().show();
+                        Foo f = new Foo("something");
+                        f.bar();
+                    },
+                    chartView
+            );
 
-//        chartView.options.exporting.enabled = false;
 
         options.colors = new ArrayList<>();
         options.colors.add(HIColor.initWithRGB(255, 0, 0));

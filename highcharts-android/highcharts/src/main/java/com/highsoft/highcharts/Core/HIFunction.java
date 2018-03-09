@@ -4,14 +4,32 @@ package com.highsoft.highcharts.Core;
  * Created by Bartosz on 13.09.2017.
  */
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.webkit.JavascriptInterface;
+
+import com.highsoft.highcharts.Common.HIChartsClasses.HIChart;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 /**This class represents special type for Javascript functions in Highcharts Android Wrapper*/
 
 final public class HIFunction {
 
-    private String function = "";
+    private Runnable rfunction;
+    private String strFunction = "";
+//    private Function<String, Integer> function;
+    private Consumer<Integer> function;
+    private Object[] vars;
+    private Integer val;
+    private HIChartView chartView;
+
+    HIFunction(){
+
+    }
 
     /**
      * Use this constructor if you want to put pure Javascript code as a String
@@ -23,35 +41,54 @@ final public class HIFunction {
         if (useNow) {
             String template = "%s%s%s";
             String prefixnsuffix = "__xx__";
-            this.function = String.format(template, prefixnsuffix, functionInString, prefixnsuffix);
+            this.strFunction = String.format(template, prefixnsuffix, functionInString, prefixnsuffix);
         }
     }
 
+//    public HIFunction(Consumer<Integer> function, Integer val){
+//        this.function = function;
+////        this.vars = variables;
+//        this.val = val;
+//        System.out.println("Val in constructor: " + this.val);
+//        String template = "%sfunction(){Android.androidHandler();}%s";
+//        String prefixnsuffix = "__xx__";
+//        this.strFunction = String.format(template, prefixnsuffix, prefixnsuffix);
+//
+//    }
 
-    //These methods are currently in development (for more Android-friendly usage)
+    public HIFunction(Runnable function, HIChartView v)  {
+        this.rfunction = function;
+        this.chartView = v;
+        try {
+            v.setJavascriptHandler(HIFunctionalInterface.class.getName(), function);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Val in constructor: " + this.val);
+        String template = "%sfunction(){" +
+                "Android.androidHandler();}%s";
+        String prefixnsuffix = "__xx__";
+        this.strFunction = String.format(template, prefixnsuffix, prefixnsuffix);
 
-   /* /**
-     * Use this constructor to return the exact retutning statement for Javascript function
-     * @param toReturn the exact String to return in the Javascript function
-     */
-   /* public HIFunction(String toReturn) {
-        String template = "%sfunction() { return '%s' ; } %s";
-        this.function = String.format(template, prefix, toReturn, suffix);
-    }*/
-
-
-    /*public HIFunction(HIGFunctionalInterface function, String... arguments) {
-        String template = "%sfunction() { return '%s' ; } %s";
-        this.function = String.format(template, prefix, function.getString(), suffix);
-        System.out.println(this.function);
-    }*/
-
-    String getFunction() {
-        return function;
     }
 
-   /* @JavascriptInterface
-    public Object androidHandler(Object object){
-        return object;
-    }*/
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @JavascriptInterface
+    public void androidHandler(){
+//        System.out.println("Value: " + this.val);
+//        function.accept(this.val);
+        rfunction.run();
+    }
+
+    String getFunction() {
+        return strFunction;
+    }
 }

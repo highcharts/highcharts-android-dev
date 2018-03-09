@@ -1,5 +1,6 @@
 package com.highsoft.highcharts.Core;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -25,6 +26,8 @@ import com.highsoft.highcharts.Common.HIChartsClasses.HIOptions;
 import com.highsoft.highcharts.R;
 
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -124,6 +127,7 @@ public class HIChartView extends RelativeLayout {
         // Adding exporting module to the chart
         HIGExportModule higExportModule = new HIGExportModule(activity, this.webView);
         this.webView.addJavascriptInterface(higExportModule, "jsint");
+        this.webView.addJavascriptInterface(new HIFunction(), "Android");
         this.webView.setDownloadListener(higExportModule);
 
         //this handler is made for displaying logs from JS code in Android console
@@ -238,8 +242,13 @@ public class HIChartView extends RelativeLayout {
         this.loaded = true;
     }
 
-    public void setJavascriptHandler(String className){
-        this.webView.addJavascriptInterface(className.getClass(), "androidHandler");
+    @SuppressLint({"JavascriptInterface", "AddJavascriptInterface"})
+    public void setJavascriptHandler(String className, Runnable runnable) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        Class<?> JSHandler = Class.forName(className);
+//        Constructor<?> ctor = JSHandler.getConstructor(Activity.class);
+        Constructor<?> ctor = JSHandler.getConstructor(Runnable.class);
+        Object object = ctor.newInstance(runnable);
+        this.webView.addJavascriptInterface(object, "Android");
     }
 
 

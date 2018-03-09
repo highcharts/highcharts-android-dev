@@ -22,6 +22,13 @@
 -keepclassmembers,allowoptimization enum * {
     public static **[] values(); public static ** valueOf(java.lang.String);
 }
+
+-keepattributes JavascriptInterface
+
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}
+
 #-keep class com.highsoft.higcharts.Core.**
 #-keep public class * { public *; }
 
