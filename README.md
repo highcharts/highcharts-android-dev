@@ -1,5 +1,5 @@
 <p align="center" >
-<img src="https://github.com/highcharts/highcharts-android-dev/blob/master/Release/Images/logo.png" alt="Highcharts" title="Highcharts">
+<img src="https://github.com/highcharts/highcharts-android/blob/master/Images/logo.png" alt="Highcharts" title="Highcharts">
 </p>
 
 [Highcharts Android](http://www.highcharts.com/blog/mobile/) is a delightful wrapper of HighchartsJS for Android.
@@ -29,27 +29,32 @@ Here we present how to create basic chart and place it in your project.
 
 **A)** You can download the _aar_ from here: [Highcharts](https://github.com/highcharts/highcharts-android/blob/master/highcharts-release.aar) and add it manually. Put the _aar_ in the _libs_ folder in your project structure:
 
-![alt text](https://github.com/highcharts/highcharts-android-dev/blob/master/Release/Images/1.png "Files1")
+![alt text](https://github.com/highcharts/highcharts-android/blob/master/Images/1.png "Files1")
 
 Then, add the following lines to your project **build.gradle** file:
 
     repositories {
         flatDir {
             dirs ‘libs’
-	}
+	    }
+    }
 
 and following to the dependencies in your app **build.gradle** file:
 
     dependencies {
         compile (name: 'highcharts-release', ext:'aar')
+	compile 'com.google.code.gson:gson:2.8.0'
     }
 
-**B)** You can add the library to the gradle dependecies from JCenter like this:
+**B)** **Not available yet**
+
+ You can add the library to the gradle dependecies from JCenter like this:
 
     dependencies {
         compile 'com.highsoft.highcharts:6.0.2'
-    }
-    
+	compile 'com.google.code.gson:gson:2.8.0'
+    }  
+
 - Please note that if you plan to use export module, you need to put specific _provider_ in your app manifest:
 
 ```xml
@@ -71,7 +76,7 @@ and the needed _provider_paths_ file
 ```
 into _xml_ folder here:
 
-![alt text](https://github.com/highcharts/highcharts-android-dev/blob/master/Release/Images/2.png "Files2")
+![alt text](https://github.com/highcharts/highcharts-android/blob/master/Images/2.png "Files2")
 
 You are now set to use Highcharts!
 
@@ -81,7 +86,7 @@ You are now set to use Highcharts!
 
 At first, you need to create a **view** for your chart. Go to your `activity_main.xml` and add this to your layout:
 ```
-<com.highsoft.highcharts.Core.HIGChartView
+<com.highsoft.highcharts.Core.HIChartView
    android:id="@+id/hc"
    android:layout_width="match_parent"
    android:layout_height="match_parent" />
@@ -97,7 +102,7 @@ import com.highsoft.highcharts.Core.*;
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
 ```
 
-Next, in **onCreate** add the **HIGChartView** following line:
+Next, in **onCreate** add the **HIChartView** following line:
 ```java
 HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
 ```
@@ -174,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+        HIChartView chartView = (HIChartView) findViewById(R.id.hc);
 
         HIOptions options = new HIOptions();
 

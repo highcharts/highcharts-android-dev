@@ -6,20 +6,18 @@ package com.highsoft.highcharts.Core;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.support.v7.app.AlertDialog;
 import android.webkit.JavascriptInterface;
-
-import com.highsoft.highcharts.Common.HIChartsClasses.HIChart;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 /**This class represents special type for Javascript functions in Highcharts Android Wrapper*/
 
 final public class HIFunction {
 
     private Runnable rfunction;
+    private Consumer<Integer> cfunction;
+    private HIFunctionInterface hcfunction;
     private String strFunction = "";
 //    private Function<String, Integer> function;
     private Consumer<Integer> function;
@@ -56,11 +54,57 @@ final public class HIFunction {
 //
 //    }
 
-    public HIFunction(Runnable function, HIChartView v)  {
-        this.rfunction = function;
+//    public HIFunction(Runnable function, HIChartView v)  {
+//        this.rfunction = function;
+//        this.chartView = v;
+//        try {
+//            v.setJavascriptHandler(HIFunctionHandler.class.getName(), function);
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        } catch (InstantiationException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("Val in constructor: " + this.val);
+//        String template = "%sfunction(){" +
+//                "Android.androidHandler();}%s";
+//        String prefixnsuffix = "__xx__";
+//        this.strFunction = String.format(template, prefixnsuffix, prefixnsuffix);
+//    }
+
+//    public HIFunction(Consumer<Integer> function, HIChartView v)  {
+//        this.cfunction = function;
+//        this.chartView = v;
+//        try {
+//            v.setJavascriptHandler(HIFunctionHandler.class.getName(), function);
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        } catch (InstantiationException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("Val in constructor: " + this.val);
+//        String template = "%sfunction(){" +
+//                "Android.androidHandler();}%s";
+//        String prefixnsuffix = "__xx__";
+//        this.strFunction = String.format(template, prefixnsuffix, prefixnsuffix);
+//    }
+
+    public HIFunction(HIFunctionInterface function, HIChartView v)  {
+        this.hcfunction = function;
         this.chartView = v;
         try {
-            v.setJavascriptHandler(HIFunctionalInterface.class.getName(), function);
+            v.setJavascriptHandler(function);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
@@ -77,16 +121,15 @@ final public class HIFunction {
                 "Android.androidHandler();}%s";
         String prefixnsuffix = "__xx__";
         this.strFunction = String.format(template, prefixnsuffix, prefixnsuffix);
-
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @JavascriptInterface
-    public void androidHandler(){
-//        System.out.println("Value: " + this.val);
-//        function.accept(this.val);
-        rfunction.run();
-    }
+//    @RequiresApi(api = Build.VERSION_CODES.N)
+//    @JavascriptInterface
+//    public void androidHandler(){
+////        System.out.println("Value: " + this.val);
+////        function.accept(this.val);
+//        rfunction.run();
+//    }
 
     String getFunction() {
         return strFunction;

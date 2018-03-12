@@ -52,27 +52,20 @@ public class MainActivity extends AppCompatActivity {
 //        chartView.plugins = new ArrayList<>(Arrays.asList("moment.min", "moment-timezone-with-data-2012-2022.min"));
 
         HIXAxis hixAxis = new HIXAxis();
-        hixAxis.type = "datetime";
         options.xAxis = new ArrayList<>(Collections.singletonList(hixAxis));
 
+        HISpline spline1 = new HISpline();
+        spline1.data = new ArrayList<>(Arrays.asList(0,5,8,9,3,5,4,4,2,10));
+        spline1.name = "Colors test 1";
 
-        HISpline series = new HISpline();
-        series.data = new ArrayList<>(Arrays.asList(0,5,8,9,3,5,4,4,2,10));
-        series.name = "Colors test 1";
+        HISpline spline2 = new HISpline();
+        spline2.data = new ArrayList<>(Arrays.asList(4,2,6,7,2,3,3,7,9,1));
+        spline2.name = "Colors test";
 
-        HISpline series2 = new HISpline();
-        series2.data = new ArrayList<>(Arrays.asList(4,2,6,7,2,3,3,7,9,1));
-        series2.name = "Colors test";
-
-        options.series = new ArrayList<HISeries>(Arrays.asList(series, series2));
-
-//        options.chart = new HIChart();
-//        options.chart.backgroundColor = HIColor.initWithRGBA(255,255,255, 0.0);
+        options.series = new ArrayList<>(Arrays.asList(spline1, spline2));
 
         options.plotOptions = new HIPlotOptions();
-        options.plotOptions.series = series;
-//        options.plotOptions.series.events = new HIEvents();
-//        options.plotOptions.series.events.click = new HIFunction(
+        options.plotOptions.series = spline1;
         options.plotOptions.series.point = new HIPoint();
         options.plotOptions.series.point.events = new HIEvents();
 //        options.plotOptions.series.point.events.click = new HIFunction(
@@ -97,11 +90,14 @@ public class MainActivity extends AppCompatActivity {
 ////                    return 0;
 //                }, chartView
 //        );
+
+        //NEW FUNCTIONS IMPLEMENTATION
         options.plotOptions.series.point.events.click = new HIFunction(
-                    () -> {
+                    hiContext -> {
+                        hiContext.getParameter(5);
                         new AlertDialog.Builder(this)
                                 .setTitle("Information")
-                                .setMessage("You've just clicked series: ")
+                                .setMessage("You've just clicked series point.")
                                 .create().show();
                         Foo f = new Foo("something");
                         f.bar();
@@ -109,10 +105,8 @@ public class MainActivity extends AppCompatActivity {
                     chartView
             );
 
-
         options.colors = new ArrayList<>();
         options.colors.add(HIColor.initWithRGB(255, 0, 0));
-//        options.colors.add(HIColor.initWithRGB(0, 0, 255));
         LinkedList<HIStop> stops = new LinkedList<>();
         stops.add(new HIStop(0.4f, HIColor.initWithRGB(66, 218, 113)));
         stops.add(new HIStop(1, HIColor.initWithRGB(80, 140, 200)));
@@ -123,12 +117,4 @@ public class MainActivity extends AppCompatActivity {
         chartView.options.exporting = new HIExporting();
         chartView.options.exporting.enabled = false;
     }
-
-    /*@JavascriptInterface
-    public void createDialog(Object object){
-        new AlertDialog.Builder(getApplicationContext())
-                .setTitle("Clicked value:")
-                .setMessage((String)object)
-                .create().show();
-    }*/
 }

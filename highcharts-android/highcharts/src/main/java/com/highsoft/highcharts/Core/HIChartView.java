@@ -33,6 +33,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.CancellationException;
+import java.util.function.Consumer;
 
 /**
  *  Highcharts Chart View Class. Initialize this as a normal view and set
@@ -127,7 +128,7 @@ public class HIChartView extends RelativeLayout {
         // Adding exporting module to the chart
         HIGExportModule higExportModule = new HIGExportModule(activity, this.webView);
         this.webView.addJavascriptInterface(higExportModule, "jsint");
-        this.webView.addJavascriptInterface(new HIFunction(), "Android");
+//        this.webView.addJavascriptInterface(new HIFunction(), "Android");
         this.webView.setDownloadListener(higExportModule);
 
         //this handler is made for displaying logs from JS code in Android console
@@ -242,15 +243,35 @@ public class HIChartView extends RelativeLayout {
         this.loaded = true;
     }
 
-    @SuppressLint({"JavascriptInterface", "AddJavascriptInterface"})
-    public void setJavascriptHandler(String className, Runnable runnable) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        Class<?> JSHandler = Class.forName(className);
-//        Constructor<?> ctor = JSHandler.getConstructor(Activity.class);
-        Constructor<?> ctor = JSHandler.getConstructor(Runnable.class);
-        Object object = ctor.newInstance(runnable);
-        this.webView.addJavascriptInterface(object, "Android");
-    }
+//    @SuppressLint({"JavascriptInterface", "AddJavascriptInterface"})
+//    void setJavascriptHandler(String className, Runnable runnable) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+//        Class<?> JSHandler = Class.forName(className);
+//        Constructor<?> ctor = JSHandler.getConstructor(Runnable.class);
+//        Object object = ctor.newInstance(runnable);
+//        this.webView.addJavascriptInterface(object, "Android");
+//    }
+//
+//    @SuppressLint({"JavascriptInterface", "AddJavascriptInterface"})
+//    void setJavascriptHandler(String className, Consumer consumer) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+//        Class<?> JSHandler = Class.forName(className);
+//        Constructor<?> ctor = JSHandler.getConstructor(Runnable.class);
+//        Object object = ctor.newInstance(consumer);
+//        this.webView.addJavascriptInterface(object, "Android");
+//    }
 
+//    @SuppressLint({"JavascriptInterface", "AddJavascriptInterface"})
+//    void setJavascriptHandler(String className, HIFunctionInterface hiFunctionInterface) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+//        Class<?> JSHandler = Class.forName(className);
+//        Constructor<?> ctor = JSHandler.getConstructor(HIFunctionInterface.class);
+//        Object object = ctor.newInstance(hiFunctionInterface, webView);
+//        this.webView.addJavascriptInterface(object, "Android");
+//    }
+
+    @SuppressLint({"JavascriptInterface", "AddJavascriptInterface"})
+    void setJavascriptHandler(HIFunctionInterface hiFunctionInterface) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        HIFunctionHandler hiFunctionHandler = new HIFunctionHandler(hiFunctionInterface, this.webView, activity);
+        this.webView.addJavascriptInterface(hiFunctionHandler, "Android");
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void loadChartOptions() {
