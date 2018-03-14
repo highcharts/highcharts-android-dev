@@ -8,7 +8,7 @@ Overall document style
 body {
     background-color:#ffffff;
     color:#666;
-    font-family: sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
     font-size:14px;
     margin:0;
 
@@ -79,6 +79,7 @@ table tr td dt code {
 sup {
     font-size:8px;
 }
+
 /*
 Document title and Copyright styles
 */
@@ -119,7 +120,7 @@ Navigation bar styles
     color:#eeeaea;
     padding:.8em .5em .4em .8em;
     height:auto;/*height:1.8em;*/
-    font-size:11px;
+    font-size:14px;
     font-weight: 100%;
     margin:0;
 }
@@ -596,6 +597,10 @@ div.contentContainer ul.blockList li.blockList h2{
 }
 
 /* header styling */
+.headerMain {
+    position: fixed;
+    width:100%;
+}
 
 .headerMain .row {
   overflow: hidden;
@@ -858,10 +863,12 @@ div.contentContainer ul.blockList li.blockList h2{
   display: block;
   line-height: 20px;
   margin: 0;
+  color: #eeeaea;
 }
 
 .dropdown-menu ul.group-list {
   padding: 0;
+  border: none;
 }
 
 .dropdown-menu ul.group-list li a {
@@ -905,4 +912,6 @@ div.contentContainer ul.blockList li.blockList h2{
   padding-bottom: 10px;
 }
 
-
+.wrapper { 
+    padding-top:80px;
+}
