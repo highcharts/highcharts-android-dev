@@ -1,9 +1,10 @@
 package com.highsoft.highcharts.Core;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.webkit.ValueCallback;
 import android.webkit.WebView;
 
 /**
@@ -12,32 +13,35 @@ import android.webkit.WebView;
 
 public class HIContext {
 
-    private final WebView webView;
+    private WebView webView;
     private Activity activity;
+    private String id;
+    static Object value;
 
 
-    public HIContext(WebView webView, Activity a) {
+    HIContext(WebView webView, Activity a, String id) {
         this.webView = webView;
         this.activity = a;
+        this.id = id;
     }
 
-
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public void getParameter(int p){
-        System.out.println("Parameter you passed: " + p);
+    public int getParameter(String param){
+        int val;
+        System.out.println("Param to get from JS: " + param);
+        String template = "javascript:getProperty('%s', '%s')";
+        String loadUrl = String.format(template, this.id, param);
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                webView.loadUrl("javascript:console.log('JS call from Android...')");
-                webView.loadUrl("javascript:getNr()");
+                webView.loadUrl(loadUrl);
             }
         });
-//        webView.post( () -> webView.loadUrl("javascript:testEcho('JS call from Android..."));
-//        webView.evaluateJavascript("testEcho('Hello World!')", new ValueCallback<String>() {
-//            @Override
-//            public void onReceiveValue(String s) {
-//                System.out.println(s);
-//            }
-//        });
+        System.out.println(param + " = " + value);
+        //Shared preferences not safe at all
+//        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+//        val = sharedPref.getInt("val", 0);
+//        return val;
+        return (int) value; // needs casting, but why?
     }
 }

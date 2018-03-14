@@ -14,7 +14,9 @@
     </style>
     <body style="margin:0">
         <div id="container" style="width:{{width}}px; height:{{height}}px"></div>
-        <script>
+    </body>
+</html>
+<script>
             Highcharts.setOptions({
                 exporting: {
                     libURL: 'js/lib/',
@@ -22,7 +24,7 @@
                         contextButton: {
                             menuItems: null,
                             onclick: function(){
-                                jsint.showDialog();
+                                AndroidExport.showDialog();
                             }
                         }
                     }
@@ -32,15 +34,33 @@
             });
             var chart = new Highcharts.Chart({{options}});
 
-            var jsEventContexts = {};
-            function getPropertyWrapper(contextName, propertyString) {
-                return jsEventContexts[contextName][propertyString];
-            }
 
             var nr = 69;
-            function getNr(){
-                Android.getNr(nr);
+            function getValue(){
+                Android.getValue(nr);
+            }
+
+            var eventContexts = {};
+            var getProperty = function(contextName, property) {
+              if (typeof property !== 'string'
+                  || typeof eventContexts[contextName] === 'undefined' ) {
+                Android.getValue(null);
+              }
+
+              var descendantProperties = property.split('.');
+              var obj = eventContexts[contextName];
+              while (descendantProperties.length) {
+                var propertyName = descendantProperties.shift();
+                if (typeof obj[propertyName] === 'undefined' || obj[propertyName] === null) {
+                  Android.getValue(null);
+                }
+
+                obj = obj[propertyName];
+              }
+
+              return (obj !== null && typeof obj === 'object')
+                ? Android.getValue(JSON.stringify(obj))
+                : Android.getValue(obj);
+
             }
         </script>
-    </body>
-</html>

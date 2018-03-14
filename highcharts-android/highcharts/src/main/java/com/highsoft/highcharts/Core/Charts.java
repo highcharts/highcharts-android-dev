@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-class Charts {
+final class Charts {
     public static final Map<String, String> charts;
     static {
         Map<String, String> map = new HashMap<>();

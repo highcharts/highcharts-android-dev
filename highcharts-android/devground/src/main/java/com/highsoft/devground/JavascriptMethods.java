@@ -10,7 +10,6 @@ import android.webkit.JavascriptInterface;
 
 public class JavascriptMethods {
 
-    private String xd = "XD";
     private Activity activity;
 
     public JavascriptMethods(Activity activity) {

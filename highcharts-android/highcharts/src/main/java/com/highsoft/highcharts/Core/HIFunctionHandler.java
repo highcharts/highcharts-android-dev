@@ -1,8 +1,8 @@
 package com.highsoft.highcharts.Core;
 
 import android.app.Activity;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 
@@ -10,38 +10,67 @@ import android.webkit.WebView;
  * Created by bartosz on 09.03.18.
  */
 
-public class HIFunctionHandler {
-    private Runnable runnable;
-    private HIFunctionInterface hiFunctionInterface;
+final class HIFunctionHandler {
+
+    private HIConsumer<HIContext> hiConsumer;
+    private HIFunctionInterface<HIContext, String> hiFunctionInterface;
     private WebView webView;
     private Activity activity;
-    public HIFunctionHandler(Runnable runnable) {
-        this.runnable = runnable;
+    private String id;
+
+    HIFunctionHandler(Runnable runnable) {
+        Runnable runnable1 = runnable;
     }
 
-    public HIFunctionHandler(HIFunctionInterface hiFunctionInterface, WebView webView, Activity activity) {
-        this.hiFunctionInterface = hiFunctionInterface;
+    HIFunctionHandler(WebView webView, Activity activity) {
         this.webView = webView;
         this.activity = activity;
     }
 
-//    @RequiresApi(api = Build.VERSION_CODES.N)
-    @JavascriptInterface
-    public void androidHandlerPlain(){
-        this.runnable.run();
+    HIFunctionHandler(HIConsumer<HIContext> hiConsumer, WebView webView, Activity activity, String id) {
+        this.hiConsumer = hiConsumer;
+        this.webView = webView;
+        this.activity = activity;
+        this.id = id;
     }
+
+//    HIFunctionHandler(HIFunctionInterface<HIContext, String> hiFunctionInterface, WebView webView, Activity activity) {
+//        this.hiFunctionInterface = hiFunctionInterface;
+//        this.webView = webView;
+//        this.activity = activity;
+//    }
 
     @JavascriptInterface
     public void androidHandler(){
-//        System.out.println("Value: " + this.val);
-//        function.accept(this.val);
-        this.hiFunctionInterface.accept(new HIContext(this.webView, this.activity));
+        this.hiConsumer.accept(new HIContext(this.webView, this.activity, this.id));
+//        if(this.hiConsumer != null){
+//            this.hiConsumer.accept(new HIContext(this.webView, this.activity));
+//        }
+//        else{
+//            System.out.println("HIConsumer jest nullem");
+//            this.hiFunctionInterface.apply(new HIContext(this.webView, this.activity));
+//        }
     }
 
     @JavascriptInterface
-    public void getNr(int nr){
+    public void getValue(int obj) throws Exception {
         System.out.println("Javascript value handled!");
-        System.out.println("The value is: " + nr);
+        HIContext.value = obj;
+        System.out.println("The static value is: " + HIContext.value);
+        //Shared preferences not safe at all
+//        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPref.edit();
+//        editor.putInt("val", obj).apply();
+
+//        if(obj instanceof Boolean) editor.putBoolean("val", (Boolean) obj);
+//        else if (obj instanceof Float) editor.putFloat("val", (Float) obj);
+//        else if (obj instanceof Integer) editor.putInt("val", (Integer) obj);
+//        else if (obj instanceof Long) editor.putLong("val", (Long) obj);
+//        else if (obj instanceof String) editor.putString("val", (String) obj);
+//        else throw new Exception("Highcharts unsupported value");
+//        editor.apply();
+
+
     }
 
 }

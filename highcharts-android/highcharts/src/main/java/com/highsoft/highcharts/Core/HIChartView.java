@@ -3,11 +3,9 @@ package com.highsoft.highcharts.Core;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.annotation.Dimension;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -15,25 +13,18 @@ import android.view.View;
 import android.webkit.ConsoleMessage;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.HIGlobal;
 import com.highsoft.highcharts.Common.HIChartsClasses.HILang;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIOptions;
-import com.highsoft.highcharts.R;
 
 import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.concurrent.CancellationException;
-import java.util.function.Consumer;
 
 /**
  *  Highcharts Chart View Class. Initialize this as a normal view and set
@@ -77,11 +68,9 @@ public class HIChartView extends RelativeLayout {
 
     private WebView webView;
     private HIGHTML HTML;
-    private RelativeLayout.LayoutParams params;
     private int width;
     private int height;
     private boolean loaded = false;
-    private static final String ANSI_CYAN = (char)27 + "[36mCYAN ";
 
     /**
      * Basic constructor with default chart size
@@ -106,9 +95,11 @@ public class HIChartView extends RelativeLayout {
         initialize(c);
     }
 
+    @SuppressLint({"AddJavascriptInterface", "SetJavaScriptEnabled"})
     private void initialize(final Context context) {
         this.debug = false;
-        this.HTML = new HIGHTML();
+        this.webView = new WebView(context);
+        this.HTML = new HIGHTML(this.webView, this.activity);
         this.HTML.baseURL = "";
         HIGWebViewClient webViewClient = new HIGWebViewClient();
 
@@ -117,7 +108,6 @@ public class HIChartView extends RelativeLayout {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.webView = new WebView(context);
         this.webView.setBackgroundColor(Color.TRANSPARENT);
         this.webView.getSettings().setJavaScriptEnabled(true);
         this.webView.getSettings().setDomStorageEnabled(true);
@@ -127,9 +117,12 @@ public class HIChartView extends RelativeLayout {
 
         // Adding exporting module to the chart
         HIGExportModule higExportModule = new HIGExportModule(activity, this.webView);
-        this.webView.addJavascriptInterface(higExportModule, "jsint");
-//        this.webView.addJavascriptInterface(new HIFunction(), "Android");
         this.webView.setDownloadListener(higExportModule);
+        //JS Handler for export
+        this.webView.addJavascriptInterface(higExportModule, "AndroidExport");
+        //JS Handler for HIContext
+        HIFunctionHandler hiFunctionHandler = new HIFunctionHandler(this.webView, this.activity);
+        this.webView.addJavascriptInterface(hiFunctionHandler, "Android");
 
         //this handler is made for displaying logs from JS code in Android console
         if(this.debug){
@@ -148,10 +141,6 @@ public class HIChartView extends RelativeLayout {
                 }
             });
         }
-
-        // Setting up the Chart layout params
-//        if(params == null) params = new RelativeLayout.LayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-//        webView.setLayoutParams(params);
         this.addView(webView);
     }
 
@@ -241,36 +230,6 @@ public class HIChartView extends RelativeLayout {
                 "UTF-8",
                 "");
         this.loaded = true;
-    }
-
-//    @SuppressLint({"JavascriptInterface", "AddJavascriptInterface"})
-//    void setJavascriptHandler(String className, Runnable runnable) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-//        Class<?> JSHandler = Class.forName(className);
-//        Constructor<?> ctor = JSHandler.getConstructor(Runnable.class);
-//        Object object = ctor.newInstance(runnable);
-//        this.webView.addJavascriptInterface(object, "Android");
-//    }
-//
-//    @SuppressLint({"JavascriptInterface", "AddJavascriptInterface"})
-//    void setJavascriptHandler(String className, Consumer consumer) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-//        Class<?> JSHandler = Class.forName(className);
-//        Constructor<?> ctor = JSHandler.getConstructor(Runnable.class);
-//        Object object = ctor.newInstance(consumer);
-//        this.webView.addJavascriptInterface(object, "Android");
-//    }
-
-//    @SuppressLint({"JavascriptInterface", "AddJavascriptInterface"})
-//    void setJavascriptHandler(String className, HIFunctionInterface hiFunctionInterface) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-//        Class<?> JSHandler = Class.forName(className);
-//        Constructor<?> ctor = JSHandler.getConstructor(HIFunctionInterface.class);
-//        Object object = ctor.newInstance(hiFunctionInterface, webView);
-//        this.webView.addJavascriptInterface(object, "Android");
-//    }
-
-    @SuppressLint({"JavascriptInterface", "AddJavascriptInterface"})
-    void setJavascriptHandler(HIFunctionInterface hiFunctionInterface) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        HIFunctionHandler hiFunctionHandler = new HIFunctionHandler(hiFunctionInterface, this.webView, activity);
-        this.webView.addJavascriptInterface(hiFunctionHandler, "Android");
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
