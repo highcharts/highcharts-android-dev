@@ -267,6 +267,33 @@ ul.blockList ul.blockList li.blockList h3 {
 ul.blockList li.blockList h2 {
     padding:0px 0 20px 0;
 }
+
+/* footer styling */
+.footerMain {
+  padding: 10px 0;
+  width: 100%;
+  background: #373648;
+  color: #eeeaea;
+  display: inline-block;
+  text-align: center;
+  font-size: 10px;
+}
+
+.footerMain p {
+  padding: 0 30px;
+  margin-top: 0px;
+}
+
+.footer-social {
+  font-size: 1.5em;
+  padding-bottom: 10px;
+}
+
+.wrapper { 
+    padding-top:80px;
+}
+
+
 /*
 Page layout container styles
 */
@@ -760,8 +787,8 @@ div.contentContainer ul.blockList li.blockList h2{
   #splashText h1 {
     text-align: left;
   }
-  .footerMain {
-    padding-left: 15%;
+  .footerMain2 {
+    padding-left: 0%;
   }
   .options-tree {
     overflow-x: auto;
@@ -888,30 +915,4 @@ div.contentContainer ul.blockList li.blockList h2{
 #prog-lang-selector-list a.unavailable-prog-lang {
   text-decoration: line-through;
   cursor: default;
-}
-
-/* footer styling */
-
-.footerMain {
-  padding: 10px 0;
-  width: 100%;
-  background: #373648;
-  color: #eeeaea;
-  display: inline-block;
-  text-align: center;
-  font-size: 10px;
-}
-
-.footerMain p {
-  padding: 0 30px;
-  margin-top: 0px;
-}
-
-.footer-social {
-  font-size: 1.5em;
-  padding-bottom: 10px;
-}
-
-.wrapper { 
-    padding-top:80px;
 }
