@@ -18,6 +18,7 @@ import com.highsoft.highcharts.Common.HIColor;
 import com.highsoft.highcharts.Common.HIGradient;
 import com.highsoft.highcharts.Common.HIStop;
 import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIContext;
 import com.highsoft.highcharts.Core.HIFunction;
 
 import java.util.ArrayList;
@@ -38,11 +39,11 @@ public class MainActivity extends AppCompatActivity {
         options.title = new HITitle();
         options.title.text = "Functions tests";
 
-        HISpline spline1 = new HISpline();
-        spline1.data = new ArrayList<>(Arrays.asList(0,5,8,9,3,5,4,4,2,10));
-        spline1.name = "Red series";
-        spline1.point = new HIPoint();
-        spline1.point.events = new HIEvents();
+//        HISpline spline1 = new HISpline();
+//        spline1.data = new ArrayList<>(Arrays.asList(0,5,8,9,3,5,4,4,2,10));
+//        spline1.name = "Red series";
+//        spline1.point = new HIPoint();
+//        spline1.point.events = new HIEvents();
 //        spline1.point.events.click = new HIFunction(
 //                f -> {
 //                    Toast t = Toast.makeText(this, "Toast from " + spline1.name, Toast.LENGTH_SHORT);
@@ -57,16 +58,26 @@ public class MainActivity extends AppCompatActivity {
         spline2.point.events = new HIEvents();
         spline2.point.events.click = new HIFunction(
                 f -> {
-                    int x = f.getParameter("x");
-                    int y = f.getParameter("y");
-                    new AlertDialog.Builder(this)
-                            .setTitle("Alert from" + spline2.name)
-                            .setMessage("Clicked series: [ " + x + " , " + y + " ]")
-                            .create().show();
+                    f.getParameter("x");
+                    f.getParameter("y");
+//                    new AlertDialog.Builder(this)
+//                            .setTitle("Alert from" + spline2.name)
+//                            .setMessage("Clicked series: [ " +
+//                                    f.getParameter("x") + " , " +
+//                                    f.getParameter("y") + " ]")
+//                            .create().show()
                 }
         );
-
-        options.series = new ArrayList<>(Arrays.asList(spline1, spline2));
+//        spline2.point.events.click = new HIFunction(
+//                () -> {
+//                    System.out.println("Hello, runnable, go go go!");
+//                    Toast t = Toast.makeText(this, "Toast from series: " + spline2.name, Toast.LENGTH_SHORT);
+//                    t.show();
+//                    System.out.println("Runnable made toast and feels gooood");
+//                }
+//        );
+//        options.series = new ArrayList<>(Arrays.asList(spline1, spline2));
+        options.series = new ArrayList<>(Collections.singletonList(spline2));
         options.colors = new ArrayList<>();
         options.colors.add(HIColor.initWithRGB(255, 0, 0));
         LinkedList<HIStop> stops = new LinkedList<>();

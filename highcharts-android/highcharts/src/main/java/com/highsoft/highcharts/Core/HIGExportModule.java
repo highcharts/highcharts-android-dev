@@ -120,14 +120,4 @@ final class HIGExportModule implements DownloadListener {
                 })
                 .create().show();*/
     }
-
-    @JavascriptInterface
-    public void createDialog(Object object){
-        System.out.println("Otrzymany obiekt: " + object.toString());
-        System.out.println("obiekt w stringu: " + object);
-        new AlertDialog.Builder(this.activity)
-                .setTitle("Clicked value:")
-                .setMessage((String)object)
-                .create().show();
-    }
 }

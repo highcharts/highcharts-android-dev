@@ -35,11 +35,6 @@
             var chart = new Highcharts.Chart({{options}});
 
 
-            var nr = 69;
-            function getValue(){
-                Android.getValue(nr);
-            }
-
             var eventContexts = {};
             var getProperty = function(contextName, property) {
               if (typeof property !== 'string'

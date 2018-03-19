@@ -102,6 +102,7 @@ public class HIChartView extends RelativeLayout {
         this.HTML = new HIGHTML(this.webView, this.activity);
         this.HTML.baseURL = "";
         HIGWebViewClient webViewClient = new HIGWebViewClient();
+        HIGWebChromeClient chromeClient = new HIGWebChromeClient();
 
         try {
             this.HTML.loadHTML(context, "highcharts.html");
@@ -112,6 +113,7 @@ public class HIChartView extends RelativeLayout {
         this.webView.getSettings().setJavaScriptEnabled(true);
         this.webView.getSettings().setDomStorageEnabled(true);
         this.webView.setWebViewClient(webViewClient);
+//        this.webView.setWebChromeClient(chromeClient);
         //improve chart loading performance, CSS animations are loading faster!
         this.webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 

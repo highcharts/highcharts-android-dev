@@ -28,6 +28,16 @@ final public class HIFunction {
         }
     }
 
+    public HIFunction(Runnable rfunction){
+        this.rfunction = rfunction;
+        String id = String.format("Android%s", counter++);
+        String template = "%sfunction(){ " +
+                "%s.androidHandler(); }%s";
+        String prefixnsuffix = "__xx__";
+        this.strFunction = String.format(template, prefixnsuffix, id, prefixnsuffix);
+        counter++;
+    }
+
     /**
      * Simple constructor to use when creating an event
      *
@@ -53,6 +63,10 @@ final public class HIFunction {
 
     HIConsumer<HIContext> getHiConsumer() {
         return hiConsumer;
+    }
+
+    Runnable getRfunction(){
+        return rfunction;
     }
 
     HIFunctionInterface<HIContext, String> getHiFunctionInterface() {

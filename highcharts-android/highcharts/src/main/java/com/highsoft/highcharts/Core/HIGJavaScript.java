@@ -61,8 +61,13 @@ final class HIGJavaScript{
         @SuppressLint("AddJavascriptInterface")
         void setJSInterface(HIFunction function){
             HIConsumer<HIContext> hiC = function.getHiConsumer();
+            Runnable runnable = function.getRfunction();
             String id = "Android" + counter++;
-            HIFunctionHandler hiFunctionHandler = new HIFunctionHandler(hiC, webView, activity, id);
+            HIFunctionHandler hiFunctionHandler;
+
+            if(hiC != null) hiFunctionHandler = new HIFunctionHandler(hiC, webView, activity, id);
+            else hiFunctionHandler = new HIFunctionHandler(runnable);
+
             webView.addJavascriptInterface(hiFunctionHandler, id);
 //
 //            HIFunctionInterface<HIContext, String> hiFi = function.getHiFunctionInterface();
