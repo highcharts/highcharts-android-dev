@@ -8,6 +8,7 @@ package com.highsoft.highcharts.Core;
 
 final public class HIFunction {
 
+    private String[] args;
     private Runnable rfunction;
     private HIConsumer<HIContext> hiConsumer;
     private HIFunctionInterface<HIContext, String> hiFunctionInterface;
@@ -53,6 +54,18 @@ final public class HIFunction {
         counter++;
     }
 
+    public HIFunction(HIConsumer<HIContext> function, String[] args){
+        for(int i = 0; i<args.length; i++) System.out.println("arg " + i + ": " + args[i]);
+        this.hiConsumer = function;
+        this.args = args;
+        String id = String.format("Android%s", counter++);
+        String template = "%sfunction(){ eventContexts['%s'] = this; " +
+                "%s.androidHandler(); }%s";
+        String prefixnsuffix = "__xx__";
+        this.strFunction = String.format(template, prefixnsuffix, id, id, prefixnsuffix);
+        counter++;
+    }
+
 //    public HIFunction(HIFunctionInterface<HIContext, String> function){
 //        this.hiFunctionInterface = function;
 //        String template = "%sfunction(){" +
@@ -75,5 +88,9 @@ final public class HIFunction {
 
     String getFunction() {
         return strFunction;
+    }
+
+    String[] getArgs() {
+        return args;
     }
 }

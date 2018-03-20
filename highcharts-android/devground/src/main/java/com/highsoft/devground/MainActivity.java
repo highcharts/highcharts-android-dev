@@ -57,16 +57,15 @@ public class MainActivity extends AppCompatActivity {
         spline2.point = new HIPoint();
         spline2.point.events = new HIEvents();
         spline2.point.events.click = new HIFunction(
-                f -> {
-                    f.getParameter("x");
-                    f.getParameter("y");
-//                    new AlertDialog.Builder(this)
-//                            .setTitle("Alert from" + spline2.name)
-//                            .setMessage("Clicked series: [ " +
-//                                    f.getParameter("x") + " , " +
-//                                    f.getParameter("y") + " ]")
-//                            .create().show()
-                }
+                f ->
+                    new AlertDialog.Builder(this)
+                            .setTitle("Alert from" + spline2.name)
+                            .setMessage("Clicked point: [ " +
+                                    f.getVal("x")
+                                    + " , " +
+                                    f.getVal("y") + " ]")
+                            .create().show(),
+                new String[] {"x", "y"}
         );
 //        spline2.point.events.click = new HIFunction(
 //                () -> {

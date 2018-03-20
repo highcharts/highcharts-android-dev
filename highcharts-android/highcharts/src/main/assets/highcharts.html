@@ -36,10 +36,21 @@
 
 
             var eventContexts = {};
+
+            var getPropertiesDictionary = function(contextName, properties) {
+              var dict = {};
+              for (var key in properties) {
+                if (properties.hasOwnProperty(key)) {
+                  dict[properties[key]] = getProperty(contextName, properties[key]);
+                }
+              }
+              return dict;
+            };
+
             var getProperty = function(contextName, property) {
               if (typeof property !== 'string'
                   || typeof eventContexts[contextName] === 'undefined' ) {
-                Android.getValue(null);
+                return null;
               }
 
               var descendantProperties = property.split('.');
@@ -47,15 +58,15 @@
               while (descendantProperties.length) {
                 var propertyName = descendantProperties.shift();
                 if (typeof obj[propertyName] === 'undefined' || obj[propertyName] === null) {
-                  Android.getValue(null);
+                  return null;
                 }
 
                 obj = obj[propertyName];
               }
 
               return (obj !== null && typeof obj === 'object')
-                ? Android.getValue(JSON.stringify(obj))
-                : Android.getValue(obj);
+                ? JSON.stringify(obj)
+                : obj;
 
             }
         </script>
