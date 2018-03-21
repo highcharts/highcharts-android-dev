@@ -200,6 +200,7 @@ and overlap each other.
 
 	public HIWindbarb() {
 		super(); 
+		this.type = "windbarb";
 	}
 
 	public Map<String, Object> getParams() {

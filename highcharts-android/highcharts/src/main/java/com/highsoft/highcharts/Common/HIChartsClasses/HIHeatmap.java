@@ -59,6 +59,7 @@ applied instead.
 
 	public HIHeatmap() {
 		super(); 
+		this.type = "heatmap";
 	}
 
 	public Map<String, Object> getParams() {

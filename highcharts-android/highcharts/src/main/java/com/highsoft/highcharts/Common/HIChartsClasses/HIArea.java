@@ -87,6 +87,7 @@ class name.
 
 	public HIArea() {
 		super(); 
+		this.type = "area";
 	}
 
 	public Map<String, Object> getParams() {

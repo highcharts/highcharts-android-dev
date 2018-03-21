@@ -203,6 +203,7 @@ rule.
 
 	public HIHistogram() {
 		super(); 
+		this.type = "histogram";
 	}
 
 	public Map<String, Object> getParams() {

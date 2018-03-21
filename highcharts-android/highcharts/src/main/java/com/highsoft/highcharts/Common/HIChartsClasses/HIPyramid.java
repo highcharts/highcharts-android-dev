@@ -173,6 +173,7 @@ The default value changed from false to true with Highcharts
 
 	public HIPyramid() {
 		super(); 
+		this.type = "pyramid";
 	}
 
 	public Map<String, Object> getParams() {

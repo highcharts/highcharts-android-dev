@@ -88,6 +88,7 @@ class name.
 
 	public HIAreaspline() {
 		super(); 
+		this.type = "areaspline";
 	}
 
 	public Map<String, Object> getParams() {

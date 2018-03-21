@@ -88,6 +88,7 @@ class name.
 
 	public HIArearange() {
 		super(); 
+		this.type = "arearange";
 	}
 
 	public Map<String, Object> getParams() {

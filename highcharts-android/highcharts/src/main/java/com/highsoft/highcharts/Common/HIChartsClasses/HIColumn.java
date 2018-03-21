@@ -179,6 +179,7 @@ and overlap each other.
 
 	public HIColumn() {
 		super(); 
+		this.type = "column";
 	}
 
 	public Map<String, Object> getParams() {

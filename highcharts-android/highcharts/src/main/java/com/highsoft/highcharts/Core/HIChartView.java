@@ -99,11 +99,9 @@ public class HIChartView extends RelativeLayout {
     private void initialize(final Context context) {
         this.debug = false;
         this.webView = new WebView(context);
-        this.HTML = new HIGHTML(this.webView, this.activity);
+        this.HTML = new HIGHTML(this.webView);
         this.HTML.baseURL = "";
         HIGWebViewClient webViewClient = new HIGWebViewClient();
-        HIGWebChromeClient chromeClient = new HIGWebChromeClient();
-
         try {
             this.HTML.loadHTML(context, "highcharts.html");
         } catch (IOException e) {
@@ -113,7 +111,6 @@ public class HIChartView extends RelativeLayout {
         this.webView.getSettings().setJavaScriptEnabled(true);
         this.webView.getSettings().setDomStorageEnabled(true);
         this.webView.setWebViewClient(webViewClient);
-//        this.webView.setWebChromeClient(chromeClient);
         //improve chart loading performance, CSS animations are loading faster!
         this.webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
@@ -122,8 +119,8 @@ public class HIChartView extends RelativeLayout {
         this.webView.setDownloadListener(higExportModule);
         //JS Handler for export
         this.webView.addJavascriptInterface(higExportModule, "AndroidExport");
-        //JS Handler for HIContext
-        HIFunctionHandler hiFunctionHandler = new HIFunctionHandler(this.webView, this.activity);
+        //JS Handler for HIChartContext
+        HIFunctionHandler hiFunctionHandler = new HIFunctionHandler(this.webView);
         this.webView.addJavascriptInterface(hiFunctionHandler, "Android");
 
         //this handler is made for displaying logs from JS code in Android console
@@ -203,7 +200,7 @@ public class HIChartView extends RelativeLayout {
 
         List plugins = HIGDependency.pluginsForOptions(this.options.getParams());
         this.plugins.addAll(plugins);
-        this.plugins.addAll(new ArrayList<>(Arrays.asList("exporting", "offline-exporting", "offline-exporting-wrap")));
+        this.plugins.addAll(new ArrayList<>(Arrays.asList("exporting", "offline-exporting")));
         this.plugins = new ArrayList(new HashSet(this.plugins));
 
         for (Object plugin : this.plugins) {

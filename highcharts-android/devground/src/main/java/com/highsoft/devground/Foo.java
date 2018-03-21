@@ -1,20 +1,20 @@
 package com.highsoft.devground;
 
+
+import java.util.ArrayList;
+
 /**
  * Created by bartosz on 09.03.18.
  */
 
-public class Foo {
+public class Foo extends ArrayList<Object> {
+    private String str;
+    private Number nr;
 
-    private String txt;
-
-    public Foo(String txt) {
-        this.txt = txt;
-    }
-
-    public void bar(){
-        System.out.println("Your txt: " + txt);
-        int x = 2;
-        System.out.println("Muliplication x2: " + x * 2 );
+    public Foo(String str, Number nr){
+        this.str = str;
+        this.nr = nr;
+        add(str);
+        add(nr);
     }
 }

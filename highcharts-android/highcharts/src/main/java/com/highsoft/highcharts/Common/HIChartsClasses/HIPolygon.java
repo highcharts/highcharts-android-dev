@@ -32,6 +32,7 @@ public class HIPolygon extends HISeries {
 
 	public HIPolygon() {
 		super(); 
+		this.type = "polygon";
 	}
 
 	public Map<String, Object> getParams() {

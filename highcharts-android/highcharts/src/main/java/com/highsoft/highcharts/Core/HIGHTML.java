@@ -1,13 +1,16 @@
 package com.highsoft.highcharts.Core;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.webkit.WebView;
 
-import java.io.*;
-import java.util.HashMap;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -40,8 +43,8 @@ final class HIGHTML implements Serializable{
 //        this.js = new HIGJavaScript();
 //    }
 
-    HIGHTML(WebView webView, Activity activity) {
-        this.js = new HIGJavaScript(webView, activity);
+    HIGHTML(WebView webView) {
+        this.js = new HIGJavaScript(webView);
     }
 
     /**
@@ -125,7 +128,7 @@ final class HIGHTML implements Serializable{
         this.html = this.html
                 .replace("{{script}}", this.scripts)
                 .replace("{{options}}", this.options);
-//        System.out.println("GENERATED CHART OPTIONS\n" + this.options);
+        System.out.println("GENERATED CHART OPTIONS\n" + this.options);
     }
 
     private String getContentsOfFile(Context context, String path) throws IOException {

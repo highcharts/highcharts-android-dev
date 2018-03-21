@@ -31,6 +31,7 @@ public class HIScatter3d extends HISeries {
 
 	public HIScatter3d() {
 		super(); 
+		this.type = "scatter3d";
 	}
 
 	public Map<String, Object> getParams() {

@@ -175,6 +175,7 @@ The default value changed from false to true with Highcharts
 
 	public HIFunnel() {
 		super(); 
+		this.type = "funnel";
 	}
 
 	public Map<String, Object> getParams() {

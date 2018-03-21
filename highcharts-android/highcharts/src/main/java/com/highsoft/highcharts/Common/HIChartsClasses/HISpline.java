@@ -31,6 +31,7 @@ public class HISpline extends HISeries {
 
 	public HISpline() {
 		super(); 
+		this.type = "spline";
 	}
 
 	public Map<String, Object> getParams() {

@@ -4,69 +4,58 @@ package com.highsoft.highcharts.Core;
  * Created by Bartosz on 13.09.2017.
  */
 
-/**This class represents special type for Javascript functions in Highcharts Android Wrapper*/
-
+/**
+ * This class represents the type for Javascript functions and Android callbacks in Highcharts Android Wrapper
+ **/
 final public class HIFunction {
 
-    private String[] args;
+    private String[] properties;
     private Runnable rfunction;
-    private HIConsumer<HIContext> hiConsumer;
-    private HIFunctionInterface<HIContext, String> hiFunctionInterface;
+    private HIConsumer<HIChartContext> hiConsumer;
+    private HIFunctionInterface<HIChartContext, String> hiFunctionInterface;
     private String strFunction = "";
     private static int counter = 1;
 
     /**
      * Use this constructor if you want to put pure Javascript code as a String
      *
-     * @param functionInString example: function() { return "String representation"; }
-     * @param useNow           use this flag to enable injection to Javascript
+     * @param jsFunction example: function() { return "String representation"; }
      */
-    public HIFunction(String functionInString, Boolean useNow) {
-        if (useNow) {
-            String template = "%s%s%s";
-            String prefixnsuffix = "__xx__";
-            this.strFunction = String.format(template, prefixnsuffix, functionInString, prefixnsuffix);
-        }
+    public HIFunction(String jsFunction) {
+        String template = "%s%s%s";
+        String prefixnsuffix = "__xx__";
+        this.strFunction = String.format(template, prefixnsuffix, jsFunction, prefixnsuffix);
     }
 
-    public HIFunction(Runnable rfunction){
-        this.rfunction = rfunction;
+    /**
+     * Simple constructor to use when creating an event
+     *
+     * @param runnable a callback to be invoked when an attached option is clicked
+     */
+    public HIFunction(Runnable runnable){
+        this.rfunction = runnable;
         String id = String.format("Android%s", counter++);
-        String template = "%sfunction(){ " +
-                "%s.androidHandler(); }%s";
+        String template = "%sfunction(){ %s.androidHandler(); }%s";
         String prefixnsuffix = "__xx__";
         this.strFunction = String.format(template, prefixnsuffix, id, prefixnsuffix);
         counter++;
     }
 
     /**
-     * Simple constructor to use when creating an event
+     * Simple constructor to use when creating an event with chart properties
      *
-     * @param function a callback to be invoked when an attached option is clicked
+     * @param hiConsumer a callback to be invoked when an attached option is clicked
      */
-    public HIFunction(HIConsumer<HIContext> function){
-        this.hiConsumer = function;
+    public HIFunction(HIConsumer<HIChartContext> hiConsumer, String[] properties){
+        this.hiConsumer = hiConsumer;
+        this.properties = properties;
         String id = String.format("Android%s", counter++);
-        String template = "%sfunction(){ eventContexts['%s'] = this; " +
-                "%s.androidHandler(); }%s";
+        String template = "%sfunction(){ eventContexts['%s'] = this; %s.androidHandler(); }%s";
         String prefixnsuffix = "__xx__";
         this.strFunction = String.format(template, prefixnsuffix, id, id, prefixnsuffix);
-        counter++;
     }
 
-    public HIFunction(HIConsumer<HIContext> function, String[] args){
-        for(int i = 0; i<args.length; i++) System.out.println("arg " + i + ": " + args[i]);
-        this.hiConsumer = function;
-        this.args = args;
-        String id = String.format("Android%s", counter++);
-        String template = "%sfunction(){ eventContexts['%s'] = this; " +
-                "%s.androidHandler(); }%s";
-        String prefixnsuffix = "__xx__";
-        this.strFunction = String.format(template, prefixnsuffix, id, id, prefixnsuffix);
-        counter++;
-    }
-
-//    public HIFunction(HIFunctionInterface<HIContext, String> function){
+//    public HIFunction(HIFunctionInterface<HIChartContext, String> function){
 //        this.hiFunctionInterface = function;
 //        String template = "%sfunction(){" +
 //                "Android%s.androidHandler();}%s";
@@ -74,7 +63,7 @@ final public class HIFunction {
 //        this.strFunction = String.format(template, prefixnsuffix, counter++, prefixnsuffix);
 //    }
 
-    HIConsumer<HIContext> getHiConsumer() {
+    HIConsumer<HIChartContext> getHiConsumer() {
         return hiConsumer;
     }
 
@@ -82,7 +71,7 @@ final public class HIFunction {
         return rfunction;
     }
 
-    HIFunctionInterface<HIContext, String> getHiFunctionInterface() {
+    HIFunctionInterface<HIChartContext, String> getHiFunctionInterface() {
         return hiFunctionInterface;
     }
 
@@ -90,7 +79,7 @@ final public class HIFunction {
         return strFunction;
     }
 
-    String[] getArgs() {
-        return args;
+    String[] getProperties() {
+        return properties;
     }
 }

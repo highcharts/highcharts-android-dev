@@ -247,6 +247,7 @@ Depth of the columns in a 3D column chart. Requires highcharts-3d.js.
 
 	public HIErrorbar() {
 		super(); 
+		this.type = "errorbar";
 	}
 
 	public Map<String, Object> getParams() {

@@ -198,6 +198,7 @@ and overlap each other.
 
 	public HIWaterfall() {
 		super(); 
+		this.type = "waterfall";
 	}
 
 	public Map<String, Object> getParams() {

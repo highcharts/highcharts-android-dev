@@ -145,6 +145,7 @@ and overlap each other.
 
 	public HIVariwide() {
 		super(); 
+		this.type = "variwide";
 	}
 
 	public Map<String, Object> getParams() {

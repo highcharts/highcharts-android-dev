@@ -54,6 +54,7 @@ Wether to draw rounded edges on the gauge.
 
 	public HISolidgauge() {
 		super(); 
+		this.type = "solidgauge";
 	}
 
 	public Map<String, Object> getParams() {

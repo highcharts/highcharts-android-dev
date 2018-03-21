@@ -251,6 +251,7 @@ and overlap each other.
 
 	public HIBoxplot() {
 		super(); 
+		this.type = "boxplot";
 	}
 
 	public Map<String, Object> getParams() {

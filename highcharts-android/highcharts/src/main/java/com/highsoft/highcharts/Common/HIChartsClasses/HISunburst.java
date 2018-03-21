@@ -139,6 +139,7 @@ around. In that case it is best to set a fixed value, for example
 
 	public HISunburst() {
 		super(); 
+		this.type = "sunburst";
 	}
 
 	public Map<String, Object> getParams() {

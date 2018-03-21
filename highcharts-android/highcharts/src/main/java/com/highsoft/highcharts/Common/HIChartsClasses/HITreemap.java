@@ -143,6 +143,7 @@ direction will always be the opposite of the previous.
 
 	public HITreemap() {
 		super(); 
+		this.type = "treemap";
 	}
 
 	public Map<String, Object> getParams() {

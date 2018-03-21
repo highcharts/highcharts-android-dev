@@ -106,6 +106,7 @@ negativeColor.
 
 	public HIBubble() {
 		super(); 
+		this.type = "bubble";
 	}
 
 	public Map<String, Object> getParams() {

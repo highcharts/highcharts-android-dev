@@ -200,6 +200,7 @@ The default value changed from false to true with Highcharts
 
 	public HIVariablepie() {
 		super(); 
+		this.type = "variablepie";
 	}
 
 	public Map<String, Object> getParams() {

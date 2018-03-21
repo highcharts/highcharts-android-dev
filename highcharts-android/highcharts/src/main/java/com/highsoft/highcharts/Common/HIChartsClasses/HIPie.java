@@ -158,6 +158,7 @@ The default value changed from false to true with Highcharts
 
 	public HIPie() {
 		super(); 
+		this.type = "pie";
 	}
 
 	public Map<String, Object> getParams() {

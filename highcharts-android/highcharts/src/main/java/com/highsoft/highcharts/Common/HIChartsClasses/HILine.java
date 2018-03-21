@@ -31,6 +31,7 @@ public class HILine extends HISeries {
 
 	public HILine() {
 		super(); 
+		this.type = "line";
 	}
 
 	public Map<String, Object> getParams() {

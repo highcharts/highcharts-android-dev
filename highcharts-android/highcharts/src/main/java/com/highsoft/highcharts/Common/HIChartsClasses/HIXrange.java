@@ -128,6 +128,7 @@ rule.
 
 	public HIXrange() {
 		super(); 
+		this.type = "xrange";
 	}
 
 	public Map<String, Object> getParams() {

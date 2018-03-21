@@ -114,6 +114,7 @@ rule.
 
 	public HIWordcloud() {
 		super(); 
+		this.type = "wordcloud";
 	}
 
 	public Map<String, Object> getParams() {

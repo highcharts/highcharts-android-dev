@@ -12,8 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
 import com.highsoft.highcharts.Core.HIFunction;
-import com.highsoft.highcharts.Common.HIColor;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.Common.HIColor;
 
 
 
@@ -91,6 +91,7 @@ be applied here and linked by the id.
 
 	public HISankey() {
 		super(); 
+		this.type = "sankey";
 	}
 
 	public Map<String, Object> getParams() {

@@ -82,6 +82,7 @@ The background color or gradient for the pane.
 			params.put("outerRadius", this.outerRadius);
 		}
 		if (this.from != null) {
+			params.put("from", this.from);
 		}
 		if (this.innerRadius != null) {
 			params.put("innerRadius", this.innerRadius);
@@ -100,4 +101,5 @@ The background color or gradient for the pane.
 		}
 		return params;
 	}
+
 }

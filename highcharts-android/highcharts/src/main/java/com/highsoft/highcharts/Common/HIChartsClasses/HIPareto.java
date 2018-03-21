@@ -38,6 +38,7 @@ representing the id of the series.
 
 	public HIPareto() {
 		super(); 
+		this.type = "pareto";
 	}
 
 	public Map<String, Object> getParams() {

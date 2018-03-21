@@ -185,6 +185,7 @@ and overlap each other.
 
 	public HIBullet() {
 		super(); 
+		this.type = "bullet";
 	}
 
 	public Map<String, Object> getParams() {

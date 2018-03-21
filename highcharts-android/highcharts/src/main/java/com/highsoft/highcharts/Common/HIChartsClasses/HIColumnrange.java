@@ -180,6 +180,7 @@ and overlap each other.
 
 	public HIColumnrange() {
 		super(); 
+		this.type = "columnrange";
 	}
 
 	public Map<String, Object> getParams() {

@@ -67,6 +67,7 @@ In styled mode, the pivot is styled with the
 
 	public HIGauge() {
 		super(); 
+		this.type = "gauge";
 	}
 
 	public Map<String, Object> getParams() {

@@ -47,6 +47,7 @@ the given [x, y] position, and when end the vectors will end in the
 
 	public HIVector() {
 		super(); 
+		this.type = "vector";
 	}
 
 	public Map<String, Object> getParams() {

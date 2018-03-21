@@ -179,6 +179,7 @@ and overlap each other.
 
 	public HIBar() {
 		super(); 
+		this.type = "bar";
 	}
 
 	public Map<String, Object> getParams() {

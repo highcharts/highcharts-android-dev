@@ -108,6 +108,7 @@ representing the id of the series.
 
 	public HIBellcurve() {
 		super(); 
+		this.type = "bellcurve";
 	}
 
 	public Map<String, Object> getParams() {

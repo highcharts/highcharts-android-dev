@@ -87,6 +87,7 @@ class name.
 
 	public HIStreamgraph() {
 		super(); 
+		this.type = "streamgraph";
 	}
 
 	public Map<String, Object> getParams() {

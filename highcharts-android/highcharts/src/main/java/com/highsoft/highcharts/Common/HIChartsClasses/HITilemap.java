@@ -69,6 +69,7 @@ applied instead.
 
 	public HITilemap() {
 		super(); 
+		this.type = "tilemap";
 	}
 
 	public Map<String, Object> getParams() {
