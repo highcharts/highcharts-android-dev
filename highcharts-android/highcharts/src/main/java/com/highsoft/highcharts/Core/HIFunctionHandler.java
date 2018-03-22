@@ -42,11 +42,11 @@ final class HIFunctionHandler {
         this.id = id;
     }
 
-//    HIFunctionHandler(HIFunctionInterface<HIChartContext, String> hiFunctionInterface, WebView webView, Activity activity) {
-//        this.hiFunctionInterface = hiFunctionInterface;
-//        this.webView = webView;
-//        this.activity = activity;
-//    }
+    HIFunctionHandler(HIFunctionInterface<HIChartContext, String> hiFunctionInterface, WebView webView, String id) {
+        this.hiFunctionInterface = hiFunctionInterface;
+        this.webView = webView;
+        this.id = id;
+    }
 
     @SuppressLint("AddJavascriptInterface")
     @JavascriptInterface

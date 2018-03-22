@@ -54,13 +54,19 @@ final class HIGJavaScript{
     private class FunctionStringSerializer implements JsonSerializer<HIFunction> {
         @Override
         public JsonElement serialize(HIFunction src, Type typeOfSrc, JsonSerializationContext context) {
-            setJSInterface(src);
+            if(src.getHiConsumer() != null) setJSInterface(src);
+            else if(src.getHiFunctionInterface() !=null){
+                String strFunction = src.getFunction(); // add new feature
+//                strFunction = strFunction.replace("{{return}}", src.getHiFunctionInterface().apply(new HIChartContext(map)));
+                src.setStrFunction(strFunction);
+            }
             return new JsonPrimitive(src.getFunction());
         }
 
         @SuppressLint("AddJavascriptInterface")
         void setJSInterface(HIFunction function){
             HIConsumer<HIChartContext> hiC = function.getHiConsumer();
+            HIFunctionInterface<HIChartContext, String> hiFI = function.getHiFunctionInterface();
             String[] properties = function.getProperties();
             Runnable runnable = function.getRfunction();
             String id = "Android" + counter++;

@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  *  Highcharts Chart View Class. Initialize this as a normal view and set
@@ -184,6 +185,7 @@ public class HIChartView extends RelativeLayout {
      */
     void loadChartHtml() {
 
+        checkForOptions(this.options);
         float density = getResources().getDisplayMetrics().density;
         this.HTML.prepareViewWidth(Math.round(width/density), Math.round(height/density));
 
@@ -251,5 +253,10 @@ public class HIChartView extends RelativeLayout {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void reload() {
         this.loadChartOptions();
+    }
+
+    private void checkForOptions(HIOptions options){
+        if(options == null)
+            throw new NoSuchElementException("HIOptions not found in HIChartView");
     }
 }

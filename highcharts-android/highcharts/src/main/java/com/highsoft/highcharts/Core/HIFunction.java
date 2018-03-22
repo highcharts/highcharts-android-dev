@@ -55,13 +55,13 @@ final public class HIFunction {
         this.strFunction = String.format(template, prefixnsuffix, id, id, prefixnsuffix);
     }
 
-//    public HIFunction(HIFunctionInterface<HIChartContext, String> function){
-//        this.hiFunctionInterface = function;
-//        String template = "%sfunction(){" +
-//                "Android%s.androidHandler();}%s";
-//        String prefixnsuffix = "__xx__";
-//        this.strFunction = String.format(template, prefixnsuffix, counter++, prefixnsuffix);
-//    }
+    public HIFunction(HIFunctionInterface<HIChartContext, String> function, String[] properties){
+        this.hiFunctionInterface = function;
+        this.properties = properties;
+        String template = "%sfunction() { return {{returnValue}}; }%s";
+        String prefixnsuffix = "__xx__";
+        this.strFunction = String.format(template, prefixnsuffix, counter++, prefixnsuffix);
+    }
 
     HIConsumer<HIChartContext> getHiConsumer() {
         return hiConsumer;
@@ -77,6 +77,10 @@ final public class HIFunction {
 
     String getFunction() {
         return strFunction;
+    }
+
+    void setStrFunction(String strFunction) {
+        this.strFunction = strFunction;
     }
 
     String[] getProperties() {

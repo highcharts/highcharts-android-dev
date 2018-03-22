@@ -9,6 +9,6 @@ package com.highsoft.highcharts.Core;
  *
  */
 @FunctionalInterface
-public interface HIFunctionInterface<HIContext, String> {
-    String apply(HIContext hiContext);
+public interface HIFunctionInterface<HIChartContext, String> {
+    String apply(HIChartContext hiContext);
 }
