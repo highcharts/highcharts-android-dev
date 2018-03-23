@@ -9,6 +9,7 @@ package com.highsoft.highcharts.Core;
  **/
 final public class HIFunction {
 
+    private boolean isSimple = false;
     private String[] properties;
     private Runnable rfunction;
     private HIConsumer<HIChartContext> hiConsumer;
@@ -24,6 +25,7 @@ final public class HIFunction {
     public HIFunction(String jsFunction) {
         String template = "%s%s%s";
         String prefixnsuffix = "__xx__";
+        this.isSimple = true;
         this.strFunction = String.format(template, prefixnsuffix, jsFunction, prefixnsuffix);
     }
 
@@ -58,9 +60,19 @@ final public class HIFunction {
     public HIFunction(HIFunctionInterface<HIChartContext, String> function, String[] properties){
         this.hiFunctionInterface = function;
         this.properties = properties;
-        String template = "%sfunction() { return {{returnValue}}; }%s";
+        String id = String.format("Android%s", counter++);
+
+        String script = "getPropertiesDictionary('%s', %s, true)";
+        String argsStr = "[";
+        for (String arg : properties) {
+            argsStr = argsStr.concat("'" + arg + "',");
+        }
+        argsStr = argsStr.substring(0, argsStr.length() - 1).concat("]");
+        script = String.format(script, id, argsStr);
+
+        String template = "%sfunction() { eventContexts['%s'] = this; return %s.androidReturnHandler( %s ); }%s";
         String prefixnsuffix = "__xx__";
-        this.strFunction = String.format(template, prefixnsuffix, counter++, prefixnsuffix);
+        this.strFunction = String.format(template, prefixnsuffix, id, id, script, prefixnsuffix);
     }
 
     HIConsumer<HIChartContext> getHiConsumer() {
@@ -79,11 +91,11 @@ final public class HIFunction {
         return strFunction;
     }
 
-    void setStrFunction(String strFunction) {
-        this.strFunction = strFunction;
-    }
-
     String[] getProperties() {
         return properties;
+    }
+
+    boolean isSimple() {
+        return isSimple;
     }
 }

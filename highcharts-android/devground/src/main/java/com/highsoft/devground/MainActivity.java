@@ -29,6 +29,9 @@ import com.highsoft.highcharts.Core.HIFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
         options.exporting = new HIExporting();
         options.exporting.enabled = false;
         options.tooltip = new HITooltip();
-//        options.tooltip.enabled = false;
-        options.tooltip.formatter = new HIFunction("function() { return 'Test test';}");
+//        options.tooltip.formatter = new HIFunction("function() { return 'Test test';}");
         options.tooltip.formatter = new HIFunction(
                 f -> "Test tooltip x = " + f.getProperty("x") + ", y = " + f.getProperty("y"),
                 new String[] {"x", "y"}

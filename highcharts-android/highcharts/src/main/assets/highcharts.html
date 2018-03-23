@@ -37,14 +37,15 @@
 
             var eventContexts = {};
 
-            var getPropertiesDictionary = function(contextName, properties) {
+            var getPropertiesDictionary = function(contextName, properties, flag) {
               var dict = {};
               for (var key in properties) {
                 if (properties.hasOwnProperty(key)) {
                   dict[properties[key]] = getProperty(contextName, properties[key]);
                 }
               }
-              return dict;
+              if (flag) return JSON.stringify(dict);
+              else return dict;
             };
 
             var getProperty = function(contextName, property) {
