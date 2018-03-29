@@ -28,7 +28,6 @@ final class HIFunctionHandler {
     private Runnable runnable;
     private WebView webView;
     private String id;
-    private String returnStr;
 
     HIFunctionHandler(WebView webView) {
         this.webView = webView;
@@ -85,34 +84,8 @@ final class HIFunctionHandler {
     @SuppressLint("AddJavascriptInterface")
     @JavascriptInterface
     public String androidReturnHandler(String s){
-        System.out.println("Handled: " + s);
         Type mapType = new TypeToken<Map<String, Object>>(){}.getType();
         Map<String, Object> map = new Gson().fromJson(s, mapType);
         return hiFunctionInterface.apply(new HIChartContext(map));
-
-//        String script = "javascript:getPropertiesDictionary('%s', %s)";
-//        String argsStr = "[";
-//        for (String arg : properties) {
-//            argsStr = argsStr.concat("'" + arg + "',");
-//        }
-//        argsStr = argsStr.substring(0, argsStr.length() - 1).concat("]");
-//        script = String.format(script, this.id, argsStr);
-//        String finalScript = script;
-//        System.out.println("HIFunctionalInterface test1");
-//        webView.post(new Runnable() {
-//            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-//            @Override
-//            public void run() {
-//                webView.evaluateJavascript(finalScript, new ValueCallback<String>() {
-//                    @Override
-//                    public void onReceiveValue(String s) {
-//                        System.out.println("HIFunctionalInterface test2");
-//                        Type mapType = new TypeToken<Map<String, Object>>(){}.getType();
-//                        Map<String, Object> map = new Gson().fromJson(s, mapType);
-//                        returnStr = hiFunctionInterface.apply(new HIChartContext(map));
-//                    }
-//                });
-//            }
-//        });
     }
 }

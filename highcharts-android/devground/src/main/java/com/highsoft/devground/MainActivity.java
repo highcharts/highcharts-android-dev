@@ -1,26 +1,17 @@
 package com.highsoft.devground;
 
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.highsoft.highcharts.Common.HIChartsClasses.HIChart;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIColumn;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIDataLabels;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIEvents;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIExporting;
-import com.highsoft.highcharts.Common.HIChartsClasses.HILabels;
-import com.highsoft.highcharts.Common.HIChartsClasses.HILegend;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIOptions;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIPoint;
 import com.highsoft.highcharts.Common.HIChartsClasses.HISpline;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIStyle;
 import com.highsoft.highcharts.Common.HIChartsClasses.HITitle;
 import com.highsoft.highcharts.Common.HIChartsClasses.HITooltip;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIXAxis;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIYAxis;
 import com.highsoft.highcharts.Common.HIColor;
 import com.highsoft.highcharts.Common.HIGradient;
 import com.highsoft.highcharts.Common.HIStop;
@@ -29,9 +20,6 @@ import com.highsoft.highcharts.Core.HIFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,13 +35,11 @@ public class MainActivity extends AppCompatActivity {
         options.exporting = new HIExporting();
         options.exporting.enabled = false;
         options.tooltip = new HITooltip();
-//        options.tooltip.formatter = new HIFunction("function() { return 'Test test';}");
+//        options.tooltip.shared = true;
         options.tooltip.formatter = new HIFunction(
                 f -> "Test tooltip x = " + f.getProperty("x") + ", y = " + f.getProperty("y"),
                 new String[] {"x", "y"}
         );
-        options.chart = new HIChart();
-        options.chart.type = "spline";
         options.title = new HITitle();
         options.title.text = "Functions tests";
 
@@ -99,6 +85,5 @@ public class MainActivity extends AppCompatActivity {
         stops.add(new HIStop(1, HIColor.initWithRGB(80, 140, 200)));
         options.colors.add(HIColor.initWithLinearGradient(new HIGradient(), stops));
         chartView.options = options;
-
     }
 }

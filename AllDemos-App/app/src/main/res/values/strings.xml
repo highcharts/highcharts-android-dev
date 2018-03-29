@@ -1,0 +1,142 @@
+<resources>
+    <string name="app_name">Highcharts demos</string>
+    <string-array name="charts_categories">
+        <item>Line charts</item>
+        <item>Area charts</item>
+        <item>Column and bar charts</item>
+        <item>Pie charts</item>
+        <item>Scatter and bubble charts</item>
+        <item>Combinations</item>
+        <item>Styled mode (CSS styling)</item>
+        <item>Dynamic charts</item>
+        <item>3D charts</item>
+        <item>Gauges</item>
+        <item>Heat and tree maps</item>
+        <item>More chart types</item>
+    </string-array>
+    <string-array name="line_charts">
+        <item>Basic line</item>
+        <item>Ajax loaded data, clickable points</item>
+        <item>With data labels</item>
+        <item>With annotations</item>
+        <item>Time series, zoomable</item>
+        <item>Spline with inverted axes</item>
+        <item>Spline with symbols</item>
+        <item>Spline with plot bands</item>
+        <item>Time data with irregular intervals</item>
+        <item>Logarithmic axis</item>
+        <item>Line chart with 500 points</item>
+    </string-array>
+    <string-array name="area_charts">
+        <item>Basic area</item>
+        <item>Area with negative values</item>
+        <item>Stacked area</item>
+        <item>Percentage area</item>
+        <item>Area with missing points</item>
+        <item>Inverted axes</item>
+        <item>Area-spline</item>
+        <item>Area range</item>
+        <item>Area range and line</item>
+        <item>Sparkline charts</item>
+        <item>Streamgraph</item>
+    </string-array>
+    <string-array name="column_and_bar_charts">
+        <item>Basic bar</item>
+        <item>Stacked bar</item>
+        <item>Bar with negative stack</item>
+        <item>Basic column</item>
+        <item>Column with negative values</item>
+        <item>Stacked column</item>
+        <item>Stacked and grouped column</item>
+        <item>Stacked percentage column</item>
+        <item>Column with rotated labels</item>
+        <item>Column with drilldown</item>
+        <item>Fixed placement columns</item>
+        <item>Data defined in HTML table</item>
+        <item>Column range</item>
+    </string-array>
+    <string-array name="pie_charts">
+        <item>Pie chart</item>
+        <item>Pie with legend</item>
+        <item>Donut chart</item>
+        <item>Semi circle donut</item>
+        <item>Pie with drilldown</item>
+        <item>Pie with gradient fill</item>
+        <item>Pie with monochrome fill</item>
+    </string-array>
+    <string-array name="scatter_and_bubble_charts">
+        <item>Scatter plot</item>
+        <item>Scatter plot with 1 million points</item>
+        <item>Bubble chart</item>
+        <item>3D bubbles</item>
+    </string-array>
+    <string-array name="combinations">
+        <item>Synchronized charts</item>
+        <item>Column, line and pie</item>
+        <item>Dual axes, line and column</item>
+        <item>Multiple axes</item>
+        <item>Scatter with regression line</item>
+        <item>Meteogram</item>
+        <item>Advanced timeline</item>
+    </string-array>
+    <string-array name="styled_mode_css_styling">
+        <item>Styled mode column</item>
+        <item>Styled mode pie</item>
+    </string-array>
+    <string-array name="dynamic_charts">
+        <item>Spline updating each second</item>
+        <item>Click to add a point</item>
+        <item>Master-detail chart</item>
+        <item>Update options after render</item>
+        <item>Responsive chart</item>
+    </string-array>
+    <string-array name="charts_3d">
+        <item>3D column</item>
+        <item>3D column with null and 0 values</item>
+        <item>3D column with stacking and grouping</item>
+        <item>3D pie</item>
+        <item>3D donut</item>
+        <item>3D scatter chart</item>
+    </string-array>
+    <string-array name="gauges">
+        <item>Gauge series</item>
+        <item>Solid gauge</item>
+        <item>Activity gauge</item>
+        <item>Clock</item>
+        <item>Gauge with dual axes</item>
+        <item>VU meter</item>
+        <item>Bullet graph</item>
+    </string-array>
+    <string-array name="heat_and_tree_maps">
+        <item>Heat map</item>
+        <item>Large heat map</item>
+        <item>Tile map, honeycomb</item>
+        <item>Tree map with color axis</item>
+        <item>Tree map with levels</item>
+        <item>Large tree map</item>
+    </string-array>
+    <string-array name="more_chart_types">
+        <item>Polar chart</item>
+        <item>Spiderweb</item>
+        <item>Sunburst</item>
+        <item>Wind rose</item>
+        <item>Parallel coordinates</item>
+        <item>Wind barb</item>
+        <item>Vector plot</item>
+        <item>Box plot</item>
+        <item>Error bar</item>
+        <item>Waterfall</item>
+        <item>Variwide</item>
+        <item>Variable radius pie</item>
+        <item>Histogram</item>
+        <item>Bell curve</item>
+        <item>Funnel chart</item>
+        <item>Pyramid chart</item>
+        <item>Polygon series</item>
+        <item>Pareto chart</item>
+        <item>Sankey diagram</item>
+        <item>X-range series</item>
+        <item>World cloud</item>
+        <item>General drawingchar</item>
+    </string-array>
+</resources>

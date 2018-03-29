@@ -242,7 +242,6 @@ public class HIChartView extends RelativeLayout {
         this.webView.evaluateJavascript(options, new ValueCallback<String>() {
             @Override
             public void onReceiveValue(String value) {
-                System.out.println(value);
             }
         });
     }
@@ -253,6 +252,7 @@ public class HIChartView extends RelativeLayout {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void reload() {
         this.loadChartOptions();
+        System.out.println("GENERATED CHART OPTIONS\n" + this.HTML.options);
     }
 
     private void checkForOptions(HIOptions options){
