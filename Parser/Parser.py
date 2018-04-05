@@ -15,6 +15,8 @@ import sys
 import os
 import re
 from bs4 import BeautifulSoup, SoupStrainer
+from HTMLParser import HTMLParser
+import cgi
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -55,12 +57,12 @@ class HIChartsClass:
         if self.description:
             self.comment = "/**\n{0}\n".format(self.description)
             if self.demo:
-                self.comment += "* demo: {0}".format(self.demo)
+                self.comment += cgi.escape(" <br><br><b><i>Try it:</b></i><br>{0}".format(self.demo))
             if self.values:
-                self.comment += "* accepted values: {0}\n".format(self.values)
+                self.comment += cgi.escape(" <br><br><b>accepted values:</b><br><br>&ensp;{0}".format(self.values))
             self.comment = clean_comment(self.comment)
             if self.defaults:
-                self.comment += "* default: {0}\n".format(self.defaults)
+                self.comment += " <br><br><b>default:</b><br><br>&ensp;{0}".format(self.defaults)
             self.comment += "*/\n"
 
     def update(self, data_type, description, demo, values, defaults, products, extends, exclude):
@@ -1209,7 +1211,9 @@ def create_class(node):
                         elif attr_sample == "products":
                             attr_products = sample[attr_sample]
                     if attr_products is None or "highcharts" in attr_products:
-                        demo += "https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/{0} : {1}\n".format(value, name)
+                        demo += "<br>&ensp;&bull;&ensp; <a href=\"https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/{0}\">{1}</a>".format(value, name)
+                        # demo += cgi.escape("\n&bull;<a href=\"https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/{0}\">{1}</a>".format(value, name))
+                        # demo += "https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/{0} : {1}\n".format(value, name)
                 if demo == "":
                     demo = None
 

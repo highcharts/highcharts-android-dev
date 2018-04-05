@@ -24,17 +24,13 @@ CSS styles for the text label.
 
 In styled mode, the labels are styled by the
 .highcharts-plot-line-label class.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-style/ : Blue and bold label
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-style/">Blue and bold label</a>*/
 	public HIStyle style;
 
 /**
 Vertical alignment of the label relative to the plot line. Can be
 one of "top", "middle" or "bottom".
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-verticalalign-middle/ : Vertically centered label
-* accepted values: ["top", "middle", "bottom"]
-* default: top
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-verticalalign-middle/">Vertically centered label</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"] <br><br><b>default:</b><br><br>&ensp;top*/
 	public String verticalAlign;
 
 /**
@@ -45,9 +41,7 @@ The text itself. A subset of HTML is supported.
 /**
 Horizontal alignment of the label. Can be one of "left", "center"
 or "right".
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-align-right/ : Aligned to the right
-* default: left
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-align-right/">Aligned to the right</a> <br><br><b>default:</b><br><br>&ensp;left*/
 	public String align;
 
 /**
@@ -56,35 +50,30 @@ the texts anchor point is placed within the plot band, textAlign
 determines how the text is aligned against its anchor point. Possible
 values are "left", "center" and "right". Defaults to the same as
 the align option.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-textalign/ : Text label in bottom position
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-textalign/">Text label in bottom position</a>*/
 	public String textAlign;
 
 /**
 Vertical position of the text baseline relative to the alignment.
  Default varies by orientation.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-y/ : Label below the plot line
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-y/">Label below the plot line</a>*/
 	public Number y;
 
 /**
 Horizontal position relative the alignment. Default varies by orientation.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-align-right/ : Aligned 10px from the right edge
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-align-right/">Aligned 10px from the right edge</a>*/
 	public Number x;
 
 /**
 Rotation of the text label in degrees. Defaults to 0 for horizontal
 plot lines and 90 for vertical lines.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-verticalalign-middle/ : Slanted text
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-verticalalign-middle/">Slanted text</a>*/
 	public Number rotation;
 
 /**
 Whether to [use HTML](http://www.highcharts.com/docs/chart-concepts/labels-
 and-string-formatting#html) to render the labels.
-* default: false
-*/
+ <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean useHTML;
 
 /**

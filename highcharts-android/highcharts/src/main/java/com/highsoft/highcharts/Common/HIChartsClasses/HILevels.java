@@ -68,20 +68,17 @@ Can set a rotation on all points which lies on the same level.
 /**
 Decides which level takes effect from the options set in the levels
 object.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-levels/ : Styling of both levels
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-levels/">Styling of both levels</a>*/
 	public Number level;
 
 /**
 Can set the layoutAlgorithm option on a specific level.
-* accepted values: ["sliceAndDice", "stripes", "squarified", "strip"]
-*/
+ <br><br><b>accepted values:</b><br><br>&ensp;["sliceAndDice", "stripes", "squarified", "strip"]*/
 	public String layoutAlgorithm;
 
 /**
 Can set the layoutStartingDirection option on a specific level.
-* accepted values: ["vertical", "horizontal"]
-*/
+ <br><br><b>accepted values:</b><br><br>&ensp;["vertical", "horizontal"]*/
 	public String layoutStartingDirection;
 
 

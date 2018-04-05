@@ -21,8 +21,7 @@ public class HICondition implements HIChartsJSONSerializable {
 
 /**
 The responsive rule applies if the chart width is greater than this.
-* default: 0
-*/
+ <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number minWidth;
 
 /**
@@ -35,14 +34,12 @@ size or other elements.
 
 /**
 The responsive rule applies if the chart height is greater than this.
-* default: 0
-*/
+ <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number minHeight;
 
 /**
 The responsive rule applies if the chart width is less than this.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/ : Max width is 500
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/">Max width is 500</a>*/
 	public Number maxWidth;
 
 /**

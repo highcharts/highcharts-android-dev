@@ -39,16 +39,13 @@ Whether to give each point an individual color.
 many degrees. Say if the gauge axis goes from 0 to 60, a value of
 100, or 1000, will show 5 degrees beyond the end of the axis when this
 option is set to 5.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-overshoot/ : Allow 5 degrees overshoot
-* default: 0
+* demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-overshoot/ : Allow 5 degrees overshoot* default: 0
 */
 	public Number overshoot;
 
 /**
 Wether to draw rounded edges on the gauge.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-activity/ : Activity Gauge
-* default: false
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-activity/">Activity Gauge</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean rounded;
 
 

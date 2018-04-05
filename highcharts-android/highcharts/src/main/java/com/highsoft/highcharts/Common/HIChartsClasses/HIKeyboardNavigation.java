@@ -22,15 +22,13 @@ public class HIKeyboardNavigation implements HIChartsJSONSerializable {
 /**
 Enable/disable keyboard navigation for the legend. Requires the Accessibility
 module.
-* default: true
-*/
+ <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean enabled;
 
 /**
 Options for the focus border drawn around elements while
 navigating through them.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/accessibility/custom-focus : Custom focus ring
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/accessibility/custom-focus">Custom focus ring</a>*/
 	public HIFocusBorder focusBorder;
 
 /**
@@ -44,15 +42,13 @@ In "serialize" mode, points are instead navigated as a single
 list. Left/right behaves as in "normal" mode. Up/down arrow keys
 will behave like left/right. This is useful for unifying 
 navigation behavior with/without screen readers enabled.
-* default: normal
-*/
+ <br><br><b>default:</b><br><br>&ensp;normal*/
 	public String mode;
 
 /**
 Skip null points when navigating through points with the
 keyboard.
-* default: true
-*/
+ <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean skipNullPoints;
 
 

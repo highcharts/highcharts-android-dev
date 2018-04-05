@@ -22,8 +22,7 @@ public class HIZones implements HIChartsJSONSerializable {
 
 /**
 Styled mode only. A custom class name for the zone.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/ : Zones styled by class name
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/">Zones styled by class name</a>*/
 	public String className;
 
 /**
@@ -33,8 +32,7 @@ Defines the color of the series.
 
 /**
 A name for the dash style to use for the graph.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/color-zones-dashstyle-dot/ : Dashed line indicates prognosis
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/color-zones-dashstyle-dot/">Dashed line indicates prognosis</a>*/
 	public String dashStyle;
 
 /**
@@ -45,8 +43,7 @@ Defines the fill color for the series (in area type series)
 /**
 The value up to where the zone extends, if undefined the zones stretches
 to the last value in the series.
-* default: undefined
-*/
+ <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public Number value;
 
 

@@ -32,15 +32,13 @@ public class HIBellcurve extends HISeries {
 /**
 This option allows to define the length of the bell curve. A unit of the
 length of the bell curve is standard deviation.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bellcurve-intervals-pointsininterval : Intervals and points in interval
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bellcurve-intervals-pointsininterval">Intervals and points in interval</a>*/
 	public Number intervals;
 
 /**
 Defines how many points should be plotted within 1 interval. See 
 plotOptions.bellcurve.intervals.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bellcurve-intervals-pointsininterval : Intervals and points in interval
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bellcurve-intervals-pointsininterval">Intervals and points in interval</a>*/
 	public Number pointsInInterval;
 
 /**
@@ -48,16 +46,13 @@ A separate color for the negative part of the area.
 
 In styled mode, a negative color is set with the .highcharts-negative
 class name.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-negative-color/ : Negative color in styled mode
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-negative-color/">Negative color in styled mode</a>*/
 	public HIColor negativeFillColor;
 
 /**
 Whether the whole area or just the line should respond to mouseover
 tooltips and other mouse or touch events.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-trackbyarea/ : Display the tooltip when the area is hovered
-* default: false
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-trackbyarea/">Display the tooltip when the area is hovered</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean trackByArea;
 
 /**
@@ -66,10 +61,7 @@ is used with the series' fillOpacity.
 
 In styled mode, the fill color can be set with the .highcharts-area
 class name.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-fillcolor-default/ : Null by default
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-fillcolor-gradient/ : Gradient
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-fillcolor-default/">Null by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-fillcolor-gradient/">Gradient</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public HIColor fillColor;
 
 /**
@@ -79,9 +71,7 @@ separate color for the line without altering the fillColor.
 
 In styled mode, the line stroke can be set with the .highcharts-graph
 class name.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-linecolor/ : Dark gray line
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-linecolor/">Dark gray line</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public HIColor lineColor;
 
 /**
@@ -93,16 +83,13 @@ component of the color setting.
 
 In styled mode, the fill opacity can be set with the .highcharts-area
 class name.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-fillopacity/ : Automatic fill color and fill opacity of 0.1
-* default: 0.75
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-fillopacity/">Automatic fill color and fill opacity of 0.1</a> <br><br><b>default:</b><br><br>&ensp;0.75*/
 	public Number fillOpacity;
 
 /**
 An integer identifying the index to use for the base series, or a string
 representing the id of the series.
-* default: undefined
-*/
+ <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public Object /* Number|String */ baseSeries;
 
 

@@ -33,9 +33,7 @@ getTimezoneOffset function that looks
 up the specified timezone in moment.js. If moment.js is not included,
 this throws a Highcharts error in the console, but does not crash the
 chart.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/time/timezone/ : Europe/Oslo
-* default: undefined
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/time/timezone/">Europe/Oslo</a> <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public String timezone;
 
 /**
@@ -44,8 +42,7 @@ takes the timestamp in terms of milliseconds since January 1 1970,
 and returns the timezone offset in minutes. This provides a hook
 for drawing time based charts in specific time zones using their
 local DST crossover dates, with the help of external libraries.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/time/gettimezoneoffset/ : Use moment.js to draw Oslo time regardless of browser locale
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/time/gettimezoneoffset/">Use moment.js to draw Oslo time regardless of browser locale</a>*/
 	public HIFunction getTimezoneOffset;
 
 /**
@@ -53,9 +50,7 @@ The timezone offset in minutes. Positive values are west, negative
 values are east of UTC, as in the ECMAScript
 [getTimezoneOffset](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset)
 method. Use this to display UTC based data in a predefined time zone.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/time/timezoneoffset/ : Timezone offset
-* default: 0
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/time/timezoneoffset/">Timezone offset</a> <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number timezoneOffset;
 
 /**
@@ -65,9 +60,7 @@ is that the time displays equally regardless of the user agent's
 time zone settings. Local time can be used when the data is loaded
 in real time or when correct Daylight Saving Time transitions are
 required.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/time/useutc-true/ : True by default
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/time/useutc-false/ : False
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/time/useutc-true/">True by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/time/useutc-false/">False</a>*/
 	public Boolean useUTC;
 
 

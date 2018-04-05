@@ -21,36 +21,27 @@ public class HICredits implements HIChartsJSONSerializable {
 
 /**
 CSS styles for the credits label.
-* default: { "cursor": "pointer", "color": "#999999", "fontSize": "10px" }
-*/
+ <br><br><b>default:</b><br><br>&ensp;{ "cursor": "pointer", "color": "#999999", "fontSize": "10px" }*/
 	public HIStyle style;
 
 /**
 The text for the credits label.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/href/ : Custom URL and text
-* default: Highcharts.com
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/href/">Custom URL and text</a> <br><br><b>default:</b><br><br>&ensp;Highcharts.com*/
 	public String text;
 
 /**
 Whether to show the credits text.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/enabled-false/ : Credits disabled
-* default: true
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/enabled-false/">Credits disabled</a> <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean enabled;
 
 /**
 The URL for the credits label.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/href/ : Custom URL and text
-* default: http://www.highcharts.com
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/href/">Custom URL and text</a> <br><br><b>default:</b><br><br>&ensp;http://www.highcharts.com*/
 	public String href;
 
 /**
 Position configuration for the credits label.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/position-left/ : Left aligned
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/position-left/ : Left aligned
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/position-left/">Left aligned</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/position-left/">Left aligned</a>*/
 	public HIPosition position;
 
 

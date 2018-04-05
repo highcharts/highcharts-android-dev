@@ -23,29 +23,23 @@ public class HICrosshair implements HIChartsJSONSerializable {
 /**
 The Z index of the crosshair. Higher Z indices allow drawing the
 crosshair on top of the series or behind the grid lines.
-* default: 2
-*/
+ <br><br><b>default:</b><br><br>&ensp;2*/
 	public Number zIndex;
 
 /**
 The dash style for the crosshair. See
 series.dashStyle
 for possible values.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-dotted/ : Dotted crosshair
-* accepted values: ["Solid", "ShortDash", "ShortDot", "ShortDashDot",
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-dotted/">Dotted crosshair</a> <br><br><b>accepted values:</b><br><br>&ensp;["Solid", "ShortDash", "ShortDot", "ShortDashDot",
              "ShortDashDotDot", "Dot", "Dash" ,"LongDash",
-             "DashDot", "LongDashDot", "LongDashDotDot"]
-* default: Solid
-*/
+             "DashDot", "LongDashDot", "LongDashDotDot"] <br><br><b>default:</b><br><br>&ensp;Solid*/
 	public String dashStyle;
 
 /**
 The color of the crosshair. Defaults to #cccccc for numeric and
 datetime axes, and rgba(204,214,235,0.25) for category axes, where
 the crosshair by default highlights the whole category.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-customized/ : Customized crosshairs
-* default: #cccccc
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-customized/">Customized crosshairs</a> <br><br><b>default:</b><br><br>&ensp;#cccccc*/
 	public HIColor color;
 
 /**
@@ -56,17 +50,13 @@ A class name for the crosshair, especially as a hook for styling.
 /**
 The pixel width of the crosshair. Defaults to 1 for numeric or
 datetime axes, and for one category width for category axes.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-customized/ : Customized crosshairs
-* default: 1
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-customized/">Customized crosshairs</a> <br><br><b>default:</b><br><br>&ensp;1*/
 	public Number width;
 
 /**
 Whether the crosshair should snap to the point or follow the pointer
 independent of points.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-snap-false/ : True by default
-* default: true
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-snap-false/">True by default</a> <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean snap;
 
 

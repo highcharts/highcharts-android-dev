@@ -30,64 +30,48 @@ public class HIDataLabels implements HIChartsJSONSerializable {
 
 /**
 The x position of the data label relative to the data point.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bar-datalabels-align-inside-bar/ : Data labels inside the bar
-* default: 5
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bar-datalabels-align-inside-bar/">Data labels inside the bar</a> <br><br><b>default:</b><br><br>&ensp;5*/
 	public Number x;
 
 /**
 Alignment of the data label relative to the data point.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bar-datalabels-align-inside-bar/ : Data labels inside the bar
-* default: left
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bar-datalabels-align-inside-bar/">Data labels inside the bar</a> <br><br><b>default:</b><br><br>&ensp;left*/
 	public String align;
 
 /**
 Y offset of the higher data labels relative to the point value.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/ : Data labels on range series
-* default: -6
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a> <br><br><b>default:</b><br><br>&ensp;-6*/
 	public Object /* Number|String */ yHigh;
 
 /**
 X offset of the higher data labels relative to the point value.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/ : Data labels on range series
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>*/
 	public Number xHigh;
 
 /**
 X offset of the lower data labels relative to the point value.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/ : Data labels on range series
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>*/
 	public Number xLow;
 
 /**
 Y offset of the lower data labels relative to the point value.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/ : Data labels on range series
-* default: 16
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a> <br><br><b>default:</b><br><br>&ensp;16*/
 	public Object /* Number|String */ yLow;
 
 /**
 The border radius in pixels for the data label.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/ : Data labels box options
-* default: 0
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a> <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number borderRadius;
 
 /**
 The name of a symbol to use for the border around the label. Symbols
 are predefined functions on the Renderer object.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-shape/ : A callout for annotations
-* default: square
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-shape/">A callout for annotations</a> <br><br><b>default:</b><br><br>&ensp;square*/
 	public String shape;
 
 /**
 The border color for the data label. Defaults to undefined.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/ : Data labels box options
-* default: undefined
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a> <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public HIColor borderColor;
 
 /**
@@ -97,8 +81,7 @@ not available, like when the chart options require a pure JSON
 structure or for use with graphical editors. For programmatic
 control, use the formatter instead, and return false to disable
 a single data label.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome : Data labels filtered by percentage
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome">Data labels filtered by percentage</a>*/
 	public HIFilter filter;
 
 /**
@@ -116,26 +99,21 @@ text, the text outline doesn't work well, in which cases it can
 be disabled by setting it to "none". When useHTML is true, the
 textOutline will not be picked up. In this, case, the same effect
 can be acheived through the text-shadow CSS property.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-style/ : Bold labels
-* default: {"color": "contrast", "fontSize": "11px", "fontWeight": "bold", "textOutline": "1px contrast" }
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-style/">Bold labels</a> <br><br><b>default:</b><br><br>&ensp;{"color": "contrast", "fontSize": "11px", "fontWeight": "bold", "textOutline": "1px contrast" }*/
 	public HIStyle style;
 
 /**
 Text rotation in degrees. Note that due to a more complex structure,
 backgrounds, borders and padding will be lost on a rotated data
 label.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-rotation/ : Vertical labels
-* default: 0
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-rotation/">Vertical labels</a> <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number rotation;
 
 /**
 Whether to
 [use HTML](http://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html)
 to render the labels.
-* default: false
-*/
+ <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean useHTML;
 
 /**
@@ -146,32 +124,26 @@ contrast by default. Additionally, it will be given a text-outline
 style with the opposite color, to further increase the contrast. This
 can be overridden by setting the text-outline style to none in
 the dataLabels.style option.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-color/ : Red data labels
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-color/">Red data labels</a>*/
 	public HIColor color;
 
 /**
 The background color or gradient for the data label.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/ : Data labels box options
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a>*/
 	public HIColor backgroundColor;
 
 /**
 Whether to allow data labels to overlap. To make the labels less
 sensitive for overlapping, the [dataLabels.padding](#plotOptions.
 series.dataLabels.padding) can be set to 0.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-allowoverlap-false/ : Don't allow overlap
-* default: false
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-allowoverlap-false/">Don't allow overlap</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean allowOverlap;
 
 /**
 A [format string](http://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting)
 for the data label. Available variables are the same as for
 formatter.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-format/ : Add a unit
-* default: {y}
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-format/">Add a unit</a> <br><br><b>default:</b><br><br>&ensp;{y}*/
 	public String format;
 
 /**
@@ -179,16 +151,13 @@ The shadow of the box. Works best with borderWidth or
 backgroundColor. Since 2.3 the shadow can be an object
 configuration containing color, offsetX, offsetY, opacity and
 width.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/ : Data labels box options
-* default: false
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public Object /* Boolean|Object */ shadow;
 
 /**
 The Z index of the data labels. The default Z index puts it above
 the series. Use a Z index of 2 to display it behind the series.
-* default: 6
-*/
+ <br><br><b>default:</b><br><br>&ensp;6*/
 	public Number zIndex;
 
 /**
@@ -197,15 +166,12 @@ can be used to give each series' or point's data label unique
 styling. In addition to this option, a default color class name is
 added so that we can give the labels a
 [contrast text shadow](http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/data-label-contrast/).
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-datalabels/ : Styling by CSS
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-datalabels/">Styling by CSS</a>*/
 	public String className;
 
 /**
 The border width in pixels for the data label.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/ : Data labels box options
-* default: 0
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a> <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number borderWidth;
 
 /**
@@ -213,15 +179,12 @@ Decides how the data label will be rotated according to the perimeter
 of the sunburst. It can either be parallel or perpendicular to the
 perimeter.
 series.rotation takes precedence over rotationMode.
-* accepted values: ["perpendicular", "parallel"]
-*/
+ <br><br><b>accepted values:</b><br><br>&ensp;["perpendicular", "parallel"]*/
 	public String rotationMode;
 
 /**
 The y position offset of the label relative to the point.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-rotation/ : Vertical and positioned
-* default: -6
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-rotation/">Vertical and positioned</a> <br><br><b>default:</b><br><br>&ensp;-6*/
 	public Number y;
 
 /**
@@ -244,19 +207,14 @@ The default color is the same as the point's color.
 
 In styled mode, the connector stroke is given in the
 .highcharts-data-label-connector class.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorcolor/ : Blue connectors
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/pie-point/ : Styled connectors
-* default: {point.color}
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorcolor/">Blue connectors</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/pie-point/">Styled connectors</a> <br><br><b>default:</b><br><br>&ensp;{point.color}*/
 	public String connectorColor;
 
 /**
 The distance of the data label from the pie's edge. Negative numbers
 put the data label on top of the pie slices. Connectors are only
 shown for data labels outside the pie.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-distance/ : Data labels on top of the pie
-* default: 30
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-distance/">Data labels on top of the pie</a> <br><br><b>default:</b><br><br>&ensp;30*/
 	public Number distance;
 
 /**
@@ -265,25 +223,18 @@ The width of the line connecting the data label to the pie slice.
 
 In styled mode, the connector stroke width is given in the
 .highcharts-data-label-connector class.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorwidth-disabled/ : Disable the connector
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/pie-point/ : Styled connectors
-* default: 1
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorwidth-disabled/">Disable the connector</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/pie-point/">Styled connectors</a> <br><br><b>default:</b><br><br>&ensp;1*/
 	public Number connectorWidth;
 
 /**
 Whether to render the connector as a soft arc or a line with sharp
 break.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-softconnector-true/ : Soft
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-softconnector-false/ : Non soft
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-softconnector-true/">Soft</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-softconnector-false/">Non soft</a>*/
 	public Number softConnector;
 
 /**
 The distance from the data label to the connector.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorpadding/ : No padding
-* default: 5
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorpadding/">No padding</a> <br><br><b>default:</b><br><br>&ensp;5*/
 	public Number connectorPadding;
 
 

@@ -33,42 +33,35 @@ public class HITreemap extends HISeries {
 When using automatic point colors pulled from the options.colors
 collection, this option determines whether the chart should receive
 one color per series or one color per point.
-* default: false
-*/
+ <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean colorByPoint;
 
 /**
 The color of the border surrounding each tree map item.
-* default: #e6e6e6
-*/
+ <br><br><b>default:</b><br><br>&ensp;#e6e6e6*/
 	public HIColor borderColor;
 
 /**
 The opacity of a point in treemap. When a point has children, the
 visibility of the children is determined by the opacity.
-* default: 0.15
-*/
+ <br><br><b>default:</b><br><br>&ensp;0.15*/
 	public Number opacity;
 
 /**
 Whether to ignore hidden points when the layout algorithm runs.
 If false, hidden points will leave open spaces.
-* default: true
-*/
+ <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean ignoreHiddenPoint;
 
 /**
 When enabled the user can click on a point which is a parent and
 zoom in on its children.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-allowdrilltonode/ : Enabled
-* default: false
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-allowdrilltonode/">Enabled</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean allowDrillToNode;
 
 /**
 The sort index of the point inside the treemap level.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-sortindex/ : Sort by years
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-sortindex/">Sort by years</a>*/
 	public Number sortIndex;
 
 /**
@@ -76,9 +69,7 @@ This option decides if the user can interact with the parent nodes
 or just the leaf nodes. When this option is undefined, it will be
 true by default. However when allowDrillToNode is true, then it will
 be false by default.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-interactbyleaf-false/ : False
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-interactbyleaf-true-and-allowdrilltonode/ : InteractByLeaf and allowDrillToNode is true
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-interactbyleaf-false/">False</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-interactbyleaf-true-and-allowdrilltonode/">InteractByLeaf and allowDrillToNode is true</a>*/
 	public Boolean interactByLeaf;
 
 /**
@@ -92,13 +83,7 @@ treemap.colorByPoint) is true.
 This option decides which algorithm is used for setting position
 and dimensions of the points. Can be one of sliceAndDice, stripes,
  squarified or strip.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-layoutalgorithm-sliceanddice/ : SliceAndDice by default
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-layoutalgorithm-stripes/ : Stripes
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-layoutalgorithm-squarified/ : Squarified
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-layoutalgorithm-strip/ : Strip
-* accepted values: ["sliceAndDice", "stripes", "squarified", "strip"]
-* default: sliceAndDice
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-layoutalgorithm-sliceanddice/">SliceAndDice by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-layoutalgorithm-stripes/">Stripes</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-layoutalgorithm-squarified/">Squarified</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-layoutalgorithm-strip/">Strip</a> <br><br><b>accepted values:</b><br><br>&ensp;["sliceAndDice", "stripes", "squarified", "strip"] <br><br><b>default:</b><br><br>&ensp;sliceAndDice*/
 	public String layoutAlgorithm;
 
 /**
@@ -106,24 +91,19 @@ Used together with the levels and allowDrillToNode options. When
 set to false the first level visible when drilling is considered
 to be level one. Otherwise the level will be the same as the tree
 structure.
-* default: true
-*/
+ <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean levelIsConstant;
 
 /**
 Defines which direction the layout algorithm will start drawing.
  Possible values are "vertical" and "horizontal".
-* accepted values: ["vertical", "horizontal"]
-* default: vertical
-*/
+ <br><br><b>accepted values:</b><br><br>&ensp;["vertical", "horizontal"] <br><br><b>default:</b><br><br>&ensp;vertical*/
 	public String layoutStartingDirection;
 
 /**
 Set options on specific levels. Takes precedence over series options,
 but not point options.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-levels/ : Styling dataLabels and borders
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/treemap-with-levels/ : Different layoutAlgorithm
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-levels/">Styling dataLabels and borders</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/treemap-with-levels/">Different layoutAlgorithm</a>*/
 	public ArrayList <HILevels> levels;
 
 /**
@@ -135,9 +115,7 @@ Options for the button appearing when drilling down in a treemap.
 Enabling this option will make the treemap alternate the drawing
 direction between vertical and horizontal. The next levels starting
 direction will always be the opposite of the previous.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-alternatestartingdirection-true/ : Enabled
-* default: false
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-alternatestartingdirection-true/">Enabled</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean alternateStartingDirection;
 
 

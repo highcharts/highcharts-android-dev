@@ -22,8 +22,7 @@ public class HIFilter implements HIChartsJSONSerializable {
 /**
 The operator to compare by. Can be one of >, <, >=, <=, ==,
 and ===.
-* accepted values: [">", "<", ">=", "<=", "==", "===""]
-*/
+ <br><br><b>accepted values:</b><br><br>&ensp;[">", "<", ">=", "<=", "==", "===""]*/
 	public String operator;
 
 /**

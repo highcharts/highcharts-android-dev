@@ -21,30 +21,22 @@ public class HILoading implements HIChartsJSONSerializable {
 
 /**
 CSS styles for the loading screen that covers the plot area.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/style/ : Gray plot area, white text
-* default: { "position": "absolute", "backgroundColor": "#ffffff", "opacity": 0.5, "textAlign": "center" }
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/style/">Gray plot area, white text</a> <br><br><b>default:</b><br><br>&ensp;{ "position": "absolute", "backgroundColor": "#ffffff", "opacity": 0.5, "textAlign": "center" }*/
 	public HIStyle style;
 
 /**
 CSS styles for the loading label span.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/labelstyle/ : Vertically centered
-* default: { "fontWeight": "bold", "position": "relative", "top": "45%" }
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/labelstyle/">Vertically centered</a> <br><br><b>default:</b><br><br>&ensp;{ "fontWeight": "bold", "position": "relative", "top": "45%" }*/
 	public HILabelStyle labelStyle;
 
 /**
 The duration in milliseconds of the fade out effect.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/hideduration/ : Fade in and out over a second
-* default: 100
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/hideduration/">Fade in and out over a second</a> <br><br><b>default:</b><br><br>&ensp;100*/
 	public Number hideDuration;
 
 /**
 The duration in milliseconds of the fade in effect.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/hideduration/ : Fade in and out over a second
-* default: 100
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/hideduration/">Fade in and out over a second</a> <br><br><b>default:</b><br><br>&ensp;100*/
 	public Number showDuration;
 
 

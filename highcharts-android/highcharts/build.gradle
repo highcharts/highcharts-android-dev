@@ -1,5 +1,28 @@
 apply plugin: 'com.android.library'
 
+ext{
+    bintrayRepo = 'Highcharts'
+    bintrayName = 'Highcharts'
+
+    publishedGroupId = 'com.highsoft.highcharts'
+    libraryName = 'Highcharts'
+    artifact = 'highcharts'
+
+    libraryDescription = 'Highcharts Android is a delightful wrapper of HighchartsJS for Android.'
+
+    siteUrl = 'https://www.highcharts.com/'
+    gitUrl = 'https://github.com/highcharts/highcharts-android'
+
+    libraryVersion = '6.0.7'
+
+    developerId = 'bgn'
+    developerName = 'Bartosz Gnacek'
+    developerEmail = 'bartosz.gnacek@spinney.io'
+
+    licenseName = 'Custom'
+    licenseUrl = 'https://github.com/highcharts/highcharts-android/blob/master/LICENSE'
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -15,7 +38,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -32,7 +55,11 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.android.support:appcompat-v7:25.4.0'
     testCompile 'junit:junit:4.12'
     compile 'com.google.code.gson:gson:2.8.0'
 }
+
+apply from: 'bintrayv1.gradle'
+apply from: 'installv1.gradle'
+

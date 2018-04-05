@@ -60,6 +60,8 @@ public class ExamplesFragment extends Fragment {
         chartView.plugins = new ArrayList<>(); //todo move plugins addition to specific chart options
         chartView.plugins.add("annotations");
         chartView.plugins.add("series-label");
+        chartView.plugins.add("data");
+        chartView.plugins.add("boost");
         Spinner spinner = view.findViewById(R.id.spinner);
         ArrayAdapter<String> examplesAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, mArray);
         spinner.setAdapter(examplesAdapter);

@@ -15,10 +15,12 @@ final public class HIFunction {
     private HIConsumer<HIChartContext> hiConsumer;
     private HIFunctionInterface<HIChartContext, String> hiFunctionInterface;
     private String strFunction = "";
+    private String id;
     private static int counter = 1;
 
+
     /**
-     * Use this constructor if you want to put pure Javascript code as a String
+     * Use this constructor if you want to put pure Javascript code as a String.
      *
      * @param jsFunction example: function() { return "String representation"; }
      */
@@ -36,7 +38,7 @@ final public class HIFunction {
      */
     public HIFunction(Runnable runnable){
         this.rfunction = runnable;
-        String id = String.format("Android%s", counter++);
+        id = String.format("Android%s", counter++);
         String template = "%sfunction(){ %s.androidHandler(); }%s";
         String prefixnsuffix = "__xx__";
         this.strFunction = String.format(template, prefixnsuffix, id, prefixnsuffix);
@@ -44,23 +46,30 @@ final public class HIFunction {
     }
 
     /**
-     * Simple constructor to use when creating an event with chart properties
+     * Constructor to use when creating an event with chart properties
      *
      * @param hiConsumer a callback to be invoked when an attached option is clicked
+     * @param properties properties to pull from the chart context
      */
     public HIFunction(HIConsumer<HIChartContext> hiConsumer, String[] properties){
         this.hiConsumer = hiConsumer;
         this.properties = properties;
-        String id = String.format("Android%s", counter++);
+        id = String.format("Android%s", counter++);
         String template = "%sfunction(){ eventContexts['%s'] = this; %s.androidHandler(); }%s";
         String prefixnsuffix = "__xx__";
         this.strFunction = String.format(template, prefixnsuffix, id, id, prefixnsuffix);
     }
 
+    /**
+     * Constructor to use when returning a String with chart properties
+     *
+     * @param function a callback to be invoked when an attached option is clicked
+     * @param properties properties to pull from the chart context
+     */
     public HIFunction(HIFunctionInterface<HIChartContext, String> function, String[] properties){
         this.hiFunctionInterface = function;
         this.properties = properties;
-        String id = String.format("Android%s", counter++);
+        id = String.format("Android%s", counter++);
 
         String script = "getPropertiesDictionary('%s', %s, true)";
         String argsStr = "[";
@@ -93,6 +102,10 @@ final public class HIFunction {
 
     String[] getProperties() {
         return properties;
+    }
+
+    String getId() {
+        return id;
     }
 
     boolean isSimple() {

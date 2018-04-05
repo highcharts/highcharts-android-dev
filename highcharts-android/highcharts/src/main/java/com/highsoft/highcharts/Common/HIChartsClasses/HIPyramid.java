@@ -44,15 +44,13 @@ which shares the same layout logic.
 /**
 * description: The pyramid neck width is zero by default, as opposed to the funnel, 
 which shares the same layout logic.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/funnel/ : Funnel demo
-*/
+* demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/funnel/ : Funnel demo*/
 	public String neckWidth;
 
 /**
 * description: The center of the series. By default, it is centered in the middle
 of the plot area, so it fills the plot area height.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-center/ : Centered at 100, 100
-* default: ["50%", "50%"]
+* demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-center/ : Centered at 100, 100* default: ["50%", "50%"]
 */
 	public ArrayList /* <String|Number> */ center;
 
@@ -60,8 +58,7 @@ of the plot area, so it fills the plot area height.
 The height of the funnel or pyramid. If it is a number it defines
 the pixel height, if it is a percentage string it is the percentage
 of the plot area height.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/funnel/ : Funnel demo
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/funnel/">Funnel demo</a>*/
 	public Object /* Number|String */ height;
 
 /**
@@ -77,17 +74,13 @@ together with a borderWidth to fill drawing gaps created by antialiazing
 artefacts in borderless pies.
 
 In styled mode, the border stroke is given in the .highcharts-point class.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-bordercolor-black/ : Black border
-* default: #ffffff
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-bordercolor-black/">Black border</a> <br><br><b>default:</b><br><br>&ensp;#ffffff*/
 	public HIColor borderColor;
 
 /**
 The end angle of the pie in degrees where 0 is top and 90 is right.
 Defaults to startAngle plus 360.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-semi-circle/ : Semi-circle donut
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-semi-circle/">Semi-circle donut</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public Number endAngle;
 
 /**
@@ -98,41 +91,32 @@ are relative to the pie size. Pixel values are given as integers.
 
 Note: in Highcharts < 4.1.2, the percentage was relative to the plot
 area, not the pie size.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-innersize-80px/ : 80px inner size
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-innersize-50percent/ : 50% of the plot area
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/3d-pie-donut/ : 3D donut
-* default: 0
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-innersize-80px/">80px inner size</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-innersize-50percent/">50% of the plot area</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/3d-pie-donut/">3D donut</a> <br><br><b>default:</b><br><br>&ensp;0*/
 	public Object /* String|Number */ innerSize;
 	public Boolean clip;
 
 /**
 If a point is sliced, moved out from the center, how many pixels
 should it be moved?.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-slicedoffset-20/ : 20px offset
-* default: 10
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-slicedoffset-20/">20px offset</a> <br><br><b>default:</b><br><br>&ensp;10*/
 	public Number slicedOffset;
 
 /**
 The thickness of a 3D pie. Requires highcharts-3d.js
-* default: 0
-*/
+ <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number depth;
 
 /**
 A series specific or series type specific color set to use instead
 of the global colors.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/ : Set default colors for all pies
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/">Set default colors for all pies</a>*/
 	public ArrayList<HIColor> colors;
 
 /**
 The minimum size for a pie in response to auto margins. The pie will
 try to shrink to make room for data labels in side the plot area,
  but only to this size.
-* default: 80
-*/
+ <br><br><b>default:</b><br><br>&ensp;80*/
 	public Number minSize;
 
 /**
@@ -144,18 +128,14 @@ keep the border width at 0.5 or 1, but set the borderColor to
 null instead.
 
 In styled mode, the border stroke width is given in the .highcharts-point class.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-borderwidth/ : 3px border
-* default: 1
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-borderwidth/">3px border</a> <br><br><b>default:</b><br><br>&ensp;1*/
 	public Number borderWidth;
 	public String legendType;
 
 /**
 The start angle of the pie slices in degrees where 0 is top and 90
 right.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-startangle-90/ : Start from right
-* default: 0
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-startangle-90/">Start from right</a> <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number startAngle;
 
 /**
@@ -165,9 +145,7 @@ hidden point were null.
 
 The default value changed from false to true with Highcharts
 3.0.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-ignorehiddenpoint/ : True, the hiddden point is ignored
-* default: true
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-ignorehiddenpoint/">True, the hiddden point is ignored</a> <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean ignoreHiddenPoint;
 
 

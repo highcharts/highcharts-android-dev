@@ -22,8 +22,7 @@ public class HIResponsive implements HIChartsJSONSerializable {
 /**
 A set of rules for responsive settings. The rules are executed from
 the top down.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/ : Axis changes
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/">Axis changes</a>*/
 	public ArrayList <HIRules> rules;
 
 

@@ -21,14 +21,12 @@ public class HINoData implements HIChartsJSONSerializable {
 
 /**
 The position of the no-data label, relative to the plot area.
-* default: { "x": 0, "y": 0, "align": "center", "verticalAlign": "middle" }
-*/
+ <br><br><b>default:</b><br><br>&ensp;{ "x": 0, "y": 0, "align": "center", "verticalAlign": "middle" }*/
 	public HIPosition position;
 
 /**
 CSS styles for the no-data label.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line : Styled no-data text
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line">Styled no-data text</a>*/
 	public HIStyle style;
 
 /**
@@ -39,8 +37,7 @@ An object of additional SVG attributes for the no-data label.
 /**
 Whether to insert the label as HTML, or as pseudo-HTML rendered with
 SVG.
-* default: false
-*/
+ <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean useHTML;
 
 

@@ -24,33 +24,24 @@ public class HIHover implements HIChartsJSONSerializable {
 /**
 Enable separate styles for the hovered series to visualize that
 the user hovers either the series itself or the legend. .
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-enabled/ : Line
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-enabled-column/ : Column
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-enabled-pie/ : Pie
-* default: true
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-enabled/">Line</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-enabled-column/">Column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-enabled-pie/">Pie</a> <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean enabled;
 
 /**
 Animation setting for hovering the graph in line-type series.
-* default: { "duration": 50 }
-*/
+ <br><br><b>default:</b><br><br>&ensp;{ "duration": 50 }*/
 	public HIAnimation animation;
 
 /**
 Pixel width of the graph line. By default this property is
 undefined, and the lineWidthPlus property dictates how much
 to increase the linewidth from normal state.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-linewidth/ : 5px line on hover
-* default: undefined
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-linewidth/">5px line on hover</a> <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public Number lineWidth;
 
 /**
 The additional line width for the graph of a hovered series.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-linewidthplus/ : 5 pixels wider
-* default: 1
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-linewidthplus/">5 pixels wider</a> <br><br><b>default:</b><br><br>&ensp;1*/
 	public Number lineWidthPlus;
 
 /**
@@ -62,23 +53,19 @@ setting the halo option to false.
 
 In styled mode, the halo is styled with the .highcharts-halo
 class, with colors inherited from .highcharts-color-{n}.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/halo/ : Halo options
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/halo/">Halo options</a>*/
 	public HIHalo halo;
 
 /**
 The fill color of the marker in hover state. When null, the
 series' or point's fillColor for normal state is used.
-* default: null
-*/
+ <br><br><b>default:</b><br><br>&ensp;null*/
 	public HIColor fillColor;
 
 /**
 The color of the point marker's outline. When null, the
 series' or point's lineColor for normal state is used.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-linecolor/ : White fill color, black line color
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-linecolor/">White fill color, black line color</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public HIColor lineColor;
 
 /**
@@ -86,8 +73,7 @@ The radius of the point marker. In hover state, it defaults
 to the normal state's radius + 2 as per the
 radiusPlus
 option.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-radius/ : 10px radius
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-radius/">10px radius</a>*/
 	public Number radius;
 
 /**
@@ -113,8 +99,7 @@ The border color for the hovered state.
 /**
 The opacity of a point in treemap. When a point has children,
 the visibility of the children is determined by the opacity.
-* default: 0.75
-*/
+ <br><br><b>default:</b><br><br>&ensp;0.75*/
 	public Number opacity;
 
 /**
@@ -124,8 +109,7 @@ The shadow option for hovered state.
 
 /**
 A specific color for the hovered point.
-* default: undefined
-*/
+ <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public HIColor color;
 
 

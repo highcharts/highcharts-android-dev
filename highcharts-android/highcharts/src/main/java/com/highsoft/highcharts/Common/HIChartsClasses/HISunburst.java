@@ -32,29 +32,25 @@ public class HISunburst extends HISeries {
 
 /**
 Which point to use as a root in the visualization.
-* default: undefined
-*/
+ <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public String rootId;
 
 /**
 Determines the width of the ring per level.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-levelsize/ : Sunburst with various sizes per level
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-levelsize/">Sunburst with various sizes per level</a>*/
 	public HILevelSize levelSize;
 
 /**
 * description: The center of the sunburst chart relative to the plot area. Can be
 percentages or pixel values.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-center/ : Centered at 100, 100
-* default: [null, null]
+* demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-center/ : Centered at 100, 100* default: [null, null]
 */
 	public ArrayList /* <String|Number> */ center;
 
 /**
 * description: If a point is sliced, moved out from the center, how many pixels
 should it be moved?.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-sliced : Sliced sunburst
-* default: 10
+* demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-sliced : Sliced sunburst* default: 10
 */
 	public Number slicedOffset;
 
@@ -69,16 +65,13 @@ structure.
 /**
 Set options on specific levels. Takes precedence over series options,
 but not point options.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/sunburst : Sunburst chart
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/sunburst">Sunburst chart</a>*/
 	public ArrayList <HILevels> levels;
 
 /**
 When enabled the user can click on a point which is a parent and
 zoom in on its children.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/sunburst : Allow drill to node
-* default: false
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/sunburst">Allow drill to node</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean allowDrillToNode;
 
 /**
@@ -88,16 +81,13 @@ together with a borderWidth to fill drawing gaps created by antialiazing
 artefacts in borderless pies.
 
 In styled mode, the border stroke is given in the .highcharts-point class.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-bordercolor-black/ : Black border
-* default: #ffffff
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-bordercolor-black/">Black border</a> <br><br><b>default:</b><br><br>&ensp;#ffffff*/
 	public HIColor borderColor;
 
 /**
 A series specific or series type specific color set to use instead
 of the global colors.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/ : Set default colors for all pies
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/">Set default colors for all pies</a>*/
 	public ArrayList<HIColor> colors;
 
 /**
@@ -109,17 +99,13 @@ keep the border width at 0.5 or 1, but set the borderColor to
 null instead.
 
 In styled mode, the border stroke width is given in the .highcharts-point class.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-borderwidth/ : 3px border
-* default: 1
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-borderwidth/">3px border</a> <br><br><b>default:</b><br><br>&ensp;1*/
 	public Number borderWidth;
 
 /**
 The start angle of the pie slices in degrees where 0 is top and 90
 right.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-startangle-90/ : Start from right
-* default: 0
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-startangle-90/">Start from right</a> <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number startAngle;
 
 /**
@@ -132,8 +118,7 @@ in the default size calculation. As a consequence, the size
 of the pie may vary when points are updated and data labels more
 around. In that case it is best to set a fixed value, for example
 "75%".
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-size/ : Smaller pie
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-size/">Smaller pie</a>*/
 	public Object /* String|Number */ size;
 
 

@@ -31,27 +31,20 @@ public class HIBubble extends HISeries {
 /**
 The minimum for the Z value range. Defaults to the highest Z value
 in the data.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-zmin-zmax/ : Z has a possible range of 0-100
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-zmin-zmax/">Z has a possible range of 0-100</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public Number zMax;
 
 /**
 Whether the bubble's value should be represented by the area or the
 width of the bubble. The default, area, corresponds best to the
 human perception of the size of each bubble.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-sizeby/ : Comparison of area and size
-* accepted values: ["area", "width"]
-* default: area
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-sizeby/">Comparison of area and size</a> <br><br><b>accepted values:</b><br><br>&ensp;["area", "width"] <br><br><b>default:</b><br><br>&ensp;area*/
 	public String sizeBy;
 
 /**
 The minimum for the Z value range. Defaults to the lowest Z value
 in the data.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-zmin-zmax/ : Z has a possible range of 0-100
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-zmin-zmax/">Z has a possible range of 0-100</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public Number zMin;
 
 /**
@@ -59,8 +52,7 @@ Minimum bubble size. Bubbles will automatically size between the
 minSize and maxSize to reflect the z value of each bubble.
 Can be either pixels (when no unit is given), or a percentage of
 the smallest one of the plot width and height.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-size/ : Bubble size
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-size/">Bubble size</a>*/
 	public Object /* Number|String */ minSize;
 
 /**
@@ -68,8 +60,7 @@ Maximum bubble size. Bubbles will automatically size between the
 minSize and maxSize to reflect the z value of each bubble.
 Can be either pixels (when no unit is given), or a percentage of
 the smallest one of the plot width and height.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-size/ : Bubble size
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-size/">Bubble size</a>*/
 	public Object /* Number|String */ maxSize;
 
 /**
@@ -77,9 +68,7 @@ When displayNegative is false,
 bubbles with lower Z values are skipped. When displayNegative
 is true and a negativeColor
 is given, points with lower Z is colored.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-negative/ : Negative bubbles
-* default: 0
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-negative/">Negative bubbles</a> <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number zThreshold;
 
 /**
@@ -88,9 +77,7 @@ the bubble. This means that with the default zThreshold of 0, a
 bubble of value -1 will have the same size as a bubble of value 1,
 while a bubble of value 0 will have a smaller size according to
 minSize.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-sizebyabsolutevalue/ : Size by absolute value, various thresholds
-* default: false
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-sizebyabsolutevalue/">Size by absolute value, various thresholds</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean sizeByAbsoluteValue;
 
 /**
@@ -98,9 +85,7 @@ Whether to display negative sized bubbles. The threshold is given
 by the zThreshold option, and negative
 bubbles can be visualized by setting
 negativeColor.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-negative/ : Negative bubbles
-* default: true
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-negative/">Negative bubbles</a> <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean displayNegative;
 
 

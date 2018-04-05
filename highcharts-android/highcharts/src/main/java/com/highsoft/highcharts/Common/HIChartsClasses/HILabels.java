@@ -27,23 +27,20 @@ A HTML label that can be positioned anywhere in the chart area.
 
 /**
 Shared CSS styles for all labels.
-* default: { "color": "#333333" }
-*/
+ <br><br><b>default:</b><br><br>&ensp;{ "color": "#333333" }*/
 	public HIStyle style;
 
 /**
 * description: The y position offset of the label relative to the tick position
 on the axis.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-x/ : Y axis labels placed on grid lines
-* default: 3
+* demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-x/ : Y axis labels placed on grid lines* default: 3
 */
 	public Number y;
 
 /**
 * description: The x position offset of the label relative to the tick position
 on the axis. Defaults to -15 for left axis, 15 for right axis.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-x/ : Y axis labels placed on grid lines
-*/
+* demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-x/ : Y axis labels placed on grid lines*/
 	public Number x;
 
 /**
@@ -52,8 +49,7 @@ be one of "left", "center" or "right". The exact position
 also depends on the labels.x setting.
 
 Angular gauges and solid gauges defaults to center.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/labels-align-left/ : Left
-* accepted values: ["left", "center", "right"]
+* demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/labels-align-left/ : Left* accepted values: ["left", "center", "right"]
 * default: right
 */
 	public String align;
@@ -67,8 +63,7 @@ from the perimeter of the plot area.
 
 /**
 The Z index for the axis labels.
-* default: 7
-*/
+ <br><br><b>default:</b><br><br>&ensp;7*/
 	public Number zIndex;
 
 /**
@@ -82,18 +77,13 @@ axis or left on a right-side axis.
 
 This can be turned off when for example the labels are rendered
 inside the plot area instead of outside.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-reservespace/ : No reserved space, labels inside plot
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-reservespace-true/ : Left-aligned labels on a vertical category axis
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-reservespace/">No reserved space, labels inside plot</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-reservespace-true/">Left-aligned labels on a vertical category axis</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public Boolean reserveSpace;
 
 /**
 A [format string](http://www.highcharts.com/docs/chart-
 concepts/labels-and-string-formatting) for the axis label.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/labels-format/ : Add units to Y axis label
-* default: {value}
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/labels-format/">Add units to Y axis label</a> <br><br><b>default:</b><br><br>&ensp;{value}*/
 	public String format;
 
 /**
@@ -102,24 +92,18 @@ apply auto rotation. Instead, we lay out the axis label with word
 wrap. A lower limit makes sense when the label contains multiple
 short words that don't extend the available horizontal space for
 each label.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-autorotationlimit/ : Lower limit
-* default: 80
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-autorotationlimit/">Lower limit</a> <br><br><b>default:</b><br><br>&ensp;80*/
 	public Number autoRotationLimit;
 
 /**
 Enable or disable the axis labels.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-enabled/ : X axis labels disabled
-* default: true
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-enabled/">X axis labels disabled</a> <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean enabled;
 
 /**
 Horizontal axes only. The number of lines to spread the labels
 over to make room or tighter labels.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-staggerlines/ : Show labels over two lines
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-staggerlines/">Show labels over two lines</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public Number staggerLines;
 
 /**
@@ -137,23 +121,19 @@ orientation.
 - 'ortho': Rotated text along the axis direction so that the labels
 	 are orthogonal to the axis. This is very similar to 'flap', but
 	 prevents skewing the labels (X and Y scaling are still present).
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/ : Skewed labels
-* accepted values: ['offset', 'chart', 'flap', 'ortho']
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/">Skewed labels</a> <br><br><b>accepted values:</b><br><br>&ensp;['offset', 'chart', 'flap', 'ortho']*/
 	public String position3d;
 
 /**
 Whether to [use HTML](http://www.highcharts.com/docs/chart-
 concepts/labels-and-string-formatting#html) to render the labels.
-* default: false
-*/
+ <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean useHTML;
 
 /**
 The pixel padding for axis labels, to ensure white space between
 them.
-* default: 5
-*/
+ <br><br><b>default:</b><br><br>&ensp;5*/
 	public Number padding;
 
 /**
@@ -168,10 +148,7 @@ chosen the wrong axis type.
 Read more at
 [Axis docs](http://www.highcharts.com/docs/chart-concepts/axes)
 => What axis should I use?
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-step/ : Showing only every other axis label on a categorized x axis
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-step-auto/ : Auto steps on a category axis
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-step/">Showing only every other axis label on a categorized x axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-step-auto/">Auto steps on a category axis</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public Number step;
 
 /**
@@ -181,8 +158,7 @@ This will fix overlapping labels and titles, but texts become less
 legible due to the distortion.
 
 The final appearance depends heavily on labels.position3d.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/ : Skewed labels
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/">Skewed labels</a>*/
 	public Boolean skew3d;
 
 /**
@@ -197,16 +173,12 @@ Defaults to:
 function() {
     return this.value;
 }
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-formatter-linked/ : Linked category names
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-formatter-extended/ : Modified numeric labels
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-formatter-linked/">Linked category names</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-formatter-extended/">Modified numeric labels</a>*/
 	public HIFunction formatter;
 
 /**
 Rotation of the labels in degrees.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-rotation/ : X axis labels rotated 90ĂÂ°
-* default: 0
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-rotation/">X axis labels rotated 90ĂÂ°</a> <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number rotation;
 
 /**
@@ -217,10 +189,7 @@ will start rotating the labels -45 degrees, then remove
 every second label and try again with rotations 0 and -45 etc.
 Set it to false to disable rotation, which will
 cause the labels to word-wrap if possible.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-autorotation-default/ : Default auto rotation of 0 or -45
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-autorotation-0-90/ : Custom graded auto rotation
-* default: [-45]
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-autorotation-default/">Default auto rotation of 0 or -45</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-autorotation-0-90/">Custom graded auto rotation</a> <br><br><b>default:</b><br><br>&ensp;[-45]*/
 	public ArrayList<Number> autoRotation;
 
 /**
@@ -228,92 +197,76 @@ This option defines the point to which the label will be connected.
 It can be either the point which exists in the series - it is
 referenced by the point's id - or a new point with defined x, y
 properies and optionally axes.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/mock-point/ : Attach annotation to a mock point
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/mock-point/">Attach annotation to a mock point</a>*/
 	public HIPoint point;
 
 /**
 Whether to allow the annotation's labels to overlap.
 To make the labels less sensitive for overlapping, 
 the can be set to 0.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/tooltip-like/ : Hide overlapping labels
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/tooltip-like/">Hide overlapping labels</a>*/
 	public Boolean allowOverlap;
 
 /**
 The border color for the annotation's label.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/ : Set labels graphic options
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>*/
 	public HIColor borderColor;
 
 /**
 The vertical alignment of the annotation's label.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/ : Set labels position
-*
-* accepted values: ["top", "middle", "bottom"]
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position
+*</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]*/
 	public String verticalAlign;
 
 /**
 The border radius in pixels for the annotaiton's label.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/ : Set labels graphic options
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>*/
 	public Number borderRadius;
 
 /**
 Alias for the format option.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-text/ : Set labels text
-* default: undefined
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-text/">Set labels text</a> <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public String text;
 
 /**
 Whether to hide the annotation's label that is outside the plot
 area.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-crop-overflow/ : Crop or justify labels
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-crop-overflow/">Crop or justify labels</a>*/
 	public Boolean crop;
 
 /**
 A class name for styling by CSS.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/annotations : Styled mode annotations
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/annotations">Styled mode annotations</a>*/
 	public String className;
 
 /**
 The name of a symbol to use for the border around the label.
 Symbols are predefined functions on the Renderer object.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shapes/ : Available shapes for labels
-*
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shapes/">Available shapes for labels
+*</a>*/
 	public String shape;
 
 /**
 The border width in pixels for the annotation's label
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/ : Set labels graphic options
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>*/
 	public Number borderWidth;
 
 /**
 The background color or gradient for the annotation's label.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/ : Set labels graphic options
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>*/
 	public HIColor backgroundColor;
 
 /**
 How to handle the annotation's label that flow outside the plot
 area. The justify option aligns the label inside the plot area.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-crop-overflow/ : Crop or justify labels
-*
-* accepted values: ["none", "justify"]
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-crop-overflow/">Crop or justify labels
+*</a> <br><br><b>accepted values:</b><br><br>&ensp;["none", "justify"]*/
 	public String overflow;
 
 /**
 The shadow of the box. The shadow can be an object configuration
 containing color, offsetX, offsetY, opacity and width.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/ : Set labels graphic options
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>*/
 	public Object /* Boolean|Object */ shadow;
 
 

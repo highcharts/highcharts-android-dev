@@ -39,9 +39,7 @@ What part of the vector it should be rotated around. Can be one of
 start, center and end. When start, the vectors will start from
 the given [x, y] position, and when end the vectors will end in the
 [x, y] position.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/vector-rotationorigin-start/ : Rotate from start
-* accepted values: ["start", "center", "end"]
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/vector-rotationorigin-start/">Rotate from start</a> <br><br><b>accepted values:</b><br><br>&ensp;["start", "center", "end"]*/
 	public String rotationOrigin;
 
 

@@ -31,8 +31,7 @@ public class HIPareto extends HISeries {
 /**
 An integer identifying the index to use for the base series, or a string
 representing the id of the series.
-* default: undefined
-*/
+ <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public Object /* Number|String */ baseSeries;
 
 

@@ -31,16 +31,13 @@ attributes like fill, stroke, stroke-width or r, the border
 radius. The theme also supports style, a collection of CSS
 properties for the text. Equivalent attributes for the hover state
 are given in theme.states.hover.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/drillupbutton/ : Button theming
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/drillupbutton/">Button theming</a>*/
 	public Object theme;
 
 /**
 What box to align the button to. Can be either plotBox or
 spacingBox.
-* accepted values: ["plotBox", "spacingBox"]
-* default: plotBox
-*/
+ <br><br><b>accepted values:</b><br><br>&ensp;["plotBox", "spacingBox"] <br><br><b>default:</b><br><br>&ensp;plotBox*/
 	public String relativeTo;
 
 

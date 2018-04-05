@@ -28,8 +28,7 @@ Useful for benchmarking, and general timing.
 /**
 If set to true, the whole chart will be boosted if one of the series
 crosses its threshold, and all the series can be boosted.
-* default: true
-*/
+ <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean allowForce;
 
 /**
@@ -40,14 +39,12 @@ This option may cause rendering issues with certain datasets.
 Namely, if your dataset has large numbers with small increments (such as
 timestamps), it won't work correctly. This is due to floating point
 precission.
-* default: false
-*/
+ <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean useGPUTranslations;
 
 /**
 Enable or disable boost on a chart.
-* default: true
-*/
+ <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean enabled;
 
 /**
@@ -58,8 +55,7 @@ if there are 20 or more series active. When the chart is in boost mode,
 every series in it will be rendered to a common canvas. This offers
 a significant speed improvment in charts with a very high
 amount of series.
-* default: null
-*/
+ <br><br><b>default:</b><br><br>&ensp;null*/
 	public Number seriesThreshold;
 
 

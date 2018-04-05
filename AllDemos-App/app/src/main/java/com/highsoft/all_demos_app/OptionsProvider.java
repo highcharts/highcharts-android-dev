@@ -1,6 +1,7 @@
 package com.highsoft.all_demos_app;
 
 import com.highsoft.all_demos_app.demosOptions.areaCharts.BasicArea;
+import com.highsoft.all_demos_app.demosOptions.heatTreeMapsCharts.LargeHeatMap;
 import com.highsoft.all_demos_app.demosOptions.lineCharts.AjaxLine;
 import com.highsoft.all_demos_app.demosOptions.lineCharts.AnnotationsLine;
 import com.highsoft.all_demos_app.demosOptions.lineCharts.BasicLine;
@@ -29,12 +30,14 @@ class OptionsProvider {
             case "Line charts":
                 chartCategoryOptions = setLineChartsOptions();
                 break;
-//            case "Area charts":
-//                chartCategoryOptions = setAreaChartOptions();
-//                break;
-//            case "Column and bar charts":
-//                chartCategoryOptions = setColumnBarChartOptions();
-//                break;
+            case "Area charts":
+                chartCategoryOptions = setAreaChartOptions();
+                break;
+            case "Column and bar charts":
+                chartCategoryOptions = setColumnBarChartOptions();
+                break;
+            case "Heat and tree maps":
+                chartCategoryOptions = setHeatAndTreeMapsOptions();
         }
     }
 
@@ -42,7 +45,7 @@ class OptionsProvider {
         return chartCategoryOptions.get(chartType);
     }
 
-    HashMap<String, HIOptions> setLineChartsOptions(){
+    private HashMap<String, HIOptions> setLineChartsOptions(){
         HashMap<String, HIOptions> map = new HashMap<>();
         map.put("Basic line", BasicLine.getOptions());
         map.put("Ajax loaded data, clickable points", AjaxLine.getOptions()); //todo csv data
@@ -58,9 +61,9 @@ class OptionsProvider {
         return map;
     }
 
-//    HashMap<String, HIOptions> setAreaChartOptions(){
-//        HashMap<String, HIOptions> map = new HashMap<>();
-//        map.put("Basic area", BasicArea.getOptions());
+    private HashMap<String, HIOptions> setAreaChartOptions(){
+        HashMap<String, HIOptions> map = new HashMap<>();
+        map.put("Basic area", BasicArea.getOptions());
 //        map.put("Area with negative values", NegativeValuesArea.getOptions());
 //        map.put("Stacked area", StackedArea.getOptions());
 //        map.put("Percentage area", PercentageArea.getOptions());
@@ -71,12 +74,18 @@ class OptionsProvider {
 //        map.put("Area range and line", RangeAndLineArea.getOptions());
 //        map.put("Sparkline charts", SparklineArea.getOptions());
 //        map.put("Streamgraph", StreamgraphArea.getOptions());
-//        return map;
-//    }
-//
-//    HashMap<String, HIOptions> setColumnBarChartOptions(){
-//        HashMap<String, HIOptions> map = new HashMap<>();
+        return map;
+    }
+
+    private HashMap<String, HIOptions> setColumnBarChartOptions(){
+        HashMap<String, HIOptions> map = new HashMap<>();
 //        map.put("Basic bar", BasicBar.getOptions());
-//        return map;
-//    }
+        return map;
+    }
+
+    private HashMap<String, HIOptions> setHeatAndTreeMapsOptions(){
+        HashMap<String, HIOptions> map = new HashMap<>();
+        map.put("Large heat map", LargeHeatMap.getOptions());
+        return map;
+    }
 }

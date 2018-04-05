@@ -11,9 +11,10 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+
+import com.highsoft.highcharts.Common.HIColor;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
-import com.highsoft.highcharts.Common.HIColor;
 
 
 
@@ -33,9 +34,7 @@ public class HISankey extends HISeries {
 * description: When using automatic point colors pulled from the options.colors
 collection, this option determines whether the chart should receive
 one color per series or one color per point.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-false/ : False by default
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-true/ : True
-* default: false
+* demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-false/ : False by default •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-true/ : True* default: false
 */
 	public Boolean colorByPoint;
 
@@ -67,9 +66,7 @@ The minimal height for a column or width for a bar. By default,
 set the minimal point length to a pixel value like 3\. In stacked
 column charts, minPointLength might not be respected for tightly
 packed values.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-minpointlength/ : Zero base value
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-minpointlength-pos-and-neg/ : Positive and negative close to zero values
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-minpointlength/">Zero base value</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-minpointlength-pos-and-neg/">Positive and negative close to zero values</a>*/
 	public Number minPointLength;
 
 /**
@@ -84,8 +81,7 @@ column.colorByPoint) is true.
 A collection of options for the individual nodes. The nodes in a sankey 
 diagram are auto-generated instances of Highcharts.Point, but options can
 be applied here and linked by the id.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/sankey/ : Sankey diagram with node options
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/sankey/">Sankey diagram with node options</a>*/
 	public ArrayList <HINodes> nodes;
 
 
@@ -116,10 +112,13 @@ be applied here and linked by the id.
 		if (this.minPointLength != null) {
 			params.put("minPointLength", this.minPointLength);
 		}
-		if (this.colors != null) {
-			ArrayList<HIColor> array = new ArrayList<>();
+		if (this.colors != null) {  //BUG here
+//			ArrayList<HIColor> array = new ArrayList<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (HIColor hiColor : this.colors) {
-				array.add((HIColor) hiColor.getData());
+//				array.add((HIColor) hiColor.getData());
+				array.add(hiColor.getData());
+//				array.add(hiColor);
 			}
 			params.put("colors", array);
 		}

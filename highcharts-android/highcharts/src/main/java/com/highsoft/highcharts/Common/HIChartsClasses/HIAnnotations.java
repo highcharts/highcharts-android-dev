@@ -42,15 +42,13 @@ overwritten by config for a specific label.
 
 /**
 The Z index of the annotation.
-* default: 6
-*
-*/
+ <br><br><b>default:</b><br><br>&ensp;6
+**/
 	public Number zIndex;
 
 /**
 Whether the annotation is visible.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/visible/ : Set annotation visibility
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/visible/">Set annotation visibility</a>*/
 	public Boolean visible;
 
 /**

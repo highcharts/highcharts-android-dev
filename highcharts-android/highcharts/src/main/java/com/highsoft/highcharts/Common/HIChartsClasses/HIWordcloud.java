@@ -33,16 +33,13 @@ public class HIWordcloud extends HISeries {
 * description: When using automatic point colors pulled from the options.colors
 collection, this option determines whether the chart should receive
 one color per series or one color per point.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-false/ : False by default
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-true/ : True
-* default: false
+* demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-false/ : False by default •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-true/ : True* default: false
 */
 	public Boolean colorByPoint;
 
 /**
 CSS styles for the words.
-* default: {"fontFamily":"sans-serif", "fontWeight": "900"}
-*/
+ <br><br><b>default:</b><br><br>&ensp;{"fontFamily":"sans-serif", "fontWeight": "900"}*/
 	public HIStyle style;
 
 /**
@@ -59,15 +56,13 @@ for use in word cloud. Read more about it in our
 
 In styled mode, the stroke width can be set with the .highcharts-point
 rule.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-borderwidth/ : 2px black border
-* default: 1
+* demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-borderwidth/ : 2px black border* default: 1
 */
 	public Number borderWidth;
 
 /**
 Rotation options for the words in the wordcloud.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/wordcloud-rotation : Word cloud with rotation
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/wordcloud-rotation">Word cloud with rotation</a>*/
 	public HIRotation rotation;
 
 /**
@@ -82,9 +77,7 @@ for use in word cloud. Read more about it in our
 
 /**
 The corner radius of the border surrounding each column or bar.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-borderradius/ : Rounded columns
-* default: 0
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-borderradius/">Rounded columns</a> <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number borderRadius;
 
 /**
@@ -100,15 +93,12 @@ The color of the border surrounding each column or bar.
 
 In styled mode, the border stroke can be set with the .highcharts-point
 rule.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-bordercolor/ : Dark gray border
-* default: #ffffff
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-bordercolor/">Dark gray border</a> <br><br><b>default:</b><br><br>&ensp;#ffffff*/
 	public HIColor borderColor;
 
 /**
 3D columns only. The width of the colored edges.
-* default: 1
-*/
+ <br><br><b>default:</b><br><br>&ensp;1*/
 	public Number edgeWidth;
 
 

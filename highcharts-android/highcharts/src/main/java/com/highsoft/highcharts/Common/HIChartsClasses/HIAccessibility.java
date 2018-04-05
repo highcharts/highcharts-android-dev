@@ -27,15 +27,13 @@ of the region.
 
 The link to view the chart as a data table will be added
 automatically after the custom HTML content.
-* default: undefined
-*/
+ <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public HIFunction screenReaderSectionFormatter;
 
 /**
 Whether or not to add series descriptions to charts with a single
 series.
-* default: false
-*/
+ <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean describeSingleSeries;
 
 /**
@@ -45,8 +43,7 @@ Options for keyboard navigation.
 
 /**
 Enable accessibility features for the chart.
-* default: true
-*/
+ <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean enabled;
 
 /**

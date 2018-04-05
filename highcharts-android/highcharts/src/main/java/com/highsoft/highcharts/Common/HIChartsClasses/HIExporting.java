@@ -33,8 +33,7 @@ The text for the menu item
 textKey
 If internationalization is required, the key to a language string
 
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/menuitemdefinitions/ : Menu item definitions
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/menuitemdefinitions/">Menu item definitions</a>*/
 	public Object menuItemDefinitions;
 
 /**
@@ -46,8 +45,7 @@ Analogous to sourceWidth.
 The width of the original chart when exported, unless an explicit
 chart.width is set. The width exported raster image
 is then multiplied by scale.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/sourcewidth/ : Source size demo
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/sourcewidth/">Source size demo</a>*/
 	public Number sourceWidth;
 
 /**
@@ -55,22 +53,18 @@ Defines the scale or zoom factor for the exported image compared
 to the on-screen display. While for instance a 600px wide chart
 may look good on a website, it will look bad in print. The default
 scale of 2 makes this chart export to a 1200px PNG or JPG.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/scale/ : Scale demonstrated
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/scale/">Scale demonstrated</a>*/
 	public Number scale;
 
 /**
 Export-data module required. Show a HTML table below the chart with
 the chart's current data.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/showtable/ : Show the table
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/showtable/">Show the table</a>*/
 	public Boolean showTable;
 
 /**
 The filename, without extension, to use for the exported chart.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/filename/ : Custom file name
-* default: chart
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/filename/">Custom file name</a> <br><br><b>default:</b><br><br>&ensp;chart*/
 	public String filename;
 
 /**
@@ -86,9 +80,7 @@ The pixel width of charts exported to PNG or JPG. As of Highcharts
 3.0, the default pixel width is a function of the [chart.width](#chart.
 width) or exporting.sourceWidth and the
 exporting.scale.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/width/ : Export to 200px wide images
-* default: undefined
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/width/">Export to 200px wide images</a> <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public Number width;
 
 /**
@@ -97,8 +89,7 @@ the on-screen chart exceeds this width, it is resized. After printing
 or cancelled, it is restored. The default width makes the chart
 fit into typical paper format. Note that this does not affect the
 chart when printing the web page as a whole.
-* default: 780
-*/
+ <br><br><b>default:</b><br><br>&ensp;780*/
 	public Number printMaxWidth;
 
 /**
@@ -107,26 +98,21 @@ in a HTML table or a JavaScript structure. Requires the
 export-data.js module. This module adds data export options to the
 export menu and provides functions like Chart.getCSV,
 Chart.getTable, Chart.getDataRows and Chart.viewData.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/categorized/ : Categorized data
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/stock-timeaxis/ : Highstock time axis
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/categorized/">Categorized data</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/stock-timeaxis/">Highstock time axis</a>*/
 	public HICsv csv;
 
 /**
 Default MIME type for exporting if chart.exportChart() is called
 without specifying a type option. Possible values are image/png,
  image/jpeg, application/pdf and image/svg+xml.
-* accepted values: ["image/png", "image/jpeg", "application/pdf", "image/svg+xml"]
-*/
+ <br><br><b>accepted values:</b><br><br>&ensp;["image/png", "image/jpeg", "application/pdf", "image/svg+xml"]*/
 	public String type;
 
 /**
 Additional chart options to be merged into an exported chart. For
 example, a common use case is to add data labels to improve readability
 of the exported chart, or to add a printer-friendly color scheme.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/chartoptions-data-labels/ : Added data labels
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/chartoptions-data-labels/">Added data labels</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public Object chartOptions;
 
 /**
@@ -140,15 +126,13 @@ set to make sure the generated image is received in another frame,
 /**
 Whether or not to fall back to the export server if the offline-exporting
 module is unable to export the chart on the client side.
-* default: true
-*/
+ <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean fallbackToExportServer;
 
 /**
 Export-data module required. If using multi level table headers, use
 rowspans for headers that have only one level.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table : Multiple table headers
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table">Multiple table headers</a>*/
 	public Boolean useRowspanHeaders;
 
 /**
@@ -156,8 +140,7 @@ Export-data module required. Use multi level headers in data table.
 If csv.columnHeaderFormatter
 is defined, it has to return objects in order for multi level headers
 to work.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table : Multiple table headers
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table">Multiple table headers</a>*/
 	public Boolean useMultiLevelHeaders;
 
 /**
@@ -169,9 +152,7 @@ format. By default this points to Highchart's free web service.
 /**
 Whether to enable the exporting module. Disabling the module will
 hide the context button, but API methods will still be available.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/enabled-false/ : Exporting module is loaded but disabled
-* default: true
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/enabled-false/">Exporting module is loaded but disabled</a> <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean enabled;
 
 /**
@@ -185,16 +166,13 @@ generated SVG. The official export server is based on PhantomJS,
 which supports this, but other SVG clients, like Batik, does not
 support it. This also applies to downloaded SVG that you want to
 open in a desktop client.
-* default: false
-*/
+ <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean allowHTML;
 
 /**
 Export-data module required. Caption for the data table. Same as
 chart title by default. Set to false to disable.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table : Multiple table headers
-* default: undefined
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table">Multiple table headers</a> <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public Object /* Boolean|String */ tableCaption;
 
 /**
@@ -202,8 +180,7 @@ Function to call if the offline-exporting module fails to export
 a chart on the client side, and [fallbackToExportServer](#exporting.
 fallbackToExportServer) is disabled. If left undefined, an exception
 is thrown instead.
-* default: undefined
-*/
+ <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public HIFunction error;
 
 /**

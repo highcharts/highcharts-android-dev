@@ -22,44 +22,37 @@ public class HIBackground implements HIChartsJSONSerializable {
 
 /**
 The pane background border color.
-* default: #cccccc
-*/
+ <br><br><b>default:</b><br><br>&ensp;#cccccc*/
 	public HIColor borderColor;
 
 /**
 The outer radius of the circular pane background. Can be either
 numeric (pixels) or a percentage string.
-* default: 105%
-*/
+ <br><br><b>default:</b><br><br>&ensp;105%*/
 	public Object /* Number|String */ outerRadius;
 	public Object from;
 
 /**
 The inner radius of the pane background. Can be either numeric
 (pixels) or a percentage string.
-* default: 0
-*/
+ <br><br><b>default:</b><br><br>&ensp;0*/
 	public Object /* Number|String */ innerRadius;
 
 /**
 The class name for this background.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/pane/ : Panes styled by CSS
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/pane/">Panes styled by CSS</a>*/
 	public String className;
 
 /**
 Tha shape of the pane background. When solid, the background
 is circular. When arc, the background extends only from the min
 to the max of the value axis.
-* accepted values: ["solid", "arc"]
-* default: solid
-*/
+ <br><br><b>accepted values:</b><br><br>&ensp;["solid", "arc"] <br><br><b>default:</b><br><br>&ensp;solid*/
 	public String shape;
 
 /**
 The pixel border width of the pane background.
-* default: 1
-*/
+ <br><br><b>default:</b><br><br>&ensp;1*/
 	public Number borderWidth;
 
 /**
@@ -82,7 +75,6 @@ The background color or gradient for the pane.
 			params.put("outerRadius", this.outerRadius);
 		}
 		if (this.from != null) {
-			params.put("from", this.from);
 		}
 		if (this.innerRadius != null) {
 			params.put("innerRadius", this.innerRadius);

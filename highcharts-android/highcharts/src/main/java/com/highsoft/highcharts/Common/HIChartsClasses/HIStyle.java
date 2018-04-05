@@ -30,14 +30,12 @@ public class HIStyle implements HIChartsJSONSerializable {
 
 /**
 Border radius of the focus border.
-* default: 3
-*/
+ <br><br><b>default:</b><br><br>&ensp;3*/
 	public Number borderRadius;
 
 /**
 Line width of the focus border.
-* default: 2
-*/
+ <br><br><b>default:</b><br><br>&ensp;2*/
 	public Number lineWidth;
 	public String textOverflow;
 	public String cursor;

@@ -24,9 +24,7 @@ public class HIPlotBands implements HIChartsJSONSerializable {
 In a gauge chart, this option determines the outer radius of the
 plot band that stretches along the perimeter. It can be given as
 a percentage string, like "100%", or as a pixel number, like 100.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-gauge : Gauge plot band
-* default: 100%
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-gauge">Gauge plot band</a> <br><br><b>default:</b><br><br>&ensp;100%*/
 	public Object /* Number|String */ outerRadius;
 
 /**
@@ -35,9 +33,7 @@ plot band that stretches along the perimeter. It can be given as
 a percentage string, like "100%", or as a pixel number, like 100.
 By default, the inner radius is controlled by the [thickness](#yAxis.
 plotBands.thickness) option.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-gauge : Gauge plot band
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-gauge">Gauge plot band</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public Object /* Number|String */ innerRadius;
 
 /**
@@ -46,16 +42,13 @@ along the perimeter. It can be given as a percentage string, like
 "10%", or as a pixel number, like 10. The default value 10 is
 the same as the default tickLength, thus making
 the plot band act as a background for the tick markers.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-gauge : Gauge plot band
-* default: 10
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-gauge">Gauge plot band</a> <br><br><b>default:</b><br><br>&ensp;10*/
 	public Object /* Number|String */ thickness;
 
 /**
 Border color for the plot band. Also requires borderWidth to be
 set.
-* default: null
-*/
+ <br><br><b>default:</b><br><br>&ensp;null*/
 	public HIColor borderColor;
 
 /**
@@ -63,33 +56,22 @@ The z index of the plot band within the chart, relative to other
 elements. Using the same z index as another element may give unpredictable
 results, as the last rendered element will be on top. Values from
 0 to 20 make sense.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-color/ : Behind plot lines by default
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-zindex/ : Above plot lines
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-zindex-above-series/ : Above plot lines and series
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-color/">Behind plot lines by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-zindex/">Above plot lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-zindex-above-series/">Above plot lines and series</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public Number zIndex;
 
 /**
 The start position of the plot band in axis units.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-color/ : Datetime axis
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-from/ : Categorized axis
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-color/">Datetime axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-from/">Categorized axis</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public Number from;
 
 /**
 The color of the plot band.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-color/ : Color band
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-color/">Color band</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public HIColor color;
 
 /**
 An id used for identifying the plot band in Axis.removePlotBand.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-id/ : Remove plot band by id
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-id/">Remove plot band by id</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public String id;
 
 /**
@@ -100,17 +82,13 @@ apply to each individual band.
 
 /**
 The end position of the plot band in axis units.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-color/ : Datetime axis
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-from/ : Categorized axis
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-color/">Datetime axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-from/">Categorized axis</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public Number to;
 
 /**
 Border width for the plot band. Also requires borderColor to be
 set.
-* default: 0
-*/
+ <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number borderWidth;
 
 /**
@@ -121,8 +99,7 @@ Text labels for the plot bands
 /**
 An object defining mouse events for the plot band. Supported properties
 are click, mouseover, mouseout, mousemove.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-events/ : Mouse events demonstrated
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-events/">Mouse events demonstrated</a>*/
 	public Object events;
 
 

@@ -23,9 +23,7 @@ public class HIDrilldown implements HIChartsJSONSerializable {
 Additional styles to apply to the data label of a point that has
 drilldown data. By default it is underlined and blue to invite to
 interaction.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/labels/ : Label styles
-* default: { "cursor": "pointer", "color": "#003399", "fontWeight": "bold", "textDecoration": "underline" }
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/labels/">Label styles</a> <br><br><b>default:</b><br><br>&ensp;{ "cursor": "pointer", "color": "#003399", "fontWeight": "bold", "textDecoration": "underline" }*/
 	public HIActiveDataLabelStyle activeDataLabelStyle;
 
 /**
@@ -40,9 +38,7 @@ series is linked to the parent series' point by its id.
 When this option is false, clicking a single point will drill down
 all points in the same category, equivalent to clicking the X axis
 label.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/allowpointdrilldown-false/ : Don't allow point drilldown
-* default: true
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/allowpointdrilldown-false/">Don't allow point drilldown</a> <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean allowPointDrilldown;
 
 /**
@@ -72,17 +68,14 @@ animation-easing/).
 Options for the drill up button that appears when drilling down
 on a series. The text for the button is defined in
 lang.drillUpText.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/drillupbutton/ : Drill up button
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/drillupbutton/">Drill up button</a>*/
 	public HIDrillUpButton drillUpButton;
 
 /**
 Additional styles to apply to the X axis label for a point that
 has drilldown data. By default it is underlined and blue to invite
 to interaction.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/labels/ : Label styles
-* default: { "cursor": "pointer", "color": "#003399", "fontWeight": "bold", "textDecoration": "underline" }
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/labels/">Label styles</a> <br><br><b>default:</b><br><br>&ensp;{ "cursor": "pointer", "color": "#003399", "fontWeight": "bold", "textDecoration": "underline" }*/
 	public HIActiveAxisLabelStyle activeAxisLabelStyle;
 
 

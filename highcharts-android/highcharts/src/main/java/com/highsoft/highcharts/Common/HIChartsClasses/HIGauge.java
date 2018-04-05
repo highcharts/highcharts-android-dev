@@ -33,8 +33,7 @@ Options for the dial or arrow pointer of the gauge.
 
 In styled mode, the dial is styled with the
 .highcharts-gauge-series .highcharts-dial rule.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/gauge/ : Styled mode
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/gauge/">Styled mode</a>*/
 	public HIDial dial;
 
 /**
@@ -42,17 +41,14 @@ Allow the dial to overshoot the end of the perimeter axis by this
 many degrees. Say if the gauge axis goes from 0 to 60, a value of
 100, or 1000, will show 5 degrees beyond the end of the axis when this
 option is set to 5.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-overshoot/ : Allow 5 degrees overshoot
-* default: 0
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-overshoot/">Allow 5 degrees overshoot</a> <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number overshoot;
 
 /**
 When this option is true, the dial will wrap around the axes. For
 instance, in a full-range gauge going from 0 to 360, a value of 400
 will point to 40\. When wrap is false, the dial stops at 360.
-* default: true
-*/
+ <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean wrap;
 
 /**
@@ -60,8 +56,7 @@ Options for the pivot or the center point of the gauge.
 
 In styled mode, the pivot is styled with the
 .highcharts-gauge-series .highcharts-pivot rule.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/gauge/ : Styled mode
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/gauge/">Styled mode</a>*/
 	public HIPivot pivot;
 
 

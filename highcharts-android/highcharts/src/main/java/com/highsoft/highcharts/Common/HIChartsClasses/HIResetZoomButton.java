@@ -21,8 +21,7 @@ public class HIResetZoomButton implements HIChartsJSONSerializable {
 
 /**
 The position of the button.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-position/ : Above the plot area
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-position/">Above the plot area</a>*/
 	public HIPosition position;
 
 /**
@@ -31,17 +30,13 @@ attributes like fill, stroke, stroke-width or r, the border
 radius. The theme also supports style, a collection of CSS properties
 for the text. Equivalent attributes for the hover state are given
 in theme.states.hover.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-theme/ : Theming the button
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-theme/">Theming the button</a>*/
 	public HITheme theme;
 
 /**
 What frame the button should be placed related to. Can be either
 plot or chart
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-relativeto/ : Relative to the chart
-* accepted values: ["plot", "chart"]
-* default: plot
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-relativeto/">Relative to the chart</a> <br><br><b>accepted values:</b><br><br>&ensp;["plot", "chart"] <br><br><b>default:</b><br><br>&ensp;plot*/
 	public String relativeTo;
 
 

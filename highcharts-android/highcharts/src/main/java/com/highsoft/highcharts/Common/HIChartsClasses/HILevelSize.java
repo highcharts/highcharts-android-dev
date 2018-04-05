@@ -27,16 +27,13 @@ pixels gives the ring a fixed width in pixels.
 weight takes the remaining width after percentage and pixels, and
 distributes it accross all "weighted" levels. The value relative to the
 sum of all weights determines the width.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-levelsize/ : Sunburst with various sizes per level
-* accepted values: ["percentage", "pixels", "weight"]
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-levelsize/">Sunburst with various sizes per level</a> <br><br><b>accepted values:</b><br><br>&ensp;["percentage", "pixels", "weight"]*/
 	public String unit;
 
 /**
 The value used for calculating the width of the ring. Its' affect is
 determined by levelSize.unit.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-levelsize/ : Sunburst with various sizes per level
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-levelsize/">Sunburst with various sizes per level</a>*/
 	public Number value;
 
 

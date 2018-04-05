@@ -23,8 +23,7 @@ public class HIOptions3d implements HIChartsJSONSerializable {
 Defines the distance the viewer is standing in front of the chart,
 this setting is important to calculate the perspective effect
 in column and scatter charts. It is not used for 3D pie charts.
-* default: 100
-*/
+ <br><br><b>default:</b><br><br>&ensp;100*/
 	public Number viewDistance;
 
 /**
@@ -36,40 +35,33 @@ a bottom, front and back panel.
 /**
 Set it to "auto" to automatically move the labels to the best
 edge.
-* accepted values: [null, "auto"]
-* default: null
-*/
+ <br><br><b>accepted values:</b><br><br>&ensp;[null, "auto"] <br><br><b>default:</b><br><br>&ensp;null*/
 	public String axisLabelPosition;
 
 /**
 Wether to render the chart using the 3D functionality.
-* default: false
-*/
+ <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean enabled;
 
 /**
 One of the two rotation angles for the chart.
-* default: 0
-*/
+ <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number beta;
 
 /**
 The total depth of the chart.
-* default: 100
-*/
+ <br><br><b>default:</b><br><br>&ensp;100*/
 	public Number depth;
 
 /**
 Whether the 3d box should automatically adjust to the chart plot
 area.
-* default: true
-*/
+ <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean fitToPlot;
 
 /**
 One of the two rotation angles for the chart.
-* default: 0
-*/
+ <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number alpha;
 
 

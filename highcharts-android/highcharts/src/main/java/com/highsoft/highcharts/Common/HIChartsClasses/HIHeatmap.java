@@ -31,23 +31,18 @@ public class HIHeatmap extends HISeries {
 
 /**
 Padding between the points in the heatmap.
-* default: 0
-*/
+ <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number pointPadding;
 
 /**
 The column size - how many X axis units each column in the heatmap
 should span.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/heatmap/ : One day
-* default: 1
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/heatmap/">One day</a> <br><br><b>default:</b><br><br>&ensp;1*/
 	public Number colsize;
 
 /**
 The row size - how many Y axis units each heatmap row should span.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/heatmap/ : 1 by default
-* default: 1
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/heatmap/">1 by default</a> <br><br><b>default:</b><br><br>&ensp;1*/
 	public Number rowsize;
 
 /**

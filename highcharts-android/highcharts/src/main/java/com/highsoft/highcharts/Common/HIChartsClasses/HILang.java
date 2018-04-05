@@ -31,8 +31,7 @@ Export-data module only. The text for the menu item.
 
 /**
 Exporting module only. The text for the PNG download menu item.
-* default: Download PNG image
-*/
+ <br><br><b>default:</b><br><br>&ensp;Download PNG image*/
 	public String downloadPNG;
 
 /**
@@ -55,23 +54,19 @@ screenReaderSectionFormatter).
 /**
 Short week days, starting Sunday. If not specified, Highcharts uses
 the first three letters of the lang.weekdays option.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/shortweekdays/ : Finnish two-letter abbreviations
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/shortweekdays/">Finnish two-letter abbreviations</a>*/
 	public ArrayList<String> shortWeekdays;
 
 /**
 The text to display when the chart contains no data. Requires the
 no-data module, see noData.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line : No-data text
-* default: No data to display
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line">No-data text</a> <br><br><b>default:</b><br><br>&ensp;No data to display*/
 	public String noData;
 
 /**
 The loading text that appears when the chart is set into the loading
 state following a call to chart.showLoading.
-* default: Loading...
-*/
+ <br><br><b>default:</b><br><br>&ensp;Loading...*/
 	public String loading;
 
 /**
@@ -79,45 +74,37 @@ state following a call to chart.showLoading.
 to shorten high numbers in axis labels. Replacing any of the positions
 with null causes the full number to be written. Setting numericSymbols
 to null disables shortening altogether.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbols/ : Replacing the symbols with text
-* default: [ "k" , "M" , "G" , "T" , "P" , "E"]
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbols/">Replacing the symbols with text</a> <br><br><b>default:</b><br><br>&ensp;[ "k" , "M" , "G" , "T" , "P" , "E"]*/
 	public ArrayList<String> numericSymbols;
 
 /**
 Exporting module only. The text for the menu item to print the chart.
-* default: Print chart
-*/
+ <br><br><b>default:</b><br><br>&ensp;Print chart*/
 	public String printChart;
 
 /**
 The magnitude of numericSymbols replacements.
 Use 10000 for Japanese, Korean and various Chinese locales, which
 use symbols for 10^4, 10^8 and 10^12.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbolmagnitude/ : 10000 magnitude for Japanese
-* default: 1000
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbolmagnitude/">10000 magnitude for Japanese</a> <br><br><b>default:</b><br><br>&ensp;1000*/
 	public Number numericSymbolMagnitude;
 
 /**
 An array containing the weekday names.
-* default: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
-         "Friday", "Saturday"]
-*/
+ <br><br><b>default:</b><br><br>&ensp;["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
+         "Friday", "Saturday"]*/
 	public ArrayList<String> weekdays;
 
 /**
 Exporting module only. The text for the SVG download menu item.
-* default: Download SVG vector image
-*/
+ <br><br><b>default:</b><br><br>&ensp;Download SVG vector image*/
 	public String downloadSVG;
 
 /**
 The text for the button that appears when drilling down, linking
 back to the parent series. The parent series' name is inserted for
 {series.name}.
-* default: Back to {series.name}
-*/
+ <br><br><b>default:</b><br><br>&ensp;Back to {series.name}*/
 	public String drillUpText;
 
 /**
@@ -128,8 +115,7 @@ Export-data module only. The text for the menu item.
 /**
 Exporting module menu. The tooltip title for the context menu holding
 print and export menu items.
-* default: Chart context menu
-*/
+ <br><br><b>default:</b><br><br>&ensp;Chart context menu*/
 	public String contextButtonTitle;
 
 /**
@@ -140,50 +126,43 @@ string.
 
 /**
 The text for the label appearing when a chart is zoomed.
-* default: Reset zoom
-*/
+ <br><br><b>default:</b><br><br>&ensp;Reset zoom*/
 	public String resetZoom;
 
 /**
 Exporting module only. The text for the PDF download menu item.
-* default: Download PDF document
-*/
+ <br><br><b>default:</b><br><br>&ensp;Download PDF document*/
 	public String downloadPDF;
 
 /**
 An array containing the months names. Corresponds to the %B format
 in Highcharts.dateFormat().
-* default: [ "January" , "February" , "March" , "April" , "May" ,
+ <br><br><b>default:</b><br><br>&ensp;[ "January" , "February" , "March" , "April" , "May" ,
          "June" , "July" , "August" , "September" , "October" ,
-         "November" , "December"]
-*/
+         "November" , "December"]*/
 	public ArrayList<String> months;
 
 /**
 An array containing the months names in abbreviated form. Corresponds
 to the %b format in Highcharts.dateFormat().
-* default: [ "Jan" , "Feb" , "Mar" , "Apr" , "May" , "Jun" ,
-         "Jul" , "Aug" , "Sep" , "Oct" , "Nov" , "Dec"]
-*/
+ <br><br><b>default:</b><br><br>&ensp;[ "Jan" , "Feb" , "Mar" , "Apr" , "May" , "Jun" ,
+         "Jul" , "Aug" , "Sep" , "Oct" , "Nov" , "Dec"]*/
 	public ArrayList<String> shortMonths;
 
 /**
 Exporting module only. The text for the JPEG download menu item.
-* default: Download JPEG image
-*/
+ <br><br><b>default:</b><br><br>&ensp;Download JPEG image*/
 	public String downloadJPEG;
 
 /**
 The default decimal point used in the Highcharts.numberFormat
 method unless otherwise specified in the function arguments.
-* default: .
-*/
+ <br><br><b>default:</b><br><br>&ensp;.*/
 	public String decimalPoint;
 
 /**
 The tooltip title for the label appearing when a chart is zoomed.
-* default: Reset zoom level 1:1
-*/
+ <br><br><b>default:</b><br><br>&ensp;Reset zoom level 1:1*/
 	public String resetZoomTitle;
 
 /**

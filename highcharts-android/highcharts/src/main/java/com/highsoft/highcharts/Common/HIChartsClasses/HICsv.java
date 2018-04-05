@@ -41,8 +41,7 @@ For the axis it returns the axis title or "Category" or
 "DateTime" by default.
 
 Return false to use Highcharts' proposed header.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table : Multiple table headers
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table">Multiple table headers</a>*/
 	public HIFunction columnHeaderFormatter;
 
 /**

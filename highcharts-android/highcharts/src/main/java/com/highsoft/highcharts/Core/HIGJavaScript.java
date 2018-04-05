@@ -69,8 +69,8 @@ final class HIGJavaScript{
             HIFunctionInterface<HIChartContext, String> hiFI = function.getHiFunctionInterface();
             String[] properties = function.getProperties();
             Runnable runnable = function.getRfunction();
+            String id = function.getId();
             HIFunctionHandler hiFunctionHandler;
-            String id = "Android" + counter++;
             if(hiC != null){
                 hiFunctionHandler = new HIFunctionHandler(hiC, webView, id, properties);
                 webView.addJavascriptInterface(hiFunctionHandler, id);

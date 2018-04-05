@@ -27,8 +27,7 @@ markers etc.
 
 Note that the k-d tree is built async, and runs post-rendering.
 Following, it does not affect the performance of the rendering itself.
-* default: false
-*/
+ <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean timeKDTree;
 
 /**
@@ -36,8 +35,7 @@ Time the series processing.
 
 This outputs the time spent on transforming the series data to
 vertex buffers when set to true.
-* default: false
-*/
+ <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean timeSeriesProcessing;
 
 /**
@@ -48,8 +46,7 @@ into the SVG.
 
 If this property is set to true, the time it takes for the buffer copy
 to complete is outputted.
-* default: false
-*/
+ <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean timeBufferCopy;
 
 /**
@@ -57,8 +54,7 @@ Time the the WebGL setup.
 
 This outputs the time spent on setting up the WebGL context,
 creating shaders, and textures.
-* default: false
-*/
+ <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean timeSetup;
 
 /**
@@ -66,8 +62,7 @@ Time the series rendering.
 
 This outputs the time spent on actual rendering in the console when
 set to true.
-* default: false
-*/
+ <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean timeRendering;
 
 /**
@@ -76,8 +71,7 @@ Show the number of points skipped through culling.
 When set to true, the number of points skipped in series processing
 is outputted. Points are skipped if they are closer than 1 pixel from
 each other.
-* default: false
-*/
+ <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean showSkipSummary;
 
 

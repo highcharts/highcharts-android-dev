@@ -23,18 +23,14 @@ public class HINavigation implements HIChartsJSONSerializable {
 /**
 CSS styles for the popup menu appearing by default when the export
 icon is clicked. This menu is rendered in HTML.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/menustyle/ : Light gray menu background
-* default: { "border": "1px solid #999999", "background": "#ffffff", "padding": "5px 0" }
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/menustyle/">Light gray menu background</a> <br><br><b>default:</b><br><br>&ensp;{ "border": "1px solid #999999", "background": "#ffffff", "padding": "5px 0" }*/
 	public HIMenuStyle menuStyle;
 
 /**
 CSS styles for the individual items within the popup menu appearing
 by default when the export icon is clicked. The menu items are rendered
 in HTML.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/menuitemstyle/ : Add a grey stripe to the left
-* default: { "padding": "0.5em 1em", "color": "#333333", "background": "none" }
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/menuitemstyle/">Add a grey stripe to the left</a> <br><br><b>default:</b><br><br>&ensp;{ "padding": "0.5em 1em", "color": "#333333", "background": "none" }*/
 	public HIMenuItemStyle menuItemStyle;
 
 /**
@@ -49,23 +45,18 @@ In styled mode, the buttons are styled with the .highcharts-contextbutton and .h
 CSS styles for the hover state of the individual items within the
 popup menu appearing by default when the export icon is clicked.
  The menu items are rendered in HTML.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/menuitemhoverstyle/ : Bold text on hover
-* default: { "background": "#335cad", "color": "#ffffff" }
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/menuitemhoverstyle/">Bold text on hover</a> <br><br><b>default:</b><br><br>&ensp;{ "background": "#335cad", "color": "#ffffff" }*/
 	public HIMenuItemHoverStyle menuItemHoverStyle;
 
 /**
 Text styles for the legend page navigation.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation/ : Legend page navigation demonstrated
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation/">Legend page navigation demonstrated</a>*/
 	public HashMap<String,String> style;
 
 /**
 The pixel size of the up and down arrows in the legend paging
 navigation.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation/ : Legend page navigation demonstrated
-* default: 12
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation/">Legend page navigation demonstrated</a> <br><br><b>default:</b><br><br>&ensp;12*/
 	public Number arrowSize;
 
 /**
@@ -76,16 +67,13 @@ See also the [adapt chart to legend](http://www.highcharts.com/plugin-
 registry/single/8/Adapt-Chart-To-Legend) plugin for a solution to
 extend the chart height to make room for the legend, optionally in
 exported charts only.
-* default: true
-*/
+ <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean enabled;
 
 /**
 The color of the inactive up or down arrow in the legend page
 navigation. .
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation/ : Legend page navigation demonstrated
-* default: #cccccc
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation/">Legend page navigation demonstrated</a> <br><br><b>default:</b><br><br>&ensp;#cccccc*/
 	public HIColor inactiveColor;
 
 /**
@@ -93,16 +81,12 @@ How to animate the pages when navigating up or down. A value of true
 applies the default navigation given in the chart.animation option.
 Additional options can be given as an object containing values for
 easing and duration.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation/ : Legend page navigation demonstrated
-* default: true
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation/">Legend page navigation demonstrated</a> <br><br><b>default:</b><br><br>&ensp;true*/
 	public Object /* Boolean|Object */ animation;
 
 /**
 The color for the active up or down arrow in the legend page navigation.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation/ : Legend page navigation demonstrated
-* default: #003399
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation/">Legend page navigation demonstrated</a> <br><br><b>default:</b><br><br>&ensp;#003399*/
 	public HIColor activeColor;
 
 

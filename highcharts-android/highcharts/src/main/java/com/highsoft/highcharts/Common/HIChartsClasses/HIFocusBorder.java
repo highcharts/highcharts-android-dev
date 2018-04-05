@@ -21,8 +21,7 @@ public class HIFocusBorder implements HIChartsJSONSerializable {
 
 /**
 Focus border margin around the elements.
-* default: 2
-*/
+ <br><br><b>default:</b><br><br>&ensp;2*/
 	public Number margin;
 
 /**
@@ -38,14 +37,12 @@ In styled mode, the border is given the
 
 /**
 Enable/disable focus border for chart.
-* default: true
-*/
+ <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean enabled;
 
 /**
 Hide the browser's default focus indicator.
-* default: true
-*/
+ <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean hideBrowserFocusOutline;
 
 

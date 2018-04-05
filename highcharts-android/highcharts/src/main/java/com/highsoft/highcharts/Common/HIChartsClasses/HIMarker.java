@@ -22,8 +22,7 @@ public class HIMarker implements HIChartsJSONSerializable {
 
 /**
 The color of the marker.
-* default: #999999
-*/
+ <br><br><b>default:</b><br><br>&ensp;#999999*/
 	public HIColor color;
 
 /**
@@ -45,11 +44,8 @@ charts, its URL needs to be accessible by the export server.
 Custom callbacks for symbol path generation can also be added to
 Highcharts.SVGRenderer.prototype.symbols. The callback is then
 used by its method name, as shown in the demo.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-symbol/ : Predefined, graphic and custom markers
-* accepted values: [null, "circle", "square", "diamond", "triangle",
-        "triangle-down"]
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-symbol/">Predefined, graphic and custom markers</a> <br><br><b>accepted values:</b><br><br>&ensp;[null, "circle", "square", "diamond", "triangle",
+        "triangle-down"] <br><br><b>default:</b><br><br>&ensp;null*/
 	public String symbol;
 
 /**
@@ -60,23 +56,18 @@ States for a single point marker.
 /**
 The fill color of the point marker. When null, the series' or
 point's color is used.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-fillcolor/ : White fill
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-fillcolor/">White fill</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public HIColor fillColor;
 
 /**
 The color of the point marker's outline. When null, the series'
 or point's color is used.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-fillcolor/ : Inherit from series color (null)
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-fillcolor/">Inherit from series color (null)</a>*/
 	public HIColor lineColor;
 
 /**
 The width of the point marker's outline.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-fillcolor/ : 2px blue marker
-* default: 0
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-fillcolor/">2px blue marker</a> <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number lineWidth;
 
 /**
@@ -87,23 +78,18 @@ The fill opacity of the bubble markers.
 /**
 Image markers only. Set the image width explicitly. When using this
 option, a width must also be set.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-width-height/ : Fixed width and height
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-width-height/">Fixed width and height</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public Number height;
 
 /**
 Image markers only. Set the image width explicitly. When using this
 option, a height must also be set.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-width-height/ : Fixed width and height
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-width-height/">Fixed width and height</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public Number width;
 
 /**
 The radius of the point marker.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-radius/ : Bigger markers
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-radius/">Bigger markers</a>*/
 	public Number radius;
 
 /**
@@ -112,8 +98,7 @@ are hidden, given that enabled is not defined. The number indicates
 the horizontal distance between the two closest points in the series,
 as multiples of the marker.radius. In other words, the default
 value of 2 means points are hidden if overlapping horizontally.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-enabledthreshold : A higher threshold
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-enabledthreshold">A higher threshold</a>*/
 	public Number enabledThreshold;
 
 

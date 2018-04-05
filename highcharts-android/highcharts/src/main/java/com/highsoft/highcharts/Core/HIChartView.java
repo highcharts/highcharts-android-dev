@@ -252,7 +252,6 @@ public class HIChartView extends RelativeLayout {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void reload() {
         this.loadChartOptions();
-        System.out.println("GENERATED CHART OPTIONS\n" + this.HTML.options);
     }
 
     private void checkForOptions(HIOptions options){

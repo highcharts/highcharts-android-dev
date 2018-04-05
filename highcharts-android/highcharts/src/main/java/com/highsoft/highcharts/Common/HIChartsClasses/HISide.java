@@ -22,14 +22,12 @@ public class HISide implements HIChartsJSONSerializable {
 
 /**
 The color of the panel.
-* default: transparent
-*/
+ <br><br><b>default:</b><br><br>&ensp;transparent*/
 	public HIColor color;
 
 /**
 The thickness of the panel.
-* default: 1
-*/
+ <br><br><b>default:</b><br><br>&ensp;1*/
 	public Number size;
 
 

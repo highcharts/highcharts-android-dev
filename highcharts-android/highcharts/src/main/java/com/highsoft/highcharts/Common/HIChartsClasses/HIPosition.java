@@ -26,21 +26,17 @@ Vertical offset of the button.
 
 /**
 Horizontal offset of the button.
-* default: -10
-*/
+ <br><br><b>default:</b><br><br>&ensp;-10*/
 	public Number x;
 
 /**
 Horizontal alignment of the button.
-* accepted values: ["left", "center", "right"]
-*/
+ <br><br><b>accepted values:</b><br><br>&ensp;["left", "center", "right"]*/
 	public String align;
 
 /**
 Vertical alignment of the button.
-* accepted values: ["top", "middle", "bottom"]
-* default: top
-*/
+ <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"] <br><br><b>default:</b><br><br>&ensp;top*/
 	public String verticalAlign;
 
 

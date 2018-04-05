@@ -28,23 +28,19 @@ JavaScript timestamps. Should return an integer timestamp on success.
 
 /**
 Whether to use the first row in the data set as series names.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/start-end/ : Don't get series names from the CSV
-* default: true
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/start-end/">Don't get series names from the CSV</a> <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean firstRowAsNames;
 
 /**
 An array containing object with Point property names along with what
 column id the property should be taken from.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/seriesmapping-label/ : Label from data set
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/seriesmapping-label/">Label from data set</a>*/
 	public ArrayList seriesMapping;
 
 /**
 The same as the columns input option, but defining rows intead of
 columns.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/rows/ : Data in rows
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/rows/">Data in rows</a>*/
 	public ArrayList<ArrayList> rows;
 
 /**
@@ -53,8 +49,7 @@ optionally from an external source, and parsed. The first argument
 passed is a finished chart options object, containing the series.
 These options can be extended with additional options and passed
 directly to the chart constructor.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/complete/ : Modify data on complete
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/complete/">Modify data on complete</a>*/
 	public HIFunction complete;
 
 /**
@@ -64,8 +59,7 @@ to ,.
 
 If this is set to false or undefined, the parser will attempt to deduce
 the delimiter automatically.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/delimiters/ : Delimiters
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/delimiters/">Delimiters</a>*/
 	public String itemDelimiter;
 
 /**
@@ -80,63 +74,51 @@ Valid options include:
 *   mm/dd/YYYY
 *   dd/mm/YY
 *   mm/dd/YY
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/dateformat-auto/ : Best guess date format
-* accepted values: [undefined, "YYYY/mm/dd", "dd/mm/YYYY", "mm/dd/YYYY",
-            "dd/mm/YYYY", "dd/mm/YY", "mm/dd/YY"]
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/dateformat-auto/">Best guess date format</a> <br><br><b>accepted values:</b><br><br>&ensp;[undefined, "YYYY/mm/dd", "dd/mm/YYYY", "mm/dd/YYYY",
+            "dd/mm/YYYY", "dd/mm/YY", "mm/dd/YY"]*/
 	public String dateFormat;
 
 /**
 The Google Spreadsheet worksheet to use in combination with
 googleSpreadsheetKey. The available id's from
 your sheet can be read from https://spreadsheets.google.com/feeds/worksheets/{key}/public/basic.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/google-spreadsheet/ : Load a Google Spreadsheet
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/google-spreadsheet/">Load a Google Spreadsheet</a>*/
 	public String googleSpreadsheetWorksheet;
 
 /**
 The key for a Google Spreadsheet to load. See [general information
 on GS](https://developers.google.com/gdata/samples/spreadsheet_sample).
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/google-spreadsheet/ : Load a Google Spreadsheet
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/google-spreadsheet/">Load a Google Spreadsheet</a>*/
 	public String googleSpreadsheetKey;
 
 /**
 Switch rows and columns of the input data, so that this.columns
 effectively becomes the rows of the data set, and the rows are interpreted
 as series.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/switchrowsandcolumns/ : Switch rows and columns
-* default: false
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/switchrowsandcolumns/">Switch rows and columns</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean switchRowsAndColumns;
 
 /**
 In tabular input data, the first row (indexed by 0) to use.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/start-end/ : Limited data
-* default: 0
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/start-end/">Limited data</a> <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number startRow;
 
 /**
 In tabular input data, the first column (indexed by 0) to use.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/start-end/ : Limited data
-* default: 0
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/start-end/">Limited data</a> <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number startColumn;
 
 /**
 In tabular input data, the last column (indexed by 0) to use. Defaults
 to the last column containing data.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/start-end/ : Limited data
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/start-end/">Limited data</a>*/
 	public Number endColumn;
 
 /**
 A HTML table or the id of such to be parsed as input data. Related
 options are startRow, endRow, startColumn and endColumn to
 delimit what part of the table is used.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/column-parsed/ : Parsed table
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/column-parsed/">Parsed table</a>*/
 	public Object table;
 
 /**
@@ -144,16 +126,12 @@ The decimal point used for parsing numbers in the CSV.
 
 If both this and data.delimiter is set to false, the parser will
 attempt to deduce the decimal point automatically.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/delimiters/ : Comma as decimal point
-* default: .
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/delimiters/">Comma as decimal point</a> <br><br><b>default:</b><br><br>&ensp;.*/
 	public String decimalPoint;
 
 /**
 Line delimiter for parsing CSV.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/delimiters/ : Delimiters
-* default: \n
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/delimiters/">Delimiters</a> <br><br><b>default:</b><br><br>&ensp;\n*/
 	public String lineDelimiter;
 
 /**
@@ -168,8 +146,7 @@ some cases it may be necessary to use an external CSV parser. See
 [this example](http://jsfiddle.net/highcharts/u59176h4/) of parsing
 CSV through the MIT licensed [Papa Parse](http://papaparse.com/)
 library.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/csv/ : Data from CSV
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/csv/">Data from CSV</a>*/
 	public String csv;
 
 /**
@@ -177,8 +154,7 @@ A callback function to access the parsed columns, the two-dimentional
 input data array directly, before they are interpreted into series
 data and categories. Return false to stop completion, or call
 this.complete() to continue async.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/parsed/ : Modify data after parse
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/parsed/">Modify data after parse</a>*/
 	public HIFunction parsed;
 
 /**
@@ -187,15 +163,13 @@ This input can be used when the data is already parsed, for example
 from a grid view component. Each cell can be a string or number.
 If not switchRowsAndColumns is set, the columns are interpreted as
 series.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/columns/ : Columns
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/columns/">Columns</a>*/
 	public ArrayList<ArrayList> columns;
 
 /**
 In tabular input data, the last row (indexed by 0) to use. Defaults
 to the last row containing data.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/start-end/ : Limited data
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/start-end/">Limited data</a>*/
 	public Number endRow;
 
 /**
@@ -237,15 +211,13 @@ will be drawn.
 /**
 A description of the point to add to the screen reader information
 about the point. Requires the Accessibility module.
-* default: undefined
-*/
+ <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public String definition;
 
 /**
 The name of the point as shown in the legend, tooltip, dataLabel
 etc.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-objects/ : Point names
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-objects/">Point names</a>*/
 	public String name;
 
 /**
@@ -254,23 +226,19 @@ the global colors array.
 
 In styled mode, the color option doesn't take effect. Instead, use 
 colorIndex.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/color/ : Mark the highest point
-* default: undefined
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/color/">Mark the highest point</a> <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public HIColor color;
 
 /**
 Whether the data point is selected initially.
-* default: false
-*/
+ <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean selected;
 
 /**
 Individual data label for each point. The options are the same as
 the ones for [plotOptions.series.dataLabels](#plotOptions.series.
 dataLabels)
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/datalabels/ : Show a label for the last value
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/datalabels/">Show a label for the last value</a>*/
 	public Object dataLabels;
 
 /**
@@ -286,8 +254,7 @@ Individual point events
 
 /**
 The y value of the point.
-* default: null
-*/
+ <br><br><b>default:</b><br><br>&ensp;null*/
 	public Number y;
 
 /**
@@ -299,16 +266,13 @@ in milliseconds since 1970.
 /**
 The id of a series in the drilldown.series
 array to use for a drilldown for this point.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/basic/ : Basic drilldown
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/basic/">Basic drilldown</a>*/
 	public String drilldown;
 
 /**
 An id for the point. This can be used after render time to get a
 pointer to the point object through chart.get().
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/id/ : Remove an id'd point
-* default: null
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/id/">Remove an id'd point</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public String id;
 
 /**
@@ -352,9 +316,7 @@ The color of the border surrounding the column or bar.
 
 In styled mode, the border stroke can be set with the .highcharts-point
 rule.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-bordercolor/ : Dark gray border
-* default: undefined
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-bordercolor/">Dark gray border</a> <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public HIColor borderColor;
 
 /**
@@ -362,9 +324,7 @@ The width of the border surrounding the column or bar.
 
 In styled mode, the stroke width can be set with the .highcharts-point
 rule.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-borderwidth/ : 2px black border
-* default: undefined
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-borderwidth/">2px black border</a> <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public Number borderWidth;
 
 /**
@@ -375,45 +335,37 @@ as set in the colorAxis configuration.
 
 /**
 Point padding for a single point.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/tilemap-pointpadding : Point padding on tiles
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/tilemap-pointpadding">Point padding on tiles</a>*/
 	public Number pointPadding;
 
 /**
 When this property is true, the points acts as a summary column for
 the values added or substracted since the last intermediate sum,
 or since the start of the series. The y value is ignored.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/waterfall/ : Waterfall
-* default: false
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/waterfall/">Waterfall</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean isIntermediateSum;
 
 /**
 When this property is true, the point display the total sum across
 the entire series. The y value is ignored.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/waterfall/ : Waterfall
-* default: false
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/waterfall/">Waterfall</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean isSum;
 
 /**
 Whether to display a slice offset from the center.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/sliced/ : One sliced point
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/sliced/">One sliced point</a>*/
 	public Boolean sliced;
 
 /**
 The inner radius of an individual point in a solid gauge. Can be
 given as a number (pixels) or percentage string.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/solidgauge-radius/ : Individual radius and innerRadius
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/solidgauge-radius/">Individual radius and innerRadius</a>*/
 	public Object /* Number|String */ innerRadius;
 
 /**
 The outer radius of an individual point in a solid gauge. Can be
 given as a number (pixels) or percentage string.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/solidgauge-radius/ : Individual radius and innerRadius
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/solidgauge-radius/">Individual radius and innerRadius</a>*/
 	public Object /* Number|String */ radius;
 
 /**
@@ -423,9 +375,7 @@ The node that the link runs to.
 
 /**
 Whether the link goes out of the system.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-outgoing : Sankey chart with outgoing links
-* default: false
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-outgoing">Sankey chart with outgoing links</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean outgoing;
 
 /**
@@ -449,8 +399,7 @@ maxSize, sizeBy, zMin and zMax.
 Serves a purpose only if a colorAxis object is defined in the chart
 options. This value will decide which color the point gets from the
 scale of the colorAxis.
-* default: undefined
-*/
+ <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public Number colorValue;
 
 /**
@@ -458,10 +407,7 @@ Only for treemap. Use this option to build a tree structure. The
 value should be the id of the point which is the parent. If no points
 has a matching id, or this option is undefined, then the parent will
 be set to the root.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/parent/ : Point parent
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/treemap-with-levels/ : Example where parent id is not matching
-* default: undefined
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/parent/">Point parent</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/treemap-with-levels/">Example where parent id is not matching</a> <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public String parent;
 
 

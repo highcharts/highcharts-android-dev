@@ -24,99 +24,75 @@ CSS styles for the title. Use this for font styling, but use align,
 x and y for text alignment.
 
 In styled mode, the title style is given in the .highcharts-title class.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/style/ : Custom color and weight
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/titles/ : Styled mode
-* default: { "color": "#333333", "fontSize": "18px" }
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/style/">Custom color and weight</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/titles/">Styled mode</a> <br><br><b>default:</b><br><br>&ensp;{ "color": "#333333", "fontSize": "18px" }*/
 	public HIStyle style;
 
 /**
 The vertical alignment of the title. Can be one of "top", "middle"
 and "bottom". When a value is given, the title behaves as if [floating](#title.
 floating) were true.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/verticalalign/ : Chart title in bottom right corner
-* accepted values: ["top", "middle", "bottom"]
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/verticalalign/">Chart title in bottom right corner</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]*/
 	public String verticalAlign;
 
 /**
 The title of the chart. To disable the title, set the text to
 null.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/text/ : Custom title
-* default: Chart title
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/text/">Custom title</a> <br><br><b>default:</b><br><br>&ensp;Chart title*/
 	public String text;
 
 /**
 The horizontal alignment of the title. Can be one of "left", "center"
 and "right".
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/align/ : Aligned to the plot area (x = 70px = margin left - spacing left)
-* accepted values: ["left", "center", "right"]
-* default: center
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/align/">Aligned to the plot area (x = 70px = margin left - spacing left)</a> <br><br><b>accepted values:</b><br><br>&ensp;["left", "center", "right"] <br><br><b>default:</b><br><br>&ensp;center*/
 	public String align;
 
 /**
 Whether to [use HTML](http://www.highcharts.com/docs/chart-concepts/labels-
 and-string-formatting#html) to render the text.
-* default: false
-*/
+ <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean useHTML;
 
 /**
 The y position of the title relative to the alignment within [chart.
 spacingTop](#chart.spacingTop) and chart.spacingBottom.
  By default it depends on the font size.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/y/ : Title inside the plot area
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/y/">Title inside the plot area</a>*/
 	public Number y;
 
 /**
 The x position of the title relative to the alignment within chart.
 spacingLeft and chart.spacingRight.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/align/ : Aligned to the plot area (x = 70px = margin left - spacing left)
-* default: 0
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/align/">Aligned to the plot area (x = 70px = margin left - spacing left)</a> <br><br><b>default:</b><br><br>&ensp;0*/
 	public Number x;
 
 /**
 Adjustment made to the title width, normally to reserve space for
 the exporting burger menu.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/widthadjust/ : Wider menu, greater padding
-* default: -44
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/widthadjust/">Wider menu, greater padding</a> <br><br><b>default:</b><br><br>&ensp;-44*/
 	public Number widthAdjust;
 
 /**
 The margin between the title and the plot area, or if a subtitle
 is present, the margin between the subtitle and the plot area.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/margin-50/ : A chart title margin of 50
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/margin-subtitle/ : The same margin applied with a subtitle
-* default: 15
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/margin-50/">A chart title margin of 50</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/margin-subtitle/">The same margin applied with a subtitle</a> <br><br><b>default:</b><br><br>&ensp;15*/
 	public Number margin;
 
 /**
 When the title is floating, the plot area will not move to make space
 for it.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/zoomtype-none/ : False by default
-https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/floating/ : True - title on top of the plot area
-* default: false
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/zoomtype-none/">False by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/floating/">True - title on top of the plot area</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean floating;
 
 /**
 * description: The rotation of the text in degrees. 0 is horizontal, 270 is
 vertical reading from bottom to top.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/title-offset/ : Horizontal
-* default: 0
+* demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/title-offset/ : Horizontal* default: 0
 */
 	public Number rotation;
 
 /**
 Whether to reserve space for the title when laying out the axis.
-* default: true
-*/
+ <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean reserveSpace;
 
 /**
@@ -128,9 +104,7 @@ legible due to the distortion.
 The final appearance depends heavily on title.position3d.
 
 A null value will use the config from labels.skew3d.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/ : Skewed labels
-* accepted values: [false, true, null]
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/">Skewed labels</a> <br><br><b>accepted values:</b><br><br>&ensp;[false, true, null]*/
 	public Boolean skew3d;
 
 /**
@@ -149,9 +123,7 @@ orientation.
   are orthogonal to the axis. This is very similar to 'flap', but
   prevents skewing the labels (X and Y scaling are still present).
 - null: Will use the config from labels.position3d
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/ : Skewed labels
-* accepted values: ['offset', 'chart', 'flap', 'ortho', null]
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/">Skewed labels</a> <br><br><b>accepted values:</b><br><br>&ensp;['offset', 'chart', 'flap', 'ortho', null]*/
 	public String position3d;
 
 /**
@@ -159,8 +131,7 @@ The distance of the axis title from the axis line. By default, this
 distance is computed from the offset width of the labels, the labels'
 distance from the axis and the title's margin. However when the offset
 option is set, it overrides all this.
-* demo: https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/title-offset/ : Place the axis title on top of the axis
-*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/title-offset/">Place the axis title on top of the axis</a>*/
 	public Number offset;
 
 

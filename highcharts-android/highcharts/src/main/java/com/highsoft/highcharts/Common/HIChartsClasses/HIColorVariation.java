@@ -27,8 +27,7 @@ value.
 
 /**
 The key of a color variation. Currently supports brightness only.
-* accepted values: ["brightness"]
-*/
+ <br><br><b>accepted values:</b><br><br>&ensp;["brightness"]*/
 	public String key;
 
 
