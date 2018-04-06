@@ -21,7 +21,7 @@ bintray {
         publish = false
         publicDownloadNumbers = true
         version {
-            desc = libraryDescription
+            desc = 'Highcharts 6.0.7 release with new HIFunction mechanism'
         }
     }
 }

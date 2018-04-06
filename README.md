@@ -4,7 +4,7 @@
 
 [ ![Download](https://api.bintray.com/packages/highsoft/Highcharts/Highcharts/images/download.svg?version=6.0.7) ](https://bintray.com/highsoft/Highcharts/Highcharts/6.0.7/link)
 
-[Highcharts iOS](http://www.highcharts.com/blog/mobile/) is a delightful wrapper of HighchartsJS for Android.
+[Highcharts Android](http://www.highcharts.com/blog/mobile/) is a delightful wrapper of HighchartsJS for Android.
 
 The most popular, robust and battle-tested JavaScript Charting library is now available for Android with our new Java wrapper. Get gorgeous, multi-touch charts with minimal effort.
 
@@ -45,7 +45,7 @@ dependencies {
     compile 'com.highsoft.highcharts:highcharts:6.0.7'
 }
 ```
-**B)** You can download the _aar_ from [here](link) and add it manually if you want. Put the _aar_ in the _libs_ folder in your project structure:
+**B)** You can download the _aar_ from [here](https://github.com/highcharts/highcharts-android/releases) and add it manually if you want. Put the _aar_ in the _libs_ folder in your project structure:
 
 ![Project structure screenshot](https://github.com/highcharts/highcharts-android/blob/master/Images/1.png "Files1")
 
@@ -105,7 +105,7 @@ Let's start with creating simple chart!
 
 For the purpose of this tutorial, we will create a simple column chart using random data.
 
-The heart of a chart is **HIOptions** class which contains all the information needed to present it. Some of the options there are optional, some are not (see demo app [HighFit](link) provided by Highcharts). 
+The heart of a chart is **HIOptions** class which contains all the information needed to present it. Some of the options there are optional, some are not (see demo app [HighFit](https://github.com/highcharts/highcharts-android/tree/master/Example/HighFit) provided by Highcharts). 
 
 Create instance of **HIOptions** class
 ```java
@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 ## ***Press "Run" in Android Studio.***
-#### For more complex solutions see demo app [HighFit](link) provided by Highcharts or read the following [documentation](https://api.highcharts.com/android/highcharts/)!
+#### For more complex solutions see demo app [HighFit](https://github.com/highcharts/highcharts-android/tree/master/Example/HighFit) provided by Highcharts or read the following [documentation](https://api.highcharts.com/android/highcharts/)!
 
 # Additional info
 #### Export module requirements
