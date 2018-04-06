@@ -2,6 +2,7 @@
 <img src="https://github.com/highcharts/highcharts-android/blob/master/Images/logo.png" alt="Highcharts" title="Highcharts">
 </p>
  [ ![Download](https://api.bintray.com/packages/highsoft/Highcharts/Highcharts/images/download.svg) ](https://bintray.com/highsoft/Highcharts/Highcharts/_latestVersion)
+
 [Highcharts iOS](http://www.highcharts.com/blog/mobile/) is a delightful wrapper of HighchartsJS for Android.
 
 The most popular, robust and battle-tested JavaScript Charting library is now available for Android with our new Java wrapper. Get gorgeous, multi-touch charts with minimal effort.
@@ -44,7 +45,9 @@ dependencies {
 }
 ```
 **B)** You can download the _aar_ from [here](link) and add it manually if you want. Put the _aar_ in the _libs_ folder in your project structure:
+
 ![Project structure screenshot](https://github.com/highcharts/highcharts-android/blob/master/Images/1.png "Files1")
+
 Then, add the following lines to your **build.gradle** file in `repositories`:
 ```gradle
 repositories {
@@ -60,6 +63,9 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.0'
 }
 ```
+
+You are now set to use Highcharts!
+
 
 ## Using Highcharts (demo app)
 
@@ -205,8 +211,9 @@ and the needed _provider_paths_ file
 </paths>
 ```
 into _xml_ folder here:
+
 ![xml folder location screenshot](https://github.com/highcharts/highcharts-android/blob/master/Images/2.png "Files2")
-You are now set to use Highcharts!
+
 
 #### HIColor example
 Highcharts Android wrapper provides its own colors implementation. As you can notice, some options are of `HIColor` type. You can instantiate the desired color in few ways which are described in the [API documentation](https://api.highcharts.com/android/highcharts/). In here, we will show the most complex case which is gradient usage.
