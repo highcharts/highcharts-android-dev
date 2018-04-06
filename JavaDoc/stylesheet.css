@@ -234,6 +234,9 @@ Page header and footer styles
 .subTitle {
     margin:5px 0 0 0;
 }
+
+.header { padding-top:20px; }
+
 .header ul {
     margin:0 0 15px 0;
     padding:0;
