@@ -1,7 +1,7 @@
 <p align="center" >
 <img src="https://github.com/highcharts/highcharts-android/blob/master/Images/logo.png" alt="Highcharts" title="Highcharts">
 </p>
- [ ![Download](https://api.bintray.com/packages/highsoft/Highcharts/Highcharts/images/download.svg) ](https://bintray.com/highsoft/Highcharts/Highcharts/_latestVersion)
+[![Download](https://api.bintray.com/packages/highsoft/Highcharts/Highcharts/images/download.svg)](https://bintray.com/highsoft/Highcharts/Highcharts/_latestVersion)
 
 [Highcharts iOS](http://www.highcharts.com/blog/mobile/) is a delightful wrapper of HighchartsJS for Android.
 
