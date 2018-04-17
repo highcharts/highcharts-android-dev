@@ -134,8 +134,8 @@ The background color or gradient for the data label.
 
 /**
 Whether to allow data labels to overlap. To make the labels less
-sensitive for overlapping, the [dataLabels.padding](#plotOptions.
-series.dataLabels.padding) can be set to 0.
+sensitive for overlapping, the [dataLabels.padding](
+#plotOptions.series.dataLabels.padding) can be set to 0.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-allowoverlap-false/">Don't allow overlap</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean allowOverlap;
 
@@ -188,16 +188,16 @@ The y position offset of the label relative to the point.
 	public Number y;
 
 /**
-Callback to format data labels for _nodes_ in the sankey diagram. 
+Callback to format data labels for _nodes_ in the sankey diagram.
 The nodeFormat option takes precedence over the nodeFormatter.
 */
 	public HIFunction nodeFormatter;
 
 /**
-The [format string](http://www.highcharts.com/docs/chart-concepts/labels-
-and-string-formatting) specifying what to show for _nodes_ in the 
-sankey diagram. By default the nodeFormatter returns
-{point.name}.
+The [format string](http://www.highcharts.com/docs/chart-
+concepts/labels-and-string-formatting) specifying what to show
+for _nodes_ in the sankey diagram. By default the
+nodeFormatter returns {point.name}.
 */
 	public String nodeFormat;
 

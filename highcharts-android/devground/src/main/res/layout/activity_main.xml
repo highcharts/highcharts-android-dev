@@ -3,14 +3,28 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/colorAccent"
     tools:context="com.highsoft.devground.MainActivity">
 
     <com.highsoft.highcharts.Core.HIChartView
         android:id="@+id/hc"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="400dp"
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="8dp" />
+
+    <!--<Button-->
+        <!--android:id="@+id/button1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Change chart type" />-->
+    <!--<Button-->
+        <!--android:id="@+id/button2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Change chart border" />-->
+
+
 
 </LinearLayout>

@@ -30,7 +30,6 @@ The outer radius of the circular pane background. Can be either
 numeric (pixels) or a percentage string.
  <br><br><b>default:</b><br><br>&ensp;105%*/
 	public Object /* Number|String */ outerRadius;
-	public Object from;
 
 /**
 The inner radius of the pane background. Can be either numeric
@@ -73,8 +72,6 @@ The background color or gradient for the pane.
 		}
 		if (this.outerRadius != null) {
 			params.put("outerRadius", this.outerRadius);
-		}
-		if (this.from != null) {
 		}
 		if (this.innerRadius != null) {
 			params.put("innerRadius", this.innerRadius);

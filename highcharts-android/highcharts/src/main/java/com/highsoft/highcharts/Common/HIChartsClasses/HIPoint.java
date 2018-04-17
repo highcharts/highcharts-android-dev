@@ -27,7 +27,7 @@ or chart pixel coordinates.
 	public Number y;
 
 /**
-The x position of the point. Units can be either in axis 
+The x position of the point. Units can be either in axis
 or chart pixel coordinates.
 */
 	public Number x;

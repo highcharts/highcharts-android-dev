@@ -25,6 +25,30 @@ For options that apply to multiple series, it is recommended to add
 them to the plotOptions.series options structure.
 To apply to all series of this specific type, apply it to
 plotOptions.bellcurve.
+
+Configuration options for the series are given in three levels:
+1. Options for all series in a chart are defined in the [plotOptions.series](plotOptions.series)
+object. 
+2. Options for all bellcurve series are defined in [plotOptions.bellcurve](plotOptions.bellcurve).
+3. Options for one single series are given in
+[the series instance array](series.bellcurve).
+
+
+Highcharts.chart('container', {
+    plotOptions: {
+        series: {
+            // general options for all series
+        },
+        bellcurve: {
+            // shared options for all bellcurve series
+        }
+    },
+    series: [{
+        // specific options for this series instance
+        type: 'bellcurve'
+    }]
+});
+
 */
 
 public class HIBellcurve extends HISeries {
@@ -36,7 +60,7 @@ length of the bell curve is standard deviation.
 	public Number intervals;
 
 /**
-Defines how many points should be plotted within 1 interval. See 
+Defines how many points should be plotted within 1 interval. See
 plotOptions.bellcurve.intervals.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bellcurve-intervals-pointsininterval">Intervals and points in interval</a>*/
 	public Number pointsInInterval;

@@ -21,10 +21,29 @@ import com.highsoft.highcharts.Common.HIColor;
 A wordcloud series. If the type option is
 not specified, it is inherited from chart.type.
 
-For options that apply to multiple series, it is recommended to add
-them to the plotOptions.series options structure.
-To apply to all series of this specific type, apply it to [plotOptions.
-wordcloud](#plotOptions.wordcloud).
+Configuration options for the series are given in three levels:
+1. Options for all series in a chart are defined in the [plotOptions.series](plotOptions.series)
+object. 
+2. Options for all wordcloud series are defined in [plotOptions.wordcloud](plotOptions.wordcloud).
+3. Options for one single series are given in
+[the series instance array](series.wordcloud).
+
+
+Highcharts.chart('container', {
+    plotOptions: {
+        series: {
+            // general options for all series
+        },
+        wordcloud: {
+            // shared options for all wordcloud series
+        }
+    },
+    series: [{
+        // specific options for this series instance
+        type: 'wordcloud'
+    }]
+});
+
 */
 
 public class HIWordcloud extends HISeries {
@@ -41,6 +60,19 @@ one color per series or one color per point.
 CSS styles for the words.
  <br><br><b>default:</b><br><br>&ensp;{"fontFamily":"sans-serif", "fontWeight": "900"}*/
 	public HIStyle style;
+
+/**
+A threshold determining the minimum font size that can be applied to a
+word.
+*/
+	public Number minFontSize;
+
+/**
+The word with the largest weight will have a font size equal to this
+value. The font size of a word is the ratio between its weight and the
+largest occuring weight, multiplied with the value of maxFontSize.
+*/
+	public Number maxFontSize;
 
 /**
 Spiral used for placing a word after the inital position experienced a
@@ -82,11 +114,10 @@ The corner radius of the border surrounding each column or bar.
 
 /**
 A series specific or series type specific color set to apply instead
-of the global colors when [colorByPoint](#plotOptions.
-column.colorByPoint) is true.
+of the global colors when [colorByPoint](
+#plotOptions.column.colorByPoint) is true.
 */
 	public ArrayList<HIColor> colors;
-	public Boolean startFromThreshold;
 
 /**
 The color of the border surrounding each column or bar.
@@ -117,6 +148,12 @@ rule.
 		if (this.style != null) {
 			params.put("style", this.style.getParams());
 		}
+		if (this.minFontSize != null) {
+			params.put("minFontSize", this.minFontSize);
+		}
+		if (this.maxFontSize != null) {
+			params.put("maxFontSize", this.maxFontSize);
+		}
 		if (this.spiral != null) {
 			params.put("spiral", this.spiral);
 		}
@@ -138,9 +175,6 @@ rule.
 				array.add((HIColor) hiColor.getData());
 			}
 			params.put("colors", array);
-		}
-		if (this.startFromThreshold != null) {
-			params.put("startFromThreshold", this.startFromThreshold);
 		}
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());

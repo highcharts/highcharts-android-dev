@@ -26,6 +26,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *  Highcharts Chart View Class. Initialize this as a normal view and set
@@ -114,7 +116,6 @@ public class HIChartView extends RelativeLayout {
         this.webView.setWebViewClient(webViewClient);
         //improve chart loading performance, CSS animations are loading faster!
         this.webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-
         // Adding exporting module to the chart
         HIGExportModule higExportModule = new HIGExportModule(activity, this.webView);
         this.webView.setDownloadListener(higExportModule);
@@ -258,4 +259,30 @@ public class HIChartView extends RelativeLayout {
         if(options == null)
             throw new NoSuchElementException("HIOptions not found in HIChartView");
     }
+
+    //--- Testing UPDATE Feature ---//
+
+    private Observer optionsChanged = new Observer() {
+        @Override
+        public void update(Observable observable, Object o) {
+            HTML.prepareOptions(options.getParams());
+            String options = String.format("updateOptions(%s)", HTML.options);
+            webView.evaluateJavascript(options, new ValueCallback<String>() {
+                @Override
+                public void onReceiveValue(String s) {
+                    Log.i("HIChartView", "Updated");
+                }
+            });
+        }
+    };
+
+//    private void setOptions(HIOptions options) {
+//        this.options = options;
+//        this.options.addObserver(optionsChanged);
+//        Log.v("HIOptions", "set");
+//    }
+//
+//    private HIOptions getOptions() {
+//        return options;
+//    }
 }

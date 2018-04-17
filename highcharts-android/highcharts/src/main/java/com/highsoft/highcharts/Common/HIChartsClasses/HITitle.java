@@ -29,8 +29,8 @@ In styled mode, the title style is given in the .highcharts-title class.
 
 /**
 The vertical alignment of the title. Can be one of "top", "middle"
-and "bottom". When a value is given, the title behaves as if [floating](#title.
-floating) were true.
+and "bottom". When a value is given, the title behaves as if
+floating were true.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/verticalalign/">Chart title in bottom right corner</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]*/
 	public String verticalAlign;
 

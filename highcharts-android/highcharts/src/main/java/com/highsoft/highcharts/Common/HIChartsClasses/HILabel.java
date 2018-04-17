@@ -109,14 +109,18 @@ the graph instead.
 	public Boolean onArea;
 
 /**
-An array of boxes to avoid when laying out the labels. Each 
+An array of boxes to avoid when laying out the labels. Each
 item has a left, right, top and bottom property.
 */
 	public ArrayList boxesToAvoid;
 
 /**
 Allow labels to be placed distant to the graph if necessary,
-and draw a connector line to the graph.
+and draw a connector line to the graph. Setting this option
+to true may decrease the performance significantly, since the
+algorithm with systematically search for open spaces in the
+while plot area. Visually, it may also result in a more
+cluttered chart, though more of the series will be labeled.
 */
 	public Boolean connectorAllowed;
 

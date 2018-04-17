@@ -136,9 +136,9 @@ summary if present.
 /**
 Lang configuration for the series main summary. Each series
 type has two modes:
-	1. This series type is the only series type used in the
-		chart
-	2. This is a combination chart with multiple series types
+    1. This series type is the only series type used in the
+       chart
+   2. This is a combination chart with multiple series types
 
 If a definition does not exist for the specific series type
 and mode, the 'default' lang definitions are used.
@@ -247,9 +247,9 @@ class names.
 	public HIMarker marker;
 
 /**
-Same as [accessibility.pointDescriptionFormatter](#accessibility.
-pointDescriptionFormatter), but for an individual series. Overrides
-the chart wide configuration.
+Same as [accessibility.pointDescriptionFormatter](
+#accessibility.pointDescriptionFormatter), but for an individual series.
+Overrides the chart wide configuration.
 */
 	public HIFunction pointDescriptionFormatter;
 
@@ -296,9 +296,9 @@ previous, and 0.5 is between this value and the next. Unlike the
 textual options, numeric point placement options won't affect axis
 padding.
 
-Note that pointPlacement needs a [pointRange](#plotOptions.series.
-pointRange) to work. For column series this is computed, but for
-line-type series it needs to be set.
+Note that pointPlacement needs a [pointRange](
+#plotOptions.series.pointRange) to work. For column series this is
+computed, but for line-type series it needs to be set.
 
 Defaults to null in cartesian charts, "between" in polar charts.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointplacement-between/">Between in a column chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointplacement-numeric/">Numeric placement for custom layout</a> <br><br><b>accepted values:</b><br><br>&ensp;[null, "on", "between"] <br><br><b>default:</b><br><br>&ensp;null*/
@@ -378,7 +378,7 @@ animationLimit to Infinity.
 An array specifying which option maps to which key in the data point
 array. This makes it convenient to work with unstructured data arrays
 from different sources.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/data-keys/">An extended data array with keys</a>*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/data-keys/">An extended data array with keys</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/data-nested-keys/">Nested keys used to access object properties</a>*/
 	public ArrayList<String> keys;
 
 /**
@@ -397,7 +397,7 @@ in this series for keyboard navigation.
 	public Boolean skipKeyboardNavigation;
 
 /**
-Allow this series' points to be selected by clicking on the graphic 
+Allow this series' points to be selected by clicking on the graphic
 (columns, point markers, pie slices, map areas etc).
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-allowpointselect-line/">Line</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-allowpointselect-column/">Column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-allowpointselect-pie/">Pie</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean allowPointSelect;
@@ -438,8 +438,8 @@ can be an object configuration containing color, offsetX, offsetY,
 Enable or disable the initial animation when a series is displayed.
 The animation can also be set as a configuration object. Please
 note that this option only applies to the initial animation of the
-series itself. For other animations, see [chart.animation](#chart.
-animation) and the animation parameter under the API methods. The
+series itself. For other animations, see [chart.animation](
+#chart.animation) and the animation parameter under the API methods. The
 following properties are supported:
 
 
@@ -474,7 +474,7 @@ option
 
 /**
 On datetime series, this allows for setting the
-pointInterval to irregular time 
+pointInterval to irregular time
 units, day, month and year. A day is usually the same as 24 hours,
 but pointIntervalUnit also takes the DST crossover into consideration
 when dealing with local time. Combine this option with pointInterval

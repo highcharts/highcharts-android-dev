@@ -59,8 +59,8 @@ series' tooltip options object.
 For series on a datetime axes, the date format in the tooltip's
 header will by default be guessed based on the closest data points.
 This member gives the default string representations used for
-each unit. For an overview of the replacement codes, see [dateFormat](#Highcharts.
-dateFormat).
+each unit. For an overview of the replacement codes, see
+dateFormat.
 
 Defaults to:
 
@@ -262,8 +262,8 @@ pie slices and other point types with an extent. By default it behaves
 this way for scatter, bubble and pie series by override in the plotOptions
 for those series types.
 
-For touch moves to behave the same way, [followTouchMove](#tooltip.
-followTouchMove) must be true also.
+For touch moves to behave the same way, [followTouchMove](
+#tooltip.followTouchMove) must be true also.
  <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean followPointer;
 
@@ -287,8 +287,9 @@ tooltip, as opposed to links.
 	public HIFunction nodeFormatter;
 
 /**
-The [format string](http://www.highcharts.com/docs/chart-concepts/labels-
-and-string-formatting) specifying what to show for _nodes_ in tooltip
+The [format string](http://www.highcharts.com/docs/chart-
+concepts/labels-and-string-formatting) specifying what to
+show for _nodes_ in tooltip
 of a sankey diagram series, as opposed to links.
 */
 	public String nodeFormat;

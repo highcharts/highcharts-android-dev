@@ -20,10 +20,29 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 A vector series. If the type option is not
 specified, it is inherited from chart.type.
 
-For options that apply to multiple series, it is recommended to add
-them to the plotOptions.series options structure.
-To apply to all series of this specific type, apply it to [plotOptions.
-vector](#plotOptions.vector).
+Configuration options for the series are given in three levels:
+1. Options for all series in a chart are defined in the [plotOptions.series](plotOptions.series)
+object. 
+2. Options for all vector series are defined in [plotOptions.vector](plotOptions.vector).
+3. Options for one single series are given in
+[the series instance array](series.vector).
+
+
+Highcharts.chart('container', {
+    plotOptions: {
+        series: {
+            // general options for all series
+        },
+        vector: {
+            // shared options for all vector series
+        }
+    },
+    series: [{
+        // specific options for this series instance
+        type: 'vector'
+    }]
+});
+
 */
 
 public class HIVector extends HISeries {

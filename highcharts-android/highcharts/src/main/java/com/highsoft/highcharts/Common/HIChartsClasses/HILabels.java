@@ -110,17 +110,18 @@ over to make room or tighter labels.
 Defines how the labels are be repositioned according to the 3D chart
 orientation.
 - 'offset': Maintain a fixed horizontal/vertical distance from the
-	 tick marks, despite the chart orientation. This is the backwards
-	 compatible behavior, and causes skewing of X and Z axes.
+     tick marks, despite the chart orientation. This is the backwards
+     compatible behavior, and causes skewing of X and Z axes.
 - 'chart': Preserve 3D position relative to the chart.
   This looks nice, but hard to read if the text isn't
   forward-facing.
 - 'flap': Rotated text along the axis to compensate for the chart
-	 orientation. This tries to maintain text as legible as possible on
-	 all orientations.
+     orientation. This tries to maintain text as legible as possible
+     on all orientations.
 - 'ortho': Rotated text along the axis direction so that the labels
-	 are orthogonal to the axis. This is very similar to 'flap', but
-	 prevents skewing the labels (X and Y scaling are still present).
+     are orthogonal to the axis. This is very similar to 'flap',
+     but prevents skewing the labels (X and Y scaling are still
+     present).
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/">Skewed labels</a> <br><br><b>accepted values:</b><br><br>&ensp;['offset', 'chart', 'flap', 'ortho']*/
 	public String position3d;
 
@@ -152,7 +153,7 @@ Read more at
 	public Number step;
 
 /**
-If enabled, the axis labels will skewed to follow the perspective. 
+If enabled, the axis labels will skewed to follow the perspective.
 
 This will fix overlapping labels and titles, but texts become less
 legible due to the distortion.
@@ -202,7 +203,7 @@ properies and optionally axes.
 
 /**
 Whether to allow the annotation's labels to overlap.
-To make the labels less sensitive for overlapping, 
+To make the labels less sensitive for overlapping,
 the can be set to 0.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/tooltip-like/">Hide overlapping labels</a>*/
 	public Boolean allowOverlap;
@@ -214,8 +215,7 @@ The border color for the annotation's label.
 
 /**
 The vertical alignment of the annotation's label.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position
-*</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]*/
 	public String verticalAlign;
 
 /**
@@ -242,8 +242,7 @@ A class name for styling by CSS.
 /**
 The name of a symbol to use for the border around the label.
 Symbols are predefined functions on the Renderer object.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shapes/">Available shapes for labels
-*</a>*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shapes/">Available shapes for labels</a>*/
 	public String shape;
 
 /**

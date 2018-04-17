@@ -21,15 +21,45 @@ public class HIData implements HIChartsJSONSerializable {
 
 
 /**
+Enables automatic refetching of remote datasets every _n_ seconds (defined by
+setting [data.dataRefreshRate](data.dataRefreshRate)).
+
+Only works when either [data.csvURL](data.csvURL),
+[data.rowsURL](data.rowsURL), [data.columnsURL](data.columnsURL), or
+[data.googleSpreadsheetKey](data.googleSpreadsheetKey).
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/live-data">Live data</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/livedata-columns">Categorized bar chart with CSV and live polling</a> <br><br><b>default:</b><br><br>&ensp;false*/
+	public Boolean enablePolling;
+
+/**
+In tabular input data, the first column (indexed by 0) to use.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/start-end/">Limited data</a> <br><br><b>default:</b><br><br>&ensp;0*/
+	public Number startColumn;
+
+/**
+Line delimiter for parsing CSV.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/delimiters/">Delimiters</a> <br><br><b>default:</b><br><br>&ensp;\n*/
+	public String lineDelimiter;
+
+/**
+A HTML table or the id of such to be parsed as input data. Related
+options are startRow, endRow, startColumn and endColumn to
+delimit what part of the table is used.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/column-parsed/">Parsed table</a>*/
+	public Object table;
+
+/**
+A callback function to access the parsed columns, the two-dimentional
+input data array directly, before they are interpreted into series
+data and categories. Return false to stop completion, or call
+this.complete() to continue async.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/parsed/">Modify data after parse</a>*/
+	public HIFunction parsed;
+
+/**
 A callback function to parse string representations of dates into
 JavaScript timestamps. Should return an integer timestamp on success.
 */
 	public HIFunction parseDate;
-
-/**
-Whether to use the first row in the data set as series names.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/start-end/">Don't get series names from the CSV</a> <br><br><b>default:</b><br><br>&ensp;true*/
-	public Boolean firstRowAsNames;
 
 /**
 An array containing object with Point property names along with what
@@ -44,23 +74,10 @@ columns.
 	public ArrayList<ArrayList> rows;
 
 /**
-The callback that is evaluated when the data is finished loading,
-optionally from an external source, and parsed. The first argument
-passed is a finished chart options object, containing the series.
-These options can be extended with additional options and passed
-directly to the chart constructor.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/complete/">Modify data on complete</a>*/
-	public HIFunction complete;
-
-/**
-Item or cell delimiter for parsing CSV. Defaults to the tab character
-\t if a tab character is found in the CSV string, if not it defaults
-to ,.
-
-If this is set to false or undefined, the parser will attempt to deduce
-the delimiter automatically.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/delimiters/">Delimiters</a>*/
-	public String itemDelimiter;
+A URL to a remote CSV dataset.
+Will be fetched when the chart is created using Ajax.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/livedata-columns">Categorized bar chart with CSV and live polling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/livedata-csv">Time based line chart with CSV and live polling</a>*/
+	public String csvURL;
 
 /**
 Which of the predefined date formats in Date.prototype.dateFormats
@@ -86,17 +103,24 @@ your sheet can be read from https://spreadsheets.google.com/feeds/worksheets/{ke
 	public String googleSpreadsheetWorksheet;
 
 /**
-The key for a Google Spreadsheet to load. See [general information
-on GS](https://developers.google.com/gdata/samples/spreadsheet_sample).
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/google-spreadsheet/">Load a Google Spreadsheet</a>*/
-	public String googleSpreadsheetKey;
+Sets the refresh rate for data polling when importing remote dataset by
+setting [data.csvURL](data.csvURL), [data.rowsURL](data.rowsURL),
+[data.columnsURL](data.columnsURL), or
+[data.googleSpreadsheetKey](data.googleSpreadsheetKey).
+
+Note that polling must be enabled by setting
+[data.enablePolling](data.enablePolling) to true.
+
+The value is the number of seconds between pollings.
+It cannot be set to less than 1 second.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/live-data">Live data with user set refresh rate</a> <br><br><b>default:</b><br><br>&ensp;1*/
+	public Number dataRefreshRate;
 
 /**
-Switch rows and columns of the input data, so that this.columns
-effectively becomes the rows of the data set, and the rows are interpreted
-as series.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/switchrowsandcolumns/">Switch rows and columns</a> <br><br><b>default:</b><br><br>&ensp;false*/
-	public Boolean switchRowsAndColumns;
+A URL to a remote JSON dataset, structured as a row array.
+Will be fetched when the chart is created using Ajax.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/livedata-rows">Rows with live polling</a>*/
+	public String rowsURL;
 
 /**
 In tabular input data, the first row (indexed by 0) to use.
@@ -104,42 +128,11 @@ In tabular input data, the first row (indexed by 0) to use.
 	public Number startRow;
 
 /**
-In tabular input data, the first column (indexed by 0) to use.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/start-end/">Limited data</a> <br><br><b>default:</b><br><br>&ensp;0*/
-	public Number startColumn;
-
-/**
-In tabular input data, the last column (indexed by 0) to use. Defaults
-to the last column containing data.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/start-end/">Limited data</a>*/
-	public Number endColumn;
-
-/**
-A HTML table or the id of such to be parsed as input data. Related
-options are startRow, endRow, startColumn and endColumn to
-delimit what part of the table is used.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/column-parsed/">Parsed table</a>*/
-	public Object table;
-
-/**
-The decimal point used for parsing numbers in the CSV.
-
-If both this and data.delimiter is set to false, the parser will
-attempt to deduce the decimal point automatically.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/delimiters/">Comma as decimal point</a> <br><br><b>default:</b><br><br>&ensp;.*/
-	public String decimalPoint;
-
-/**
-Line delimiter for parsing CSV.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/delimiters/">Delimiters</a> <br><br><b>default:</b><br><br>&ensp;\n*/
-	public String lineDelimiter;
-
-/**
-A comma delimited string to be parsed. Related options are [startRow](#data.
-startRow), endRow, startColumn
+A comma delimited string to be parsed. Related options are [startRow](
+#data.startRow), endRow, startColumn
 and endColumn to delimit what part of the table
-is used. The lineDelimiter and [itemDelimiter](#data.
-itemDelimiter) options define the CSV delimiter formats.
+is used. The lineDelimiter and [itemDelimiter](
+#data.itemDelimiter) options define the CSV delimiter formats.
 
 The built-in CSV parser doesn't support all flavours of CSV, so in
 some cases it may be necessary to use an external CSV parser. See
@@ -148,14 +141,6 @@ CSV through the MIT licensed [Papa Parse](http://papaparse.com/)
 library.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/csv/">Data from CSV</a>*/
 	public String csv;
-
-/**
-A callback function to access the parsed columns, the two-dimentional
-input data array directly, before they are interpreted into series
-data and categories. Return false to stop completion, or call
-this.complete() to continue async.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/parsed/">Modify data after parse</a>*/
-	public HIFunction parsed;
 
 /**
 A two-dimensional array representing the input data on tabular form.
@@ -171,6 +156,69 @@ In tabular input data, the last row (indexed by 0) to use. Defaults
 to the last row containing data.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/start-end/">Limited data</a>*/
 	public Number endRow;
+
+/**
+Item or cell delimiter for parsing CSV. Defaults to the tab character
+\t if a tab character is found in the CSV string, if not it defaults
+to ,.
+
+If this is set to false or undefined, the parser will attempt to deduce
+the delimiter automatically.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/delimiters/">Delimiters</a>*/
+	public String itemDelimiter;
+
+/**
+The callback that is evaluated when the data is finished loading,
+optionally from an external source, and parsed. The first argument
+passed is a finished chart options object, containing the series.
+These options can be extended with additional options and passed
+directly to the chart constructor.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/complete/">Modify data on complete</a>*/
+	public HIFunction complete;
+
+/**
+A callback function to modify the CSV before parsing it. Return the modified
+string.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/line-ajax/">Modify CSV before parse</a>*/
+	public HIFunction beforeParse;
+
+/**
+In tabular input data, the last column (indexed by 0) to use. Defaults
+to the last column containing data.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/start-end/">Limited data</a>*/
+	public Number endColumn;
+
+/**
+Whether to use the first row in the data set as series names.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/start-end/">Don't get series names from the CSV</a> <br><br><b>default:</b><br><br>&ensp;true*/
+	public Boolean firstRowAsNames;
+
+/**
+The key for a Google Spreadsheet to load. See [general information
+on GS](https://developers.google.com/gdata/samples/spreadsheet_sample).
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/google-spreadsheet/">Load a Google Spreadsheet</a>*/
+	public String googleSpreadsheetKey;
+
+/**
+Switch rows and columns of the input data, so that this.columns
+effectively becomes the rows of the data set, and the rows are interpreted
+as series.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/switchrowsandcolumns/">Switch rows and columns</a> <br><br><b>default:</b><br><br>&ensp;false*/
+	public Boolean switchRowsAndColumns;
+
+/**
+The decimal point used for parsing numbers in the CSV.
+
+If both this and data.delimiter is set to false, the parser will
+attempt to deduce the decimal point automatically.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/delimiters/">Comma as decimal point</a> <br><br><b>default:</b><br><br>&ensp;.*/
+	public String decimalPoint;
+
+/**
+A URL to a remote JSON dataset, structured as a column array.
+Will be fetched when the chart is created using Ajax.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/livedata-columns">Columns with live polling</a>*/
+	public String columnsURL;
 
 /**
 The high value for each data point, signifying the highest value
@@ -224,7 +272,7 @@ etc.
 Individual color for the point. By default the color is pulled from
 the global colors array.
 
-In styled mode, the color option doesn't take effect. Instead, use 
+In styled mode, the color option doesn't take effect. Instead, use
 colorIndex.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/color/">Mark the highest point</a> <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public HIColor color;
@@ -236,8 +284,8 @@ Whether the data point is selected initially.
 
 /**
 Individual data label for each point. The options are the same as
-the ones for [plotOptions.series.dataLabels](#plotOptions.series.
-dataLabels)
+the ones for [plotOptions.series.dataLabels](
+#plotOptions.series.dataLabels).
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/datalabels/">Show a label for the last value</a>*/
 	public Object dataLabels;
 
@@ -418,11 +466,23 @@ be set to the root.
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
+		if (this.enablePolling != null) {
+			params.put("enablePolling", this.enablePolling);
+		}
+		if (this.startColumn != null) {
+			params.put("startColumn", this.startColumn);
+		}
+		if (this.lineDelimiter != null) {
+			params.put("lineDelimiter", this.lineDelimiter);
+		}
+		if (this.table != null) {
+			params.put("table", this.table);
+		}
+		if (this.parsed != null) {
+			params.put("parsed", this.parsed);
+		}
 		if (this.parseDate != null) {
 			params.put("parseDate", this.parseDate);
-		}
-		if (this.firstRowAsNames != null) {
-			params.put("firstRowAsNames", this.firstRowAsNames);
 		}
 		if (this.seriesMapping != null) {
 			ArrayList<Object> array = new ArrayList<>();
@@ -448,11 +508,8 @@ be set to the root.
 			}
 			params.put("rows", array);
 		}
-		if (this.complete != null) {
-			params.put("complete", this.complete);
-		}
-		if (this.itemDelimiter != null) {
-			params.put("itemDelimiter", this.itemDelimiter);
+		if (this.csvURL != null) {
+			params.put("csvURL", this.csvURL);
 		}
 		if (this.dateFormat != null) {
 			params.put("dateFormat", this.dateFormat);
@@ -460,35 +517,17 @@ be set to the root.
 		if (this.googleSpreadsheetWorksheet != null) {
 			params.put("googleSpreadsheetWorksheet", this.googleSpreadsheetWorksheet);
 		}
-		if (this.googleSpreadsheetKey != null) {
-			params.put("googleSpreadsheetKey", this.googleSpreadsheetKey);
+		if (this.dataRefreshRate != null) {
+			params.put("dataRefreshRate", this.dataRefreshRate);
 		}
-		if (this.switchRowsAndColumns != null) {
-			params.put("switchRowsAndColumns", this.switchRowsAndColumns);
+		if (this.rowsURL != null) {
+			params.put("rowsURL", this.rowsURL);
 		}
 		if (this.startRow != null) {
 			params.put("startRow", this.startRow);
 		}
-		if (this.startColumn != null) {
-			params.put("startColumn", this.startColumn);
-		}
-		if (this.endColumn != null) {
-			params.put("endColumn", this.endColumn);
-		}
-		if (this.table != null) {
-			params.put("table", this.table);
-		}
-		if (this.decimalPoint != null) {
-			params.put("decimalPoint", this.decimalPoint);
-		}
-		if (this.lineDelimiter != null) {
-			params.put("lineDelimiter", this.lineDelimiter);
-		}
 		if (this.csv != null) {
 			params.put("csv", this.csv);
-		}
-		if (this.parsed != null) {
-			params.put("parsed", this.parsed);
 		}
 		if (this.columns != null) {
 			ArrayList<Object> array = new ArrayList<>();
@@ -504,6 +543,33 @@ be set to the root.
 		}
 		if (this.endRow != null) {
 			params.put("endRow", this.endRow);
+		}
+		if (this.itemDelimiter != null) {
+			params.put("itemDelimiter", this.itemDelimiter);
+		}
+		if (this.complete != null) {
+			params.put("complete", this.complete);
+		}
+		if (this.beforeParse != null) {
+			params.put("beforeParse", this.beforeParse);
+		}
+		if (this.endColumn != null) {
+			params.put("endColumn", this.endColumn);
+		}
+		if (this.firstRowAsNames != null) {
+			params.put("firstRowAsNames", this.firstRowAsNames);
+		}
+		if (this.googleSpreadsheetKey != null) {
+			params.put("googleSpreadsheetKey", this.googleSpreadsheetKey);
+		}
+		if (this.switchRowsAndColumns != null) {
+			params.put("switchRowsAndColumns", this.switchRowsAndColumns);
+		}
+		if (this.decimalPoint != null) {
+			params.put("decimalPoint", this.decimalPoint);
+		}
+		if (this.columnsURL != null) {
+			params.put("columnsURL", this.columnsURL);
 		}
 		if (this.high != null) {
 			params.put("high", this.high);

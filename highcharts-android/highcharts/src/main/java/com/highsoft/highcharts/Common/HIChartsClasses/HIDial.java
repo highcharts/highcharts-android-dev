@@ -21,8 +21,9 @@ public class HIDial implements HIChartsJSONSerializable {
 
 
 /**
-The border color or stroke of the gauge's dial. By default, the borderWidth
-is 0, so this must be set in addition to a custom border color.
+The border color or stroke of the gauge's dial. By default, the
+borderWidth is 0, so this must be set in addition to a custom border
+color.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a> <br><br><b>default:</b><br><br>&ensp;#cccccc*/
 	public HIColor borderColor;
 

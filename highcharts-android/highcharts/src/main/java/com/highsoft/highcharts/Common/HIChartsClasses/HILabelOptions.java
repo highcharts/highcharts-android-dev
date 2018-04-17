@@ -22,7 +22,7 @@ public class HILabelOptions implements HIChartsJSONSerializable {
 
 /**
 Whether to allow the annotation's labels to overlap.
-To make the labels less sensitive for overlapping, 
+To make the labels less sensitive for overlapping,
 the can be set to 0.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/tooltip-like/">Hide overlapping labels</a>*/
 	public Boolean allowOverlap;
@@ -39,14 +39,13 @@ Styles for the annotation's label.
 
 /**
 When either the borderWidth or the backgroundColor is set,
-this	is the padding within the box.
+this    is the padding within the box.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>*/
 	public Number padding;
 
 /**
 The vertical alignment of the annotation's label.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position
-*</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]*/
 	public String verticalAlign;
 
 /**
@@ -84,8 +83,7 @@ area.
 /**
 Whether to [use HTML](http://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html)
 to render the annotation's label.
- <br><br><b>default:</b><br><br>&ensp;false
-**/
+ <br><br><b>default:</b><br><br>&ensp;false*/
 	public Boolean useHTML;
 
 /**
@@ -96,8 +94,7 @@ A class name for styling by CSS.
 /**
 The name of a symbol to use for the border around the label.
 Symbols are predefined functions on the Renderer object.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shapes/">Available shapes for labels
-*</a>*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shapes/">Available shapes for labels</a>*/
 	public String shape;
 
 /**
@@ -114,16 +111,14 @@ The background color or gradient for the annotation's label.
 The y position offset of the label relative to the point.
 Note that if a distance is defined, the distance takes
 precedence over x and y options.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position
-*</a>*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a>*/
 	public Number y;
 
 /**
 The x position offset of the label relative to the point.
 Note that if a distance is defined, the distance takes
 precedence over x and y options.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position
-*</a>*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a>*/
 	public Number x;
 
 /**
@@ -139,9 +134,8 @@ Note that if a format or text are defined, the format or text
 take precedence and the formatter is ignored. This refers to a
 point object.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-text/">Set labels text</a> <br><br><b>default:</b><br><br>&ensp;function () {
-	return defined(this.y) ? this.y : 'Annotation label';
-}
-**/
+    return defined(this.y) ? this.y : 'Annotation label';
+}*/
 	public HIFunction formatter;
 
 /**

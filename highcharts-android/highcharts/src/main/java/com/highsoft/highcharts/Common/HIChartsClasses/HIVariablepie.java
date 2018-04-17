@@ -21,10 +21,29 @@ import com.highsoft.highcharts.Common.HIColor;
 A variablepie series. If the type option is not
 specified, it is inherited from chart.type.
 
-For options that apply to multiple series, it is recommended to add
-them to the plotOptions.series options structure.
-To apply to all series of this specific type, apply it to [plotOptions.
-variablepie](#plotOptions.variablepie).
+Configuration options for the series are given in three levels:
+1. Options for all series in a chart are defined in the [plotOptions.series](plotOptions.series)
+object. 
+2. Options for all variablepie series are defined in [plotOptions.variablepie](plotOptions.variablepie).
+3. Options for one single series are given in
+[the series instance array](series.variablepie).
+
+
+Highcharts.chart('container', {
+    plotOptions: {
+        series: {
+            // general options for all series
+        },
+        variablepie: {
+            // shared options for all variablepie series
+        }
+    },
+    series: [{
+        // specific options for this series instance
+        type: 'variablepie'
+    }]
+});
+
 */
 
 public class HIVariablepie extends HISeries {
@@ -43,7 +62,7 @@ If a number is set, it applies in pixels.
 	public Object /* String|Number */ minPointSize;
 
 /**
-Whether the pie slice's value should be represented by the area 
+Whether the pie slice's value should be represented by the area
 or the radius of the slice. Can be either area or radius. The
 default, area, corresponds best to the human perception of the size
 of each pie slice.
@@ -51,7 +70,7 @@ of each pie slice.
 	public String sizeBy;
 
 /**
-The minimum possible z value for the point's radius calculation. 
+The minimum possible z value for the point's radius calculation.
 If the point's Z value is smaller than zMin, the slice will be drawn
 according to the zMin value.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/zmin-5/">zMin set to 5, smaller z values are treated as 5</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/zmin-zmax/">Series limited by both zMin and zMax</a>*/
@@ -136,7 +155,6 @@ null instead.
 In styled mode, the border stroke width is given in the .highcharts-point class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-borderwidth/">3px border</a> <br><br><b>default:</b><br><br>&ensp;1*/
 	public Number borderWidth;
-	public String legendType;
 
 /**
 The start angle of the pie slices in degrees where 0 is top and 90
@@ -149,7 +167,7 @@ The diameter of the pie relative to the plot area. Can be a percentage
 or pixel value. Pixel values are given as integers. The default
 behaviour (as of 3.0) is to scale to the plot area and give room
 for data labels within the plot area.
-slicedOffset is also included 
+slicedOffset is also included
 in the default size calculation. As a consequence, the size
 of the pie may vary when points are updated and data labels more
 around. In that case it is best to set a fixed value, for example
@@ -234,9 +252,6 @@ The default value changed from false to true with Highcharts
 		}
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);
-		}
-		if (this.legendType != null) {
-			params.put("legendType", this.legendType);
 		}
 		if (this.startAngle != null) {
 			params.put("startAngle", this.startAngle);

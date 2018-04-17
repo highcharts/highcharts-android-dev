@@ -21,10 +21,29 @@ import com.highsoft.highcharts.Common.HIColor;
 A pie series. If the type option is not specified,
 it is inherited from chart.type.
 
-For options that apply to multiple series, it is recommended to add
-them to the plotOptions.series options structure.
-To apply to all series of this specific type, apply it to [plotOptions.
-pie](#plotOptions.pie).
+Configuration options for the series are given in three levels:
+1. Options for all series in a chart are defined in the [plotOptions.series](plotOptions.series)
+object. 
+2. Options for all pie series are defined in [plotOptions.pie](plotOptions.pie).
+3. Options for one single series are given in
+[the series instance array](series.pie).
+
+
+Highcharts.chart('container', {
+    plotOptions: {
+        series: {
+            // general options for all series
+        },
+        pie: {
+            // shared options for all pie series
+        }
+    },
+    series: [{
+        // specific options for this series instance
+        type: 'pie'
+    }]
+});
+
 */
 
 public class HIPie extends HISeries {
@@ -102,7 +121,6 @@ null instead.
 In styled mode, the border stroke width is given in the .highcharts-point class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-borderwidth/">3px border</a> <br><br><b>default:</b><br><br>&ensp;1*/
 	public Number borderWidth;
-	public String legendType;
 
 /**
 The start angle of the pie slices in degrees where 0 is top and 90
@@ -115,7 +133,7 @@ The diameter of the pie relative to the plot area. Can be a percentage
 or pixel value. Pixel values are given as integers. The default
 behaviour (as of 3.0) is to scale to the plot area and give room
 for data labels within the plot area.
-slicedOffset is also included 
+slicedOffset is also included
 in the default size calculation. As a consequence, the size
 of the pie may vary when points are updated and data labels more
 around. In that case it is best to set a fixed value, for example
@@ -185,9 +203,6 @@ The default value changed from false to true with Highcharts
 		}
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);
-		}
-		if (this.legendType != null) {
-			params.put("legendType", this.legendType);
 		}
 		if (this.startAngle != null) {
 			params.put("startAngle", this.startAngle);

@@ -25,12 +25,12 @@ Focus border margin around the elements.
 	public Number margin;
 
 /**
-Style options for the focus border drawn around elements 
-while navigating through them. Note that some browsers in 
+Style options for the focus border drawn around elements
+while navigating through them. Note that some browsers in
 addition draw their own borders for focused elements. These
 automatic borders can not be styled by Highcharts.
 
-In styled mode, the border is given the 
+In styled mode, the border is given the
 .highcharts-focus-border class.
 */
 	public HIStyle style;

@@ -45,8 +45,10 @@ legend items.
 	public Boolean squareSymbol;
 
 /**
-The width for each legend item. This is useful in a horizontal layout
-with many items when you want the items to align vertically. .
+The width for each legend item. By default the items are laid out
+successively. In a [horizontal layout](legend.layout), if the items
+are laid out across two rows or more, they will be vertically aligned
+depending on the [legend.alignColumns](legend.alignColumns) option.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/itemwidth-default/">Null by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/itemwidth-80/">80 for aligned legend items</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public Number itemWidth;
 
@@ -224,6 +226,14 @@ unless overridden here.
 	public HIItemHiddenStyle itemHiddenStyle;
 
 /**
+If the [layout](legend.layout) is horizontal and the legend items
+span over two lines or more, whether to align the items into vertical
+columns. Setting this to false makes room for more items, but will
+look more messy.
+*/
+	public Boolean alignColumns;
+
+/**
 The pixel height of the symbol for series types that use a rectangle
 in the legend. Defaults to the font size of legend items.
 */
@@ -367,6 +377,9 @@ enabled-false/).
 		}
 		if (this.itemHiddenStyle != null) {
 			params.put("itemHiddenStyle", this.itemHiddenStyle.getParams());
+		}
+		if (this.alignColumns != null) {
+			params.put("alignColumns", this.alignColumns);
 		}
 		if (this.symbolHeight != null) {
 			params.put("symbolHeight", this.symbolHeight);

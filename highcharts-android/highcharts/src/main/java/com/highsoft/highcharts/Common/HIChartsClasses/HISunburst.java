@@ -21,10 +21,29 @@ import com.highsoft.highcharts.Common.HIColor;
 A sunburst series. If the type option is
 not specified, it is inherited from chart.type.
 
-For options that apply to multiple series, it is recommended to add
-them to the plotOptions.series options structure.
-To apply to all series of this specific type, apply it to [plotOptions.
-sunburst](#plotOptions.sunburst).
+Configuration options for the series are given in three levels:
+1. Options for all series in a chart are defined in the [plotOptions.series](plotOptions.series)
+object. 
+2. Options for all sunburst series are defined in [plotOptions.sunburst](plotOptions.sunburst).
+3. Options for one single series are given in
+[the series instance array](series.sunburst).
+
+
+Highcharts.chart('container', {
+    plotOptions: {
+        series: {
+            // general options for all series
+        },
+        sunburst: {
+            // shared options for all sunburst series
+        }
+    },
+    series: [{
+        // specific options for this series instance
+        type: 'sunburst'
+    }]
+});
+
 */
 
 public class HISunburst extends HISeries {
@@ -113,7 +132,7 @@ The diameter of the pie relative to the plot area. Can be a percentage
 or pixel value. Pixel values are given as integers. The default
 behaviour (as of 3.0) is to scale to the plot area and give room
 for data labels within the plot area.
-slicedOffset is also included 
+slicedOffset is also included
 in the default size calculation. As a consequence, the size
 of the pie may vary when points are updated and data labels more
 around. In that case it is best to set a fixed value, for example

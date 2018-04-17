@@ -21,10 +21,29 @@ import com.highsoft.highcharts.Common.HIColor;
 A area series. If the type option is not
 specified, it is inherited from chart.type.
 
-For options that apply to multiple series, it is recommended to add
-them to the plotOptions.series options structure.
-To apply to all series of this specific type, apply it to [plotOptions.
-area](#plotOptions.area).
+Configuration options for the series are given in three levels:
+1. Options for all series in a chart are defined in the [plotOptions.series](plotOptions.series)
+object. 
+2. Options for all area series are defined in [plotOptions.area](plotOptions.area).
+3. Options for one single series are given in
+[the series instance array](series.area).
+
+
+Highcharts.chart('container', {
+    plotOptions: {
+        series: {
+            // general options for all series
+        },
+        area: {
+            // shared options for all area series
+        }
+    },
+    series: [{
+        // specific options for this series instance
+        type: 'area'
+    }]
+});
+
 */
 
 public class HIArea extends HISeries {

@@ -18,15 +18,15 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 public class HISeriesTypeDescriptions implements HIChartsJSONSerializable { 
 
-	public Object funnel;
-	public Object pyramid;
-	public Object columnrange;
-	public Object errorbar;
-	public Object areasplinerange;
-	public Object waterfall;
-	public Object arearange;
-	public Object bubble;
-	public Object boxplot;
+	public String funnel;
+	public String pyramid;
+	public String columnrange;
+	public String errorbar;
+	public String areasplinerange;
+	public String waterfall;
+	public String arearange;
+	public String bubble;
+	public String boxplot;
 
 
 	public HISeriesTypeDescriptions() {
@@ -37,22 +37,31 @@ public class HISeriesTypeDescriptions implements HIChartsJSONSerializable {
 
 		Map<String, Object> params = new HashMap<>();
 		if (this.funnel != null) {
+			params.put("funnel", this.funnel);
 		}
 		if (this.pyramid != null) {
+			params.put("pyramid", this.pyramid);
 		}
 		if (this.columnrange != null) {
+			params.put("columnrange", this.columnrange);
 		}
 		if (this.errorbar != null) {
+			params.put("errorbar", this.errorbar);
 		}
 		if (this.areasplinerange != null) {
+			params.put("areasplinerange", this.areasplinerange);
 		}
 		if (this.waterfall != null) {
+			params.put("waterfall", this.waterfall);
 		}
 		if (this.arearange != null) {
+			params.put("arearange", this.arearange);
 		}
 		if (this.bubble != null) {
+			params.put("bubble", this.bubble);
 		}
 		if (this.boxplot != null) {
+			params.put("boxplot", this.boxplot);
 		}
 		return params;
 	}

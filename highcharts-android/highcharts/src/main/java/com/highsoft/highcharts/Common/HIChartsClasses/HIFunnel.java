@@ -21,10 +21,29 @@ import com.highsoft.highcharts.Common.HIColor;
 A funnel series. If the type option is
 not specified, it is inherited from chart.type.
 
-For options that apply to multiple series, it is recommended to add
-them to the plotOptions.series options structure.
-To apply to all series of this specific type, apply it to
-plotOptions.funnel.
+Configuration options for the series are given in three levels:
+1. Options for all series in a chart are defined in the [plotOptions.series](plotOptions.series)
+object. 
+2. Options for all funnel series are defined in [plotOptions.funnel](plotOptions.funnel).
+3. Options for one single series are given in
+[the series instance array](series.funnel).
+
+
+Highcharts.chart('container', {
+    plotOptions: {
+        series: {
+            // general options for all series
+        },
+        funnel: {
+            // shared options for all funnel series
+        }
+    },
+    series: [{
+        // specific options for this series instance
+        type: 'funnel'
+    }]
+});
+
 */
 
 public class HIFunnel extends HISeries {
@@ -132,7 +151,6 @@ null instead.
 In styled mode, the border stroke width is given in the .highcharts-point class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-borderwidth/">3px border</a> <br><br><b>default:</b><br><br>&ensp;1*/
 	public Number borderWidth;
-	public String legendType;
 
 /**
 The start angle of the pie slices in degrees where 0 is top and 90
@@ -217,9 +235,6 @@ The default value changed from false to true with Highcharts
 		}
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);
-		}
-		if (this.legendType != null) {
-			params.put("legendType", this.legendType);
 		}
 		if (this.startAngle != null) {
 			params.put("startAngle", this.startAngle);

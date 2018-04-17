@@ -26,8 +26,8 @@ The color of the marker.
 	public HIColor color;
 
 /**
-Animation for the marker as it moves between values. Set to false
-to disable animation. Defaults to { duration: 50 }.
+Animation for the marker as it moves between values. Set to
+false to disable animation. Defaults to { duration: 50 }.
 */
 	public HIAnimation animation;
 	public Boolean enabled;

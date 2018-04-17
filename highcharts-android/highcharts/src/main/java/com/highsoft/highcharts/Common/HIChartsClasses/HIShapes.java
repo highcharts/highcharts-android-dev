@@ -22,7 +22,7 @@ public class HIShapes implements HIChartsJSONSerializable {
 
 /**
 An array of points for the shape. This option is available for shapes
-which can use multiple points such as path. A point can be either 
+which can use multiple points such as path. A point can be either
 a point object or a point's id.
 */
 	public ArrayList points;
@@ -49,8 +49,7 @@ properties and optionally axes.
 
 /**
 The pixel stroke width of the shape.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation
-*</a>*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>*/
 	public Number strokeWidth;
 
 /**
@@ -65,14 +64,12 @@ The width of the shape.
 
 /**
 The color of the shape's stroke.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation
-*</a>*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>*/
 	public HIColor stroke;
 
 /**
 The radius of the shape.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation
-*</a>*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>*/
 	public Number r;
 
 /**
@@ -82,8 +79,7 @@ The type of the shape, e.g. circle or rectangle.
 
 /**
 The color of the shape's fill.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation
-*</a>*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>*/
 	public HIColor fill;
 
 

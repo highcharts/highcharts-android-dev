@@ -21,22 +21,41 @@ import com.highsoft.highcharts.Common.HIColor;
 A variwide series. If the type option is
 not specified, it is inherited from chart.type.
 
-For options that apply to multiple series, it is recommended to add
-them to the plotOptions.series options structure.
-To apply to all series of this specific type, apply it to [plotOptions.
-variwide](#plotOptions.variwide).
+Configuration options for the series are given in three levels:
+1. Options for all series in a chart are defined in the [plotOptions.series](plotOptions.series)
+object. 
+2. Options for all variwide series are defined in [plotOptions.variwide](plotOptions.variwide).
+3. Options for one single series are given in
+[the series instance array](series.variwide).
+
+
+Highcharts.chart('container', {
+    plotOptions: {
+        series: {
+            // general options for all series
+        },
+        variwide: {
+            // shared options for all variwide series
+        }
+    },
+    series: [{
+        // specific options for this series instance
+        type: 'variwide'
+    }]
+});
+
 */
 
 public class HIVariwide extends HISeries {
 
 /**
-* description: In a variwide chart, the point padding is 0 in order to express the 
+* description: In a variwide chart, the point padding is 0 in order to express the
 horizontal stacking of items.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-default/ : 0.1 by default •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-025/ : 0.25 •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-none/ : 0 for tightly packed columns*/
 	public Number pointPadding;
 
 /**
-* description: In a variwide chart, the group padding is 0 in order to express the 
+* description: In a variwide chart, the group padding is 0 in order to express the
 horizontal stacking of items.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-grouppadding-default/ : 0.2 by default •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-grouppadding-none/ : No group padding - all columns are evenly spaced*/
 	public Number groupPadding;
@@ -69,11 +88,10 @@ packed values.
 
 /**
 A series specific or series type specific color set to apply instead
-of the global colors when [colorByPoint](#plotOptions.
-column.colorByPoint) is true.
+of the global colors when [colorByPoint](
+#plotOptions.column.colorByPoint) is true.
 */
 	public ArrayList<HIColor> colors;
-	public Boolean startFromThreshold;
 
 /**
 The color of the border surrounding each column or bar.
@@ -150,9 +168,6 @@ and overlap each other.
 				array.add((HIColor) hiColor.getData());
 			}
 			params.put("colors", array);
-		}
-		if (this.startFromThreshold != null) {
-			params.put("startFromThreshold", this.startFromThreshold);
 		}
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());

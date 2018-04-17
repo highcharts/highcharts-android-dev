@@ -22,10 +22,29 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 A sankey series. If the type option is not
 specified, it is inherited from chart.type.
 
-For options that apply to multiple series, it is recommended to add
-them to the plotOptions.series options structure.
-To apply to all series of this specific type, apply it to [plotOptions.
-sankey](#plotOptions.sankey).
+Configuration options for the series are given in three levels:
+1. Options for all series in a chart are defined in the [plotOptions.series](plotOptions.series)
+object. 
+2. Options for all sankey series are defined in [plotOptions.sankey](plotOptions.sankey).
+3. Options for one single series are given in
+[the series instance array](series.sankey).
+
+
+Highcharts.chart('container', {
+    plotOptions: {
+        series: {
+            // general options for all series
+        },
+        sankey: {
+            // shared options for all sankey series
+        }
+    },
+    series: [{
+        // specific options for this series instance
+        type: 'sankey'
+    }]
+});
+
 */
 
 public class HISankey extends HISeries {
@@ -71,14 +90,13 @@ packed values.
 
 /**
 A series specific or series type specific color set to apply instead
-of the global colors when [colorByPoint](#plotOptions.
-column.colorByPoint) is true.
+of the global colors when [colorByPoint](
+#plotOptions.column.colorByPoint) is true.
 */
 	public ArrayList<HIColor> colors;
-	public Boolean startFromThreshold;
 
 /**
-A collection of options for the individual nodes. The nodes in a sankey 
+A collection of options for the individual nodes. The nodes in a sankey
 diagram are auto-generated instances of Highcharts.Point, but options can
 be applied here and linked by the id.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/sankey/">Sankey diagram with node options</a>*/
@@ -112,18 +130,12 @@ be applied here and linked by the id.
 		if (this.minPointLength != null) {
 			params.put("minPointLength", this.minPointLength);
 		}
-		if (this.colors != null) {  //BUG here
-//			ArrayList<HIColor> array = new ArrayList<>();
-			ArrayList<Object> array = new ArrayList<>();
+		if (this.colors != null) {
+			ArrayList<HIColor> array = new ArrayList<>();
 			for (HIColor hiColor : this.colors) {
-//				array.add((HIColor) hiColor.getData());
-				array.add(hiColor.getData());
-//				array.add(hiColor);
+				array.add((HIColor) hiColor.getData());
 			}
 			params.put("colors", array);
-		}
-		if (this.startFromThreshold != null) {
-			params.put("startFromThreshold", this.startFromThreshold);
 		}
 		if (this.nodes != null) {
 			ArrayList<Object> array = new ArrayList<>();

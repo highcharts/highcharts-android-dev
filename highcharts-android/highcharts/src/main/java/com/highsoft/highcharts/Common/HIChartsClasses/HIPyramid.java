@@ -21,10 +21,29 @@ import com.highsoft.highcharts.Common.HIColor;
 A pyramid series. If the type option is
 not specified, it is inherited from chart.type.
 
-For options that apply to multiple series, it is recommended to add
-them to the plotOptions.series options structure.
-To apply to all series of this specific type, apply it to
-plotOptions.pyramid.
+Configuration options for the series are given in three levels:
+1. Options for all series in a chart are defined in the [plotOptions.series](plotOptions.series)
+object. 
+2. Options for all pyramid series are defined in [plotOptions.pyramid](plotOptions.pyramid).
+3. Options for one single series are given in
+[the series instance array](series.pyramid).
+
+
+Highcharts.chart('container', {
+    plotOptions: {
+        series: {
+            // general options for all series
+        },
+        pyramid: {
+            // shared options for all pyramid series
+        }
+    },
+    series: [{
+        // specific options for this series instance
+        type: 'pyramid'
+    }]
+});
+
 */
 
 public class HIPyramid extends HISeries {
@@ -36,13 +55,13 @@ shares the layout engine, and is not reversed.
 	public Boolean reversed;
 
 /**
-* description: The pyramid neck width is zero by default, as opposed to the funnel, 
+* description: The pyramid neck width is zero by default, as opposed to the funnel,
 which shares the same layout logic.
 */
 	public String neckHeight;
 
 /**
-* description: The pyramid neck width is zero by default, as opposed to the funnel, 
+* description: The pyramid neck width is zero by default, as opposed to the funnel,
 which shares the same layout logic.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/funnel/ : Funnel demo*/
 	public String neckWidth;
@@ -130,7 +149,6 @@ null instead.
 In styled mode, the border stroke width is given in the .highcharts-point class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-borderwidth/">3px border</a> <br><br><b>default:</b><br><br>&ensp;1*/
 	public Number borderWidth;
-	public String legendType;
 
 /**
 The start angle of the pie slices in degrees where 0 is top and 90
@@ -215,9 +233,6 @@ The default value changed from false to true with Highcharts
 		}
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);
-		}
-		if (this.legendType != null) {
-			params.put("legendType", this.legendType);
 		}
 		if (this.startAngle != null) {
 			params.put("startAngle", this.startAngle);

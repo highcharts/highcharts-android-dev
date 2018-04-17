@@ -38,9 +38,9 @@ between points in a series, while up/down arrow keys move between
 series. Up/down navigation acts intelligently to figure out which
 series makes sense to move to from any given point.
 
-In "serialize" mode, points are instead navigated as a single 
+In "serialize" mode, points are instead navigated as a single
 list. Left/right behaves as in "normal" mode. Up/down arrow keys
-will behave like left/right. This is useful for unifying 
+will behave like left/right. This is useful for unifying
 navigation behavior with/without screen readers enabled.
  <br><br><b>default:</b><br><br>&ensp;normal*/
 	public String mode;

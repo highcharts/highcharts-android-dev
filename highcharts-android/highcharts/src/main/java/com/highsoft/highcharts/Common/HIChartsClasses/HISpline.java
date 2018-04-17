@@ -20,10 +20,29 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 A spline series. If the type option is
 not specified, it is inherited from chart.type.
 
-For options that apply to multiple series, it is recommended to add
-them to the plotOptions.series options structure.
-To apply to all series of this specific type, apply it to [plotOptions.
-spline](#plotOptions.spline).
+Configuration options for the series are given in three levels:
+1. Options for all series in a chart are defined in the [plotOptions.series](plotOptions.series)
+object. 
+2. Options for all spline series are defined in [plotOptions.spline](plotOptions.spline).
+3. Options for one single series are given in
+[the series instance array](series.spline).
+
+
+Highcharts.chart('container', {
+    plotOptions: {
+        series: {
+            // general options for all series
+        },
+        spline: {
+            // shared options for all spline series
+        }
+    },
+    series: [{
+        // specific options for this series instance
+        type: 'spline'
+    }]
+});
+
 */
 
 public class HISpline extends HISeries {

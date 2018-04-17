@@ -33,9 +33,9 @@ is set using axis.setExtremes(), the minPadding will be ignored.
 If tickInterval is null this option sets the approximate pixel
 interval of the tick marks. Not applicable to categorized axis.
 
-The tick interval is also influenced by the [minTickInterval](#xAxis.
-minTickInterval) option, that, by default prevents ticks from being
-denser than the data points.
+The tick interval is also influenced by the [minTickInterval](
+#xAxis.minTickInterval) option, that, by default prevents ticks from
+being denser than the data points.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickpixelinterval-50/">50 px on X axis</a>*/
 	public Number tickPixelInterval;
 
@@ -73,11 +73,20 @@ be visible.
 	public Boolean visible;
 
 /**
-A soft maximum for the axis. If the series data maximum is less than
-this, the axis will stay at this maximum, but if the series data
-maximum is higher, the axis will flex to show all data.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/softmin-softmax/">Soft min and max</a>*/
-	public Number softMax;
+When using multiple axis, the ticks of two or more opposite axes
+will automatically be aligned by adding ticks to the axis or axes
+with the least ticks, as if tickAmount were specified.
+
+This can be prevented by setting alignTicks to false. If the grid
+lines look messy, it's a good idea to hide them for the secondary
+axis by setting gridLineWidth to 0.
+
+If startOnTick or endOnTick in an Axis options are set to false,
+then the alignTicks will be disabled for the Axis.
+
+Disabled for logarithmic axes.
+ <br><br><b>default:</b><br><br>&ensp;true*/
+	public Boolean alignTicks;
 
 /**
 Refers to the index in the panes array. Used for circular
@@ -125,7 +134,7 @@ and tickInterval.
 	public ArrayList<Number> tickPositions;
 
 /**
-The minimum value of the axis. If null the min value is 
+The minimum value of the axis. If null the min value is
 automatically calculated.
 
 If the startOnTick option is true (default), the min value might
@@ -189,10 +198,10 @@ In styled mode, the stroke width is given in the
 
 /**
 A callback function returning array defining where the ticks are
-laid out on the axis. This overrides the default behaviour of [tickPixelInterval](#xAxis.
-tickPixelInterval) and tickInterval. The automatic
-tick positions are accessible through this.tickPositions and can
-be modified by the callback.
+laid out on the axis. This overrides the default behaviour of
+tickPixelInterval and
+tickInterval. The automatic tick positions are
+accessible through this.tickPositions and can be modified by the callback.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickpositions-tickpositioner/">Demo of tickPositions and tickPositioner</a>*/
 	public HIFunction tickPositioner;
 
@@ -278,7 +287,7 @@ data minimum is lower, the axis will flex to show all data.
 The type of axis. Can be one of linear, logarithmic, datetime
 or category. In a datetime axis, the numbers are given in
 milliseconds, and tick marks are placed on appropriate values like
-full hours or days. In a category axis, the 
+full hours or days. In a category axis, the
 point names of the chart's series are used
 for categories, if not a categories array is
 defined.
@@ -405,8 +414,8 @@ two points on the axis.
 
 /**
 The interval of the tick marks in axis units. When null, the tick
-interval is computed to approximately follow the [tickPixelInterval](#xAxis.
-tickPixelInterval) on linear and datetime axes. On categorized axes,
+interval is computed to approximately follow the [tickPixelInterval](
+#xAxis.tickPixelInterval) on linear and datetime axes. On categorized axes,
 a null tickInterval will default to 1, one category. Note that
 datetime axes are based on milliseconds, so for example an interval
 of one day is expressed as 24 * 3600 * 1000.
@@ -549,6 +558,13 @@ Can be one of inside and outside.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickposition-outside/">"outside" by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickposition-inside/">"inside"</a> <br><br><b>accepted values:</b><br><br>&ensp;["inside", "outside"]*/
 	public String tickPosition;
 
+/**
+A soft maximum for the axis. If the series data maximum is less than
+this, the axis will stay at this maximum, but if the series data
+maximum is higher, the axis will flex to show all data.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/softmin-softmax/">Soft min and max</a>*/
+	public Number softMax;
+
 
 	public HIZAxis() {
 
@@ -572,8 +588,8 @@ Can be one of inside and outside.
 		if (this.visible != null) {
 			params.put("visible", this.visible);
 		}
-		if (this.softMax != null) {
-			params.put("softMax", this.softMax);
+		if (this.alignTicks != null) {
+			params.put("alignTicks", this.alignTicks);
 		}
 		if (this.pane != null) {
 			params.put("pane", this.pane);
@@ -778,6 +794,9 @@ Can be one of inside and outside.
 		}
 		if (this.tickPosition != null) {
 			params.put("tickPosition", this.tickPosition);
+		}
+		if (this.softMax != null) {
+			params.put("softMax", this.softMax);
 		}
 		return params;
 	}

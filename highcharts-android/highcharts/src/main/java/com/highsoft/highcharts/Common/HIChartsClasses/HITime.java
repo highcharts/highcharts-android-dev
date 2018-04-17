@@ -21,7 +21,7 @@ public class HITime implements HIChartsJSONSerializable {
 
 /**
 A custom Date class for advanced date handling. For example,
-[JDate](https://githubcom/tahajahangir/jdate) can be hooked in to
+[JDate](https://github.com/tahajahangir/jdate) can be hooked in to
 handle Jalali dates.
 */
 	public Object Date;

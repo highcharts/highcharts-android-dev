@@ -25,8 +25,8 @@ percentage gives a width relative to result of outer radius minus
 inner radius.
 pixels gives the ring a fixed width in pixels.
 weight takes the remaining width after percentage and pixels, and
-distributes it accross all "weighted" levels. The value relative to the
-sum of all weights determines the width.
+distributes it accross all "weighted" levels. The value relative to
+the sum of all weights determines the width.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-levelsize/">Sunburst with various sizes per level</a> <br><br><b>accepted values:</b><br><br>&ensp;["percentage", "pixels", "weight"]*/
 	public String unit;
 

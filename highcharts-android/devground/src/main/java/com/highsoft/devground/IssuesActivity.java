@@ -43,12 +43,13 @@ public class IssuesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_issues);
 
-//        float height = getResources().getDisplayMetrics().heightPixels;
         HIChartView chartView = findViewById(R.id.hc);
-//        chartView.getLayoutParams().height = Math.round(height*2/5);
-        chartView.setWillNotDraw(false);
+
         HIOptions options = new HIOptions();
 
+        HITitle title = new HITitle();
+        title.text = "Issue chart";
+        options.title = title;
 
 //        chartView.plugins = new ArrayList<>();
 //        chartView.plugins.add("boost-canvas");
@@ -63,20 +64,15 @@ public class IssuesActivity extends AppCompatActivity {
         chart.type = "line";
         options.chart = chart;
 
-        HITitle title = new HITitle();
-        String wharHouseNme = "example name";
-        String timeType = "time type";
-        title.text = "("+wharHouseNme+") "+timeType+" Sales Trend";
-        options.title = title;
 
         HIYAxis yaxis = new HIYAxis();
         yaxis.title = new HITitle();
         yaxis.title.text = "Quantity Sold";
         options.yAxis = new ArrayList<>(Collections.singletonList(yaxis));
 
-        HIXAxis xaxis = new HIXAxis();
+//        HIXAxis xaxis = new HIXAxis();
 //        xaxis.categories=orderVelocityWeekPojo.getRange();
-        options.xAxis = new ArrayList<>(Collections.singletonList(xaxis));
+//        options.xAxis = new ArrayList<>(Collections.singletonList(xaxis));
 
         HILegend legend = new HILegend();
         legend.layout = "vertical";
@@ -87,14 +83,13 @@ public class IssuesActivity extends AppCompatActivity {
         HIPlotOptions plotoptions = new HIPlotOptions();
         plotoptions.series = new HISeries();
         plotoptions.series.label = new HILabel();
-        plotoptions.series.label.connectorAllowed = false;;
+        plotoptions.series.label.connectorAllowed = false;
         plotoptions.series.pointStart = 2010;
+        options.plotOptions = plotoptions;
 
         HILine line1 = new HILine();
-//        line1.name = "Actual Sales("+orderVelocityWeekPojo.getFromDate()+" to "+orderVelocityWeekPojo.getToDate()+")";
-        line1.name = "Actual Sales(*name from method* to  *data from method*_";
-//        line1.data = count;
-        line1.data = new ArrayList<>(Arrays.asList(4,1,4,5,6,1,5,4,3,5,4,5,6,1,5,4,3,5,4,5,6,1,5,4));
+        line1.name = "Sample nameSample nameSample nameSample name";
+        line1.data = new ArrayList<>(Arrays.asList(4,1,4,5,6,1,5,4,1,4,2,6,8,4));
 
 
         HIResponsive responsive = new HIResponsive();

@@ -99,18 +99,9 @@ Should return a date format string compatible with
 dateFormat.
 */
 	public HIFunction pointDateFormatter;
-	public String defaultChartTitle;
-	public String screenReaderRegionLabel;
-	public String mapZoomIn;
 
 /**
-Axis description format strings.
-*/
-	public HIAxis axis;
-	public String rangeSelectorMinInput;
-
-/**
-Chart type description strings. This is added to the chart 
+Chart type description strings. This is added to the chart
 information region.
 
 If there is only a single series type used in the chart, we use
@@ -120,23 +111,48 @@ series in the chart, and one for multiple series of the same
 type.
 */
 	public HIChartTypes chartTypes;
-	public String rangeSelectorButton;
 	public String longDescriptionHeading;
+	public String rangeSelectorMaxInput;
+	public String structureHeading;
+	public String chartContainerLabel;
+
+/**
+Axis description format strings.
+*/
+	public HIAxis axis;
+
+/**
+Lang configuration for different series types. For more dynamic
+control over the series element descriptions, see
+[accessibility.seriesDescriptionFormatter](
+accessibility.seriesDescriptionFormatter).
+*/
+	public HISeries series;
 
 /**
 Exporting menu format strings for accessibility module.
 */
 	public HIExporting exporting;
+	public String mapZoomOut;
+	public String rangeSelectorMinInput;
+	public String rangeSelectorButton;
+	public String legendItem;
+	public String tableSummary;
+	public String noDescription;
+	public String viewAsDataTable;
+	public String defaultChartTitle;
+	public String screenReaderRegionLabel;
+	public String mapZoomIn;
 	public String chartHeading;
-	public String rangeSelectorMaxInput;
 
 /**
-Lang configuration for different series types. For more dynamic
-control over the series element descriptions, see
-[accessibility.seriesDescriptionFormatter](accessibility.
-seriesDescriptionFormatter).
+Title element text for the chart SVG element. Leave this
+empty to disable adding the title element. Browsers will display
+this content when hovering over elements in the chart. Assistive
+technology may use this element to label the chart.
 */
-	public HISeries series;
+	public String svgContainerTitle;
+	public String navigationHint;
 
 /**
 Descriptions of lesser known series types. The relevant
@@ -144,14 +160,6 @@ description is added to the screen reader information region
 when these series types are used.
 */
 	public HISeriesTypeDescriptions seriesTypeDescriptions;
-	public String legendItem;
-	public String chartContainerLabel;
-	public String structureHeading;
-	public String tableSummary;
-	public String navigationHint;
-	public String noDescription;
-	public String viewAsDataTable;
-	public String mapZoomOut;
 
 
 	public HIAccessibility() {
@@ -191,6 +199,51 @@ when these series types are used.
 		if (this.pointDateFormatter != null) {
 			params.put("pointDateFormatter", this.pointDateFormatter);
 		}
+		if (this.chartTypes != null) {
+			params.put("chartTypes", this.chartTypes.getParams());
+		}
+		if (this.longDescriptionHeading != null) {
+			params.put("longDescriptionHeading", this.longDescriptionHeading);
+		}
+		if (this.rangeSelectorMaxInput != null) {
+			params.put("rangeSelectorMaxInput", this.rangeSelectorMaxInput);
+		}
+		if (this.structureHeading != null) {
+			params.put("structureHeading", this.structureHeading);
+		}
+		if (this.chartContainerLabel != null) {
+			params.put("chartContainerLabel", this.chartContainerLabel);
+		}
+		if (this.axis != null) {
+			params.put("axis", this.axis.getParams());
+		}
+		if (this.series != null) {
+			params.put("series", this.series.getParams());
+		}
+		if (this.exporting != null) {
+			params.put("exporting", this.exporting.getParams());
+		}
+		if (this.mapZoomOut != null) {
+			params.put("mapZoomOut", this.mapZoomOut);
+		}
+		if (this.rangeSelectorMinInput != null) {
+			params.put("rangeSelectorMinInput", this.rangeSelectorMinInput);
+		}
+		if (this.rangeSelectorButton != null) {
+			params.put("rangeSelectorButton", this.rangeSelectorButton);
+		}
+		if (this.legendItem != null) {
+			params.put("legendItem", this.legendItem);
+		}
+		if (this.tableSummary != null) {
+			params.put("tableSummary", this.tableSummary);
+		}
+		if (this.noDescription != null) {
+			params.put("noDescription", this.noDescription);
+		}
+		if (this.viewAsDataTable != null) {
+			params.put("viewAsDataTable", this.viewAsDataTable);
+		}
 		if (this.defaultChartTitle != null) {
 			params.put("defaultChartTitle", this.defaultChartTitle);
 		}
@@ -200,59 +253,17 @@ when these series types are used.
 		if (this.mapZoomIn != null) {
 			params.put("mapZoomIn", this.mapZoomIn);
 		}
-		if (this.axis != null) {
-			params.put("axis", this.axis.getParams());
-		}
-		if (this.rangeSelectorMinInput != null) {
-			params.put("rangeSelectorMinInput", this.rangeSelectorMinInput);
-		}
-		if (this.chartTypes != null) {
-			params.put("chartTypes", this.chartTypes.getParams());
-		}
-		if (this.rangeSelectorButton != null) {
-			params.put("rangeSelectorButton", this.rangeSelectorButton);
-		}
-		if (this.longDescriptionHeading != null) {
-			params.put("longDescriptionHeading", this.longDescriptionHeading);
-		}
-		if (this.exporting != null) {
-			params.put("exporting", this.exporting.getParams());
-		}
 		if (this.chartHeading != null) {
 			params.put("chartHeading", this.chartHeading);
 		}
-		if (this.rangeSelectorMaxInput != null) {
-			params.put("rangeSelectorMaxInput", this.rangeSelectorMaxInput);
-		}
-		if (this.series != null) {
-			params.put("series", this.series.getParams());
-		}
-		if (this.seriesTypeDescriptions != null) {
-			params.put("seriesTypeDescriptions", this.seriesTypeDescriptions.getParams());
-		}
-		if (this.legendItem != null) {
-			params.put("legendItem", this.legendItem);
-		}
-		if (this.chartContainerLabel != null) {
-			params.put("chartContainerLabel", this.chartContainerLabel);
-		}
-		if (this.structureHeading != null) {
-			params.put("structureHeading", this.structureHeading);
-		}
-		if (this.tableSummary != null) {
-			params.put("tableSummary", this.tableSummary);
+		if (this.svgContainerTitle != null) {
+			params.put("svgContainerTitle", this.svgContainerTitle);
 		}
 		if (this.navigationHint != null) {
 			params.put("navigationHint", this.navigationHint);
 		}
-		if (this.noDescription != null) {
-			params.put("noDescription", this.noDescription);
-		}
-		if (this.viewAsDataTable != null) {
-			params.put("viewAsDataTable", this.viewAsDataTable);
-		}
-		if (this.mapZoomOut != null) {
-			params.put("mapZoomOut", this.mapZoomOut);
+		if (this.seriesTypeDescriptions != null) {
+			params.put("seriesTypeDescriptions", this.seriesTypeDescriptions.getParams());
 		}
 		return params;
 	}

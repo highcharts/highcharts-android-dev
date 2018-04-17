@@ -21,9 +21,9 @@ public class HIColorAxis implements HIChartsJSONSerializable {
 
 
 /**
-An array of data classes or ranges for the choropleth map. If none
-given, the color axis is scalar and values are distributed as a gradient
-between the minimum and maximum colors.
+An array of data classes or ranges for the choropleth map. If
+none given, the color axis is scalar and values are distributed
+as a gradient between the minimum and maximum colors.
 */
 	public ArrayList <HIDataClasses> dataClasses;
 
@@ -43,13 +43,14 @@ Highcharts API.](/highcharts#xAxis.labels)
 	public HILabels labels;
 
 /**
-The color to represent the maximum of the color axis. Unless [dataClasses](#colorAxis.
-dataClasses) or stops are set, the gradient
-ends at this value.
+The color to represent the maximum of the color axis. Unless
+dataClasses or
+stops are set, the gradient ends at this
+value.
 
-If dataClasses are set, the color is based on minColor and maxColor
-unless a color is set for each data class, or the [dataClassColor](#colorAxis.
-dataClassColor) is set.
+If dataClasses are set, the color is based on minColor and
+maxColor unless a color is set for each data class, or the
+dataClassColor is set.
  <br><br><b>default:</b><br><br>&ensp;#003399*/
 	public HIColor maxColor;
 
@@ -61,41 +62,42 @@ marker: null.
 	public HIMarker marker;
 
 /**
-* description: The minimum value of the axis in terms of map point values. If null,
-the min value is automatically calculated. If the startOnTick
-option is true, the min value might be rounded down.
+* description: The minimum value of the axis in terms of map point values. If
+null, the min value is automatically calculated. If the
+startOnTick option is true, the min value might be rounded
+down.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/min-startontick-false/ : -50 with startOnTick to false •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/min-startontick-true/ : -50 with startOnTick true by default*/
 	public Number min;
 
 /**
 Color stops for the gradient of a scalar color axis. Use this in
 cases where a linear gradient between a minColor and maxColor
-is not sufficient. The stops is an array of tuples, where the first
-item is a float between 0 and 1 assigning the relative position in
-the gradient, and the second item is the color.
+is not sufficient. The stops is an array of tuples, where the
+first item is a float between 0 and 1 assigning the relative
+position in the gradient, and the second item is the color.
 */
 	public ArrayList<ArrayList> stops;
 
 /**
-Determines how to set each data class' color if no individual color
-is set. The default value, tween, computes intermediate colors
-between minColor and maxColor. The other possible value, category,
-pulls colors from the global or chart specific colors
-array.
+Determines how to set each data class' color if no individual
+color is set. The default value, tween, computes intermediate
+colors between minColor and maxColor. The other possible
+value, category, pulls colors from the global or chart specific
+colors array.
  <br><br><b>accepted values:</b><br><br>&ensp;["tween", "category"] <br><br><b>default:</b><br><br>&ensp;tween*/
 	public String dataClassColor;
 
 /**
 * description: Whether to force the axis to end on a tick. Use this option with
-the maxPadding option to control the axis
-end.
+the maxPadding option to control the
+axis end.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/reflow-true/ : True by default •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/endontick/ : False* default: true
 */
 	public Boolean endOnTick;
 
 /**
-* description: The type of interpolation to use for the color axis. Can be linear
-or logarithmic.
+* description: The type of interpolation to use for the color axis. Can be
+linear or logarithmic.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/type-linear/ : Linear •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/type-log/ : Logarithmic •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/type-log-minorgrid/ : Logarithmic with minor grid lines •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/type-log-both/ : Logarithmic on two axes •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/type-log-negative/ : Logarithmic with extension to emulate negative values* accepted values: ["linear", "logarithmic"]
 * default: linear
 */
@@ -114,16 +116,17 @@ sets the approximate pixel interval of the tick marks.
 	public Number tickPixelInterval;
 
 /**
-* description: The maximum value of the axis in terms of map point values. If null,
-the max value is automatically calculated. If the endOnTick option
-is true, the max value might be rounded up.
+* description: The maximum value of the axis in terms of map point values. If
+null, the max value is automatically calculated. If the
+endOnTick option is true, the max value might be rounded up.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/max-200/ : Y axis max of 200 •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/max-logarithmic/ : Y axis max on logarithmic axis*/
 	public Number max;
 
 /**
 * description: Whether to reverse the axis so that the highest number is closest
-to the origin. Defaults to false in a horizontal legend and true
-in a vertical legend, where the smallest value starts on top.
+to the origin. Defaults to false in a horizontal legend and
+true in a vertical legend, where the smallest value starts on
+top.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/reversed/ : Reversed Y axis* default: false
 */
 	public Boolean reversed;
@@ -136,32 +139,35 @@ gradient of a scalar color axis.
 	public Number gridLineWidth;
 
 /**
-* description: The interval of the tick marks in axis units. When null, the tick
-interval is computed to approximately follow the tickPixelInterval.
+* description: The interval of the tick marks in axis units. When null, the
+tick interval is computed to approximately follow the
+tickPixelInterval.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickinterval-5/ : Tick interval of 5 on a linear axis* default: null
 */
 	public Number tickInterval;
 
 /**
-* description: Color of the grid lines extending from the axis across the gradient.
+* description: Color of the grid lines extending from the axis across the
+gradient.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/gridlinecolor/ : Green lines •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/ : Styled mode* default: #e6e6e6
 */
 	public HIColor gridLineColor;
 
 /**
-The color to represent the minimum of the color axis. Unless [dataClasses](#colorAxis.
-dataClasses) or stops are set, the gradient
-starts at this value.
+The color to represent the minimum of the color axis. Unless
+dataClasses or
+stops are set, the gradient starts at this
+value.
 
-If dataClasses are set, the color is based on minColor and maxColor
-unless a color is set for each data class, or the [dataClassColor](#colorAxis.
-dataClassColor) is set.
+If dataClasses are set, the color is based on minColor and
+maxColor unless a color is set for each data class, or the
+dataClassColor is set.
  <br><br><b>default:</b><br><br>&ensp;#e6ebf5*/
 	public HIColor minColor;
 
 /**
-* description: Whether to force the axis to start on a tick. Use this option with
-the maxPadding option to control the axis start.
+* description: Whether to force the axis to start on a tick. Use this option
+with the maxPadding option to control the axis start.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/startontick-false/ : False by default •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/startontick-true/ : True* default: true
 */
 	public Boolean startOnTick;
@@ -195,11 +201,20 @@ be visible.
 	public Boolean visible;
 
 /**
-A soft maximum for the axis. If the series data maximum is less than
-this, the axis will stay at this maximum, but if the series data
-maximum is higher, the axis will flex to show all data.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/softmin-softmax/">Soft min and max</a>*/
-	public Number softMax;
+When using multiple axis, the ticks of two or more opposite axes
+will automatically be aligned by adding ticks to the axis or axes
+with the least ticks, as if tickAmount were specified.
+
+This can be prevented by setting alignTicks to false. If the grid
+lines look messy, it's a good idea to hide them for the secondary
+axis by setting gridLineWidth to 0.
+
+If startOnTick or endOnTick in an Axis options are set to false,
+then the alignTicks will be disabled for the Axis.
+
+Disabled for logarithmic axes.
+ <br><br><b>default:</b><br><br>&ensp;true*/
+	public Boolean alignTicks;
 
 /**
 Refers to the index in the panes array. Used for circular
@@ -257,10 +272,10 @@ In styled mode, the stroke width is given in the
 
 /**
 A callback function returning array defining where the ticks are
-laid out on the axis. This overrides the default behaviour of [tickPixelInterval](#xAxis.
-tickPixelInterval) and tickInterval. The automatic
-tick positions are accessible through this.tickPositions and can
-be modified by the callback.
+laid out on the axis. This overrides the default behaviour of
+tickPixelInterval and
+tickInterval. The automatic tick positions are
+accessible through this.tickPositions and can be modified by the callback.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickpositions-tickpositioner/">Demo of tickPositions and tickPositioner</a>*/
 	public HIFunction tickPositioner;
 
@@ -457,6 +472,13 @@ Can be one of inside and outside.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickposition-outside/">"outside" by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickposition-inside/">"inside"</a> <br><br><b>accepted values:</b><br><br>&ensp;["inside", "outside"]*/
 	public String tickPosition;
 
+/**
+A soft maximum for the axis. If the series data maximum is less than
+this, the axis will stay at this maximum, but if the series data
+maximum is higher, the axis will flex to show all data.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/softmin-softmax/">Soft min and max</a>*/
+	public Number softMax;
+
 
 	public HIColorAxis() {
 
@@ -555,8 +577,8 @@ Can be one of inside and outside.
 		if (this.visible != null) {
 			params.put("visible", this.visible);
 		}
-		if (this.softMax != null) {
-			params.put("softMax", this.softMax);
+		if (this.alignTicks != null) {
+			params.put("alignTicks", this.alignTicks);
 		}
 		if (this.pane != null) {
 			params.put("pane", this.pane);
@@ -665,6 +687,9 @@ Can be one of inside and outside.
 		}
 		if (this.tickPosition != null) {
 			params.put("tickPosition", this.tickPosition);
+		}
+		if (this.softMax != null) {
+			params.put("softMax", this.softMax);
 		}
 		return params;
 	}

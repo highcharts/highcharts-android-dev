@@ -21,10 +21,29 @@ import com.highsoft.highcharts.Common.HIColor;
 A errorbar series. If the type option
 is not specified, it is inherited from chart.type.
 
-For options that apply to multiple series, it is recommended to add
-them to the plotOptions.series options structure.
-To apply to all series of this specific type, apply it to
-plotOptions.errorbar.
+Configuration options for the series are given in three levels:
+1. Options for all series in a chart are defined in the [plotOptions.series](plotOptions.series)
+object. 
+2. Options for all errorbar series are defined in [plotOptions.errorbar](plotOptions.errorbar).
+3. Options for one single series are given in
+[the series instance array](series.errorbar).
+
+
+Highcharts.chart('container', {
+    plotOptions: {
+        series: {
+            // general options for all series
+        },
+        errorbar: {
+            // shared options for all errorbar series
+        }
+    },
+    series: [{
+        // specific options for this series instance
+        type: 'errorbar'
+    }]
+});
+
 */
 
 public class HIErrorbar extends HISeries {
@@ -136,11 +155,10 @@ packed values.
 
 /**
 A series specific or series type specific color set to apply instead
-of the global colors when [colorByPoint](#plotOptions.
-column.colorByPoint) is true.
+of the global colors when [colorByPoint](
+#plotOptions.column.colorByPoint) is true.
 */
 	public ArrayList<HIColor> colors;
-	public Boolean startFromThreshold;
 
 /**
 3D columns only. The color of the edges. Similar to borderColor,
@@ -251,9 +269,6 @@ Depth of the columns in a 3D column chart. Requires highcharts-3d.js.
 				array.add((HIColor) hiColor.getData());
 			}
 			params.put("colors", array);
-		}
-		if (this.startFromThreshold != null) {
-			params.put("startFromThreshold", this.startFromThreshold);
 		}
 		if (this.edgeColor != null) {
 			params.put("edgeColor", this.edgeColor.getData());

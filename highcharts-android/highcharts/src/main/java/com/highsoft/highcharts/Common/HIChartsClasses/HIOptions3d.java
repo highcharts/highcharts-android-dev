@@ -20,9 +20,10 @@ public class HIOptions3d implements HIChartsJSONSerializable {
 
 
 /**
-Defines the distance the viewer is standing in front of the chart,
-this setting is important to calculate the perspective effect
-in column and scatter charts. It is not used for 3D pie charts.
+Defines the distance the viewer is standing in front of the
+chart, this setting is important to calculate the perspective
+effect in column and scatter charts. It is not used for 3D pie
+charts.
  <br><br><b>default:</b><br><br>&ensp;100*/
 	public Number viewDistance;
 

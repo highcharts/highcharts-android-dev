@@ -42,8 +42,7 @@ overwritten by config for a specific label.
 
 /**
 The Z index of the annotation.
- <br><br><b>default:</b><br><br>&ensp;6
-**/
+ <br><br><b>default:</b><br><br>&ensp;6*/
 	public Number zIndex;
 
 /**

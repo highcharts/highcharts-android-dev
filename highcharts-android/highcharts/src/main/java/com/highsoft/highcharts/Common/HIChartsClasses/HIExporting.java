@@ -33,6 +33,7 @@ The text for the menu item
 textKey
 If internationalization is required, the key to a language string
 
+
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/menuitemdefinitions/">Menu item definitions</a>*/
 	public Object menuItemDefinitions;
 
@@ -77,8 +78,8 @@ options.
 
 /**
 The pixel width of charts exported to PNG or JPG. As of Highcharts
-3.0, the default pixel width is a function of the [chart.width](#chart.
-width) or exporting.sourceWidth and the
+3.0, the default pixel width is a function of the [chart.width](
+#chart.width) or exporting.sourceWidth and the
 exporting.scale.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/width/">Export to 200px wide images</a> <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public Number width;
@@ -177,9 +178,9 @@ chart title by default. Set to false to disable.
 
 /**
 Function to call if the offline-exporting module fails to export
-a chart on the client side, and [fallbackToExportServer](#exporting.
-fallbackToExportServer) is disabled. If left undefined, an exception
-is thrown instead.
+a chart on the client side, and [fallbackToExportServer](
+#exporting.fallbackToExportServer) is disabled. If left undefined, an
+exception is thrown instead.
  <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public HIFunction error;
 

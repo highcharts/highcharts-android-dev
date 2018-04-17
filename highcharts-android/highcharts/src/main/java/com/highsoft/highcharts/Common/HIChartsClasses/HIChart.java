@@ -59,6 +59,11 @@ with the least ticks, as if tickAmount were specified.
 This can be prevented by setting alignTicks to false. If the grid
 lines look messy, it's a good idea to hide them for the secondary
 axis by setting gridLineWidth to 0.
+
+If startOnTick or endOnTick in an Axis options are set to false,
+then the alignTicks will be disabled for the Axis.
+
+Disabled for logarithmic axes.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/alignticks-true/">True by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/alignticks-false/">False</a> <br><br><b>default:</b><br><br>&ensp;true*/
 	public Boolean alignTicks;
 
@@ -69,19 +74,19 @@ This feature requires modules/parallel-coordinates.js.
 The default options are:
 
 parallelAxes: {
-	lineWidth: 1,       // classic mode only
-	gridlinesWidth: 0,  // classic mode only
-	title: {
-		text: '',
-		reserveSpace: false
-	},
-	labels: {
-		x: 0,
-		y: 0,
-		align: 'center',
-		reserveSpace: false
-	},
-	offset: 0
+   lineWidth: 1,       // classic mode only
+   gridlinesWidth: 0,  // classic mode only
+   title: {
+       text: '',
+       reserveSpace: false
+   },
+   labels: {
+       x: 0,
+       y: 0,
+       align: 'center',
+       reserveSpace: false
+   },
+   offset: 0
 }
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/parallel-coordinates/parallelaxes/">Set the same tickAmount for all yAxes</a>*/
 	public HIParallelAxes parallelAxes;
@@ -178,8 +183,8 @@ Set the overall animation for all chart updating. Animation can be
 disabled throughout the chart by setting it to false here. It can
 be overridden for each individual API method as a function parameter.
 The only animation not affected by this option is the initial series
-animation, see [plotOptions.series.animation](#plotOptions.series.
-animation).
+animation, see [plotOptions.series.animation](
+#plotOptions.series.animation).
 
 The animation can either be set as a boolean or a configuration
 object. If true, it will use the 'swing' jQuery easing and a
@@ -276,6 +281,15 @@ area. Use this to set a fixed pixel value for the margin as opposed
 to the default dynamic margin. See also spacingLeft.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/marginleft/">150px left margin</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public Number marginLeft;
+
+/**
+Options for a scrollable plot area. This feature provides a minimum width for
+the plot area of the chart. If the width gets smaller than this, typically
+on mobile devices, a native browser scrollbar is presented below the chart.
+This scrollbar provides smooth scrolling for the contents of the plot area,
+whereas the title, legend and axes are fixed.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/scrollable-plotarea">Scrollable plot area</a>*/
+	public HIScrollablePlotArea scrollablePlotArea;
 
 /**
 Whether to apply a drop shadow to the outer chart area. Requires
@@ -503,6 +517,9 @@ and spacingLeft options.
 		}
 		if (this.marginLeft != null) {
 			params.put("marginLeft", this.marginLeft);
+		}
+		if (this.scrollablePlotArea != null) {
+			params.put("scrollablePlotArea", this.scrollablePlotArea.getParams());
 		}
 		if (this.shadow != null) {
 			params.put("shadow", this.shadow);

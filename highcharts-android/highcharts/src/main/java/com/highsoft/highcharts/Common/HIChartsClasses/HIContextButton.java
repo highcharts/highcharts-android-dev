@@ -21,15 +21,16 @@ public class HIContextButton implements HIChartsJSONSerializable {
 
 
 /**
-* description: See navigation.buttonOptions.symbolFill.
+* description: See [navigation.buttonOptions.symbolFill](
+#navigation.buttonOptions.symbolFill).
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-symbolfill/ : Blue symbol stroke for one of the buttons* default: #666666
 */
 	public HIColor symbolFill;
 
 /**
 The symbol for the button. Points to a definition function in
-the Highcharts.Renderer.symbols collection. The default exportIcon
-function is part of the exporting module.
+the Highcharts.Renderer.symbols collection. The default
+exportIcon function is part of the exporting module.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-contextbutton-symbol/">Use a circle for symbol</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-contextbutton-symbol-custom/">Custom shape as symbol</a> <br><br><b>accepted values:</b><br><br>&ensp;["circle", "square", "diamond", "triangle", "triangle-down", "menu"] <br><br><b>default:</b><br><br>&ensp;menu*/
 	public String symbol;
 
@@ -69,17 +70,17 @@ items. The config options are defined in the
 menuItemDefinitions option.
 
 By default, there is the "Print" menu item plus one menu item
-for each of the available export types. 
+for each of the available export types.
 
-Defaults to 
+Defaults to
 
 [
-	'printChart',
-	'separator',
-	'downloadPNG',
-	'downloadJPEG',
-	'downloadPDF',
-	'downloadSVG'
+   'printChart',
+   'separator',
+   'downloadPNG',
+   'downloadJPEG',
+   'downloadPDF',
+   'downloadSVG'
 ]
 
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/menuitemdefinitions/">Menu item definitions</a>*/

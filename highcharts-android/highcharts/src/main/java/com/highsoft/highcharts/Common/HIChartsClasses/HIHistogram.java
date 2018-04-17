@@ -21,10 +21,29 @@ import com.highsoft.highcharts.Common.HIColor;
 A histogram series. If the type option is not
 specified, it is inherited from chart.type.
 
-For options that apply to multiple series, it is recommended to add
-them to the plotOptions.series options structure.
-To apply to all series of this specific type, apply it to 
-plotOptions.histogram.
+Configuration options for the series are given in three levels:
+1. Options for all series in a chart are defined in the [plotOptions.series](plotOptions.series)
+object. 
+2. Options for all histogram series are defined in [plotOptions.histogram](plotOptions.histogram).
+3. Options for one single series are given in
+[the series instance array](series.histogram).
+
+
+Highcharts.chart('container', {
+    plotOptions: {
+        series: {
+            // general options for all series
+        },
+        histogram: {
+            // shared options for all histogram series
+        }
+    },
+    series: [{
+        // specific options for this series instance
+        type: 'histogram'
+    }]
+});
+
 */
 
 public class HIHistogram extends HISeries {
@@ -103,11 +122,10 @@ highcharts-3d.js.
 
 /**
 A series specific or series type specific color set to apply instead
-of the global colors when [colorByPoint](#plotOptions.
-column.colorByPoint) is true.
+of the global colors when [colorByPoint](
+#plotOptions.column.colorByPoint) is true.
 */
 	public ArrayList<HIColor> colors;
-	public Boolean startFromThreshold;
 
 /**
 The color of the border surrounding each column or bar.
@@ -218,9 +236,6 @@ rule.
 				array.add((HIColor) hiColor.getData());
 			}
 			params.put("colors", array);
-		}
-		if (this.startFromThreshold != null) {
-			params.put("startFromThreshold", this.startFromThreshold);
 		}
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());

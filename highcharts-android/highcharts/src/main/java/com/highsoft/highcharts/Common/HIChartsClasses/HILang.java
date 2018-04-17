@@ -35,19 +35,19 @@ Exporting module only. The text for the PNG download menu item.
 	public String downloadPNG;
 
 /**
-Configure the accessibility strings in the chart. Requires the 
+Configure the accessibility strings in the chart. Requires the
 [accessibility module](//code.highcharts.com/modules/accessibility.
 js) to be loaded. For a description of the module and information
 on its features, see [Highcharts Accessibility](http://www.highcharts.
 com/docs/chart-concepts/accessibility).
 
 For more dynamic control over the accessibility functionality, see
-[accessibility.pointDescriptionFormatter](accessibility.
-pointDescriptionFormatter),
-[accessibility.seriesDescriptionFormatter](accessibility.
-seriesDescriptionFormatter), and
-[accessibility.screenReaderSectionFormatter](accessibility.
-screenReaderSectionFormatter).
+[accessibility.pointDescriptionFormatter](
+accessibility.pointDescriptionFormatter),
+[accessibility.seriesDescriptionFormatter](
+accessibility.seriesDescriptionFormatter), and
+[accessibility.screenReaderSectionFormatter](
+accessibility.screenReaderSectionFormatter).
 */
 	public HIAccessibility accessibility;
 
@@ -78,9 +78,9 @@ to null disables shortening altogether.
 	public ArrayList<String> numericSymbols;
 
 /**
-Exporting module only. The text for the menu item to print the chart.
- <br><br><b>default:</b><br><br>&ensp;Print chart*/
-	public String printChart;
+Exporting module only. The text for the SVG download menu item.
+ <br><br><b>default:</b><br><br>&ensp;Download SVG vector image*/
+	public String downloadSVG;
 
 /**
 The magnitude of numericSymbols replacements.
@@ -96,9 +96,9 @@ An array containing the weekday names.
 	public ArrayList<String> weekdays;
 
 /**
-Exporting module only. The text for the SVG download menu item.
- <br><br><b>default:</b><br><br>&ensp;Download SVG vector image*/
-	public String downloadSVG;
+Exporting module only. The text for the menu item to print the chart.
+ <br><br><b>default:</b><br><br>&ensp;Print chart*/
+	public String printChart;
 
 /**
 The text for the button that appears when drilling down, linking
@@ -133,6 +133,11 @@ The text for the label appearing when a chart is zoomed.
 Exporting module only. The text for the PDF download menu item.
  <br><br><b>default:</b><br><br>&ensp;Download PDF document*/
 	public String downloadPDF;
+
+/**
+Export-data module only. The text for the menu item.
+*/
+	public String openInCloud;
 
 /**
 An array containing the months names. Corresponds to the %B format
@@ -226,8 +231,8 @@ The default is a single space.
 			}
 			params.put("numericSymbols", array);
 		}
-		if (this.printChart != null) {
-			params.put("printChart", this.printChart);
+		if (this.downloadSVG != null) {
+			params.put("downloadSVG", this.downloadSVG);
 		}
 		if (this.numericSymbolMagnitude != null) {
 			params.put("numericSymbolMagnitude", this.numericSymbolMagnitude);
@@ -244,8 +249,8 @@ The default is a single space.
 			}
 			params.put("weekdays", array);
 		}
-		if (this.downloadSVG != null) {
-			params.put("downloadSVG", this.downloadSVG);
+		if (this.printChart != null) {
+			params.put("printChart", this.printChart);
 		}
 		if (this.drillUpText != null) {
 			params.put("drillUpText", this.drillUpText);
@@ -264,6 +269,9 @@ The default is a single space.
 		}
 		if (this.downloadPDF != null) {
 			params.put("downloadPDF", this.downloadPDF);
+		}
+		if (this.openInCloud != null) {
+			params.put("openInCloud", this.openInCloud);
 		}
 		if (this.months != null) {
 			ArrayList<Object> array = new ArrayList<>();

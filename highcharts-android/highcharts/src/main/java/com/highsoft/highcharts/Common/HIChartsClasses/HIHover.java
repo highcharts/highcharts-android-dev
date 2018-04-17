@@ -70,8 +70,8 @@ series' or point's lineColor for normal state is used.
 
 /**
 The radius of the point marker. In hover state, it defaults
-to the normal state's radius + 2 as per the
-radiusPlus
+to the normal state's radius + 2 as per the [radiusPlus](
+#plotOptions.series.marker.states.hover.radiusPlus)
 option.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-radius/">10px radius</a>*/
 	public Number radius;
