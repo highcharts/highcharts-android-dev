@@ -11,13 +11,15 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
 
 
 
-public class HIChart implements HIChartsJSONSerializable { 
+public class HIChart extends Observable implements HIChartsJSONSerializable {
 
 
 /**
@@ -578,4 +580,44 @@ and spacingLeft options.
 		return params;
 	}
 
+
+	public Number getBorderWidth() {
+		return borderWidth;
+	}
+
+	public void setBorderWidth(Number borderWidth) {
+		this.borderWidth = borderWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getBackgroundColor() {
+		return backgroundColor;
+	}
+
+	public void setBackgroundColor(HIColor backgroundColor) {
+		this.backgroundColor = backgroundColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList<Number> getSpacing() {
+		return spacing;
+	}
+
+	public void setSpacing(ArrayList<Number> spacing) {
+		this.spacing = spacing;
+		this.setChanged();
+		this.notifyObservers();
+	}
 }

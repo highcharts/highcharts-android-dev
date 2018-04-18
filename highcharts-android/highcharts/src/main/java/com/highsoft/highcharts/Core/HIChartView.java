@@ -276,13 +276,13 @@ public class HIChartView extends RelativeLayout {
         }
     };
 
-//    private void setOptions(HIOptions options) {
-//        this.options = options;
-//        this.options.addObserver(optionsChanged);
-//        Log.v("HIOptions", "set");
-//    }
-//
-//    private HIOptions getOptions() {
-//        return options;
-//    }
+    public void setOptions(HIOptions options) {
+        this.options = options;
+        this.options.addObserver(optionsChanged);
+        Log.v("HIOptions", "set");
+    }
+
+    public HIOptions getOptions() {
+        return options;
+    }
 }

@@ -11,12 +11,14 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HITitle implements HIChartsJSONSerializable { 
+public class HITitle extends Observable implements HIChartsJSONSerializable {
 
 
 /**

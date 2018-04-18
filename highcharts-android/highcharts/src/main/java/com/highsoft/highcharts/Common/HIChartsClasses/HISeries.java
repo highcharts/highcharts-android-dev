@@ -95,7 +95,9 @@ This option allows grouping series in a stacked chart. The stack option can be a
 	public String stack;
 
 /**
-The type of series. Can be one of area, areaspline, bar, column, line, pie, scatter or spline. From version 2.3, arearange, areasplinerange and columnrange are supported with the highcharts-more.js component.
+The type of series. Can be one of area, areaspline,
+ bar, column, line, pie,
+ scatter or spline. From version 2.3, arearange, areasplinerange and columnrange are supported with the highcharts-more.js component.
  <br><br><b><i>Try it:</b></i><br><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/type/" target="_blank">Line and column in the same chart</a> <br><br><b>accepted values:</b><br><br>&ensp;[null, "line", "spline", "column", "area", "areaspline", "pie", "arearange", "areasplinerange", "boxplot", "bubble", "columnrange", "errorbar", "funnel", "gauge", "scatter", "waterfall"]*/
 	public String type;
 
@@ -789,4 +791,11 @@ series.
 		return params;
 	}
 
+	public ArrayList getData() {
+		return data;
+	}
+
+	public void setData(ArrayList data) {
+		this.data = data;
+	}
 }

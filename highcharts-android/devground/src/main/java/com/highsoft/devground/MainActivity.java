@@ -35,13 +35,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        liveDataColumns61();
-
+        updateTest();
     }
 
     public void updateTest(){
-//        Button b1 = findViewById(R.id.button1);
-//        Button b2 = findViewById(R.id.button2);
+        Button b1 = findViewById(R.id.button1);
+        Button b2 = findViewById(R.id.button2);
         HIChartView chartView = findViewById(R.id.hc);
         HIOptions options = new HIOptions();
 
@@ -49,49 +48,62 @@ public class MainActivity extends AppCompatActivity {
         title.style = new HIStyle();
         title.style.fontSize = "40px";
         title.text = "Update feature test";
-        options.title = title;
-//        options.setTitle(title);
+//        options.title = title;
+        options.setTitle(title);
 
         HIChart chart = new HIChart();
         chart.type = "column";
         chart.backgroundColor = HIColor.initWithName("grey");
         chart.borderWidth = 10;
         chart.borderColor = HIColor.initWithName("lightblue");
-        options.chart = chart;
-//        options.setChart(chart);
+        chart.setSpacing(new ArrayList<>(Arrays.asList(30,30,100,30)));
+//        chart.spacing = new ArrayList<>(Arrays.asList(30,30,100,30));
+//        options.chart = chart;
+        options.setChart(chart);
 
         HISeries series = new HISeries();
         series.data = new ArrayList<>(Arrays.asList(5,8,10,2,5,1,7,4));
         HISeries series1 = new HISeries();
         series1.data = new ArrayList<>(Arrays.asList(5,12,14,6,1,8,4,6));
 
-        options.series = new ArrayList<>(Arrays.asList(series, series1));
-//        options.setSeries(new ArrayList<>(Arrays.asList(series, series1)));
+//        options.series = new ArrayList<>(Arrays.asList(series, series1));
+        options.setSeries(new ArrayList<>(Arrays.asList(series, series1)));
         options.colors = new ArrayList<>(Arrays.asList(HIColor.initWithName("red"), HIColor.initWithName("yellow")));
 
-        chartView.options = options;
-//        chartView.setOptions(options);
+//        chartView.options = options;
+        chartView.setOptions(options);
 
-//        b1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                chartView.getOptions().getChart().setType("spline");
-////                HISeries newSeries = chartView.getOptions().getSeries().get(0);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                chartView.getOptions().getChart().setType("spline");
+//                chartView.getOptions().getChart().setBackgroundColor(HIColor.initWithName("lightblue"));
+
+//                HISeries newSeries = chartView.getOptions().getSeries().get(0);
 ////                newSeries.setData(new ArrayList<>(Arrays.asList(5,19,2,15,18,10,8)));
-////                chartView.getOptions().setSeries(new ArrayList<>(Arrays.asList(newSeries, series1)));
-//            }
-//        });
-//        b2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                chartView.options.chart.setBorderWidth(50);
-////                HISeries series1 = new HISeries();
-////                series1.data = new ArrayList<>(Arrays.asList(6,9,10,11,13,8,9,6));
-////                HISeries series2 = new HISeries();
-////                series2.data = new ArrayList<>(Arrays.asList(9,1,2,2,9,8,5,4));
-////                chartView.options.setSeries(new ArrayList<>(Arrays.asList(series1,series2)));
-//            }
-//        });
+//                ArrayList firstSeriesData = chartView.getOptions().getSeries().get(0).getData();
+//                firstSeriesData.set(0, 10);
+//                newSeries.setData(firstSeriesData);
+//                chartView.getOptions().setSeries(new ArrayList<>(Arrays.asList(newSeries, series1)));
+                chartView.getOptions().getChart().setSpacing(new ArrayList<>(Arrays.asList(5,5,10,5)));
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                chartView.options.chart.setBorderWidth(50);
+
+                HIOptions options1 = new HIOptions();
+                options.setChart(new HIChart());
+                options.getChart().setBackgroundColor(HIColor.initWithName("blue"));
+                chartView.setOptions(options1);
+//                HISeries series1 = new HISeries();
+//                series1.data = new ArrayList<>(Arrays.asList(6,9,10,11,13,8,9,6));
+//                HISeries series2 = new HISeries();
+//                series2.data = new ArrayList<>(Arrays.asList(9,1,2,2,9,8,5,4));
+//                chartView.options.setSeries(new ArrayList<>(Arrays.asList(series1,series2)));
+            }
+        });
     }
 
     public void liveDataColumns61(){

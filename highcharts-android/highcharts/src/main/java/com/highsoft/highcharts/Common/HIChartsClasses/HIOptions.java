@@ -1,14 +1,19 @@
 
 package com.highsoft.highcharts.Common.HIChartsClasses;
 
+import android.util.Log;
+
 import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
 
-public class HIOptions {
+public class HIOptions extends Observable {
 
 /**
 The chart's subtitle. This can be used both to display a subtitle below
@@ -442,5 +447,46 @@ public Map<String, Object> getParams() {
 
 		return params;
 		
-}
+	}
+
+	public ArrayList<HISeries> getSeries() {
+		return series;
+	}
+
+	    private Observer updateObserver = new Observer() {
+			@Override
+			public void update(Observable observable, Object o) {
+				Log.i("HIOptions", "updated");
+			    setChanged();
+				notifyObservers();
+				}
+			};
+
+	public void setSeries(ArrayList<HISeries> series) {
+		this.series = series;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HITitle getTitle() {
+		return title;
+	}
+
+	public void setTitle(HITitle title) {
+		this.title = title;
+		this.title.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIChart getChart() {
+		return chart;
+	}
+
+	public void setChart(HIChart chart) {
+		this.chart = chart;
+		this.chart.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
 }
