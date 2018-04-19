@@ -33,8 +33,9 @@ filelicense = "/**\n* (c) 2009-2018 Highsoft AS\n*\n* License: www.highcharts.co
               "* In case of questions, please contact sales@highsoft.com\n*/\n\n"
 
 fileAndroidlicense = "/**\n* (c) 2009-2018 Highsoft AS\n*\n* License: www.highcharts.com/license\n" \
-              "* For commercial usage, a valid license is required. To purchase a license for Highcharts Android, please see our website: https://shop.highsoft.com/\n" \
-              "* In case of questions, please contact sales@highsoft.com\n*/\n\n"
+                     "* For commercial usage, a valid license is required. To purchase a license for Highcharts Android, please see our website: https://shop.highsoft.com/\n" \
+                     "* In case of questions, please contact sales@highsoft.com\n*/\n\n"
+
 
 class HIChartsClass:
     def __init__(self, name, data_type, description, demo, values, defaults, products, extends, exclude, info, parent):
@@ -208,7 +209,7 @@ def get_type(x):
         "Object|Number": 'id /* id, NSNumber */',
         "umber": 'NSNumber',
         "function|null": 'HIFunction',
-        #6.0.6
+        # 6.0.6
         "Undefined|Number": 'NSNumber'
     }[str(x)]
 
@@ -272,8 +273,11 @@ def get_java_type(x):
         "Object|Number": 'Object /* Object|Number */',
         "umber": 'Number',
         "function|null": 'HIFunction',
-        #6.0.6
-        "Undefined|Number": 'Number'
+        # 6.0.7
+        "Undefined|Number": 'Number',
+        # 6.1
+        "Bool": 'Boolean'
+
     }[str(x)]
 
 
@@ -430,8 +434,8 @@ def format_to_h(name, source):
 
             elif "NSArray" in str(get_type(field.data_type)) and structure[field.name].properties:
                 type = "{0} <{1} *> *".format(get_type(field.data_type), "HI" + upper_first(
-                                                                                          create_name(
-                                                                                              field.name)))
+                    create_name(
+                        field.name)))
                 types[field.name] = type
 
                 htext += "@property(nonatomic, readwrite) {0}{1};\n".format(type, get_last(field.name))
@@ -506,12 +510,14 @@ def create_setter(field):
 
     if 'NSArray' in setter_type:
         setter_text += "\t{0}oldValue = _{1};\n".format(setter_type, setter_attribute) + \
-                        "\t_{0} = {0};\n".format(setter_attribute) + \
-                       "\t[self updateArrayObject:oldValue newValue:{0} propertyName:@\"{0}\"];\n".format(setter_attribute)
+                       "\t_{0} = {0};\n".format(setter_attribute) + \
+                       "\t[self updateArrayObject:oldValue newValue:{0} propertyName:@\"{0}\"];\n".format(
+                           setter_attribute)
     elif 'HI' in setter_type:
         setter_text += "\t{0}oldValue = _{1};\n".format(setter_type, setter_attribute) + \
                        "\tif(self.{0})".format(setter_attribute) + " {\n" + \
-                       "\t\t[self removeObserver:self forKeyPath:@\"{0}.isUpdated\"];".format(setter_attribute) + "\n\t}\n" + \
+                       "\t\t[self removeObserver:self forKeyPath:@\"{0}.isUpdated\"];".format(
+                           setter_attribute) + "\n\t}\n" + \
                        "\t_{0} = {0};\n".format(setter_attribute) + \
                        "\t[self updateHIObject:oldValue newValue:{0} propertyName:@\"{0}\"];\n".format(setter_attribute)
     else:
@@ -554,7 +560,7 @@ def format_to_m(name, source):
                 data_type = structure[field.name].data_type
                 if get_type(data_type) == 'HIFunction':
                     getParams += "\t\tparams[@\"{0}\"] = [self.{1} getFunction];\n".format(get_last(field.name),
-                                                                                       get_last(field.name))
+                                                                                           get_last(field.name))
                 elif get_type(data_type) == 'HIColor':
                     getParams += "\t\tparams[@\"{0}\"] = [self.{1} getData];\n".format(get_last(field.name),
                                                                                        get_last(field.name))
@@ -612,6 +618,8 @@ def format_to_java(name, source):
     imports += "\nimport java.util.HashMap;"
     imports += "\nimport java.util.Map;"
     imports += "\nimport java.util.ArrayList;"
+    imports += "\nimport java.util.Observable;"
+    imports += "\nimport java.util.Observer;"
     imports += "\nimport com.highsoft.highcharts.Core.HIFunction;"
     imports += "\nimport com.highsoft.highcharts.Common.HIChartsJSONSerializable;"
 
@@ -629,69 +637,236 @@ def format_to_java(name, source):
     if not added_new_properties(class_name, source):
         return None
 
+    # SETTERS changed constructor for series type
     if source.extends is not None:
         declaration += "\npublic class {0}".format(class_name)
         declaration += " extends {0}".format("HI" + upper_first(source.extends)) + " {\n"
         constructor += "\n\n\tpublic {0}".format(class_name) + "() {\n"
         constructor += "\t\tsuper(); \n"
-        constructor += "\t\tthis.type = \"{0}\";".format(create_name(name))
+        # constructor += "\t\tthis.type = \"{0}\";".format(create_name(name))
+        constructor += "\t\tthis.setType(\"{0}\");".format(create_name(name))
         constructor += "\n\t}\n"
     else:
         declaration += "public class {0}".format(class_name)
         constructor += "\n\n\tpublic {0}".format(class_name) + "() {\n\n\t}\n"  # remove closing bracket
-        declaration += " implements HIChartsJSONSerializable { \n\n"
+        declaration += " extends Observable implements HIChartsJSONSerializable { \n\n"
+        # declaration += " implements HIChartsJSONSerializable { \n\n"
 
+    # SETTERS observer implementation
+
+    constructor += "\n\n\t private Observer updateObserver = new Observer() {" \
+                   "\n\t\t@Override" \
+                   "\n\t\tpublic void update(Observable observable, Object o) {" \
+                   "\n\t\t\tsetChanged();" \
+                   "\n\t\t\tnotifyObservers();" \
+                   "\n\t\t}" \
+                   "\n\t};\n\n"
+
+    setter_start = "\tpublic void set{0}({1} {2}) {{" \
+                   "\n\t\tthis.{3} = {4};"
+    setter_mid = "\n\t\tthis.{0}.addObserver(updateObserver);"
+    setter_end = "\n\t\tthis.setChanged();" \
+                 "\n\t\tthis.notifyObservers();" \
+                 "\n\t}"
+    getter = "\n\n\tpublic {0} get{1}(){{ return {2}; }}\n\n"
+
+    # SETTERS all fields changed to private, added setters and getters
     for field in classes[class_name]:
 
         if field_in_parent(field, source):
             continue
 
-        if field.comment:
-            fields += "\n{0}".format(field.comment)
+        # if field.comment:
+        #     fields += "\n{0}".format(field.comment)
         if field.data_type:
             if "Object" in str(get_java_type(field.data_type)) and "ArrayList" not in str(
                     get_java_type(field.data_type)) and not \
                     structure[field.name].properties:
-                fields += "\tpublic {0} {1};\n".format(get_java_type(field.data_type), get_last(field.name))
+                fields += "\tprivate {0} {1};\n".format(get_java_type(field.data_type), get_last(field.name))
 
+                if field.comment:
+                    fields += "{0}".format(field.comment)
+                fields += setter_start.format(
+                    upper_first(get_last(field.name)),
+                    get_java_type(field.data_type),
+                    get_last(field.name),
+                    get_last(field.name),
+                    get_last(field.name)
+                )
+                # fields += setter_mid.format(get_last(field.name))
+                fields += setter_end
+                fields += getter.format(
+                    get_java_type(field.data_type),
+                    upper_first(get_last(field.name)),
+                    get_last(field.name)
+                )
+            # pointless? no >.data in tree.json
             elif "ArrayList" in str(get_java_type(field.data_type)) and field.name.endswith(">.data"):
-                fields += "public {0} {1};\n".format(get_java_type(field.data_type),
-                                                     get_last(field.name))
+                fields += "\tprivate {0} {1};\n".format(get_java_type(field.data_type),
+                                                      get_last(field.name))
 
             elif "ArrayList" in str(get_java_type(field.data_type)) and structure[field.name].properties:
-                fields += "\tpublic {0} <{1}> {2};\n".format(
+                fields += "\tprivate {0} <{1}> {2};\n".format(
                     get_java_type(field.data_type),
                     "HI" + upper_first(create_name(field.name)),
                     get_last(field.name))
+                if field.comment:
+                    fields += "{0}".format(field.comment)
+                fields += setter_start.format(
+                    upper_first(get_last(field.name)),
+                    get_java_type(field.data_type),
+                    get_last(field.name),
+                    get_last(field.name),
+                    get_last(field.name)
+                )
+                # fields += setter_mid.format(get_last(field.name))
+                fields += setter_end
+                fields += getter.format(
+                    get_java_type(field.data_type),
+                    upper_first(get_last(field.name)),
+                    get_last(field.name)
+                )
             elif "ArrayList" in str(get_java_type(field.data_type)):
-                fields += "\tpublic {0} {1};\n".format(get_java_type(field.data_type), get_last(field.name))
+                fields += "\tprivate {0} {1};\n".format(get_java_type(field.data_type), get_last(field.name))
+                if field.comment:
+                    fields += "{0}".format(field.comment)
+                fields += setter_start.format(
+                    upper_first(get_last(field.name)),
+                    get_java_type(field.data_type),
+                    get_last(field.name),
+                    get_last(field.name),
+                    get_last(field.name)
+                )
+                # fields += setter_mid.format(get_last(field.name))
+                fields += setter_end
+                fields += getter.format(
+                    get_java_type(field.data_type),
+                    upper_first(get_last(field.name)),
+                    get_last(field.name)
+                )
             elif field.data_type == "Object":
                 if structure[field.name].properties:
-                    fields += "\tpublic {0} {1};\n".format("HI" + upper_first(create_name(field.name)),
-                                                           get_last(field.name))
+                    fields += "\tprivate {0} {1};\n".format("HI" + upper_first(create_name(field.name)),
+                                                            get_last(field.name))
+                    if field.comment:
+                        fields += "{0}".format(field.comment)
+                    fields += setter_start.format(
+                        upper_first(get_last(field.name)),
+                        "HI" + upper_first(create_name(field.name)),
+                        get_last(field.name),
+                        get_last(field.name),
+                        get_last(field.name)
+                    )
+                    fields += setter_mid.format(get_last(field.name))
+                    fields += setter_end
+                    fields += getter.format(
+                        "HI" + upper_first(create_name(field.name)),
+                        upper_first(get_last(field.name)),
+                        get_last(field.name)
+                    )
                 else:
-                    fields += "\tpublic Object {0};\n".format(get_last(field.name))
+                    fields += "\tprivate Object {0};\n".format(get_last(field.name))
+                    if field.comment:
+                        fields += "{0}".format(field.comment)
+                    fields += setter_start.format(
+                        upper_first(get_last(field.name)),
+                        get_java_type(field.data_type),
+                        get_last(field.name),
+                        get_last(field.name),
+                        get_last(field.name)
+                    )
+                    # fields += setter_mid.format(get_last(field.name))
+                    fields += setter_end
+                    fields += getter.format(
+                        get_java_type(field.data_type),
+                        upper_first(get_last(field.name)),
+                        get_last(field.name)
+                    )
 
             else:
                 if get_java_type(field.data_type) == "HIColor" and not colorAdded:
                     colorAdded = True
                 if structure[field.name].properties:
-                    fields += "\tpublic {0} {1};\n".format("HI" + upper_first(create_name(field.name)),
-                                                           get_last(field.name))
+                    fields += "\tprivate {0} {1};\n".format("HI" + upper_first(create_name(field.name)),
+                                                            get_last(field.name))
+                    if field.comment:
+                        fields += "{0}".format(field.comment)
+                    fields += setter_start.format(
+                        upper_first(get_last(field.name)),
+                        "HI" + upper_first(create_name(field.name)),
+                        get_last(field.name),
+                        get_last(field.name),
+                        get_last(field.name)
+                    )
+                    fields += setter_mid.format(get_last(field.name))
+                    fields += setter_end
+                    fields += getter.format(
+                        "HI" + upper_first(create_name(field.name)),
+                        upper_first(get_last(field.name)),
+                        get_last(field.name)
+                    )
                 else:
-                    fields += "\tpublic {0} {1};\n".format(get_java_type(field.data_type), get_last(field.name))
+                    fields += "\tprivate {0} {1};\n".format(get_java_type(field.data_type), get_last(field.name))
+                    if field.comment:
+                        fields += "{0}".format(field.comment)
+                    fields += setter_start.format(
+                        upper_first(get_last(field.name)),
+                        get_java_type(field.data_type),
+                        get_last(field.name),
+                        get_last(field.name),
+                        get_last(field.name)
+                    )
+                    # fields += setter_mid.format(get_last(field.name))
+                    fields += setter_end
+                    fields += getter.format(
+                        get_java_type(field.data_type),
+                        upper_first(get_last(field.name)),
+                        get_last(field.name)
+                    )
         else:
             if not field.data_type and not structure[field.name].properties:
-                fields += "\tpublic Object {0};\n".format(get_last(field.name))
+                fields += "\tprivate Object {0};\n".format(get_last(field.name))
+                if field.comment:
+                    fields += "{0}".format(field.comment)
+                fields += setter_start.format(
+                    upper_first(get_last(field.name)),
+                    "Object",
+                    get_last(field.name),
+                    get_last(field.name),
+                    get_last(field.name)
+                )
+                # fields += setter_mid.format(get_last(field.name))
+                fields += setter_end
+                fields += getter.format(
+                    "Object",
+                    upper_first(get_last(field.name)),
+                    get_last(field.name)
+                )
             elif structure[field.name].properties:
                 name = create_name(field.name)
-                fields += "\tpublic {0} {1};\n".format("HI" + upper_first(name), get_last(field.name))
+                fields += "\tprivate {0} {1};\n".format("HI" + upper_first(name), get_last(field.name))
+                if field.comment:
+                    fields += "{0}".format(field.comment)
+                fields += setter_start.format(
+                    upper_first(get_last(field.name)),
+                    "HI" + upper_first(name),
+                    get_last(field.name),
+                    get_last(field.name),
+                    get_last(field.name)
+                )
+                fields += setter_mid.format(get_last(field.name))
+                fields += setter_end
+                fields += getter.format(
+                    "HI" + upper_first(name),
+                    upper_first(get_last(field.name)),
+                    get_last(field.name)
+                )
     if colorAdded:
         imports += "\nimport com.highsoft.highcharts.Common.HIColor;"
     imports += "\n"
 
     methods += "\n\tpublic Map<String, Object> getParams() {\n\n\t\tMap<String, Object> params =" \
-                   " new HashMap<>();\n"
+               " new HashMap<>();\n"
     if source.extends:
         methods += "\t\tparams = super.getParams();\n"
 
@@ -703,7 +878,7 @@ def format_to_java(name, source):
             if structure[field.name].data_type:
                 if get_java_type(structure[field.name].data_type) == 'HIColor':
                     methods += "\t\t\tparams.put(\"{0}\", this.{1}.getData());\n".format(get_last(field.name),
-                                                                                             get_last(field.name))
+                                                                                         get_last(field.name))
                 elif get_java_type(structure[field.name].data_type) == 'ArrayList<HIColor>':
                     methods += "\t\t\tArrayList<HIColor> array = new ArrayList<>();\n"
                     methods += "\t\t\tfor (HIColor hiColor : this.{0})".format(get_last(field.name)) + " {\n"
@@ -726,13 +901,13 @@ def format_to_java(name, source):
                     methods += "\t\t\tparams.put(\"{0}\", array);\n".format(get_last(field.name))
                 elif structure[field.name].properties:
                     methods += "\t\t\tparams.put(\"{0}\", this.{1}.getParams());\n".format(get_last(field.name),
-                                                                                               get_last(field.name))
+                                                                                           get_last(field.name))
                 else:
                     methods += "\t\t\tparams.put(\"{0}\", this.{1});\n".format(get_last(field.name),
-                                                                                   get_last(field.name))
+                                                                               get_last(field.name))
             elif structure[field.name].properties:
                 methods += "\t\t\tparams.put(\"{0}\", this.{1}.getParams());\n".format(get_last(field.name),
-                                                                                           get_last(field.name))
+                                                                                       get_last(field.name))
             methods += "\t\t}\n"
     methods += "\t\treturn params;\n"
     methods += "\t}\n"
@@ -802,10 +977,10 @@ def create_options_files():
             if field.data_type:
                 if get_type(field.data_type) == 'HIColor':
                     mtext += "\t\tparams[@\"{0}\"] = [self.{1} getData];\n".format(get_last(field.name),
-                                                                                         get_last(field.name))
+                                                                                   get_last(field.name))
                 elif get_type(field.data_type) == 'HIFunction':
                     mtext += "\t\tparams[@\"{0}\"] = [self.{1} getFunction];\n".format(get_last(field.name),
-                                                                                         get_last(field.name))
+                                                                                       get_last(field.name))
                 elif get_type(field.data_type) == 'NSArray<HIColor *>':
                     mtext += "\t\tNSMutableArray *array = [[NSMutableArray alloc] init];\n"
                     mtext += "\t\tfor (HIColor *obj in self.{0})".format(get_last(field.name)) + " {\n"
@@ -831,17 +1006,19 @@ def create_options_files():
                 else:
                     mtext += "\t\tparams[@\"{0}\"] = self.{1};\n".format(get_last(field.name), get_last(field.name))
             elif structure[field.name].properties:
-                mtext += "\t\tparams[@\"{0}\"] = [self.{1} getParams];\n".format(get_last(field.name), get_last(field.name))
+                mtext += "\t\tparams[@\"{0}\"] = [self.{1} getParams];\n".format(get_last(field.name),
+                                                                                 get_last(field.name))
             mtext += "\t}\n"
 
             setters_text += "\n" + create_setter(field) + "\n"
 
     mtext += "\tif (self.additionalOptions) {\n\t\t[params addEntriesFromDictionary: self.additionalOptions];\n\t}\n\n"
 
-    setters_text += "\n-(void)set{0}:({1}){2}".format("AdditionalOptions", "NSDictionary *", "additionalOptions") + " {\n" + \
-                  "\t_{0} = {0};\n".format("additionalOptions") + \
-                  "\t[self updateNSObject:@\"{0}\"];\n".format("additionalOptions") + \
-                  "}\n"
+    setters_text += "\n-(void)set{0}:({1}){2}".format("AdditionalOptions", "NSDictionary *",
+                                                      "additionalOptions") + " {\n" + \
+                    "\t_{0} = {0};\n".format("additionalOptions") + \
+                    "\t[self updateNSObject:@\"{0}\"];\n".format("additionalOptions") + \
+                    "}\n"
 
     mtext += "\treturn params;\n"
     mtext += "}\n"
@@ -868,44 +1045,146 @@ def create_java_options_file():
     imports += "\nimport java.util.HashMap;"
     imports += "\nimport java.util.Map;"
     imports += "\nimport java.util.ArrayList;"
+    imports += "\nimport java.util.Observable;"
+    imports += "\nimport java.util.Observer;"
     imports += "\nimport com.highsoft.highcharts.Common.HIChartsJSONSerializable;"
     imports += "\nimport com.highsoft.highcharts.Common.HIColor;"
 
-    declaration += "public class HIOptions {\n\n"
+    # SETTERS observer implementation
+    fields += "\n\n\t private Observer updateObserver = new Observer() {" \
+              "\n\t\t@Override" \
+              "\n\t\tpublic void update(Observable observable, Object o) {" \
+              "\n\t\t\tsetChanged();" \
+              "\n\t\t\tnotifyObservers();" \
+              "\n\t\t}" \
+              "\n\t};\n\n"
+
+    setter_start = "\tpublic void set{0}({1} {2}) {{" \
+                   "\n\t\tthis.{3} = {4};"
+    setter_mid = "\n\t\tthis.{0}.addObserver(updateObserver);"
+    setter_end = "\n\t\tthis.setChanged();" \
+                 "\n\t\tthis.notifyObservers();" \
+                 "\n\t}"
+    getter = "\n\n\tpublic {0} get{1}(){{ return {2}; }}\n\n"
+
+    declaration += "public class HIOptions extends Observable {\n\n"
     constructor += "public HIOptions {\n" \
-             "\t\tHICredits credits = new HICredits();\n" \
-             "\t\tcredits.enabled = true;\n" \
-             "\t\tcredits.text = \"Highcharts Android\";\n" \
-             "\t\tcredits.href = \"http://www.highcharts.com/blog/mobile/\";\n" \
-             "\t\tthis.credits = credits;\n" \
-             "\t\treturn this;\n" \
-             "\t}\n" \
-             "}\n\n"
+                   "\t\tHICredits credits = new HICredits();\n" \
+                   "\t\tcredits.enabled = true;\n" \
+                   "\t\tcredits.text = \"Highcharts Android\";\n" \
+                   "\t\tcredits.href = \"http://www.highcharts.com/blog/mobile/\";\n" \
+                   "\t\tthis.credits = credits;\n" \
+                   "\t\treturn this;\n" \
+                   "\t}\n" \
+                   "}\n\n"
     methods += "public Map<String, Object> getParams() {\n\n\tMap<String, Object> params = new HashMap<>();\n"
     for field in options:
         if field.name != 'global' and field.name != 'lang':
-            if field.comment:
-                 fields += "{0}".format(field.comment)
+            # if field.comment:
+            #     fields += "{0}".format(field.comment)
             if structure[field.name].data_type:
-                if "Object" in str(get_java_type(field.data_type)) and "ArrayList" not in str(get_java_type(field.data_type)):
+                if "Object" in str(get_java_type(field.data_type)) and "ArrayList" not in str(
+                        get_java_type(field.data_type)):
                     if structure[field.name].properties:
-                        fields += "public {0} {1};\n\n".format(
+                        fields += "\tprivate {0} {1};\n\n".format(
                             "HI" + upper_first(create_name(field.name)), get_last(field.name))
+                        if field.comment:
+                            fields += "{0}".format(field.comment)
+                        fields += setter_start.format(
+                            upper_first(get_last(field.name)),
+                            "HI" + upper_first(field.name),
+                            get_last(field.name),
+                            get_last(field.name),
+                            get_last(field.name)
+                        )
+                        fields += setter_mid.format(get_last(field.name))
+                        fields += setter_end
+                        fields += getter.format(
+                            "HI" + upper_first(field.name),
+                            upper_first(get_last(field.name)),
+                            get_last(field.name)
+                        )
                     else:
-                        fields += "public {0} {1};\n\n".format(get_java_type(field.data_type),
-                                                                                       get_last(field.name))
+                        fields += "\tprivate {0} {1};\n\n".format(get_java_type(field.data_type),
+                                                               get_last(field.name))
+                        if field.comment:
+                            fields += "{0}".format(field.comment)
+                        fields += setter_start.format(
+                            upper_first(get_last(field.name)),
+                            get_java_type(field.data_type),
+                            get_last(field.name),
+                            get_last(field.name),
+                            get_last(field.name)
+                        )
+                        # fields += setter_mid.format(get_last(field.name))
+                        fields += setter_end
+                        fields += getter.format(
+                            get_java_type(field.data_type),
+                            upper_first(get_last(field.name)),
+                            get_last(field.name)
+                        )
                 elif "ArrayList" in str(get_java_type(field.data_type)) and field.properties:
-                    fields += "public {0}<{1}> {2};\n\n".format(get_java_type(field.data_type),
-                                                                                           "HI" + upper_first(
-                                                                                               create_name(field.name)),
-                                                                                           get_last(field.name))
+                    fields += "\tprivate {0}<{1}> {2};\n\n".format(get_java_type(field.data_type),
+                                                                "HI" + upper_first(
+                                                                    create_name(field.name)),
+                                                                get_last(field.name))
+                    if field.comment:
+                        fields += "{0}".format(field.comment)
+                    fields += setter_start.format(
+                        upper_first(get_last(field.name)),
+                        get_java_type(field.data_type) + "<" + "HI" + upper_first(
+                                                                    create_name(field.name)) + ">",
+                        get_last(field.name),
+                        get_last(field.name),
+                        get_last(field.name)
+                    )
+                    # fields += setter_mid.format(get_last(field.name))
+                    fields += setter_end
+                    fields += getter.format(
+                        get_java_type(field.data_type) + "<" + "HI" + upper_first(
+                                                                    create_name(field.name)) + ">",
+                        upper_first(get_last(field.name)),
+                        get_last(field.name)
+                    )
                 else:
-                    fields += "public {0} {1};\n\n".format(get_java_type(field.data_type),
-                                                                                    get_last(field.name))
+                    fields += "\tprivate {0} {1};\n\n".format(get_java_type(field.data_type),
+                                                           get_last(field.name))
+                    if field.comment:
+                        fields += "{0}".format(field.comment)
+                    fields += setter_start.format(
+                        upper_first(get_last(field.name)),
+                        get_java_type(field.data_type),
+                        get_last(field.name),
+                        get_last(field.name),
+                        get_last(field.name)
+                    )
+                    # fields += setter_mid.format(get_last(field.name))
+                    fields += setter_end
+                    fields += getter.format(
+                        get_java_type(field.data_type),
+                        upper_first(get_last(field.name)),
+                        get_last(field.name)
+                    )
             else:
-                fields += "public {0} {1};\n\n".format(
+                fields += "\tprivate {0} {1};\n\n".format(
                     "HI" + upper_first(create_name(field.name)),
                     get_last(field.name))
+                if field.comment:
+                    fields += "{0}".format(field.comment)
+                fields += setter_start.format(
+                    upper_first(get_last(field.name)),
+                    "HI" + upper_first(field.name),
+                    get_last(field.name),
+                    get_last(field.name),
+                    get_last(field.name)
+                )
+                fields += setter_mid.format(get_last(field.name))
+                fields += setter_end
+                fields += getter.format(
+                    "HI" + upper_first(field.name),
+                    upper_first(get_last(field.name)),
+                    get_last(field.name)
+                )
     fields += "/**\n* Additional options that are not listed above but are accepted by API\n*/\n"
     fields += "public Map<String, Object> additionalOptions;\n\n"
     for field in options:
@@ -915,11 +1194,11 @@ def create_java_options_file():
             if field.data_type:
                 if get_java_type(field.data_type) == 'HIColor':
                     methods += "\t\t\tparamas.put(\"{0}\", this.{1}.getData());\n".format(get_last(field.name),
-                                                                                   get_last(field.name))
+                                                                                          get_last(field.name))
                 elif get_java_type(field.data_type) == 'ArrayList<HIColor>':
-                    methods += "\t\t\tArrayList<HIColor> array = new ArrayList<>();\n"
+                    methods += "\t\t\tArrayList<Object> array = new ArrayList<>();\n"
                     methods += "\t\t\tfor (HIColor hiColor : this.{0})".format(get_last(field.name)) + " {\n"
-                    methods += "\t\t\t\tarray.add((HIColor) hiColor.getData());\n".format(
+                    methods += "\t\t\t\tarray.add(hiColor.getData());\n".format(
                         get_last(field.name))
                     methods += "\t\t\t}\n"
                     methods += "\t\t\tparams.put(\"{0}\", array);\n".format(get_last(field.name))
@@ -937,12 +1216,13 @@ def create_java_options_file():
                     methods += "\t\t\tparams.put(\"{0}\", array);\n".format(get_last(field.name))
                 elif structure[field.name].properties:
                     methods += "\t\t\tparams.put(\"{0}\", this.{1}.getParams());\n".format(get_last(field.name),
-                                                                                     get_last(field.name))
+                                                                                           get_last(field.name))
                 else:
-                    methods += "\t\t\tparams.put(\"{0}\", this.{1});\n".format(get_last(field.name), get_last(field.name))
+                    methods += "\t\t\tparams.put(\"{0}\", this.{1});\n".format(get_last(field.name),
+                                                                               get_last(field.name))
             elif structure[field.name].properties:
                 methods += "\t\t\tparams.put(\"{0}\", this.{1}.getParams());\n".format(get_last(field.name),
-                                                                                 get_last(field.name))
+                                                                                       get_last(field.name))
             methods += "\t\t}\n"
     methods += "\t\tif (this.additionalOptions != null) {\n\t\t\tparams.putAll(additionalOptions);\n\t\t}\n\n"
     methods += "\t\treturn params;\n\t\t\n}"
@@ -1002,13 +1282,15 @@ def create_android_files():
 
 def print_structure():
     for c in structure:
-        text = "name: {0}, type: {1}, group: {3}, extends: {2}, props: ".format(c, structure[c].data_type, structure[c].extends, structure[c].group)
+        text = "name: {0}, type: {1}, group: {3}, extends: {2}, props: ".format(c, structure[c].data_type,
+                                                                                structure[c].extends,
+                                                                                structure[c].group)
         for p in structure[c].properties:
             text += "{0} | ".format(p.name)
         print text
 
 
-def get_documentation_name(name, isProperties, doubleLast = True):
+def get_documentation_name(name, isProperties, doubleLast=True):
     ret = str(name)
     ret = ret.replace("description", "definition")
     x = ret.split(".")
@@ -1211,7 +1493,8 @@ def create_class(node):
                         elif attr_sample == "products":
                             attr_products = sample[attr_sample]
                     if attr_products is None or "highcharts" in attr_products:
-                        demo += "<br>&ensp;&bull;&ensp; <a href=\"https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/{0}\">{1}</a>".format(value, name)
+                        demo += "<br>&ensp;&bull;&ensp; <a href=\"https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/{0}\">{1}</a>".format(
+                            value, name)
                         # demo += cgi.escape("\n&bull;<a href=\"https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/{0}\">{1}</a>".format(value, name))
                         # demo += "https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/{0} : {1}\n".format(value, name)
                 if demo == "":
@@ -1251,7 +1534,8 @@ def create_class(node):
         elif name == "description":
             name = "definition"
 
-        c = HIChartsClass(name, data_type, description, demo, values, defaults, products, extends, exclude, source, parent)
+        c = HIChartsClass(name, data_type, description, demo, values, defaults, products, extends, exclude, source,
+                          parent)
         return c
 
 
@@ -1294,7 +1578,8 @@ def add_additions_to_series():
         data = json.load(data_file)
 
     if "series" not in structure:
-        structure["series"] = HIChartsClass("series", "Array.<Object>", "General options for all series types.", None, None, None, ["highcharts"], None, None)
+        structure["series"] = HIChartsClass("series", "Array.<Object>", "General options for all series types.", None,
+                                            None, None, ["highcharts"], None, None)
 
     for field in data:
         name = None
@@ -1329,7 +1614,8 @@ def add_additions_to_series():
         if "parent" in field:
             parent = field["parent"]
 
-        hi_class = HIChartsClass(name, data_type, description, demo, values, defaults, products, None, None, field, parent)
+        hi_class = HIChartsClass(name, data_type, description, demo, values, defaults, products, None, None, field,
+                                 parent)
 
         if hi_class:
             structure[name] = hi_class

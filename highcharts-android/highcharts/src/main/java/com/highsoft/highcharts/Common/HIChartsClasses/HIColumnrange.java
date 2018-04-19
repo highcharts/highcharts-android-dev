@@ -11,6 +11,8 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
@@ -48,7 +50,7 @@ Highcharts.chart('container', {
 */
 
 public class HIColumnrange extends HISeries {
-
+	private Object pointRange;
 /**
 * description: The X axis range that each point is valid for. This determines the
 width of the column. On a categorized axis, the range will be 1
@@ -59,13 +61,27 @@ points.
 The default null means it is computed automatically, but this option
 can be used to override the automatic value.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointrange/ : Set the point range to one day on a data set with one week between the points*/
-	public Object pointRange;
+	public void setPointRange(Object pointRange) {
+		this.pointRange = pointRange;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Object getPointRange(){ return pointRange; }
+
+	private Number borderRadius;
 /**
 The corner radius of the border surrounding each column or bar.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-borderradius/">Rounded columns</a> <br><br><b>default:</b><br><br>&ensp;0*/
-	public Number borderRadius;
+	public void setBorderRadius(Number borderRadius) {
+		this.borderRadius = borderRadius;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getBorderRadius(){ return borderRadius; }
+
+	private Number minPointLength;
 /**
 The minimal height for a column or width for a bar. By default,
 0 values are not shown. To visualize a 0 (or close to zero) point,
@@ -73,71 +89,148 @@ set the minimal point length to a pixel value like 3\. In stacked
 column charts, minPointLength might not be respected for tightly
 packed values.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-minpointlength/">Zero base value</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-minpointlength-pos-and-neg/">Positive and negative close to zero values</a>*/
-	public Number minPointLength;
+	public void setMinPointLength(Number minPointLength) {
+		this.minPointLength = minPointLength;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getMinPointLength(){ return minPointLength; }
+
+	private Number groupZPadding;
 /**
 The spacing between columns on the Z Axis in a 3D chart. Requires
 highcharts-3d.js.
  <br><br><b>default:</b><br><br>&ensp;1*/
-	public Number groupZPadding;
+	public void setGroupZPadding(Number groupZPadding) {
+		this.groupZPadding = groupZPadding;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getGroupZPadding(){ return groupZPadding; }
+
+	private ArrayList<HIColor> colors;
 /**
 A series specific or series type specific color set to apply instead
 of the global colors when [colorByPoint](
 #plotOptions.column.colorByPoint) is true.
 */
-	public ArrayList<HIColor> colors;
+	public void setColors(ArrayList<HIColor> colors) {
+		this.colors = colors;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public ArrayList<HIColor> getColors(){ return colors; }
+
+	private HIColor borderColor;
 /**
 The color of the border surrounding each column or bar.
 
 In styled mode, the border stroke can be set with the .highcharts-point
 rule.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-bordercolor/">Dark gray border</a> <br><br><b>default:</b><br><br>&ensp;#ffffff*/
-	public HIColor borderColor;
+	public void setBorderColor(HIColor borderColor) {
+		this.borderColor = borderColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HIColor getBorderColor(){ return borderColor; }
+
+	private HIColor edgeColor;
 /**
 3D columns only. The color of the edges. Similar to borderColor,
  except it defaults to the same color as the column.
 */
-	public HIColor edgeColor;
+	public void setEdgeColor(HIColor edgeColor) {
+		this.edgeColor = edgeColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HIColor getEdgeColor(){ return edgeColor; }
+
+	private Boolean colorByPoint;
 /**
 When using automatic point colors pulled from the options.colors
 collection, this option determines whether the chart should receive
 one color per series or one color per point.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-false/">False by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-true/">True</a> <br><br><b>default:</b><br><br>&ensp;false*/
-	public Boolean colorByPoint;
+	public void setColorByPoint(Boolean colorByPoint) {
+		this.colorByPoint = colorByPoint;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Boolean getColorByPoint(){ return colorByPoint; }
+
+	private Number maxPointWidth;
 /**
 The maximum allowed pixel width for a column, translated to the height
 of a bar in a bar chart. This prevents the columns from becoming
 too wide when there is a small number of points in the chart.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-maxpointwidth-20/">Limited to 50</a> <br><br><b>default:</b><br><br>&ensp;null*/
-	public Number maxPointWidth;
+	public void setMaxPointWidth(Number maxPointWidth) {
+		this.maxPointWidth = maxPointWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getMaxPointWidth(){ return maxPointWidth; }
+
+	private Number pointWidth;
 /**
 A pixel value specifying a fixed width for each column or bar. When
 null, the width is calculated from the pointPadding and
 groupPadding.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointwidth-20/">20px wide columns regardless of chart width or the amount of data points</a> <br><br><b>default:</b><br><br>&ensp;null*/
-	public Number pointWidth;
+	public void setPointWidth(Number pointWidth) {
+		this.pointWidth = pointWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getPointWidth(){ return pointWidth; }
+
+	private Number pointPadding;
 /**
 Padding between each column or bar, in x axis units.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-default/">0.1 by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-025/">0.25</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-none/">0 for tightly packed columns</a>*/
-	public Number pointPadding;
+	public void setPointPadding(Number pointPadding) {
+		this.pointPadding = pointPadding;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getPointPadding(){ return pointPadding; }
+
+	private Number groupPadding;
 /**
 Padding between each value groups, in x axis units.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-grouppadding-default/">0.2 by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-grouppadding-none/">No group padding - all columns are evenly spaced</a>*/
-	public Number groupPadding;
+	public void setGroupPadding(Number groupPadding) {
+		this.groupPadding = groupPadding;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getGroupPadding(){ return groupPadding; }
+
+	private Number edgeWidth;
 /**
 3D columns only. The width of the colored edges.
  <br><br><b>default:</b><br><br>&ensp;1*/
-	public Number edgeWidth;
+	public void setEdgeWidth(Number edgeWidth) {
+		this.edgeWidth = edgeWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getEdgeWidth(){ return edgeWidth; }
+
+	private Boolean crisp;
 /**
 When true, each column edge is rounded to its nearest pixel in order
 to render sharp on screen. In some cases, when there are a lot of
@@ -146,33 +239,71 @@ widths or distance between columns. In these cases, setting crisp
 to false may look better, even though each column is rendered
 blurry.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-crisp-false/">Crisp is false</a>*/
-	public Boolean crisp;
+	public void setCrisp(Boolean crisp) {
+		this.crisp = crisp;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Boolean getCrisp(){ return crisp; }
+
+	private Number depth;
 /**
 Depth of the columns in a 3D column chart. Requires highcharts-3d.js.
  <br><br><b>default:</b><br><br>&ensp;25*/
-	public Number depth;
+	public void setDepth(Number depth) {
+		this.depth = depth;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getDepth(){ return depth; }
+
+	private Number borderWidth;
 /**
 The width of the border surrounding each column or bar.
 
 In styled mode, the stroke width can be set with the .highcharts-point
 rule.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-borderwidth/">2px black border</a> <br><br><b>default:</b><br><br>&ensp;1*/
-	public Number borderWidth;
+	public void setBorderWidth(Number borderWidth) {
+		this.borderWidth = borderWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getBorderWidth(){ return borderWidth; }
+
+	private Boolean grouping;
 /**
 Whether to group non-stacked columns or to let them render independent
 of each other. Non-grouped columns will be laid out individually
 and overlap each other.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-grouping-false/">Grouping disabled</a> <br><br><b>default:</b><br><br>&ensp;true*/
-	public Boolean grouping;
+	public void setGrouping(Boolean grouping) {
+		this.grouping = grouping;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getGrouping(){ return grouping; }
+
 
 
 	public HIColumnrange() {
 		super(); 
-		this.type = "columnrange";
+		this.setType("columnrange");
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

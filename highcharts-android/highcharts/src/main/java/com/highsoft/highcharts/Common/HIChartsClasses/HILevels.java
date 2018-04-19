@@ -11,80 +11,177 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
 
 
 
-public class HILevels implements HIChartsJSONSerializable { 
+public class HILevels extends Observable implements HIChartsJSONSerializable { 
 
-
+	private HIColor borderColor;
 /**
 Can set a borderColor on all points which lies on the same level.
 */
-	public HIColor borderColor;
+	public void setBorderColor(HIColor borderColor) {
+		this.borderColor = borderColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HIColor getBorderColor(){ return borderColor; }
+
+	private HIColorVariation colorVariation;
 /**
 Can set a colorVariation on all points which lies on the same level.
 */
-	public HIColorVariation colorVariation;
+	public void setColorVariation(HIColorVariation colorVariation) {
+		this.colorVariation = colorVariation;
+		this.colorVariation.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HIColorVariation getColorVariation(){ return colorVariation; }
+
+	private Object levelSize;
 /**
 Can set a levelSize on all points which lies on the same level.
 */
-	public Object levelSize;
+	public void setLevelSize(Object levelSize) {
+		this.levelSize = levelSize;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Object getLevelSize(){ return levelSize; }
+
+	private String borderDashStyle;
 /**
 Can set a borderDashStyle on all points which lies on the same level.
 */
-	public String borderDashStyle;
+	public void setBorderDashStyle(String borderDashStyle) {
+		this.borderDashStyle = borderDashStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public String getBorderDashStyle(){ return borderDashStyle; }
+
+	private HIColor color;
 /**
 Can set a color on all points which lies on the same level.
 */
-	public HIColor color;
+	public void setColor(HIColor color) {
+		this.color = color;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HIColor getColor(){ return color; }
+
+	private Object dataLabels;
 /**
 Can set a dataLabels on all points which lies on the same level.
 */
-	public Object dataLabels;
+	public void setDataLabels(Object dataLabels) {
+		this.dataLabels = dataLabels;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Object getDataLabels(){ return dataLabels; }
+
+	private String rotationMode;
 /**
 Can set a rotationMode on all points which lies on the same level.
 */
-	public String rotationMode;
+	public void setRotationMode(String rotationMode) {
+		this.rotationMode = rotationMode;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public String getRotationMode(){ return rotationMode; }
+
+	private Number borderWidth;
 /**
 Can set a borderWidth on all points which lies on the same level.
 */
-	public Number borderWidth;
+	public void setBorderWidth(Number borderWidth) {
+		this.borderWidth = borderWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getBorderWidth(){ return borderWidth; }
+
+	private Number rotation;
 /**
 Can set a rotation on all points which lies on the same level.
 */
-	public Number rotation;
+	public void setRotation(Number rotation) {
+		this.rotation = rotation;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getRotation(){ return rotation; }
+
+	private Number level;
 /**
 Decides which level takes effect from the options set in the levels
 object.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-levels/">Styling of both levels</a>*/
-	public Number level;
+	public void setLevel(Number level) {
+		this.level = level;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getLevel(){ return level; }
+
+	private String layoutAlgorithm;
 /**
 Can set the layoutAlgorithm option on a specific level.
  <br><br><b>accepted values:</b><br><br>&ensp;["sliceAndDice", "stripes", "squarified", "strip"]*/
-	public String layoutAlgorithm;
+	public void setLayoutAlgorithm(String layoutAlgorithm) {
+		this.layoutAlgorithm = layoutAlgorithm;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public String getLayoutAlgorithm(){ return layoutAlgorithm; }
+
+	private String layoutStartingDirection;
 /**
 Can set the layoutStartingDirection option on a specific level.
  <br><br><b>accepted values:</b><br><br>&ensp;["vertical", "horizontal"]*/
-	public String layoutStartingDirection;
+	public void setLayoutStartingDirection(String layoutStartingDirection) {
+		this.layoutStartingDirection = layoutStartingDirection;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getLayoutStartingDirection(){ return layoutStartingDirection; }
+
 
 
 	public HILevels() {
 
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

@@ -11,14 +11,16 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HIItems implements HIChartsJSONSerializable { 
+public class HIItems extends Observable implements HIChartsJSONSerializable { 
 
-
+	private HashMap<String,String> style;
 /**
 CSS styles for each label. To position the label, use left and top
 like this:
@@ -28,17 +30,41 @@ style: {
     top: '100px'
 }
 */
-	public HashMap<String,String> style;
+	public void setStyle(HashMap<String,String> style) {
+		this.style = style;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HashMap<String,String> getStyle(){ return style; }
+
+	private String html;
 /**
 Inner HTML or text for the label.
 */
-	public String html;
+	public void setHtml(String html) {
+		this.html = html;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getHtml(){ return html; }
+
 
 
 	public HIItems() {
 
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

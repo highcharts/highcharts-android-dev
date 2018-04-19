@@ -11,6 +11,8 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import com.highsoft.highcharts.Common.HIColor;
 import com.highsoft.highcharts.Core.HIFunction;
@@ -48,37 +50,72 @@ Highcharts.chart('container', {
 */
 
 public class HISankey extends HISeries {
-
+	private Boolean colorByPoint;
 /**
 * description: When using automatic point colors pulled from the options.colors
 collection, this option determines whether the chart should receive
 one color per series or one color per point.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-false/ : False by default •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-true/ : True* default: false
 */
-	public Boolean colorByPoint;
+	public void setColorByPoint(Boolean colorByPoint) {
+		this.colorByPoint = colorByPoint;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Boolean getColorByPoint(){ return colorByPoint; }
+
+	private Number curveFactor;
 /**
 Higher numbers makes the links in a sankey diagram render more curved.
 A curveFactor of 0 makes the lines straight.
 */
-	public Number curveFactor;
+	public void setCurveFactor(Number curveFactor) {
+		this.curveFactor = curveFactor;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getCurveFactor(){ return curveFactor; }
+
+	private Number nodePadding;
 /**
 The padding between nodes in a sankey diagram, in pixels.
 */
-	public Number nodePadding;
+	public void setNodePadding(Number nodePadding) {
+		this.nodePadding = nodePadding;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getNodePadding(){ return nodePadding; }
+
+	private Number nodeWidth;
 /**
 The pixel width of each node in a sankey diagram, or the height in case
 the chart is inverted.
 */
-	public Number nodeWidth;
+	public void setNodeWidth(Number nodeWidth) {
+		this.nodeWidth = nodeWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getNodeWidth(){ return nodeWidth; }
+
+	private Number linkOpacity;
 /**
 Opacity for the links between nodes in the sankey diagram.
 */
-	public Number linkOpacity;
+	public void setLinkOpacity(Number linkOpacity) {
+		this.linkOpacity = linkOpacity;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getLinkOpacity(){ return linkOpacity; }
+
+	private Number minPointLength;
 /**
 The minimal height for a column or width for a bar. By default,
 0 values are not shown. To visualize a 0 (or close to zero) point,
@@ -86,27 +123,58 @@ set the minimal point length to a pixel value like 3\. In stacked
 column charts, minPointLength might not be respected for tightly
 packed values.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-minpointlength/">Zero base value</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-minpointlength-pos-and-neg/">Positive and negative close to zero values</a>*/
-	public Number minPointLength;
+	public void setMinPointLength(Number minPointLength) {
+		this.minPointLength = minPointLength;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getMinPointLength(){ return minPointLength; }
+
+	private ArrayList<HIColor> colors;
 /**
 A series specific or series type specific color set to apply instead
 of the global colors when [colorByPoint](
 #plotOptions.column.colorByPoint) is true.
 */
-	public ArrayList<HIColor> colors;
+	public void setColors(ArrayList<HIColor> colors) {
+		this.colors = colors;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public ArrayList<HIColor> getColors(){ return colors; }
+
+	private ArrayList <HINodes> nodes;
 /**
 A collection of options for the individual nodes. The nodes in a sankey
 diagram are auto-generated instances of Highcharts.Point, but options can
 be applied here and linked by the id.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/sankey/">Sankey diagram with node options</a>*/
-	public ArrayList <HINodes> nodes;
+	public void setNodes(ArrayList nodes) {
+		this.nodes = nodes;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList getNodes(){ return nodes; }
+
 
 
 	public HISankey() {
 		super(); 
-		this.type = "sankey";
+		this.setType("sankey");
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

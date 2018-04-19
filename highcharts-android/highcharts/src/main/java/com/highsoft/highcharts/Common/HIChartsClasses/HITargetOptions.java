@@ -11,36 +11,59 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
 
 
 
-public class HITargetOptions implements HIChartsJSONSerializable { 
+public class HITargetOptions extends Observable implements HIChartsJSONSerializable { 
 
-
+	private HIColor borderColor;
 /**
 The border color of the rectangle representing the target. When
 not set, the  point's border color is used.
 
 In styled mode, use class highcharts-bullet-target instead.
 */
-	public HIColor borderColor;
+	public void setBorderColor(HIColor borderColor) {
+		this.borderColor = borderColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HIColor getBorderColor(){ return borderColor; }
+
+	private Object /* Number|String */ width;
 /**
 The width of the rectangle representing the target. Could be set
 as a pixel value or as a percentage of a column width.
 */
-	public Object /* Number|String */ width;
+	public void setWidth(Object /* Number|String */ width) {
+		this.width = width;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Object /* Number|String */ getWidth(){ return width; }
+
+	private Number borderWidth;
 /**
 The border width of the rectangle representing the target.
 
 In styled mode, use class highcharts-bullet-target instead.
 */
-	public Number borderWidth;
+	public void setBorderWidth(Number borderWidth) {
+		this.borderWidth = borderWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getBorderWidth(){ return borderWidth; }
+
+	private HIColor color;
 /**
 The color of the rectangle representing the target. When not set,
 point's color (if set in point's options -
@@ -51,17 +74,41 @@ or the same color as the point has is used.
 
 In styled mode, use class highcharts-bullet-target instead.
 */
-	public HIColor color;
+	public void setColor(HIColor color) {
+		this.color = color;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HIColor getColor(){ return color; }
+
+	private Number height;
 /**
 The height of the rectangle representing the target.
 */
-	public Number height;
+	public void setHeight(Number height) {
+		this.height = height;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getHeight(){ return height; }
+
 
 
 	public HITargetOptions() {
 
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

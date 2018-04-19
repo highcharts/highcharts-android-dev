@@ -11,38 +11,78 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HIPosition implements HIChartsJSONSerializable { 
+public class HIPosition extends Observable implements HIChartsJSONSerializable { 
 
-
+	private Number y;
 /**
 Vertical offset of the button.
 */
-	public Number y;
+	public void setY(Number y) {
+		this.y = y;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getY(){ return y; }
+
+	private Number x;
 /**
 Horizontal offset of the button.
  <br><br><b>default:</b><br><br>&ensp;-10*/
-	public Number x;
+	public void setX(Number x) {
+		this.x = x;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getX(){ return x; }
+
+	private String align;
 /**
 Horizontal alignment of the button.
  <br><br><b>accepted values:</b><br><br>&ensp;["left", "center", "right"]*/
-	public String align;
+	public void setAlign(String align) {
+		this.align = align;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public String getAlign(){ return align; }
+
+	private String verticalAlign;
 /**
 Vertical alignment of the button.
  <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"] <br><br><b>default:</b><br><br>&ensp;top*/
-	public String verticalAlign;
+	public void setVerticalAlign(String verticalAlign) {
+		this.verticalAlign = verticalAlign;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getVerticalAlign(){ return verticalAlign; }
+
 
 
 	public HIPosition() {
 
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

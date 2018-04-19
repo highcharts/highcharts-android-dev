@@ -45,39 +45,42 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HITitle title = new HITitle();
-        title.style = new HIStyle();
-        title.style.fontSize = "40px";
-        title.text = "Update feature test";
-//        options.title = title;
+        title.setStyle(new HIStyle());
+        title.getStyle().setFontSize("40px");
+        title.setText("Update feature test");
         options.setTitle(title);
 
-        HIChart chart = new HIChart();
-        chart.type = "column";
-        chart.backgroundColor = HIColor.initWithName("grey");
-        chart.borderWidth = 10;
-        chart.borderColor = HIColor.initWithName("lightblue");
-        chart.setSpacing(new ArrayList<>(Arrays.asList(30,30,100,30)));
-//        chart.spacing = new ArrayList<>(Arrays.asList(30,30,100,30));
-//        options.chart = chart;
-        options.setChart(chart);
+        HIChart hiChart = new HIChart();
+        hiChart.setType("column");
+        hiChart.setBackgroundColor(HIColor.initWithName("grey"));
+        hiChart.setBorderWidth(10);
+        hiChart.setBorderColor(HIColor.initWithName("lightblue"));
+//        hiChart.setSpacing(new ArrayList<>(Arrays.asList(30,30,100,30)));
+//        options.hiChart = hiChart;
+        options.setChart(hiChart);
 
         HISeries series = new HISeries();
-        series.data = new ArrayList<>(Arrays.asList(5,8,10,2,5,1,7,4));
+        series.setData(new ArrayList<>(Arrays.asList(5,8,10,2,5,1,7,4)));
         HISeries series1 = new HISeries();
-        series1.data = new ArrayList<>(Arrays.asList(5,12,14,6,1,8,4,6));
+        series1.setData(new ArrayList<>(Arrays.asList(5,12,14,6,1,8,4,6)));
 
 //        options.series = new ArrayList<>(Arrays.asList(series, series1));
         options.setSeries(new ArrayList<>(Arrays.asList(series, series1)));
-        options.colors = new ArrayList<>(Arrays.asList(HIColor.initWithName("red"), HIColor.initWithName("yellow")));
+        options.setColors(new ArrayList<>(Arrays.asList(HIColor.initWithName("red"), HIColor.initWithName("yellow"))));
 
-//        chartView.options = options;
+
+        ArrayList<HIXAxis> xaxisList = new ArrayList<>();
+        HIXAxis hixAxis = new HIXAxis();
+        hixAxis.setType("linear");
+        xaxisList.add(hixAxis);
+        options.setXAxis(xaxisList);
         chartView.setOptions(options);
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                chartView.getOptions().getChart().setType("spline");
-//                chartView.getOptions().getChart().setBackgroundColor(HIColor.initWithName("lightblue"));
+                chartView.getOptions().getChart().setType("spline");
+                chartView.getOptions().getChart().setBackgroundColor(HIColor.initWithName("lightblue"));
 
 //                HISeries newSeries = chartView.getOptions().getSeries().get(0);
 ////                newSeries.setData(new ArrayList<>(Arrays.asList(5,19,2,15,18,10,8)));
@@ -85,118 +88,43 @@ public class MainActivity extends AppCompatActivity {
 //                firstSeriesData.set(0, 10);
 //                newSeries.setData(firstSeriesData);
 //                chartView.getOptions().setSeries(new ArrayList<>(Arrays.asList(newSeries, series1)));
-                chartView.getOptions().getChart().setSpacing(new ArrayList<>(Arrays.asList(5,5,10,5)));
+
+                //spacing bugged
+//                chartView.getOptions().getChart().setSpacing(new ArrayList<>(Arrays.asList(5,5,10,5)));
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                chartView.options.chart.setBorderWidth(50);
+//                chartView.options.hiChart.setBorderWidth(50);
 
-                HIOptions options1 = new HIOptions();
-                options.setChart(new HIChart());
-                options.getChart().setBackgroundColor(HIColor.initWithName("blue"));
-                chartView.setOptions(options1);
+                //-- full option update still needs reload
+                HIOptions options1 = chartView.options;
+                options1.getChart().setBackgroundColor(HIColor.initWithName("blue"));
+//                chartView.setOptions(options1);
+//                chartView.reload();
+
+                //-- update of first options children
+//                HITitle title1 = new HITitle();
+//                title1.setText("NEW TITLE");
+//                chartView.getOptions().setTitle(title1);
+
+                //-- update first children which is an array; testing in progress...
+
+                HIXAxis xAxisNew = chartView.getOptions().getXAxis().get(0);
+                if(xAxisNew.getType().equalsIgnoreCase("linear"))
+                    xAxisNew.setType("datetime");
+                else xAxisNew.setType("linear");
+                xaxisList.set(0, xAxisNew);
+                chartView.getOptions().setXAxis(xaxisList);
+
+                //-- update first children wchich is array update whole array!
 //                HISeries series1 = new HISeries();
 //                series1.data = new ArrayList<>(Arrays.asList(6,9,10,11,13,8,9,6));
 //                HISeries series2 = new HISeries();
 //                series2.data = new ArrayList<>(Arrays.asList(9,1,2,2,9,8,5,4));
-//                chartView.options.setSeries(new ArrayList<>(Arrays.asList(series1,series2)));
+//                chartView.getOptions().setSeries(new ArrayList<>(Arrays.asList(series1,series2)));
             }
         });
-    }
-
-    public void liveDataColumns61(){
-        HIChartView chartView = findViewById(R.id.hc);
-        chartView.plugins = new ArrayList<>();
-        chartView.plugins.add("data");
-        HIOptions options = new HIOptions();
-        options.chart = new HIChart();
-        options.chart.type = "bar";
-//        options.chart.height = 650;
-//        options.chart.width = 1300;
-        options.title = new HITitle();
-        options.title.text = "Server Monitoring Demo";
-        options.legend = new HILegend();
-        options.legend.enabled = false;
-        options.subtitle = new HISubtitle();
-        options.subtitle.text = "Instance Load";
-        options.data = new HIData();
-        options.data.csvURL = "https://demo-live-data.highcharts.com/vs-load.csv";
-        options.data.enablePolling = true;
-        options.data.dataRefreshRate = 1;
-        options.plotOptions = new HIPlotOptions();
-        options.plotOptions.bar = new HIBar();
-        options.plotOptions.bar.colorByPoint = true;
-        options.plotOptions.series = new HISeries();
-        HIZones zones1 = new HIZones();
-        zones1.color = HIColor.initWithHexValue("4CAF50");
-        zones1.value = 0;
-        HIZones zones2 = new HIZones();
-        zones2.color = HIColor.initWithHexValue("8BC34A");
-        zones2.value = 10;
-        HIZones zones3 = new HIZones();
-        zones3.color = HIColor.initWithHexValue("CDDC39");
-        zones3.value = 20;
-        HIZones zones4 = new HIZones();
-        zones4.color = HIColor.initWithHexValue("CDDC39");
-        zones4.value = 30;
-        HIZones zones5 = new HIZones();
-        zones5.color = HIColor.initWithHexValue("FFEB3B");
-        zones5.value = 40;
-        HIZones zones6 = new HIZones();
-        zones6.color = HIColor.initWithHexValue("FFEB3B");
-        zones6.value = 50;
-        HIZones zones7 = new HIZones();
-        zones7.color = HIColor.initWithHexValue("FFC107");
-        zones7.value = 60;
-        HIZones zones8 = new HIZones();
-        zones8.color = HIColor.initWithHexValue("FF9800");
-        zones8.value = 70;
-        HIZones zones9 = new HIZones();
-        zones9.color = HIColor.initWithHexValue("FF5722");
-        zones9.value = 80;
-        HIZones zones10 = new HIZones();
-        zones10.color = HIColor.initWithHexValue("F44336");
-        zones10.value = 90;
-        HIZones zones11 = new HIZones();
-        zones11.color = HIColor.initWithHexValue("F44336");
-        zones11.value = 100;
-        options.plotOptions.series.zones = new ArrayList<>(Arrays.asList(zones1,zones2,zones3,zones4,zones5,zones6,zones7,zones8,zones9,zones10,zones11));
-        options.plotOptions.series.dataLabels = new HIDataLabels();
-        options.plotOptions.series.dataLabels.enabled = true;
-        options.plotOptions.series.dataLabels.format = "{point.y:.0f}%";
-        options.tooltip = new HITooltip();
-        options.tooltip.valueDecimals = 1;
-        options.tooltip.valueSuffix = "%";
-        options.xAxis = new ArrayList<>();
-        HIXAxis hixAxis = new HIXAxis();
-        hixAxis.type = "category";
-        hixAxis.labels = new HILabels();
-        hixAxis.labels.style = new HIStyle();
-        hixAxis.labels.style.fontSize = "10px";
-        options.xAxis.add(hixAxis);
-        options.yAxis = new ArrayList<>();
-        HIYAxis hiyAxis = new HIYAxis();
-        hiyAxis.max = 100;
-//        hiyAxis.title = false; ?????
-        hiyAxis.plotBands = new ArrayList<>();
-        HIPlotBands plotBands1 = new HIPlotBands();
-        plotBands1.from = 0;
-        plotBands1.to = 30;
-        plotBands1.color = HIColor.initWithHexValue("E8F5E9");
-        HIPlotBands plotBands2 = new HIPlotBands();
-        plotBands2.from = 30;
-        plotBands2.to = 70;
-        plotBands2.color = HIColor.initWithHexValue("FFFDE7");
-        HIPlotBands plotBands3 = new HIPlotBands();
-        plotBands3.from = 70;
-        plotBands3.to = 100;
-        plotBands3.color = HIColor.initWithHexValue("FFEBEE");
-        hiyAxis.plotBands.add(plotBands1);
-        hiyAxis.plotBands.add(plotBands2);
-        hiyAxis.plotBands.add(plotBands3);
-        options.yAxis.add(hiyAxis);
-        chartView.options = options;
     }
 }

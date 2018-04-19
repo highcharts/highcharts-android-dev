@@ -11,6 +11,8 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
@@ -47,22 +49,36 @@ Highcharts.chart('container', {
 */
 
 public class HIErrorbar extends HISeries {
-
+	private Number whiskerWidth;
 /**
 * description: The line width of the whiskers, the horizontal lines marking low
 and high values. When null, the general
 lineWidth applies.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/error-bar-styling/ : Error bar styling*/
-	public Number whiskerWidth;
+	public void setWhiskerWidth(Number whiskerWidth) {
+		this.whiskerWidth = whiskerWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getWhiskerWidth(){ return whiskerWidth; }
+
+	private Boolean grouping;
 /**
 * description: Whether to group non-stacked columns or to let them render independent
 of each other. Non-grouped columns will be laid out individually
 and overlap each other.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-grouping-false/ : Grouping disabled* default: true
 */
-	public Boolean grouping;
+	public void setGrouping(Boolean grouping) {
+		this.grouping = grouping;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Boolean getGrouping(){ return grouping; }
+
+	private HIColor medianColor;
 /**
 The color of the median line. If null, the general series color
 applies.
@@ -70,8 +86,15 @@ applies.
 In styled mode, the median stroke width can be set with the
 .highcharts-boxplot-median class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/error-bar-styling/">Error bar styling</a> <br><br><b>default:</b><br><br>&ensp;null*/
-	public HIColor medianColor;
+	public void setMedianColor(HIColor medianColor) {
+		this.medianColor = medianColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HIColor getMedianColor(){ return medianColor; }
+
+	private Number medianWidth;
 /**
 The pixel width of the median line. If null, the
 lineWidth is used.
@@ -79,8 +102,15 @@ lineWidth is used.
 In styled mode, the median stroke width can be set with the
 .highcharts-boxplot-median class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>*/
-	public Number medianWidth;
+	public void setMedianWidth(Number medianWidth) {
+		this.medianWidth = medianWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getMedianWidth(){ return medianWidth; }
+
+	private HIColor whiskerColor;
 /**
 The color of the whiskers, the horizontal lines marking low and high
 values. When null, the general series color is used.
@@ -88,8 +118,15 @@ values. When null, the general series color is used.
 In styled mode, the whisker stroke can be set with the
 .highcharts-boxplot-whisker class .
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a> <br><br><b>default:</b><br><br>&ensp;null*/
-	public HIColor whiskerColor;
+	public void setWhiskerColor(HIColor whiskerColor) {
+		this.whiskerColor = whiskerColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HIColor getWhiskerColor(){ return whiskerColor; }
+
+	private HIColor stemColor;
 /**
 The color of the stem, the vertical line extending from the box to
 the whiskers. If null, the series color is used.
@@ -97,31 +134,59 @@ the whiskers. If null, the series color is used.
 In styled mode, the stem stroke can be set with the
 .highcharts-boxplot-stem class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/error-bar-styling/">Error bar styling</a> <br><br><b>default:</b><br><br>&ensp;null*/
-	public HIColor stemColor;
+	public void setStemColor(HIColor stemColor) {
+		this.stemColor = stemColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HIColor getStemColor(){ return stemColor; }
+
+	private Object /* Number|String */ whiskerLength;
 /**
 The length of the whiskers, the horizontal lines marking low and
 high values. It can be a numerical pixel value, or a percentage
 value of the box width. Set 0 to disable whiskers.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">True by default</a>*/
-	public Object /* Number|String */ whiskerLength;
+	public void setWhiskerLength(Object /* Number|String */ whiskerLength) {
+		this.whiskerLength = whiskerLength;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Object /* Number|String */ getWhiskerLength(){ return whiskerLength; }
+
+	private String stemDashStyle;
 /**
 The dash style of the stem, the vertical line extending from the
 box to the whiskers.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/error-bar-styling/">Error bar styling</a> <br><br><b>accepted values:</b><br><br>&ensp;["Solid", "ShortDash", "ShortDot", "ShortDashDot",
              "ShortDashDotDot", "Dot", "Dash" ,"LongDash", "DashDot",
              "LongDashDot", "LongDashDotDot"] <br><br><b>default:</b><br><br>&ensp;Solid*/
-	public String stemDashStyle;
+	public void setStemDashStyle(String stemDashStyle) {
+		this.stemDashStyle = stemDashStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public String getStemDashStyle(){ return stemDashStyle; }
+
+	private HIColor fillColor;
 /**
 The fill color of the box.
 
 In styled mode, the fill color can be set with the
 .highcharts-boxplot-box class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a> <br><br><b>default:</b><br><br>&ensp;#ffffff*/
-	public HIColor fillColor;
+	public void setFillColor(HIColor fillColor) {
+		this.fillColor = fillColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HIColor getFillColor(){ return fillColor; }
+
+	private Number stemWidth;
 /**
 The width of the stem, the vertical line extending from the box to
 the whiskers. If null, the width is inherited from the
@@ -130,8 +195,15 @@ lineWidth option.
 In styled mode, the stem stroke width can be set with the
 .highcharts-boxplot-stem class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/error-bar-styling/">Error bar styling</a> <br><br><b>default:</b><br><br>&ensp;null*/
-	public Number stemWidth;
+	public void setStemWidth(Number stemWidth) {
+		this.stemWidth = stemWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getStemWidth(){ return stemWidth; }
+
+	private Number pointRange;
 /**
 The X axis range that each point is valid for. This determines the
 width of the column. On a categorized axis, the range will be 1
@@ -142,8 +214,15 @@ points.
 The default null means it is computed automatically, but this option
 can be used to override the automatic value.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointrange/">Set the point range to one day on a data set with one week between the points</a>*/
-	public Number pointRange;
+	public void setPointRange(Number pointRange) {
+		this.pointRange = pointRange;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getPointRange(){ return pointRange; }
+
+	private Number minPointLength;
 /**
 The minimal height for a column or width for a bar. By default,
 0 values are not shown. To visualize a 0 (or close to zero) point,
@@ -151,57 +230,120 @@ set the minimal point length to a pixel value like 3\. In stacked
 column charts, minPointLength might not be respected for tightly
 packed values.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-minpointlength/">Zero base value</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-minpointlength-pos-and-neg/">Positive and negative close to zero values</a>*/
-	public Number minPointLength;
+	public void setMinPointLength(Number minPointLength) {
+		this.minPointLength = minPointLength;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getMinPointLength(){ return minPointLength; }
+
+	private ArrayList<HIColor> colors;
 /**
 A series specific or series type specific color set to apply instead
 of the global colors when [colorByPoint](
 #plotOptions.column.colorByPoint) is true.
 */
-	public ArrayList<HIColor> colors;
+	public void setColors(ArrayList<HIColor> colors) {
+		this.colors = colors;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public ArrayList<HIColor> getColors(){ return colors; }
+
+	private HIColor edgeColor;
 /**
 3D columns only. The color of the edges. Similar to borderColor,
  except it defaults to the same color as the column.
 */
-	public HIColor edgeColor;
+	public void setEdgeColor(HIColor edgeColor) {
+		this.edgeColor = edgeColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HIColor getEdgeColor(){ return edgeColor; }
+
+	private Boolean colorByPoint;
 /**
 When using automatic point colors pulled from the options.colors
 collection, this option determines whether the chart should receive
 one color per series or one color per point.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-false/">False by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-true/">True</a> <br><br><b>default:</b><br><br>&ensp;false*/
-	public Boolean colorByPoint;
+	public void setColorByPoint(Boolean colorByPoint) {
+		this.colorByPoint = colorByPoint;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Boolean getColorByPoint(){ return colorByPoint; }
+
+	private Number maxPointWidth;
 /**
 The maximum allowed pixel width for a column, translated to the height
 of a bar in a bar chart. This prevents the columns from becoming
 too wide when there is a small number of points in the chart.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-maxpointwidth-20/">Limited to 50</a> <br><br><b>default:</b><br><br>&ensp;null*/
-	public Number maxPointWidth;
+	public void setMaxPointWidth(Number maxPointWidth) {
+		this.maxPointWidth = maxPointWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getMaxPointWidth(){ return maxPointWidth; }
+
+	private Number pointWidth;
 /**
 A pixel value specifying a fixed width for each column or bar. When
 null, the width is calculated from the pointPadding and
 groupPadding.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointwidth-20/">20px wide columns regardless of chart width or the amount of data points</a> <br><br><b>default:</b><br><br>&ensp;null*/
-	public Number pointWidth;
+	public void setPointWidth(Number pointWidth) {
+		this.pointWidth = pointWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getPointWidth(){ return pointWidth; }
+
+	private Number pointPadding;
 /**
 Padding between each column or bar, in x axis units.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-default/">0.1 by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-025/">0.25</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-none/">0 for tightly packed columns</a>*/
-	public Number pointPadding;
+	public void setPointPadding(Number pointPadding) {
+		this.pointPadding = pointPadding;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getPointPadding(){ return pointPadding; }
+
+	private Number groupPadding;
 /**
 Padding between each value groups, in x axis units.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-grouppadding-default/">0.2 by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-grouppadding-none/">No group padding - all columns are evenly spaced</a>*/
-	public Number groupPadding;
+	public void setGroupPadding(Number groupPadding) {
+		this.groupPadding = groupPadding;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getGroupPadding(){ return groupPadding; }
+
+	private Number edgeWidth;
 /**
 3D columns only. The width of the colored edges.
  <br><br><b>default:</b><br><br>&ensp;1*/
-	public Number edgeWidth;
+	public void setEdgeWidth(Number edgeWidth) {
+		this.edgeWidth = edgeWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getEdgeWidth(){ return edgeWidth; }
+
+	private Boolean crisp;
 /**
 When true, each column edge is rounded to its nearest pixel in order
 to render sharp on screen. In some cases, when there are a lot of
@@ -210,18 +352,42 @@ widths or distance between columns. In these cases, setting crisp
 to false may look better, even though each column is rendered
 blurry.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-crisp-false/">Crisp is false</a>*/
-	public Boolean crisp;
+	public void setCrisp(Boolean crisp) {
+		this.crisp = crisp;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Boolean getCrisp(){ return crisp; }
+
+	private Number depth;
 /**
 Depth of the columns in a 3D column chart. Requires highcharts-3d.js.
  <br><br><b>default:</b><br><br>&ensp;25*/
-	public Number depth;
+	public void setDepth(Number depth) {
+		this.depth = depth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getDepth(){ return depth; }
+
 
 
 	public HIErrorbar() {
 		super(); 
-		this.type = "errorbar";
+		this.setType("errorbar");
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

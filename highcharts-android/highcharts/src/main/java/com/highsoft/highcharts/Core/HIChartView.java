@@ -279,6 +279,7 @@ public class HIChartView extends RelativeLayout {
     public void setOptions(HIOptions options) {
         this.options = options;
         this.options.addObserver(optionsChanged);
+        this.options.notifyObservers();
         Log.v("HIOptions", "set");
     }
 

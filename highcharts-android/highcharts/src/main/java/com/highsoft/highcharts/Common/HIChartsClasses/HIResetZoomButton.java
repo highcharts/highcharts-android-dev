@@ -11,19 +11,29 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HIResetZoomButton implements HIChartsJSONSerializable { 
+public class HIResetZoomButton extends Observable implements HIChartsJSONSerializable { 
 
-
+	private HIPosition position;
 /**
 The position of the button.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-position/">Above the plot area</a>*/
-	public HIPosition position;
+	public void setPosition(HIPosition position) {
+		this.position = position;
+		this.position.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HIPosition getPosition(){ return position; }
+
+	private HITheme theme;
 /**
 A collection of attributes for the button. The object takes SVG
 attributes like fill, stroke, stroke-width or r, the border
@@ -31,18 +41,43 @@ radius. The theme also supports style, a collection of CSS properties
 for the text. Equivalent attributes for the hover state are given
 in theme.states.hover.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-theme/">Theming the button</a>*/
-	public HITheme theme;
+	public void setTheme(HITheme theme) {
+		this.theme = theme;
+		this.theme.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HITheme getTheme(){ return theme; }
+
+	private String relativeTo;
 /**
 What frame the button should be placed related to. Can be either
 plot or chart
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-relativeto/">Relative to the chart</a> <br><br><b>accepted values:</b><br><br>&ensp;["plot", "chart"] <br><br><b>default:</b><br><br>&ensp;plot*/
-	public String relativeTo;
+	public void setRelativeTo(String relativeTo) {
+		this.relativeTo = relativeTo;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getRelativeTo(){ return relativeTo; }
+
 
 
 	public HIResetZoomButton() {
 
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

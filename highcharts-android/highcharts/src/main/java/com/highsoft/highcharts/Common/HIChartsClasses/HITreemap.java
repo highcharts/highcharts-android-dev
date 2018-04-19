@@ -11,6 +11,8 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
@@ -47,101 +49,210 @@ Highcharts.chart('container', {
 */
 
 public class HITreemap extends HISeries {
-
+	private Boolean colorByPoint;
 /**
 When using automatic point colors pulled from the options.colors
 collection, this option determines whether the chart should receive
 one color per series or one color per point.
  <br><br><b>default:</b><br><br>&ensp;false*/
-	public Boolean colorByPoint;
+	public void setColorByPoint(Boolean colorByPoint) {
+		this.colorByPoint = colorByPoint;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Boolean getColorByPoint(){ return colorByPoint; }
+
+	private HIColor borderColor;
 /**
 The color of the border surrounding each tree map item.
  <br><br><b>default:</b><br><br>&ensp;#e6e6e6*/
-	public HIColor borderColor;
+	public void setBorderColor(HIColor borderColor) {
+		this.borderColor = borderColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HIColor getBorderColor(){ return borderColor; }
+
+	private Number opacity;
 /**
 The opacity of a point in treemap. When a point has children, the
 visibility of the children is determined by the opacity.
  <br><br><b>default:</b><br><br>&ensp;0.15*/
-	public Number opacity;
+	public void setOpacity(Number opacity) {
+		this.opacity = opacity;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getOpacity(){ return opacity; }
+
+	private Boolean ignoreHiddenPoint;
 /**
 Whether to ignore hidden points when the layout algorithm runs.
 If false, hidden points will leave open spaces.
  <br><br><b>default:</b><br><br>&ensp;true*/
-	public Boolean ignoreHiddenPoint;
+	public void setIgnoreHiddenPoint(Boolean ignoreHiddenPoint) {
+		this.ignoreHiddenPoint = ignoreHiddenPoint;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Boolean getIgnoreHiddenPoint(){ return ignoreHiddenPoint; }
+
+	private Boolean allowDrillToNode;
 /**
 When enabled the user can click on a point which is a parent and
 zoom in on its children.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-allowdrilltonode/">Enabled</a> <br><br><b>default:</b><br><br>&ensp;false*/
-	public Boolean allowDrillToNode;
+	public void setAllowDrillToNode(Boolean allowDrillToNode) {
+		this.allowDrillToNode = allowDrillToNode;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Boolean getAllowDrillToNode(){ return allowDrillToNode; }
+
+	private Number sortIndex;
 /**
 The sort index of the point inside the treemap level.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-sortindex/">Sort by years</a>*/
-	public Number sortIndex;
+	public void setSortIndex(Number sortIndex) {
+		this.sortIndex = sortIndex;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getSortIndex(){ return sortIndex; }
+
+	private Boolean interactByLeaf;
 /**
 This option decides if the user can interact with the parent nodes
 or just the leaf nodes. When this option is undefined, it will be
 true by default. However when allowDrillToNode is true, then it will
 be false by default.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-interactbyleaf-false/">False</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-interactbyleaf-true-and-allowdrilltonode/">InteractByLeaf and allowDrillToNode is true</a>*/
-	public Boolean interactByLeaf;
+	public void setInteractByLeaf(Boolean interactByLeaf) {
+		this.interactByLeaf = interactByLeaf;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Boolean getInteractByLeaf(){ return interactByLeaf; }
+
+	private ArrayList<HIColor> colors;
 /**
 A series specific or series type specific color set to apply instead
 of the global colors when [colorByPoint](
 #plotOptions.treemap.colorByPoint) is true.
 */
-	public ArrayList<HIColor> colors;
+	public void setColors(ArrayList<HIColor> colors) {
+		this.colors = colors;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public ArrayList<HIColor> getColors(){ return colors; }
+
+	private String layoutAlgorithm;
 /**
 This option decides which algorithm is used for setting position
 and dimensions of the points. Can be one of sliceAndDice, stripes,
  squarified or strip.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-layoutalgorithm-sliceanddice/">SliceAndDice by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-layoutalgorithm-stripes/">Stripes</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-layoutalgorithm-squarified/">Squarified</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-layoutalgorithm-strip/">Strip</a> <br><br><b>accepted values:</b><br><br>&ensp;["sliceAndDice", "stripes", "squarified", "strip"] <br><br><b>default:</b><br><br>&ensp;sliceAndDice*/
-	public String layoutAlgorithm;
+	public void setLayoutAlgorithm(String layoutAlgorithm) {
+		this.layoutAlgorithm = layoutAlgorithm;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public String getLayoutAlgorithm(){ return layoutAlgorithm; }
+
+	private Boolean levelIsConstant;
 /**
 Used together with the levels and allowDrillToNode options. When
 set to false the first level visible when drilling is considered
 to be level one. Otherwise the level will be the same as the tree
 structure.
  <br><br><b>default:</b><br><br>&ensp;true*/
-	public Boolean levelIsConstant;
+	public void setLevelIsConstant(Boolean levelIsConstant) {
+		this.levelIsConstant = levelIsConstant;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Boolean getLevelIsConstant(){ return levelIsConstant; }
+
+	private String layoutStartingDirection;
 /**
 Defines which direction the layout algorithm will start drawing.
  Possible values are "vertical" and "horizontal".
  <br><br><b>accepted values:</b><br><br>&ensp;["vertical", "horizontal"] <br><br><b>default:</b><br><br>&ensp;vertical*/
-	public String layoutStartingDirection;
+	public void setLayoutStartingDirection(String layoutStartingDirection) {
+		this.layoutStartingDirection = layoutStartingDirection;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public String getLayoutStartingDirection(){ return layoutStartingDirection; }
+
+	private ArrayList <HILevels> levels;
 /**
 Set options on specific levels. Takes precedence over series options,
 but not point options.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-levels/">Styling dataLabels and borders</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/treemap-with-levels/">Different layoutAlgorithm</a>*/
-	public ArrayList <HILevels> levels;
+	public void setLevels(ArrayList levels) {
+		this.levels = levels;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public ArrayList getLevels(){ return levels; }
+
+	private HIDrillUpButton drillUpButton;
 /**
 Options for the button appearing when drilling down in a treemap.
 */
-	public HIDrillUpButton drillUpButton;
+	public void setDrillUpButton(HIDrillUpButton drillUpButton) {
+		this.drillUpButton = drillUpButton;
+		this.drillUpButton.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HIDrillUpButton getDrillUpButton(){ return drillUpButton; }
+
+	private Boolean alternateStartingDirection;
 /**
 Enabling this option will make the treemap alternate the drawing
 direction between vertical and horizontal. The next levels starting
 direction will always be the opposite of the previous.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-alternatestartingdirection-true/">Enabled</a> <br><br><b>default:</b><br><br>&ensp;false*/
-	public Boolean alternateStartingDirection;
+	public void setAlternateStartingDirection(Boolean alternateStartingDirection) {
+		this.alternateStartingDirection = alternateStartingDirection;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getAlternateStartingDirection(){ return alternateStartingDirection; }
+
 
 
 	public HITreemap() {
 		super(); 
-		this.type = "treemap";
+		this.setType("treemap");
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

@@ -11,6 +11,8 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
@@ -47,52 +49,110 @@ Highcharts.chart('container', {
 */
 
 public class HISunburst extends HISeries {
-	public Boolean colorByPoint;
+	private Boolean colorByPoint;
+	public void setColorByPoint(Boolean colorByPoint) {
+		this.colorByPoint = colorByPoint;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Boolean getColorByPoint(){ return colorByPoint; }
+
+	private String rootId;
 /**
 Which point to use as a root in the visualization.
  <br><br><b>default:</b><br><br>&ensp;undefined*/
-	public String rootId;
+	public void setRootId(String rootId) {
+		this.rootId = rootId;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public String getRootId(){ return rootId; }
+
+	private HILevelSize levelSize;
 /**
 Determines the width of the ring per level.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-levelsize/">Sunburst with various sizes per level</a>*/
-	public HILevelSize levelSize;
+	public void setLevelSize(HILevelSize levelSize) {
+		this.levelSize = levelSize;
+		this.levelSize.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HILevelSize getLevelSize(){ return levelSize; }
+
+	private ArrayList /* <String|Number> */ center;
 /**
 * description: The center of the sunburst chart relative to the plot area. Can be
 percentages or pixel values.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-center/ : Centered at 100, 100* default: [null, null]
 */
-	public ArrayList /* <String|Number> */ center;
+	public void setCenter(ArrayList /* <String|Number> */ center) {
+		this.center = center;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public ArrayList /* <String|Number> */ getCenter(){ return center; }
+
+	private Number slicedOffset;
 /**
 * description: If a point is sliced, moved out from the center, how many pixels
 should it be moved?.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-sliced : Sliced sunburst* default: 10
 */
-	public Number slicedOffset;
+	public void setSlicedOffset(Number slicedOffset) {
+		this.slicedOffset = slicedOffset;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getSlicedOffset(){ return slicedOffset; }
+
+	private Boolean levelIsConstant;
 /**
 Used together with the levels and allowDrillToNode options. When
 set to false the first level visible when drilling is considered
 to be level one. Otherwise the level will be the same as the tree
 structure.
 */
-	public Boolean levelIsConstant;
+	public void setLevelIsConstant(Boolean levelIsConstant) {
+		this.levelIsConstant = levelIsConstant;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Boolean getLevelIsConstant(){ return levelIsConstant; }
+
+	private ArrayList <HILevels> levels;
 /**
 Set options on specific levels. Takes precedence over series options,
 but not point options.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/sunburst">Sunburst chart</a>*/
-	public ArrayList <HILevels> levels;
+	public void setLevels(ArrayList levels) {
+		this.levels = levels;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public ArrayList getLevels(){ return levels; }
+
+	private Boolean allowDrillToNode;
 /**
 When enabled the user can click on a point which is a parent and
 zoom in on its children.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/sunburst">Allow drill to node</a> <br><br><b>default:</b><br><br>&ensp;false*/
-	public Boolean allowDrillToNode;
+	public void setAllowDrillToNode(Boolean allowDrillToNode) {
+		this.allowDrillToNode = allowDrillToNode;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Boolean getAllowDrillToNode(){ return allowDrillToNode; }
+
+	private HIColor borderColor;
 /**
 The color of the border surrounding each slice. When null, the
 border takes the same color as the slice fill. This can be used
@@ -101,14 +161,28 @@ artefacts in borderless pies.
 
 In styled mode, the border stroke is given in the .highcharts-point class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-bordercolor-black/">Black border</a> <br><br><b>default:</b><br><br>&ensp;#ffffff*/
-	public HIColor borderColor;
+	public void setBorderColor(HIColor borderColor) {
+		this.borderColor = borderColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HIColor getBorderColor(){ return borderColor; }
+
+	private ArrayList<HIColor> colors;
 /**
 A series specific or series type specific color set to use instead
 of the global colors.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/">Set default colors for all pies</a>*/
-	public ArrayList<HIColor> colors;
+	public void setColors(ArrayList<HIColor> colors) {
+		this.colors = colors;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public ArrayList<HIColor> getColors(){ return colors; }
+
+	private Number borderWidth;
 /**
 The width of the border surrounding each slice.
 
@@ -119,14 +193,28 @@ null instead.
 
 In styled mode, the border stroke width is given in the .highcharts-point class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-borderwidth/">3px border</a> <br><br><b>default:</b><br><br>&ensp;1*/
-	public Number borderWidth;
+	public void setBorderWidth(Number borderWidth) {
+		this.borderWidth = borderWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getBorderWidth(){ return borderWidth; }
+
+	private Number startAngle;
 /**
 The start angle of the pie slices in degrees where 0 is top and 90
 right.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-startangle-90/">Start from right</a> <br><br><b>default:</b><br><br>&ensp;0*/
-	public Number startAngle;
+	public void setStartAngle(Number startAngle) {
+		this.startAngle = startAngle;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getStartAngle(){ return startAngle; }
+
+	private Object /* String|Number */ size;
 /**
 The diameter of the pie relative to the plot area. Can be a percentage
 or pixel value. Pixel values are given as integers. The default
@@ -138,13 +226,30 @@ of the pie may vary when points are updated and data labels more
 around. In that case it is best to set a fixed value, for example
 "75%".
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-size/">Smaller pie</a>*/
-	public Object /* String|Number */ size;
+	public void setSize(Object /* String|Number */ size) {
+		this.size = size;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* String|Number */ getSize(){ return size; }
+
 
 
 	public HISunburst() {
 		super(); 
-		this.type = "sunburst";
+		this.setType("sunburst");
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

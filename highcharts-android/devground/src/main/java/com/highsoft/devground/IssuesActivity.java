@@ -47,66 +47,66 @@ public class IssuesActivity extends AppCompatActivity {
 
         HIOptions options = new HIOptions();
 
-        HITitle title = new HITitle();
-        title.text = "Issue chart";
-        options.title = title;
-
-//        chartView.plugins = new ArrayList<>();
-//        chartView.plugins.add("boost-canvas");
-//        chartView.plugins.add("boost");
+//        HITitle title = new HITitle();
+//        title.text = "Issue chart";
+//        options.title = title;
 //
-//        HIBoost boost = new HIBoost();
-//        boost.useGPUTranslations = true;
-//        boost.enabled = true;
-//        options.boost = boost;
-
-        HIChart chart = new HIChart();
-        chart.type = "line";
-        options.chart = chart;
-
-
-        HIYAxis yaxis = new HIYAxis();
-        yaxis.title = new HITitle();
-        yaxis.title.text = "Quantity Sold";
-        options.yAxis = new ArrayList<>(Collections.singletonList(yaxis));
-
-//        HIXAxis xaxis = new HIXAxis();
-//        xaxis.categories=orderVelocityWeekPojo.getRange();
-//        options.xAxis = new ArrayList<>(Collections.singletonList(xaxis));
-
-        HILegend legend = new HILegend();
-        legend.layout = "vertical";
-        legend.align = "right";
-        legend.verticalAlign = "middle";
-        options.legend = legend;
-
-        HIPlotOptions plotoptions = new HIPlotOptions();
-        plotoptions.series = new HISeries();
-        plotoptions.series.label = new HILabel();
-        plotoptions.series.label.connectorAllowed = false;
-        plotoptions.series.pointStart = 2010;
-        options.plotOptions = plotoptions;
-
-        HILine line1 = new HILine();
-        line1.name = "Sample nameSample nameSample nameSample name";
-        line1.data = new ArrayList<>(Arrays.asList(4,1,4,5,6,1,5,4,1,4,2,6,8,4));
-
-
-        HIResponsive responsive = new HIResponsive();
-
-        HIRules rules1 = new HIRules();
-        rules1.condition = new HICondition();
-        rules1.condition.maxWidth = 500;
-        HashMap<String, HashMap> chartLegend = new HashMap<>();
-        HashMap<String, String> legendOptions = new HashMap<>();
-        legendOptions.put("layout", "horizontal");
-        legendOptions.put("align", "center");
-        legendOptions.put("verticalAlign", "bottom");
-        chartLegend.put("legend", legendOptions);
-        rules1.chartOptions = chartLegend;
-        responsive.rules = new ArrayList<>(Collections.singletonList(rules1));
-        options.responsive = responsive;
-        options.series = new ArrayList<>(Collections.singletonList(line1));
+////        chartView.plugins = new ArrayList<>();
+////        chartView.plugins.add("boost-canvas");
+////        chartView.plugins.add("boost");
+////
+////        HIBoost boost = new HIBoost();
+////        boost.useGPUTranslations = true;
+////        boost.enabled = true;
+////        options.boost = boost;
+//
+//        HIChart chart = new HIChart();
+//        chart.type = "line";
+//        options.chart = chart;
+//
+//
+//        HIYAxis yaxis = new HIYAxis();
+//        yaxis.title = new HITitle();
+//        yaxis.title.text = "Quantity Sold";
+//        options.yAxis = new ArrayList<>(Collections.singletonList(yaxis));
+//
+////        HIXAxis xaxis = new HIXAxis();
+////        xaxis.categories=orderVelocityWeekPojo.getRange();
+////        options.xAxis = new ArrayList<>(Collections.singletonList(xaxis));
+//
+//        HILegend legend = new HILegend();
+//        legend.layout = "vertical";
+//        legend.align = "right";
+//        legend.verticalAlign = "middle";
+//        options.legend = legend;
+//
+//        HIPlotOptions plotoptions = new HIPlotOptions();
+//        plotoptions.series = new HISeries();
+//        plotoptions.series.label = new HILabel();
+//        plotoptions.series.label.connectorAllowed = false;
+//        plotoptions.series.pointStart = 2010;
+//        options.plotOptions = plotoptions;
+//
+//        HILine line1 = new HILine();
+//        line1.name = "Sample nameSample nameSample nameSample name";
+//        line1.data = new ArrayList<>(Arrays.asList(4,1,4,5,6,1,5,4,1,4,2,6,8,4));
+//
+//
+//        HIResponsive responsive = new HIResponsive();
+//
+//        HIRules rules1 = new HIRules();
+//        rules1.condition = new HICondition();
+//        rules1.condition.maxWidth = 500;
+//        HashMap<String, HashMap> chartLegend = new HashMap<>();
+//        HashMap<String, String> legendOptions = new HashMap<>();
+//        legendOptions.put("layout", "horizontal");
+//        legendOptions.put("align", "center");
+//        legendOptions.put("verticalAlign", "bottom");
+//        chartLegend.put("legend", legendOptions);
+//        rules1.chartOptions = chartLegend;
+//        responsive.rules = new ArrayList<>(Collections.singletonList(rules1));
+//        options.responsive = responsive;
+//        options.series = new ArrayList<>(Collections.singletonList(line1));
 
         chartView.options = options;
     }
