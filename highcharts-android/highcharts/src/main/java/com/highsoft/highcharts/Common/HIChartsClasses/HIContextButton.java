@@ -11,110 +11,59 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
 
 
 
-public class HIContextButton extends Observable implements HIChartsJSONSerializable { 
+public class HIContextButton implements HIChartsJSONSerializable { 
 
-	private HIColor symbolFill;
+
 /**
 * description: See [navigation.buttonOptions.symbolFill](
 #navigation.buttonOptions.symbolFill).
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-symbolfill/ : Blue symbol stroke for one of the buttons* default: #666666
 */
-	public void setSymbolFill(HIColor symbolFill) {
-		this.symbolFill = symbolFill;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIColor symbolFill;
 
-	public HIColor getSymbolFill(){ return symbolFill; }
-
-	private String symbol;
 /**
 The symbol for the button. Points to a definition function in
 the Highcharts.Renderer.symbols collection. The default
 exportIcon function is part of the exporting module.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-contextbutton-symbol/">Use a circle for symbol</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-contextbutton-symbol-custom/">Custom shape as symbol</a> <br><br><b>accepted values:</b><br><br>&ensp;["circle", "square", "diamond", "triangle", "triangle-down", "menu"] <br><br><b>default:</b><br><br>&ensp;menu*/
-	public void setSymbol(String symbol) {
-		this.symbol = symbol;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String symbol;
 
-	public String getSymbol(){ return symbol; }
-
-	private String className;
 /**
 The class name of the context button.
 */
-	public void setClassName(String className) {
-		this.className = className;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String className;
 
-	public String getClassName(){ return className; }
-
-	private String _titleKey;
 /**
 The key to a lang option setting that is used for the
 button's title tooltip. When the key is contextButtonTitle, it
 refers to lang.contextButtonTitle
 that defaults to "Chart context menu".
 */
-	public void set_titleKey(String _titleKey) {
-		this._titleKey = _titleKey;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String _titleKey;
 
-	public String get_titleKey(){ return _titleKey; }
-
-	private HIFunction onclick;
 /**
 A click handler callback to use on the button directly instead of
 the popup menu.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-contextbutton-onclick/">Skip the menu and export the chart directly</a>*/
-	public void setOnclick(HIFunction onclick) {
-		this.onclick = onclick;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIFunction onclick;
 
-	public HIFunction getOnclick(){ return onclick; }
-
-	private Number x;
 /**
 The horizontal position of the button relative to the align
 option.
  <br><br><b>default:</b><br><br>&ensp;-10*/
-	public void setX(Number x) {
-		this.x = x;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number x;
 
-	public Number getX(){ return x; }
-
-	private String menuClassName;
 /**
 The class name of the menu appearing from the button.
 */
-	public void setMenuClassName(String menuClassName) {
-		this.menuClassName = menuClassName;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String menuClassName;
 
-	public String getMenuClassName(){ return menuClassName; }
-
-	private ArrayList menuItems;
 /**
 A collection of strings pointing to config options for the menu
 items. The config options are defined in the
@@ -135,203 +84,87 @@ Defaults to
 ]
 
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/menuitemdefinitions/">Menu item definitions</a>*/
-	public void setMenuItems(ArrayList menuItems) {
-		this.menuItems = menuItems;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public ArrayList menuItems;
 
-	public ArrayList getMenuItems(){ return menuItems; }
-
-	private String verticalAlign;
 /**
 The vertical alignment of the buttons. Can be one of "top", "middle"
 or "bottom".
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-verticalalign/">Buttons at lower right</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"] <br><br><b>default:</b><br><br>&ensp;top*/
-	public void setVerticalAlign(String verticalAlign) {
-		this.verticalAlign = verticalAlign;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String verticalAlign;
 
-	public String getVerticalAlign(){ return verticalAlign; }
-
-	private String text;
 /**
 A text string to add to the individual button.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-text/">Full text button</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-text-symbol/">Combined symbol and text</a> <br><br><b>default:</b><br><br>&ensp;null*/
-	public void setText(String text) {
-		this.text = text;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String text;
 
-	public String getText(){ return text; }
-
-	private String align;
 /**
 Alignment for the buttons.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-align/">Center aligned</a> <br><br><b>accepted values:</b><br><br>&ensp;["left", "center", "right"] <br><br><b>default:</b><br><br>&ensp;right*/
-	public void setAlign(String align) {
-		this.align = align;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String align;
 
-	public String getAlign(){ return align; }
-
-	private Boolean enabled;
 /**
 Whether to enable buttons.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-enabled/">Exporting module loaded but buttons disabled</a> <br><br><b>default:</b><br><br>&ensp;true*/
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Boolean enabled;
 
-	public Boolean getEnabled(){ return enabled; }
-
-	private HITheme theme;
 /**
 A configuration object for the button theme. The object accepts
 SVG properties like stroke-width, stroke and fill. Tri-state
 button styles are supported by the states.hover and states.select
 objects.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-theme/">Theming the buttons</a>*/
-	public void setTheme(HITheme theme) {
-		this.theme = theme;
-		this.theme.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HITheme theme;
 
-	public HITheme getTheme(){ return theme; }
-
-	private Number height;
 /**
 Pixel height of the buttons.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-height/">Bigger buttons</a> <br><br><b>default:</b><br><br>&ensp;22*/
-	public void setHeight(Number height) {
-		this.height = height;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number height;
 
-	public Number getHeight(){ return height; }
-
-	private Number width;
 /**
 The pixel width of the button.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-height/">Bigger buttons</a> <br><br><b>default:</b><br><br>&ensp;24*/
-	public void setWidth(Number width) {
-		this.width = width;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number width;
 
-	public Number getWidth(){ return width; }
-
-	private Number buttonSpacing;
 /**
 The pixel spacing between buttons.
  <br><br><b>default:</b><br><br>&ensp;3*/
-	public void setButtonSpacing(Number buttonSpacing) {
-		this.buttonSpacing = buttonSpacing;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number buttonSpacing;
 
-	public Number getButtonSpacing(){ return buttonSpacing; }
-
-	private Number symbolSize;
 /**
 The pixel size of the symbol on the button.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-height/">Bigger buttons</a> <br><br><b>default:</b><br><br>&ensp;14*/
-	public void setSymbolSize(Number symbolSize) {
-		this.symbolSize = symbolSize;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number symbolSize;
 
-	public Number getSymbolSize(){ return symbolSize; }
-
-	private Number y;
 /**
 The vertical offset of the button's position relative to its
 verticalAlign.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-verticalalign/">Buttons at lower right</a> <br><br><b>default:</b><br><br>&ensp;0*/
-	public void setY(Number y) {
-		this.y = y;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number y;
 
-	public Number getY(){ return y; }
-
-	private HIColor symbolStroke;
 /**
 The color of the symbol's stroke or line.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-symbolstroke/">Blue symbol stroke</a> <br><br><b>default:</b><br><br>&ensp;#666666*/
-	public void setSymbolStroke(HIColor symbolStroke) {
-		this.symbolStroke = symbolStroke;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIColor symbolStroke;
 
-	public HIColor getSymbolStroke(){ return symbolStroke; }
-
-	private Number symbolY;
 /**
 The y position of the center of the symbol inside the button.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-height/">Bigger buttons</a> <br><br><b>default:</b><br><br>&ensp;10.5*/
-	public void setSymbolY(Number symbolY) {
-		this.symbolY = symbolY;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number symbolY;
 
-	public Number getSymbolY(){ return symbolY; }
-
-	private Number symbolX;
 /**
 The x position of the center of the symbol inside the button.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-height/">Bigger buttons</a> <br><br><b>default:</b><br><br>&ensp;12.5*/
-	public void setSymbolX(Number symbolX) {
-		this.symbolX = symbolX;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number symbolX;
 
-	public Number getSymbolX(){ return symbolX; }
-
-	private Number symbolStrokeWidth;
 /**
 The pixel stroke width of the symbol on the button.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-height/">Bigger buttons</a> <br><br><b>default:</b><br><br>&ensp;1*/
-	public void setSymbolStrokeWidth(Number symbolStrokeWidth) {
-		this.symbolStrokeWidth = symbolStrokeWidth;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getSymbolStrokeWidth(){ return symbolStrokeWidth; }
-
+	public Number symbolStrokeWidth;
 
 
 	public HIContextButton() {
 
 	}
-
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
 
 	public Map<String, Object> getParams() {
 

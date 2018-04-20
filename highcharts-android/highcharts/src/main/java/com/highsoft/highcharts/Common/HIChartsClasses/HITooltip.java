@@ -11,44 +11,28 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
 
 
 
-public class HITooltip extends Observable implements HIChartsJSONSerializable { 
+public class HITooltip implements HIChartsJSONSerializable { 
 
-	private Boolean followTouchMove;
+
 /**
 Whether the tooltip should follow the finger as it moves on a touch
 device. If this is true and chart.panning is
 set,followTouchMove will take over one-finger touches, so the user
 needs to use two fingers for zooming and panning.
  <br><br><b>default:</b><br><br>&ensp;true*/
-	public void setFollowTouchMove(Boolean followTouchMove) {
-		this.followTouchMove = followTouchMove;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Boolean followTouchMove;
 
-	public Boolean getFollowTouchMove(){ return followTouchMove; }
-
-	private Number borderRadius;
 /**
 The radius of the rounded border corners.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/bordercolor-default/">5px by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/borderradius-0/">Square borders</a> <br><br><b>default:</b><br><br>&ensp;3*/
-	public void setBorderRadius(Number borderRadius) {
-		this.borderRadius = borderRadius;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number borderRadius;
 
-	public Number getBorderRadius(){ return borderRadius; }
-
-	private String headerFormat;
 /**
 The HTML of the tooltip header line. Variables are enclosed by
 curly brackets. Available variables are point.key, series.name,
@@ -57,41 +41,20 @@ objects. The point.key variable contains the category name, x
 value or datetime string depending on the type of axis. For datetime
 axes, the point.key date format can be set using tooltip.xDateFormat.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/footerformat/">A HTML table in the tooltip</a>*/
-	public void setHeaderFormat(String headerFormat) {
-		this.headerFormat = headerFormat;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String headerFormat;
 
-	public String getHeaderFormat(){ return headerFormat; }
-
-	private String valueSuffix;
 /**
 A string to append to each series' y value. Overridable in each series'
 tooltip options object.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/valuedecimals/">Set decimals, prefix and suffix for the value</a>*/
-	public void setValueSuffix(String valueSuffix) {
-		this.valueSuffix = valueSuffix;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String valueSuffix;
 
-	public String getValueSuffix(){ return valueSuffix; }
-
-	private String valuePrefix;
 /**
 A string to prepend to each series' y value. Overridable in each
 series' tooltip options object.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/valuedecimals/">Set decimals, prefix and suffix for the value</a>*/
-	public void setValuePrefix(String valuePrefix) {
-		this.valuePrefix = valuePrefix;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String valuePrefix;
 
-	public String getValuePrefix(){ return valuePrefix; }
-
-	private HIDateTimeLabelFormats dateTimeLabelFormats;
 /**
 For series on a datetime axes, the date format in the tooltip's
 header will by default be guessed based on the closest data points.
@@ -112,28 +75,13 @@ Defaults to:
     year:"%Y"
 }
 */
-	public void setDateTimeLabelFormats(HIDateTimeLabelFormats dateTimeLabelFormats) {
-		this.dateTimeLabelFormats = dateTimeLabelFormats;
-		this.dateTimeLabelFormats.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIDateTimeLabelFormats dateTimeLabelFormats;
 
-	public HIDateTimeLabelFormats getDateTimeLabelFormats(){ return dateTimeLabelFormats; }
-
-	private String shape;
 /**
 The name of a symbol to use for the border around the tooltip.
  <br><br><b>accepted values:</b><br><br>&ensp;["callout", "square"] <br><br><b>default:</b><br><br>&ensp;callout*/
-	public void setShape(String shape) {
-		this.shape = shape;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String shape;
 
-	public String getShape(){ return shape; }
-
-	private HIFunction positioner;
 /**
 A callback function to place the tooltip in a default position. The
 callback receives three parameters: labelWidth, labelHeight and
@@ -144,111 +92,54 @@ and chart.plotTop to get the full coordinates.
 The return should be an object containing x and y values, for example
 { x: 100, y: 100 }.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/positioner/">A fixed tooltip position</a>*/
-	public void setPositioner(HIFunction positioner) {
-		this.positioner = positioner;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIFunction positioner;
 
-	public HIFunction getPositioner(){ return positioner; }
-
-	private Boolean useHTML;
 /**
 Use HTML to render the contents of the tooltip instead of SVG. Using
 HTML allows advanced formatting like tables and images in the tooltip.
 It is also recommended for rtl languages as it works around rtl
 bugs in early Firefox.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/footerformat/">A table for value alignment</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/fullhtml/">Full HTML tooltip</a> <br><br><b>default:</b><br><br>&ensp;false*/
-	public void setUseHTML(Boolean useHTML) {
-		this.useHTML = useHTML;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Boolean useHTML;
 
-	public Boolean getUseHTML(){ return useHTML; }
-
-	private HIColor borderColor;
 /**
 The color of the tooltip border. When null, the border takes the
 color of the corresponding series or point.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/bordercolor-default/">Follow series by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/bordercolor-black/">Black border</a> <br><br><b>default:</b><br><br>&ensp;null*/
-	public void setBorderColor(HIColor borderColor) {
-		this.borderColor = borderColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIColor borderColor;
 
-	public HIColor getBorderColor(){ return borderColor; }
-
-	private HIStyle style;
 /**
 CSS styles for the tooltip. The tooltip can also be styled through
 the CSS class .highcharts-tooltip.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/style/">Greater padding, bold text</a> <br><br><b>default:</b><br><br>&ensp;{ "color": "#333333", "cursor": "default", "fontSize": "12px", "pointerEvents": "none", "whiteSpace": "nowrap" }*/
-	public void setStyle(HIStyle style) {
-		this.style = style;
-		this.style.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIStyle style;
 
-	public HIStyle getStyle(){ return style; }
-
-	private String footerFormat;
 /**
 A string to append to the tooltip format.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/footerformat/">A table for value alignment</a>*/
-	public void setFooterFormat(String footerFormat) {
-		this.footerFormat = footerFormat;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String footerFormat;
 
-	public String getFooterFormat(){ return footerFormat; }
-
-	private Boolean animation;
 /**
 Enable or disable animation of the tooltip. In slow legacy IE browsers
 the animation is disabled by default.
  <br><br><b>default:</b><br><br>&ensp;true*/
-	public void setAnimation(Boolean animation) {
-		this.animation = animation;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Boolean animation;
 
-	public Boolean getAnimation(){ return animation; }
-
-	private Boolean split;
 /**
 Split the tooltip into one label per series, with the header close
 to the axis. This is recommended over shared tooltips
 for charts with multiple line series, generally making them easier
 to read. This option takes precedence over tooltip.shared.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/split/">Split tooltip</a> <br><br><b>default:</b><br><br>&ensp;false*/
-	public void setSplit(Boolean split) {
-		this.split = split;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Boolean split;
 
-	public Boolean getSplit(){ return split; }
-
-	private HIColor backgroundColor;
 /**
 The background color or gradient for the tooltip.
 
 In styled mode, the stroke width is set in the .highcharts-tooltip-box class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/backgroundcolor-solid/">Yellowish background</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/backgroundcolor-gradient/">Gradient</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/tooltip-border-background/">Tooltip in styled mode</a> <br><br><b>default:</b><br><br>&ensp;rgba(247,247,247,0.85)*/
-	public void setBackgroundColor(HIColor backgroundColor) {
-		this.backgroundColor = backgroundColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIColor backgroundColor;
 
-	public HIColor getBackgroundColor(){ return backgroundColor; }
-
-	private Number snap;
 /**
 Proximity snap for graphs or single points. It defaults to 10 for
 mouse-powered devices and 25 for touch devices.
@@ -259,15 +150,8 @@ This applies when stickyTracking
 is true (default) and when the tooltip is shared
 or split.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/bordercolor-default/">10 px by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/snap-50/">50 px on graph</a> <br><br><b>default:</b><br><br>&ensp;10/25*/
-	public void setSnap(Number snap) {
-		this.snap = snap;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number snap;
 
-	public Number getSnap(){ return snap; }
-
-	private Boolean shared;
 /**
 When the tooltip is shared, the entire plot area will capture mouse
 movement or touch events. Tooltip texts for series types with ordered
@@ -279,15 +163,8 @@ See also tooltip.split, that is better suited for
 charts with many series, especially line-type series. The
 tooltip.split option takes precedence over tooltip.shared.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/shared-false/">False by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/shared-true/">True</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/shared-x-crosshair/">True with x axis crosshair</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/shared-true-mixed-types/">True with mixed series types</a> <br><br><b>default:</b><br><br>&ensp;false*/
-	public void setShared(Boolean shared) {
-		this.shared = shared;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Boolean shared;
 
-	public Boolean getShared(){ return shared; }
-
-	private HIFunction formatter;
 /**
 Callback function to format the text of the tooltip from scratch. Return
 false to disable tooltip for a specific point on series.
@@ -329,15 +206,8 @@ this.y (not shared) / this.points[i].y (shared)
 The y value.
 
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/formatter-simple/">Simple string formatting</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/formatter-shared/">Formatting with shared tooltip</a>*/
-	public void setFormatter(HIFunction formatter) {
-		this.formatter = formatter;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIFunction formatter;
 
-	public HIFunction getFormatter(){ return formatter; }
-
-	private String pointFormat;
 /**
 The HTML of the point's line in the tooltip. Variables are enclosed
 by curly brackets. Available variables are point.x, point.y, series.
@@ -349,92 +219,43 @@ series, which makes it a good hook for displaying units.
 In styled mode, the dot is colored by a class name rather
 than the point color.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/pointformat/">A different point format with value suffix</a> <br><br><b>default:</b><br><br>&ensp;<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}</b><br/>*/
-	public void setPointFormat(String pointFormat) {
-		this.pointFormat = pointFormat;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String pointFormat;
 
-	public String getPointFormat(){ return pointFormat; }
-
-	private String xDateFormat;
 /**
 The format for the date in the tooltip header if the X axis is a
 datetime axis. The default is a best guess based on the smallest
 distance between points in the chart.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/xdateformat/">A different format</a>*/
-	public void setXDateFormat(String xDateFormat) {
-		this.xDateFormat = xDateFormat;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String xDateFormat;
 
-	public String getXDateFormat(){ return xDateFormat; }
-
-	private Number padding;
 /**
 Padding inside the tooltip, in pixels.
  <br><br><b>default:</b><br><br>&ensp;8*/
-	public void setPadding(Number padding) {
-		this.padding = padding;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number padding;
 
-	public Number getPadding(){ return padding; }
-
-	private Boolean shadow;
 /**
 Whether to apply a drop shadow to the tooltip.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/bordercolor-default/">True by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/shadow/">False</a> <br><br><b>default:</b><br><br>&ensp;true*/
-	public void setShadow(Boolean shadow) {
-		this.shadow = shadow;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Boolean shadow;
 
-	public Boolean getShadow(){ return shadow; }
-
-	private Boolean enabled;
 /**
 Enable or disable the tooltip.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/enabled/">Disabled</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-point-events-mouseover/">Disable tooltip and show values on chart instead</a> <br><br><b>default:</b><br><br>&ensp;true*/
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Boolean enabled;
 
-	public Boolean getEnabled(){ return enabled; }
-
-	private HIFunction pointFormatter;
 /**
 A callback function for formatting the HTML output for a single point
 in the tooltip. Like the pointFormat string, but with more flexibility.
 */
-	public void setPointFormatter(HIFunction pointFormatter) {
-		this.pointFormatter = pointFormatter;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIFunction pointFormatter;
 
-	public HIFunction getPointFormatter(){ return pointFormatter; }
-
-	private Number borderWidth;
 /**
 The pixel width of the tooltip border.
 
 In styled mode, the stroke width is set in the .highcharts-tooltip-box class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/bordercolor-default/">2px by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/borderwidth/">No border (shadow only)</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/tooltip-border-background/">Tooltip in styled mode</a> <br><br><b>default:</b><br><br>&ensp;1*/
-	public void setBorderWidth(Number borderWidth) {
-		this.borderWidth = borderWidth;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number borderWidth;
 
-	public Number getBorderWidth(){ return borderWidth; }
-
-	private Boolean followPointer;
 /**
 Whether the tooltip should follow the mouse as it moves across columns,
 pie slices and other point types with an extent. By default it behaves
@@ -444,93 +265,40 @@ for those series types.
 For touch moves to behave the same way, [followTouchMove](
 #tooltip.followTouchMove) must be true also.
  <br><br><b>default:</b><br><br>&ensp;false*/
-	public void setFollowPointer(Boolean followPointer) {
-		this.followPointer = followPointer;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Boolean followPointer;
 
-	public Boolean getFollowPointer(){ return followPointer; }
-
-	private Number hideDelay;
 /**
 The number of milliseconds to wait until the tooltip is hidden when
 mouse out from a point or chart.
  <br><br><b>default:</b><br><br>&ensp;500*/
-	public void setHideDelay(Number hideDelay) {
-		this.hideDelay = hideDelay;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number hideDelay;
 
-	public Number getHideDelay(){ return hideDelay; }
-
-	private Number valueDecimals;
 /**
 How many decimals to show in each series' y value. This is overridable
 in each series' tooltip options object. The default is to preserve
 all decimals.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/valuedecimals/">Set decimals, prefix and suffix for the value</a>*/
-	public void setValueDecimals(Number valueDecimals) {
-		this.valueDecimals = valueDecimals;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number valueDecimals;
 
-	public Number getValueDecimals(){ return valueDecimals; }
-
-	private HIFunction nodeFormatter;
 /**
 A callback for defining the format for _nodes_ in the sankey chart's
 tooltip, as opposed to links.
 */
-	public void setNodeFormatter(HIFunction nodeFormatter) {
-		this.nodeFormatter = nodeFormatter;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIFunction nodeFormatter;
 
-	public HIFunction getNodeFormatter(){ return nodeFormatter; }
-
-	private String nodeFormat;
 /**
 The [format string](http://www.highcharts.com/docs/chart-
 concepts/labels-and-string-formatting) specifying what to
 show for _nodes_ in tooltip
 of a sankey diagram series, as opposed to links.
 */
-	public void setNodeFormat(String nodeFormat) {
-		this.nodeFormat = nodeFormat;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getNodeFormat(){ return nodeFormat; }
-
-	private Number distance;
-	public void setDistance(Number distance) {
-		this.distance = distance;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getDistance(){ return distance; }
-
+	public String nodeFormat;
+	public Number distance;
 
 
 	public HITooltip() {
 
 	}
-
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
 
 	public Map<String, Object> getParams() {
 

@@ -11,57 +11,21 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HILabelStyle extends Observable implements HIChartsJSONSerializable { 
+public class HILabelStyle implements HIChartsJSONSerializable { 
 
-	private String fontWeight;
-	public void setFontWeight(String fontWeight) {
-		this.fontWeight = fontWeight;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getFontWeight(){ return fontWeight; }
-
-	private String top;
-	public void setTop(String top) {
-		this.top = top;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getTop(){ return top; }
-
-	private String position;
-	public void setPosition(String position) {
-		this.position = position;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getPosition(){ return position; }
-
+	public String fontWeight;
+	public String top;
+	public String position;
 
 
 	public HILabelStyle() {
 
 	}
-
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
 
 	public Map<String, Object> getParams() {
 

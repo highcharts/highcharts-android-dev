@@ -11,115 +11,54 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
 
 
 
-public class HIShapeOptions extends Observable implements HIChartsJSONSerializable { 
+public class HIShapeOptions implements HIChartsJSONSerializable { 
 
-	private Number strokeWidth;
+
 /**
 The pixel stroke width of the shape.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>*/
-	public void setStrokeWidth(Number strokeWidth) {
-		this.strokeWidth = strokeWidth;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number strokeWidth;
 
-	public Number getStrokeWidth(){ return strokeWidth; }
-
-	private Number height;
 /**
 The height of the shape.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>*/
-	public void setHeight(Number height) {
-		this.height = height;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number height;
 
-	public Number getHeight(){ return height; }
-
-	private Number width;
 /**
 The width of the shape.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>*/
-	public void setWidth(Number width) {
-		this.width = width;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number width;
 
-	public Number getWidth(){ return width; }
-
-	private HIColor stroke;
 /**
 The color of the shape's stroke.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>*/
-	public void setStroke(HIColor stroke) {
-		this.stroke = stroke;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIColor stroke;
 
-	public HIColor getStroke(){ return stroke; }
-
-	private Number r;
 /**
 The radius of the shape.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>*/
-	public void setR(Number r) {
-		this.r = r;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number r;
 
-	public Number getR(){ return r; }
-
-	private String type;
 /**
 The type of the shape, e.g. circle or rectangle.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a> <br><br><b>default:</b><br><br>&ensp;'rect'*/
-	public void setType(String type) {
-		this.type = type;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String type;
 
-	public String getType(){ return type; }
-
-	private HIColor fill;
 /**
 The color of the shape's fill.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>*/
-	public void setFill(HIColor fill) {
-		this.fill = fill;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getFill(){ return fill; }
-
+	public HIColor fill;
 
 
 	public HIShapeOptions() {
 
 	}
-
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
 
 	public Map<String, Object> getParams() {
 

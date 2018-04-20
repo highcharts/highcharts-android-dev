@@ -17,27 +17,6 @@
     </body>
 </html>
 <script>
-            Highcharts.setOptions({
-                exporting: {
-                    libURL: 'js/lib/',
-                    buttons: {
-                        contextButton: {
-                            menuItems: null,
-                            onclick: function(){
-                                AndroidExport.showDialog();
-                            }
-                        }
-                    }
-                },
-                lang: {{lang}},
-                global: {{global}}
-            });
-            var chart = new Highcharts.Chart({{options}});
-
-            function updateOptions(options) {
-                chart.update(options);
-            }
-
             var eventContexts = {};
 
             var getPropertiesDictionary = function(contextName, properties, flag) {
@@ -71,5 +50,26 @@
               return (obj !== null && typeof obj === 'object')
                 ? JSON.stringify(obj)
                 : obj;
+            };
+
+          Highcharts.setOptions({
+                exporting: {
+                    libURL: 'js/lib/',
+                    buttons: {
+                        contextButton: {
+                            menuItems: null,
+                            onclick: function(){
+                                AndroidExport.showDialog();
+                            }
+                        }
+                    }
+                },
+                lang: {{lang}},
+                global: {{global}}
+            });
+            var chart = new Highcharts.Chart({{options}});
+
+            function updateOptions(options) {
+                chart.update(options);
             }
-        </script>
+</script>

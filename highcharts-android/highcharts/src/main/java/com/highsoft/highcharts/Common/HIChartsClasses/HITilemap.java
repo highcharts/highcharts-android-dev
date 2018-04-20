@@ -11,8 +11,6 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
@@ -49,89 +47,44 @@ Highcharts.chart('container', {
 */
 
 public class HITilemap extends HISeries {
-	private Number pointPadding;
+
 /**
 * description: The padding between points in the tilemap.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/tilemap-pointpadding : Point padding on tiles* default: 0
 */
-	public void setPointPadding(Number pointPadding) {
-		this.pointPadding = pointPadding;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number pointPadding;
 
-	public Number getPointPadding(){ return pointPadding; }
-
-	private Number colsize;
 /**
 * description: The column size - how many X axis units each column in the tilemap
 should span. Works as in Heatmaps.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/heatmap/ : One day* default: 1
 */
-	public void setColsize(Number colsize) {
-		this.colsize = colsize;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number colsize;
 
-	public Number getColsize(){ return colsize; }
-
-	private Number rowsize;
 /**
 * description: The row size - how many Y axis units each tilemap row should span.
 Analogous to colsize.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/heatmap/ : 1 by default* default: 1
 */
-	public void setRowsize(Number rowsize) {
-		this.rowsize = rowsize;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number rowsize;
 
-	public Number getRowsize(){ return rowsize; }
-
-	private String tileShape;
 /**
 The shape of the tiles in the tilemap. Possible values are hexagon,
 circle, diamond, and square.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/circlemap-africa">Circular tile shapes</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/diamondmap">Diamond tile shapes</a>*/
-	public void setTileShape(String tileShape) {
-		this.tileShape = tileShape;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String tileShape;
 
-	public String getTileShape(){ return tileShape; }
-
-	private HIColor nullColor;
 /**
 The color applied to null points. In styled mode, a general CSS class is
 applied instead.
 */
-	public void setNullColor(HIColor nullColor) {
-		this.nullColor = nullColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getNullColor(){ return nullColor; }
-
+	public HIColor nullColor;
 
 
 	public HITilemap() {
 		super(); 
-		this.setType("tilemap");
+		this.type = "tilemap";
 	}
-
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
 
 	public Map<String, Object> getParams() {
 

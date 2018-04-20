@@ -11,111 +11,27 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HISeriesTypeDescriptions extends Observable implements HIChartsJSONSerializable { 
+public class HISeriesTypeDescriptions implements HIChartsJSONSerializable { 
 
-	private String funnel;
-	public void setFunnel(String funnel) {
-		this.funnel = funnel;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getFunnel(){ return funnel; }
-
-	private String pyramid;
-	public void setPyramid(String pyramid) {
-		this.pyramid = pyramid;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getPyramid(){ return pyramid; }
-
-	private String columnrange;
-	public void setColumnrange(String columnrange) {
-		this.columnrange = columnrange;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getColumnrange(){ return columnrange; }
-
-	private String errorbar;
-	public void setErrorbar(String errorbar) {
-		this.errorbar = errorbar;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getErrorbar(){ return errorbar; }
-
-	private String areasplinerange;
-	public void setAreasplinerange(String areasplinerange) {
-		this.areasplinerange = areasplinerange;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getAreasplinerange(){ return areasplinerange; }
-
-	private String waterfall;
-	public void setWaterfall(String waterfall) {
-		this.waterfall = waterfall;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getWaterfall(){ return waterfall; }
-
-	private String arearange;
-	public void setArearange(String arearange) {
-		this.arearange = arearange;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getArearange(){ return arearange; }
-
-	private String bubble;
-	public void setBubble(String bubble) {
-		this.bubble = bubble;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getBubble(){ return bubble; }
-
-	private String boxplot;
-	public void setBoxplot(String boxplot) {
-		this.boxplot = boxplot;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getBoxplot(){ return boxplot; }
-
+	public String funnel;
+	public String pyramid;
+	public String columnrange;
+	public String errorbar;
+	public String areasplinerange;
+	public String waterfall;
+	public String arearange;
+	public String bubble;
+	public String boxplot;
 
 
 	public HISeriesTypeDescriptions() {
 
 	}
-
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
 
 	public Map<String, Object> getParams() {
 

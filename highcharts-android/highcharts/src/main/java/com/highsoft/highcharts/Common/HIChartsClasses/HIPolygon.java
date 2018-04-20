@@ -11,8 +11,6 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
@@ -48,31 +46,13 @@ Highcharts.chart('container', {
 */
 
 public class HIPolygon extends HISeries {
-	private Boolean trackByArea;
-	public void setTrackByArea(Boolean trackByArea) {
-		this.trackByArea = trackByArea;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getTrackByArea(){ return trackByArea; }
-
+	public Boolean trackByArea;
 
 
 	public HIPolygon() {
 		super(); 
-		this.setType("polygon");
+		this.type = "polygon";
 	}
-
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
 
 	public Map<String, Object> getParams() {
 

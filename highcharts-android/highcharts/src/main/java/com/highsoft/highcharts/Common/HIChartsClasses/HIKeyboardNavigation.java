@@ -11,43 +11,26 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HIKeyboardNavigation extends Observable implements HIChartsJSONSerializable { 
+public class HIKeyboardNavigation implements HIChartsJSONSerializable { 
 
-	private Boolean enabled;
+
 /**
 Enable/disable keyboard navigation for the legend. Requires the Accessibility
 module.
  <br><br><b>default:</b><br><br>&ensp;true*/
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Boolean enabled;
 
-	public Boolean getEnabled(){ return enabled; }
-
-	private HIFocusBorder focusBorder;
 /**
 Options for the focus border drawn around elements while
 navigating through them.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/accessibility/custom-focus">Custom focus ring</a>*/
-	public void setFocusBorder(HIFocusBorder focusBorder) {
-		this.focusBorder = focusBorder;
-		this.focusBorder.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIFocusBorder focusBorder;
 
-	public HIFocusBorder getFocusBorder(){ return focusBorder; }
-
-	private String mode;
 /**
 Set the keyboard navigation mode for the chart. Can be "normal"
 or "serialize". In normal mode, left/right arrow keys move
@@ -60,42 +43,18 @@ list. Left/right behaves as in "normal" mode. Up/down arrow keys
 will behave like left/right. This is useful for unifying
 navigation behavior with/without screen readers enabled.
  <br><br><b>default:</b><br><br>&ensp;normal*/
-	public void setMode(String mode) {
-		this.mode = mode;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String mode;
 
-	public String getMode(){ return mode; }
-
-	private Boolean skipNullPoints;
 /**
 Skip null points when navigating through points with the
 keyboard.
  <br><br><b>default:</b><br><br>&ensp;true*/
-	public void setSkipNullPoints(Boolean skipNullPoints) {
-		this.skipNullPoints = skipNullPoints;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getSkipNullPoints(){ return skipNullPoints; }
-
+	public Boolean skipNullPoints;
 
 
 	public HIKeyboardNavigation() {
 
 	}
-
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
 
 	public Map<String, Object> getParams() {
 

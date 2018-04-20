@@ -11,39 +11,19 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HIAttributes extends Observable implements HIChartsJSONSerializable { 
+public class HIAttributes implements HIChartsJSONSerializable { 
 
-	private Number zIndex;
-	public void setZIndex(Number zIndex) {
-		this.zIndex = zIndex;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getZIndex(){ return zIndex; }
-
+	public Number zIndex;
 
 
 	public HIAttributes() {
 
 	}
-
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
 
 	public Map<String, Object> getParams() {
 

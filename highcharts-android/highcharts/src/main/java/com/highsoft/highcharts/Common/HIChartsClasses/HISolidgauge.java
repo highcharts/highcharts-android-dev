@@ -11,8 +11,6 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
@@ -48,19 +46,12 @@ Highcharts.chart('container', {
 */
 
 public class HISolidgauge extends HISeries {
-	private Boolean colorByPoint;
+
 /**
 Whether to give each point an individual color.
 */
-	public void setColorByPoint(Boolean colorByPoint) {
-		this.colorByPoint = colorByPoint;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Boolean colorByPoint;
 
-	public Boolean getColorByPoint(){ return colorByPoint; }
-
-	private Number overshoot;
 /**
 * description: Allow the gauge to overshoot the end of the perimeter axis by this
 many degrees. Say if the gauge axis goes from 0 to 60, a value of
@@ -68,42 +59,18 @@ many degrees. Say if the gauge axis goes from 0 to 60, a value of
 option is set to 5.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-overshoot/ : Allow 5 degrees overshoot* default: 0
 */
-	public void setOvershoot(Number overshoot) {
-		this.overshoot = overshoot;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number overshoot;
 
-	public Number getOvershoot(){ return overshoot; }
-
-	private Boolean rounded;
 /**
 Wether to draw rounded edges on the gauge.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-activity/">Activity Gauge</a> <br><br><b>default:</b><br><br>&ensp;false*/
-	public void setRounded(Boolean rounded) {
-		this.rounded = rounded;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getRounded(){ return rounded; }
-
+	public Boolean rounded;
 
 
 	public HISolidgauge() {
 		super(); 
-		this.setType("solidgauge");
+		this.type = "solidgauge";
 	}
-
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
 
 	public Map<String, Object> getParams() {
 

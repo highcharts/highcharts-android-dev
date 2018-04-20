@@ -11,96 +11,49 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HIPane extends Observable implements HIChartsJSONSerializable { 
+public class HIPane implements HIChartsJSONSerializable { 
 
-	private Number endAngle;
+
 /**
 The end angle of the polar X axis or gauge value axis, given in
 degrees where 0 is north. Defaults to startAngle
 + 360.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-vu-meter/">VU-meter with custom start and end angle</a>*/
-	public void setEndAngle(Number endAngle) {
-		this.endAngle = endAngle;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number endAngle;
 
-	public Number getEndAngle(){ return endAngle; }
-
-	private Number startAngle;
 /**
 The start angle of the polar X axis or gauge axis, given in degrees
 where 0 is north. Defaults to 0.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-vu-meter/">VU-meter with custom start and end angle</a>*/
-	public void setStartAngle(Number startAngle) {
-		this.startAngle = startAngle;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number startAngle;
 
-	public Number getStartAngle(){ return startAngle; }
-
-	private ArrayList /* <String|Number> */ center;
 /**
 The center of a polar chart or angular gauge, given as an array
 of [x, y] positions. Positions can be given as integers that
 transform to pixels, or as percentages of the plot area size.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-vu-meter/">Two gauges with different center</a> <br><br><b>default:</b><br><br>&ensp;["50%", "50%"]*/
-	public void setCenter(ArrayList /* <String|Number> */ center) {
-		this.center = center;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public ArrayList /* <String|Number> */ center;
 
-	public ArrayList /* <String|Number> */ getCenter(){ return center; }
-
-	private ArrayList <HIBackground> background;
 /**
 An array of background items for the pane.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-speedometer/">Speedometer gauge with multiple backgrounds</a>*/
-	public void setBackground(ArrayList background) {
-		this.background = background;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public ArrayList <HIBackground> background;
 
-	public ArrayList getBackground(){ return background; }
-
-	private Object /* Number|String */ size;
 /**
 The size of the pane, either as a number defining pixels, or a
 percentage defining a percentage of the plot are.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-vu-meter/">Smaller size</a> <br><br><b>default:</b><br><br>&ensp;85%*/
-	public void setSize(Object /* Number|String */ size) {
-		this.size = size;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object /* Number|String */ getSize(){ return size; }
-
+	public Object /* Number|String */ size;
 
 
 	public HIPane() {
 
 	}
-
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
 
 	public Map<String, Object> getParams() {
 

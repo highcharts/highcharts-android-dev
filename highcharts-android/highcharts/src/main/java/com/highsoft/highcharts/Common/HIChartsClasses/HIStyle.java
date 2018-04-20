@@ -11,171 +11,41 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HIStyle extends Observable implements HIChartsJSONSerializable { 
+public class HIStyle implements HIChartsJSONSerializable { 
 
-	private String fontWeight;
-	public void setFontWeight(String fontWeight) {
-		this.fontWeight = fontWeight;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String fontWeight;
+	public String color;
+	public String fontSize;
+	public Number opacity;
+	public String position;
+	public String textAlign;
+	public String backgroundColor;
+	public String fontFamily;
+	public String textOutline;
 
-	public String getFontWeight(){ return fontWeight; }
-
-	private String color;
-	public void setColor(String color) {
-		this.color = color;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getColor(){ return color; }
-
-	private String fontSize;
-	public void setFontSize(String fontSize) {
-		this.fontSize = fontSize;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getFontSize(){ return fontSize; }
-
-	private Number opacity;
-	public void setOpacity(Number opacity) {
-		this.opacity = opacity;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getOpacity(){ return opacity; }
-
-	private String position;
-	public void setPosition(String position) {
-		this.position = position;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getPosition(){ return position; }
-
-	private String textAlign;
-	public void setTextAlign(String textAlign) {
-		this.textAlign = textAlign;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getTextAlign(){ return textAlign; }
-
-	private String backgroundColor;
-	public void setBackgroundColor(String backgroundColor) {
-		this.backgroundColor = backgroundColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getBackgroundColor(){ return backgroundColor; }
-
-	private String fontFamily;
-	public void setFontFamily(String fontFamily) {
-		this.fontFamily = fontFamily;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getFontFamily(){ return fontFamily; }
-
-	private String textOutline;
-	public void setTextOutline(String textOutline) {
-		this.textOutline = textOutline;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getTextOutline(){ return textOutline; }
-
-	private Number borderRadius;
 /**
 Border radius of the focus border.
  <br><br><b>default:</b><br><br>&ensp;3*/
-	public void setBorderRadius(Number borderRadius) {
-		this.borderRadius = borderRadius;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number borderRadius;
 
-	public Number getBorderRadius(){ return borderRadius; }
-
-	private Number lineWidth;
 /**
 Line width of the focus border.
  <br><br><b>default:</b><br><br>&ensp;2*/
-	public void setLineWidth(Number lineWidth) {
-		this.lineWidth = lineWidth;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getLineWidth(){ return lineWidth; }
-
-	private String textOverflow;
-	public void setTextOverflow(String textOverflow) {
-		this.textOverflow = textOverflow;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getTextOverflow(){ return textOverflow; }
-
-	private String cursor;
-	public void setCursor(String cursor) {
-		this.cursor = cursor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getCursor(){ return cursor; }
-
-	private String pointerEvents;
-	public void setPointerEvents(String pointerEvents) {
-		this.pointerEvents = pointerEvents;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getPointerEvents(){ return pointerEvents; }
-
-	private String whiteSpace;
-	public void setWhiteSpace(String whiteSpace) {
-		this.whiteSpace = whiteSpace;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getWhiteSpace(){ return whiteSpace; }
-
+	public Number lineWidth;
+	public String textOverflow;
+	public String cursor;
+	public String pointerEvents;
+	public String whiteSpace;
 
 
 	public HIStyle() {
 
 	}
-
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
 
 	public Map<String, Object> getParams() {
 

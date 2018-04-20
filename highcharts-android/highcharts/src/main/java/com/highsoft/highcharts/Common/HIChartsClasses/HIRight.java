@@ -11,70 +11,37 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
 
 
 
-public class HIRight extends Observable implements HIChartsJSONSerializable { 
+public class HIRight implements HIChartsJSONSerializable { 
 
-	private HIColor color;
+
 /**
 The color of the panel.
  <br><br><b>default:</b><br><br>&ensp;transparent*/
-	public void setColor(HIColor color) {
-		this.color = color;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIColor color;
 
-	public HIColor getColor(){ return color; }
-
-	private Object /* Boolean|String */ visible;
 /**
 Whether to display the frame. Possible values are true,
 false, "auto" to display only the frames behind the data,
 and "default" to display faces behind the data based on the
 axis layout, ignoring the point of view.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/scatter-frame/">Auto frames</a> <br><br><b>accepted values:</b><br><br>&ensp;["default", "auto", true, false] <br><br><b>default:</b><br><br>&ensp;default*/
-	public void setVisible(Object /* Boolean|String */ visible) {
-		this.visible = visible;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Object /* Boolean|String */ visible;
 
-	public Object /* Boolean|String */ getVisible(){ return visible; }
-
-	private Number size;
 /**
 The thickness of the panel.
  <br><br><b>default:</b><br><br>&ensp;1*/
-	public void setSize(Number size) {
-		this.size = size;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getSize(){ return size; }
-
+	public Number size;
 
 
 	public HIRight() {
 
 	}
-
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
 
 	public Map<String, Object> getParams() {
 

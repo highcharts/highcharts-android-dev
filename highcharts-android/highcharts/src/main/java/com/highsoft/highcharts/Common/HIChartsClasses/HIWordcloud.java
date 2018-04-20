@@ -11,8 +11,6 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
@@ -49,62 +47,33 @@ Highcharts.chart('container', {
 */
 
 public class HIWordcloud extends HISeries {
-	private Boolean colorByPoint;
+
 /**
 * description: When using automatic point colors pulled from the options.colors
 collection, this option determines whether the chart should receive
 one color per series or one color per point.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-false/ : False by default •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-true/ : True* default: false
 */
-	public void setColorByPoint(Boolean colorByPoint) {
-		this.colorByPoint = colorByPoint;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Boolean colorByPoint;
 
-	public Boolean getColorByPoint(){ return colorByPoint; }
-
-	private HIStyle style;
 /**
 CSS styles for the words.
  <br><br><b>default:</b><br><br>&ensp;{"fontFamily":"sans-serif", "fontWeight": "900"}*/
-	public void setStyle(HIStyle style) {
-		this.style = style;
-		this.style.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIStyle style;
 
-	public HIStyle getStyle(){ return style; }
-
-	private Number minFontSize;
 /**
 A threshold determining the minimum font size that can be applied to a
 word.
 */
-	public void setMinFontSize(Number minFontSize) {
-		this.minFontSize = minFontSize;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number minFontSize;
 
-	public Number getMinFontSize(){ return minFontSize; }
-
-	private Number maxFontSize;
 /**
 The word with the largest weight will have a font size equal to this
 value. The font size of a word is the ratio between its weight and the
 largest occuring weight, multiplied with the value of maxFontSize.
 */
-	public void setMaxFontSize(Number maxFontSize) {
-		this.maxFontSize = maxFontSize;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number maxFontSize;
 
-	public Number getMaxFontSize(){ return maxFontSize; }
-
-	private String spiral;
 /**
 Spiral used for placing a word after the inital position experienced a
 collision with either another word or the borders.
@@ -112,15 +81,8 @@ It is possible for users to add their own custom spiralling algorithms
 for use in word cloud. Read more about it in our
 [documentation](https://www.highcharts.com/docs/chart-and-series-types/word-cloud-series#custom-spiralling-algorithm)
 */
-	public void setSpiral(String spiral) {
-		this.spiral = spiral;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String spiral;
 
-	public String getSpiral(){ return spiral; }
-
-	private Number borderWidth;
 /**
 * description: The width of the border surrounding each column or bar.
 
@@ -128,28 +90,13 @@ In styled mode, the stroke width can be set with the .highcharts-point
 rule.
 * demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-borderwidth/ : 2px black border* default: 1
 */
-	public void setBorderWidth(Number borderWidth) {
-		this.borderWidth = borderWidth;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number borderWidth;
 
-	public Number getBorderWidth(){ return borderWidth; }
-
-	private HIRotation rotation;
 /**
 Rotation options for the words in the wordcloud.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/wordcloud-rotation">Word cloud with rotation</a>*/
-	public void setRotation(HIRotation rotation) {
-		this.rotation = rotation;
-		this.rotation.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIRotation rotation;
 
-	public HIRotation getRotation(){ return rotation; }
-
-	private String placementStrategy;
 /**
 This option decides which algorithm is used for placement, and rotation
 of a word. The choice of algorith is therefore a crucial part of the
@@ -158,83 +105,38 @@ It is possible for users to add their own custom placement strategies
 for use in word cloud. Read more about it in our
 [documentation](https://www.highcharts.com/docs/chart-and-series-types/word-cloud-series#custom-placement-strategies)
 */
-	public void setPlacementStrategy(String placementStrategy) {
-		this.placementStrategy = placementStrategy;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String placementStrategy;
 
-	public String getPlacementStrategy(){ return placementStrategy; }
-
-	private Number borderRadius;
 /**
 The corner radius of the border surrounding each column or bar.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-borderradius/">Rounded columns</a> <br><br><b>default:</b><br><br>&ensp;0*/
-	public void setBorderRadius(Number borderRadius) {
-		this.borderRadius = borderRadius;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number borderRadius;
 
-	public Number getBorderRadius(){ return borderRadius; }
-
-	private ArrayList<HIColor> colors;
 /**
 A series specific or series type specific color set to apply instead
 of the global colors when [colorByPoint](
 #plotOptions.column.colorByPoint) is true.
 */
-	public void setColors(ArrayList<HIColor> colors) {
-		this.colors = colors;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public ArrayList<HIColor> colors;
 
-	public ArrayList<HIColor> getColors(){ return colors; }
-
-	private HIColor borderColor;
 /**
 The color of the border surrounding each column or bar.
 
 In styled mode, the border stroke can be set with the .highcharts-point
 rule.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-bordercolor/">Dark gray border</a> <br><br><b>default:</b><br><br>&ensp;#ffffff*/
-	public void setBorderColor(HIColor borderColor) {
-		this.borderColor = borderColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIColor borderColor;
 
-	public HIColor getBorderColor(){ return borderColor; }
-
-	private Number edgeWidth;
 /**
 3D columns only. The width of the colored edges.
  <br><br><b>default:</b><br><br>&ensp;1*/
-	public void setEdgeWidth(Number edgeWidth) {
-		this.edgeWidth = edgeWidth;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getEdgeWidth(){ return edgeWidth; }
-
+	public Number edgeWidth;
 
 
 	public HIWordcloud() {
 		super(); 
-		this.setType("wordcloud");
+		this.type = "wordcloud";
 	}
-
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
 
 	public Map<String, Object> getParams() {
 

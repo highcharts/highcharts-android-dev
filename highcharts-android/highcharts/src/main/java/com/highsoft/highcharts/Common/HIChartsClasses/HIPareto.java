@@ -11,8 +11,6 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
@@ -48,35 +46,18 @@ Highcharts.chart('container', {
 */
 
 public class HIPareto extends HISeries {
-	private Object /* Number|String */ baseSeries;
+
 /**
 An integer identifying the index to use for the base series, or a string
 representing the id of the series.
  <br><br><b>default:</b><br><br>&ensp;undefined*/
-	public void setBaseSeries(Object /* Number|String */ baseSeries) {
-		this.baseSeries = baseSeries;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object /* Number|String */ getBaseSeries(){ return baseSeries; }
-
+	public Object /* Number|String */ baseSeries;
 
 
 	public HIPareto() {
 		super(); 
-		this.setType("pareto");
+		this.type = "pareto";
 	}
-
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
 
 	public Map<String, Object> getParams() {
 

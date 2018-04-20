@@ -11,52 +11,29 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HILang extends Observable implements HIChartsJSONSerializable { 
+public class HILang implements HIChartsJSONSerializable { 
 
-	private String downloadCSV;
+
 /**
 Export-data module only. The text for the menu item.
 */
-	public void setDownloadCSV(String downloadCSV) {
-		this.downloadCSV = downloadCSV;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String downloadCSV;
 
-	public String getDownloadCSV(){ return downloadCSV; }
-
-	private String downloadXLS;
 /**
 Export-data module only. The text for the menu item.
 */
-	public void setDownloadXLS(String downloadXLS) {
-		this.downloadXLS = downloadXLS;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String downloadXLS;
 
-	public String getDownloadXLS(){ return downloadXLS; }
-
-	private String downloadPNG;
 /**
 Exporting module only. The text for the PNG download menu item.
  <br><br><b>default:</b><br><br>&ensp;Download PNG image*/
-	public void setDownloadPNG(String downloadPNG) {
-		this.downloadPNG = downloadPNG;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String downloadPNG;
 
-	public String getDownloadPNG(){ return downloadPNG; }
-
-	private HIAccessibility accessibility;
 /**
 Configure the accessibility strings in the chart. Requires the
 [accessibility module](//code.highcharts.com/modules/accessibility.
@@ -72,275 +49,127 @@ accessibility.seriesDescriptionFormatter), and
 [accessibility.screenReaderSectionFormatter](
 accessibility.screenReaderSectionFormatter).
 */
-	public void setAccessibility(HIAccessibility accessibility) {
-		this.accessibility = accessibility;
-		this.accessibility.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIAccessibility accessibility;
 
-	public HIAccessibility getAccessibility(){ return accessibility; }
-
-	private ArrayList<String> shortWeekdays;
 /**
 Short week days, starting Sunday. If not specified, Highcharts uses
 the first three letters of the lang.weekdays option.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/shortweekdays/">Finnish two-letter abbreviations</a>*/
-	public void setShortWeekdays(ArrayList<String> shortWeekdays) {
-		this.shortWeekdays = shortWeekdays;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public ArrayList<String> shortWeekdays;
 
-	public ArrayList<String> getShortWeekdays(){ return shortWeekdays; }
-
-	private String noData;
 /**
 The text to display when the chart contains no data. Requires the
 no-data module, see noData.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line">No-data text</a> <br><br><b>default:</b><br><br>&ensp;No data to display*/
-	public void setNoData(String noData) {
-		this.noData = noData;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String noData;
 
-	public String getNoData(){ return noData; }
-
-	private String loading;
 /**
 The loading text that appears when the chart is set into the loading
 state following a call to chart.showLoading.
  <br><br><b>default:</b><br><br>&ensp;Loading...*/
-	public void setLoading(String loading) {
-		this.loading = loading;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String loading;
 
-	public String getLoading(){ return loading; }
-
-	private ArrayList<String> numericSymbols;
 /**
 [Metric prefixes](http://en.wikipedia.org/wiki/Metric_prefix) used
 to shorten high numbers in axis labels. Replacing any of the positions
 with null causes the full number to be written. Setting numericSymbols
 to null disables shortening altogether.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbols/">Replacing the symbols with text</a> <br><br><b>default:</b><br><br>&ensp;[ "k" , "M" , "G" , "T" , "P" , "E"]*/
-	public void setNumericSymbols(ArrayList<String> numericSymbols) {
-		this.numericSymbols = numericSymbols;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public ArrayList<String> numericSymbols;
 
-	public ArrayList<String> getNumericSymbols(){ return numericSymbols; }
-
-	private String downloadSVG;
 /**
 Exporting module only. The text for the SVG download menu item.
  <br><br><b>default:</b><br><br>&ensp;Download SVG vector image*/
-	public void setDownloadSVG(String downloadSVG) {
-		this.downloadSVG = downloadSVG;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String downloadSVG;
 
-	public String getDownloadSVG(){ return downloadSVG; }
-
-	private Number numericSymbolMagnitude;
 /**
 The magnitude of numericSymbols replacements.
 Use 10000 for Japanese, Korean and various Chinese locales, which
 use symbols for 10^4, 10^8 and 10^12.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbolmagnitude/">10000 magnitude for Japanese</a> <br><br><b>default:</b><br><br>&ensp;1000*/
-	public void setNumericSymbolMagnitude(Number numericSymbolMagnitude) {
-		this.numericSymbolMagnitude = numericSymbolMagnitude;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number numericSymbolMagnitude;
 
-	public Number getNumericSymbolMagnitude(){ return numericSymbolMagnitude; }
-
-	private ArrayList<String> weekdays;
 /**
 An array containing the weekday names.
  <br><br><b>default:</b><br><br>&ensp;["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
          "Friday", "Saturday"]*/
-	public void setWeekdays(ArrayList<String> weekdays) {
-		this.weekdays = weekdays;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public ArrayList<String> weekdays;
 
-	public ArrayList<String> getWeekdays(){ return weekdays; }
-
-	private String printChart;
 /**
 Exporting module only. The text for the menu item to print the chart.
  <br><br><b>default:</b><br><br>&ensp;Print chart*/
-	public void setPrintChart(String printChart) {
-		this.printChart = printChart;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String printChart;
 
-	public String getPrintChart(){ return printChart; }
-
-	private String drillUpText;
 /**
 The text for the button that appears when drilling down, linking
 back to the parent series. The parent series' name is inserted for
 {series.name}.
  <br><br><b>default:</b><br><br>&ensp;Back to {series.name}*/
-	public void setDrillUpText(String drillUpText) {
-		this.drillUpText = drillUpText;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String drillUpText;
 
-	public String getDrillUpText(){ return drillUpText; }
-
-	private String viewData;
 /**
 Export-data module only. The text for the menu item.
 */
-	public void setViewData(String viewData) {
-		this.viewData = viewData;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String viewData;
 
-	public String getViewData(){ return viewData; }
-
-	private String contextButtonTitle;
 /**
 Exporting module menu. The tooltip title for the context menu holding
 print and export menu items.
  <br><br><b>default:</b><br><br>&ensp;Chart context menu*/
-	public void setContextButtonTitle(String contextButtonTitle) {
-		this.contextButtonTitle = contextButtonTitle;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String contextButtonTitle;
 
-	public String getContextButtonTitle(){ return contextButtonTitle; }
-
-	private String invalidDate;
 /**
 What to show in a date field for invalid dates. Defaults to an empty
 string.
 */
-	public void setInvalidDate(String invalidDate) {
-		this.invalidDate = invalidDate;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String invalidDate;
 
-	public String getInvalidDate(){ return invalidDate; }
-
-	private String resetZoom;
 /**
 The text for the label appearing when a chart is zoomed.
  <br><br><b>default:</b><br><br>&ensp;Reset zoom*/
-	public void setResetZoom(String resetZoom) {
-		this.resetZoom = resetZoom;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String resetZoom;
 
-	public String getResetZoom(){ return resetZoom; }
-
-	private String downloadPDF;
 /**
 Exporting module only. The text for the PDF download menu item.
  <br><br><b>default:</b><br><br>&ensp;Download PDF document*/
-	public void setDownloadPDF(String downloadPDF) {
-		this.downloadPDF = downloadPDF;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String downloadPDF;
 
-	public String getDownloadPDF(){ return downloadPDF; }
-
-	private String openInCloud;
 /**
 Export-data module only. The text for the menu item.
 */
-	public void setOpenInCloud(String openInCloud) {
-		this.openInCloud = openInCloud;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String openInCloud;
 
-	public String getOpenInCloud(){ return openInCloud; }
-
-	private ArrayList<String> months;
 /**
 An array containing the months names. Corresponds to the %B format
 in Highcharts.dateFormat().
  <br><br><b>default:</b><br><br>&ensp;[ "January" , "February" , "March" , "April" , "May" ,
          "June" , "July" , "August" , "September" , "October" ,
          "November" , "December"]*/
-	public void setMonths(ArrayList<String> months) {
-		this.months = months;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public ArrayList<String> months;
 
-	public ArrayList<String> getMonths(){ return months; }
-
-	private ArrayList<String> shortMonths;
 /**
 An array containing the months names in abbreviated form. Corresponds
 to the %b format in Highcharts.dateFormat().
  <br><br><b>default:</b><br><br>&ensp;[ "Jan" , "Feb" , "Mar" , "Apr" , "May" , "Jun" ,
          "Jul" , "Aug" , "Sep" , "Oct" , "Nov" , "Dec"]*/
-	public void setShortMonths(ArrayList<String> shortMonths) {
-		this.shortMonths = shortMonths;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public ArrayList<String> shortMonths;
 
-	public ArrayList<String> getShortMonths(){ return shortMonths; }
-
-	private String downloadJPEG;
 /**
 Exporting module only. The text for the JPEG download menu item.
  <br><br><b>default:</b><br><br>&ensp;Download JPEG image*/
-	public void setDownloadJPEG(String downloadJPEG) {
-		this.downloadJPEG = downloadJPEG;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String downloadJPEG;
 
-	public String getDownloadJPEG(){ return downloadJPEG; }
-
-	private String decimalPoint;
 /**
 The default decimal point used in the Highcharts.numberFormat
 method unless otherwise specified in the function arguments.
  <br><br><b>default:</b><br><br>&ensp;.*/
-	public void setDecimalPoint(String decimalPoint) {
-		this.decimalPoint = decimalPoint;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String decimalPoint;
 
-	public String getDecimalPoint(){ return decimalPoint; }
-
-	private String resetZoomTitle;
 /**
 The tooltip title for the label appearing when a chart is zoomed.
  <br><br><b>default:</b><br><br>&ensp;Reset zoom level 1:1*/
-	public void setResetZoomTitle(String resetZoomTitle) {
-		this.resetZoomTitle = resetZoomTitle;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String resetZoomTitle;
 
-	public String getResetZoomTitle(){ return resetZoomTitle; }
-
-	private String thousandsSep;
 /**
 The default thousands separator used in the Highcharts.numberFormat
 method unless otherwise specified in the function arguments. Since
@@ -350,29 +179,12 @@ European languages.
 
 The default is a single space.
 */
-	public void setThousandsSep(String thousandsSep) {
-		this.thousandsSep = thousandsSep;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getThousandsSep(){ return thousandsSep; }
-
+	public String thousandsSep;
 
 
 	public HILang() {
 
 	}
-
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
 
 	public Map<String, Object> getParams() {
 

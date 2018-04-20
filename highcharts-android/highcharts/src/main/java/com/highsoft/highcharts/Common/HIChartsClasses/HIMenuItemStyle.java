@@ -11,78 +11,27 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HIMenuItemStyle extends Observable implements HIChartsJSONSerializable { 
+public class HIMenuItemStyle implements HIChartsJSONSerializable { 
 
-	private String padding;
-	public void setPadding(String padding) {
-		this.padding = padding;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public String padding;
+	public String color;
+	public String transition;
 
-	public String getPadding(){ return padding; }
-
-	private String color;
-	public void setColor(String color) {
-		this.color = color;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getColor(){ return color; }
-
-	private String transition;
-	public void setTransition(String transition) {
-		this.transition = transition;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getTransition(){ return transition; }
-
-	private String fontSize;
 /**
 Defaults to 14px on touch devices and 11px on desktop.
 */
-	public void setFontSize(String fontSize) {
-		this.fontSize = fontSize;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getFontSize(){ return fontSize; }
-
-	private String background;
-	public void setBackground(String background) {
-		this.background = background;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getBackground(){ return background; }
-
+	public String fontSize;
+	public String background;
 
 
 	public HIMenuItemStyle() {
 
 	}
-
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
 
 	public Map<String, Object> getParams() {
 

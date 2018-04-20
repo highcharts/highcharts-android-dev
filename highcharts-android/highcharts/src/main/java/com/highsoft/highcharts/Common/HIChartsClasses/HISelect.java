@@ -11,117 +11,56 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
 
 
 
-public class HISelect extends Observable implements HIChartsJSONSerializable { 
+public class HISelect implements HIChartsJSONSerializable { 
 
-	private Boolean enabled;
+
 /**
 Enable or disable visible feedback for selection.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-select-enabled/">Disabled select state</a> <br><br><b>default:</b><br><br>&ensp;true*/
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Boolean enabled;
 
-	public Boolean getEnabled(){ return enabled; }
-
-	private Number lineWidth;
 /**
 The width of the point marker's outline.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-select-linewidth/">3px line width for selected points</a>*/
-	public void setLineWidth(Number lineWidth) {
-		this.lineWidth = lineWidth;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number lineWidth;
 
-	public Number getLineWidth(){ return lineWidth; }
-
-	private Number radius;
 /**
 The radius of the point marker. In hover state, it defaults
 to the normal state's radius + 2.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-select-radius/">10px radius for selected points</a>*/
-	public void setRadius(Number radius) {
-		this.radius = radius;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public Number radius;
 
-	public Number getRadius(){ return radius; }
-
-	private HIColor fillColor;
 /**
 The fill color of the point marker.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-select-fillcolor/">Solid red discs for selected points</a> <br><br><b>default:</b><br><br>&ensp;#cccccc*/
-	public void setFillColor(HIColor fillColor) {
-		this.fillColor = fillColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIColor fillColor;
 
-	public HIColor getFillColor(){ return fillColor; }
-
-	private HIColor lineColor;
 /**
 The color of the point marker's outline. When null, the
 series' or point's color is used.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-select-linecolor/">Red line color for selected points</a> <br><br><b>default:</b><br><br>&ensp;#000000*/
-	public void setLineColor(HIColor lineColor) {
-		this.lineColor = lineColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIColor lineColor;
 
-	public HIColor getLineColor(){ return lineColor; }
-
-	private HIColor color;
 /**
 A specific color for the selected point.
  <br><br><b>default:</b><br><br>&ensp;#cccccc*/
-	public void setColor(HIColor color) {
-		this.color = color;
-		this.setChanged();
-		this.notifyObservers();
-	}
+	public HIColor color;
 
-	public HIColor getColor(){ return color; }
-
-	private HIColor borderColor;
 /**
 A specific border color for the selected point.
  <br><br><b>default:</b><br><br>&ensp;#000000*/
-	public void setBorderColor(HIColor borderColor) {
-		this.borderColor = borderColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getBorderColor(){ return borderColor; }
-
+	public HIColor borderColor;
 
 
 	public HISelect() {
 
 	}
-
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
 
 	public Map<String, Object> getParams() {
 
