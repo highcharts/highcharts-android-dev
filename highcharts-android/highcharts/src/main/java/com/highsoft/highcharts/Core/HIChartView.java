@@ -286,4 +286,20 @@ public class HIChartView extends RelativeLayout {
     public HIOptions getOptions() {
         return options;
     }
+
+    private void getHTMLContent(){
+        //TO COMMENT
+        System.out.println("HTML CONTENT");
+        this.webView.evaluateJavascript(
+//                "(function() { return ('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>'); })();",
+//                "javascript:window.HtmlViewer.showHTML" +
+//                        "('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');",
+                "javascript:console.log(document.getElementsByTagName('BODY')[0].script);",
+                new ValueCallback<String>() {
+                    @Override
+                    public void onReceiveValue(String html) {
+                        Log.d("HTML", html);
+                    }
+                });
+    }
 }

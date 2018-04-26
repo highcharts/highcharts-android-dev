@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
 import com.highsoft.highcharts.Common.HIColor;
-import com.highsoft.highcharts.Core.HIGChartView;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+        HIChartView chartView = findViewById(R.id.hc);
 
 	chartView.theme = "sand-signika";
 
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         chart.animation = "Highcharts.svg"; // don't animate in old IE
         chart.marginRight = 10;
         HIEvents events = new HIEvents();
-        events.load = new HIGFunction("function () { var series = this.series[0]; setInterval(function () { var x = (new Date()).getTime(), y = Math.random(); series.addPoint([x, y], true, true); }, 1000); }", true);
+        events.load = new HIFunction("function () { var series = this.series[0]; setInterval(function () { var x = (new Date()).getTime(), y = Math.random(); series.addPoint([x, y], true, true); }, 1000); }", true);
         chart.events = events;
         options.chart = chart;
 
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         options.yAxis = new ArrayList<>(Collections.singletonList(yaxis));
 
         HITooltip tooltip =  new HITooltip();
-        tooltip.formatter =  new HIGFunction("function () { return '<b>' + this.series.name + '</b><br/>' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' + Highcharts.numberFormat(this.y, 2); }", true);
+        tooltip.formatter =  new HIFunction("function () { return '<b>' + this.series.name + '</b><br/>' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' + Highcharts.numberFormat(this.y, 2); }", true);
         options.tooltip = tooltip;
 
         HILegend legend =  new HILegend();

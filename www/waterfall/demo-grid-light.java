@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
 import com.highsoft.highcharts.Common.HIColor;
-import com.highsoft.highcharts.Core.HIGChartView;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+		HIChartView chartView = findViewById(R.id.hc);
 		chartView.theme = "grid-light";
 
 		HIOptions options = new HIOptions();
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
 		series1.dataLabels = new HIDataLabels();
 		series1.dataLabels.enabled = true;
-		series1.dataLabels.formatter = new HIGFunction( "function () { return Highcharts.numberFormat(this.y / 1000, 0, ',') + 'k'; }", true);
+		series1.dataLabels.formatter = new HIFunction( "function () { return Highcharts.numberFormat(this.y / 1000, 0, ',') + 'k'; }");
 		series1.dataLabels.style = new HIStyle();
 		series1.dataLabels.style.fontWeight = "bold";
 		series1.pointPadding = 0;

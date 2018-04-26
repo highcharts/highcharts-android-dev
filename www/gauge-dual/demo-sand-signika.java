@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
 import com.highsoft.highcharts.Common.HIColor;
-import com.highsoft.highcharts.Core.HIGChartView;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+		HIChartView chartView = findViewById(R.id.hc);
 		chartView.theme = "sand-signika";
 
 		HIOptions options = new HIOptions();
@@ -71,16 +71,23 @@ public class MainActivity extends AppCompatActivity {
 
 		options.yAxis = new ArrayList<>(Arrays.asList(yaxis1, yaxis2));
 
-		HIGauge series1 = new HIGauge();
-		series1.name = "Speed";
-		series1.tooltip = new HITooltip();
-		series1.tooltip.valueSuffix = " km/h";
-		series1.dataLabels = new HIDataLabels();
-		series1.dataLabels.formatter = new HIGFunction( "function () { var kmh = this.y, mph = Math.round(kmh * 0.621); return '<span style=\"color:#339\">' + kmh + ' km/h</span><br/>' + '<span style=\"color:#933\">' + mph + ' mph</span>'; }", true);
+		HIGauge series = new HIGauge();
+		series.name = "Speed";
+		series.tooltip = new HITooltip();
+		series.tooltip.valueSuffix = " km/h";
+		series.dataLabels = new HIDataLabels();
+		series.dataLabels.formatter = new HIFunction(
+		        f -> {
+		            Double kmh = (double) f.getProperty("y");
+		            Double mph = (double) Math.round(kmh * 0.621);
+		            return "<span style=\"color:#339\">" + kmh + " km/h</span><br/>" + "<span style=\"color:#933\">" + mph + " mph</span>";
+		        },
+		        new String[] {"y"}
+		);
 		Number[] series1_data = new Number[] { 80 };
-		series1.data = new ArrayList<>(Arrays.asList(series1_data));
+		series.data = new ArrayList<>(Arrays.asList(series1_data));
 
-		options.series = new ArrayList<>(Arrays.asList(series1));
+		options.series = new ArrayList<>(Collections.singletonList(series));
 
 		chartView.options = options;
 	}

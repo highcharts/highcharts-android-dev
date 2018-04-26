@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
 import com.highsoft.highcharts.Common.HIColor;
-import com.highsoft.highcharts.Core.HIGChartView;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+        HIChartView chartView = findViewById(R.id.hc);
 
 	chartView.theme = "grid-light";
 
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         options.legend = legend;
 
         HITooltip tooltip = new HITooltip();
-        tooltip.formatter = new HIGFunction("function () { return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> sold <br><b>' + this.point.value + '</b> items on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>'; }", true);
+        tooltip.formatter = new HIFunction("function () { return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> sold <br><b>' + this.point.value + '</b> items on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>'; }");
         options.tooltip = tooltip;
 
         HIHeatmap heatmap = new HIHeatmap();

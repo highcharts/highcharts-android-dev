@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
-import com.highsoft.highcharts.Core.HIGChartView;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIFunction;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+        HIChartView chartView = findViewById(R.id.hc);
 
         HIOptions options = new HIOptions();
 		
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         yAxis.title = new HITitle();
         yAxis.title.text = "Frequency (%)";
         yAxis.labels = new HILabels();
-        yAxis.labels.formatter = new HIGFunction("function () { return this.value + '%'; }", true);
+        yAxis.labels.formatter = new HIFunction("function () { return this.value + '%'; }");
         yAxis.reversedStacks = false;
         options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
 
@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         plotOptions.series.shadow = false;
         plotOptions.series.pointPlacement = "on";
         options.plotOptions = plotOptions;
-
 
         chartView.options = options;
     }

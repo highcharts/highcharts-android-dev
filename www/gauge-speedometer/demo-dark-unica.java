@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
 import com.highsoft.highcharts.Common.HIColor;
-import com.highsoft.highcharts.Core.HIGChartView;
+import com.highsoft.highcharts.Core.HIChartView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_main);
 
-                HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+                HIChartView chartView = findViewById(R.id.hc);
 		chartView.theme = "dark-unica";
 
                 HIOptions options = new HIOptions();
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 yaxis.plotBands = new ArrayList<>(Arrays.asList(plotband1, plotband2, plotband3));
                 options.yAxis = new ArrayList<>(Collections.singletonList(yaxis));
 
-                HIGauge gauge = new HIGauge();
+                HIauge gauge = new HIauge();
                 gauge.name = "Speed";
                 gauge.tooltip = new HITooltip();
                 gauge.tooltip.valueSuffix = " km/h";

@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
-import com.highsoft.highcharts.Core.HIGChartView;
+import com.highsoft.highcharts.Core.HIChartView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,7 +12,7 @@ import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
-    private HIGChartView chartView;
+    private HIChartView chartView;
     private String currentButtonClicked;
 
     @Override
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.chartView = (HIGChartView) findViewById(R.id.hc);
+        this.chartView = findViewById(R.id.hc);
 
         HIOptions options = new HIOptions();
 

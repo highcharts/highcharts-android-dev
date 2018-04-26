@@ -4,7 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
-import com.highsoft.highcharts.Core.HIGChartView;
+import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIFunction;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -15,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+        HIChartView chartView = findViewById(R.id.hc);
 
         HIOptions options = new HIOptions();
 
@@ -44,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
         yaxis.title = new HITitle();
         yaxis.title.text = "Number of units";
         yaxis.labels = new HILabels();
-        yaxis.labels.formatter = new HIGFunction("function () { return this.value; }", true);
+        yaxis.labels.formatter = new HIFunction(
+                f -> { return String.valueOf(f.getProperty("value")); },
+                new String[] {"value"} );
         options.yAxis = new ArrayList<HIYAxis>(){{add(yaxis);}};
 
         HILegend legend = new HILegend();

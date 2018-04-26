@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
-import com.highsoft.highcharts.Core.HIGChartView;
+import com.highsoft.highcharts.Core.HIChartView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -15,12 +15,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
-
-        chartView.theme = "sand-signika";
+        HIChartView chartView = findViewById(R.id.hc);
+	chartView.theme = "sand-signika";
+        chartView.plugins = new ArrayList<>();
+        chartView.plugins.add("series-label");
 
         HIOptions options = new HIOptions();
-        
+
         HIChart chart = new HIChart();
         chart.type = "area";
         options.chart = chart;
@@ -37,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
         String[] categoriesList = new String[] {"1750", "1800", "1850", "1900", "1950", "1999", "2050" };
         xAxis.categories = new ArrayList<>(Arrays.asList(categoriesList));
         xAxis.tickmarkPlacement = "on";
-        xAxis.title = new HITitle();
-        xAxis.title.enabled = false;
         options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
 
         HIYAxis yAxis = new HIYAxis();
@@ -82,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
         Number[] series5_data = new Number[] {2, 2, 2, 6, 13, 30, 46};
         series5.data = new ArrayList<>(Arrays.asList(series5_data));
         options.series = new ArrayList<>(Arrays.asList(series1, series2, series3, series4, series5));
-
 
         chartView.options = options;
     }

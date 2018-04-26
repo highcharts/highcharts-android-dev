@@ -14,62 +14,63 @@
     </style>
     <body style="margin:0">
         <div id="container" style="width:{{width}}px; height:{{height}}px"></div>
-    </body>
-</html>
-<script>
-            var eventContexts = {};
+            <script>
+                var eventContexts = {};
 
-            var getPropertiesDictionary = function(contextName, properties, flag) {
-              var dict = {};
-              for (var key in properties) {
-                if (properties.hasOwnProperty(key)) {
-                  dict[properties[key]] = getProperty(contextName, properties[key]);
-                }
-              }
-              if (flag) return JSON.stringify(dict);
-              else return dict;
-            };
+                var getPropertiesDictionary = function(contextName, properties, flag) {
+                  var dict = {};
+                  for (var key in properties) {
+                    if (properties.hasOwnProperty(key)) {
+                      dict[properties[key]] = getProperty(contextName, properties[key]);
+                    }
+                  }
+                  if (flag) return JSON.stringify(dict);
+                  else return dict;
+                };
 
-            var getProperty = function(contextName, property) {
-              if (typeof property !== 'string'
-                  || typeof eventContexts[contextName] === 'undefined' ) {
-                return null;
-              }
+                var getProperty = function(contextName, property) {
+                  if (typeof property !== 'string'
+                      || typeof eventContexts[contextName] === 'undefined' ) {
+                    return null;
+                  }
 
-              var descendantProperties = property.split('.');
-              var obj = eventContexts[contextName];
-              while (descendantProperties.length) {
-                var propertyName = descendantProperties.shift();
-                if (typeof obj[propertyName] === 'undefined' || obj[propertyName] === null) {
-                  return null;
-                }
+                  var descendantProperties = property.split('.');
+                  var obj = eventContexts[contextName];
+                  while (descendantProperties.length) {
+                    var propertyName = descendantProperties.shift();
+                    if (typeof obj[propertyName] === 'undefined' || obj[propertyName] === null) {
+                      return null;
+                    }
 
-                obj = obj[propertyName];
-              }
+                    obj = obj[propertyName];
+                  }
 
-              return (obj !== null && typeof obj === 'object')
-                ? JSON.stringify(obj)
-                : obj;
-            };
+                  return (obj !== null && typeof obj === 'object')
+                    ? JSON.stringify(obj)
+                    : obj;
+                };
 
-          Highcharts.setOptions({
-                exporting: {
-                    libURL: 'js/lib/',
-                    buttons: {
-                        contextButton: {
-                            menuItems: null,
-                            onclick: function(){
-                                AndroidExport.showDialog();
+              Highcharts.setOptions({
+                    exporting: {
+                        libURL: 'js/lib/',
+                        buttons: {
+                            contextButton: {
+                                menuItems: null,
+                                onclick: function(){
+                                    AndroidExport.showDialog();
+                                }
                             }
                         }
-                    }
-                },
-                lang: {{lang}},
-                global: {{global}}
-            });
-            var chart = new Highcharts.Chart({{options}});
+                    },
+                    lang: {{lang}},
+                    global: {{global}}
+                });
+                var chart = new Highcharts.Chart({{options}});
 
-            function updateOptions(options) {
-                chart.update(options);
-            }
-</script>
+                function updateOptions(options) {
+                    chart.update(options);
+                }
+        </script>
+    </body>
+</html>
+

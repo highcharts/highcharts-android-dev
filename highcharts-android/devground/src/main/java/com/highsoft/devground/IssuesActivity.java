@@ -1,11 +1,14 @@
 package com.highsoft.devground;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.HIAnnotations;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIBoost;
@@ -13,6 +16,7 @@ import com.highsoft.highcharts.Common.HIChartsClasses.HIChart;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIColumn;
 import com.highsoft.highcharts.Common.HIChartsClasses.HICondition;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIData;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIEvents;
 import com.highsoft.highcharts.Common.HIChartsClasses.HILabel;
 import com.highsoft.highcharts.Common.HIChartsClasses.HILabels;
 import com.highsoft.highcharts.Common.HIChartsClasses.HILegend;
@@ -49,8 +53,20 @@ public class IssuesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_issues);
 
         HIChartView chartView = findViewById(R.id.hc);
+//        Button button = findViewById(R.id.button1);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                chartView.getHTMLContent();
+//            }
+//        });
+        chartView.plugins = new ArrayList<>();
+        chartView.plugins.add("data");
+        chartView.plugins.add("series-label");
+        chartView.plugins.add("export-data");
 
         HIOptions options = new HIOptions();
+
         HIChart chart = new HIChart();
         chart.type = "spline";
         options.chart = chart;
@@ -72,8 +88,8 @@ public class IssuesActivity extends AppCompatActivity {
         yAxis.title = new HITitle();
         yAxis.title.text = "Temperature";
         yAxis.labels = new HILabels();
-//        yAxis.labels.formatter = new HIFunction("function () { return this.value + '°'; }");
-        yAxis.labels.formatter = new HIFunction(f -> f.getProperty("value") + "°", new String[] {"value"});
+//        yAxis.labels.formatter = new HIFunction("function () { return this.value + ''; }");
+        yAxis.labels.formatter = new HIFunction(f -> "" + f.getProperty("value"), new String[] {"value"});
         options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
 
         HITooltip tooltip = new HITooltip();
@@ -115,6 +131,7 @@ public class IssuesActivity extends AppCompatActivity {
         options.series = new ArrayList<>(Arrays.asList(series1, series2));
 
         chartView.options = options;
+
     }
 
 }

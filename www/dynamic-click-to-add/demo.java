@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
-import com.highsoft.highcharts.Core.HIGChartView;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIColor;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+        HIChartView chartView = findViewById(R.id.hc);
 
         HIOptions options = new HIOptions();
 		
@@ -26,7 +26,14 @@ public class MainActivity extends AppCompatActivity {
         Number[] marginList = new Number[] {70, 50, 60, 80 };
         chart.margin = new ArrayList<>(Arrays.asList(marginList));
         chart.events = new HIEvents();
-        chart.events.click = new HIGFunction("function (e) { /*find the clicked values and the series*/ var x = Math.round(e.xAxis[0].value), y = Math.round(e.yAxis[0].value), series = this.series[0]; /*Add it*/ series.addPoint([x, y]); }", true);
+        chart.events.click = new HIFunction(
+                "function (e) {" +
+                        " /*find the clicked values and the series*/ " +
+                        "var x = Math.round(e.xAxis[0].value), " +
+                        "y = Math.round(e.yAxis[0].value), " +
+                        "series = this.series[0]; " +
+                        "/*Add it*/ " +
+                        "series.addPoint([x, y]); }");
         options.chart = chart;
 
         HITitle title = new HITitle();
@@ -41,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         xAxis.gridLineWidth = 1;
         xAxis.minPadding = 0.2;
         xAxis.maxPadding = 0.2;
-        xAxis.maxZoom = 60;
         options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
 
         HIYAxis yAxis = new HIYAxis();
@@ -49,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         yAxis.title.text = "Value";
         yAxis.minPadding = 0.2;
         yAxis.maxPadding = 0.2;
-        yAxis.maxZoom = 60;
 
         HIPlotLines plotLines1 = new HIPlotLines();
         plotLines1.value = 0;
@@ -73,13 +78,18 @@ public class MainActivity extends AppCompatActivity {
         plotOptions.series.lineWidth = 1;
         plotOptions.series.point = new HIPoint();
         plotOptions.series.point.events = new HIEvents();
-        plotOptions.series.point.events.click = new HIGFunction("function () { if (this.series.data.length > 1) { this.remove(); }}", true);
+        plotOptions.series.point.events.click = new HIFunction(
+                "function () { " +
+                        "if (this.series.data.length > 1) { " +
+                        "this.remove(); " +
+                        "}}");
         options.plotOptions = plotOptions;
 
         HIScatter series1 = new HIScatter();
         Number[][] series1_data = new Number[][] {{20, 20}, {80, 80}};
         series1.data = new ArrayList<>(Arrays.asList(series1_data));
-        options.series = new ArrayList<>(Arrays.asList(series1));
+        options.series = new ArrayList<>(Collections.singletonList(series1));
+
 
 
         chartView.options = options;

@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
 import com.highsoft.highcharts.Common.HIColor;
-import com.highsoft.highcharts.Core.HIGChartView;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+        HIChartView chartView = findViewById(R.id.hc);
 
         HIOptions options = new HIOptions();
 
@@ -82,10 +82,13 @@ public class MainActivity extends AppCompatActivity {
         options.yAxis = new ArrayList<>(Collections.singletonList(yaxis));
 
         HITooltip tooltip = new HITooltip();
-        tooltip.formatter = new HIGFunction("function () { return this.series.chart.tooltipText; }", true);
+        tooltip.formatter = new HIFunction(
+		f -> (String)f.getProperty("series.chart.tooltipText"),
+		new String[] {"series.chart.tooltipText"}
+	);
         options.tooltip = tooltip;
 
-        HIGauge gauge = new HIGauge();
+        HIauge gauge = new HIauge();
 
         HIData data1 = new HIData();
         data1.id = "hour";

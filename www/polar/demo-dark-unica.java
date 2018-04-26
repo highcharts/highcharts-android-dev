@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
-import com.highsoft.highcharts.Core.HIGChartView;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+		HIChartView chartView = findViewById(R.id.hc);
 		chartView.theme = "dark-unica";
 
 		HIOptions options = new HIOptions();
@@ -40,7 +40,10 @@ public class MainActivity extends AppCompatActivity {
 		xAxis.min = 0;
 		xAxis.max = 360;
 		xAxis.labels = new HILabels();
-		xAxis.labels.formatter = new HIGFunction("function () { return this.value + ''; }", true);
+		xAxis.labels.formatter = new HIFunction(
+			f -> f.getProperty("value") + "",
+			new String[] {"value"}
+		);
 		options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
 
 		HIYAxis yAxis = new HIYAxis();

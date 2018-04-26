@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
-import com.highsoft.highcharts.Core.HIGChartView;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+        HIChartView chartView = findViewById(R.id.hc);
 
         HIOptions options = new HIOptions();
 
@@ -34,10 +34,10 @@ public class MainActivity extends AppCompatActivity {
         options.subtitle = subtitle;
 
         String[] categories = new String[] { "0-4", "5-9", "10-14", "15-19",
-        "20-24", "25-29", "30-34", "35-39", "40-44",
-        "45-49", "50-54", "55-59", "60-64", "65-69",
-        "70-74", "75-79", "80-84", "85-89", "90-94",
-        "95-99", "100 + " };
+                "20-24", "25-29", "30-34", "35-39", "40-44",
+                "45-49", "50-54", "55-59", "60-64", "65-69",
+                "70-74", "75-79", "80-84", "85-89", "90-94",
+                "95-99", "100 + " };
 
         HIXAxis xaxisLeft = new HIXAxis();
         xaxisLeft.categories = new ArrayList<>(Arrays.asList(categories));
@@ -58,11 +58,14 @@ public class MainActivity extends AppCompatActivity {
         yaxis.title = new HITitle();
         yaxis.title.text = "";
         yaxis.labels = new HILabels();
-        yaxis.labels.formatter = new HIGFunction("function () { return Math.abs(this.value) + '%'; }", true);
+        yaxis.labels.formatter = new HIFunction(
+                f -> Math.abs((Double)f.getProperty("value")) + "%",
+                new String[] {"value"}
+        );
         options.yAxis = new ArrayList<HIYAxis>(){{add(yaxis);}};
 
         HITooltip tooltip = new HITooltip();
-        tooltip.formatter = new HIGFunction("function () { return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' + 'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0); }", true);
+        tooltip.formatter = new HIFunction("function () { return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' + 'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0); }");
         options.tooltip = tooltip;
 
         HIPlotOptions plotOptions = new HIPlotOptions();

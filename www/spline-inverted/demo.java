@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
-import com.highsoft.highcharts.Core.HIGChartView;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIFunction;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+        HIChartView chartView = findViewById(R.id.hc);
 
         HIOptions options = new HIOptions();
 		
@@ -38,7 +38,10 @@ public class MainActivity extends AppCompatActivity {
         xAxis.title = new HITitle();
         xAxis.title.text = "Altitude";
         xAxis.labels = new HILabels();
-        xAxis.labels.formatter = new HIGFunction("function () { return this.value + 'km'; }", true);
+	xAxis.labels.formatter = new HIFunction(
+		f -> f.getProperty("value") + "km",
+		new String[] {"value"}
+	};
         xAxis.maxPadding = 0.05;
         xAxis.showLastLabel = true;
         options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
@@ -47,7 +50,10 @@ public class MainActivity extends AppCompatActivity {
         yAxis.title = new HITitle();
         yAxis.title.text = "Temperature";
         yAxis.labels = new HILabels();
-        yAxis.labels.formatter = new HIGFunction("function () { return this.value + ''; }", true);
+        yAxis.labels.formatter = new HIFunction(
+		f -> f.getProperty("value") + "km",
+		new String[] {"value"}
+	};
         yAxis.lineWidth = 2;
         options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
 

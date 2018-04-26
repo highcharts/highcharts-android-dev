@@ -4,7 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
-import com.highsoft.highcharts.Core.HIGChartView;
+import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIFunction;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -15,12 +16,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+        HIChartView chartView = findViewById(R.id.hc);
 
-        chartView.theme = "dark-unica";
+	chartView.theme = "dark-unica";
 
         HIOptions options = new HIOptions();
-        
+		
         HIChart chart = new HIChart();
         chart.type = "area";
         options.chart = chart;
@@ -45,7 +46,10 @@ public class MainActivity extends AppCompatActivity {
         yAxis.title = new HITitle();
         yAxis.title.text = "Billions";
         yAxis.labels = new HILabels();
-        yAxis.labels.formatter = new HIGFunction("function () { return this.value / 1000; }", true);
+        yAxis.labels.formatter = new HIFunction(
+            f -> { return String.valueOf((Double) f.getProperty("value") / 1000); },
+                new String[] {"value"}
+        );
         options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
 
         HITooltip tooltip = new HITooltip();

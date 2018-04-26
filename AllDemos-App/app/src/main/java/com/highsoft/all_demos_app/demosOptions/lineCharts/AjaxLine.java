@@ -1,5 +1,8 @@
 package com.highsoft.all_demos_app.demosOptions.lineCharts;
 
+import android.app.AlertDialog;
+import android.content.Context;
+
 import com.highsoft.highcharts.Common.HIChartsClasses.HIChart;
 import com.highsoft.highcharts.Common.HIChartsClasses.HICondition;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIData;
@@ -34,7 +37,7 @@ public class AjaxLine {
 
     private static HIOptions options = new HIOptions();
 
-    public static HIOptions getOptions(){
+    public static HIOptions getOptions(Context context){
 
         HIChart chart = new HIChart();
         chart.type = "line";
@@ -42,11 +45,13 @@ public class AjaxLine {
 
         HIData data = new HIData();
         data.csv = "# ----------------------------------------\n# highcharts.com\n# Audience Overview\n# 20130309-20130408\n# ----------------------------------------\nDay,Visits,Unique Visitors\n3/9/13,5691,4346\n3/10/13,5403,4112\n3/11/13,15574,11356\n3/12/13,16211,11876\n3/13/13,16427,11966\n3/14/13,16486,12086\n3/15/13,14737,10916\n3/16/13,5838,4507\n3/17/13,5542,4202\n3/18/13,15560,11523\n3/19/13,18940,14431\n3/20/13,16970,12599\n3/21/13,17580,13094\n3/22/13,17511,13234\n3/23/13,6601,5213\n3/24/13,6158,4806\n3/25/13,17353,12639\n3/26/13,17660,12768\n3/27/13,16921,12389\n3/28/13,15964,11686\n3/29/13,12028,8891\n3/30/13,5835,4513\n3/31/13,4799,3661\n4/1/13,13037,9503\n4/2/13,16976,12666\n4/3/13,17100,12635\n4/4/13,15701,11394\n4/5/13,14378,10530\n4/6/13,5889,4521\n4/7/13,6779,5109\n4/8/13,16068,11599\n";
+//        data.csvURL = "https://cdn.rawgit.com/highcharts/highcharts/057b672172ccc6c08fe7dbb27fc17ebca3f5b770/samples/data/analytics.csv";
+//        data.beforeParse = new HIFunction(
+//                "function (csv) { return csv.replace(/\n\n/g, '\n'); }");
         options.data = data;
 
         HITitle title = new HITitle();
-//        title.text = "Daily visits at www.highcharts.com";
-        title.text = "NOT SUPPORTED";
+        title.text = "Daily visits at www.highcharts.com";
         options.title = title;
 
         HISubtitle subtitle = new HISubtitle();
@@ -102,7 +107,27 @@ public class AjaxLine {
         plotoptions.series.cursor = "pointer";
         plotoptions.series.point = new HIPoint();
         plotoptions.series.point.events = new HIEvents();
-        plotoptions.series.point.events.click = new HIFunction("function (e) { hs.htmlExpand(null, { pageOrigin: { x: e.pageX || e.clientX, y: e.pageY || e.clientY }, headingText: this.series.name, maincontentText: Highcharts.dateFormat('%A, %b %e, %Y', this.x) + ':<br/> ' + this.y + ' visits', width: 200 }); }");
+//        plotoptions.series.point.events.click = new HIFunction("function (e) {" +
+//                "                        hs.htmlExpand(null, {" +
+//                "                            pageOrigin: {" +
+//                "                                x: e.pageX || e.clientX," +
+//                "                                y: e.pageY || e.clientY" +
+//                "                            }," +
+//                "                            headingText: this.series.name," +
+//                "                            maincontentText: Highcharts.dateFormat('%A, %b %e, %Y', this.x) + ':<br/> ' +" +
+//                "                                this.y + ' sessions'," +
+//                "                            width: 200" +
+//                "                        });" +
+//                "                    }");
+        plotoptions.series.point.events.click = new HIFunction(
+                f -> {
+                    new AlertDialog.Builder(context)
+                            .setTitle((String)f.getProperty("series.name"))
+                            .setMessage(f.getProperty("y") + " sessions")
+                            .create().show();
+                },
+                new String[] {"series.name", "y"}
+        );
         plotoptions.series.marker = new HIMarker();
         plotoptions.series.marker.lineWidth = 1;
         options.plotOptions = plotoptions;
@@ -130,7 +155,7 @@ public class AjaxLine {
         responsive.rules = new ArrayList<>(Collections.singletonList(rules1));
         options.responsive = responsive;
 
-        options.series = new ArrayList<HISeries>(Arrays.asList(line1, line2));
+        options.series = new ArrayList<>(Arrays.asList(line1, line2));
 
         return options;
     }

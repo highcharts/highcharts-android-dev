@@ -4,7 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
-import com.highsoft.highcharts.Core.HIGChartView;
+import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIFunction;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -15,12 +16,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+        HIChartView chartView = findViewById(R.id.hc);
 
-        chartView.theme = "dark-unica";
+	chartView.theme = "dark-unica";
 
         HIOptions options = new HIOptions();
-        
+		
         HIChart chart = new HIChart();
         chart.type = "area";
         options.chart = chart;
@@ -36,14 +37,17 @@ public class MainActivity extends AppCompatActivity {
         HIXAxis xAxis = new HIXAxis();
         xAxis.allowDecimals = false;
         xAxis.labels = new HILabels();
-        xAxis.labels.formatter = new HIGFunction("function () { return this.value; /*clean, unformatted number for year*/ }", true);
+        xAxis.labels.formatter = new HIFunction(
+                f -> { return String.valueOf(f.getProperty("value")); },
+                new String[] {"value"} ); /*clean, unformatted number for year*/
         options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
 
         HIYAxis yAxis = new HIYAxis();
-	yAxis.title = new HITitle();
+        yAxis.title = new HITitle();
         yAxis.title.text = "Nuclear weapon states";
         yAxis.labels = new HILabels();
-        yAxis.labels.formatter = new HIGFunction("function () { return this.value / 1000 + 'k'; }", true);
+        yAxis.labels.formatter = new HIFunction(
+                f -> { return String.valueOf((Double) f.getProperty("value") /1000);}, new String[] {"value"} );
         options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
 
         HITooltip tooltip = new HITooltip();
@@ -71,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         Number[] series2_data = new Number[] {null, null, null, null, null, null, null, null, null, null, 5, 25, 50, 120, 150, 200, 426, 660, 869, 1060, 1605, 2471, 3322, 4238, 5221, 6129, 7089, 8339, 9399, 10538, 11643, 13092, 14478, 15915, 17385, 19055, 21205, 23044, 25393, 27935, 30062, 32049, 33952, 35804, 37431, 39197, 45000, 43000, 41000, 39000, 37000, 35000, 33000, 31000, 29000, 27000, 25000, 24000, 23000, 22000, 21000, 20000, 19000, 18000, 18000, 17000, 16000};
         series2.data = new ArrayList<>(Arrays.asList(series2_data));
         options.series = new ArrayList<>(Arrays.asList(series1, series2));
-
 
         chartView.options = options;
     }

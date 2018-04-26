@@ -4,8 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
-import com.highsoft.highcharts.Core.HIGChartView;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIFunction;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -16,13 +17,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
-
-        chartView.theme = "dark-unica";
+        HIChartView chartView = findViewById(R.id.hc);
+	chartView.theme = "dark-unica";
 
         HIOptions options = new HIOptions();
-        
-        HIChart chart = new HIChart();
+		
+HIChart chart = new HIChart();
         chart.type = "column";
         options.chart = chart;
 
@@ -43,7 +43,15 @@ public class MainActivity extends AppCompatActivity {
         options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
 
         HITooltip tooltip = new HITooltip();
-        tooltip.formatter = new HIGFunction("function () { return '<b>' + this.x + '</b><br/>' + this.series.name + ': ' + this.y + '<br/>Total: ' + this.point.stackTotal; }", true);
+        tooltip.formatter = new HIFunction(
+                f -> {
+                    DecimalFormat decimalFormat = new DecimalFormat("0.#");
+                    String result1 = decimalFormat.format(f.getProperty("y"));
+                    String result2 = decimalFormat.format(f.getProperty("point.stackTotal"));
+                    return "<b>" + f.getProperty("x") + "</b><br/>" + f.getProperty("series.name") + ": " + result1 + "<br/>Total: " + result2;
+                },
+                new String[] {"x", "y", "series.name", "point.stackTotal"}
+        );
         options.tooltip = tooltip;
 
         HIPlotOptions plotOptions = new HIPlotOptions();
@@ -72,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         series4.data = new ArrayList<>(Arrays.asList(series4_data));
         series4.stack = "female";
         options.series = new ArrayList<>(Arrays.asList(series1, series2, series3, series4));
-
 
         chartView.options = options;
     }

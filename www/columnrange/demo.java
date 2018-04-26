@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
-import com.highsoft.highcharts.Core.HIGChartView;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIFunction;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+        HIChartView chartView = findViewById(R.id.hc);
 
         HIOptions options = new HIOptions();
 		
@@ -51,7 +51,10 @@ public class MainActivity extends AppCompatActivity {
         plotOptions.columnrange = new HIColumnrange();
         plotOptions.columnrange.dataLabels = new HIDataLabels();
         plotOptions.columnrange.dataLabels.enabled = true;
-        plotOptions.columnrange.dataLabels.formatter = new HIGFunction("function () { return this.y + '°C'; }", true);
+        plotOptions.columnrange.dataLabels.formatter = new HIFunction(
+		f -> return f.getProperty("y") + "°C",
+		new String[] {"y"}
+	);
         options.plotOptions = plotOptions;
 
         HILegend legend = new HILegend();

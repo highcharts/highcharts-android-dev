@@ -4,8 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
-import com.highsoft.highcharts.Core.HIGChartView;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIFunction;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -16,13 +17,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
-
-        chartView.theme = "grid-light";
+        HIChartView chartView = findViewById(R.id.hc);
+	chartView.theme = "grid-light";
 
         HIOptions options = new HIOptions();
-        
-        HIData data = new HIData();
+		
+ 	HIData data = new HIData();
         data.table = "<table id=\"datatable\"> <thead> <tr> <th></th> <th>Jane</th> <th>John</th> </tr> </thead> <tbody> <tr> <th>Apples</th> <td>3</td> <td>4</td> </tr> <tr> <th>Pears</th> <td>2</td> <td>0</td> </tr> <tr> <th>Plums</th> <td>5</td> <td>11</td> </tr> <tr> <th>Bananas</th> <td>1</td> <td>1</td> </tr> <tr> <th>Oranges</th> <td>2</td> <td>4</td> </tr> </tbody> </table>";
         //options.data = data;
 
@@ -46,7 +46,14 @@ public class MainActivity extends AppCompatActivity {
         options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
 
         HITooltip tooltip = new HITooltip();
-        tooltip.formatter = new HIGFunction("function () { return '<b>' + this.series.name + '</b><br/>' + this.point.y + ' ' + this.point.name.toLowerCase(); }", true);
+        tooltip.formatter = new HIFunction(
+                f -> {
+                    DecimalFormat decimalFormat = new DecimalFormat("0.#");
+                    String result = decimalFormat.format(f.getProperty("y"));
+                    return "<b>" + f.getProperty("series.name") + "</b><br>" + result + " " + f.getProperty("point.name").toString().toLowerCase();
+                } ,
+                new String[] {"series.name", "y", "point.name"}
+        );
         options.tooltip = tooltip;
 
         HIColumn series1 = new HIColumn();
@@ -68,9 +75,3 @@ public class MainActivity extends AppCompatActivity {
         series2.data = new ArrayList<>(Arrays.asList(object6, object7, object8, object9, object10));
 
         options.series = new ArrayList<>(Arrays.asList(series1, series2));
-
-
-        chartView.options = options;
-    }
-}
-

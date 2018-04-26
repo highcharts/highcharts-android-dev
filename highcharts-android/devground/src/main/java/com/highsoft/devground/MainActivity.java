@@ -1,130 +1,98 @@
-//package com.highsoft.devground;
-//
-//import android.os.Bundle;
-//import android.support.v7.app.AppCompatActivity;
-//import android.view.View;
-//import android.widget.Button;
-//
-//import com.highsoft.highcharts.Common.HIChartsClasses.HIBar;
-//import com.highsoft.highcharts.Common.HIChartsClasses.HIChart;
-//import com.highsoft.highcharts.Common.HIChartsClasses.HIData;
-//import com.highsoft.highcharts.Common.HIChartsClasses.HIDataLabels;
-//import com.highsoft.highcharts.Common.HIChartsClasses.HILabels;
-//import com.highsoft.highcharts.Common.HIChartsClasses.HILegend;
-//import com.highsoft.highcharts.Common.HIChartsClasses.HIOptions;
-//import com.highsoft.highcharts.Common.HIChartsClasses.HIPlotBands;
-//import com.highsoft.highcharts.Common.HIChartsClasses.HIPlotOptions;
-//import com.highsoft.highcharts.Common.HIChartsClasses.HISeries;
-//import com.highsoft.highcharts.Common.HIChartsClasses.HIStyle;
-//import com.highsoft.highcharts.Common.HIChartsClasses.HISubtitle;
-//import com.highsoft.highcharts.Common.HIChartsClasses.HITitle;
-//import com.highsoft.highcharts.Common.HIChartsClasses.HITooltip;
-//import com.highsoft.highcharts.Common.HIChartsClasses.HIXAxis;
-//import com.highsoft.highcharts.Common.HIChartsClasses.HIYAxis;
-//import com.highsoft.highcharts.Common.HIChartsClasses.HIZones;
-//import com.highsoft.highcharts.Common.HIColor;
-//import com.highsoft.highcharts.Core.HIChartView;
-//
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//
-//
-//public class MainActivity extends AppCompatActivity {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//        updateTest();
-//    }
-//
-//    public void updateTest(){
-//        Button b1 = findViewById(R.id.button1);
-//        Button b2 = findViewById(R.id.button2);
-//        HIChartView chartView = findViewById(R.id.hc);
-//        HIOptions options = new HIOptions();
-//
-//        HITitle title = new HITitle();
-//        title.setStyle(new HIStyle());
-//        title.getStyle().setFontSize("40px");
-//        title.setText("Update feature test");
-//        options.setTitle(title);
-//
-//        HIChart hiChart = new HIChart();
-//        hiChart.setType("column");
-//        hiChart.setBackgroundColor(HIColor.initWithName("grey"));
-//        hiChart.setBorderWidth(10);
-//        hiChart.setBorderColor(HIColor.initWithName("lightblue"));
-////        hiChart.setSpacing(new ArrayList<>(Arrays.asList(30,30,100,30)));
-////        options.hiChart = hiChart;
-//        options.setChart(hiChart);
-//
-//        HISeries series = new HISeries();
-//        series.setData(new ArrayList<>(Arrays.asList(5,8,10,2,5,1,7,4)));
-//        HISeries series1 = new HISeries();
-//        series1.setData(new ArrayList<>(Arrays.asList(5,12,14,6,1,8,4,6)));
-//
-////        options.series = new ArrayList<>(Arrays.asList(series, series1));
-//        options.setSeries(new ArrayList<>(Arrays.asList(series, series1)));
-//        options.setColors(new ArrayList<>(Arrays.asList(HIColor.initWithName("red"), HIColor.initWithName("yellow"))));
-//
-//
-//        ArrayList<HIXAxis> xaxisList = new ArrayList<>();
-//        HIXAxis hixAxis = new HIXAxis();
-//        hixAxis.setType("linear");
-//        xaxisList.add(hixAxis);
-//        options.setXAxis(xaxisList);
-//        chartView.setOptions(options);
-//
-//        b1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                chartView.getOptions().getChart().setType("spline");
-//                chartView.getOptions().getChart().setBackgroundColor(HIColor.initWithName("lightblue"));
-//
-////                HISeries newSeries = chartView.getOptions().getSeries().get(0);
-//////                newSeries.setData(new ArrayList<>(Arrays.asList(5,19,2,15,18,10,8)));
-////                ArrayList firstSeriesData = chartView.getOptions().getSeries().get(0).getData();
-////                firstSeriesData.set(0, 10);
-////                newSeries.setData(firstSeriesData);
-////                chartView.getOptions().setSeries(new ArrayList<>(Arrays.asList(newSeries, series1)));
-//
-//                //spacing bugged
-////                chartView.getOptions().getChart().setSpacing(new ArrayList<>(Arrays.asList(5,5,10,5)));
-//            }
-//        });
-//        b2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                chartView.options.hiChart.setBorderWidth(50);
-//
-//                //-- full option update still needs reload
-//                HIOptions options1 = chartView.options;
-//                options1.getChart().setBackgroundColor(HIColor.initWithName("blue"));
-////                chartView.setOptions(options1);
-////                chartView.reload();
-//
-//                //-- update of first options children
-////                HITitle title1 = new HITitle();
-////                title1.setText("NEW TITLE");
-////                chartView.getOptions().setTitle(title1);
-//
-//                //-- update first children which is an array; testing in progress...
-//
-//                HIXAxis xAxisNew = chartView.getOptions().getXAxis().get(0);
-//                if(xAxisNew.getType().equalsIgnoreCase("linear"))
-//                    xAxisNew.setType("datetime");
-//                else xAxisNew.setType("linear");
-//                xaxisList.set(0, xAxisNew);
-//                chartView.getOptions().setXAxis(xaxisList);
-//
-//                //-- update first children wchich is array update whole array!
-////                HISeries series1 = new HISeries();
-////                series1.data = new ArrayList<>(Arrays.asList(6,9,10,11,13,8,9,6));
-////                HISeries series2 = new HISeries();
-////                series2.data = new ArrayList<>(Arrays.asList(9,1,2,2,9,8,5,4));
-////                chartView.getOptions().setSeries(new ArrayList<>(Arrays.asList(series1,series2)));
-//            }
-//        });
-//    }
-//}
+package com.highsoft.devground;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import com.highsoft.highcharts.Common.HIColor;
+import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Common.HIChartsClasses.*;
+import com.highsoft.highcharts.Core.HIFunction;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        HIChartView chartView = findViewById(R.id.hc);
+
+        HIOptions options = new HIOptions();
+
+        HIChart chart = new HIChart();
+        chart.type = "bar";
+        options.chart = chart;
+
+        HITitle title = new HITitle();
+        title.text = "Population pyramid for Germany, 2015";
+        options.title = title;
+
+        HISubtitle subtitle = new HISubtitle();
+        subtitle.text = "SSource: <a href=\"http://populationpyramid.net/germany/2015/\">Population Pyramids of the World from 1950 to 2100</a>";
+        options.subtitle = subtitle;
+
+        String[] categories = new String[] { "0-4", "5-9", "10-14", "15-19",
+                "20-24", "25-29", "30-34", "35-39", "40-44",
+                "45-49", "50-54", "55-59", "60-64", "65-69",
+                "70-74", "75-79", "80-84", "85-89", "90-94",
+                "95-99", "100 + " };
+
+        HIXAxis xaxisLeft = new HIXAxis();
+        xaxisLeft.categories = new ArrayList<>(Arrays.asList(categories));
+        xaxisLeft.labels = new HILabels();
+        xaxisLeft.labels.step = 1;
+
+        HIXAxis xaxisRight = new HIXAxis();
+        xaxisRight.opposite = true;
+        xaxisRight.reversed = false;
+        xaxisRight.categories = new ArrayList<>(Arrays.asList(categories));
+        xaxisRight.linkedTo = 0;
+        xaxisRight.labels = new HILabels();
+        xaxisRight.labels.step = 1;
+
+        options.xAxis = new ArrayList<>(Arrays.asList(xaxisLeft, xaxisRight));
+
+        HIYAxis yaxis = new HIYAxis();
+        yaxis.title = new HITitle();
+        yaxis.title.text = "";
+        yaxis.labels = new HILabels();
+        yaxis.labels.formatter = new HIFunction(
+                f -> Math.abs((Double)f.getProperty("value")) + "%",
+                new String[] {"value"}
+        );
+        options.yAxis = new ArrayList<HIYAxis>(){{add(yaxis);}};
+
+        HITooltip tooltip = new HITooltip();
+        tooltip.formatter = new HIFunction("function () { return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' + 'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0); }");
+        options.tooltip = tooltip;
+
+        HIPlotOptions plotOptions = new HIPlotOptions();
+        plotOptions.bar = new HIBar();
+        plotOptions.bar.stacking = "normal";
+        options.plotOptions = plotOptions;
+
+        HIBar barMale = new HIBar();
+        barMale.name = "Year 1800";
+        Number[] barMaleData = new Number[] {-2.2, -2.2, -2.3, -2.5, -2.7, -3.1, -3.2,
+                -3.0, -3.2, -4.3, -4.4, -3.6, -3.1, -2.4,
+                -2.5, -2.3, -1.2, -0.6, -0.2, -0.0, -0.0 };
+        barMale.data = new ArrayList<>(Arrays.asList(barMaleData));
+
+        HIBar barFemale = new HIBar();
+        barFemale.name = "Year 1900";
+        Number[] barFemaleData = new Number[] { 2.1, 2.0, 2.2, 2.4, 2.6, 3.0, 3.1, 2.9,
+                3.1, 4.1, 4.3, 3.6, 3.4, 2.6, 2.9, 2.9,
+                1.8, 1.2, 0.6, 0.1, 0.0 };
+        barFemale.data = new ArrayList<>(Arrays.asList(barFemaleData));
+
+        options.series = new ArrayList<>(Arrays.asList(barMale, barFemale));
+        chartView.options = options;
+    }
+}

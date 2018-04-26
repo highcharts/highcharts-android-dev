@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
 import com.highsoft.highcharts.Common.HIColor;
-import com.highsoft.highcharts.Core.HIGChartView;
+import com.highsoft.highcharts.Core.HIChartView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_main);
 
-                HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+                HIChartView chartView = findViewById(R.id.hc);
 		chartView.theme = "dark-unica";
 
                 HIOptions options = new HIOptions();
@@ -106,18 +106,18 @@ public class MainActivity extends AppCompatActivity {
                 options.yAxis = new ArrayList<>(Arrays.asList(yaxis1, yaxis2));
 
                 HIPlotOptions plotoptions = new HIPlotOptions();
-                plotoptions.gauge = new HIGauge();
+                plotoptions.gauge = new HIauge();
                 plotoptions.gauge.dataLabels = new HIDataLabels();
                 plotoptions.gauge.dataLabels.enabled = false;
                 plotoptions.gauge.dial = new HIDial();
                 plotoptions.gauge.dial.radius = "100%";
                 options.plotOptions = plotoptions;
 
-                HIGauge gauge1 = new HIGauge();
+                HIauge gauge1 = new HIauge();
                 gauge1.name = "Channel A";
                 gauge1.yAxis = 0;
                 gauge1.data = new ArrayList<>(Collections.singletonList(-20));
-                HIGauge gauge2 = new HIGauge();
+                HIauge gauge2 = new HIauge();
                 gauge2.name = "Channel B";
                 gauge2.yAxis = 1;
                 gauge2.data = new ArrayList<>(Collections.singletonList(-20));

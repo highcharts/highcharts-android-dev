@@ -46,7 +46,7 @@ public class ExamplesFragment extends Fragment {
         if (getArguments() != null) {
             mName = getArguments().getString(ARG_FRAGMENT_NAME);
             mArray = getArguments().getStringArray(ARG_STRING_ARRAY);
-            optionsProvider = new OptionsProvider(mName);
+            optionsProvider = new OptionsProvider(mName, getContext());
         }
     }
 

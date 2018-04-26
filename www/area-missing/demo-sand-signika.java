@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.Common.HIChartsClasses.*;
 import com.highsoft.highcharts.Common.HIColor;
-import com.highsoft.highcharts.Core.HIGChartView;
-import com.highsoft.highcharts.Core.HIGFunction;
+import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HIGChartView chartView = (HIGChartView) findViewById(R.id.hc);
+        HIChartView chartView = findViewById(R.id.hc);
 
 	chartView.theme = "sand-signika";
 
@@ -50,11 +50,17 @@ public class MainActivity extends AppCompatActivity {
         yaxis.title = new HITitle();
         yaxis.title.text = "Y-Axis";
         yaxis.labels = new HILabels();
-        yaxis.labels.formatter = new HIGFunction("function () { return this.value; }", true);
+        yaxis.labels.formatter = new HIFunction(
+                f -> { return String.valueOf(f.getProperty("value")); },
+                new String[] {"value"}
+        );
         options.yAxis = new ArrayList<HIYAxis>(){{add(yaxis);}};
 
         HITooltip tooltip = new HITooltip();
-        tooltip.formatter = new HIGFunction(" function () { return '<b>' + this.series.name + '</b><br/>' + this.x + ': ' + this.y; }", true);
+        tooltip.formatter = new HIFunction(
+                f -> "<b>" + f.getProperty("series.name") + "</b><br>" + f.getProperty("x") + ": " + f.getProperty("y"),
+                new String[] {"series.name", "x", "y"}
+        );
         options.tooltip = tooltip;
 
         HILegend legend = new HILegend();
