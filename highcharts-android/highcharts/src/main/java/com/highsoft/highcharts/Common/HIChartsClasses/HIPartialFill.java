@@ -11,25 +11,44 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
 
 
 
-public class HIPartialFill implements HIChartsJSONSerializable { 
+public class HIPartialFill extends Observable implements HIChartsJSONSerializable { 
 
-
+	private HIColor fill;
 /**
 The fill color to be used for partial fills. Defaults to a darker shade
 of the point color.
 */
-	public HIColor fill;
+	public void setFill(HIColor fill) {
+		this.fill = fill;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getFill(){ return fill; }
+
 
 
 	public HIPartialFill() {
 
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

@@ -24,77 +24,75 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 		
         HIChart chart = new HIChart();
-        chart.type = "scatter";
+        chart.setType("scatter");
         Number[] marginList = new Number[] {70, 50, 60, 80 };
-        chart.margin = new ArrayList<>(Arrays.asList(marginList));
-        chart.events = new HIEvents();
-        chart.events.click = new HIFunction(
+        chart.setMargin(new ArrayList<>(Arrays.asList(marginList)));
+        chart.setEvents(new HIEvents());
+        chart.getEvents().setClick(new HIFunction(
                 "function (e) {" +
                         " /*find the clicked values and the series*/ " +
                         "var x = Math.round(e.xAxis[0].value), " +
                         "y = Math.round(e.yAxis[0].value), " +
                         "series = this.series[0]; " +
                         "/*Add it*/ " +
-                        "series.addPoint([x, y]); }");
-        options.chart = chart;
+                        "series.addPoint([x, y]); }"));
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "User supplied data";
-        options.title = title;
+        title.setText("User supplied data");
+        options.setTitle(title);
 
         HISubtitle subtitle = new HISubtitle();
-        subtitle.text = "Click the plot area to add a point. Click a point to remove it.";
-        options.subtitle = subtitle;
+        subtitle.setText("Click the plot area to add a point. Click a point to remove it.");
+        options.setSubtitle(subtitle);
 
         HIXAxis xAxis = new HIXAxis();
-        xAxis.gridLineWidth = 1;
-        xAxis.minPadding = 0.2;
-        xAxis.maxPadding = 0.2;
-        options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
+        xAxis.setGridLineWidth(1);
+        xAxis.setMinPadding(0.2);
+        xAxis.setMaxPadding(0.2);
+        options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
         HIYAxis yAxis = new HIYAxis();
-        yAxis.title = new HITitle();
-        yAxis.title.text = "Value";
-        yAxis.minPadding = 0.2;
-        yAxis.maxPadding = 0.2;
+        yAxis.setTitle(new HITitle());
+        yAxis.getTitle().setText("Value");
+        yAxis.setMinPadding(0.2);
+        yAxis.setMaxPadding(0.2);
 
         HIPlotLines plotLines1 = new HIPlotLines();
-        plotLines1.value = 0;
-        plotLines1.width = 1;
-        plotLines1.color = HIColor.initWithHexValue("808080");
+        plotLines1.setValue(0);
+        plotLines1.setWidth(1);
+        plotLines1.setColor(HIColor.initWithHexValue("808080"));
 
         HIPlotLines[] plotLinesList = new HIPlotLines[] {plotLines1 };
-        yAxis.plotLines = new ArrayList<>(Arrays.asList(plotLinesList));
-        options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
+        yAxis.setPlotLines(new ArrayList<>(Arrays.asList(plotLinesList)));
+        options.setYAxis(new ArrayList<HIYAxis>(){{add(yAxis);}});
 
         HILegend legend = new HILegend();
-        legend.enabled = false;
-        options.legend = legend;
+        legend.setEnabled(false);
+        options.setLegend(legend);
 
         HIExporting exporting = new HIExporting();
-        exporting.enabled = false;
-        options.exporting = exporting;
+        exporting.setEnabled(false);
+        options.setExporting(exporting);
 
         HIPlotOptions plotOptions = new HIPlotOptions();
-        plotOptions.series = new HISeries();
-        plotOptions.series.lineWidth = 1;
-        plotOptions.series.point = new HIPoint();
-        plotOptions.series.point.events = new HIEvents();
-        plotOptions.series.point.events.click = new HIFunction(
+        plotOptions.setSeries(new HISeries());
+        plotOptions.getSeries().setLineWidth(1);
+        plotOptions.getSeries().setPoint(new HIPoint());
+        plotOptions.getSeries().getPoint().setEvents(new HIEvents());
+        plotOptions.getSeries().getPoint().getEvents().setClick(new HIFunction(
                 "function () { " +
                         "if (this.series.data.length > 1) { " +
                         "this.remove(); " +
-                        "}}");
-        options.plotOptions = plotOptions;
+                        "}}"));
+        options.setPlotOptions(plotOptions);
 
         HIScatter series1 = new HIScatter();
         Number[][] series1_data = new Number[][] {{20, 20}, {80, 80}};
-        series1.data = new ArrayList<>(Arrays.asList(series1_data));
-        options.series = new ArrayList<>(Collections.singletonList(series1));
+        series1.setData(new ArrayList<>(Arrays.asList(series1_data)));
+        options.setSeries(new ArrayList<>(Collections.singletonList(series1)));
 
-
-
-        chartView.options = options;
+        chartView.setOptions(options);
     }
 }
 

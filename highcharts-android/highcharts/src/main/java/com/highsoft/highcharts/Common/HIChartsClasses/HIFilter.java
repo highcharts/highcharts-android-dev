@@ -11,37 +11,70 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HIFilter implements HIChartsJSONSerializable { 
+public class HIFilter extends Observable implements HIChartsJSONSerializable { 
 
-
+	private String operator;
 /**
 The operator to compare by. Can be one of >, <, >=, <=, ==,
 and ===.
  <br><br><b>accepted values:</b><br><br>&ensp;[">", "<", ">=", "<=", "==", "===""]*/
-	public String operator;
+	public void setOperator(String operator) {
+		this.operator = operator;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public String getOperator(){ return operator; }
+
+	private String property;
 /**
 The point property to filter by. Point options are passed directly to
 properties, additionally there are y value, percentage and others
 listed under [Point](https://api.highcharts.com/class-reference/Highcharts.Point)
 members.
 */
-	public String property;
+	public void setProperty(String property) {
+		this.property = property;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public String getProperty(){ return property; }
+
+	private Object value;
 /**
 The value to compare against.
 */
-	public Object value;
+	public void setValue(Object value) {
+		this.value = value;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getValue(){ return value; }
+
 
 
 	public HIFilter() {
 
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

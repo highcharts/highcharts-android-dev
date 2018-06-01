@@ -24,81 +24,77 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HIChart chart = new HIChart();
-        chart.type = "bar";
-        options.chart = chart;
+        chart.setType("bar");
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "Historic World Population by Region";
-        options.title = title;
+        title.setText("Historic World Population by Region");
+        options.setTitle(title);
 
         HISubtitle subtitle = new HISubtitle();
-        subtitle.text = "Source: <a href=\\\"https://en.wikipedia.org/wiki/World_population\\\">Wikipedia.org</a>Source: <a href=\\\"https://en.wikipedia.org/wiki/World_population\\\">Wikipedia.org</a>";
-        options.subtitle = subtitle;
-
+        subtitle.setText("Source: <a href=\\\"https://en.wikipedia.org/wiki/World_population\\\">Wikipedia.org</a>Source: <a href=\\\"https://en.wikipedia.org/wiki/World_population\\\">Wikipedia.org</a>");
+        options.setSubtitle(subtitle);
 
         HIXAxis xaxis = new HIXAxis();
         String[] categories = new String[] { "Africa", "America", "Asia", "Europe", "Oceania"};
-        xaxis.categories = new ArrayList<>(Arrays.asList(categories));
-        options.xAxis = new ArrayList<HIXAxis>(){{add(xaxis);}};
+        xaxis.setCategories(new ArrayList<>(Arrays.asList(categories)));
+        options.setXAxis(new ArrayList<HIXAxis>(){{add(xaxis);}});
 
         HIYAxis yaxis = new HIYAxis();
-        yaxis.min = 0;
-        yaxis.title = new HITitle();
-        yaxis.title.text = "Population (millions)";
-        yaxis.title.align = "high";
-        yaxis.labels = new HILabels();
-        yaxis.labels.overflow = "justify";
-        options.yAxis = new ArrayList<HIYAxis>(){{add(yaxis);}};
+        yaxis.setMin(0);
+        yaxis.setTitle(new HITitle());
+        yaxis.getTitle().setText("Population (millions)");
+        yaxis.getTitle().setAlign("high");
+        yaxis.setLabels(new HILabels());
+        yaxis.getLabels().setOverflow("justify");
+        options.setYAxis(new ArrayList<HIYAxis>(){{add(yaxis);}});
 
         HITooltip tooltip = new HITooltip();
-        tooltip.valueSuffix = " millions";
-        options.tooltip = tooltip;
+        tooltip.setValueSuffix(" millions");
+        options.setTooltip(tooltip);
 
         HIPlotOptions plotOptions = new HIPlotOptions();
-        plotOptions.bar = new HIBar();
-        plotOptions.bar.dataLabels = new HIDataLabels();
-        plotOptions.bar.dataLabels.enabled = true;
-        options.plotOptions = plotOptions;
+        plotOptions.setBar(new HIBar());
+        plotOptions.getBar().setDataLabels(new HIDataLabels());
+        plotOptions.getBar().getDataLabels().setEnabled(true);
+        options.setPlotOptions(plotOptions);
 
         HILegend legend = new HILegend();
-        legend.layout = "vertical";
-        legend.align = "right";
-        legend.verticalAlign = "top";
-        legend.x = -40;
-        legend.y = 80;
-        legend.floating = true;
-        legend.borderWidth = 1;
-        legend.backgroundColor = HIColor.initWithHexValue("FFFFFF");
-        legend.shadow = true;
-        options.legend = legend;
+        legend.setLayout("vertical");
+        legend.setAlign("right");
+        legend.setVerticalAlign("top");
+        legend.setX(-40);
+        legend.setY(80);
+        legend.setFloating(true);
+        legend.setBorderWidth(1);
+        legend.setBackgroundColor(HIColor.initWithHexValue("FFFFFF"));
+        legend.setShadow(true);
+        options.setLegend(legend);
 
         HICredits credits = new HICredits();
-        credits.enabled = false;
-        options.credits = credits;
-
+        credits.setEnabled(false);
+        options.setCredits(credits);
 
         HIBar bar1 = new HIBar();
-        bar1.name = "Year 1800";
+        bar1.setName("Year 1800");
         Number[] bar1Data = new Number[] {107, 31, 635, 203, 2 };
-        bar1.data = new ArrayList<>(Arrays.asList(bar1Data));
+        bar1.setData(new ArrayList<>(Arrays.asList(bar1Data)));
 
         HIBar bar2 = new HIBar();
-        bar2.name = "Year 1900";
+        bar2.setName("Year 1900");
         Number[] bar2Data = new Number[] { 133, 156, 947, 408, 6 };
-        bar2.data = new ArrayList<>(Arrays.asList(bar2Data));
+        bar2.setData(new ArrayList<>(Arrays.asList(bar2Data)));
 
         HIBar bar3 = new HIBar();
-        bar3.name = "Year 2012";
+        bar3.setName("Year 2012");
         Number[] bar3Data = new Number[] { 1052, 954, 4250, 740, 38 };
-        bar3.data = new ArrayList<>(Arrays.asList(bar3Data));
+        bar3.setData(new ArrayList<>(Arrays.asList(bar3Data)));
 
-        options.series = new ArrayList<>(Arrays.asList(bar1, bar2,bar3));
+        options.setSeries(new ArrayList<>(Arrays.asList(bar1, bar2,bar3)));
 
-        chartView.options = options;
+        chartView.setOptions(options);
     }
 }
-
-
 
 
 

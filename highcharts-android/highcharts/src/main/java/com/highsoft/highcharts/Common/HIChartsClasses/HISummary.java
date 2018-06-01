@@ -11,42 +11,246 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HISummary implements HIChartsJSONSerializable { 
+public class HISummary extends Observable implements HIChartsJSONSerializable { 
 
-	public String pieCombination;
-	public String pie;
-	public String lineCombination;
-	public String mapbubble;
-	public String spline;
-	public String barCombination;
-	public String boxplotCombination;
-	public String splineCombination;
-	public String scatterCombination;
-	public String maplineCombination;
-	public String bubble;
-	public String boxplot;
-	public String columnCombination;
-	public String map;
-	public String line;
-	public String mapline;
-	public String bar;
-	public String mapCombination;
-	public String defaults;
-	public String mapbubbleCombination;
-	public String defaultCombination;
-	public String column;
-	public String bubbleCombination;
-	public String scatter;
+	private String pieCombination;
+	public void setPieCombination(String pieCombination) {
+		this.pieCombination = pieCombination;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getPieCombination(){ return pieCombination; }
+
+	private String pie;
+	public void setPie(String pie) {
+		this.pie = pie;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getPie(){ return pie; }
+
+	private String lineCombination;
+	public void setLineCombination(String lineCombination) {
+		this.lineCombination = lineCombination;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getLineCombination(){ return lineCombination; }
+
+	private String mapbubble;
+	public void setMapbubble(String mapbubble) {
+		this.mapbubble = mapbubble;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getMapbubble(){ return mapbubble; }
+
+	private String spline;
+	public void setSpline(String spline) {
+		this.spline = spline;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getSpline(){ return spline; }
+
+	private String barCombination;
+	public void setBarCombination(String barCombination) {
+		this.barCombination = barCombination;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getBarCombination(){ return barCombination; }
+
+	private String boxplotCombination;
+	public void setBoxplotCombination(String boxplotCombination) {
+		this.boxplotCombination = boxplotCombination;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getBoxplotCombination(){ return boxplotCombination; }
+
+	private String splineCombination;
+	public void setSplineCombination(String splineCombination) {
+		this.splineCombination = splineCombination;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getSplineCombination(){ return splineCombination; }
+
+	private String scatterCombination;
+	public void setScatterCombination(String scatterCombination) {
+		this.scatterCombination = scatterCombination;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getScatterCombination(){ return scatterCombination; }
+
+	private String maplineCombination;
+	public void setMaplineCombination(String maplineCombination) {
+		this.maplineCombination = maplineCombination;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getMaplineCombination(){ return maplineCombination; }
+
+	private String bubble;
+	public void setBubble(String bubble) {
+		this.bubble = bubble;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getBubble(){ return bubble; }
+
+	private String boxplot;
+	public void setBoxplot(String boxplot) {
+		this.boxplot = boxplot;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getBoxplot(){ return boxplot; }
+
+	private String columnCombination;
+	public void setColumnCombination(String columnCombination) {
+		this.columnCombination = columnCombination;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getColumnCombination(){ return columnCombination; }
+
+	private String map;
+	public void setMap(String map) {
+		this.map = map;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getMap(){ return map; }
+
+	private String line;
+	public void setLine(String line) {
+		this.line = line;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getLine(){ return line; }
+
+	private String mapline;
+	public void setMapline(String mapline) {
+		this.mapline = mapline;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getMapline(){ return mapline; }
+
+	private String bar;
+	public void setBar(String bar) {
+		this.bar = bar;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getBar(){ return bar; }
+
+	private String mapCombination;
+	public void setMapCombination(String mapCombination) {
+		this.mapCombination = mapCombination;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getMapCombination(){ return mapCombination; }
+
+	private String defaults;
+	public void setDefault(String defaults) {
+		this.defaults = defaults;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDefault(){ return defaults; }
+
+	private String mapbubbleCombination;
+	public void setMapbubbleCombination(String mapbubbleCombination) {
+		this.mapbubbleCombination = mapbubbleCombination;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getMapbubbleCombination(){ return mapbubbleCombination; }
+
+	private String defaultCombination;
+	public void setDefaultCombination(String defaultCombination) {
+		this.defaultCombination = defaultCombination;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDefaultCombination(){ return defaultCombination; }
+
+	private String column;
+	public void setColumn(String column) {
+		this.column = column;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getColumn(){ return column; }
+
+	private String bubbleCombination;
+	public void setBubbleCombination(String bubbleCombination) {
+		this.bubbleCombination = bubbleCombination;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getBubbleCombination(){ return bubbleCombination; }
+
+	private String scatter;
+	public void setScatter(String scatter) {
+		this.scatter = scatter;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getScatter(){ return scatter; }
+
 
 
 	public HISummary() {
 
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

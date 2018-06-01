@@ -22,48 +22,44 @@ public class MainActivity extends AppCompatActivity {
 
 		HIOptions options = new HIOptions();
 
-		HIChart chart = new HIChart();
-		chart.type = "treemap";
-		options.chart = chart;
-
 		HITitle title = new HITitle();
-		title.text = "Highcharts Treemap";
-		options.title = title;
+		title.setText("Highcharts Treemap");
+		options.setTitle(title);
 
 		HITreemap series1 = new HITreemap();
-		series1.layoutAlgorithm = "squarified";
+		series1.setLayoutAlgorithm("squarified");
 		HIData data1 = new HIData();
-		data1.name = "A";
-		data1.value = 6;
-		data1.colorValue = 1;
+		data1.setName("A");
+		data1.setValue(6);
+		data1.setColorValue(1);
 		HIData data2 = new HIData();
-		data2.name = "B";
-		data2.value = 6;
-		data2.colorValue = 2;
+		data2.setName("B");
+		data2.setValue(6);
+		data2.setColorValue(2);
 		HIData data3 = new HIData();
-		data3.name = "C";
-		data3.value = 4;
-		data3.colorValue = 3;
+		data3.setName("C");
+		data3.setValue(4);
+		data3.setColorValue(3);
 		HIData data4 = new HIData();
-		data4.name = "D";
-		data4.value = 3;
-		data4.colorValue = 4;
+		data4.setName("D");
+		data4.setValue(3);
+		data4.setColorValue(4);
 		HIData data5 = new HIData();
-		data5.name = "E";
-		data5.value = 2;
-		data5.colorValue = 5;
+		data5.setName("E");
+		data5.setValue(2);
+		data5.setColorValue(5);
 		HIData data6 = new HIData();
-		data6.name = "F";
-		data6.value = 2;
-		data6.colorValue = 6;
+		data6.setName("F");
+		data6.setValue(2);
+		data6.setColorValue(6);
 		HIData data7 = new HIData();
-		data7.name = "G";
-		data7.value = 1;
-		data7.colorValue = 7;
+		data7.setName("G");
+		data7.setValue(1);
+		data7.setColorValue(7);
 
-		series1.data = new ArrayList<>(Arrays.asList(data1, data2, data3, data4, data5, data6, data7));
+		series1.setData(new ArrayList<>(Arrays.asList(data1, data2, data3, data4, data5, data6, data7)));
 
-		options.series = new ArrayList<>(Arrays.asList(series1));
+		options.setSeries(new ArrayList<>(Arrays.asList(series1)));
 
 		HashMap<String, Object> additionalOptions = new HashMap<>();
 		HashMap<String, Object> colorAxis = new HashMap<>();
@@ -73,8 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
 		options.additionalOptions = additionalOptions;
 
-
-		chartView.options = options;
+		chartView.setOptions(options);
 	}
 }
 

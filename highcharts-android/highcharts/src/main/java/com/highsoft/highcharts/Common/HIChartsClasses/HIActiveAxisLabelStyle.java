@@ -11,22 +11,66 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HIActiveAxisLabelStyle implements HIChartsJSONSerializable { 
+public class HIActiveAxisLabelStyle extends Observable implements HIChartsJSONSerializable { 
 
-	public String cursor;
-	public String color;
-	public String textDecoration;
-	public String fontWeight;
+	private String cursor;
+	public void setCursor(String cursor) {
+		this.cursor = cursor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getCursor(){ return cursor; }
+
+	private String color;
+	public void setColor(String color) {
+		this.color = color;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getColor(){ return color; }
+
+	private String textDecoration;
+	public void setTextDecoration(String textDecoration) {
+		this.textDecoration = textDecoration;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTextDecoration(){ return textDecoration; }
+
+	private String fontWeight;
+	public void setFontWeight(String fontWeight) {
+		this.fontWeight = fontWeight;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getFontWeight(){ return fontWeight; }
+
 
 
 	public HIActiveAxisLabelStyle() {
 
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

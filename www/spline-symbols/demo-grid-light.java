@@ -24,74 +24,68 @@ public class MainActivity extends AppCompatActivity {
 
 		HIOptions options = new HIOptions();
 
-		HIChart chart = new HIChart();
-		chart.type = "spline";
-		options.chart = chart;
-
 		HITitle title = new HITitle();
-		title.text = "Monthly Average Temperature";
-		options.title = title;
+		title.setText("Monthly Average Temperature");
+		options.setTitle(title);
 
 		HISubtitle subtitle = new HISubtitle();
-		subtitle.text = "Source: WorldClimate.com";
-		options.subtitle = subtitle;
+		subtitle.setText("Source: WorldClimate.com");
+		options.setSubtitle(subtitle);
 
 		HIXAxis xAxis = new HIXAxis();
 		String[] categoriesList = new String[] {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-		xAxis.categories = new ArrayList<>(Arrays.asList(categoriesList));
-		options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
+		xAxis.setCategories(new ArrayList<>(Arrays.asList(categoriesList)));
+		options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
 		HIYAxis yAxis = new HIYAxis();
-		yAxis.title = new HITitle();
-		yAxis.title.text = "Temperature";
-		yAxis.labels = new HILabels();
-		yAxis.labels.formatter = new HIFunction(
+		yAxis.setTitle(new HITitle());
+		yAxis.getTitle().setText("Temperature");
+		yAxis.setLabels(new HILabels());
+		yAxis.getLabels().setFormatter(new HIFunction(
 		        f -> f.getProperty("value") + "°",
 		        new String[] {"value"}
-        	);		
-		options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
+		));
+		options.setYAxis(new ArrayList<HIYAxis>(){{add(yAxis);}});
 
 		HITooltip tooltip = new HITooltip();
-		tooltip.crosshairs = true;
-		tooltip.shared = true;
-		options.tooltip = tooltip;
+		tooltip.setShared(true);
+		options.setTooltip(tooltip);
 
 		HIPlotOptions plotOptions = new HIPlotOptions();
-		plotOptions.spline = new HISpline();
-		plotOptions.spline.marker = new HIMarker();
-		plotOptions.spline.marker.radius = 4;
-		plotOptions.spline.marker.lineColor = HIColor.initWithHexValue("666666");
-		plotOptions.spline.marker.lineWidth = 1;
-		options.plotOptions = plotOptions;
+		plotOptions.setSpline(new HISpline());
+		plotOptions.getSpline().setMarker(new HIMarker());
+		plotOptions.getSpline().getMarker().setRadius(4);
+		plotOptions.getSpline().getMarker().setLineColor(HIColor.initWithHexValue("666666"));
+		plotOptions.getSpline().getMarker().setLineWidth(1);
+		options.setPlotOptions(plotOptions);
 
 		HISpline series1 = new HISpline();
-		series1.name = "Tokyo";
-		series1.marker = new HIMarker();
-		series1.marker.symbol = "square";
+		series1.setName("Tokyo");
+		series1.setMarker(new HIMarker());
+		series1.getMarker().setSymbol("square");
 		HIData data1 = new HIData();
-		data1.y = 26.5;
-		data1.marker = new HIMarker();
-		data1.marker.symbol = "url(https://www.highcharts.com/samples/graphics/sun.png)";
+		data1.setY(26.5);
+		data1.setMarker(new HIMarker());
+		data1.getMarker().setSymbol("url(https://www.highcharts.com/samples/graphics/sun.png)");
 
 		Object[] series1_data = new Object[] { 7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, data1, 23.3, 18.3, 13.9, 9.6 };
-		series1.data = new ArrayList<>(Arrays.asList(series1_data));
+		series1.setData(new ArrayList<>(Arrays.asList(series1_data)));
 
 		HISpline series2 = new HISpline();
-		series2.name = "London";
-		series2.marker = new HIMarker();
-		series2.marker.symbol = "diamond";
+		series2.setName("London");
+		series2.setMarker(new HIMarker());
+		series2.getMarker().setSymbol("diamond");
 		HIData data2 = new HIData();
-		data2.y = 3.9;
-		data2.marker = new HIMarker();
-		data2.marker.symbol = "url(https://www.highcharts.com/samples/graphics/snow.png)";
+		data2.setY(3.9);
+		data2.setMarker(new HIMarker());
+		data2.getMarker().setSymbol("url(https://www.highcharts.com/samples/graphics/snow.png)");
 
 		Object[] series2_data = new Object[] { data2, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8 };
-		series2.data = new ArrayList<>(Arrays.asList(series2_data));
+		series2.setData(new ArrayList<>(Arrays.asList(series2_data)));
 
-		options.series = new ArrayList<>(Arrays.asList(series1, series2));
+		options.setSeries(new ArrayList<>(Arrays.asList(series1, series2)));
 
-
-		chartView.options = options;
+		chartView.setOptions(options);
 	}
 }
 

@@ -20,33 +20,33 @@ public class MainActivity extends AppCompatActivity {
         chartView.theme = "sand-signika";
 
         HIOptions options = new HIOptions();
-        
-        HIChart chart = new HIChart();
-        chart.renderTo = "container";
-        chart.type = "column";
-        chart.options3d = new HIOptions3d();
-        chart.options3d.enabled = true;
-        chart.options3d.alpha = 15;
-        chart.options3d.beta = 15;
-        chart.options3d.depth = 50;
-        chart.options3d.viewDistance = 25;
-        options.chart = chart;
+
+	HIChart chart = new HIChart();
+        chart.setRenderTo("container");
+        chart.setType("column");
+        chart.setOptions3d(new HIOptions3d());
+        chart.getOptions3d().setEnabled(true);
+        chart.getOptions3d().setAlpha(15);
+        chart.getOptions3d().setBeta(15);
+        chart.getOptions3d().setDepth(50);
+        chart.getOptions3d().setViewDistance(25);
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "Chart rotation demo";
-        options.title = title;
+        title.setText("Chart rotation demo");
+        options.setTitle(title);
 
         HIPlotOptions plotOptions = new HIPlotOptions();
-        plotOptions.column = new HIColumn();
-        plotOptions.column.depth = 25;
-        options.plotOptions = plotOptions;
+        plotOptions.setColumn(new HIColumn());
+        plotOptions.getColumn().setDepth(25);
+        options.setPlotOptions(plotOptions);
 
         HIColumn series1 = new HIColumn();
         Number[] series1_data = new Number[] { 29.9, 71.5, 106.4, 129.2, 144, 176, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4 };
-        series1.data = new ArrayList<>(Arrays.asList(series1_data));
-        options.series = new ArrayList<>(Arrays.asList(series1));
+        series1.setData(new ArrayList<>(Arrays.asList(series1_data)));
+        options.setSeries(new ArrayList<>(Arrays.asList(series1)));
 
-        chartView.options = options;
+        chartView.setOptions(options);
     }
 }
 

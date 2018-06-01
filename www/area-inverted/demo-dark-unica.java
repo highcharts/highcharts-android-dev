@@ -23,61 +23,61 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HIChart chart = new HIChart();
-        chart.type = "area";
-        chart.inverted = true;
-        options.chart = chart;
+        chart.setType("area");
+        chart.setInverted(true);
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "Average fruit consumption during one week";
-        options.title = title;
+        title.setText("Average fruit consumption during one week");
+        options.setTitle(title);
 
         HISubtitle subtitle = new HISubtitle();
-        subtitle.style = new HashMap<>();
-        subtitle.style.put("position", "absolute");
-        subtitle.style.put("right", "0px");
-        subtitle.style.put("bottom", "10px");
-        options.subtitle = subtitle;
+        subtitle.setStyle(new HashMap<>());
+        subtitle.getStyle().put("position", "absolute");
+        subtitle.getStyle().put("right", "0px");
+        subtitle.getStyle().put("bottom", "10px");
+        options.setSubtitle(subtitle);
 
         HIXAxis xaxis = new HIXAxis();
         String[] days = new String[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
-        xaxis.categories = new ArrayList<>(Arrays.asList(days));
-        options.xAxis = new ArrayList<HIXAxis>(){{add(xaxis);}};
+        xaxis.setCategories(new ArrayList<>(Arrays.asList(days)));
+        options.setXAxis(new ArrayList<HIXAxis>(){{add(xaxis);}});
 
         HIYAxis yaxis = new HIYAxis();
-        yaxis.title = new HITitle();
-        yaxis.title.text = "Number of units";
-        yaxis.labels = new HILabels();
-        yaxis.labels.formatter = new HIFunction(
+        yaxis.setTitle(new HITitle());
+        yaxis.getTitle().setText("Number of units");
+        yaxis.setLabels(new HILabels());
+        yaxis.getLabels().setFormatter(new HIFunction(
                 f -> { return String.valueOf(f.getProperty("value")); },
-                new String[] {"value"} );
-        options.yAxis = new ArrayList<HIYAxis>(){{add(yaxis);}};
+                new String[] {"value"} ));
+        options.setYAxis(new ArrayList<HIYAxis>(){{add(yaxis);}});
 
         HILegend legend = new HILegend();
-        legend.layout = "vertical";
-        legend.align = "right";
-        legend.verticalAlign = "top";
-        legend.x = -100;
-        legend.y = 100;
-        legend.floating = true;
-        legend.borderWidth = 1;
-        legend.backgroundColor = HIColor.initWithHexValue("FFFFFF");
-        options.legend = legend;
+        legend.setLayout("vertical");
+        legend.setAlign("right");
+        legend.setVerticalAlign("top");
+        legend.setX(-100);
+        legend.setY(100);
+        legend.setFloating(true);
+        legend.setBorderWidth(1);
+        legend.setBackgroundColor(HIColor.initWithHexValue("FFFFFF"));
+        options.setLegend(legend);
 
         HIPlotOptions plotOptions = new HIPlotOptions();
-        plotOptions.area = new HIArea();
-        plotOptions.area.fillOpacity = 0.5;
+        plotOptions.setArea(new HIArea());
+        plotOptions.getArea().setFillOpacity(0.5);
 
         HIArea area1 = new HIArea();
-        area1.name = "John";
+        area1.setName("John");
         Number[] data1 = new Number[] { 4, 3, 5, 4, 10, 12 };
-        area1.data = new ArrayList<>(Arrays.asList(data1));
+        area1.setData(new ArrayList<>(Arrays.asList(data1)));
         HIArea area2 = new HIArea();
-        area2.name = "Jane";
+        area2.setName("Jane");
         Number[] data2 = new Number[] { 3, 4, 3, 3, 5, 4 };
-        area2.data = new ArrayList<>(Arrays.asList(data2));
-        options.series = new ArrayList<>(Arrays.asList(area1, area2));
+        area2.setData(new ArrayList<>(Arrays.asList(data2)));
+        options.setSeries(new ArrayList<>(Arrays.asList(area1, area2)));
 
-        chartView.options = options;
+        chartView.setOptions(options);
     }
 }
 

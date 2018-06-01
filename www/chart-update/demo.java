@@ -25,30 +25,30 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HIChart chart = new HIChart();
-        chart.type = "column";
-        options.chart = chart;
+        chart.setType("column");
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "Chart.update";
-        options.title = title;
+        title.setText("Chart.update");
+        options.setTitle(title);
 
         HISubtitle subtitle = new HISubtitle();
-        subtitle.text = "Plain";
+        subtitle.setText("Plain");
         currentButtonClicked = "Plain";
-        options.subtitle = subtitle;
+        options.setSubtitle(subtitle);
 
         HIXAxis xaxis = new HIXAxis();
-        xaxis.categories = new ArrayList<>(Arrays.asList("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ));
-        options.xAxis = new ArrayList<>(Collections.singletonList(xaxis));
+        xaxis.setCategories(new ArrayList<>(Arrays.asList("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" )));
+        options.setXAxis(new ArrayList<>(Collections.singletonList(xaxis)));
 
         HIColumn column = new HIColumn();
-        column.colorByPoint = true;
+        column.setColorByPoint(true);
         Number[] columnData = new Number[] { 29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4 };
-        column.data = new ArrayList<>(Arrays.asList(columnData));
-        column.showInLegend = false;
-        options.series = new ArrayList<>(Collections.singletonList(column));
+        column.setData(new ArrayList<>(Arrays.asList(columnData)));
+        column.setShowInLegend(false);
+        options.setSeries(new ArrayList<>(Collections.singletonList(column)));
 
-        chartView.options = options;
+        chartView.setOptions(options);
 
         Button plainButton = (Button) findViewById(R.id.plain);
         plainButton.setOnClickListener(v -> changeChartAppearance(currentButtonClicked, (String) plainButton.getText()));
@@ -62,51 +62,25 @@ public class MainActivity extends AppCompatActivity {
 
         if(buttonText.equals(current)) return;
 
-        HIOptions newOptions = new HIOptions();
-        HIChart newChart = new HIChart();
-        newChart.type = "column";
-        HISubtitle newSubtitle = new HISubtitle();
-
         switch (buttonText) {
             case "Plain":
-                newChart.inverted = false;
-                newChart.polar = false;
-                newSubtitle.text = buttonText;
+                chartView.getOptions().getChart().setInverted(false);
+                chartView.getOptions().getChart().setPolar(false);
+                chartView.getOptions().getSubtitle().setText(buttonText);
                 currentButtonClicked = buttonText;
                 break;
-            case "Inverted":
-                newChart.inverted = true;
-                newChart.polar = false;
-                newSubtitle.text = buttonText;
+            case "Invert":
+                chartView.getOptions().getChart().setInverted(true);
+                chartView.getOptions().getChart().setPolar(false);
+                chartView.getOptions().getSubtitle().setText(buttonText);
                 currentButtonClicked = buttonText;
                 break;
             case "Polar":
-                newChart.inverted = false;
-                newChart.polar = true;
-                newSubtitle.text = buttonText;
+                chartView.getOptions().getChart().setInverted(false);
+                chartView.getOptions().getChart().setPolar(true);
+                chartView.getOptions().getSubtitle().setText(buttonText);
                 currentButtonClicked = buttonText;
                 break;
         }
-
-        newOptions.subtitle = newSubtitle;
-        newOptions.chart = newChart;
-
-        HITitle title = new HITitle();
-        title.text = "Chart.update";
-        newOptions.title = title;
-
-        HIXAxis xaxis = new HIXAxis();
-        xaxis.categories = new ArrayList<>(Arrays.asList("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ));
-        newOptions.xAxis = new ArrayList<>(Collections.singletonList(xaxis));
-
-        HIColumn column = new HIColumn();
-        column.colorByPoint = true;
-        Number[] columnData = new Number[] { 29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4 };
-        column.data = new ArrayList<>(Arrays.asList(columnData));
-        column.showInLegend = false;
-        newOptions.series = new ArrayList<>(Collections.singletonList(column));
-
-        this.chartView.options = newOptions;
-        this.chartView.reload();
     }
 }

@@ -22,35 +22,33 @@ public class MainActivity extends AppCompatActivity {
         chartView.plugins = new ArrayList<>(Arrays.asList("boost"));
 	chartView.theme = "dark-unica";
 
-        HIOptions options = new HIOptions();
-
         HIChart chart = new HIChart();
-        chart.type = "line";
-        chart.zoomType = "x";
-        options.chart = chart;
+        chart.setType("line");
+        chart.setZoomType("x");
+        options.setChart(chart);
 
         HIBoost boost = new HIBoost();
-        boost.useGPUTranslations = true;
-        options.boost = boost;
+        boost.setUseGPUTranslations(true);
+        options.setBoost(boost);
 
         HITitle title = new HITitle();
-        title.text = "Highcharts drawing 500 points";
-        options.title = title;
+        title.setText("Highcharts drawing 500 points");
+        options.setTitle(title);
 
         HISubtitle subtitle = new HISubtitle();
-        subtitle.text = "Using the Boost module";
-        options.subtitle = subtitle;
+        subtitle.setText("Using the Boost module");
+        options.setSubtitle(subtitle);
 
         HITooltip tooltip = new HITooltip();
-        tooltip.valueDecimals = 2;
-        options.tooltip = tooltip;
+        tooltip.setValueDecimals(2);
+        options.setTooltip(tooltip);
 
         HILine line = new HILine();
-        line.data = this.data();
-        line.lineWidth = 0.5;
-        options.series = new ArrayList<>(Collections.singletonList(line));
+        line.setData(this.data());
+        line.setLineWidth(0.5);
+        options.setSeries(new ArrayList<>(Collections.singletonList(line)));
 
-        chartView.options = options;
+        chartView.setOptions(options);
     }
 
     private ArrayList data(){

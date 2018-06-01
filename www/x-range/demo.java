@@ -23,32 +23,28 @@ public class MainActivity extends AppCompatActivity {
 
 		HIOptions options = new HIOptions();
 
-		HIChart chart = new HIChart();
-		chart.type = "xrange";
-		options.chart = chart;
-
 		HITitle title = new HITitle();
-		title.text = "Highcharts X-range";
-		options.title = title;
+		title.setText("Highcharts X-range");
+		options.setTitle(title);
 
 		HIXAxis xAxis = new HIXAxis();
-		xAxis.type = "datetime";
-		options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
+		xAxis.setType("datetime");
+		options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
 		HIYAxis yAxis = new HIYAxis();
 		String[] categoriesList = new String[] {"Prototyping", "Development", "Testing" };
-		yAxis.categories = new ArrayList<>(Arrays.asList(categoriesList));
-		yAxis.title = new HITitle();
-		yAxis.title.text = "";
-		yAxis.reversed = true;
-		options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
+		yAxis.setCategories(new ArrayList<>(Arrays.asList(categoriesList)));
+		yAxis.setTitle(new HITitle());
+		yAxis.getTitle().setText("");
+		yAxis.setReversed(true);
+		options.setYAxis(new ArrayList<HIYAxis>(){{add(yAxis);}});
 
 		HIXrange series1 = new HIXrange();
-		series1.name = "Project 1";
-		//series1.pointPadding = 0;
-		//series1.groupZPadding = 0;
-		series1.borderColor = HIColor.initWithName("gray");
-		series1.pointWidth = 20;
+		series1.setName("Project 1");
+		series1.setPointPadding(0);
+		series1.setGroupZPadding(0);
+		series1.setBorderColor(HIColor.initWithName("gray"));
+		series1.setPointWidth(20);
 
 		HashMap<String, Object> map1 = new HashMap<>();
 		map1.put("x", 1416528000000L);
@@ -76,15 +72,14 @@ public class MainActivity extends AppCompatActivity {
 		map5.put("x2" , 1419292800000L);
 		map5.put("y" , 2);
 
-		series1.data = new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5));
+		series1.setData(new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5)));
 
-		series1.dataLabels = new HIDataLabels();
-		series1.dataLabels.enabled = true;
+		series1.setDataLabels(new HIDataLabels());
+		series1.getDataLabels().setEnabled(true);
 
-		options.series = new ArrayList<>(Arrays.asList(series1));
+		options.setSeries(new ArrayList<>(Arrays.asList(series1)));
 
-
-		chartView.options = options;
+		chartView.setOptions(options);
 	}
 }
 

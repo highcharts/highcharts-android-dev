@@ -25,97 +25,98 @@ public class MainActivity extends AppCompatActivity {
 		HIOptions options = new HIOptions();
 
 		HIChart chart = new HIChart();
-		chart.type = "spline";
-		chart.parallelCoordinates = true;
-		chart.parallelAxes = new HIParallelAxes();
-		chart.parallelAxes.lineWidth = 2;
-		options.chart = chart;
+		chart.setType("spline");
+		chart.setParallelCoordinates(true);
+		chart.setParallelAxes(new HIParallelAxes());
+		chart.getParallelAxes().setLineWidth(2);
+		options.setChart(chart);
 
 		HITitle title = new HITitle();
-		title.text = "Marathon set";
-		options.title = title;
+		title.setText("Marathon set");
+		options.setTitle(title);
 
 		HIPlotOptions plotOptions = new HIPlotOptions();
-		plotOptions.series = new HISeries();
-		plotOptions.series.animation = new HIAnimation();
-		plotOptions.series.animation.duration = 0;
-		plotOptions.series.marker = new HIMarker();
-		plotOptions.series.marker.enabled = false;
-		plotOptions.series.marker.states = new HIStates();
-		plotOptions.series.marker.states.hover = new HIHover();
-		plotOptions.series.marker.states.hover.enabled = false;
-		plotOptions.series.states = new HIStates();
-		plotOptions.series.states.hover = new HIHover();
-		plotOptions.series.states.hover.halo = new HIHalo();
-		plotOptions.series.states.hover.halo.size = 0;
-		plotOptions.series.events = new HIEvents();
-		plotOptions.series.events.mouseOver = new HIFunction("function () { this.group.toFront();}");
-		options.plotOptions = plotOptions;
+		plotOptions.setSeries(new HISeries());
+		plotOptions.getSeries().setAnimation(new HIAnimation());
+		plotOptions.getSeries().getAnimation().setDuration(0);
+		plotOptions.getSeries().setMarker(new HIMarker());
+		plotOptions.getSeries().getMarker().setEnabled(false);
+		plotOptions.getSeries().getMarker().setStates(new HIStates());
+		plotOptions.getSeries().getMarker().getStates().setHover(new HIHover());
+		plotOptions.getSeries().getMarker().getStates().getHover().setEnabled(false);
+		plotOptions.getSeries().setStates(new HIStates());
+		plotOptions.getSeries().getStates().setHover(new HIHover());
+		plotOptions.getSeries().getStates().getHover().setHalo(new HIHalo());
+		plotOptions.getSeries().getStates().getHover().getHalo().setSize(0);
+		plotOptions.getSeries().setEvents(new HIEvents());
+		plotOptions.getSeries().getEvents().setMouseOver(new HIFunction("function () { this.group.toFront();}"));
+		options.setPlotOptions(plotOptions);
 
 		HITooltip tooltip = new HITooltip();
-		tooltip.pointFormat = "<span style=\"color:{point.color}\">\u25CF</span> {series.name}: <b>{point.formattedValue}</b><br/>";
-		options.tooltip = tooltip;
+		tooltip.setPointFormat("<span style=\"color:{point.color}\">\u25CF</span> {series.name}: <b>{point.formattedValue}</b><br/>");
+		options.setTooltip(tooltip);
 
 		HILegend legend = new HILegend();
-		legend.enabled = false;
-		options.legend = legend;
+		legend.setEnabled(false);
+		options.setLegend(legend);
 
 		HIXAxis xaxis = new HIXAxis();
 		String[] categories1 = new String[] {
-			"Training date",
-			"Miles for training run",
-			"Training time",
-			"Shoe brand",
-			"Running pace per mile",
-			"Short or long",
-			"After 2004"
+		        "Training date",
+		        "Miles for training run",
+		        "Training time",
+		        "Shoe brand",
+		        "Running pace per mile",
+		        "Short or long",
+		        "After 2004"
 		};
-		xaxis.categories = new ArrayList<>(Arrays.asList(categories1));
-		xaxis.offset = 10;
-		options.xAxis = new ArrayList<>(Collections.singletonList(xaxis));
+		xaxis.setCategories(new ArrayList<>(Arrays.asList(categories1)));
+		xaxis.setOffset(10);
+		options.setXAxis(new ArrayList<>(Collections.singletonList(xaxis)));
 
 		HIYAxis yaxis1 = new HIYAxis();
-		yaxis1.type = "datetime";
-		yaxis1.tooltipValueFormat = "{value:%Y-%m-%d}";
+		yaxis1.setType("datetime");
+		yaxis1.setTooltipValueFormat("{value:%Y-%m-%d}");
 
 		HIYAxis yaxis2 = new HIYAxis();
-		yaxis2.min = 0;
-		yaxis2.tooltipValueFormat = "{value} mile(s)";
+		yaxis2.setMin(0);
+		yaxis2.setTooltipValueFormat("{value:%Y-%m-%d}");
 
 		HIYAxis yaxis3 = new HIYAxis();
-		yaxis3.type = "datetime";
-		yaxis3.min = 0;
-		yaxis3.labels = new HILabels();
-		yaxis3.labels.format = "{value:%H:%M}";
+		yaxis3.setType("datetime");
+		yaxis3.setMin(0);
+		yaxis3.setLabels(new HILabels());
+		yaxis3.getLabels().setFormat("{value:%H:%M}");
 
 		HIYAxis yaxis4 = new HIYAxis();
 		String[] categories2 = new String[] {
-			"Other",
-			"Adidas",
-			"Mizuno",
-			"Asics",
-			"Brooks",
-			"New Balance",
-			"Izumi"
+		        "Other",
+		        "Adidas",
+		        "Mizuno",
+		        "Asics",
+		        "Brooks",
+		        "New Balance",
+		        "Izumi"
 		};
-		yaxis4.categories = new ArrayList<>(Arrays.asList(categories2));
+		yaxis4.setCategories(new ArrayList<>(Arrays.asList(categories2)));
 
 		HIYAxis yaxis5 = new HIYAxis();
-		yaxis5.type = "datetime";
+		yaxis5.setType("datetime");
 
 		HIYAxis yaxis6 = new HIYAxis();
-		yaxis6.categories = new ArrayList<>(Arrays.asList("&gt; 5miles", "&lt; 5miles"));
+		yaxis6.setCategories(new ArrayList<>(Arrays.asList("&gt; 5miles", "&lt; 5miles")));
 
 		HIYAxis yaxis7 = new HIYAxis();
-		yaxis7.categories = new ArrayList<>(Arrays.asList("Before", "After"));
-		options.yAxis = new ArrayList<>(Arrays.asList(yaxis1, yaxis2, yaxis3, yaxis4, yaxis5, yaxis6, yaxis7));
+		yaxis7.setCategories(new ArrayList<>(Arrays.asList("Before", "After")));
+		options.setYAxis(new ArrayList<>(Arrays.asList(yaxis1, yaxis2, yaxis3, yaxis4, yaxis5, yaxis6, yaxis7)));
 
 		HIColor color1 = HIColor.initWithRGBA(11, 200, 200, 0.1);
-		options.colors = new ArrayList<>(Collections.singletonList(color1));
+		options.setColors(new ArrayList<>(Collections.singletonList(color1)));
 
-		options.series = this.set();
+		options.setSeries(this.set());
 
-		chartView.options = options;
+		chartView.setOptions(options);
+
 	}
 
 private ArrayList<HISeries> set() {
@@ -684,7 +685,6 @@ private ArrayList<HISeries> set() {
              {1077318000000L, 10, 5809980, 0, 580980, 0, 0},
              {1077404400000L, 5, 2437980, 0, 487620.00000000006, 1, 0},
              {1077490800000L, 7, 3462000L, 0, 494580.00000000006, 0, 0},
-				//it's ok up to this moment
              {1078095600000L, 7, 3900000L, 0, 557160, 0, 0},
              {1078095600000L, 18, 9913980, 0, 550800, 0, 0},
              {1078268400000L, 7, 3709980, 0, 529980, 0, 0},
@@ -1256,12 +1256,12 @@ private ArrayList<HISeries> set() {
 
 		HISpline spline;
 		for(int i = 0; i < data.length; i++){
-			spline = new HISpline();
-			spline.name = "Runner " + String.valueOf(i + 1);
-			spline.data = new ArrayList<>();
-			Collections.addAll(spline.data, data[i]);
-			spline.shadow = false;
-			series.add(spline);
+		    spline = new HISpline();
+		    spline.setName("Runner " + String.valueOf(i + 1));
+		    spline.setData(new ArrayList<>());
+		    Collections.addAll(spline.getData(), data[i]);
+		    spline.setShadow(false);
+		    series.add(spline);
 		}
 		return series;
 	}

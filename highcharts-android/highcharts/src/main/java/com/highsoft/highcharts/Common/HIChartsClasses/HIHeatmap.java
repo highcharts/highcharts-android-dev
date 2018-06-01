@@ -11,6 +11,8 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.Common.HIColor;
@@ -47,34 +49,72 @@ Highcharts.chart('container', {
 */
 
 public class HIHeatmap extends HISeries {
-
+	private Number pointPadding;
 /**
 Padding between the points in the heatmap.
  <br><br><b>default:</b><br><br>&ensp;0*/
-	public Number pointPadding;
+	public void setPointPadding(Number pointPadding) {
+		this.pointPadding = pointPadding;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getPointPadding(){ return pointPadding; }
+
+	private Number colsize;
 /**
 The column size - how many X axis units each column in the heatmap
 should span.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/heatmap/">One day</a> <br><br><b>default:</b><br><br>&ensp;1*/
-	public Number colsize;
+	public void setColsize(Number colsize) {
+		this.colsize = colsize;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getColsize(){ return colsize; }
+
+	private Number rowsize;
 /**
 The row size - how many Y axis units each heatmap row should span.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/heatmap/">1 by default</a> <br><br><b>default:</b><br><br>&ensp;1*/
-	public Number rowsize;
+	public void setRowsize(Number rowsize) {
+		this.rowsize = rowsize;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getRowsize(){ return rowsize; }
+
+	private HIColor nullColor;
 /**
 The color applied to null points. In styled mode, a general CSS class is
 applied instead.
 */
-	public HIColor nullColor;
+	public void setNullColor(HIColor nullColor) {
+		this.nullColor = nullColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getNullColor(){ return nullColor; }
+
 
 
 	public HIHeatmap() {
 		super(); 
-		this.type = "heatmap";
+		this.setType("heatmap");
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

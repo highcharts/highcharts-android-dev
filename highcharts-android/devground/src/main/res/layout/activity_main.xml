@@ -12,18 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp" />
+        tools:layout_editor_absoluteX="8dp" >
 
-    <!--<Button-->
-        <!--android:id="@+id/button1"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="FIRST CHANGE" />-->
-    <!--<Button-->
-        <!--android:id="@+id/button2"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="SECOND CHANGE" />-->
+        <!--<Button-->
+            <!--android:id="@+id/button1"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:text="FIRST CHANGE" />-->
+    </com.highsoft.highcharts.Core.HIChartView>
+
 
 
 

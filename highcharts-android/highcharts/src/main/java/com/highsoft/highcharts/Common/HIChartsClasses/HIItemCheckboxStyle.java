@@ -11,21 +11,57 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HIItemCheckboxStyle implements HIChartsJSONSerializable { 
+public class HIItemCheckboxStyle extends Observable implements HIChartsJSONSerializable { 
 
-	public String position;
-	public String height;
-	public String width;
+	private String position;
+	public void setPosition(String position) {
+		this.position = position;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getPosition(){ return position; }
+
+	private String height;
+	public void setHeight(String height) {
+		this.height = height;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getHeight(){ return height; }
+
+	private String width;
+	public void setWidth(String width) {
+		this.width = width;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getWidth(){ return width; }
+
 
 
 	public HIItemCheckboxStyle() {
 
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

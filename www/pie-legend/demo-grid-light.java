@@ -22,31 +22,31 @@ public class MainActivity extends AppCompatActivity {
 		HIOptions options = new HIOptions();
 
 		HIChart chart = new HIChart();
-		chart.type = "pie";
-		chart.plotBackgroundColor = null;
-		chart.plotBorderWidth = null;
-		chart.plotShadow = false;
-		options.chart = chart;
+		chart.setType("pie");
+		chart.setBackgroundColor(null);
+		chart.setPlotBorderWidth(null);
+		chart.setPlotShadow(false);
+		options.setChart(chart);
 
 		HITitle title = new HITitle();
-		title.text = "Browser market shares January, 2015 to May, 2015";
-		options.title = title;
+		title.setText("Browser market shares January, 2015 to May, 2015");
+		options.setTitle(title);
 
 		HITooltip tooltip = new HITooltip();
-		tooltip.pointFormat = "{series.name}: <b>{point.percentage:.1f}%</b>";
-		options.tooltip = tooltip;
+		tooltip.setPointFormat("{series.name}: <b>{point.percentage:.1f}%</b>");
+		options.setTooltip(tooltip);
 
 		HIPlotOptions plotOptions = new HIPlotOptions();
-		plotOptions.pie = new HIPie();
-		plotOptions.pie.allowPointSelect = true;
-		plotOptions.pie.cursor = "pointer";
-		plotOptions.pie.dataLabels = new HIDataLabels();
-		plotOptions.pie.dataLabels.enabled = false;
-		plotOptions.pie.showInLegend = true;
-		options.plotOptions = plotOptions;
+		plotOptions.setPie(new HIPie());
+		plotOptions.getPie().setAllowPointSelect(true);
+		plotOptions.getPie().setCursor("pointer");
+		plotOptions.getPie().setDataLabels(new HIDataLabels());
+		plotOptions.getPie().getDataLabels().setEnabled(false);
+		plotOptions.getPie().setShowInLegend(true);
+		options.setPlotOptions(plotOptions);
 
 		HIPie series1 = new HIPie();
-		series1.name = "Brands";
+		series1.setName("Brands");
 
 		HashMap<String, Object> map1 = new HashMap<>();
 		map1.put("name", "Microsoft Internet Explorer");
@@ -74,12 +74,11 @@ public class MainActivity extends AppCompatActivity {
 		map6.put("name", "Proprietary or Undetectable");
 		map6.put("y", 0.2);
 
-		series1.data = new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6));
+		series1.setData(new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6)));
 
-		options.series = new ArrayList<>(Arrays.asList(series1));
+		options.setSeries(new ArrayList<>(Arrays.asList(series1)));
 
-
-		chartView.options = options;
+		chartView.setOptions(options);
 	}
 }
 

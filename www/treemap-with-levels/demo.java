@@ -22,21 +22,17 @@ public class MainActivity extends AppCompatActivity {
 
 		HIOptions options = new HIOptions();
 
-		HIChart chart = new HIChart();
-		chart.type = "treemap";
-		options.chart = chart;
-
 		HITitle title = new HITitle();
-		title.text = "Fruit consumption";
-		options.title = title;
+		title.setText("Fruit consumption");
+		options.setTitle(title);
 
 		HITreemap series1 = new HITreemap();
-		series1.layoutAlgorithm = "stripes";
-		series1.alternateStartingDirection = true;
+		series1.setLayoutAlgorithm("stripes");
+		series1.setAlternateStartingDirection(true);
 
 		HILevels level = new HILevels();
-		level.level = 1;
-		level.layoutAlgorithm = "sliceAndDice";
+		level.setLevel(1);
+		level.setLayoutAlgorithm("sliceAndDice");
 		HashMap<String, Object> dataLabels = new HashMap<>();
 		dataLabels.put("enabled", true);
 		dataLabels.put("align", "left");
@@ -45,9 +41,9 @@ public class MainActivity extends AppCompatActivity {
 		style.put("fontSize", "15px");
 		style.put("fontWeight", "bold");
 		dataLabels.put("style", style);
-		level.dataLabels = dataLabels;
+		level.setDataLabels(dataLabels);
 
-		series1.levels = new ArrayList<>(Arrays.asList(level));
+		series1.setLevels(new ArrayList<>(Arrays.asList(level)));
 
 		HashMap<String, Object> map1 = new HashMap<>();
 		map1.put("id", "A");
@@ -115,12 +111,11 @@ public class MainActivity extends AppCompatActivity {
 		map13.put("value", 2);
 		map13.put("color", "#9EDE00");
 
-		series1.data = new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6, map7, map8, map9, map10, map11, map12, map13));
+		series1.setData(new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6, map7, map8, map9, map10, map11, map12, map13)));
 
-		options.series = new ArrayList<>(Arrays.asList(series1));
+		options.setSeries(new ArrayList<>(Arrays.asList(series1)));
 
-
-		chartView.options = options;
+		chartView.setOptions(options);
 	}
 }
 

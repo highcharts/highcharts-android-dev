@@ -11,22 +11,67 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HIHalo implements HIChartsJSONSerializable { 
+public class HIHalo extends Observable implements HIChartsJSONSerializable { 
 
-	public Number opacity;
-	public HIAttributes attributes;
-	public Boolean enabled;
-	public Number size;
+	private Number opacity;
+	public void setOpacity(Number opacity) {
+		this.opacity = opacity;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getOpacity(){ return opacity; }
+
+	private HIAttributes attributes;
+	public void setAttributes(HIAttributes attributes) {
+		this.attributes = attributes;
+		this.attributes.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAttributes getAttributes(){ return attributes; }
+
+	private Boolean enabled;
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getEnabled(){ return enabled; }
+
+	private Number size;
+	public void setSize(Number size) {
+		this.size = size;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getSize(){ return size; }
+
 
 
 	public HIHalo() {
 
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

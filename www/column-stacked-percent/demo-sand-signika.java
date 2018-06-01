@@ -22,50 +22,48 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
         
         HIChart chart = new HIChart();
-        chart.type = "column";
-        options.chart = chart;
+        chart.setType("column");
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "Stacked column chart";
-        options.title = title;
+        title.setText("Stacked column chart");
+        options.setTitle(title);
 
         HIXAxis xAxis = new HIXAxis();
         String[] categoriesList = new String[] {"Apples", "Oranges", "Pears", "Grapes", "Bananas" };
-        xAxis.categories = new ArrayList<>(Arrays.asList(categoriesList));
-        options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
+        xAxis.setCategories(new ArrayList<>(Arrays.asList(categoriesList)));
+        options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
         HIYAxis yAxis = new HIYAxis();
-        yAxis.min = 0;
-        yAxis.title = new HITitle();
-        yAxis.title.text = "Total fruit consumption";
-        options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
+        yAxis.setMin(0);
+        yAxis.setTitle(new HITitle());
+        yAxis.getTitle().setText("Total fruit consumption");
+        options.setYAxis(new ArrayList<HIYAxis>(){{add(yAxis);}});
 
         HITooltip tooltip = new HITooltip();
-        tooltip.pointFormat = "<span style=\"color:{series.color}\">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>";
-        tooltip.shared = true;
-        options.tooltip = tooltip;
+        tooltip.setPointFormat("<span style=\"color:{series.color}\">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>");
+        tooltip.setShared(true);
+        options.setTooltip(tooltip);
 
         HIPlotOptions plotOptions = new HIPlotOptions();
-        plotOptions.column = new HIColumn();
-        plotOptions.column.stacking = "percent";
-        options.plotOptions = plotOptions;
+        plotOptions.setColumn(new HIColumn());
+        plotOptions.getColumn().setStacking("percent");
+        options.setPlotOptions(plotOptions);
 
         HIColumn series1 = new HIColumn();
-        series1.name = "John";
+        series1.setName("John");
         Number[] series1_data = new Number[] {5, 3, 4, 7, 2};
-        series1.data = new ArrayList<>(Arrays.asList(series1_data));
+        series1.setData(new ArrayList<>(Arrays.asList(series1_data)));
         HIColumn series2 = new HIColumn();
-        series2.name = "Jane";
+        series2.setName("Jane");
         Number[] series2_data = new Number[] {2, 2, 3, 2, 1};
-        series2.data = new ArrayList<>(Arrays.asList(series2_data));
+        series2.setData(new ArrayList<>(Arrays.asList(series2_data)));
         HIColumn series3 = new HIColumn();
-        series3.name = "Joe";
+        series3.setName("Joe");
         Number[] series3_data = new Number[] {3, 4, 4, 2, 5};
-        series3.data = new ArrayList<>(Arrays.asList(series3_data));
-        options.series = new ArrayList<>(Arrays.asList(series1, series2, series3));
+        series3.setData(new ArrayList<>(Arrays.asList(series3_data)));
+        options.setSeries(new ArrayList<>(Arrays.asList(series1, series2, series3)));
 
-
-        chartView.options = options;
+        chartView.setOptions(options);
     }
 }
-

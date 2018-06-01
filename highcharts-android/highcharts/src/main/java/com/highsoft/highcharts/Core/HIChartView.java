@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Observable;
@@ -40,7 +41,7 @@ public class HIChartView extends RelativeLayout {
      *  Options are main configuration entry point for chart view, for more
      *  information read API documentation.
      */
-    public HIOptions options;
+    private HIOptions options;
     /**
      *  Theme name to load from file system after preloading.
      */
@@ -191,20 +192,21 @@ public class HIChartView extends RelativeLayout {
         this.HTML.prepareViewWidth(Math.round(width/density), Math.round(height/density));
 
         if (this.plugins == null) {
-            this.plugins = new ArrayList<>();
+            this.plugins = new LinkedList<>();
         }
 
         String suffix = (this.debug) ? ".src.js" : ".js";
 
         // Load Highchart main scripts.
+        this.HTML.scripts = ""; //fix for doubling scripts when update
         this.HTML.prepareJavaScript("highcharts", "js/", suffix);
         this.HTML.prepareJavaScript("highcharts-more", "js/", suffix);
         this.HTML.prepareJavaScript("highcharts-3d", "js/", suffix);
 
         List plugins = HIGDependency.pluginsForOptions(this.options.getParams());
         this.plugins.addAll(plugins);
-        this.plugins.addAll(new ArrayList<>(Arrays.asList("exporting", "offline-exporting")));
-        this.plugins = new ArrayList(new HashSet(this.plugins));
+        this.plugins.addAll(new LinkedList<>(Arrays.asList("exporting", "offline-exporting")));
+        this.plugins = new LinkedList<>(new HashSet(this.plugins));
 
         for (Object plugin : this.plugins) {
             this.HTML.prepareJavaScript((String)plugin, "js/modules/", suffix);
@@ -270,17 +272,20 @@ public class HIChartView extends RelativeLayout {
             webView.evaluateJavascript(options, new ValueCallback<String>() {
                 @Override
                 public void onReceiveValue(String s) {
-                    Log.i("HIChartView", "Updated");
+//                    Log.i("HIChartView", "Updated");
                 }
             });
         }
     };
 
+    /**
+     *  Options are main configuration entry point for chart view, for more
+     *  information read API documentation.
+     */
     public void setOptions(HIOptions options) {
         this.options = options;
         this.options.addObserver(optionsChanged);
         this.options.notifyObservers();
-        Log.v("HIOptions", "set");
     }
 
     public HIOptions getOptions() {

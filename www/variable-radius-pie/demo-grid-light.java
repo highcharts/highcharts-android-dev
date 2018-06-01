@@ -23,24 +23,20 @@ public class MainActivity extends AppCompatActivity {
 
 		HIOptions options = new HIOptions();
 
-		HIChart chart = new HIChart();
-		chart.type = "variablepie";
-		options.chart = chart;
-
 		HITitle title = new HITitle();
-		title.text = "Countries compared by population density and total area.";
-		options.title = title;
+		title.setText("Countries compared by population density and total area.");
+		options.setTitle(title);
 
 		HITooltip tooltip = new HITooltip();
-		tooltip.headerFormat = "";
-		tooltip.pointFormat = "<span style=\"color:{point.color}\"></span> <b> {point.name}</b><br/>Area (square km): <b>{point.y}</b><br/>Population density (people per square km): <b>{point.z}</b><br/>";
-		options.tooltip = tooltip;
+		tooltip.setHeaderFormat("");
+		tooltip.setPointFormat("<span style=\"color:{point.color}\"></span> <b> {point.name}</b><br/>Area (square km): <b>{point.y}</b><br/>Population density (people per square km): <b>{point.z}</b><br/>");
+		options.setTooltip(tooltip);
 
 		HIVariablepie series1 = new HIVariablepie();
-		series1.minPointSize = 10;
-		series1.innerSize = "20%";
-		series1.zMin = 0;
-		series1.name = "countries";
+		series1.setMinPointSize(10);
+		series1.setInnerSize("20%");
+		series1.setZMin(0);
+		series1.setName("countries");
 
 		HashMap<String, Object> map0 = new HashMap<>();
 		map0.put("name", "Spain");
@@ -82,11 +78,10 @@ public class MainActivity extends AppCompatActivity {
 		map7.put("y", 357022);
 		map7.put("z", 235.6);
 
-		series1.data = new ArrayList<>(Arrays.asList(map0, map1, map2, map3, map4, map5, map6, map7));
-		options.series = new ArrayList<>(Arrays.asList(series1));
+		series1.setData(new ArrayList<>(Arrays.asList(map0, map1, map2, map3, map4, map5, map6, map7)));
+		options.setSeries(new ArrayList<>(Arrays.asList(series1)));
 
-
-		chartView.options = options;
+		chartView.setOptions(options);
 	}
 }
 

@@ -21,30 +21,26 @@ public class MainActivity extends AppCompatActivity {
 
 		HIOptions options = new HIOptions();
 
-		HIChart chart = new HIChart();
-		chart.type = "variwide";
-		options.chart = chart;
-
 		HITitle title = new HITitle();
-		title.text = "Labor Costs in Europe, 2016";
-		options.title = title;
+		title.setText("Labor Costs in Europe, 2016");
+		options.setTitle(title);
 
 		HISubtitle subtitle = new HISubtitle();
-		subtitle.text = "Source: <a href=\"http://ec.europa.eu/eurostat/web/labour-market/labour-costs/main-tables\">eurostat</a>";
-		options.subtitle = subtitle;
+		subtitle.setText("Source: <a href=\"http://ec.europa.eu/eurostat/web/labour-market/labour-costs/main-tables\">eurostat</a>");
+		options.setSubtitle(subtitle);
 
 		HIXAxis xAxis = new HIXAxis();
-		xAxis.type = "category";
-		xAxis.title = new HITitle();
-		xAxis.title.text = "Column widths are proportional to GDP";
-		options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
+		xAxis.setType("category");
+		xAxis.setTitle(new HITitle());
+		xAxis.getTitle().setText("Column widths are proportional to GDP");
+		options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
 		HILegend legend = new HILegend();
-		legend.enabled = false;
-		options.legend = legend;
+		legend.setEnabled(false);
+		options.setLegend(legend);
 
 		HIVariwide series1 = new HIVariwide();
-		series1.name = "Labor Costs";
+		series1.setName("Labor Costs");
 
 		Object[] object1 = new Object[] { "Norway", 50.2, 335504 };
 		Object[] object2 = new Object[] { "Denmark", 42, 277339 };
@@ -65,17 +61,17 @@ public class MainActivity extends AppCompatActivity {
 		Object[] object17 = new Object[] { "Romania", 5.5, 424269 };
 		Object[] object18 = new Object[] { "Finland", 33.2, 215615 };
 
-		series1.data = new ArrayList<>(Arrays.asList(object1, object2, object3, object4, object5, object6, object7, object8, object9, object10, object11, object12, object13, object14, object15, object16, object17, object18));
-		series1.dataLabels = new HIDataLabels();
-		series1.dataLabels.enabled = true;
-		series1.dataLabels.format = "€{point.y:.0f}";
-		series1.tooltip = new HITooltip();
-		series1.tooltip.pointFormat = "Labor Costs: <b>€ {point.y}/h</b><br>GDP: <b>€ {point.z} million</b><br>";
-		series1.colorByPoint = true;
-		
-		options.series = new ArrayList<>(Arrays.asList(series1));
-		
-		chartView.options = options;
+		series1.setData(new ArrayList<>(Arrays.asList(object1, object2, object3, object4, object5, object6, object7, object8, object9, object10, object11, object12, object13, object14, object15, object16, object17, object18)));
+		series1.setDataLabels(new HIDataLabels());
+		series1.getDataLabels().setEnabled(true);
+		series1.getDataLabels().setFormat("€{point.y:.0f}");
+		series1.setTooltip(new HITooltip());
+		series1.getTooltip().setPointFormat("Labor Costs: <b>€ {point.y}/h</b><br>GDP: <b>€ {point.z} million</b><br>");
+		series1.setColorByPoint(true);
+
+		options.setSeries(new ArrayList<>(Arrays.asList(series1)));
+
+		chartView.setOptions(options);
 	}
 }
 

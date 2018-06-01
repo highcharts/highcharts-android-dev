@@ -25,102 +25,100 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HIChart chart = new HIChart();
-        chart.zoomType = "xy";
-        options.chart = chart;
+        chart.setZoomType("xy");
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "Average Monthly Weather Data for Tokyo";
-        options.title = title;
+        title.setText("Average Monthly Weather Data for Tokyo");
+        options.setTitle(title);
 
         HISubtitle subtitle = new HISubtitle();
-        subtitle.text = "Source: WorldClimate.com";
-        options.subtitle = subtitle;
+        subtitle.setText("Source: WorldClimate.com");
+        options.setSubtitle(subtitle);
 
         HIXAxis xaxis = new HIXAxis();
-        xaxis.categories = new ArrayList<>(Arrays.asList("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"));
-        xaxis.crosshair = new HICrosshair();
-        options.xAxis = new ArrayList<>(Collections.singletonList(xaxis));
+        xaxis.setCategories(new ArrayList<>(Arrays.asList("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")));
+        xaxis.setCrosshair(new HICrosshair());
+        options.setXAxis(new ArrayList<>(Collections.singletonList(xaxis)));
 
         HIYAxis yaxis1 = new HIYAxis();
-        yaxis1.labels = new HILabels();
-        yaxis1.labels.format = "{value}°C";
-        yaxis1.labels.style = new HIStyle();
-        yaxis1.labels.style.color = "#90ed7d";
-        yaxis1.title = new HITitle();
-        yaxis1.title.text = "Temperature";
-        yaxis1.title.style = new HIStyle();
-        yaxis1.title.style.color = "#90ed7d";
-        yaxis1.opposite = true;
+        yaxis1.setLabels(new HILabels());
+        yaxis1.getLabels().setFormat("{value}°C");
+        yaxis1.getLabels().setStyle(new HIStyle());
+        yaxis1.getLabels().getStyle().setColor("#90ed7d");
+        yaxis1.setTitle(new HITitle());
+        yaxis1.getTitle().setText("Temperature");
+        yaxis1.getTitle().setStyle(new HIStyle());
+        yaxis1.getTitle().getStyle().setColor("#90ed7d");
+        yaxis1.setOpposite(true);
 
         HIYAxis yaxis2 = new HIYAxis();
-        yaxis2.gridLineWidth = 0;
-        yaxis2.labels = new HILabels();
-        yaxis2.labels.format = "{value} mm";
-        yaxis2.labels.style = new HIStyle();
-        yaxis2.labels.style.color = "#7cb5ec";
-        yaxis2.title = new HITitle();
-        yaxis2.title.text = "Rainfall";
-        yaxis2.title.style = new HIStyle();
-        yaxis2.title.style.color = "#7cb5ec";
+        yaxis2.setGridLineWidth(0);
+        yaxis2.setLabels(new HILabels());
+        yaxis2.getLabels().setFormat("{value} mm");
+        yaxis2.getLabels().setStyle(new HIStyle());
+        yaxis2.getLabels().getStyle().setColor("#7cb5ec");
+        yaxis2.setTitle(new HITitle());
+        yaxis2.getTitle().setText("Rainfall");
+        yaxis2.getTitle().setStyle(new HIStyle());
+        yaxis2.getTitle().getStyle().setColor("#7cb5ec");
 
         HIYAxis yaxis3 = new HIYAxis();
-        yaxis3.gridLineWidth = 0;
-        yaxis3.labels = new HILabels();
-        yaxis3.labels.format = "{value} mb";
-        yaxis3.labels.style = new HIStyle();
-        yaxis3.labels.style.color = "#434348";
-        yaxis3.title = new HITitle();
-        yaxis3.title.text = "Sea-Level Pressure";
-        yaxis3.title.style = new HIStyle();
-        yaxis3.title.style.color = "#434348";
-        yaxis3.opposite = true;
-        options.yAxis = new ArrayList<>(Arrays.asList(yaxis1, yaxis2, yaxis3));
+        yaxis3.setGridLineWidth(0);
+        yaxis3.setLabels(new HILabels());
+        yaxis3.getLabels().setFormat("{value} mb");
+        yaxis3.getLabels().setStyle(new HIStyle());
+        yaxis3.getLabels().getStyle().setColor("#434348");
+        yaxis3.setTitle(new HITitle());
+        yaxis3.getTitle().setText("Sea-Level Pressure");
+        yaxis3.getTitle().setStyle(new HIStyle());
+        yaxis3.getTitle().getStyle().setColor("#434348");
+        yaxis3.setOpposite(true);
+
+        options.setYAxis(new ArrayList<>(Arrays.asList(yaxis1, yaxis2, yaxis3)));
 
         HITooltip tooltip = new HITooltip();
-        tooltip.shared = true;
-        options.tooltip = tooltip;
+        tooltip.setShared(true);
+        options.setTooltip(tooltip);
 
         HILegend legend = new HILegend();
-        legend.layout = "vertical";
-        legend.align = "left";
-        legend.x = 80;
-        legend.verticalAlign = "top";
-        legend.y = 60;
-        legend.floating = true;
-        legend.backgroundColor = HIColor.initWithHexValue("FFFFFF");
-        options.legend = legend;
+        legend.setLayout("vertical");
+        legend.setAlign("left");
+        legend.setX(80);
+        legend.setVerticalAlign("top");
+        legend.setY(60);
+        legend.setFloating(true);
+        legend.setBackgroundColor(HIColor.initWithHexValue("FFFFFF"));
+        options.setLegend(legend);
 
         HIColumn column = new HIColumn();
-        column.type = "column";
-        column.name = "Rainfall";
-        column.yAxis = 1;
+        column.setName("Rainfall");
+        column.setYAxis(1);
         Number[] columnData = new Number[] { 49.9, 71.5, 106.4, 129.2, 144, 176, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4 };
-        column.data = new ArrayList<>(Arrays.asList(columnData));
-        column.tooltip = new HITooltip();
-        column.tooltip.valueSuffix = " mm";
+        column.setData(new ArrayList<>(Arrays.asList(columnData)));
+        column.setTooltip(new HITooltip());
+        column.getTooltip().setValueSuffix(" mm");
 
         HISpline spline1 = new HISpline();
-        spline1.type = "spline";
-        spline1.name = "Sea-level Pressure";
-        spline1.yAxis = 2;
+        spline1.setName("Sea-level Pressure");
+        spline1.setYAxis(2);
         Number[] spline1Data = new Number[] { 1016, 1016, 1015.9, 1015.5, 1012.3, 1009.5, 1009.6, 1010.2, 1013.1, 1016.9, 1018.2, 1016.7 };
-        spline1.data = new ArrayList<>(Arrays.asList(spline1Data));
-        spline1.marker = new HIMarker();
-        spline1.marker.enabled = false;
-        spline1.dashStyle = "shortdot";
-        spline1.tooltip = new HITooltip();
-        spline1.tooltip.valueSuffix = " mb";
+        spline1.setData(new ArrayList<>(Arrays.asList(spline1Data)));
+        spline1.setMarker(new HIMarker());
+        spline1.getMarker().setEnabled(false);
+        spline1.setDashStyle("shortdot");
+        spline1.setTooltip(new HITooltip());
+        spline1.getTooltip().setValueSuffix(" mb");
 
         HISpline spline2 = new HISpline();
-        spline2.type = "spline";
-        spline2.name = "Temperature";
+        spline2.setName("Temperature");
         Number[] spline2Data = new Number[] { 7, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6 };
-        spline2.data = new ArrayList<>(Arrays.asList(spline2Data));
-        spline2.tooltip = new HITooltip();
-        spline2.tooltip.valueSuffix = "°C";
+        spline2.setData(new ArrayList<>(Arrays.asList(spline2Data)));
+        spline2.setTooltip(new HITooltip());
+        spline2.getTooltip().setValueSuffix("°C");
 
-        options.series = new ArrayList<>(Arrays.asList(column, spline1, spline2));
+        options.setSeries(new ArrayList<>(Arrays.asList(column, spline1, spline2)));
 
-        chartView.options = options;
+        chartView.setOptions(options);
     }
 }

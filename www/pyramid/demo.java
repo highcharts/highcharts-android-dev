@@ -22,33 +22,29 @@ public class MainActivity extends AppCompatActivity {
 
 		HIOptions options = new HIOptions();
 
-		HIChart chart = new HIChart();
-		chart.type = "pyramid";
-		options.chart = chart;
-
 		HITitle title = new HITitle();
-		title.text = "Sales pyramid";
-		title.x = -50;
-		options.title = title;
+		title.setText("Sales pyramid");
+		title.setX(-50);
+		options.setTitle(title);
 
 		HILegend legend = new HILegend();
-		legend.enabled = false;
-		options.legend = legend;
+		legend.setEnabled(false);
+		options.setLegend(legend);
 
 		HIPlotOptions plotoptions = new HIPlotOptions();
-		plotoptions.pyramid = new HIPyramid();
-		plotoptions.pyramid.dataLabels = new HIDataLabels();
-		plotoptions.pyramid.dataLabels.enabled = true;
-		plotoptions.pyramid.dataLabels.format = "<b>{point.name}</b> ({point.y:,.0f})";
-		plotoptions.pyramid.dataLabels.color = HIColor.initWithName("black");
-		plotoptions.pyramid.dataLabels.softConnector = true;
+		plotoptions.setPyramid(new HIPyramid());
+		plotoptions.getPyramid().setDataLabels(new HIDataLabels());
+		plotoptions.getPyramid().getDataLabels().setEnabled(true);
+		plotoptions.getPyramid().getDataLabels().setFormat("<b>{point.name}</b> ({point.y:,.0f})");
+		plotoptions.getPyramid().getDataLabels().setColor(HIColor.initWithName("black"));
+		plotoptions.getPyramid().getDataLabels().setSoftConnector(1);
 		String[] center = new String[] {"40%", "50%" };
-		plotoptions.pyramid.center = new ArrayList<>(Arrays.asList(center));
-		plotoptions.pyramid.width = "80%";
-		options.plotOptions = plotoptions;
+		plotoptions.getPyramid().setCenter(new ArrayList<>(Arrays.asList(center)));
+		plotoptions.getPyramid().setWidth("80%");
+		options.setPlotOptions(plotoptions);
 
 		HIPyramid series1 = new HIPyramid();
-		series1.name = "Unique users";
+		series1.setName("Unique users");
 
 		Object[] object1 = new Object[] { "Website visits", 15654 };
 		Object[] object2 = new Object[] { "Downloads", 4064 };
@@ -56,12 +52,11 @@ public class MainActivity extends AppCompatActivity {
 		Object[] object4 = new Object[] { "Invoice sent", 976 };
 		Object[] object5 = new Object[] { "Finalized", 846 };
 
-		series1.data = new ArrayList<>(Arrays.asList(object1, object2, object3, object4, object5));
+		series1.setData(new ArrayList<>(Arrays.asList(object1, object2, object3, object4, object5)));
 
-		options.series = new ArrayList<>(Arrays.asList(series1));
+		options.setSeries(new ArrayList<>(Arrays.asList(series1)));
 
-
-		chartView.options = options;
+		chartView.setOptions(options);
 	}
 }
 

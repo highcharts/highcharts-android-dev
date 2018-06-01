@@ -22,31 +22,31 @@ public class MainActivity extends AppCompatActivity {
 		HIOptions options = new HIOptions();
 
 		HIChart chart = new HIChart();
-		chart.type = "pie";
-		options.chart = chart;
+		chart.setType("pie");
+		options.setChart(chart);
 
 		HITitle title = new HITitle();
-		title.text = "Browser market shares. January, 2015 to May, 2015";
-		options.title = title;
+		title.setText("Browser market shares. January, 2015 to May, 2015");
+		options.setTitle(title);
 
 		HISubtitle subtitle = new HISubtitle();
-		subtitle.text = "Click the slices to view versions.'Source': netmarketshare.com.";
-		options.subtitle = subtitle;
+		subtitle.setText("Click the slices to view versions. Source : netmarketshare.com.");
+		options.setSubtitle(subtitle);
 
 		HIPlotOptions plotOptions = new HIPlotOptions();
-		plotOptions.series = new HISeries();
-		plotOptions.series.dataLabels = new HIDataLabels();
-		plotOptions.series.dataLabels.enabled = true;
-		plotOptions.series.dataLabels.format = "{point.name}: {point.y:.1f}%";
-		options.plotOptions = plotOptions;
+		plotOptions.setSeries(new HISeries());
+		plotOptions.getSeries().setDataLabels(new HIDataLabels());
+		plotOptions.getSeries().getDataLabels().setEnabled(true);
+		plotOptions.getSeries().getDataLabels().setFormat("{point.name}: {point.y:.1f}%");
+		options.setPlotOptions(plotOptions);
 
 		HITooltip tooltip = new HITooltip();
-		tooltip.headerFormat = "<span style=\"font-size:11px\">{series.name}</span><br>";
-		tooltip.pointFormat = "<span style=\"color:{point.color}\">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>";
-		options.tooltip = tooltip;
+		tooltip.setHeaderFormat("<span style=\"font-size:11px\">{series.name}</span><br>");
+		tooltip.setPointFormat("<span style=\"color:{point.color}\">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>");
+		options.setTooltip(tooltip);
 
 		HIPie series1 = new HIPie();
-		series1.name = "Brands";
+		series1.setName("Brands");
 
 		HashMap<String, Object> map1 = new HashMap<>();
 		map1.put("name", "Microsoft Internet Explorer");
@@ -78,14 +78,14 @@ public class MainActivity extends AppCompatActivity {
 		map6.put("y", 0.2);
 		map6.put("drilldown", null);
 
-		series1.data = new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6));
-		options.series = new ArrayList<>(Arrays.asList(series1));
+		series1.setData(new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6)));
+		options.setSeries(new ArrayList<>(Arrays.asList(series1)));
 
 		HIDrilldown drilldown = new HIDrilldown();
 
 		HISeries dseries1 = new HISeries();
-		dseries1.name = "Microsoft Internet Explorer";
-		dseries1.id = "Microsoft Internet Explorer";
+		dseries1.setName("Microsoft Internet Explorer");
+		dseries1.setId("Microsoft Internet Explorer");
 
 		Object[] object1 = new Object[] { "v11.0", 24.13 };
 		Object[] object2 = new Object[] { "v8.0", 17.2 };
@@ -94,11 +94,11 @@ public class MainActivity extends AppCompatActivity {
 		Object[] object5 = new Object[] { "v6.0", 1.06 };
 		Object[] object6 = new Object[] { "v7.0", 0.5 };
 
-		dseries1.data = new ArrayList<>(Arrays.asList(object1, object2, object3, object4, object5, object6));
+		dseries1.setData(new ArrayList<>(Arrays.asList(object1, object2, object3, object4, object5, object6)));
 
 		HISeries dseries2 = new HISeries();
-		dseries2.name = "Chrome";
-		dseries2.id = "Chrome";
+		dseries2.setName("Chrome");
+		dseries2.setId("Chrome");
 
 		Object[] object7 = new Object[] { "v40.0", 5 };
 		Object[] object8 = new Object[] { "v41.0", 4.32 };
@@ -115,11 +115,11 @@ public class MainActivity extends AppCompatActivity {
 		Object[] object19 = new Object[] { "v34.0", 0.14 };
 		Object[] object20 = new Object[] { "v30.0", 0.14 };
 
-		dseries2.data = new ArrayList<>(Arrays.asList(object7, object8, object9, object10, object11, object12, object13, object14, object15, object16, object17, object18, object19, object20));
+		dseries2.setData(new ArrayList<>(Arrays.asList(object7, object8, object9, object10, object11, object12, object13, object14, object15, object16, object17, object18, object19, object20)));
 
 		HISeries dseries3 = new HISeries();
-		dseries3.name = "Firefox";
-		dseries3.id = "Firefox";
+		dseries3.setName("Firefox");
+		dseries3.setId("Firefox");
 
 		Object[] object21 = new Object[] { "v35", 2.76 };
 		Object[] object22 = new Object[] { "v36", 2.32 };
@@ -130,11 +130,11 @@ public class MainActivity extends AppCompatActivity {
 		Object[] object27 = new Object[] { "v33", 0.22 };
 		Object[] object28 = new Object[] { "v32", 0.15 };
 
-		dseries3.data = new ArrayList<>(Arrays.asList(object21, object22, object23, object24, object25, object26, object27, object28));
+		dseries3.setData(new ArrayList<>(Arrays.asList(object21, object22, object23, object24, object25, object26, object27, object28)));
 
 		HISeries dseries4 = new HISeries();
-		dseries4.name = "Safari";
-		dseries4.id = "Safari";
+		dseries4.setName("Safari");
+		dseries4.setId("Safari");
 
 		Object[] object29 = new Object[] { "v8.0", 2.56 };
 		Object[] object30 = new Object[] { "v7.1", 0.77 };
@@ -144,25 +144,24 @@ public class MainActivity extends AppCompatActivity {
 		Object[] object34 = new Object[] { "v7.0", 0.26 };
 		Object[] object35 = new Object[] { "v6.2", 0.17 };
 
-		dseries4.data = new ArrayList<>(Arrays.asList(object29, object30, object31, object32, object33, object34, object35));
+		dseries4.setData(new ArrayList<>(Arrays.asList(object29, object30, object31, object32, object33, object34, object35)));
 
 		HISeries dseries5 = new HISeries();
-		dseries5.name = "Opera";
-		dseries5.id = "Opera";
+		dseries5.setName("Opera");
+		dseries5.setId("Opera");
 
 		Object[] object36 = new Object[] { "v12.x", 0.34 };
 		Object[] object37 = new Object[] { "v28", 0.24 };
 		Object[] object38 = new Object[] { "v27", 0.17 };
 		Object[] object39 = new Object[] { "v29", 0.16 };
 
-		dseries5.data = new ArrayList<>(Arrays.asList(object36, object37, object38, object39));
+		dseries5.setData(new ArrayList<>(Arrays.asList(object36, object37, object38, object39)));
 
 		HISeries[] seriesList = new HISeries[] {dseries1, dseries2, dseries3, dseries4, dseries5 };
-		drilldown.series = new ArrayList<>(Arrays.asList(seriesList));
-		options.drilldown = drilldown;
+		drilldown.setSeries(new ArrayList<>(Arrays.asList(seriesList)));
 
-
-		chartView.options = options;
+		options.setDrilldown(drilldown);
+		chartView.setOptions(options);
 	}
 }
 

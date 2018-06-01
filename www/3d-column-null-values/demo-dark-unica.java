@@ -22,48 +22,48 @@ public class MainActivity extends AppCompatActivity {
         chartView.theme = "dark-unica";
 
         HIChart chart = new HIChart();
-        chart.type = "column";
-        chart.options3d = new HIOptions3d();
-        chart.options3d.enabled = true;
-        chart.options3d.alpha = 10;
-        chart.options3d.beta = 25;
-        chart.options3d.depth = 70;
-        options.chart = chart;
+        chart.setRenderTo("container");
+        chart.setType("column");
+        chart.setOptions3d(new HIOptions3d());
+        chart.getOptions3d().setEnabled(true);
+        chart.getOptions3d().setAlpha(10);
+        chart.getOptions3d().setBeta(25);
+        chart.getOptions3d().setDepth(70);
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "3D chart with null values";
-        options.title = title;
+        title.setText("3D chart with null values");
+        options.setTitle(title);
 
         HISubtitle subtitle = new HISubtitle();
-        subtitle.text = "Notice the difference between a 0 value and a null point";
-        options.subtitle = subtitle;
+        subtitle.setText("Notice the difference between a 0 value and a null point");
+        options.setSubtitle(subtitle);
 
         HIPlotOptions plotOptions = new HIPlotOptions();
-        plotOptions.column = new HIColumn();
-        plotOptions.column.depth = 25;
-        options.plotOptions = plotOptions;
+        plotOptions.setColumn(new HIColumn());
+        plotOptions.getColumn().setDepth(25);
+        options.setPlotOptions(plotOptions);
 
         HIXAxis xAxis = new HIXAxis();
         String[] shortMonths = new String[] { "Jan" , "Feb" , "Mar" , "Apr" , "May" , "Jun" , "Jul" , "Aug" , "Sep" , "Oct" , "Nov" , "Dec"};
-        xAxis.categories = new ArrayList<>(Arrays.asList(shortMonths));
-        xAxis.labels = new HILabels();
-        xAxis.labels.skew3d = true;
-        xAxis.labels.style = new HIStyle();
-        xAxis.labels.style.fontSize = "16px";
-        options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
+        xAxis.setCategories(new ArrayList<>(Arrays.asList(shortMonths)));
+        xAxis.setLabels(new HILabels());
+        xAxis.getLabels().setSkew3d(true);
+        xAxis.getLabels().setStyle(new HIStyle());
+        xAxis.getLabels().getStyle().setFontSize("16px");
+        options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
         HIYAxis yAxis = new HIYAxis();
-        yAxis.title = new HITitle();
-        yAxis.title.text = "";
-        options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
+        yAxis.setTitle(new HITitle());
+        yAxis.getTitle().setText("");
+        options.setYAxis(new ArrayList<HIYAxis>(){{add(yAxis);}});
 
         HIColumn series1 = new HIColumn();
-        series1.name = "Sales";
-        series1.data = new ArrayList<>(Arrays.asList(2, 3, null, 4, 0, 5, 1, 4, 6, 3));
-        options.series = new ArrayList<>(Arrays.asList(series1));
+        series1.setName("Sales");
+        series1.setData(new ArrayList<>(Arrays.asList(2, 3, null, 4, 0, 5, 1, 4, 6, 3)));
+        options.setSeries(new ArrayList<>(Arrays.asList(series1)));
 
-
-        chartView.options = options;
+        chartView.setOptions(options);
     }
 }
 

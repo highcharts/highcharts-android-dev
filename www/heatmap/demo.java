@@ -25,45 +25,44 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HIChart chart = new HIChart();
-        chart.type = "heatmap";
-        chart.marginTop = 40;
-        chart.marginBottom = 80;
-        chart.plotBorderWidth = 1;
-        options.chart = chart;
+        chart.setType("heatmap");
+        chart.setMarginTop(40);
+        chart.setMarginBottom(80);
+        chart.setPlotBorderWidth(1);
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "Sales per employee per weekday";
-        options.title = title;
+        title.setText("Sales per employee per weekday");
+        options.setTitle(title);
 
         HIXAxis xaxis = new HIXAxis();
-        xaxis.categories = new ArrayList<>(Arrays.asList("Alexander", "Marie", "Maximilian", "Sophia", "Lukas", "Maria", "Leon", "Anna", "Tim", "Laura"));
-        options.xAxis = new ArrayList<>(Collections.singletonList(xaxis));
+        xaxis.setCategories(new ArrayList<>(Arrays.asList("Alexander", "Marie", "Maximilian", "Sophia", "Lukas", "Maria", "Leon", "Anna", "Tim", "Laura")));
+        options.setXAxis(new ArrayList<>(Collections.singletonList(xaxis)));
 
         HIYAxis yaxis = new HIYAxis();
-        yaxis.categories = new ArrayList<>(Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"));
-        yaxis.title = new HITitle();
-        yaxis.title.text = "";
-        options.yAxis = new ArrayList<>(Collections.singletonList(yaxis));
+        yaxis.setCategories(new ArrayList<>(Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")));
+        yaxis.setTitle(new HITitle());
+        yaxis.getTitle().setText("");
+        options.setYAxis(new ArrayList<>(Collections.singletonList(yaxis)));
 
         HILegend legend = new HILegend();
-        legend.align = "right";
-        legend.layout = "vertical";
-        legend.margin = 0;
-        legend.verticalAlign = "top";
-        legend.y = 25;
-        legend.symbolHeight = 280;
-        options.legend = legend;
+        legend.setAlign("right");
+        legend.setLayout("vertical");
+        legend.setMargin(0);
+        legend.setVerticalAlign("top");
+        legend.setY(25);
+        legend.setSymbolHeight(280);
+        options.setLegend(legend);
 
         HITooltip tooltip = new HITooltip();
-        tooltip.formatter = new HIFunction("function () { return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> sold <br><b>' + this.point.value + '</b> items on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>'; }");
-        options.tooltip = tooltip;
+        tooltip.setFormatter(new HIFunction("function () { return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> sold <br><b>' + this.point.value + '</b> items on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>'; }"));
+        options.setTooltip(tooltip);
 
         HIHeatmap heatmap = new HIHeatmap();
-        heatmap.name = "Sales per employee";
-        heatmap.borderWidth = 1;
-        heatmap.dataLabels = new HIDataLabels();
-        heatmap.dataLabels.enabled = true;
-        heatmap.dataLabels.color = HIColor.initWithHexValue("000000");
+        heatmap.setName("Sales per employee");
+        heatmap.setDataLabels(new HIDataLabels());
+        heatmap.getDataLabels().setEnabled(true);
+        heatmap.getDataLabels().setColor(HIColor.initWithHexValue("000000"));
         Number[][] heatmapData = new Number[][]{
                 {0, 0, 10},
                 {0, 1, 19},
@@ -116,8 +115,8 @@ public class MainActivity extends AppCompatActivity {
                 {9, 3, 48},
                 {9, 4, 91}
         };
-        heatmap.data = new ArrayList<>(Arrays.asList(heatmapData));
-        options.series = new ArrayList<>(Collections.singletonList(heatmap));
+        heatmap.setData(new ArrayList<>(Arrays.asList(heatmapData)));
+        options.setSeries(new ArrayList<>(Collections.singletonList(heatmap)));
 
         options.additionalOptions = new HashMap<>();
         HashMap<String, Object> colorAxisOptions = new HashMap<>();
@@ -126,6 +125,6 @@ public class MainActivity extends AppCompatActivity {
         colorAxisOptions.put("maxColor", "#7cb5ec");
         options.additionalOptions.put("colorAxis", colorAxisOptions);
 
-        chartView.options = options;
+        chartView.setOptions(options);
     }
 }

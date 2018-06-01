@@ -29,59 +29,47 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HIChart chart = new HIChart();
-        chart.zoomType = "x";
-        options.chart = chart;
+        chart.setZoomType("x");
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "USD to EUR exchange rate over time";
-        options.title = title;
+        title.setText("USD to EUR exchange rate over time");
+        options.setTitle(title);
 
         HISubtitle subtitle = new HISubtitle();
-        subtitle.text = "Click and drag in the plot area to zoom in";
-        options.subtitle = subtitle;
+        subtitle.setText("Click and drag in the plot area to zoom in");
+        options.setSubtitle(subtitle);
 
         HIXAxis xaxis = new HIXAxis();
-        xaxis.type = "datetime";
-        options.xAxis = new ArrayList<>(Collections.singletonList(xaxis));
+        xaxis.setType("datetime");
+        options.setXAxis(new ArrayList<>(Collections.singletonList(xaxis)));
 
         HIYAxis yaxis = new HIYAxis();
-        yaxis.title = new HITitle();
-        yaxis.title.text = "Exchange rate";
-        options.yAxis = new ArrayList<>(Collections.singletonList(yaxis));
+        yaxis.setTitle(new HITitle());
+        yaxis.getTitle().setText("Exchange rate");
+        options.setYAxis(new ArrayList<>(Collections.singletonList(yaxis)));
 
         HILegend legend = new HILegend();
-        legend.enabled = false;
-        options.legend = legend;
+        legend.setEnabled(false);
+        options.setLegend(legend);
 
         HIPlotOptions plotoptions = new HIPlotOptions();
-        plotoptions.area = new HIArea();
-        Map<String, Number> gradientPoints = new HashMap<>();
-        gradientPoints.put("x1", 0);
-        gradientPoints.put("y1", 0);
-        gradientPoints.put("x2", 0);
-        gradientPoints.put("y2", 1);
-        List<List> gradientColors = new ArrayList<>();
-        List<Object> l1 = new LinkedList<>();
-        l1.add(0);
-        l1.add("rgb(47,126,216)");
-        List<Object> l2 = new LinkedList<>();
-        l2.add(1);
-        l2.add("rgba(47,126,216,0)");
-        gradientColors.add(l1);
-        gradientColors.add(l2);
-        plotoptions.area.fillColor = HIColor.initWithLinearGradient(gradientPoints, gradientColors);
-        plotoptions.area.marker = new HIMarker();
-        plotoptions.area.marker.radius = 2;
-        plotoptions.area.lineWidth = 1;
+        plotoptions.setArea(new HIArea());
+        LinkedList<HIStop> stops = new LinkedList<>();
+        stops.add(new HIStop(0, HIColor.initWithRGB(47,126,216)));
+        stops.add(new HIStop(1, HIColor.initWithRGBA(47,126,216, 0)));
+        plotoptions.getArea().setFillColor(HIColor.initWithLinearGradient(new HIGradient(), stops));
+        plotoptions.getArea().setMarker(new HIMarker());
+        plotoptions.getArea().getMarker().setRadius(2);
+        plotoptions.getArea().setLineWidth(1);
         HIStates state = new HIStates();
-        state.hover = new HIHover();
-        state.hover.lineWidth = 1;
-        plotoptions.area.states = state;
-        options.plotOptions = plotoptions;
+        state.setHover(new HIHover());
+        state.getHover().setLineWidth(1);
+        plotoptions.getArea().setStates(state);
+        options.setPlotOptions(plotoptions);
 
         HIArea area = new HIArea();
-        area.type = "area";
-        area.name = "USD to EUR";
+        area.setName("USD to EUR");
         Number[][] areaData = new Number[][]{
                 {1370131200000L, 0.7695},
                 {1370217600000L, 0.7648},
@@ -735,10 +723,8 @@ public class MainActivity extends AppCompatActivity {
                 {1435536000000L, 0.89},
                 {1435622400000L, 0.895}
         };
-        area.data = new ArrayList<>(Arrays.asList(areaData));
+        area.setData(new ArrayList<>(Arrays.asList(areaData)));
 
-        options.series = new ArrayList<>(Collections.singletonList(area));
-
-        chartView.options = options;
-    }
+        options.setSeries(new ArrayList<>(Collections.singletonList(area)));
+        chartView.setOptions(options);    }
 }

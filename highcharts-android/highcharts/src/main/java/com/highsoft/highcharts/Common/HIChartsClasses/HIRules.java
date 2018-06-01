@@ -11,19 +11,29 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HIRules implements HIChartsJSONSerializable { 
+public class HIRules extends Observable implements HIChartsJSONSerializable { 
 
-
+	private HICondition condition;
 /**
 Under which conditions the rule applies.
 */
-	public HICondition condition;
+	public void setCondition(HICondition condition) {
+		this.condition = condition;
+		this.condition.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HICondition getCondition(){ return condition; }
+
+	private Object chartOptions;
 /**
 A full set of chart options to apply as overrides to the general
 chart options. The chart options are applied when the given rule
@@ -37,12 +47,29 @@ the item of the same indexupdated. So for example, setting chartOptions
 with two series items without an id, will cause the existing chart's
 two series to be updated with respective options.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/">Axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/legend/">Legend</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/classname/">Class name</a>*/
-	public Object chartOptions;
+	public void setChartOptions(Object chartOptions) {
+		this.chartOptions = chartOptions;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getChartOptions(){ return chartOptions; }
+
 
 
 	public HIRules() {
 
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

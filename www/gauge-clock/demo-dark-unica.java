@@ -29,105 +29,102 @@ public class MainActivity extends AppCompatActivity {
         Date now = new Date();
 
         HIChart chart = new HIChart();
-        chart.type = "gauge";
-        chart.plotBackgroundColor = new HIColor();
-        chart.plotBackgroundImage = "";
-        chart.plotBorderWidth = 0;
-        chart.plotShadow = false;
-        chart.height = 200;
-        options.chart = chart;
+        chart.setType("gauge");
+        chart.setPlotBackgroundImage("");
+        chart.setPlotBorderWidth(0);
+        chart.setPlotShadow(false);
+        chart.setHeight(200);
+        options.setChart(chart);
 
         HICredits credits = new HICredits();
-        credits.enabled = false;
-        options.credits = credits;
+        credits.setEnabled(false);
+        options.setCredits(credits);
 
         HITitle title = new HITitle();
-        title.text = "The Highcharts clock";
-        options.title = title;
+        title.setText("The Highcharts clock");
+        options.setTitle(title);
 
         HIPane pane = new HIPane();
 
         HIBackground paneBackground = new HIBackground();
-        paneBackground.backgroundColor = new HIColor();
 
-        pane.background = new ArrayList<>(Collections.singletonList(paneBackground));
+        pane.setBackground(new ArrayList<>(Collections.singletonList(paneBackground)));
 
-        options.pane = pane;
+        options.setPane(pane);
 
         HIYAxis yaxis = new HIYAxis();
-        yaxis.labels = new HILabels();
-        yaxis.labels.distance = -20;
-        yaxis.min = 0;
-        yaxis.max = 12;
-        yaxis.lineWidth = 0;
-        yaxis.showFirstLabel = false;
-        yaxis.minorTickWidth = 1;
-        yaxis.minorTickLength = 5;
-        yaxis.minorTickPosition = "inside";
-        yaxis.minorGridLineWidth = 0;
-        yaxis.minorTickColor = HIColor.initWithHexValue("666");
+        yaxis.setLabels(new HILabels());
+        yaxis.getLabels().setDistance(-20);
+        yaxis.setMin(0);
+        yaxis.setMax(12);
+        yaxis.setLineWidth(0);
+        yaxis.setShowFirstLabel(false);
+        yaxis.setMinorTickWidth(1);
+        yaxis.setMinorTickLength(5);
+        yaxis.setMinorTickPosition("inside");
+        yaxis.setGridLineWidth(0);
+        yaxis.setMinorTickColor(HIColor.initWithHexValue("666"));
 
-        yaxis.tickInterval = 1;
-        yaxis.tickWidth = 2;
-        yaxis.tickPosition = "inside";
-        yaxis.tickLength = 10;
-        yaxis.tickColor = HIColor.initWithHexValue("666");
-        yaxis.title = new HITitle();
-        yaxis.title.text = "Powered by<br/>Highcharts";
-        yaxis.title.style = new HIStyle();
-        yaxis.title.style.color = "#BBB";
-        yaxis.title.style.fontWeight = "normal";
-        yaxis.title.style.fontSize = "8px";
-        yaxis.title.y = 10;
+        yaxis.setTickInterval(1);
+        yaxis.setTickWidth(2);
+        yaxis.setTickPosition("inside");
+        yaxis.setTickLength(10);
+        yaxis.setTickColor(HIColor.initWithHexValue("666"));
+        yaxis.setTitle(new HITitle());
+        yaxis.getTitle().setText("Powered by<br/>Highcharts");
+        yaxis.getTitle().setStyle(new HIStyle());
+        yaxis.getTitle().getStyle().setColor("#BBB");
+        yaxis.getTitle().getStyle().setFontWeight("normal");
+        yaxis.getTitle().getStyle().setFontSize("8px");
+        yaxis.getTitle().setY(10);
 
-        options.yAxis = new ArrayList<>(Collections.singletonList(yaxis));
+        options.setYAxis(new ArrayList<>(Collections.singletonList(yaxis)));
 
         HITooltip tooltip = new HITooltip();
-        tooltip.formatter = new HIFunction(
-		f -> (String)f.getProperty("series.chart.tooltipText"),
-		new String[] {"series.chart.tooltipText"}
-	);
-        options.tooltip = tooltip;
+        tooltip.setFormatter(new HIFunction(
+                f -> (String)f.getProperty("series.chart.tooltipText"),
+                new String[] {"series.chart.tooltipText"}
+        ));
+        options.setTooltip(tooltip);
 
-        HIauge gauge = new HIauge();
+        HIGauge gauge = new HIGauge();
 
         HIData data1 = new HIData();
-        data1.id = "hour";
-        data1.y = now.getHours();
+        data1.setId("hour");
+        data1.setY(now.getHours());
 
         HIDial dial1 = new HIDial();
-        dial1.radius = "60%";
-        dial1.baseWidth = 4;
-        dial1.baseLength = "95%";
-        dial1.rearLength = "0";
+        dial1.setRadius("60%");
+        dial1.setBaseWidth(4);
+        dial1.setBaseLength("95%");
+        dial1.setRearLength("0");
 
         HIData data2 = new HIData();
-        data2.id = "minute";
-        data2.y = now.getMinutes();
+        data2.setId("minute");
+        data2.setY(now.getMinutes());
 
         HIDial dial2 = new HIDial();
-        dial2.baseLength = "95%";
-        dial2.rearLength = "0";
+        dial2.setBaseLength("95%");
+        dial2.setRearLength("0");
 
         HIData data3 = new HIData();
-        data3.id = "second";
-        data3.y = now.getSeconds();
+        data3.setId("second");
+        data3.setY(now.getSeconds());
 
         HIDial dial3 = new HIDial();
-        dial3.radius = "100%";
-        dial3.baseWidth = 1;
-        dial3.rearLength = "20%";
+        dial3.setRadius("100%");
+        dial3.setBaseWidth(1);
+        dial3.setRearLength("20%");
 
-        gauge.dial = dial1;
-        gauge.data = new ArrayList<>(Arrays.asList(data1, data2));
-        gauge.animation = new HIAnimation();
-        gauge.animation.duration = 0;
-        gauge.dataLabels = new HIDataLabels();
-        gauge.dataLabels.enabled = false;
+        gauge.setDial(dial1);
+        gauge.setData(new ArrayList<>(Arrays.asList(data1, data2)));
+        gauge.setAnimation(new HIAnimation());
+        gauge.getAnimation().setDuration(0);
+        gauge.setDataLabels(new HIDataLabels());
+        gauge.getDataLabels().setEnabled(false);
 
-        options.series = new ArrayList<>(Collections.singletonList(gauge));
+        options.setSeries(new ArrayList<>(Collections.singletonList(gauge)));
 
-        chartView.options = options;
+        chartView.setOptions(options);
     }
-
 }

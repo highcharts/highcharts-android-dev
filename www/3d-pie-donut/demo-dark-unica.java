@@ -22,28 +22,28 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
         
         HIChart chart = new HIChart();
-        chart.type = "pie";
-        chart.options3d = new HIOptions3d();
-        chart.options3d.enabled = true;
-        chart.options3d.alpha = 45;
-        options.chart = chart;
+        chart.setType("pie");
+        chart.setOptions3d(new HIOptions3d());
+        chart.getOptions3d().setEnabled(true);
+        chart.getOptions3d().setAlpha(45);
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "Contents of Highsoft's weekly fruit delivery";
-        options.title = title;
+        title.setText("Contents of Highsoft's weekly fruit delivery");
+        options.setTitle(title);
 
         HISubtitle subtitle = new HISubtitle();
-        subtitle.text = "3D donut in Highcharts";
-        options.subtitle = subtitle;
+        subtitle.setText("3D donut in Highcharts");
+        options.setSubtitle(subtitle);
 
         HIPlotOptions plotOptions = new HIPlotOptions();
-        plotOptions.pie = new HIPie();
-        plotOptions.pie.innerSize = 100;
-        plotOptions.pie.depth = 45;
-        options.plotOptions = plotOptions;
+        plotOptions.setPie(new HIPie());
+        plotOptions.getPie().setInnerSize(100);
+        plotOptions.getPie().setDepth(45);
+        options.setPlotOptions(plotOptions);
 
         HIPie series1 = new HIPie();
-        series1.name = "Delivered amount";
+        series1.setName("Delivered amount");
         Object[] object1 = new Object[] { "Bananas", 8};
         Object[] object2 = new Object[] { "Mixed nuts", 1};
         Object[] object3 = new Object[] { "Kiwi", 3 };
@@ -55,11 +55,9 @@ public class MainActivity extends AppCompatActivity {
         Object[] object9 = new Object[] { "Grapes (bunch)", 1 };
         Object[] object10 = new Object[] { "Kiwi", 3 };
         Object[] object11 = new Object[] { "Kiwi", 3 };
-        series1.data = new ArrayList<>(Arrays.asList(object1, object2, object3, object4, object5, object6, object7, object8, object9, object10, object11));
-        options.series = new ArrayList<>(Arrays.asList(series1));
-
-
-        chartView.options = options;
+        series1.setData(new ArrayList<>(Arrays.asList(object1, object2, object3, object4, object5, object6, object7, object8, object9, object10, object11)));
+        options.setSeries(new ArrayList<>(Arrays.asList(series1)));
+        
+        chartView.setOptions(options);
     }
 }
-

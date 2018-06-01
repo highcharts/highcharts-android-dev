@@ -25,182 +25,182 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HIChart chart = new HIChart();
-        chart.type = "area";
-        chart.zoomType = "x";
-        chart.panning = true;
-        chart.panKey = "shift";
-        options.chart = chart;
+        chart.setType("area");
+        chart.setZoomType("x");
+        chart.setPanning(true);
+        chart.setPanKey("shift");
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "2017 Tour de France Stage 8: Dole - Station des Rousses";
-        options.title = title;
+        title.setText("2017 Tour de France Stage 8: Dole - Station des Rousses");
+        options.setTitle(title);
 
         HISubtitle subtitle = new HISubtitle();
-        subtitle.text = "An annotated chart in Highcharts";
-        options.subtitle = subtitle;
+        subtitle.setText("An annotated chart in Highcharts");
+        options.setSubtitle(subtitle);
 
         HIAnnotations annotations1 = new HIAnnotations();
-        annotations1.labelOptions = new HILabelOptions();
-        annotations1.labelOptions.backgroundColor = HIColor.initWithRGBA(255, 255, 255, 5);
-        annotations1.labelOptions.verticalAlign = "top";
-        annotations1.labelOptions.y = 15;
+        annotations1.setLabelOptions(new HILabelOptions());
+        annotations1.getLabelOptions().setBackgroundColor(HIColor.initWithRGBA(255, 255, 255, 5));
+        annotations1.getLabelOptions().setVerticalAlign("top");
+        annotations1.getLabelOptions().setY(15);
 
         HILabels labels1 = new HILabels();
-        labels1.point = new HIPoint();
-        labels1.point.xAxis = 0;
-        labels1.point.yAxis = 0;
-        labels1.point.x = 27.98;
-        labels1.point.y = 255;
-        labels1.text = "Arbois";
+        labels1.setPoint(new HIPoint());
+        labels1.getPoint().setXAxis(0);
+        labels1.getPoint().setYAxis(0);
+        labels1.getPoint().setX(27.98);
+        labels1.getPoint().setY(255);
+        labels1.setText("Arbois");
 
         HILabels labels2 = new HILabels();
-        labels2.point = new HIPoint();
-        labels2.point.xAxis = 0;
-        labels2.point.yAxis = 0;
-        labels2.point.x = 45.5;
-        labels2.point.y = 611;
-        labels2.text = "Montrond";
+        labels2.setPoint(new HIPoint());
+        labels2.getPoint().setYAxis(0);
+        labels2.getPoint().setXAxis(0);
+        labels2.getPoint().setX(45.5);
+        labels2.getPoint().setY(611);
+        labels2.setText("Montrond");
 
         HILabels labels3 = new HILabels();
-        labels3.point = new HIPoint();
-        labels3.point.xAxis = 0;
-        labels3.point.yAxis = 0;
-        labels3.point.x = 63;
-        labels3.point.y = 651;
-        labels3.text = "Mont-sur-Monnet";
+        labels3.setPoint(new HIPoint());
+        labels3.getPoint().setYAxis(0);
+        labels3.getPoint().setXAxis(0);
+        labels3.getPoint().setX(63);
+        labels3.getPoint().setY(651);
+        labels3.setText("Mont-sur-Monnet");
 
         HILabels labels4 = new HILabels();
-        labels4.point = new HIPoint();
-        labels4.point.xAxis = 0;
-        labels4.point.yAxis = 0;
-        labels4.point.x = 84;
-        labels4.point.y = 789;
-        labels4.x = -10;
-        labels4.text = "Bonlieu";
+        labels4.setPoint(new HIPoint());
+        labels4.getPoint().setYAxis(0);
+        labels4.getPoint().setXAxis(0);
+        labels4.getPoint().setX(84);
+        labels4.getPoint().setY(789);
+        labels4.setX(-10);
+        labels4.setText("Bonlieu");
 
         HILabels labels5 = new HILabels();
-        labels5.point = new HIPoint();
-        labels5.point.xAxis = 0;
-        labels5.point.yAxis = 0;
-        labels5.point.x = 129.5;
-        labels5.point.y = 382;
-        labels5.text = "Chassal";
+        labels5.setPoint(new HIPoint());
+        labels5.getPoint().setYAxis(0);
+        labels5.getPoint().setXAxis(0);
+        labels5.getPoint().setX(129.5);
+        labels5.getPoint().setY(382);
+        labels5.setText("Chassal");
 
         HILabels labels6 = new HILabels();
-        labels6.point = new HIPoint();
-        labels6.point.xAxis = 0;
-        labels6.point.yAxis = 0;
-        labels6.point.x = 159;
-        labels6.point.y = 443;
-        labels6.text = "Saint-Claud";
+        labels6.setPoint(new HIPoint());
+        labels6.getPoint().setYAxis(0);
+        labels6.getPoint().setXAxis(0);
+        labels6.getPoint().setX(159);
+        labels6.getPoint().setY(443);
+        labels6.setText("Saint-Claud");
 
-        annotations1.labels = new ArrayList<>(Arrays.asList(labels1, labels2, labels3, labels4, labels5, labels6));
+        annotations1.setLabels(new ArrayList<>(Arrays.asList(labels1, labels2, labels3, labels4, labels5, labels6)));
 
         HIAnnotations annotations2 = new HIAnnotations();
 
         HILabels labels7 = new HILabels();
-        labels7.point = new HIPoint();
-        labels7.point.xAxis = 0;
-        labels7.point.yAxis = 0;
-        labels7.point.x = 101.44;
-        labels7.point.y = 1026;
-        labels7.x = -30;
-        labels7.text = "Col de la Joux";
+        labels7.setPoint(new HIPoint());
+        labels7.getPoint().setYAxis(0);
+        labels7.getPoint().setXAxis(0);
+        labels7.getPoint().setX(101.44);
+        labels7.getPoint().setY(1026);
+        labels7.setX(-30);
+        labels7.setText("Col de la Joux");
 
         HILabels labels8 = new HILabels();
-        labels8.point = new HIPoint();
-        labels8.point.xAxis = 0;
-        labels8.point.yAxis = 0;
-        labels8.point.x = 138.5;
-        labels8.point.y = 748;
-        labels8.text = "Côte de Viry";
+        labels8.setPoint(new HIPoint());
+        labels8.getPoint().setYAxis(0);
+        labels8.getPoint().setXAxis(0);
+        labels8.getPoint().setX(138.5);
+        labels8.getPoint().setY(748);
+        labels8.setText("Côte de Viry");
 
         HILabels labels9 = new HILabels();
-        labels9.point = new HIPoint();
-        labels9.point.xAxis = 0;
-        labels9.point.yAxis = 0;
-        labels9.point.x = 176.4;
-        labels9.point.y = 1202;
-        labels9.text = "Montée de la Combe<br>de Laisia Les Molunes";
+        labels9.setPoint(new HIPoint());
+        labels9.getPoint().setYAxis(0);
+        labels9.getPoint().setXAxis(0);
+        labels9.getPoint().setX(176.4);
+        labels9.getPoint().setY(1202);
+        labels9.setText("Montée de la Combe<br>de Laisia Les Molunes");
 
-        annotations2.labels = new ArrayList<>(Arrays.asList(labels7, labels8, labels9));
+        annotations2.setLabels(new ArrayList<>(Arrays.asList(labels7, labels8, labels9)));
 
         HIAnnotations annotations3 = new HIAnnotations();
-        annotations3.labelOptions = new HILabelOptions();
-        annotations3.labelOptions.shape = "connector";
-        annotations3.labelOptions.align = "right";
-        annotations3.labelOptions.crop = true;
-        annotations3.labelOptions.style = new HIStyle();
-        annotations3.labelOptions.style.fontSize = "0.8em";
-        annotations3.labelOptions.style.textOutline = "1px white";
+        annotations3.setLabelOptions(new HILabelOptions());
+        annotations3.getLabelOptions().setShape("connector");
+        annotations3.getLabelOptions().setAlign("right");
+        annotations3.getLabelOptions().setCrop(true);
+        annotations3.getLabelOptions().setStyle(new HIStyle());
+        annotations3.getLabelOptions().getStyle().setFontSize("0.8em");
+        annotations3.getLabelOptions().getStyle().setTextOutline("1px white");
 
         HILabels labels10 = new HILabels();
-        labels10.point = new HIPoint();
-        labels10.point.xAxis = 0;
-        labels10.point.yAxis = 0;
-        labels10.point.x = 96.2;
-        labels10.point.y = 783;
-        labels10.text = "6.1 km climb<br>4.6% on avg.";
+        labels10.setPoint(new HIPoint());
+        labels10.getPoint().setYAxis(0);
+        labels10.getPoint().setXAxis(0);
+        labels10.getPoint().setX(96.2);
+        labels10.getPoint().setY(783);
+        labels10.setText("6.1 km climb<br>4.6% on avg.");
 
         HILabels labels11 = new HILabels();
-        labels11.point = new HIPoint();
-        labels11.point.xAxis = 0;
-        labels11.point.yAxis = 0;
-        labels11.point.x = 134.5;
-        labels11.point.y = 540;
-        labels11.text = "7.6 km climb<br>5.2% on avg.";
+        labels11.setPoint(new HIPoint());
+        labels11.getPoint().setYAxis(0);
+        labels11.getPoint().setXAxis(0);
+        labels11.getPoint().setX(134.5);
+        labels11.getPoint().setY(540);
+        labels11.setText("7.6 km climb<br>5.2% on avg.");
 
         HILabels labels12 = new HILabels();
-        labels12.point = new HIPoint();
-        labels12.point.xAxis = 0;
-        labels12.point.yAxis = 0;
-        labels12.point.x = 172.2;
-        labels12.point.y = 925;
-        labels12.text = "11.7 km climb<br>6.4% on avg.";
+        labels12.setPoint(new HIPoint());
+        labels12.getPoint().setYAxis(0);
+        labels12.getPoint().setXAxis(0);
+        labels12.getPoint().setX(172.2);
+        labels12.getPoint().setY(925);
+        labels12.setText("11.7 km climb<br>6.4% on avg.");
 
-        annotations3.labels = new ArrayList<>(Arrays.asList(labels10, labels11, labels12));
+        annotations3.setLabels(new ArrayList<>(Arrays.asList(labels10, labels11, labels12)));
 
-        options.annotations = new ArrayList<>(Arrays.asList(annotations1,annotations2, annotations3));
+        options.setAnnotations(new ArrayList<>(Arrays.asList(annotations1,annotations2, annotations3)));
 
         HIXAxis xaxis = new HIXAxis();
-        xaxis.labels = new HILabels();
-        xaxis.labels.format = "{value} km";
-        xaxis.minRange = 5;
-        xaxis.title = new HITitle();
-        xaxis.title.text = "Distance";
-        options.xAxis = new ArrayList<>(Collections.singletonList(xaxis));
+        xaxis.setLabels(new HILabels());
+        xaxis.getLabels().setFormat("{value} km");
+        xaxis.setMinRange(5);
+        xaxis.setTitle(new HITitle());
+        xaxis.getTitle().setText("Distance");
+        options.setXAxis(new ArrayList<>(Collections.singletonList(xaxis)));
 
         HIYAxis yaxis = new HIYAxis();
-        yaxis.startOnTick = true;
-        yaxis.endOnTick = false;
-        yaxis.maxPadding = 0.35;
-        yaxis.title = new HITitle();
-        yaxis.labels = new HILabels();
-        yaxis.labels.format = "{value} m";
-        options.yAxis = new ArrayList<>(Collections.singletonList(yaxis));
+        yaxis.setStartOnTick(true);
+        yaxis.setEndOnTick(false);
+        yaxis.setMaxPadding(0.35);
+        yaxis.setTitle(new HITitle());
+        yaxis.setLabels(new HILabels());
+        yaxis.getLabels().setFormat("{value} m");
+        options.setYAxis(new ArrayList<>(Collections.singletonList(yaxis)));
 
         HITooltip tooltip = new HITooltip();
-        tooltip.headerFormat = "Distance: {point.x:.1f} km<br>";
-        tooltip.pointFormat = "{point.y} m a. s. l.";
-        tooltip.shared = false;
-        options.tooltip = tooltip;
+        tooltip.setHeaderFormat("Distance: {point.x:.1f} km<br>");
+        tooltip.setPointFormat("{point.y} m a. s. l.");
+        tooltip.setShared(false);
+        options.setTooltip(tooltip);
 
         HILegend legend = new HILegend();
-        legend.enabled = false;
-        options.legend = legend;
+        legend.setEnabled(false);
+        options.setLegend(legend);
 
         HIArea area = new HIArea();
-        area.data = this.elevationData();
-        area.lineColor = HIColor.initWithHexValue("0d233a");
-        area.color = HIColor.initWithHexValue("8bbc21");
-        area.fillOpacity = 0.5;
-        area.name = "Elevation";
-        area.marker = new HIMarker();
-        area.marker.enabled = false;
+        area.setData(this.elevationData());
+        area.setLineColor(HIColor.initWithHexValue("0d233a"));
+        area.setColor(HIColor.initWithHexValue("8bbc21"));
+        area.setFillOpacity(0.5);
+        area.setName("Elevation");
+        area.setMarker(new HIMarker());
+        area.getMarker().setEnabled(false);
 
-        options.series = new ArrayList<>(Collections.singletonList(area));
+        options.setSeries(new ArrayList<>(Collections.singletonList(area)));
 
-        chartView.options = options;
+        chartView.setOptions(options);
     }
 
     private ArrayList elevationData(){

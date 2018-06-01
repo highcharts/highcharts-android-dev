@@ -3,19 +3,22 @@ package com.highsoft.devground;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.highsoft.highcharts.Common.HIChartsClasses.HIDataLabels;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIOptions;
+import com.highsoft.highcharts.Common.HIChartsClasses.HITitle;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIXAxis;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIXrange;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIYAxis;
 import com.highsoft.highcharts.Common.HIColor;
 import com.highsoft.highcharts.Core.HIChartView;
-import com.highsoft.highcharts.Common.HIChartsClasses.*;
-import com.highsoft.highcharts.Core.HIFunction;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 
 
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,76 +26,66 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         HIChartView chartView = findViewById(R.id.hc);
+        chartView.plugins = new ArrayList<>(Arrays.asList("xrange"));
 
         HIOptions options = new HIOptions();
 
-        HIChart chart = new HIChart();
-        chart.type = "bar";
-        options.chart = chart;
-
         HITitle title = new HITitle();
-        title.text = "Population pyramid for Germany, 2015";
-        options.title = title;
+        title.setText("Highcharts X-range");
+        options.setTitle(title);
 
-        HISubtitle subtitle = new HISubtitle();
-        subtitle.text = "SSource: <a href=\"http://populationpyramid.net/germany/2015/\">Population Pyramids of the World from 1950 to 2100</a>";
-        options.subtitle = subtitle;
+        HIXAxis xAxis = new HIXAxis();
+        xAxis.setType("datetime");
+        options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
-        String[] categories = new String[] { "0-4", "5-9", "10-14", "15-19",
-                "20-24", "25-29", "30-34", "35-39", "40-44",
-                "45-49", "50-54", "55-59", "60-64", "65-69",
-                "70-74", "75-79", "80-84", "85-89", "90-94",
-                "95-99", "100 + " };
+        HIYAxis yAxis = new HIYAxis();
+        String[] categoriesList = new String[] {"Prototyping", "Development", "Testing" };
+        yAxis.setCategories(new ArrayList<>(Arrays.asList(categoriesList)));
+        yAxis.setTitle(new HITitle());
+        yAxis.getTitle().setText("");
+        yAxis.setReversed(true);
+        options.setYAxis(new ArrayList<HIYAxis>(){{add(yAxis);}});
 
-        HIXAxis xaxisLeft = new HIXAxis();
-        xaxisLeft.categories = new ArrayList<>(Arrays.asList(categories));
-        xaxisLeft.labels = new HILabels();
-        xaxisLeft.labels.step = 1;
+        HIXrange series1 = new HIXrange();
+        series1.setName("Project 1");
+        series1.setPointPadding(0);
+        series1.setGroupZPadding(0);
+        series1.setBorderColor(HIColor.initWithName("gray"));
+        series1.setPointWidth(20);
 
-        HIXAxis xaxisRight = new HIXAxis();
-        xaxisRight.opposite = true;
-        xaxisRight.reversed = false;
-        xaxisRight.categories = new ArrayList<>(Arrays.asList(categories));
-        xaxisRight.linkedTo = 0;
-        xaxisRight.labels = new HILabels();
-        xaxisRight.labels.step = 1;
+        HashMap<String, Object> map1 = new HashMap<>();
+        map1.put("x", 1416528000000L);
+        map1.put("x2", 1417478400000L);
+        map1.put("y" , 0);
+        map1.put("partialFill" , 0.25);
 
-        options.xAxis = new ArrayList<>(Arrays.asList(xaxisLeft, xaxisRight));
+        HashMap<String, Object> map2 = new HashMap<>();
+        map2.put("x" , 1417478400000L);
+        map2.put("x2" , 1417478400000L);
+        map2.put("y" , 1);
 
-        HIYAxis yaxis = new HIYAxis();
-        yaxis.title = new HITitle();
-        yaxis.title.text = "";
-        yaxis.labels = new HILabels();
-        yaxis.labels.formatter = new HIFunction(
-                f -> Math.abs((Double)f.getProperty("value")) + "%",
-                new String[] {"value"}
-        );
-        options.yAxis = new ArrayList<HIYAxis>(){{add(yaxis);}};
+        HashMap<String, Object> map3 = new HashMap<>();
+        map3.put("x" , 1417996800000L);
+        map3.put("x2" , 1418083200000L);
+        map3.put("y" , 2);
 
-        HITooltip tooltip = new HITooltip();
-        tooltip.formatter = new HIFunction("function () { return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' + 'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0); }");
-        options.tooltip = tooltip;
+        HashMap<String, Object> map4 = new HashMap<>();
+        map4.put("x" , 1418083200000L);
+        map4.put("x2" , 1418947200000L);
+        map4.put("y" , 1);
 
-        HIPlotOptions plotOptions = new HIPlotOptions();
-        plotOptions.bar = new HIBar();
-        plotOptions.bar.stacking = "normal";
-        options.plotOptions = plotOptions;
+        HashMap<String, Object> map5 = new HashMap<>();
+        map5.put("x" , 1418169600000L);
+        map5.put("x2" , 1419292800000L);
+        map5.put("y" , 2);
 
-        HIBar barMale = new HIBar();
-        barMale.name = "Year 1800";
-        Number[] barMaleData = new Number[] {-2.2, -2.2, -2.3, -2.5, -2.7, -3.1, -3.2,
-                -3.0, -3.2, -4.3, -4.4, -3.6, -3.1, -2.4,
-                -2.5, -2.3, -1.2, -0.6, -0.2, -0.0, -0.0 };
-        barMale.data = new ArrayList<>(Arrays.asList(barMaleData));
+        series1.setData(new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5)));
 
-        HIBar barFemale = new HIBar();
-        barFemale.name = "Year 1900";
-        Number[] barFemaleData = new Number[] { 2.1, 2.0, 2.2, 2.4, 2.6, 3.0, 3.1, 2.9,
-                3.1, 4.1, 4.3, 3.6, 3.4, 2.6, 2.9, 2.9,
-                1.8, 1.2, 0.6, 0.1, 0.0 };
-        barFemale.data = new ArrayList<>(Arrays.asList(barFemaleData));
+        series1.setDataLabels(new HIDataLabels());
+        series1.getDataLabels().setEnabled(true);
 
-        options.series = new ArrayList<>(Arrays.asList(barMale, barFemale));
-        chartView.options = options;
+        options.setSeries(new ArrayList<>(Arrays.asList(series1)));
+
+        chartView.setOptions(options);
     }
 }

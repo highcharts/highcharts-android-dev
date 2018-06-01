@@ -11,23 +11,42 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HINormal implements HIChartsJSONSerializable { 
+public class HINormal extends Observable implements HIChartsJSONSerializable { 
 
-
+	private Object /* Boolean|Object */ animation;
 /**
 Animation when returning to normal state after hovering.
 */
-	public Object /* Boolean|Object */ animation;
+	public void setAnimation(Object /* Boolean|Object */ animation) {
+		this.animation = animation;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Boolean|Object */ getAnimation(){ return animation; }
+
 
 
 	public HINormal() {
 
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

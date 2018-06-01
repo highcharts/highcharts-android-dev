@@ -11,6 +11,8 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
@@ -46,26 +48,50 @@ Highcharts.chart('container', {
 */
 
 public class HIVector extends HISeries {
-
+	private Number vectorLength;
 /**
 Maximum length of the arrows in the vector plot. The individual arrow
 length is computed between 0 and this value.
 */
-	public Number vectorLength;
+	public void setVectorLength(Number vectorLength) {
+		this.vectorLength = vectorLength;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getVectorLength(){ return vectorLength; }
+
+	private String rotationOrigin;
 /**
 What part of the vector it should be rotated around. Can be one of
 start, center and end. When start, the vectors will start from
 the given [x, y] position, and when end the vectors will end in the
 [x, y] position.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/vector-rotationorigin-start/">Rotate from start</a> <br><br><b>accepted values:</b><br><br>&ensp;["start", "center", "end"]*/
-	public String rotationOrigin;
+	public void setRotationOrigin(String rotationOrigin) {
+		this.rotationOrigin = rotationOrigin;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getRotationOrigin(){ return rotationOrigin; }
+
 
 
 	public HIVector() {
 		super(); 
-		this.type = "vector";
+		this.setType("vector");
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

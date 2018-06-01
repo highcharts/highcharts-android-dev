@@ -25,40 +25,38 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HIChart chart = new HIChart();
-        chart.type = "arearange";
-        options.chart = chart;
+        chart.setType("arearange");
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "July temperatures";
-        options.title = title;
+        title.setText("July temperatures");
+        options.setTitle(title);
 
         HIXAxis xaxis = new HIXAxis();
-        xaxis.type = "daytime";
-        options.xAxis = new ArrayList<>(Collections.singletonList(xaxis));
+        xaxis.setType("daytime");
+        options.setXAxis(new ArrayList<>(Collections.singletonList(xaxis)));
 
         HIYAxis yaxis = new HIYAxis();
-        yaxis.title = new HITitle();
-        yaxis.title.text = "";
-        options.yAxis = new ArrayList<>(Collections.singletonList(yaxis));
+        yaxis.setTitle(new HITitle());
+        yaxis.getTitle().setText("");
+        options.setYAxis(new ArrayList<>(Collections.singletonList(yaxis)));
 
         HITooltip tooltip = new HITooltip();
-        tooltip.crosshairs = true;
-        tooltip.shared = true;
-        tooltip.valueSuffix = "°C";
-        options.tooltip = tooltip;
+        tooltip.setShared(true);
+        tooltip.setValueSuffix("°C");
+        options.setTooltip(tooltip);
 
         HILegend legend = new HILegend();
-        options.legend = legend;
+        options.setLegend(legend);
 
         HILine line = new HILine();
-        line.type = "line";
-        line.name = "Temperature";
-        line.zIndex = 1;
-        line.marker = new HIMarker();
-        line.marker.fillColor = HIColor.initWithName("white");
-        line.marker.lineWidth = 2;
-        line.marker.lineColor = HIColor.initWithHexValue("7cb5ec");
-        Number[][] lineData = new Number[][] {
+        line.setName("Temperature");
+        line.setZIndex(1);
+        line.setMarker(new HIMarker());
+        line.getMarker().setFillColor(HIColor.initWithName("white"));
+        line.getMarker().setLineWidth(2);
+        line.getMarker().setLineColor(HIColor.initWithHexValue("7cb5ec"));
+        Number[][] lineData = new Number[][]{
                 {1246406400000L, 21.5},
                 {1246492800000L, 22.1},
                 {1246579200000L, 23},
@@ -91,16 +89,16 @@ public class MainActivity extends AppCompatActivity {
                 {1248912000000L, 15},
                 {1248998400000L, 13.6}
         };
-        line.data = new ArrayList<>(Arrays.asList(lineData));
+        line.setData(new ArrayList<>(Arrays.asList(lineData)));
 
         HIArearange arearange = new HIArearange();
-        arearange.type = "arearange";
-        arearange.name = "Range";
-        arearange.lineWidth = 0;
-        arearange.linkedTo = ":previous";
-        arearange.color = HIColor.initWithHexValue("7cb5ec");
-        arearange.fillOpacity = 0.3;
-        arearange.zIndex = 0;
+        arearange.setType("arearange");
+        arearange.setName("Range");
+        arearange.setLineWidth(0);
+        arearange.setLinkedTo(":previous");
+        arearange.setColor(HIColor.initWithHexValue("7cb5ec"));
+        arearange.setFillOpacity(0.3);
+        arearange.setZIndex(0);
         Number[][] arearangeData = new Number[][]{
                 {1246406400000L, 14.3, 27.7},
                 {1246492800000L, 14.5, 27.8},
@@ -134,11 +132,10 @@ public class MainActivity extends AppCompatActivity {
                 {1248912000000L, 11.8, 18.5},
                 {1248998400000L, 10.8, 16.1}
         };
-        arearange.data = new ArrayList<>(Arrays.asList(arearangeData));
+        arearange.setData(new ArrayList<>(Arrays.asList(arearangeData)));
 
-        options.series = new ArrayList<>(Arrays.asList(arearange, line));
+        options.setSeries(new ArrayList<>(Arrays.asList(arearange, line)));
 
-        chartView.options = options;
+        chartView.setOptions(options);
     }
-
 }

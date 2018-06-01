@@ -25,48 +25,61 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HIChart chart = new HIChart();
-        chart.type = "spline";
-        chart.animation = "Highcharts.svg"; // don't animate in old IE
-        chart.marginRight = 10;
+        chart.setType("spline");
+        chart.setAnimation("Highcharts.svg");
+        chart.setMarginRight(10);
         HIEvents events = new HIEvents();
-        events.load = new HIFunction("function () { var series = this.series[0]; setInterval(function () { var x = (new Date()).getTime(), y = Math.random(); series.addPoint([x, y], true, true); }, 1000); }", true);
-        chart.events = events;
-        options.chart = chart;
+        events.setLoad(
+                new HIFunction(
+                "function () { " +
+                        "var series = this.series[0]; " +
+                        "setInterval(function () { " +
+                        "   var x = (new Date()).getTime(), y = Math.random(); " +
+                        "   series.addPoint([x, y], true, true); " +
+                        "}, 1000); " +
+                        "}"
+                ));
+        chart.setEvents(events);
+        options.setChart(chart);
 
 
         HITitle title = new HITitle();
-        title.text = "Live random data";
-        options.title = title;
+        title.setText("Live random data");
+        options.setTitle(title);
 
         HIXAxis xaxis =  new HIXAxis();
-        xaxis.type = "datetime";
-        xaxis.tickPixelInterval = 150;
-        options.xAxis = new ArrayList<>(Collections.singletonList(xaxis));
+        xaxis.setType("datetime");
+        xaxis.setTickPixelInterval(150);
+        options.setXAxis(new ArrayList<>(Collections.singletonList(xaxis)));
 
         HIYAxis yaxis =  new HIYAxis();
-        yaxis.title =  new HITitle();
-        yaxis.title.text = "Value";
-        HIPlotLines plotLines =  new HIPlotLines();
-        plotLines.value = 0;
-        plotLines.width = 1;
-        plotLines.color =  HIColor.initWithHexValue("808080");
-        yaxis.plotLines = new ArrayList<>(Collections.singletonList(plotLines));
-        options.yAxis = new ArrayList<>(Collections.singletonList(yaxis));
+        yaxis.setTitle(new HITitle());
+        yaxis.getTitle().setText("value");
+        HIPlotLines plotLines = new HIPlotLines();
+        plotLines.setValue(0);
+        plotLines.setWidth(1);
+        plotLines.setColor(HIColor.initWithHexValue("808080"));
+        yaxis.setPlotLines(new ArrayList<>(Collections.singletonList(plotLines)));
+        options.setYAxis(new ArrayList<>(Collections.singletonList(yaxis)));
 
         HITooltip tooltip =  new HITooltip();
-        tooltip.formatter =  new HIFunction("function () { return '<b>' + this.series.name + '</b><br/>' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' + Highcharts.numberFormat(this.y, 2); }", true);
-        options.tooltip = tooltip;
+        tooltip.setFormatter(
+                new HIFunction(
+                        "function () { " +
+                                "return '<b>' + this.series.name + '</b><br/>' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' + Highcharts.numberFormat(this.y, 2); }"
+                ));
+        options.setTooltip(tooltip);
 
         HILegend legend =  new HILegend();
-        legend.enabled = false;
-        options.legend = legend;
+        legend.setEnabled(false);
+        options.setLegend(legend);
 
-        HIExporting exporting =  new HIExporting();
-        exporting.enabled = false;
-        options.exporting = exporting;
+        HIExporting exporting = new HIExporting();
+        exporting.setEnabled(false);
+        options.setExporting(exporting);
 
         HISpline spline =  new HISpline();
-        spline.name = "Random data";
+        spline.setName("Random data");
         HashMap<String, Object> splineData1 = new HashMap<>();
         splineData1.put("x", 1506522303996L);
         splineData1.put("y", 0.9008867958057089 );
@@ -127,9 +140,9 @@ public class MainActivity extends AppCompatActivity {
         HashMap<String, Object> splineData20 = new HashMap<>();
         splineData20.put("x", 1506522322996L);
         splineData20.put("y", 0.2583323455534311);
-        spline.data =  new ArrayList<>(Arrays.asList(splineData1, splineData2, splineData3, splineData4, splineData5, splineData6, splineData7, splineData8, splineData9, splineData10, splineData11, splineData12, splineData13, splineData14, splineData15, splineData16, splineData17, splineData18, splineData19, splineData20));
-        options.series = new ArrayList<>(Collections.singletonList(spline));
+        spline.setData(new ArrayList<>(Arrays.asList(splineData1, splineData2, splineData3, splineData4, splineData5, splineData6, splineData7, splineData8, splineData9, splineData10, splineData11, splineData12, splineData13, splineData14, splineData15, splineData16, splineData17, splineData18, splineData19, splineData20)));
+        options.setSeries(new ArrayList<>(Collections.singletonList(spline)));
 
-        chartView.options = options;
+        chartView.setOptions(options);
     }
 }

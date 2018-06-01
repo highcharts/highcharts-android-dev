@@ -24,153 +24,98 @@ public class MainActivity extends AppCompatActivity {
 
         HIOptions options = new HIOptions();
 
-	HIChart chart = new HIChart();
-	chart.type = "column";
-	options.chart = chart;
-	currentButtonClicked = "";
+        HITitle title = new HITitle();
+        title.setText("Highcharts responsive chart");
+        options.setTitle(title);
 
-	HITitle title = new HITitle();
-	title.text = "Highcharts responsive chart";
-	options.title = title;
+        HISubtitle subtitle = new HISubtitle();
+        subtitle.setText("Resize the frame or click buttons to change appearance");
+        options.setSubtitle(subtitle);
 
-	HISubtitle subtitle = new HISubtitle();
-	subtitle.text = "Resize the frame or click buttons to change appearance";
-	options.subtitle = subtitle;
+        HICredits credits = new HICredits();
+        options.setCredits(credits);
 
-	HILegend legend = new HILegend();
-	legend.align = "right";
-	legend.verticalAlign = "middle";
-	legend.layout = "vertical";
-	options.legend = legend;
+        HILegend legend = new HILegend();
+        legend.setAlign("right");
+        legend.setVerticalAlign("middle");
+        legend.setLayout("vertical");
+        options.setLegend(legend);
 
-	HIXAxis xAxis = new HIXAxis();
-	String[] categoriesList = new String[] { "Apples", "Oranges", "Bananas" };
-	xAxis.categories = new ArrayList<>(Arrays.asList(categoriesList));
-	xAxis.labels = new HILabels();
-	xAxis.labels.x = -10;
-	options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
+        HIXAxis xAxis = new HIXAxis();
+        String[] categoriesList = new String[] { "Apples", "Oranges", "Bananas" };
+        xAxis.setCategories(new ArrayList<>(Arrays.asList(categoriesList)));
+        xAxis.setLabels(new HILabels());
+        xAxis.getLabels().setX(-10);
+        options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
-	HIYAxis yAxis = new HIYAxis();
-	yAxis.allowDecimals = false;
-	yAxis.title = new HITitle();
-	yAxis.title.text = "Amount";
-	options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
+        HIYAxis yAxis = new HIYAxis();
+        yAxis.setAllowDecimals(false);
+        yAxis.setTitle(new HITitle());
+        yAxis.getTitle().setText("Amount");
+        options.setYAxis(new ArrayList<HIYAxis>(){{add(yAxis);}});
 
-	HIColumn series1 = new HIColumn();
-	series1.name = "Christmas Eve";
-	Number[] series1_data = new Number[] { 1, 4, 3 };
-	series1.data = new ArrayList<>(Arrays.asList(series1_data));
+        HIColumn series1 = new HIColumn();
+        series1.setName("Christmas Eve");
+        Number[] series1_data = new Number[] { 1, 4, 3 };
+        series1.setData(new ArrayList<>(Arrays.asList(series1_data)));
 
-	HIColumn series2 = new HIColumn();
-	series2.name = "Christmas Day before dinner";
-	Number[] series2_data = new Number[] { 6, 4, 2 };
-	series2.data = new ArrayList<>(Arrays.asList(series2_data));
+        HIColumn series2 = new HIColumn();
+        series2.setName("Christmas Day before dinner");
+        Number[] series2_data = new Number[] { 6, 4, 2 };
+        series2.setData(new ArrayList<>(Arrays.asList(series2_data)));
 
-	HIColumn series3 = new HIColumn();
-	series3.name = "Christmas Day after dinner";
-	Number[] series3_data = new Number[] { 8, 4, 3 };
-	series3.data = new ArrayList<>(Arrays.asList(series3_data));
+        HIColumn series3 = new HIColumn();
+        series3.setName("Christmas Day after dinner");
+        Number[] series3_data = new Number[] { 8, 4, 3 };
+        series3.setData(new ArrayList<>(Arrays.asList(series3_data)));
 
-	options.series = new ArrayList<>(Arrays.asList(series1, series2, series3));
+        options.setSeries(new ArrayList<>(Arrays.asList(series1, series2, series3)));
 
-        chartView.options = options;
+        chartView.setOptions(options);
 
-	Button largeButton = (Button) findViewById(R.id.large);
-	largeButton.setOnClickListener(v -> changeChartDimensions(currentButtonClicked, (String) largeButton.getText()));
-	Button smallButton = (Button) findViewById(R.id.small);
-	smallButton.setOnClickListener(v -> changeChartDimensions(currentButtonClicked, (String) smallButton.getText()));
+        Button largeButton = (Button) findViewById(R.id.large);
+        largeButton.setOnClickListener(v -> changeChartDimensions(currentButtonClicked, (String) largeButton.getText()));
+        Button smallButton = (Button) findViewById(R.id.small);
+        smallButton.setOnClickListener(v -> changeChartDimensions(currentButtonClicked, (String) smallButton.getText()));
     }
 
-	private void changeChartDimensions(String current, String buttonText){
+    private void changeChartDimensions(String current, String buttonText){
 
-		if(buttonText.equals(current)) return;
+        if(buttonText.equals(current)) return;
+        switch (buttonText) {
+            case "LARGE":
+                currentButtonClicked = buttonText;
+                chartView.getOptions().getChart().setWidth(600);
+                chartView.getOptions().getChart().setHeight(300);
+                chartView.getOptions().getCredits().setEnabled(true);
+                chartView.getOptions().getSubtitle().setText("Resize the frame or click buttons to change appearance");
+                chartView.getOptions().getLegend().setAlign("right");
+                chartView.getOptions().getLegend().setVerticalAlign("middle");
+                chartView.getOptions().getLegend().setLayout("vertical");
+                HIYAxis yAxis = new HIYAxis();
+                yAxis.setAllowDecimals(false);
+                yAxis.setTitle(new HITitle());
+                yAxis.getTitle().setText("Amount");
+                chartView.getOptions().setYAxis(new ArrayList<HIYAxis>(){{add(yAxis);}});
 
-		HIOptions newOptions = new HIOptions();
-
-		HIChart chart = new HIChart();
-		chart.type = "column";
-
-		HITitle title = new HITitle();
-		title.text = "Highcharts responsive chart";
-		newOptions.title = title;
-
-		HISubtitle subtitle = new HISubtitle();
-
-		HILegend legend = new HILegend();
-
-		HICredits credits = new HICredits();
-
-		HIXAxis xAxis = new HIXAxis();
-		String[] categoriesList = new String[] { "Apples", "Oranges", "Bananas" };
-		xAxis.categories = new ArrayList<>(Arrays.asList(categoriesList));
-		xAxis.labels = new HILabels();
-		xAxis.labels.x = -10;
-		newOptions.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
-
-		HIYAxis yAxis = new HIYAxis();
-
-		HIColumn series1 = new HIColumn();
-		series1.name = "Christmas Eve";
-		Number[] series1_data = new Number[] { 1, 4, 3 };
-		series1.data = new ArrayList<>(Arrays.asList(series1_data));
-
-		HIColumn series2 = new HIColumn();
-		series2.name = "Christmas Day before dinner";
-		Number[] series2_data = new Number[] { 6, 4, 2 };
-		series2.data = new ArrayList<>(Arrays.asList(series2_data));
-
-		HIColumn series3 = new HIColumn();
-		series3.name = "Christmas Day after dinner";
-		Number[] series3_data = new Number[] { 8, 4, 3 };
-		series3.data = new ArrayList<>(Arrays.asList(series3_data));
-
-		newOptions.series = new ArrayList<>(Arrays.asList(series1, series2, series3));
-
-		switch (buttonText) {
-			case "LARGE":
-				currentButtonClicked = buttonText;
-				chart.width = 400;
-
-				subtitle.text = "Resize the frame or click buttons to change appearance";
-
-				legend.align = "right";
-				legend.verticalAlign = "middle";
-				legend.layout = "vertical";
-
-				yAxis.allowDecimals = false;
-				yAxis.title = new HITitle();
-				yAxis.title.text = "Amount";
-				break;
-			case "SMALL":
-				currentButtonClicked = buttonText;
-				chart.width = 400;
-				chart.height = 300;
-
-				subtitle.text = "";
-
-				credits.enabled = false;
-
-				legend.align = "center";
-				legend.verticalAlign = "bottom";
-				legend.layout = "horizontal";
-
-				yAxis.title = new HITitle();
-				yAxis.title.text = "";
-				yAxis.labels = new HILabels();
-				yAxis.labels.align = "left";
-				yAxis.labels.x = 0;
-				yAxis.labels.y = -5;
-				break;
-		}
-
-		newOptions.chart = chart;
-		newOptions.title = title;
-		newOptions.subtitle = subtitle;
-		newOptions.credits = credits;
-		newOptions.legend = legend;
-		newOptions.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
-
-		this.chartView.options = newOptions;
-		this.chartView.reload();
-	}
+                break;
+            case "SMALL":
+                currentButtonClicked = buttonText;
+                chartView.getOptions().getChart().setWidth(400);
+                chartView.getOptions().getChart().setHeight(300);
+                chartView.getOptions().getSubtitle().setText("");
+                chartView.getOptions().getCredits().setEnabled(false);
+                chartView.getOptions().getLegend().setAlign("center");
+                chartView.getOptions().getLegend().setVerticalAlign("bottom");
+                chartView.getOptions().getLegend().setLayout("horizontal");
+                HIYAxis hiyAxis = new HIYAxis();
+                hiyAxis.setTitle(new HITitle());
+                hiyAxis.getTitle().setText("");
+                hiyAxis.setLabels(new HILabels());
+                hiyAxis.getLabels().setX(0);
+                hiyAxis.getLabels().setY(-5);
+                chartView.getOptions().setYAxis(new ArrayList<>(Collections.singletonList(hiyAxis)));
+                break;
+        }
+    }
 }

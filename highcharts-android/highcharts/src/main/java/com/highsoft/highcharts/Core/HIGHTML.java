@@ -36,12 +36,8 @@ final class HIGHTML implements Serializable{
     public String global;
 
     private String html_tmp;
-    private String scripts;
+    public String scripts;
     private HIGJavaScript js;
-
-//    HIGHTML(){
-//        this.js = new HIGJavaScript();
-//    }
 
     HIGHTML(WebView webView) {
         this.js = new HIGJavaScript(webView);
@@ -128,7 +124,7 @@ final class HIGHTML implements Serializable{
         this.html = this.html
                 .replace("{{script}}", this.scripts)
                 .replace("{{options}}", this.options);
-        System.out.println("GENERATED CHART OPTIONS\n" + this.options);
+//        System.out.println("GENERATED CHART OPTIONS\n" + this.options);
     }
 
     private String getContentsOfFile(Context context, String path) throws IOException {

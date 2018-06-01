@@ -22,54 +22,54 @@ public class MainActivity extends AppCompatActivity {
 		HIOptions options = new HIOptions();
 
 		HIChart chart = new HIChart();
-		chart.renderTo = "container";
-		chart.margin = new ArrayList<>(Arrays.asList(100));
-		chart.type = "scatter3d";
-		chart.options3d = new HIOptions3d();
-		chart.options3d.enabled = true;
-		chart.options3d.alpha = 10;
-		chart.options3d.beta = 30;
-		chart.options3d.depth = 250;
-		chart.options3d.viewDistance = 5;
-		chart.options3d.fitToPlot = false;
-		chart.options3d.frame = new HIFrame();
-		chart.options3d.frame.bottom = new HIBottom();
-		chart.options3d.frame.bottom.size = 1;
-		chart.options3d.frame.bottom.color = HIColor.initWithRGBA(0, 0, 0, 0.02);
-		chart.options3d.frame.back = new HIBack();
-		chart.options3d.frame.back.size = 1;
-		chart.options3d.frame.back.color = HIColor.initWithRGBA(0, 0, 0, 0.04);
-		chart.options3d.frame.side = new HISide();
-		chart.options3d.frame.side.size = 1;
-		chart.options3d.frame.side.color = HIColor.initWithRGBA(0, 0, 0, 0.06);
-		options.chart = chart;
+		chart.setRenderTo("container");
+		chart.setMargin(new ArrayList<>(Arrays.asList(100)));
+		chart.setType("scatter3d");
+		chart.setOptions3d(new HIOptions3d());
+		chart.getOptions3d().setEnabled(true);
+		chart.getOptions3d().setAlpha(10);
+		chart.getOptions3d().setBeta(30);
+		chart.getOptions3d().setDepth(250);
+		chart.getOptions3d().setViewDistance(5);
+		chart.getOptions3d().setFitToPlot(false);
+		chart.getOptions3d().setFrame(new HIFrame());
+		chart.getOptions3d().getFrame().setBottom(new HIBottom());
+		chart.getOptions3d().getFrame().getBottom().setSize(1);
+		chart.getOptions3d().getFrame().getBottom().setColor(HIColor.initWithRGBA(0, 0, 0, 0.02));
+		chart.getOptions3d().getFrame().setBack(new HIBack());
+		chart.getOptions3d().getFrame().getBack().setSize(1);
+		chart.getOptions3d().getFrame().getBack().setColor(HIColor.initWithRGBA(0, 0, 0, 0.04));
+		chart.getOptions3d().getFrame().setSide(new HISide());
+		chart.getOptions3d().getFrame().getSide().setSize(1);
+		chart.getOptions3d().getFrame().getSide().setColor(HIColor.initWithRGBA(0, 0, 0, 0.06));
+		options.setChart(chart);
 
 		HITitle title = new HITitle();
-		title.text = "Draggable box";
-		options.title = title;
+		title.setText("Draggable box");
+		options.setTitle(title);
 
 		HISubtitle subtitle = new HISubtitle();
-		subtitle.text = "";
-		options.subtitle = subtitle;
+		subtitle.setText("");
+		options.setSubtitle(subtitle);
 
 		HIXAxis xAxis = new HIXAxis();
-		xAxis.min = 0;
-		xAxis.max = 10;
-		xAxis.gridLineWidth = 1;
-		options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
+		xAxis.setMin(0);
+		xAxis.setMax(10);
+		xAxis.setGridLineWidth(1);
+		options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
 		HIYAxis yAxis = new HIYAxis();
-		yAxis.min = 0;
-		yAxis.max = 10;
-		yAxis.title = new HITitle();
-		options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
+		yAxis.setMin(0);
+		yAxis.setMax(10);
+		yAxis.setTitle(new HITitle());
+		options.setYAxis(new ArrayList<HIYAxis>(){{add(yAxis);}});
 
 		HILegend legend = new HILegend();
-		legend.enabled = false;
-		options.legend = legend;
+		legend.setEnabled(false);
+		options.setLegend(legend);
 
 		HIScatter3d series1 = new HIScatter3d();
-		series1.name = "Reading";
+		series1.setName("Reading");
 
 		Number[] data1 = new Number[] {  1, 6, 5  } ;
 		Number[] data2 = new Number[] {  8, 7, 9  } ;
@@ -171,12 +171,12 @@ public class MainActivity extends AppCompatActivity {
 		Number[] data98 = new Number[] {  3, 5, 9  } ;
 		Number[] data99 = new Number[] {  6, 9, 1  } ;
 		Number[] data100 = new Number[] {  1, 9, 2  } ;
-		series1.data = new ArrayList<>(Arrays.asList(data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, data11, data12, data13, data14, data15, data16, data17, data18, data19, data20, data21, data22, data23, data24, data25, data26, data27, data28, data29, data30, data31, data32, data33, data34, data35, data36, data37, data38, data39, data40, data41, data42, data43, data44, data45, data46, data47, data48, data49, data50, data51, data52, data53, data54, data55, data56, data57, data58, data59, data60, data61, data62, data63, data64, data65, data66, data67, data68, data69, data70, data71, data72, data73, data74, data75, data76, data77, data78, data79, data80, data81, data82, data83, data84, data85, data86, data87, data88, data89, data90, data91, data92, data93, data94, data95, data96, data97, data98, data99, data100));
+		series1.setData(new ArrayList<>(Arrays.asList(data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, data11, data12, data13, data14, data15, data16, data17, data18, data19, data20, data21, data22, data23, data24, data25, data26, data27, data28, data29, data30, data31, data32, data33, data34, data35, data36, data37, data38, data39, data40, data41, data42, data43, data44, data45, data46, data47, data48, data49, data50, data51, data52, data53, data54, data55, data56, data57, data58, data59, data60, data61, data62, data63, data64, data65, data66, data67, data68, data69, data70, data71, data72, data73, data74, data75, data76, data77, data78, data79, data80, data81, data82, data83, data84, data85, data86, data87, data88, data89, data90, data91, data92, data93, data94, data95, data96, data97, data98, data99, data100)));
 
-		options.series = new ArrayList<>(Arrays.asList(series1));
+		options.setSeries(new ArrayList<>(Arrays.asList(series1)));
 
-
-		chartView.options = options;
-	}
+		chartView.setOptions(options);
+	    }
 }
+
 

@@ -11,19 +11,39 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HIItemHiddenStyle implements HIChartsJSONSerializable { 
+public class HIItemHiddenStyle extends Observable implements HIChartsJSONSerializable { 
 
-	public String color;
+	private String color;
+	public void setColor(String color) {
+		this.color = color;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getColor(){ return color; }
+
 
 
 	public HIItemHiddenStyle() {
 
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

@@ -38,51 +38,50 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HIChart chart = new HIChart();
-        chart.type = "bellcurve";
-        options.chart = chart;
+        chart.setType("bellcurve");
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "Bell curve";
-        options.title = title;
+        title.setText("Bell curve");
+        options.setTitle(title);
 
         HIXAxis xaxis1 = new HIXAxis();
-        xaxis1.title = new HITitle();
-        xaxis1.title.text = "Data";
+        xaxis1.setTitle(new HITitle());
+        xaxis1.getTitle().setText("Data");
 
         HIXAxis xaxis2 = new HIXAxis();
-        xaxis2.title = new HITitle();
-        xaxis2.title.text = "Bell curve";
-        xaxis2.opposite = true;
+        xaxis2.setTitle(new HITitle());
+        xaxis2.getTitle().setText("Bell curve");
+        xaxis2.setOpposite(true);
 
-        options.xAxis = new ArrayList<>(Arrays.asList(xaxis1, xaxis2));
+        options.setXAxis(new ArrayList<>(Arrays.asList(xaxis1, xaxis2)));
 
         HIYAxis yaxis1 = new HIYAxis();
-        yaxis1.title = new HITitle();
-        yaxis1.title.text = "Data";
+        yaxis1.setTitle(new HITitle());
+        yaxis1.getTitle().setText("Data");
 
         HIYAxis yaxis2 = new HIYAxis();
-        yaxis2.title = new HITitle();
-        yaxis2.title.text = "Bell curve";
-        yaxis2.opposite = true;
+        yaxis2.setTitle(new HITitle());
+        yaxis2.getTitle().setText("Bell curve");
+        yaxis2.setOpposite(true);
 
-        options.yAxis = new ArrayList<>(Arrays.asList(yaxis1, yaxis2));
+        options.setYAxis(new ArrayList<>(Arrays.asList(yaxis1, yaxis2)));
 
         HIBellcurve bellcurve = new HIBellcurve();
-        bellcurve.name = "Bell curve";
-        bellcurve.xAxis = 1;
-        bellcurve.yAxis = 1;
-        bellcurve.baseSeries = 1;
-        bellcurve.zIndex = -1;
+        bellcurve.setName("Bell curve");
+        bellcurve.setXAxis(1);
+        bellcurve.setYAxis(1);
+        bellcurve.setBaseSeries(1);
+        bellcurve.setZIndex(-1);
 
         HIScatter scatter = new HIScatter();
-        scatter.name = "Data";
-        scatter.type = "scatter";
-        scatter.data = new ArrayList<>(Arrays.asList(this.data));
-        scatter.marker = new HIMarker();
-        scatter.marker.radius = 1.5;
+        scatter.setName("Data");
+        scatter.setData(new ArrayList<>(Arrays.asList(this.data)));
+        scatter.setMarker(new HIMarker());
+        scatter.getMarker().setRadius(1.5);
 
-        options.series = new ArrayList<>(Arrays.asList(bellcurve, scatter));
+        options.setSeries(new ArrayList<>(Arrays.asList(bellcurve, scatter)));
 
-        chartView.options = options;
+        chartView.setOptions(options);
     }
 }

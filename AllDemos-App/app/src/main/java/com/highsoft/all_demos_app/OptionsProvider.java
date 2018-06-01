@@ -3,18 +3,6 @@ package com.highsoft.all_demos_app;
 import android.content.Context;
 
 import com.highsoft.all_demos_app.demosOptions.areaCharts.BasicArea;
-import com.highsoft.all_demos_app.demosOptions.heatTreeMapsCharts.LargeHeatMap;
-import com.highsoft.all_demos_app.demosOptions.lineCharts.AjaxLine;
-import com.highsoft.all_demos_app.demosOptions.lineCharts.AnnotationsLine;
-import com.highsoft.all_demos_app.demosOptions.lineCharts.BasicLine;
-import com.highsoft.all_demos_app.demosOptions.lineCharts.Chart500PointsLine;
-import com.highsoft.all_demos_app.demosOptions.lineCharts.DataLabelsLine;
-import com.highsoft.all_demos_app.demosOptions.lineCharts.InvertedAxesSpline;
-import com.highsoft.all_demos_app.demosOptions.lineCharts.IrreguralIntervalsLine;
-import com.highsoft.all_demos_app.demosOptions.lineCharts.LogarithmicAxisLine;
-import com.highsoft.all_demos_app.demosOptions.lineCharts.PlotBandsSpline;
-import com.highsoft.all_demos_app.demosOptions.lineCharts.SymbolsSpline;
-import com.highsoft.all_demos_app.demosOptions.lineCharts.TimeSeriesZoomableLine;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIOptions;
 
 import java.util.HashMap;
@@ -32,9 +20,9 @@ class OptionsProvider {
             case "Line charts":
                 chartCategoryOptions = setLineChartsOptions(context);
                 break;
-//            case "Area charts":
-//                chartCategoryOptions = setAreaChartOptions();
-//                break;
+            case "Area charts":
+                chartCategoryOptions = setAreaChartOptions();
+                break;
 //            case "Column and bar charts":
 //                chartCategoryOptions = setColumnBarChartOptions();
 //                break;
@@ -49,7 +37,7 @@ class OptionsProvider {
 
     private HashMap<String, HIOptions> setLineChartsOptions(Context context){
         HashMap<String, HIOptions> map = new HashMap<>();
-        map.put("Basic line", SymbolsSpline.getOptions()); //todo doesnt draw
+//        map.put("Basic line", SymbolsSpline.getOptions()); //todo doesnt draw
 //        map.put("Ajax loaded data, clickable points", AjaxLine.getOptions(context)); //todo csv data
 //        map.put("With data labels", DataLabelsLine.getOptions()); //todo remove unnecesary plugin?
 //        map.put("With annotations", AnnotationsLine.getOptions());
@@ -87,7 +75,7 @@ class OptionsProvider {
 
     private HashMap<String, HIOptions> setHeatAndTreeMapsOptions(){
         HashMap<String, HIOptions> map = new HashMap<>();
-        map.put("Large heat map", LargeHeatMap.getOptions());
+//        map.put("Large heat map", LargeHeatMap.getOptions());
         return map;
     }
 }

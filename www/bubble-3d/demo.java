@@ -27,23 +27,23 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HIChart chart = new HIChart();
-        chart.type = "bubble";
-        chart.plotBorderWidth = 1;
-        chart.zoomType = "xy";
-        options.chart = chart;
+        chart.setType("bubble");
+        chart.setPlotBorderWidth(1);
+        chart.setZoomType("xy");
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "Highcharts bubbles with radial gradient fill";
-        options.title = title;
+        title.setText("Highcharts bubbles with radial gradient fill");
+        options.setTitle(title);
 
         HIXAxis xaxis = new HIXAxis();
-        xaxis.gridLineWidth = 1;
-        options.xAxis = new ArrayList<>(Collections.singletonList(xaxis));
+        xaxis.setGridLineWidth(1);
+        options.setXAxis(new ArrayList<>(Collections.singletonList(xaxis)));
 
         HIYAxis yaxis = new HIYAxis();
-        yaxis.startOnTick = false;
-        yaxis.endOnTick = false;
-        options.yAxis = new ArrayList<>(Collections.singletonList(yaxis));
+        yaxis.setStartOnTick(false);
+        yaxis.setEndOnTick(false);
+        options.setYAxis(new ArrayList<>(Collections.singletonList(yaxis)));
 
         HIBubble bubble1 = new HIBubble();
         Number[][] series1Data = new Number[][] {
@@ -62,22 +62,16 @@ public class MainActivity extends AppCompatActivity {
                 {93, 23, 23},
                 {44, 83, 22}
         };
-        bubble1.data = new ArrayList<>(Arrays.asList(series1Data));
-        bubble1.marker = new HIMarker();
-        HashMap<String, Number> gradientPoints = new HashMap<>();
-        gradientPoints.put("cx", 0.4);
-        gradientPoints.put("cy", 0.3);
-        gradientPoints.put("r", 0.7);
-        List<List> gradientColors = new LinkedList<>();
-        List<Object> l1 = new LinkedList<>();
-        l1.add(0);
-        l1.add("rgba(255,255,255,0.5)");
-        List<Object> l2 = new LinkedList<>();
-        l2.add(1);
-        l2.add("rgba(124,181,236,0.5)");
-        gradientColors.add(l1);
-        gradientColors.add(l2);
-        bubble1.marker.fillColor = HIColor.initWithRadialGradient(gradientPoints, gradientColors);
+        bubble1.setData(new ArrayList<>(Arrays.asList(series1Data)));
+        bubble1.setMarker(new HIMarker());
+
+        HIGradient gradient = new HIGradient(0.4f, 0.3f, 0.7f);
+
+        LinkedList<HIStop> stops = new LinkedList<>();
+        stops.add(new HIStop(0, HIColor.initWithRGBA(255, 255, 255, 0.5)));
+        stops.add(new HIStop(1, HIColor.initWithRGBA(124, 181, 236, 0.5)));
+
+        bubble1.getMarker().setFillColor(HIColor.initWithRadialGradient(gradient, stops));
 
         HIBubble bubble2 = new HIBubble();
         Number[][] series2Data = new Number[][] {
@@ -96,26 +90,17 @@ public class MainActivity extends AppCompatActivity {
                 {57, 91, 82},
                 {45, 15, 98}
         };
-        bubble2.data = new ArrayList<>(Arrays.asList(series2Data));
-        bubble2.marker = new HIMarker();
-        HashMap<String, Number> gradientPoints2 = new HashMap<>();
-        gradientPoints2.put("cx", 0.4);
-        gradientPoints2.put("cy", 0.3);
-        gradientPoints2.put("r", 0.7);
-        List<List> gradientColors2 = new LinkedList<>();
-        List<Object> l11 = new LinkedList<>();
-        l11.add(0);
-        l11.add("rgba(255,255,255,0.5)");
-        List<Object> l22 = new LinkedList<>();
-        l22.add(1);
-        l22.add("rgba(67,67,72,0.5)");
-        gradientColors2.add(l11);
-        gradientColors2.add(l22);
-        bubble2.marker.fillColor = HIColor.initWithRadialGradient(gradientPoints2, gradientColors2);
+        bubble2.setData(new ArrayList<>(Arrays.asList(series2Data)));
+        bubble2.setMarker(new HIMarker());
 
+        LinkedList<HIStop> stops2 = new LinkedList<>();
+        stops2.add(new HIStop(0, HIColor.initWithRGBA(255, 255, 255, 0.5)));
+        stops2.add(new HIStop(1, HIColor.initWithRGBA(67, 67, 72, 0.5)));
 
-        options.series = new ArrayList<>(Arrays.asList(bubble1, bubble2));
+        bubble2.getMarker().setFillColor(HIColor.initWithRadialGradient(gradient, stops2));
 
-        chartView.options = options;
+        options.setSeries(new ArrayList<>(Arrays.asList(bubble1, bubble2)));
+
+        chartView.setOptions(options);
     }
 }

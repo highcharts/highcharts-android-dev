@@ -25,73 +25,74 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HIChart chart = new HIChart();
-        chart.type = "area";
-        chart.spacingBottom = 30.0;
-        options.chart = chart;
+        chart.setType("area");
+        chart.setSpacingBottom(30);
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "Fruit consumption *";
-        options.title = title;
+        title.setText("Fruit consumption *");
+        options.setTitle(title);
 
         HISubtitle subtitle = new HISubtitle();
-        subtitle.text = "* Jane's banana consumption is unknown";
-        subtitle.floating = true;
-        subtitle.align = "right";
-        subtitle.verticalAlign = "bottom";
-        subtitle.y = 15.0;
-        options.subtitle = subtitle;
+        subtitle.setText("* Jane's banana consumption is unknown");
+        subtitle.setFloating(true);
+        subtitle.setAlign("right");
+        subtitle.setVerticalAlign("bottom");
+        subtitle.setY(15);
+        options.setSubtitle(subtitle);
 
         HIXAxis xaxis = new HIXAxis();
         String[] fruits = new String[] { "Apples", "Pears", "Oranges", "Bananas", "Grapes", "Plums", "Strawberries", "Raspberries" };
-        xaxis.categories = new ArrayList<>(Arrays.asList(fruits));
-        options.xAxis = new ArrayList<HIXAxis>(){{add(xaxis);}};
+        xaxis.setCategories(new ArrayList<>(Arrays.asList(fruits)));
+        options.setXAxis(new ArrayList<HIXAxis>(){{add(xaxis);}});
 
         HIYAxis yaxis = new HIYAxis();
-        yaxis.title = new HITitle();
-        yaxis.title.text = "Y-Axis";
-        yaxis.labels = new HILabels();
-        yaxis.labels.formatter = new HIFunction(
+        yaxis.setTitle(new HITitle());
+        yaxis.getTitle().setText("Y-Axis");
+        yaxis.setLabels(new HILabels());
+        yaxis.getLabels().setFormatter(new HIFunction(
                 f -> { return String.valueOf(f.getProperty("value")); },
                 new String[] {"value"}
-        );
-        options.yAxis = new ArrayList<HIYAxis>(){{add(yaxis);}};
+        ));
+        options.setYAxis(new ArrayList<HIYAxis>(){{add(yaxis);}});
 
         HITooltip tooltip = new HITooltip();
-        tooltip.formatter = new HIFunction(
+        tooltip.setFormatter(new HIFunction(
                 f -> "<b>" + f.getProperty("series.name") + "</b><br>" + f.getProperty("x") + ": " + f.getProperty("y"),
                 new String[] {"series.name", "x", "y"}
-        );
-        options.tooltip = tooltip;
+        ));
+        options.setTooltip(tooltip);
 
         HILegend legend = new HILegend();
-        legend.layout = "vertical";
-        legend.align = "left";
-        legend.verticalAlign = "top";
-        legend.x = 150.0;
-        legend.y = 100.0;
-        legend.floating = true;
-        legend.borderWidth = 1.0;
-        legend.backgroundColor = HIColor.initWithHexValue("FFFFFF");
-        options.legend = legend;
+        legend.setLayout("vertical");
+        legend.setAlign("left");
+        legend.setVerticalAlign("top");
+        legend.setX(150);
+        legend.setY(100);
+        legend.setFloating(true);
+        legend.setBorderWidth(1);
+        legend.setBackgroundColor(HIColor.initWithHexValue("FFFFFF"));
+        options.setLegend(legend);
 
         HIPlotOptions plotOptions = new HIPlotOptions();
-        plotOptions.area = new HIArea();
-        plotOptions.area.fillOpacity = 0.5;
-        options.plotOptions = plotOptions;
+        plotOptions.setArea(new HIArea());
+        plotOptions.getArea().setFillOpacity(0.5);
+        options.setPlotOptions(plotOptions);
 
         HICredits credits = new HICredits();
-        credits.enabled = false;
+        credits.setEnabled(false);
 
         HIArea area1 = new HIArea();
-        area1.name = "John";
+        area1.setName("John");
         Number[] area1Data = new Number[] { 0, 1, 4, 4, 5, 2, 3, 7 };
-        area1.data = new ArrayList<>(Arrays.asList(area1Data));
+        area1.setData(new ArrayList<>(Arrays.asList(area1Data)));
         HIArea area2 = new HIArea();
-        area2.name = "Jane";
+        area2.setName("Jane");
         Number[] area2Data = new Number[] { 1, 0, 3, null, 3, 1, 2, 1 };
-        area2.data = new ArrayList<>(Arrays.asList(area2Data));
-        options.series = new ArrayList<>(Arrays.asList(area1, area2));
+        area2.setData(new ArrayList<>(Arrays.asList(area2Data)));
+        options.setSeries(new ArrayList<>(Arrays.asList(area1, area2)));
 
-        chartView.options = options;
+        chartView.setOptions(options);
     }
 }
+

@@ -23,32 +23,33 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HIChart chart = new HIChart();
-        chart.type = "arearange";
-        chart.zoomType = "x";
-        options.chart = chart;
+        chart.setType("arearange");
+        chart.setZoomType("x");
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "Temperature variation by day";
-        options.title = title;
+        title.setText("Temperature variation by day");
+        options.setTitle(title);
 
         HIXAxis xaxis = new HIXAxis();
-        xaxis.type = "datetime";
-        options.xAxis = new ArrayList<HIXAxis>(){{add(xaxis);}};
+        xaxis.setType("datetime");
+        options.setXAxis(new ArrayList<HIXAxis>(){{add(xaxis);}});
 
         HIYAxis yaxis = new HIYAxis();
-        yaxis.title = new HITitle();
+        yaxis.setTitle(new HITitle());
+        options.setYAxis(new ArrayList<HIYAxis>(){{add(yaxis);}});
 
         HITooltip tooltip = new HITooltip();
-        tooltip.crosshairs = true;
-        tooltip.shadow = true;
-        tooltip.valueSuffix = "°C";
-        options.tooltip = tooltip;
+        tooltip.setShadow(true);
+        tooltip.setValueSuffix("°C");
+        options.setTooltip(tooltip);
 
         HILegend legend = new HILegend();
-        legend.enabled = false;
+        legend.setEnabled(false);
+        options.setLegend(legend);
 
         HIArearange series = new HIArearange();
-        series.name = "Temperatures";
+        series.setName("Temperatures");
 
         Object[][] seriesData = new Object[][]{
                 {1388538000000L, 1.1, 4.7},
@@ -416,13 +417,12 @@ public class MainActivity extends AppCompatActivity {
                 {1419901200000L, 1.3, 2.5},
                 {1419987600000L, 1.6, 4.2}
         };
-        series.data = new ArrayList<>(Arrays.asList(seriesData));
-        options.series = new ArrayList<>(Arrays.asList(series));
-
-        chartView.options = options;
+        series.setData(new ArrayList<>(Arrays.asList(seriesData)));
+        options.setSeries(new ArrayList<>(Arrays.asList(series)));
+        
+        chartView.setOptions(options);
     }
 }
-
 
 
 

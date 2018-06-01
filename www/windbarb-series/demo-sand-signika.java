@@ -26,64 +26,48 @@ public class MainActivity extends AppCompatActivity {
 
 		HIOptions options = new HIOptions();
 
-		HIChart chart = new HIChart();
-		chart.type = "windbarb";
-		options.chart = chart;
-
 		HITitle title = new HITitle();
-		title.text = "Highcharts Wind Barbs";
-		options.title = title;
+		title.setText("Highcharts Wind Barbs");
+		options.setTitle(title);
 
 		HIXAxis xAxis = new HIXAxis();
-		xAxis.type = "datetime";
-		xAxis.offset = 40;
-		options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
+		xAxis.setType("datetime");
+		xAxis.setOffset(40);
+		options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
 		HIPlotOptions plotOptions = new HIPlotOptions();
-		plotOptions.series = new HISeries();
-		plotOptions.series.pointStart = 1485648000000L;
-		plotOptions.series.pointInterval = 36e5;
-		options.plotOptions = plotOptions;
+		plotOptions.setSeries(new HISeries());
+		plotOptions.getSeries().setPointInterval(1485648000000L);
+		plotOptions.getSeries().setPointInterval(36e5);
+		options.setPlotOptions(plotOptions);
 
 		HIWindbarb series1 = new HIWindbarb();
-		series1.name = "Wind";
-		series1.color = HIColor.initWithHexValue("0d233a");
-		series1.showInLegend = false;
-		series1.tooltip = new HITooltip();
-		series1.tooltip.valueSuffix = " m/s";
+		series1.setName("Wind");
+		series1.setColor(HIColor.initWithHexValue("0d233a"));
+		series1.setShowInLegend(false);
+		series1.setTooltip(new HITooltip());
+		series1.getTooltip().setValueSuffix(" m/s");
 		Number[][] series1_data = new Number[][] { {9.8, 177.9}, {10.1, 177.2}, {11.3, 179.7}, {10.9, 175.5}, {9.3, 159.9}, {8.8, 159.6}, {7.8, 162.6}, {5.6, 186.2}, {6.8, 146.0}, {6.4, 139.9}, {3.1, 180.2}, {4.3, 177.6}, {5.3, 191.8}, {6.3, 173.1}, {7.7, 140.2}, {8.5, 136.1}, {9.4, 142.9}, {10.0, 140.4}, {5.3, 142.1}, {3.8, 141.0}, {3.3, 116.5}, {1.5, 327.5}, {0.1, 1.1}, {1.2, 11.1} };
-		series1.data = new ArrayList<>(Arrays.asList(series1_data));
+		series1.setData(new ArrayList<>(Arrays.asList(series1_data)));
 
 		HIArea series2 = new HIArea();
-		series2.type = "area";
+		series2.setType("area");
 		String[] keys = new String[] { "y", "rotation" };
-		series2.keys = new ArrayList<>(Arrays.asList(keys));
+		series2.setKeys(new ArrayList<>(Arrays.asList(keys)));
 		Number[][] series2_data = new Number[][] { {9.8, 177.9}, {10.1, 177.2}, {11.3, 179.7}, {10.9, 175.5}, {9.3, 159.9}, {8.8, 159.6}, {7.8, 162.6}, {5.6, 186.2}, {6.8, 146.0}, {6.4, 139.9}, {3.1, 180.2}, {4.3, 177.6}, {5.3, 191.8}, {6.3, 173.1}, {7.7, 140.2}, {8.5, 136.1}, {9.4, 142.9}, {10.0, 140.4}, {5.3, 142.1}, {3.8, 141.0}, {3.3, 116.5}, {1.5, 327.5}, {0.1, 1.1}, {1.2, 11.1} };
-		series2.data = new ArrayList<>(Arrays.asList(series2_data));
-		series2.color = HIColor.initWithHexValue("2f7ed8");
-		HashMap<String, Number> radialGradient = new HashMap<>();
-		radialGradient.put("x1", 0);
-		radialGradient.put("x2", 0);
-		radialGradient.put("y1", 0);
-		radialGradient.put("y2", 1);
-		List<List> stops1 = new ArrayList<>();
-		List<Object> s11 = new LinkedList<>();
-		s11.add(0);
-		s11.add("#2f7ed8");
-		List<Object> s12 = new LinkedList<>();
-		s12.add(1);
-		s12.add("rgba(47, 126, 216, 0.25)");
-		stops1.add(s11);
-		stops1.add(s12);
-		series2.fillColor = HIColor.initWithLinearGradient(radialGradient, stops1);
-		series2.name = "Wind speed";
-		series2.tooltip = new HITooltip();
-		series2.tooltip.valueSuffix = " m/s";
+		series2.setData(new ArrayList<>(Arrays.asList(series2_data)));
+		series2.setColor(HIColor.initWithHexValue("2f7ed8"));
+		LinkedList<HIStop> stops = new LinkedList<>();
+		stops.add(new HIStop(0, HIColor.initWithHexValue("2f7ed8")));
+		stops.add(new HIStop(1, HIColor.initWithRGBA(47, 126, 216, 0.25)));
+		series2.setFillColor(HIColor.initWithLinearGradient(new HIGradient(), stops));
+		series2.setName("Wind speed");
+		series2.setTooltip(new HITooltip());
+		series2.getTooltip().setValueSuffix(" m/s");
 
-		options.series = new ArrayList<>(Arrays.asList(series1, series2));
+		options.setSeries(new ArrayList<>(Arrays.asList(series1, series2)));
 
-
-		chartView.options = options;
+		chartView.setOptions(options);
 	}
 }
 

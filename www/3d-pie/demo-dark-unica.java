@@ -22,34 +22,33 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HIChart chart = new HIChart();
-        chart.type = "pie";
-        chart.options3d = new HIOptions3d();
-        chart.options3d.enabled = true;
-        chart.options3d.alpha = 45;
-        chart.options3d.beta = 0;
-        options.chart = chart;
+        chart.setType("pie");
+        chart.setOptions3d(new HIOptions3d());
+        chart.getOptions3d().setEnabled(true);
+        chart.getOptions3d().setAlpha(45);
+        chart.getOptions3d().setBeta(0);
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "Browser market shares at a specific website, 2014";
-        options.title = title;
+        title.setText("Browser market shares at a specific website, 2014");
+        options.setTitle(title);
 
         HITooltip tooltip = new HITooltip();
-        tooltip.pointFormat = "{series.name}: <b>{point.percentage:.1f}%</b>";
-        options.tooltip = tooltip;
+        tooltip.setPointFormat("{series.name}: <b>{point.percentage:.1f}%</b>");
+        options.setTooltip(tooltip);
 
         HIPlotOptions plotOptions = new HIPlotOptions();
-        plotOptions.pie = new HIPie();
-        plotOptions.pie.allowPointSelect = true;
-        plotOptions.pie.cursor = "pointer";
-        plotOptions.pie.depth = 35;
-        plotOptions.pie.dataLabels = new HIDataLabels();
-        plotOptions.pie.dataLabels.enabled = true;
-        plotOptions.pie.dataLabels.format = "{point.name}";
-        options.plotOptions = plotOptions;
+        plotOptions.setPie(new HIPie());
+        plotOptions.getPie().setAllowPointSelect(true);
+        plotOptions.getPie().setCursor("pointer");
+        plotOptions.getPie().setDepth(35);
+        plotOptions.getPie().setDataLabels(new HIDataLabels());
+        plotOptions.getPie().getDataLabels().setEnabled(true);
+        plotOptions.getPie().getDataLabels().setFormat("{point.name}");
+        options.setPlotOptions(plotOptions);
 
         HIPie series1 = new HIPie();
-        series1.type = "pie";
-        series1.name = "Browser share";
+        series1.setName("Browser share");
         Object[] firefoxData = new Object[] { "Firefox", 45.0 };
         Object[] IEData = new Object[] { "IE", 26.0 };
         HashMap<String, Object> chromeData = new HashMap<>();
@@ -60,9 +59,8 @@ public class MainActivity extends AppCompatActivity {
         Object[] safariData = new Object[] { "Safari", 8.5 };
         Object[] operaData = new Object[] { "Opera", 6.2 };
         Object[] othersData = new Object[] { "Others", 0.7 };
-        series1.data = new ArrayList<>(Arrays.asList(firefoxData, IEData, chromeData, safariData, operaData, othersData));
-        options.series = new ArrayList<>(Arrays.asList(series1));
-
-        chartView.options = options;
+        series1.setData(new ArrayList<>(Arrays.asList(firefoxData, IEData, chromeData, safariData, operaData, othersData)));
+        options.setSeries(new ArrayList<>(Arrays.asList(series1)));
+        chartView.setOptions(options);
     }
 }

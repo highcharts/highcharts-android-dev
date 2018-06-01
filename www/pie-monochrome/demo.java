@@ -39,29 +39,29 @@ public class MainActivity extends AppCompatActivity {
 		HIColor color9 = HIColor.initWithRGB(255, 255, 255);
 		HIColor color10 = HIColor.initWithRGB(255, 255, 255);
 		ArrayList<HIColor> colors = new ArrayList<>(Arrays.asList(color1, color2, color3, color4, color5, color6, color7, color8, color9, color10));
-		options.colors = colors;
+		options.setColors(colors);
 
 		HITitle title = new HITitle();
-		title.text = "Browser market shares at a specific website, 2014";
-		options.title = title;
+		title.setText("Browser market shares at a specific website, 2014");
+		options.setTitle(title);
 
 		HITooltip tooltip = new HITooltip();
-		tooltip.pointFormat = "{series.name}: <b>{point.percentage:.1f}%</b>";
-		options.tooltip = tooltip;
+		tooltip.setPointFormat("{series.name}: <b>{point.percentage:.1f}%</b>");
+		options.setTooltip(tooltip);
 
 		HIPlotOptions plotOptions = new HIPlotOptions();
-		plotOptions.pie = new HIPie();
-		plotOptions.pie.allowPointSelect = true;
-		plotOptions.pie.cursor = "pointer";
-		plotOptions.pie.dataLabels = new HIDataLabels();
-		plotOptions.pie.dataLabels.enabled = true;
-		plotOptions.pie.dataLabels.format = "<b>{point.name}</b>: {point.percentage:.1f} %";
-		plotOptions.pie.dataLabels.style = new HIStyle();
-		plotOptions.pie.dataLabels.style.color = "black";
-		options.plotOptions = plotOptions;
+		plotOptions.setPie(new HIPie());
+		plotOptions.getPie().setAllowPointSelect(true);
+		plotOptions.getPie().setCursor("pointer");
+		plotOptions.getPie().setDataLabels(new HIDataLabels());
+		plotOptions.getPie().getDataLabels().setEnabled(true);
+		plotOptions.getPie().getDataLabels().setFormat("<b>{point.name}</b>: {point.percentage:.1f} %");
+		plotOptions.getPie().getDataLabels().setStyle(new HIStyle());
+		plotOptions.getPie().getDataLabels().getStyle().setColor("black");
+		options.setPlotOptions(plotOptions);
 
 		HIPie series1 = new HIPie();
-		series1.name = "Brands";
+		series1.setName("Brands");
 
 		HashMap<String, Object> map1 = new HashMap<>();
 		map1.put("name", "Microsoft Internet Explorer");
@@ -89,12 +89,11 @@ public class MainActivity extends AppCompatActivity {
 		map6.put("name", "Proprietary or Undetectable");
 		map6.put("y", 0.2);
 
-		series1.data = new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6));
+		series1.setData(new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6)));
 
-		options.series = new ArrayList<>(Arrays.asList(series1));
+		options.setSeries(new ArrayList<>(Arrays.asList(series1)));
 
-
-		chartView.options = options;
+		chartView.setOptions(options);
 	}
 }
 

@@ -30,31 +30,31 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HIChart chart = new HIChart();
-        chart.type = "pie";
-        chart.plotShadow = false;
-        options.chart = chart;
+        chart.setType("pie");
+        chart.setPlotShadow(false);
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "Browser market shares January, 2015 to May, 2015";
-        options.title = title;
+        title.setText("Browser market shares January, 2015 to May, 2015");
+        options.setTitle(title);
 
         HITooltip tooltip = new HITooltip();
-        tooltip.pointFormat = "{series.name}: <b>{point.percentage:.1f}%</b>";
-        options.tooltip = tooltip;
+        tooltip.setPointFormat("{series.name}: <b>{point.percentage:.1f}%</b>");
+        options.setTooltip(tooltip);
 
         HIPlotOptions plotOptions = new HIPlotOptions();
-        plotOptions.pie = new HIPie();
-        plotOptions.pie.allowPointSelect = true;
-        plotOptions.pie.cursor = "pointer";
-        plotOptions.pie.dataLabels = new HIDataLabels();
-        plotOptions.pie.dataLabels.enabled = true;
-        plotOptions.pie.dataLabels.format = "<b>{point.name}</b>: {point.percentage:.1f} %";
-        plotOptions.pie.dataLabels.style = new HIStyle();
-        plotOptions.pie.dataLabels.style.color = "black";
-        options.plotOptions = plotOptions;
+        plotOptions.setPie(new HIPie());
+        plotOptions.getPie().setAllowPointSelect(true);
+        plotOptions.getPie().setCursor("pointer");
+        plotOptions.getPie().setDataLabels(new HIDataLabels());
+        plotOptions.getPie().getDataLabels().setEnabled(true);
+        plotOptions.getPie().getDataLabels().setFormat("<b>{point.name}</b>: {point.percentage:.1f} %"); ;
+        plotOptions.getPie().getDataLabels().setStyle(new HIStyle());
+        plotOptions.getPie().getDataLabels().getStyle().setColor("black");
+        options.setPlotOptions(plotOptions);
 
         HIPie pie = new HIPie();
-        pie.name = "Brands";
+        pie.setName("Brands");
         HashMap<String, Object> map1 = new HashMap<>();
         map1.put("name", "Microsoft Internet Explorer");
         map1.put("y", 56.33);
@@ -75,10 +75,10 @@ public class MainActivity extends AppCompatActivity {
         HashMap<String, Object> map6 = new HashMap<>();
         map6.put("name", "Others");
         map6.put("y", 0.2);
-        pie.data = new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6));
+        pie.setData(new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6)));
 
-        options.series = new ArrayList<>(Collections.singletonList(pie));
+        options.setSeries(new ArrayList<>(Collections.singletonList(pie)));
 
-        chartView.options = options;
+        chartView.setOptions(options);
     }
 }

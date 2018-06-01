@@ -22,65 +22,62 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 		
         HIChart chart = new HIChart();
-        chart.type = "spline";
-        chart.inverted = true;
-        options.chart = chart;
+        chart.setType("spline");
+        chart.setInverted(true);
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "Atmosphere Temperature by Altitude";
-        options.title = title;
+        title.setText("Atmosphere Temperature by Altitude");
+        options.setTitle(title);
 
         HISubtitle subtitle = new HISubtitle();
-        subtitle.text = "According to the Standard Atmosphere Model";
-        options.subtitle = subtitle;
+        subtitle.setText("According to the Standard Atmosphere Model");
+        options.setSubtitle(subtitle);
 
         HIXAxis xAxis = new HIXAxis();
-        xAxis.reversed = false;
-        xAxis.title = new HITitle();
-        xAxis.title.text = "Altitude";
-        xAxis.labels = new HILabels();
-	xAxis.labels.formatter = new HIFunction(
-		f -> f.getProperty("value") + "km",
-		new String[] {"value"}
-	};
-        xAxis.maxPadding = 0.05;
-        xAxis.showLastLabel = true;
-        options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
+        xAxis.setReversed(true);
+        xAxis.setTitle(new HITitle());
+        xAxis.getTitle().setText("Altitude");
+        xAxis.setLabels(new HILabels());
+        xAxis.getLabels().setFormatter(new HIFunction(
+                f -> f.getProperty("value") + "km",
+                new String[] {"value"}));
+        xAxis.setMaxPadding(0.05);
+        xAxis.setShowLastLabel(true);
+        options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
         HIYAxis yAxis = new HIYAxis();
-        yAxis.title = new HITitle();
-        yAxis.title.text = "Temperature";
-        yAxis.labels = new HILabels();
-        yAxis.labels.formatter = new HIFunction(
-		f -> f.getProperty("value") + "km",
-		new String[] {"value"}
-	};
-        yAxis.lineWidth = 2;
-        options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
+        yAxis.setTitle(new HITitle());
+        yAxis.getTitle().setText("Temperature");
+        yAxis.setLabels(new HILabels());
+        yAxis.getLabels().setFormatter(new HIFunction(
+                f -> f.getProperty("value") + "°C",
+                new String[] {"value"}));
+        yAxis.setLineWidth(2);
+        options.setYAxis(new ArrayList<HIYAxis>(){{add(yAxis);}});
 
         HILegend legend = new HILegend();
-        legend.enabled = false;
-        options.legend = legend;
+        legend.setEnabled(false);
+        options.setLegend(legend);
 
         HITooltip tooltip = new HITooltip();
-        tooltip.headerFormat = "<b>{series.name}</b><br/>";
-        tooltip.pointFormat = "{point.x}'km': {point.y}C";
-        options.tooltip = tooltip;
+        tooltip.setHeaderFormat("<b>{series.name}</b><br/>");
+        tooltip.setPointFormat("{point.x}'km': {point.y}°C");
+        options.setTooltip(tooltip);
 
         HIPlotOptions plotOptions = new HIPlotOptions();
-        plotOptions.spline = new HISpline();
-        plotOptions.spline.marker = new HIMarker();
-        plotOptions.spline.marker.enabled = false;
-        options.plotOptions = plotOptions;
+        plotOptions.setSpline(new HISpline());
+        plotOptions.getSpline().setMarker(new HIMarker());
+        plotOptions.getSpline().getMarker().setEnabled(false);
+        options.setPlotOptions(plotOptions);
 
         HISpline series1 = new HISpline();
-        series1.name = "Temperature";
+        series1.setName("Temperature");
         Number[][] series1_data = new Number[][] {{0, 15}, {10, -50}, {20, -56.5}, {30, -46.5}, {40, -22.1}, {50, -2.5}, {60, -27.7}, {70, -55.7}, {80, -76.5}};
-        series1.data = new ArrayList<>(Arrays.asList(series1_data));
-        options.series = new ArrayList<>(Arrays.asList(series1));
+        series1.setData(new ArrayList<>(Arrays.asList(series1_data)));
+        options.setSeries(new ArrayList<>(Arrays.asList(series1)));
 
-
-        chartView.options = options;
+        chartView.setOptions(options);
     }
 }
 

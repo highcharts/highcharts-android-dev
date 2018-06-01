@@ -22,66 +22,65 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HIChart chart = new HIChart();
-        chart.type = "area";
-        options.chart = chart;
+        chart.setType("area");
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "Historic and Estimated Worldwide Population Distribution by Region";
-        options.title = title;
+        title.setText("Historic and Estimated Worldwide Population Distribution by Region");
+        options.setTitle(title);
 
         HISubtitle subtitle = new HISubtitle();
-        subtitle.text = "Source: Wikipedia.org";
-        options.subtitle = subtitle;
+        subtitle.setText("Source: Wikipedia.org");
+        options.setSubtitle(subtitle);
 
         HIXAxis xAxis = new HIXAxis();
         String[] categoriesList = new String[] {"1750", "1800", "1850", "1900", "1950", "1999", "2050" };
-        xAxis.categories = new ArrayList<>(Arrays.asList(categoriesList));
-        xAxis.tickmarkPlacement = "on";
-        options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
+        xAxis.setCategories(new ArrayList<>(Arrays.asList(categoriesList)));
+        xAxis.setTickmarkPlacement("on");
+        options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
         HIYAxis yAxis = new HIYAxis();
-        yAxis.title = new HITitle();
-        yAxis.title.text = "Percent";
-        options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
+        yAxis.setTitle(new HITitle());
+        yAxis.getTitle().setText("Percent");
+        options.setYAxis(new ArrayList<HIYAxis>(){{add(yAxis);}});
 
         HITooltip tooltip = new HITooltip();
-        tooltip.pointFormat = "<span style=\"color:{series.color}\">{series.name}</span>: <b>{point.percentage:.1f}%</b> ({point.y:,.0f} millions)<br/>";
-        tooltip.split = true;
-        options.tooltip = tooltip;
+        tooltip.setPointFormat("<span style=\"color:{series.color}\">{series.name}</span>: <b>{point.percentage:.1f}%</b> ({point.y:,.0f} millions)<br/>");
+        tooltip.setSplit(true);
+        options.setTooltip(tooltip);
 
         HIPlotOptions plotOptions = new HIPlotOptions();
-        plotOptions.area = new HIArea();
-        plotOptions.area.stacking = "percent";
-        plotOptions.area.lineColor = HIColor.initWithHexValue("ffffff");
-        plotOptions.area.lineWidth = 1;
-        plotOptions.area.marker = new HIMarker();
-        plotOptions.area.marker.lineWidth = 1;
-        plotOptions.area.marker.lineColor = HIColor.initWithHexValue("ffffff");
-        options.plotOptions = plotOptions;
+        plotOptions.setArea(new HIArea());
+        plotOptions.getArea().setStacking("percent");
+        plotOptions.getArea().setLineColor(HIColor.initWithHexValue("ffffff"));
+        plotOptions.getArea().setLineWidth(1);
+        plotOptions.getArea().setMarker(new HIMarker());
+        plotOptions.getArea().getMarker().setLineWidth(1);
+        plotOptions.getArea().getMarker().setLineColor(HIColor.initWithHexValue("ffffff"));
+        options.setPlotOptions(plotOptions);
 
         HIArea series1 = new HIArea();
-        series1.name = "Asia";
+        series1.setName("Asia");
         Number[] series1_data = new Number[] {502, 635, 809, 947, 1402, 3634, 5268};
-        series1.data = new ArrayList<>(Arrays.asList(series1_data));
+        series1.setData(new ArrayList<>(Arrays.asList(series1_data)));
         HIArea series2 = new HIArea();
-        series2.name = "Africa";
+        series2.setName("Africa");
         Number[] series2_data = new Number[] {106, 107, 111, 133, 221, 767, 1766};
-        series2.data = new ArrayList<>(Arrays.asList(series2_data));
+        series2.setData(new ArrayList<>(Arrays.asList(series2_data)));
         HIArea series3 = new HIArea();
-        series3.name = "Europe";
+        series3.setName("Europe");
         Number[] series3_data = new Number[] {163, 203, 276, 408, 547, 729, 628};
-        series3.data = new ArrayList<>(Arrays.asList(series3_data));
+        series3.setData(new ArrayList<>(Arrays.asList(series3_data)));
         HIArea series4 = new HIArea();
-        series4.name = "America";
+        series4.setName("America");
         Number[] series4_data = new Number[] {18, 31, 54, 156, 339, 818, 1201};
-        series4.data = new ArrayList<>(Arrays.asList(series4_data));
+        series4.setData(new ArrayList<>(Arrays.asList(series4_data)));
         HIArea series5 = new HIArea();
-        series5.name = "Oceania";
+        series5.setName("Oceania");
         Number[] series5_data = new Number[] {2, 2, 2, 6, 13, 30, 46};
-        series5.data = new ArrayList<>(Arrays.asList(series5_data));
-        options.series = new ArrayList<>(Arrays.asList(series1, series2, series3, series4, series5));
+        series5.setData(new ArrayList<>(Arrays.asList(series5_data)));
+        options.setSeries(new ArrayList<>(Arrays.asList(series1, series2, series3, series4, series5)));
 
-        chartView.options = options;
+        chartView.setOptions(options);
     }
 }
-

@@ -22,28 +22,24 @@ public class MainActivity extends AppCompatActivity {
 
 		HIOptions options = new HIOptions();
 
-		HIChart chart = new HIChart();
-		chart.type = "vector";
-		options.chart = chart;
-
 		HITitle title = new HITitle();
-		title.text = "Highcharts Vector plot";
-		options.title = title;
+		title.setText("Highcharts Vector plot");
+		options.setTitle(title);
 
 		HIXAxis xAxis = new HIXAxis();
-		xAxis.min = 0;
-		xAxis.max = 100;
-		xAxis.gridLineWidth = 1;
-		options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
+		xAxis.setMin(0);
+		xAxis.setMax(100);
+		xAxis.setGridLineWidth(1);
+		options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
 		HIYAxis yaxis = new HIYAxis();
-		yaxis.min = 0;
-		yaxis.max = 100;
-		options.yAxis = new ArrayList<HIYAxis>(){{add(yaxis);}};
+		yaxis.setMin(0);
+		yaxis.setMax(100);
+		options.setYAxis(new ArrayList<HIYAxis>(){{add(yaxis);}});
 
 		HIVector series1 = new HIVector();
-		series1.name = "Sample vector field";
-		series1.color = HIColor.initWithHexValue("0d233a");
+		series1.setName("Sample vector field");
+		series1.setColor(HIColor.initWithHexValue("0d233a"));
 
 		Number[] object1 = new Number[] { 5, 5, 190, 18 };
 		Number[] object2 = new Number[] { 5, 10, 185, 27 };
@@ -407,12 +403,11 @@ public class MainActivity extends AppCompatActivity {
 		Number[] object361 = new Number[] { 95, 90, 15, 333 };
 		Number[] object362 = new Number[] { 95, 95, 10, 342 };
 
-		series1.data = new ArrayList<>(Arrays.asList(object1, object2, object3, object4, object5, object6, object7, object8, object9, object10, object11, object12, object13, object14, object15, object16, object17, object18, object19, object20, object21, object22, object23, object24, object25, object26, object27, object28, object29, object30, object31, object32, object33, object34, object35, object36, object37, object38, object39, object40, object41, object42, object43, object44, object45, object46, object47, object48, object49, object50, object51, object52, object53, object54, object55, object56, object57, object58, object59, object60, object61, object62, object63, object64, object65, object66, object67, object68, object69, object70, object71, object72, object73, object74, object75, object76, object77, object78, object79, object80, object81, object82, object83, object84, object85, object86, object87, object88, object89, object90, object91, object92, object93, object94, object95, object96, object97, object98, object99, object100, object101, object102, object103, object104, object105, object106, object107, object108, object109, object110, object111, object112, object113, object114, object115, object116, object117, object118, object119, object120, object121, object122, object123, object124, object125, object126, object127, object128, object129, object130, object131, object132, object133, object134, object135, object136, object137, object138, object139, object140, object141, object142, object143, object144, object145, object146, object147, object148, object149, object150, object151, object152, object153, object154, object155, object156, object157, object158, object159, object160, object161, object162, object163, object164, object165, object166, object167, object168, object169, object170, object172, object173, object174, object175, object176, object177, object178, object179, object180, object181, object182, object183, object184, object185, object186, object187, object188, object189, object190, object191, object192, object193, object194, object195, object196, object197, object198, object199, object200, object201, object202, object203, object204, object205, object206, object207, object208, object209, object210, object211, object212, object213, object214, object215, object216, object217, object218, object219, object220, object221, object222, object223, object224, object225, object226, object227, object228, object229, object230, object231, object232, object233, object234, object235, object236, object237, object238, object239, object240, object241, object242, object243, object244, object245, object246, object247, object248, object249, object250, object251, object252, object253, object254, object255, object256, object257, object258, object259, object260, object261, object262, object263, object264, object265, object266, object267, object268, object269, object270, object271, object272, object273, object274, object275, object276, object277, object278, object279, object280, object281, object282, object283, object284, object285, object286, object287, object288, object289, object290, object291, object292, object293, object294, object295, object296, object297, object298, object299, object300, object301, object302, object303, object304, object305, object306, object307, object308, object309, object310, object311, object312, object313, object314, object315, object316, object317, object318, object319, object320, object321, object322, object323, object324, object325, object326, object327, object328, object329, object330, object331, object332, object333, object334, object335, object336, object337, object338, object339, object340, object341, object342, object343, object344, object345, object346, object347, object348, object349, object350, object351, object352, object353, object354, object355, object356, object357, object358, object359, object360, object361, object362));
+		series1.setData(new ArrayList<>(Arrays.asList(object1, object2, object3, object4, object5, object6, object7, object8, object9, object10, object11, object12, object13, object14, object15, object16, object17, object18, object19, object20, object21, object22, object23, object24, object25, object26, object27, object28, object29, object30, object31, object32, object33, object34, object35, object36, object37, object38, object39, object40, object41, object42, object43, object44, object45, object46, object47, object48, object49, object50, object51, object52, object53, object54, object55, object56, object57, object58, object59, object60, object61, object62, object63, object64, object65, object66, object67, object68, object69, object70, object71, object72, object73, object74, object75, object76, object77, object78, object79, object80, object81, object82, object83, object84, object85, object86, object87, object88, object89, object90, object91, object92, object93, object94, object95, object96, object97, object98, object99, object100, object101, object102, object103, object104, object105, object106, object107, object108, object109, object110, object111, object112, object113, object114, object115, object116, object117, object118, object119, object120, object121, object122, object123, object124, object125, object126, object127, object128, object129, object130, object131, object132, object133, object134, object135, object136, object137, object138, object139, object140, object141, object142, object143, object144, object145, object146, object147, object148, object149, object150, object151, object152, object153, object154, object155, object156, object157, object158, object159, object160, object161, object162, object163, object164, object165, object166, object167, object168, object169, object170, object172, object173, object174, object175, object176, object177, object178, object179, object180, object181, object182, object183, object184, object185, object186, object187, object188, object189, object190, object191, object192, object193, object194, object195, object196, object197, object198, object199, object200, object201, object202, object203, object204, object205, object206, object207, object208, object209, object210, object211, object212, object213, object214, object215, object216, object217, object218, object219, object220, object221, object222, object223, object224, object225, object226, object227, object228, object229, object230, object231, object232, object233, object234, object235, object236, object237, object238, object239, object240, object241, object242, object243, object244, object245, object246, object247, object248, object249, object250, object251, object252, object253, object254, object255, object256, object257, object258, object259, object260, object261, object262, object263, object264, object265, object266, object267, object268, object269, object270, object271, object272, object273, object274, object275, object276, object277, object278, object279, object280, object281, object282, object283, object284, object285, object286, object287, object288, object289, object290, object291, object292, object293, object294, object295, object296, object297, object298, object299, object300, object301, object302, object303, object304, object305, object306, object307, object308, object309, object310, object311, object312, object313, object314, object315, object316, object317, object318, object319, object320, object321, object322, object323, object324, object325, object326, object327, object328, object329, object330, object331, object332, object333, object334, object335, object336, object337, object338, object339, object340, object341, object342, object343, object344, object345, object346, object347, object348, object349, object350, object351, object352, object353, object354, object355, object356, object357, object358, object359, object360, object361, object362)));
 
-		options.series = new ArrayList<>(Arrays.asList(series1));
+		options.setSeries(new ArrayList<>(Arrays.asList(series1)));
 
-
-		chartView.options = options;
+		chartView.setOptions(options);
 	}
 }
 

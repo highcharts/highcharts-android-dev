@@ -24,34 +24,30 @@ public class MainActivity extends AppCompatActivity {
 
 		HIOptions options = new HIOptions();
 
-		HIChart chart = new HIChart();
-		chart.type = "waterfall";
-		options.chart = chart;
-
 		HITitle title = new HITitle();
-		title.text = "Highcharts Waterfall";
-		options.title = title;
+		title.setText("Highcharts Waterfall");
+		options.setTitle(title);
 
 		HIXAxis xAxis = new HIXAxis();
-		xAxis.type = "category";
-		options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
+		xAxis.setType("category");
+		options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
 		HIYAxis yAxis = new HIYAxis();
-		yAxis.title = new HITitle();
-		yAxis.title.text = "USD";
-		options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
+		yAxis.setTitle(new HITitle());
+		yAxis.getTitle().setText("USD");
+		options.setYAxis(new ArrayList<HIYAxis>(){{add(yAxis);}});
 
 		HILegend legend = new HILegend();
-		legend.enabled = false;
-		options.legend = legend;
+		legend.setEnabled(false);
+		options.setLegend(legend);
 
 		HITooltip tooltip = new HITooltip();
-		tooltip.pointFormat = "<b>${point.y:,.2f}</b> USD";
-		options.tooltip = tooltip;
+		tooltip.setPointFormat("<b>${point.y:,.2f}</b> USD");
+		options.setTooltip(tooltip);
 
 		HIWaterfall series1 = new HIWaterfall();
-		series1.upColor = HIColor.initWithHexValue("90ed7d");
-		series1.color = HIColor.initWithHexValue("f7a35c");
+		series1.setUpColor(HIColor.initWithHexValue("90ed7d"));
+		series1.setColor(HIColor.initWithHexValue("f7a35c"));
 
 		//You can add objects by hand or creating data objects - one presented below:
 
@@ -68,9 +64,9 @@ public class MainActivity extends AppCompatActivity {
 		map3.put("y", 231000);
 
 		HIData data = new HIData();
-		data.name = "Positive Balance";
-		data.isIntermediateSum = true;
-		data.color = HIColor.initWithHexValue("434348");
+		data.setName("Positive Balance");
+		data.setIsIntermediateSum(true);
+		data.setColor(HIColor.initWithHexValue("434348"));
 
 		HashMap<String, Object> map4 = new HashMap<>();
 		map4.put("name", "Fixed Costs");
@@ -85,19 +81,18 @@ public class MainActivity extends AppCompatActivity {
 		map6.put("isSum", true);
 		map6.put("color", "#434348");
 
-		series1.data = new ArrayList<>(Arrays.asList(map1, map2, map3, data, map4, map5, map6));
+		series1.setData(new ArrayList<>(Arrays.asList(map1, map2, map3, data, map4, map5, map6)));
 
-		series1.dataLabels = new HIDataLabels();
-		series1.dataLabels.enabled = true;
-		series1.dataLabels.formatter = new HIFunction( "function () { return Highcharts.numberFormat(this.y / 1000, 0, ',') + 'k'; }");
-		series1.dataLabels.style = new HIStyle();
-		series1.dataLabels.style.fontWeight = "bold";
-		series1.pointPadding = 0;
+		series1.setDataLabels(new HIDataLabels());
+		series1.getDataLabels().setEnabled(true);
+		series1.getDataLabels().setFormatter(new HIFunction( "function () { return Highcharts.numberFormat(this.y / 1000, 0, ',') + 'k'; }"));
+		series1.getDataLabels().setStyle(new HIStyle());
+		series1.getDataLabels().getStyle().setFontWeight("bold");
+		series1.setPointPadding(0);
 
-		options.series = new ArrayList<>(Arrays.asList(series1));
+		options.setSeries(new ArrayList<>(Arrays.asList(series1)));
 
-
-		chartView.options = options;
+		chartView.setOptions(options);
 	}
 }
 

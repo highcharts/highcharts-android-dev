@@ -23,70 +23,70 @@ public class MainActivity extends AppCompatActivity {
 
 		HIOptions options = new HIOptions();
 
-		HIChart chart = new HIChart();
-		chart.type = "tilemap";
-		chart.inverted = true;
-		chart.height = "80%";
-		options.chart = chart;
+HIChart chart = new HIChart();
+		chart.setType("tilemap");
+		chart.setInverted(true);
+		chart.setHeight("80%");
+		options.setChart(chart);
 
 		HITitle title = new HITitle();
-		title.text = "U.S. states by population in 2016";
-		options.title = title;
+		title.setText("U.S. states by population in 2016");
+		options.setTitle(title);
 
 		HISubtitle subtitle = new HISubtitle();
-		subtitle.text = "Source:<a href=\"https://simple.wikipedia.org/wiki/List_of_U.S._states_by_population\">Wikipedia</a>";
-		options.subtitle = subtitle;
+		subtitle.setText("Source:<a href=\"https://simple.wikipedia.org/wiki/List_of_U.S._states_by_population\">Wikipedia</a>");
+		options.setSubtitle(subtitle);
 
 		HIXAxis xAxis = new HIXAxis();
-		xAxis.visible = false;
-		options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
+		xAxis.setVisible(false);
+		options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
 		HIYAxis yAxis = new HIYAxis();
-		yAxis.visible = false;
-		options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
+		yAxis.setVisible(false);
+		options.setYAxis(new ArrayList<HIYAxis>(){{add(yAxis);}});
 
 		HIColorAxis colorAxis = new HIColorAxis();
 
 		HIDataClasses dataClasses1 = new HIDataClasses();
-		dataClasses1.from = 0;
-		dataClasses1.to = 1000000;
-		dataClasses1.color = HIColor.initWithHexValue("F9EDB3");
-		dataClasses1.name = "< 1M";
+		dataClasses1.setFrom(0);
+		dataClasses1.setTo(1000000);
+		dataClasses1.setColor(HIColor.initWithHexValue("F9EDB3"));
+		dataClasses1.setName("< 1M");
 		HIDataClasses dataClasses2 = new HIDataClasses();
-		dataClasses2.from = 1000000;
-		dataClasses2.to = 5000000;
-		dataClasses2.color = HIColor.initWithHexValue("FFC428");
-		dataClasses2.name = "1M - 5M";
+		dataClasses2.setFrom(1000000);
+		dataClasses2.setTo(5000000);
+		dataClasses2.setColor(HIColor.initWithHexValue("FFC428"));
+		dataClasses2.setName("1M - 5M");
 		HIDataClasses dataClasses3 = new HIDataClasses();
-		dataClasses3.from = 5000000;
-		dataClasses3.to = 20000000;
-		dataClasses3.color = HIColor.initWithHexValue("FF7987");
-		dataClasses3.name = "5M - 20M";
+		dataClasses3.setFrom(5000000);
+		dataClasses3.setTo(20000000);
+		dataClasses3.setColor(HIColor.initWithHexValue("FF7987"));
+		dataClasses3.setName("5M - 20M");
 		HIDataClasses dataClasses4 = new HIDataClasses();
-		dataClasses4.from = 20000000;
-		dataClasses4.color = HIColor.initWithHexValue("FF2371");
-		dataClasses4.name = "> 20M";
+		dataClasses4.setFrom(20000000);
+		dataClasses4.setColor(HIColor.initWithHexValue("FF2371"));
+		dataClasses4.setName("> 20M");
 		HIDataClasses[] dataClassesList = new HIDataClasses[] { dataClasses1, dataClasses2, dataClasses3, dataClasses4 };
-		colorAxis.dataClasses = new ArrayList<>(Arrays.asList(dataClassesList));
-		options.colorAxis = colorAxis;
+		colorAxis.setDataClasses(new ArrayList<>(Arrays.asList(dataClassesList)));
+		options.setColorAxis(colorAxis);
 
 		HITooltip tooltip = new HITooltip();
-		tooltip.headerFormat = "";
-		tooltip.pointFormat = "The population of <b> {point.name}</b> is <b>{point.value}</b>";
-		options.tooltip = tooltip;
+		tooltip.setHeaderFormat("");
+		tooltip.setPointFormat("The population of <b> {point.name}</b> is <b>{point.value}</b>");
+		options.setTooltip(tooltip);
 
 		HIPlotOptions plotOptions = new HIPlotOptions();
-		plotOptions.series = new HISeries();
-		plotOptions.series.dataLabels = new HIDataLabels();
-		plotOptions.series.dataLabels.enabled = true;
-		plotOptions.series.dataLabels.format = "{point.hc-a2}";
-		plotOptions.series.dataLabels.color = HIColor.initWithHexValue("000000");
-		plotOptions.series.dataLabels.style = new HIStyle();
-		plotOptions.series.dataLabels.style.textOutline = "false";
-		options.plotOptions = plotOptions;
+		plotOptions.setSeries(new HISeries());
+		plotOptions.getSeries().setDataLabels(new HIDataLabels());
+		plotOptions.getSeries().getDataLabels().setEnabled(true);
+		plotOptions.getSeries().getDataLabels().setFormat("{point.hc-a2}");
+		plotOptions.getSeries().getDataLabels().setColor(HIColor.initWithHexValue("000000"));
+		plotOptions.getSeries().getDataLabels().setStyle(new HIStyle());
+		plotOptions.getSeries().getDataLabels().getStyle().setTextOutline("false");
+		options.setPlotOptions(plotOptions);
 
 		HITilemap series1 = new HITilemap();
-		series1.name = "";
+		series1.setName("");
 
 		HashMap<String, Object> map1 = new HashMap<>();
 		map1.put("hc-a2", "AK");
@@ -496,12 +496,10 @@ public class MainActivity extends AppCompatActivity {
 		map51.put("y", 3);
 		map51.put("value", 584153);
 
-		series1.data = new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6, map7, map8, map9, map10, map11, map12, map13, map14, map15, map16, map17, map18, map19, map20, map21, map22, map23, map24, map25, map26, map27, map28, map29, map30, map31, map32, map33, map34, map35, map36, map37, map38, map39, map40, map41, map42, map43, map44, map45, map46, map47, map48, map49, map50, map51));
+		series1.setData(new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6, map7, map8, map9, map10, map11, map12, map13, map14, map15, map16, map17, map18, map19, map20, map21, map22, map23, map24, map25, map26, map27, map28, map29, map30, map31, map32, map33, map34, map35, map36, map37, map38, map39, map40, map41, map42, map43, map44, map45, map46, map47, map48, map49, map50, map51)));
 
-		options.series = new ArrayList<>(Arrays.asList(series1));
-
-
-		chartView.options = options;
+		options.setSeries(new ArrayList<>(Arrays.asList(series1)));
+		chartView.setOptions(options);
 	}
 }
 

@@ -11,19 +11,28 @@ package com.highsoft.highcharts.Common.HIChartsClasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import com.highsoft.highcharts.Core.HIFunction;
 import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HIFocusBorder implements HIChartsJSONSerializable { 
+public class HIFocusBorder extends Observable implements HIChartsJSONSerializable { 
 
-
+	private Number margin;
 /**
 Focus border margin around the elements.
  <br><br><b>default:</b><br><br>&ensp;2*/
-	public Number margin;
+	public void setMargin(Number margin) {
+		this.margin = margin;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Number getMargin(){ return margin; }
+
+	private HIStyle style;
 /**
 Style options for the focus border drawn around elements
 while navigating through them. Note that some browsers in
@@ -33,22 +42,54 @@ automatic borders can not be styled by Highcharts.
 In styled mode, the border is given the
 .highcharts-focus-border class.
 */
-	public HIStyle style;
+	public void setStyle(HIStyle style) {
+		this.style = style;
+		this.style.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public HIStyle getStyle(){ return style; }
+
+	private Boolean enabled;
 /**
 Enable/disable focus border for chart.
  <br><br><b>default:</b><br><br>&ensp;true*/
-	public Boolean enabled;
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
+	public Boolean getEnabled(){ return enabled; }
+
+	private Boolean hideBrowserFocusOutline;
 /**
 Hide the browser's default focus indicator.
  <br><br><b>default:</b><br><br>&ensp;true*/
-	public Boolean hideBrowserFocusOutline;
+	public void setHideBrowserFocusOutline(Boolean hideBrowserFocusOutline) {
+		this.hideBrowserFocusOutline = hideBrowserFocusOutline;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getHideBrowserFocusOutline(){ return hideBrowserFocusOutline; }
+
 
 
 	public HIFocusBorder() {
 
 	}
+
+
+	 private Observer updateObserver = new Observer() {
+		@Override
+		public void update(Observable observable, Object o) {
+			setChanged();
+			notifyObservers();
+		}
+	};
+
 
 	public Map<String, Object> getParams() {
 

@@ -24,70 +24,69 @@ public class MainActivity extends AppCompatActivity {
 		HIOptions options = new HIOptions();
 
 		HIChart chart = new HIChart();
-		chart.type = "bullet";
-		chart.inverted = true;
-		chart.marginLeft = 135;
-		options.chart = chart;
+		chart.setType("bullet");
+		chart.setInverted(true);
+		chart.setMarginLeft(135);
+		options.setChart(chart);
 
 		HILegend legend = new HILegend();
-		legend.enabled = false;
-		options.legend = legend;
+		legend.setEnabled(false);
+		options.setLegend(legend);
 
 		HITitle title = new HITitle();
-		title.text = "2017 YTD";
-		options.title = title;
+		title.setText("2017 YTD");
+		options.setTitle(title);
 
 		HIXAxis xAxis = new HIXAxis();
 		String[] categories = new String[] { "<span class=\"hc-cat-title\">Revenue</span><br/>U.S. $ (1,000s)" };
-		xAxis.categories = new ArrayList<>(Arrays.asList(categories));
-		options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
+		xAxis.setCategories(new ArrayList<>(Arrays.asList(categories)));
+		options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
 		HIYAxis yaxis = new HIYAxis();
-		yaxis.gridLineWidth = 0;
+		yaxis.setGridLineWidth(0);
 
 		HIPlotBands plotbands1 = new HIPlotBands();
-		plotbands1.from = 0;
-		plotbands1.to = 150;
-		plotbands1.color = HIColor.initWithHexValue("666");
+		plotbands1.setFrom(0);
+		plotbands1.setTo(150);
+		plotbands1.setColor(HIColor.initWithHexValue("666"));
 
 		HIPlotBands plotbands2 = new HIPlotBands();
-		plotbands2.from = 150;
-		plotbands2.to = 250;
-		plotbands2.color = HIColor.initWithHexValue("999");
+		plotbands2.setFrom(150);
+		plotbands2.setTo(250);
+		plotbands2.setColor(HIColor.initWithHexValue("999"));
 
 		HIPlotBands plotbands3 = new HIPlotBands();
-		plotbands3.from = 225;
-		plotbands3.to = 9e9;
-		plotbands3.color = HIColor.initWithHexValue("bbb");
+		plotbands3.setFrom(225);
+		plotbands3.setTo(9e9);
+		plotbands3.setColor(HIColor.initWithHexValue("bbb"));
 
-		yaxis.plotBands = new ArrayList<>(Arrays.asList(plotbands1, plotbands2, plotbands3));
-		yaxis.title = new HITitle();
-		options.yAxis = new ArrayList<HIYAxis>(){{add(yaxis);}};
+		yaxis.setPlotBands(new ArrayList<>(Arrays.asList(plotbands1, plotbands2, plotbands3)));
+		yaxis.setTitle(new HITitle());
+		options.setYAxis(new ArrayList<HIYAxis>(){{add(yaxis);}});
 
 		HIPlotOptions plotoptions = new HIPlotOptions();
-		plotoptions.series = new HISeries();
-		plotoptions.series.borderWidth = 0;
-		plotoptions.series.color = HIColor.initWithHexValue("000");
-		options.plotOptions = plotoptions;
+		plotoptions.setSeries(new HISeries());
+		plotoptions.getSeries().setColor(HIColor.initWithHexValue("000"));
+		options.setPlotOptions(plotoptions);
 
 		HICredits credits = new HICredits();
-		credits.enabled = false;
-		options.credits = credits;
+		credits.setEnabled(false);
+		options.setCredits(credits);
 
 		HIExporting exporting = new HIExporting();
-		exporting.enabled = false;
-		options.exporting = exporting;
+		exporting.setEnabled(false);
+		options.setExporting(exporting);
 
 		HIBullet series1 = new HIBullet();
 		HashMap<String, Object> map1 = new HashMap<>();
 		map1.put("y" , 275);
 		map1.put("target" , 250);
-		series1.data = new ArrayList<>(Arrays.asList(map1));
-		series1.tooltip = new HITooltip();
-		series1.tooltip.pointFormat = "<b>{point.y}</b> (with target at {point.target})";
-		options.series = new ArrayList<>(Arrays.asList(series1));
+		series1.setData(new ArrayList<>(Arrays.asList(map1)));
+		series1.setTooltip(new HITooltip());
+		series1.getTooltip().setPointFormat("<b>{point.y}</b> (with target at {point.target})");
+		options.setSeries(new ArrayList<>(Arrays.asList(series1)));
 
-		chartView.options = options;
-	}
+		chartView.setOptions(options);
+	    }
 }
 

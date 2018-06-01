@@ -25,38 +25,34 @@ public class MainActivity extends AppCompatActivity {
 
         HIOptions options = new HIOptions();
 
-        HIChart chart = new HIChart();
-        chart.type = "pie";
-        options.chart = chart;
-
         HITitle title = new HITitle();
-        title.text = "Browser market share, January, 2015 to May, 2015";
-        options.title = title;
+        title.setText("Browser market share, January, 2015 to May, 2015");
+        options.setTitle(title);
 
         HISubtitle subtitle = new HISubtitle();
-        subtitle.text = "Source: <a href=\"http://netmarketshare.com/\">netmarketshare.com</a>";
-        options.subtitle = subtitle;
+        subtitle.setText("Source: <a href=\"http://netmarketshare.com/\">netmarketshare.com</a>");
+        options.setSubtitle(subtitle);
 
         HIYAxis yaxis = new HIYAxis();
-        yaxis.title = new HITitle();
-        yaxis.title.text = "Total percent market share";
-        options.yAxis = new ArrayList<>(Collections.singletonList(yaxis));
+        yaxis.setTitle(new HITitle());
+        yaxis.getTitle().setText("Total percent market share");
+        options.setYAxis(new ArrayList<>(Collections.singletonList(yaxis)));
 
         HIPlotOptions plotoptions = new HIPlotOptions();
-        plotoptions.pie = new HIPie();
-        plotoptions.pie.shadow = false;
-        plotoptions.pie.center = new ArrayList<>(Arrays.asList("50%", "50%"));
-        options.plotOptions = plotoptions;
+        plotoptions.setPie(new HIPie());
+        plotoptions.getPie().setShadow(false);
+        plotoptions.getPie().setCenter(new ArrayList<>(Arrays.asList("50%", "50%")));
+        options.setPlotOptions(plotoptions);
 
         HITooltip tooltip = new HITooltip();
-        tooltip.valueSuffix = "%";
-        options.tooltip = tooltip;
+        tooltip.setValueSuffix("%");
+        options.setTooltip(tooltip);
 
         HIPie pie1 = new HIPie();
-        pie1.name = "Browsers";
-        pie1.size = "60%";
-        pie1.dataLabels = new HIDataLabels();
-        pie1.dataLabels.formatter = new HIFunction(
+        pie1.setName("Browsers");
+        pie1.setSize("60%");
+        pie1.setDataLabels(new HIDataLabels());
+        pie1.getDataLabels().setFormatter(new HIFunction(
                 f -> {
                     if((double)f.getProperty("y") > 5)  { //display only if larger than 5
                         return (String)f.getProperty("point.name");
@@ -64,8 +60,9 @@ public class MainActivity extends AppCompatActivity {
                         return null;
                 },
                 new String[] {"y", "point.name"}
-        ); pie1.dataLabels.color = HIColor.initWithHexValue("ffffff");
-        pie1.dataLabels.distance = -30;
+        ));
+        pie1.getDataLabels().setColor(HIColor.initWithHexValue("ffffff"));
+        pie1.getDataLabels().setDistance(-30);
         HashMap<String, Object> map1 = new HashMap<>();
         map1.put("name", "MSIE");
         map1.put("y", 56.33);
@@ -89,14 +86,14 @@ public class MainActivity extends AppCompatActivity {
         HashMap<String, Object> map6 = new HashMap<>();
         map6.put("y", 0.2);
         map6.put("color", "#f15c80");
-        pie1.data = new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6));
+        pie1.setData(new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6)));
 
         HIPie pie2 = new HIPie();
-        pie2.name = "Versions";
-        pie2.size = "80%";
-        pie2.innerSize = "60%";
-        pie2.dataLabels = new HIDataLabels();
-        pie2.dataLabels.formatter = new HIFunction(
+        pie2.setName("Versions");
+        pie2.setSize("80%");
+        pie2.setInnerSize("60%");
+        pie2.setDataLabels(new HIDataLabels());
+        pie2.getDataLabels().setFormatter(new HIFunction(
                 f -> {
                     if((double)f.getProperty("y") > 3)  { //display only if larger than 3
                         return "<b>" + f.getProperty("point.name") + ":</b> " + f.getProperty("y") + "%";
@@ -104,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                         return null;
                 },
                 new String[] {"y", "point.name"}
-        );
+        ));
         HashMap<String, Object> map7 = new HashMap<>();
         map7.put("name", "MSIE 6.0");
         map7.put("y", 1.06);
@@ -260,10 +257,9 @@ public class MainActivity extends AppCompatActivity {
         map45.put("name", "Opera v30");
         map45.put("y", 1.16);
         map45.put("color", "rgb(141,146,246)");
-        pie2.data = new ArrayList<>(Arrays.asList(map7, map8, map9, map10, map11, map12, map13, map14, map15, map16, map17, map18, map19, map20, map21, map22, map23, map24, map25, map26, map27, map28, map29, map30, map31, map32, map33, map34, map35, map36, map37, map38, map39, map40, map41, map42, map43, map44, map45));
+        pie2.setData(new ArrayList<>(Arrays.asList(map7, map8, map9, map10, map11, map12, map13, map14, map15, map16, map17, map18, map19, map20, map21, map22, map23, map24, map25, map26, map27, map28, map29, map30, map31, map32, map33, map34, map35, map36, map37, map38, map39, map40, map41, map42, map43, map44, map45)));
 
-        options.series = new ArrayList<>(Arrays.asList(pie1, pie2));
+        options.setSeries(new ArrayList<>(Arrays.asList(pie1, pie2)));
 
-        chartView.options = options;
-    }
+        chartView.setOptions(options);    }
 }

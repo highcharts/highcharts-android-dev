@@ -22,83 +22,83 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 		
         HIChart chart = new HIChart();
-        chart.type = "bubble";
-        chart.plotBorderWidth = 1;
-        chart.zoomType = "xy";
-        options.chart = chart;
+        chart.setType("bubble");
+        chart.setPlotBorderWidth(1);
+        chart.setZoomType("xy");
+        options.setChart(chart);
 
         HILegend legend = new HILegend();
-        legend.enabled = false;
-        options.legend = legend;
+        legend.setEnabled(false);
+        options.setLegend(legend);
 
         HITitle title = new HITitle();
-        title.text = "Sugar and fat intake per country";
-        options.title = title;
+        title.setText("Sugar and fat intake per country");
+        options.setTitle(title);
 
         HISubtitle subtitle = new HISubtitle();
-        subtitle.text = "Source: <a href=\"http://www.euromonitor.com/\">Euromonitor</a> and <a href=\"https://data.oecd.org/\">OECD</a>";
-        options.subtitle = subtitle;
+        subtitle.setText("Source: <a href=\"http://www.euromonitor.com/\">Euromonitor</a> and <a href=\"https://data.oecd.org/\">OECD</a>");
+        options.setSubtitle(subtitle);
 
         HIXAxis xAxis = new HIXAxis();
-        xAxis.gridLineWidth = 1;
-        xAxis.title = new HITitle();
-        xAxis.title.text = "Daily fat intake";
-        xAxis.labels = new HILabels();
-        xAxis.labels.format = "{value} gr";
+        xAxis.setGridLineWidth(1);
+        xAxis.setTitle(new HITitle());
+        xAxis.getTitle().setText("Daily fat intake");
+        xAxis.setLabels(new HILabels());
+        xAxis.getLabels().setFormat("{value} gr");
         HIPlotLines plotLines1 = new HIPlotLines();
-        plotLines1.color = HIColor.initWithHexValue("FFFFFF");
-        plotLines1.dashStyle = "dot";
-        plotLines1.width = 2;
-        plotLines1.value = 65;
-        plotLines1.label = new HILabel();
-        plotLines1.label.rotation = 0;
-        plotLines1.label.y = 15;
-        plotLines1.label.style = new HIStyle();
-        plotLines1.label.style.fontWeight = "italic";
-        plotLines1.label.text = "Safe fat intake 65g/day";
-        plotLines1.zIndex = 3;
+        plotLines1.setColor(HIColor.initWithHexValue("FFFFFF"));
+        plotLines1.setDashStyle("dot");
+        plotLines1.setWidth(2);
+        plotLines1.setValue(65);
+        plotLines1.setLabel(new HILabel());
+        plotLines1.getLabel().setRotation(0);
+        plotLines1.getLabel().setY(15);
+        plotLines1.getLabel().setStyle(new HIStyle());
+        plotLines1.getLabel().getStyle().setFontWeight("italic");
+        plotLines1.getLabel().setText("Safe fat intake 65g/day");
+        plotLines1.setZIndex(3);
         HIPlotLines[] plotLinesList1 = new HIPlotLines[] {plotLines1 };
-        xAxis.plotLines = new ArrayList<>(Arrays.asList(plotLinesList1));
-        options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
+        xAxis.setPlotLines(new ArrayList<>(Arrays.asList(plotLinesList1)));
+        options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
         HIYAxis yAxis = new HIYAxis();
-        yAxis.startOnTick = false;
-        yAxis.endOnTick = false;
-        yAxis.title = new HITitle();
-        yAxis.title.text = "Daily sugar intake";
-        yAxis.labels = new HILabels();
-        yAxis.labels.format = "{value} gr";
-        yAxis.maxPadding = 0.2;
+        yAxis.setStartOnTick(false);
+        yAxis.setEndOnTick(false);
+        yAxis.setTitle(new HITitle());
+        yAxis.getTitle().setText("Daily sugar intake");
+        yAxis.setLabels(new HILabels());
+        yAxis.getLabels().setFormat("{value} gr");
+        yAxis.setMaxPadding(0.2);
         HIPlotLines plotLines2 = new HIPlotLines();
-        plotLines2.color = HIColor.initWithHexValue("FFFFFF");
-        plotLines2.dashStyle = "dot";
-        plotLines2.width = 2;
-        plotLines2.value = 50;
-        plotLines2.label = new HILabel();
-        plotLines2.label.align = "right";
-        plotLines2.label.x = -10;
-        plotLines2.label.style = new HIStyle();
-        plotLines2.label.style.fontWeight = "italic";
-        plotLines2.label.text = "Safe sugar intake 50g/day";
-        plotLines2.zIndex = 3;
+        plotLines2.setColor(HIColor.initWithHexValue("FFFFFF"));
+        plotLines2.setDashStyle("dot");
+        plotLines2.setWidth(2);
+        plotLines2.setValue(50);
+        plotLines2.setLabel(new HILabel());
+        plotLines2.getLabel().setAlign("right");
+        plotLines2.getLabel().setX(-10);
+        plotLines2.getLabel().setStyle(new HIStyle());
+        plotLines2.getLabel().getStyle().setFontWeight("italic");
+        plotLines2.getLabel().setText("Safe sugar intake 50g/day");
+        plotLines2.setZIndex(3);
         HIPlotLines[] plotLinesList2 = new HIPlotLines[] {plotLines2 };
-        yAxis.plotLines = new ArrayList<>(Arrays.asList(plotLinesList2));
-        options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
+        yAxis.setPlotLines(new ArrayList<>(Arrays.asList(plotLinesList2)));
+        options.setYAxis(new ArrayList<HIYAxis>(){{add(yAxis);}});
 
         HITooltip tooltip = new HITooltip();
-        tooltip.useHTML = true;
-        tooltip.headerFormat = "<table>";
-        tooltip.pointFormat = "<tr><th colspan=\"2\"><h3>{point.country}</h3></th></tr><tr><th>Fat'intake':</th><td>{point.x}g</td></tr><tr><th>Sugar'intake':</th><td>{point.y}g</td></tr><tr><th>Obesity (adults):</th><td>{point.z}%</td></tr>";
-        tooltip.footerFormat = "</table>";
-        tooltip.followPointer = true;
-        options.tooltip = tooltip;
+        tooltip.setUseHTML(true);
+        tooltip.setHeaderFormat("<table>");
+        tooltip.setPointFormat("<tr><th colspan=\"2\"><h3>{point.country}</h3></th></tr><tr><th>Fat'intake':</th><td>{point.x}g</td></tr><tr><th>Sugar'intake':</th><td>{point.y}g</td></tr><tr><th>Obesity (adults):</th><td>{point.z}%</td></tr>");
+        tooltip.setFooterFormat("</table>");
+        tooltip.setFollowPointer(true);
+        options.setTooltip(tooltip);
 
         HIPlotOptions plotOptions = new HIPlotOptions();
-        plotOptions.series = new HISeries();
-        plotOptions.series.dataLabels = new HIDataLabels();
-        plotOptions.series.dataLabels.enabled = true;
-        plotOptions.series.dataLabels.format = "{point.name}";
-        options.plotOptions = plotOptions;
+        plotOptions.setSeries(new HISeries());
+        plotOptions.getSeries().setDataLabels(new HIDataLabels());
+        plotOptions.getSeries().getDataLabels().setEnabled(true);
+        plotOptions.getSeries().getDataLabels().setFormat("{point.name}");
+        options.setPlotOptions(plotOptions);
 
         HIBubble series1 = new HIBubble();
 
@@ -208,11 +208,10 @@ public class MainActivity extends AppCompatActivity {
         map15.put("country", "New Zealand");
 
         HashMap[] series1_data = new HashMap[] { map1, map2, map3, map4, map5, map6, map7, map8, map9, map10, map11, map12, map13, map14, map15 };
-        series1.data = new ArrayList<>(Arrays.asList(series1_data));
-        options.series = new ArrayList<>(Arrays.asList(series1, series1));
+        series1.setData(new ArrayList<>(Arrays.asList(series1_data)));
+        options.setSeries(new ArrayList<>(Arrays.asList(series1, series1)));
 
-
-        chartView.options = options;
+        chartView.setOptions(options);
     }
 }
 

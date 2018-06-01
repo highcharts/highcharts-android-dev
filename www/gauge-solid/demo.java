@@ -21,70 +21,70 @@ public class MainActivity extends AppCompatActivity {
 		HIOptions options = new HIOptions();
 
 		HIChart chart = new HIChart();
-		chart.type = "solidgauge";
-		options.chart = chart;
+		chart.setType("solidgauge");
+		options.setChart(chart);
 
 		HITitle title = new HITitle();
-		title.text = "";
-		options.title = title;
+		title.setText("");
+		options.setTitle(title);
 
 		HIPane pane = new HIPane();
 		String[] center = new String[] { "50%", "85%" };
-		pane.center = new ArrayList<>(Arrays.asList(center));
-		pane.size = "140%";
-		pane.startAngle = -90;
-		pane.endAngle = 90;
+		pane.setCenter(new ArrayList<>(Arrays.asList(center)));
+		pane.setSize("140%");
+		pane.setStartAngle(-90);
+		pane.setEndAngle(90);
 		HIBackground background = new HIBackground();
-		background.backgroundColor = HIColor.initWithHexValue("EEE");
-		background.innerRadius = "60%";
-		background.outerRadius = "100%";
-		background.shape = "arc";
-		pane.background = new ArrayList<>(Arrays.asList(background));
-		options.pane = pane;
+		background.setBackgroundColor(HIColor.initWithHexValue("EEE"));
+		background.setInnerRadius("60%");
+		background.setOuterRadius("100%");
+		background.setShape("arc");
+		pane.setBackground(new ArrayList<>(Arrays.asList(background)));
+		options.setPane(pane);
 
 		HITooltip tooltip = new HITooltip();
-		tooltip.enabled = false;
-		options.tooltip = tooltip;
+		tooltip.setEnabled(false);
+		options.setTooltip(tooltip);
 
 		HIPlotOptions plotoptions = new HIPlotOptions();
-		plotoptions.solidgauge = new HISolidgauge();
-		plotoptions.solidgauge.dataLabels = new HIDataLabels();
-		plotoptions.solidgauge.dataLabels.y = 5;
-		plotoptions.solidgauge.dataLabels.borderWidth = 0;
-		plotoptions.solidgauge.dataLabels.useHTML = true;
-		options.plotOptions = plotoptions;
+		plotoptions.setSolidgauge(new HISolidgauge());
+		plotoptions.getSolidgauge().setDataLabels(new HIDataLabels());
+		plotoptions.getSolidgauge().getDataLabels().setY(5);
+		plotoptions.getSolidgauge().getDataLabels().setBorderWidth(0);
+		plotoptions.getSolidgauge().getDataLabels().setUseHTML(true);
+		options.setPlotOptions(plotoptions);
 
 		HIYAxis yaxis = new HIYAxis();
 		ArrayList<Object> stop1 = new ArrayList<>(Arrays.asList(0.1, "#55BF3B" ));
 		ArrayList<Object> stop2 = new ArrayList<>(Arrays.asList(0.5, "#DDDF0D" ));
 		ArrayList<Object> stop3 = new ArrayList<>(Arrays.asList(0.9, "#DF5353" ));
-		yaxis.stops = new ArrayList<>(Arrays.asList(stop1, stop2, stop3));
-		yaxis.lineWidth = 0;
-		yaxis.tickAmount = 2;
-		yaxis.title = new HITitle();
-		yaxis.title.text = "Speed";
-		yaxis.labels = new HILabels();
-		yaxis.labels.y = 16;
-		yaxis.min = 0;
-		yaxis.max = 200;
-		options.yAxis = new ArrayList<>(Arrays.asList(yaxis));
+		yaxis.setStops(new ArrayList<>(Arrays.asList(stop1, stop2, stop3)));
+		yaxis.setLineWidth(0);
+		yaxis.setTickAmount(2);
+		yaxis.setTitle(new HITitle());
+		yaxis.getTitle().setText("Speed");
+		yaxis.setLabels(new HILabels());
+		yaxis.getTitle().setY(16);
+		yaxis.setMin(0);
+		yaxis.setMax(200);
+		options.setYAxis(new ArrayList<>(Arrays.asList(yaxis)));
 
 		HICredits credits = new HICredits();
-		credits.enabled = false;
-		options.credits = credits;
+		credits.setEnabled(false);
+		options.setCredits(credits);
 
 		HISolidgauge series1 = new HISolidgauge();
-		series1.name = "Speed";
-		series1.tooltip = new HITooltip();
-		series1.tooltip.valueSuffix = " km/h";
-		series1.dataLabels = new HIDataLabels();
-		series1.dataLabels.format = "<div style=\"text-align:center\"><span style=\"font-size:25px;color:black\">{y}</span><br/><span style=\"font-size:12px;color:silver\">km/h</span></div>";
+		series1.setName("Speed");
+		series1.setTooltip(new HITooltip());
+		series1.getTooltip().setValueSuffix(" km/h");
+		series1.setDataLabels(new HIDataLabels());
+		series1.getDataLabels().setFormat("<div style=\"text-align:center\"><span style=\"font-size:25px;color:black\">{y}</span><br/><span style=\"font-size:12px;color:silver\">km/h</span></div>");
 		Number[] series1_data = new Number[] { 80 };
-		series1.data = new ArrayList<>(Arrays.asList(series1_data));
+		series1.setData(new ArrayList<>(Arrays.asList(series1_data)));
 
-		options.series = new ArrayList<>(Arrays.asList(series1));
+		options.setSeries(new ArrayList<>(Arrays.asList(series1)));
 
-		chartView.options = options;
+		chartView.setOptions(options);
 	}
 }
 

@@ -23,34 +23,30 @@ public class MainActivity extends AppCompatActivity {
 
         HIOptions options = new HIOptions();
 
-        HIChart chart = new HIChart();
-        chart.type = "line";
-        options.chart = chart;
-
         HITitle title = new HITitle();
-        title.text = "Logarithmic axis demo";
-        options.title = title;
-
-
+        title.setText("Logarithmic axis demo");
+        options.setTitle(title);
+        
         HIXAxis xaxis = new HIXAxis();
-        xaxis.tickInterval = 1;
-        options.xAxis = new ArrayList<>(Collections.singletonList(xaxis));
+        xaxis.setTickInterval(1);
+        options.setXAxis(new ArrayList<>(Collections.singletonList(xaxis)));
 
         HIYAxis yaxis = new HIYAxis();
-        yaxis.type = "logarithmic";
-        yaxis.minorTickInterval = 0.1;
-        options.yAxis = new ArrayList<>(Collections.singletonList(yaxis));
+        yaxis.setType("logarithmic");
+        yaxis.setMinorTickInterval(0.1);
+        options.setYAxis(new ArrayList<>(Collections.singletonList(yaxis)));
 
         HITooltip tooltip = new HITooltip();
-        tooltip.headerFormat = "<b>{series.name}</b><br />";
-        tooltip.pointFormat = "x = {point.x}, y = {point.y}";
-        options.tooltip = tooltip;
+        tooltip.setHeaderFormat("<b>{series.name}</b><br />");
+        tooltip.setPointFormat("x = {point.x}, y = {point.y}");
+        options.setTooltip(tooltip);
 
         HILine line1 = new HILine();
-        line1.pointStart = 1;
-        line1.data = new ArrayList<>(Arrays.asList(1, 2, 4, 8, 16, 32, 64, 128, 256, 512));
-        options.series = new ArrayList<>(Collections.singletonList(line1));
-
-        chartView.options = options;
+        line1.setPointStart(1);
+        line1.setData(new ArrayList<>(Arrays.asList(1, 2, 4, 8, 16, 32, 64, 128, 256, 512)));
+        
+        options.setSeries(new ArrayList<>(Collections.singletonList(line1)));
+        
+        chartView.setOptions(options);
     }
 }

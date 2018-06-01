@@ -23,16 +23,12 @@ public class MainActivity extends AppCompatActivity {
 
 		HIOptions options = new HIOptions();
 
-		HIChart chart = new HIChart();
-		chart.type = "wordcloud";
-		options.chart = chart;
-
 		HITitle title = new HITitle();
-		title.text = "Wordcloud of Lorem Ipsum";
-		options.title = title;
+		title.setText("Wordcloud of Lorem Ipsum");
+		options.setTitle(title);
 
 		HIWordcloud series1 = new HIWordcloud();
-		series1.name = "Occurrences";
+		series1.setName("Occurrences");
 
 		HashMap<String, Object> map1 = new HashMap<>();
 		map1.put("name" , "Lorem");
@@ -558,12 +554,11 @@ public class MainActivity extends AppCompatActivity {
 		map131.put("name" , "lorem");
 		map131.put("weight" , 1);
 
-		series1.data = new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6, map7, map8, map9, map10, map11, map12, map13, map14, map15, map16, map17, map18, map19, map20, map21, map22, map23, map24, map25, map26, map27, map28, map29, map30, map31, map32, map33, map34, map35, map36, map37, map38, map39, map40, map41, map42, map43, map44, map45, map46, map47, map48, map49, map50, map51, map52, map53, map54, map55, map56, map57, map58, map59, map60, map61, map62, map63, map64, map65, map66, map67, map68, map69, map70, map71, map72, map73, map74, map75, map76, map77, map78, map79, map80, map81, map82, map83, map84, map85, map86, map87, map88, map89, map90, map91, map92, map93, map94, map95, map96, map97, map98, map99, map100, map101, map102, map103, map104, map105, map106, map107, map108, map109, map110, map111, map112, map113, map114, map115, map116, map117, map118, map119, map120, map121, map122, map123, map124, map125, map126, map127, map128, map129, map130, map131));
+		series1.setData(new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6, map7, map8, map9, map10, map11, map12, map13, map14, map15, map16, map17, map18, map19, map20, map21, map22, map23, map24, map25, map26, map27, map28, map29, map30, map31, map32, map33, map34, map35, map36, map37, map38, map39, map40, map41, map42, map43, map44, map45, map46, map47, map48, map49, map50, map51, map52, map53, map54, map55, map56, map57, map58, map59, map60, map61, map62, map63, map64, map65, map66, map67, map68, map69, map70, map71, map72, map73, map74, map75, map76, map77, map78, map79, map80, map81, map82, map83, map84, map85, map86, map87, map88, map89, map90, map91, map92, map93, map94, map95, map96, map97, map98, map99, map100, map101, map102, map103, map104, map105, map106, map107, map108, map109, map110, map111, map112, map113, map114, map115, map116, map117, map118, map119, map120, map121, map122, map123, map124, map125, map126, map127, map128, map129, map130, map131)));
 
-		options.series = new ArrayList<>(Arrays.asList(series1));
+		options.setSeries(new ArrayList<>(Arrays.asList(series1)));
 
-
-		chartView.options = options;
+		chartView.setOptions(options);
 	}
 }
 

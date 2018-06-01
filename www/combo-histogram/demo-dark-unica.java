@@ -80,80 +80,78 @@ public class MainActivity extends AppCompatActivity {
 		};
 
 		HIChart chart = new HIChart();
-		chart.type = "column";
-		options.chart = chart;
+		chart.setType("column");
+		options.setChart(chart);
 
 		HITitle title = new HITitle();
-		title.text = "Highcharts Histogram";
-		options.title = title;
+		title.setText("Highcharts Histogram");
+		options.setTitle(title);
 
 		HIXAxis xaxis = new HIXAxis();
-		xaxis.gridLineWidth = 1;
-		options.xAxis = new ArrayList<>(Collections.singletonList(xaxis));
+		xaxis.setGridLineWidth(1);
+		options.setXAxis(new ArrayList<>(Collections.singletonList(xaxis)));
 
 		HIYAxis yaxis1 = new HIYAxis();
-		yaxis1.title = new HITitle();
-		yaxis1.title.text = "Histogram Count";
+		yaxis1.setTitle(new HITitle());
+		yaxis1.getTitle().setText("Histogram Count");
 
 		HIYAxis yaxis2 = new HIYAxis();
-		yaxis2.opposite = true;
-		yaxis2.title = new HITitle();
-		yaxis2.title.text = "Y value";
+		yaxis2.setOpposite(true);
+		yaxis2.setTitle(new HITitle());
+		yaxis2.getTitle().setText("Y value");
 
-		options.yAxis = new ArrayList<>(Arrays.asList(yaxis1, yaxis2));
+		options.setYAxis(new ArrayList<>(Arrays.asList(yaxis1, yaxis2)));
 
 		HIColumn column = new HIColumn();
-		column.name = "Histogram";
-		column.data = this.histogram(data, 10);
-		column.pointPadding = 0;
-		column.grouping = false;
-		column.pointPlacement = "between";
+		column.setName("Histogram");
+		column.setData(this.histogram(data, 10));
+		column.setPointPadding(0);
+		column.setGrouping(false);
+		column.setPointPlacement("between");
 
 		HIScatter scatter = new HIScatter();
-		scatter.type = "scatter";
-		scatter.name = "XY data";
-		scatter.data = new ArrayList<>(Arrays.asList(data));
-		scatter.yAxis = 1;
-		scatter.marker = new HIMarker();
-		scatter.marker.radius = 1.5;
+		scatter.setName("XY data");
+		scatter.setData(new ArrayList<>(Arrays.asList(data)));
+		scatter.setYAxis(1);
+		scatter.setMarker(new HIMarker());
+		scatter.getMarker().setRadius(1.5);
 
-		options.series = new ArrayList<>(Arrays.asList(column, scatter));
+		options.setSeries(new ArrayList<>(Arrays.asList(column, scatter)));
 
-		chartView.options = options;
-	}
+		chartView.setOptions(options);
+	    }
 
-	private ArrayList histogram(Number[][] data, int step) {
+	    private ArrayList histogram(Number[][] data, int step) {
 		HashMap<Integer, Integer> histo = new HashMap<>();
 		int x;
 
 		for (Number[] aData : data) {
-			x = (int) Math.floor((double) aData[0] / step) * step;
-			if (histo.get(x) == null) {
-				histo.put(x, 0);
-			}
-			int current = histo.get(x);
-			histo.put(x, ++current);
+		    x = (int) Math.floor((double) aData[0] / step) * step;
+		    if (histo.get(x) == null) {
+		        histo.put(x, 0);
+		    }
+		    int current = histo.get(x);
+		    histo.put(x, ++current);
 		}
 
 		ArrayList<float[]> arr = new ArrayList<>();
 		for (Integer i : histo.keySet()) {
-			if (histo.get(i) != null) {
-				arr.add(
-						new float[]{i.floatValue(), histo.get(i)}
-				);
-			}
+		    if (histo.get(i) != null) {
+		        arr.add(
+		                new float[]{i.floatValue(), histo.get(i)}
+		        );
+		    }
 		}
 
 		Comparator<float[]> byFirstElement = new Comparator<float[]>() {
-			@Override
-			public int compare(float[] arg0, float[] arg1) {
-				return Float.compare(arg0[0], arg1[0]);
-			}
+		    @Override
+		    public int compare(float[] arg0, float[] arg1) {
+		        return Float.compare(arg0[0], arg1[0]);
+		    }
 		};
 
 		Collections.sort(arr, byFirstElement);
 
 		return arr;
-		}
-	}
-
+	    }
+}

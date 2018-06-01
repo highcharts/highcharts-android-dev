@@ -23,41 +23,42 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HIChart chart = new HIChart();
-        chart.type = "funnel";
-        chart.marginRight = 100;
-        options.chart = chart;
+        chart.setType("funnel");
+        chart.setMarginRight(100);
+        options.setChart(chart);
 
         HITitle title = new HITitle();
-        title.text = "Sales funnel";
-        title.x = -50;
-        options.title = title;
+        title.setText("Sales funnel");
+        title.setX(-50);
+        options.setTitle(title);
 
         HIPlotOptions plotOptions = new HIPlotOptions();
-        plotOptions.funnel = new HIFunnel();
-        plotOptions.funnel.dataLabels = new HIDataLabels();
-        plotOptions.funnel.dataLabels.enabled = true;
-        plotOptions.funnel.dataLabels.format = "<b>{point.name}</b> ({point.y:,.0f})";
-        plotOptions.funnel.dataLabels.color = HIColor.initWithHexValue("FFFFFF");
-        plotOptions.funnel.dataLabels.softConnector = 1;
-        plotOptions.funnel.neckWidth = "30%";
-        plotOptions.funnel.neckHeight = "25%";
-        options.plotOptions = plotOptions;
+        HIFunnel funnel = new HIFunnel();
+        funnel.setDataLabels(new HIDataLabels());
+        funnel.getDataLabels().setEnabled(true);
+        funnel.getDataLabels().setFormat("<b>{point.name}</b> ({point.y:,.0f})");
+        funnel.getDataLabels().setColor(HIColor.initWithHexValue("FFFFFF")); ;
+        funnel.getDataLabels().setSoftConnector(1);
+        funnel.setNeckWidth("30%");
+        funnel.setNeckHeight("25%");
+        plotOptions.setFunnel(funnel);
+        options.setPlotOptions(plotOptions);
 
         HILegend legend = new HILegend();
-        legend.enabled = false;
-        options.legend = legend;
+        legend.setEnabled(false);
+        options.setLegend(legend);
 
         HIFunnel series = new HIFunnel();
-        series.name = "Unique users";
-        series.data = new ArrayList<>(Arrays.asList(
+        series.setName("Unique users");
+        series.setData(new ArrayList<>(Arrays.asList(
                 new Object[] { "Website visits", 15654},
                 new Object[] { "Downloads", 4064 },
                 new Object[] { "Requested price list", 1987},
                 new Object[] { "Invoice sent", 976},
                 new Object[] { "Finalized", 846}
-        ));
-        options.series = new ArrayList<>(Collections.singletonList(series));
+        )));
+        options.setSeries(new ArrayList<>(Collections.singletonList(series)));
 
-        chartView.options = options;
+        chartView.setOptions(options);
     }
 }
