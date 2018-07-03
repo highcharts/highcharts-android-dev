@@ -3,24 +3,25 @@ package com.highsoft.devground;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.highsoft.highcharts.Common.HIChartsClasses.HIChart;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIColumn;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIDataLabels;
+import com.highsoft.highcharts.Common.HIChartsClasses.HILabels;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIMarker;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIOptions;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIPlotOptions;
-import com.highsoft.highcharts.Common.HIChartsClasses.HISeries;
+import com.highsoft.highcharts.Common.HIChartsClasses.HISpline;
 import com.highsoft.highcharts.Common.HIChartsClasses.HISubtitle;
 import com.highsoft.highcharts.Common.HIChartsClasses.HITitle;
 import com.highsoft.highcharts.Common.HIChartsClasses.HITooltip;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIXAxis;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIXrange;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIYAxis;
-import com.highsoft.highcharts.Common.HIColor;
 import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.Core.HIFunction;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,91 +30,93 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         HIChartView chartView = findViewById(R.id.hc);
 
         HIOptions options = new HIOptions();
 
-        HIChart chart = new HIChart();
-        chart.setType("column");
-        options.setChart(chart);
-
         HITitle title = new HITitle();
-        title.setText("UEFA Champions League 2016/17");
-        HISubtitle subtitle = new HISubtitle();
-        subtitle.setText("Team statistics");
+        title.setText("Formatted shared tooltip");
         options.setTitle(title);
+
+        HISubtitle subtitle = new HISubtitle();
+        subtitle.setText("Click on chart to compare data");
         options.setSubtitle(subtitle);
 
-        final HIXAxis hixAxis = new HIXAxis();
-        ArrayList<String> categories = new ArrayList<>();
-        categories.add("Goals");
-        categories.add("Assists");
-        categories.add("Shots On Goal");
-        categories.add("Shots");
-        hixAxis.setCategories(categories);
-        options.setXAxis(new ArrayList<HIXAxis>(){{add(hixAxis);}});
+        HIXAxis xAxis = new HIXAxis();
+        xAxis.setType("datetime");
+        options.setXAxis(new ArrayList<>(Collections.singletonList(xAxis)));
 
-        final HIYAxis hiyAxis = new HIYAxis();
-        hiyAxis.setMin(0);
-        hiyAxis.setTitle(new HITitle());
-        hiyAxis.getTitle().setText("Number");
-        options.setYAxis(new ArrayList<HIYAxis>(){{add(hiyAxis);}});
+        HIYAxis yAxis = new HIYAxis();
+        yAxis.setTitle(new HITitle());
+        yAxis.getTitle().setText("Relative performance");
+        yAxis.setLabels(new HILabels());
+        yAxis.getLabels().setFormat("{value:.,0f}%");
+        yAxis.setShowFirstLabel(false);
 
+        options.setYAxis(new ArrayList<>(Collections.singletonList(yAxis)));
+
+        // For shared tooltip only pure JS formatter is applicable
         HITooltip tooltip = new HITooltip();
-        tooltip.setHeaderFormat("<span style=\"font-size:15px\">{point.key}</span><table>");
-        tooltip.setPointFormat("<tr><td style=\"color:{series.color};padding:0\">{series.name}: </td>" + "<td style=\"padding:0\"><b>{point.y}</b></td></tr>");
-        tooltip.setFooterFormat("</talble>");
+        String function = "function() { "
+                                + "var s = '<b>' + Highcharts.dateFormat( '%e %b %Y', new Date(this.x)) + '</b>';"
+                                + "var percent = '';"
+                                + "for(var key in this.points) {"
+                                +   "s += '<br/><b>' + this.points[key].series.name + '</b> ' + this.points[key].point.actualValue;"
+                                +   "percent = ' ' + Math.round(this.points[key].y * 100) / 100 + '%'; "
+                                +   "s += '  +(' + percent + ')';"
+                                +   "} return s }";
+        tooltip.setFormatter(new HIFunction(function));
+        tooltip.setShared(true);
+        options.setTooltip(tooltip);
 
         HIPlotOptions plotOptions = new HIPlotOptions();
-        plotOptions.setColumn(new HIColumn());
-        plotOptions.getColumn().setPointPadding(0.2);
-        plotOptions.getColumn().setBorderWidth(0);
+        plotOptions.setSpline(new HISpline());
+        plotOptions.getSpline().setPointIntervalUnit("month");
+        plotOptions.getSpline().setPointStart(Date.UTC(118,5,9,0,0,0));
         options.setPlotOptions(plotOptions);
 
-        HIColumn realMadrid = new HIColumn();
-        realMadrid.setName("Real Madrid");
-        ArrayList<Integer> realMadridData = new ArrayList<>();
-        realMadridData.add(36);
-        realMadridData.add(31);
-        realMadridData.add(93);
-        realMadridData.add(236);
-        realMadrid.setData(realMadridData);
+        HISpline bankSeries1 = new HISpline();
+        bankSeries1.setName("Bank A");
+        bankSeries1.setData(generateRandomData());
+        bankSeries1.setLineWidth(4);
+        bankSeries1.setMarker(new HIMarker());
+        bankSeries1.getMarker().setRadius(4);
 
-        HIColumn juventus = new HIColumn();
-        juventus.setName("Juventus");
-        ArrayList<Integer> juventusData = new ArrayList<>();
-        juventusData.add(22);
-        juventusData.add(10);
-        juventusData.add(66);
-        juventusData.add(178);
-        juventus.setData(juventusData);
+        HISpline bankSeries2 = new HISpline();
+        bankSeries2.setName("Bank B");
+        bankSeries2.setData(generateRandomData());
 
-        HIColumn monaco = new HIColumn();
-        monaco.setName("Monaco");
-        ArrayList<Integer> monacoData = new ArrayList<>();
-        monacoData.add(22);
-        monacoData.add(17);
-        monacoData.add(56);
-        monacoData.add(147);
-        monaco.setData(monacoData);
-
-        HIColumn atleticoMadrid = new HIColumn();
-        atleticoMadrid.setName("Atlético Madrid");
-        ArrayList<Integer> atleticoMadridData = new ArrayList<>();
-        atleticoMadridData.add(15);
-        atleticoMadridData.add(9);
-        atleticoMadridData.add(55);
-        atleticoMadridData.add(160);
-        atleticoMadrid.setData(atleticoMadridData);
-
-        ArrayList<HISeries> series = new ArrayList<>();
-        series.add(realMadrid);
-        series.add(juventus);
-        series.add(monaco);
-        series.add(atleticoMadrid);
-        options.setSeries(series);
+        options.setSeries(new ArrayList<>(Arrays.asList(bankSeries1, bankSeries2)));
 
         chartView.setOptions(options);
+    }
+
+    /**
+     * This method is just for demo purposes.
+     * You can pass as an argument your data (e.g. from file)
+     * create indexes dynamically by iterating over data.
+     *
+     * Values put under the "y" key are the relative performance in percents,
+     * actual value is not used to create the chart but it is seen in the tooltip
+     *
+     * @return generated random data with relative performance
+     */
+    ArrayList<HashMap<String, Object>> generateRandomData(){
+        ArrayList<HashMap<String, Object>> data = new ArrayList<>();
+        HashMap<String, Object> firstPoint = new HashMap<>();
+        Random r = new Random();
+        int firstValue = (r.nextInt((20000 - 10000) + 1 ) + 10000);
+        firstPoint.put("y", 0.0);
+        firstPoint.put("actualValue", firstValue);
+        data.add(firstPoint);
+        for(int i = 0 ; i<30; i++){
+            HashMap<String, Object> singlePoint = new HashMap<>();
+            int actualValue = (r.nextInt((20000 - 10000) + 1 ) + 10000);
+            double indexedValue = (double)actualValue/(double)firstValue;
+            singlePoint.put("y", indexedValue);
+            singlePoint.put("actualValue", actualValue);
+            data.add(singlePoint);
+        }
+        return data;
     }
 }
