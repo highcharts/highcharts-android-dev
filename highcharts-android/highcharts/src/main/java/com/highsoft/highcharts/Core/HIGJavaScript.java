@@ -49,8 +49,7 @@ final class HIGJavaScript{
         //String formart to enable Javascript functions injection
         gsonFormatted = gsonFormatted
                 .replace("\"__xx__", "")
-                .replace("__xx__\"", "")
-                .replace("\\\"", "\""); //dodane
+                .replace("__xx__\"", "");
         return gsonFormatted;
     }
 

@@ -3,24 +3,44 @@ package com.highsoft.devground;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.highsoft.highcharts.Common.HIChartsClasses.HIAreaspline;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIBackground;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIChart;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIColumn;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIColumnrange;
+import com.highsoft.highcharts.Common.HIChartsClasses.HICredits;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIData;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIDataLabels;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIGauge;
 import com.highsoft.highcharts.Common.HIChartsClasses.HILabels;
+import com.highsoft.highcharts.Common.HIChartsClasses.HILegend;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIMarker;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIOptions;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIPane;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIPlotBands;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIPlotOptions;
 import com.highsoft.highcharts.Common.HIChartsClasses.HISpline;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIStackLabels;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIStyle;
 import com.highsoft.highcharts.Common.HIChartsClasses.HISubtitle;
 import com.highsoft.highcharts.Common.HIChartsClasses.HITitle;
 import com.highsoft.highcharts.Common.HIChartsClasses.HITooltip;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIXAxis;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIYAxis;
+import com.highsoft.highcharts.Common.HIColor;
+import com.highsoft.highcharts.Common.HIGradient;
+import com.highsoft.highcharts.Common.HIStop;
 import com.highsoft.highcharts.Core.HIChartView;
 import com.highsoft.highcharts.Core.HIFunction;
 
 import java.sql.Date;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,58 +55,60 @@ public class MainActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
 
         HITitle title = new HITitle();
-        title.setText("Formatted shared tooltip");
+        title.setText("Average fruit consumption during one week");
         options.setTitle(title);
 
-        HISubtitle subtitle = new HISubtitle();
-        subtitle.setText("Click on chart to compare data");
-        options.setSubtitle(subtitle);
+        HILegend legend = new HILegend();
+        legend.setLayout("vertical");
+        legend.setAlign("left");
+        legend.setVerticalAlign("top");
+        legend.setX(150);
+        legend.setY(150);
+        legend.setFloating(true);
+        legend.setBorderWidth(1);
+        legend.setBackgroundColor(HIColor.initWithHexValue("FFFFFF"));
+        options.setLegend(legend);
 
-        HIXAxis xAxis = new HIXAxis();
-        xAxis.setType("datetime");
-        options.setXAxis(new ArrayList<>(Collections.singletonList(xAxis)));
+        HIXAxis xaxis = new HIXAxis();
+        String[] categories = new String[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+        xaxis.setCategories(new ArrayList<>(Arrays.asList(categories)));
+        HIPlotBands plotband = new HIPlotBands();
+        plotband.setFrom(4.5);
+        plotband.setTo(6.5);
+        plotband.setColor(HIColor.initWithRGBA(68, 170, 213, 2));
+        xaxis.setPlotBands(new ArrayList<>(Arrays.asList(plotband)));
+        options.setXAxis(new ArrayList<HIXAxis>(){{add(xaxis);}});
 
-        HIYAxis yAxis = new HIYAxis();
-        yAxis.setTitle(new HITitle());
-        yAxis.getTitle().setText("Relative performance");
-        yAxis.setLabels(new HILabels());
-        yAxis.getLabels().setFormat("{value:.,0f}%");
-        yAxis.setShowFirstLabel(false);
+        HIYAxis yaxis = new HIYAxis();
+        yaxis.setTitle(new HITitle());
+        yaxis.getTitle().setText("Fruit unit");
+        options.setYAxis(new ArrayList<HIYAxis>(){{add(yaxis);}});
 
-        options.setYAxis(new ArrayList<>(Collections.singletonList(yAxis)));
-
-        // For shared tooltip only pure JS formatter is applicable
         HITooltip tooltip = new HITooltip();
-        String function = "function() { "
-                                + "var s = '<b>' + Highcharts.dateFormat( '%e %b %Y', new Date(this.x)) + '</b>';"
-                                + "var percent = '';"
-                                + "for(var key in this.points) {"
-                                +   "s += '<br/><b>' + this.points[key].series.name + '</b> ' + this.points[key].point.actualValue;"
-                                +   "percent = ' ' + Math.round(this.points[key].y * 100) / 100 + '%'; "
-                                +   "s += '  +(' + percent + ')';"
-                                +   "} return s }";
-        tooltip.setFormatter(new HIFunction(function));
         tooltip.setShared(true);
+        tooltip.setValueSuffix(" units");
         options.setTooltip(tooltip);
 
+        HICredits credits = new HICredits();
+        credits.setEnabled(false);
+        options.setCredits(credits);
+
         HIPlotOptions plotOptions = new HIPlotOptions();
-        plotOptions.setSpline(new HISpline());
-        plotOptions.getSpline().setPointIntervalUnit("month");
-        plotOptions.getSpline().setPointStart(Date.UTC(118,5,9,0,0,0));
+        plotOptions.setAreaspline(new HIAreaspline());
+        plotOptions.getAreaspline().setFillOpacity(0.5);
         options.setPlotOptions(plotOptions);
 
-        HISpline bankSeries1 = new HISpline();
-        bankSeries1.setName("Bank A");
-        bankSeries1.setData(generateRandomData());
-        bankSeries1.setLineWidth(4);
-        bankSeries1.setMarker(new HIMarker());
-        bankSeries1.getMarker().setRadius(4);
+        HIAreaspline areaspline1 = new HIAreaspline();
+        areaspline1.setName("John");
+        Number[] areaspline1Data = new Number[] {3, 4, 3, 5, 4, 10, 12 };
+        areaspline1.setData(new ArrayList<>(Arrays.asList(areaspline1Data)));
 
-        HISpline bankSeries2 = new HISpline();
-        bankSeries2.setName("Bank B");
-        bankSeries2.setData(generateRandomData());
+        HIAreaspline areaspline2 = new HIAreaspline();
+        areaspline2.setName("Jane");
+        Number[] areaspline2Data = new Number[] { 1, 3, 4, 3, 3, 5, 4 };
+        areaspline2.setData(new ArrayList<>(Arrays.asList(areaspline2Data)));
 
-        options.setSeries(new ArrayList<>(Arrays.asList(bankSeries1, bankSeries2)));
+        options.setSeries(new ArrayList<>(Arrays.asList(areaspline1, areaspline2)));
 
         chartView.setOptions(options);
     }
