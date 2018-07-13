@@ -208,8 +208,8 @@ A declarative filter for which data labels to display. The
 declarative filter is designed for use when callback functions are
 not available, like when the chart options require a pure JSON
 structure or for use with graphical editors. For programmatic
-control, use the formatter instead, and return false to disable
-a single data label.
+control, use the formatter instead, and return undefined to
+disable a single data label.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome">Data labels filtered by percentage</a>*/
 	public void setFilter(HIFilter filter) {
 		this.filter = filter;
@@ -390,11 +390,13 @@ The border width in pixels for the data label.
 
 	private String rotationMode;
 /**
-Decides how the data label will be rotated according to the perimeter
-of the sunburst. It can either be parallel or perpendicular to the
-perimeter.
-series.rotation takes precedence over rotationMode.
- <br><br><b>accepted values:</b><br><br>&ensp;["perpendicular", "parallel"]*/
+Decides how the data label will be rotated relative to the perimeter
+of the sunburst. Valid values are auto, parallel and
+perpendicular. When auto, the best fit will be computed for the
+point.
+
+The series.rotation option takes precedence over rotationMode.
+ <br><br><b>accepted values:</b><br><br>&ensp;["auto", "perpendicular", "parallel"]*/
 	public void setRotationMode(String rotationMode) {
 		this.rotationMode = rotationMode;
 		this.setChanged();
@@ -405,7 +407,7 @@ series.rotation takes precedence over rotationMode.
 
 	private Number y;
 /**
-The y position offset of the label relative to the point.
+The y position offset of the label relative to the point in pixels.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-rotation/">Vertical and positioned</a> <br><br><b>default:</b><br><br>&ensp;-6*/
 	public void setY(Number y) {
 		this.y = y;
@@ -442,22 +444,6 @@ nodeFormatter returns {point.name}.
 	}
 
 	public String getNodeFormat(){ return nodeFormat; }
-
-	private String connectorColor;
-/**
-The color of the line connecting the data label to the pie slice.
-The default color is the same as the point's color.
-
-In styled mode, the connector stroke is given in the
-.highcharts-data-label-connector class.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorcolor/">Blue connectors</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/pie-point/">Styled connectors</a> <br><br><b>default:</b><br><br>&ensp;{point.color}*/
-	public void setConnectorColor(String connectorColor) {
-		this.connectorColor = connectorColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getConnectorColor(){ return connectorColor; }
 
 	private Number distance;
 /**
@@ -513,6 +499,22 @@ The distance from the data label to the connector.
 	}
 
 	public Number getConnectorPadding(){ return connectorPadding; }
+
+	private String connectorColor;
+/**
+The color of the line connecting the data label to the pie slice.
+The default color is the same as the point's color.
+
+In styled mode, the connector stroke is given in the
+.highcharts-data-label-connector class.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorcolor/">Blue connectors</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/pie-point/">Styled connectors</a> <br><br><b>default:</b><br><br>&ensp;{point.color}*/
+	public void setConnectorColor(String connectorColor) {
+		this.connectorColor = connectorColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getConnectorColor(){ return connectorColor; }
 
 
 
@@ -632,9 +634,6 @@ The distance from the data label to the connector.
 		if (this.nodeFormat != null) {
 			params.put("nodeFormat", this.nodeFormat);
 		}
-		if (this.connectorColor != null) {
-			params.put("connectorColor", this.connectorColor);
-		}
 		if (this.distance != null) {
 			params.put("distance", this.distance);
 		}
@@ -646,6 +645,9 @@ The distance from the data label to the connector.
 		}
 		if (this.connectorPadding != null) {
 			params.put("connectorPadding", this.connectorPadding);
+		}
+		if (this.connectorColor != null) {
+			params.put("connectorColor", this.connectorColor);
 		}
 		return params;
 	}

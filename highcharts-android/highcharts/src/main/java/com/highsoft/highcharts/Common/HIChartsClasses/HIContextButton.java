@@ -40,7 +40,7 @@ public class HIContextButton extends Observable implements HIChartsJSONSerializa
 The symbol for the button. Points to a definition function in
 the Highcharts.Renderer.symbols collection. The default
 exportIcon function is part of the exporting module.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-contextbutton-symbol/">Use a circle for symbol</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-contextbutton-symbol-custom/">Custom shape as symbol</a> <br><br><b>accepted values:</b><br><br>&ensp;["circle", "square", "diamond", "triangle", "triangle-down", "menu"] <br><br><b>default:</b><br><br>&ensp;menu*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-contextbutton-symbol/">Use a circle for symbol</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-contextbutton-symbol-custom/">Custom shape as symbol</a> <br><br><b>accepted values:</b><br><br>&ensp;["exportIcon", "circle", "square", "diamond", "triangle", "triangle-down", "menu"] <br><br><b>default:</b><br><br>&ensp;menu*/
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
 		this.setChanged();

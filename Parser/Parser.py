@@ -276,7 +276,12 @@ def get_java_type(x):
         # 6.0.7
         "Undefined|Number": 'Number',
         # 6.1
-        "Bool": 'Boolean'
+        "Bool": 'Boolean',
+        # 6.1.1
+        "AnimationOptions|Boolean": 'Object',
+        "Boolean|AnimationOptions": 'Object',
+        "Array.<number>": 'ArrayList<Number',
+        "Boolean|AnimationObject": 'Object'
 
     }[str(x)]
 

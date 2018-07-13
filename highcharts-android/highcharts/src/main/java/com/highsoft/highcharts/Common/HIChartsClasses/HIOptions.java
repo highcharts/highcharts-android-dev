@@ -46,7 +46,8 @@ though if the chart is inverted this is the horizontal axis.
 In case of multiple axes, the yAxis node is an array of
 configuration objects.
 
-See the Axis object for programmatic access to the axis.
+See [the Axis object](/class-reference/Highcharts.Axis) for programmatic
+access to the axis.
 */
 	public void setYAxis(ArrayList<HIYAxis> yAxis) {
 		this.yAxis = yAxis;
@@ -327,6 +328,9 @@ HTML labels that can be positioned anywhere in the chart area.
 
 	private HIChart chart;
 
+/**
+General options for the chart.
+*/
 	public void setChart(HIChart chart) {
 		this.chart = chart;
 		this.chart.addObserver(updateObserver);
@@ -356,7 +360,8 @@ of the chart. This can be changed using these options.
 /**
 The Z axis or depth axis for 3D plots.
 
-See the Axis object for programmatic access to the axis.
+See [the Axis object](/class-reference/Highcharts.Axis) for programmatic
+access to the axis.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/scatter-zaxis-categories/">Z-Axis with Categories</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/scatter-zaxis-grid/">Z-Axis with styling</a>*/
 	public void setZAxis(ArrayList<HIZAxis> zAxis) {
 		this.zAxis = zAxis;
@@ -373,7 +378,8 @@ The X axis or category axis. Normally this is the horizontal axis,
 though if the chart is inverted this is the vertical axis. In case of
 multiple axes, the xAxis node is an array of configuration objects.
 
-See the Axis object for programmatic access to the axis.
+See [the Axis object](/class-reference/Highcharts.Axis) for
+programmatic access to the axis.
 */
 	public void setXAxis(ArrayList<HIXAxis> xAxis) {
 		this.xAxis = xAxis;
@@ -391,8 +397,8 @@ resolution data through clicking on chart items like columns or pie slices.
 
 The drilldown feature requires the drilldown.js file to be loaded,
 found in the modules directory of the download package, or online at
-(code.highcharts.com/modules/drilldown.js)[code.highcharts.com/modules/
-drilldown.js].
+[code.highcharts.com/modules/drilldown.js
+](code.highcharts.com/modules/drilldown.js).
 */
 	public void setDrilldown(HIDrilldown drilldown) {
 		this.drilldown = drilldown;
@@ -473,7 +479,8 @@ values. This can be used for ranges between two values, but also for
 a true category. However, when your data is categorized, it may be as
 convenient to add each category to a separate series.
 
-See the Axis object for programmatic access to the axis.
+See [the Axis object](/class-reference/Highcharts.Axis) for
+programmatic access to the axis.
 */
 	public void setColorAxis(HIColorAxis colorAxis) {
 		this.colorAxis = colorAxis;
@@ -556,18 +563,18 @@ public Map<String, Object> getParams() {
 		if (this.subtitle != null) {
 			params.put("subtitle", this.subtitle.getParams());
 		}
-	if (this.yAxis != null) {
-		ArrayList<Object> array = new ArrayList<>();
-		for (Object obj : this.yAxis) {
-			if (obj instanceof HIChartsJSONSerializable) {
-				array.add(((HIChartsJSONSerializable) obj).getParams());
+		if (this.xAxis != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.xAxis) {
+				if (obj instanceof HIChartsJSONSerializable) {
+					array.add(((HIChartsJSONSerializable) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
 			}
-			else {
-				array.add(obj);
-			}
+			params.put("xAxis", array);
 		}
-		params.put("yAxis", array);
-	}
 		if (this.series != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.series) {
@@ -653,9 +660,9 @@ public Map<String, Object> getParams() {
 			}
 			params.put("zAxis", array);
 		}
-		if (this.xAxis != null) {
+		if (this.yAxis != null) {
 			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.xAxis) {
+			for (Object obj : this.yAxis) {
 				if (obj instanceof HIChartsJSONSerializable) {
 					array.add(((HIChartsJSONSerializable) obj).getParams());
 				}
@@ -663,7 +670,7 @@ public Map<String, Object> getParams() {
 					array.add(obj);
 				}
 			}
-			params.put("xAxis", array);
+			params.put("yAxis", array);
 		}
 		if (this.drilldown != null) {
 			params.put("drilldown", this.drilldown.getParams());

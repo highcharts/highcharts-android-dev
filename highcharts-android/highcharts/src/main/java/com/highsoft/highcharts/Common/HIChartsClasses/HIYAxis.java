@@ -298,10 +298,11 @@ will use other options, in this order:
 
 	private Boolean reversedStacks;
 /**
-If true, the first series in a stack will be drawn on top in a
+* description: If true, the first series in a stack will be drawn on top in a
 positive, non-reversed Y axis. If false, the first series is in
 the base of the stack.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/reversedstacks-false/">Non-reversed stacks</a> <br><br><b>default:</b><br><br>&ensp;true*/
+* demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/reversedstacks-false/ : Non-reversed stacks* default: true
+*/
 	public void setReversedStacks(Boolean reversedStacks) {
 		this.reversedStacks = reversedStacks;
 		this.setChanged();
@@ -458,7 +459,7 @@ representations used for each unit. For intermediate values,
 different units may be used, for example the day unit can be used
 on midnight and hour unit be used for intermediate values on the
 same axis. For an overview of the replacement codes, see
-dateFormat. Defaults to:
+[dateFormat](/class-reference/Highcharts#dateFormat). Defaults to:
 
 {
     millisecond: '%H:%M:%S.%L',
@@ -1005,15 +1006,15 @@ option may interfere with the tickInterval setting.
 
 	private Object /* Number|String */ minorTickInterval;
 /**
-Specific tick interval in axis units for the minor ticks.
-On a linear axis, if "auto", the minor tick interval is
-calculated as a fifth of the tickInterval. If null, minor
-ticks are not shown.
+Specific tick interval in axis units for the minor ticks. On a linear
+axis, if "auto", the minor tick interval is calculated as a fifth
+of the tickInterval. If null or undefined, minor ticks are not
+shown.
 
 On logarithmic axes, the unit is the power of the value. For example,
-setting the minorTickInterval to 1 puts one tick on each of 0.1,
-1, 10, 100 etc. Setting the minorTickInterval to 0.1 produces 9
-ticks between 1 and 10, 10 and 100 etc.
+setting the minorTickInterval to 1 puts one tick on each of 0.1, 1,
+10, 100 etc. Setting the minorTickInterval to 0.1 produces 9 ticks
+between 1 and 10, 10 and 100 etc.
 
 If user settings dictate minor ticks to become too dense, they don't
 make sense, and will be ignored to prevent performance problems.

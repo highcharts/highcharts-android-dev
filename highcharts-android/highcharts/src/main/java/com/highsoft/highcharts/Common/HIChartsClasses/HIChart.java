@@ -26,7 +26,7 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 When true, cartesian charts like line, spline, area and column are
 transformed into the polar coordinate system. Requires
 highcharts-more.js.
- <br><br><b>default:</b><br><br>&ensp;false*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar/">Polar chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar-wind-rose/">Wind rose, stacked polar column chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar-spider/">Spider web chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/parallel-coordinates/polar/">Star plot, multivariate data in a polar chart</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public void setPolar(Boolean polar) {
 		this.polar = polar;
 		this.setChanged();
@@ -50,7 +50,8 @@ The corner radius of the outer chart border.
 	private Number spacingBottom;
 /**
 The space between the bottom edge of the chart and the content (plot
-area, axis title and labels, title, subtitle or legend in top position).
+area, axis title and labels, title, subtitle or legend in top
+position).
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/spacingbottom/">Spacing bottom set to 100</a> <br><br><b>default:</b><br><br>&ensp;15*/
 	public void setSpacingBottom(Number spacingBottom) {
 		this.spacingBottom = spacingBottom;
@@ -63,9 +64,9 @@ area, axis title and labels, title, subtitle or legend in top position).
 	private Object /* Number|String */ height;
 /**
 An explicit height for the chart. If a _number_, the height is
-given in pixels. If given a _percentage string_ (for example '56%'),
-the height is given as the percentage of the actual chart width.
-This allows for preserving the aspect ratio across responsive
+given in pixels. If given a _percentage string_ (for example
+'56%'), the height is given as the percentage of the actual chart
+width. This allows for preserving the aspect ratio across responsive
 sizes.
 
 By default (when null) the height is calculated from the offset
@@ -221,8 +222,8 @@ is ignorant of the individual chart options and must be set globally.
 /**
 The HTML element where the chart will be rendered. If it is a string,
 the element by that id is used. The HTML element can also be passed
-by direct reference, or as the first argument of the chart constructor,
- in which case the option is not needed.
+by direct reference, or as the first argument of the chart
+constructor, in which case the option is not needed.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/reflow-true/">String</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/renderto-object/">Object reference</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/renderto-jquery/">Object reference through jQuery</a>*/
 	public void setRenderTo(Object /* String|Object */ renderTo) {
 		this.renderTo = renderTo;
@@ -263,7 +264,7 @@ containing color, offsetX, offsetY, opacity and width.
 /**
 Decides in what dimensions the user can zoom by dragging the mouse.
 Can be one of x, y or xy.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/zoomtype-none/">None by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/zoomtype-x/">X</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/zoomtype-y/">Y</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/zoomtype-xy/">Xy</a> <br><br><b>accepted values:</b><br><br>&ensp;[null, "x", "y", "xy"]*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/zoomtype-none/">None by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/zoomtype-x/">X</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/zoomtype-y/">Y</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/zoomtype-xy/">Xy</a> <br><br><b>accepted values:</b><br><br>&ensp;[null, "x", "y", "xy"] <br><br><b>default:</b><br><br>&ensp;null*/
 	public void setZoomType(String zoomType) {
 		this.zoomType = zoomType;
 		this.setChanged();
@@ -313,37 +314,19 @@ is calculated from the offset width of the containing element.
 
 	public Number getWidth(){ return width; }
 
-	private Object /* Boolean|Object */ animation;
+	private Number marginLeft;
 /**
-Set the overall animation for all chart updating. Animation can be
-disabled throughout the chart by setting it to false here. It can
-be overridden for each individual API method as a function parameter.
-The only animation not affected by this option is the initial series
-animation, see [plotOptions.series.animation](
-#plotOptions.series.animation).
-
-The animation can either be set as a boolean or a configuration
-object. If true, it will use the 'swing' jQuery easing and a
-duration of 500 ms. If used as a configuration object, the following
-properties are supported:
-
-
-duration
-The duration of the animation in milliseconds.
-easing
-A string reference to an easing function set on the Math object.
-See [the easing demo](http://jsfiddle.net/gh/get/library/pure/
-highcharts/highcharts/tree/master/samples/highcharts/plotoptions/
-series-animation-easing/).
-
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-none/">Updating with no animation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-duration/">With a longer duration</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-easing/">With a jQuery UI easing</a> <br><br><b>default:</b><br><br>&ensp;true*/
-	public void setAnimation(Object /* Boolean|Object */ animation) {
-		this.animation = animation;
+The margin between the left outer edge of the chart and the plot
+area. Use this to set a fixed pixel value for the margin as opposed
+to the default dynamic margin. See also spacingLeft.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/marginleft/">150px left margin</a> <br><br><b>default:</b><br><br>&ensp;null*/
+	public void setMarginLeft(Number marginLeft) {
+		this.marginLeft = marginLeft;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Boolean|Object */ getAnimation(){ return animation; }
+	public Number getMarginLeft(){ return marginLeft; }
 
 	private HIColor plotBackgroundColor;
 /**
@@ -374,9 +357,10 @@ The background color or gradient for the outer chart area.
 Allow panning in a chart. Best used with panKey
 to combine zooming and panning.
 
-On touch devices, when the tooltip.followTouchMove
-option is true (default), panning requires two fingers. To allow
-panning with one finger, set followTouchMove to false.
+On touch devices, when the [tooltip.followTouchMove](
+#tooltip.followTouchMove) option is true (default), panning
+requires two fingers. To allow panning with one finger, set
+followTouchMove to false.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/pankey/">Zooming and panning</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public void setPanning(Boolean panning) {
 		this.panning = panning;
@@ -431,7 +415,8 @@ Event listeners for the chart.
 	private Number spacingLeft;
 /**
 The space between the left edge of the chart and the content (plot
-area, axis title and labels, title, subtitle or legend in top position).
+area, axis title and labels, title, subtitle or legend in top
+position).
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/spacingleft/">Spacing left set to 100</a> <br><br><b>default:</b><br><br>&ensp;10*/
 	public void setSpacingLeft(Number spacingLeft) {
 		this.spacingLeft = spacingLeft;
@@ -462,8 +447,8 @@ screen reader information region.
 Allows setting a key to switch between zooming and panning. Can be
 one of alt, ctrl, meta (the command key on Mac and Windows
 key on Windows) or shift. The keys are mapped directly to the key
-properties of the click event argument (event.altKey, event.ctrlKey,
-event.metaKey and event.shiftKey).
+properties of the click event argument (event.altKey,
+event.ctrlKey, event.metaKey and event.shiftKey).
  <br><br><b>accepted values:</b><br><br>&ensp;[null, "alt", "ctrl", "meta", "shift"]*/
 	public void setPanKey(String panKey) {
 		this.panKey = panKey;
@@ -477,9 +462,9 @@ event.metaKey and event.shiftKey).
 /**
 The distance between the outer edge of the chart and the content,
 like title or legend, or axis title and labels if present. The
-numbers in the array designate top, right, bottom and left respectively.
-Use the options spacingTop, spacingRight, spacingBottom and spacingLeft
-options for shorthand setting of one option.
+numbers in the array designate top, right, bottom and left
+respectively. Use the options spacingTop, spacingRight, spacingBottom
+and spacingLeft options for shorthand setting of one option.
  <br><br><b>default:</b><br><br>&ensp;[10, 10, 15, 10]*/
 	public void setSpacing(ArrayList<Number> spacing) {
 		this.spacing = spacing;
@@ -488,20 +473,6 @@ options for shorthand setting of one option.
 	}
 
 	public ArrayList<Number> getSpacing(){ return spacing; }
-
-	private Number marginLeft;
-/**
-The margin between the left outer edge of the chart and the plot
-area. Use this to set a fixed pixel value for the margin as opposed
-to the default dynamic margin. See also spacingLeft.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/marginleft/">150px left margin</a> <br><br><b>default:</b><br><br>&ensp;null*/
-	public void setMarginLeft(Number marginLeft) {
-		this.marginLeft = marginLeft;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getMarginLeft(){ return marginLeft; }
 
 	private HIScrollablePlotArea scrollablePlotArea;
 /**
@@ -523,8 +494,9 @@ whereas the title, legend and axes are fixed.
 	private Object /* Boolean|Object */ shadow;
 /**
 Whether to apply a drop shadow to the outer chart area. Requires
-that backgroundColor be set. The shadow can be an object configuration
-containing color, offsetX, offsetY, opacity and width.
+that backgroundColor be set. The shadow can be an object
+configuration containing color, offsetX, offsetY, opacity and
+width.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/shadow/">Shadow</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public void setShadow(Object /* Boolean|Object */ shadow) {
 		this.shadow = shadow;
@@ -547,6 +519,38 @@ by default.
 	}
 
 	public Boolean getInverted(){ return inverted; }
+
+	private Object animation;
+/**
+Set the overall animation for all chart updating. Animation can be
+disabled throughout the chart by setting it to false here. It can
+be overridden for each individual API method as a function parameter.
+The only animation not affected by this option is the initial series
+animation, see [plotOptions.series.animation](
+#plotOptions.series.animation).
+
+The animation can either be set as a boolean or a configuration
+object. If true, it will use the 'swing' jQuery easing and a
+duration of 500 ms. If used as a configuration object, the following
+properties are supported:
+
+
+duration
+The duration of the animation in milliseconds.
+easing
+A string reference to an easing function set on the Math
+object. See [the easing demo](
+http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/).
+
+
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-none/">Updating with no animation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-duration/">With a longer duration</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-easing/">With a jQuery UI easing</a> <br><br><b>default:</b><br><br>&ensp;true*/
+	public void setAnimation(Object animation) {
+		this.animation = animation;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getAnimation(){ return animation; }
 
 	private Number plotBorderWidth;
 /**
@@ -606,13 +610,14 @@ exported charts, its URL needs to be accessible by the export server.
 
 	private String pinchType;
 /**
-Equivalent to zoomType, but for multitouch gestures
-only. By default, the pinchType is the same as the zoomType setting.
-However, pinching can be enabled separately in some cases, for example
-in stock charts where a mouse drag pans the chart, while pinching
-is enabled. When tooltip.followTouchMove
-is true, pinchType only applies to two-finger touches.
- <br><br><b>accepted values:</b><br><br>&ensp;["x", "y", "xy"] <br><br><b>default:</b><br><br>&ensp;null*/
+Equivalent to zoomType, but for multitouch
+gestures only. By default, the pinchType is the same as the
+zoomType setting. However, pinching can be enabled separately in
+some cases, for example in stock charts where a mouse drag pans the
+chart, while pinching is enabled. When [tooltip.followTouchMove](
+#tooltip.followTouchMove) is true, pinchType only applies to
+two-finger touches.
+ <br><br><b>accepted values:</b><br><br>&ensp;[null, "x", "y", "xy"] <br><br><b>default:</b><br><br>&ensp;null*/
 	public void setPinchType(String pinchType) {
 		this.pinchType = pinchType;
 		this.setChanged();
@@ -640,7 +645,7 @@ Flag to render charts as a parallel coordinates plot. In a parallel
 coordinates plot (||-coords) by default all required yAxes are generated
 and the legend is disabled. This feature requires
 modules/parallel-coordinates.js.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples//highcharts/demo/parallel-coordinates/">Parallel coordinates demo</a>*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples//highcharts/demo/parallel-coordinates/">Parallel coordinates demo</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/parallel-coordinates/polar/">Star plot, multivariate data in a polar chart</a>*/
 	public void setParallelCoordinates(Boolean parallelCoordinates) {
 		this.parallelCoordinates = parallelCoordinates;
 		this.setChanged();
@@ -723,25 +728,25 @@ the default dynamic margin. See also spacingTop.
 
 	public Number getMarginTop(){ return marginTop; }
 
-	private ArrayList margin;
+	private ArrayList<Number> margin;
 /**
 The margin between the outer edge of the chart and the plot area.
 The numbers in the array designate top, right, bottom and left
 respectively. Use the options marginTop, marginRight,
 marginBottom and marginLeft for shorthand setting of one option.
 
-By default there is no margin. The actual space is dynamically calculated
-from the offset of axis labels, axis title, title, subtitle and legend
-in addition to the spacingTop, spacingRight, spacingBottom
-and spacingLeft options.
+By default there is no margin. The actual space is dynamically
+calculated from the offset of axis labels, axis title, title,
+subtitle and legend in addition to the spacingTop, spacingRight,
+spacingBottom and spacingLeft options.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/margins-zero/">Zero margins</a>*/
-	public void setMargin(ArrayList margin) {
+	public void setMargin(ArrayList<Number> margin) {
 		this.margin = margin;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList getMargin(){ return margin; }
+	public ArrayList<Number> getMargin(){ return margin; }
 
 
 
@@ -819,8 +824,8 @@ and spacingLeft options.
 		if (this.width != null) {
 			params.put("width", this.width);
 		}
-		if (this.animation != null) {
-			params.put("animation", this.animation);
+		if (this.marginLeft != null) {
+			params.put("marginLeft", this.marginLeft);
 		}
 		if (this.plotBackgroundColor != null) {
 			params.put("plotBackgroundColor", this.plotBackgroundColor.getData());
@@ -861,9 +866,6 @@ and spacingLeft options.
 			}
 			params.put("spacing", array);
 		}
-		if (this.marginLeft != null) {
-			params.put("marginLeft", this.marginLeft);
-		}
 		if (this.scrollablePlotArea != null) {
 			params.put("scrollablePlotArea", this.scrollablePlotArea.getParams());
 		}
@@ -872,6 +874,9 @@ and spacingLeft options.
 		}
 		if (this.inverted != null) {
 			params.put("inverted", this.inverted);
+		}
+		if (this.animation != null) {
+			params.put("animation", this.animation);
 		}
 		if (this.plotBorderWidth != null) {
 			params.put("plotBorderWidth", this.plotBorderWidth);

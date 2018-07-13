@@ -25,7 +25,8 @@ public class HITitle extends Observable implements HIChartsJSONSerializable {
 CSS styles for the title. Use this for font styling, but use align,
 x and y for text alignment.
 
-In styled mode, the title style is given in the .highcharts-title class.
+In styled mode, the title style is given in the .highcharts-title
+class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/style/">Custom color and weight</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/titles/">Styled mode</a> <br><br><b>default:</b><br><br>&ensp;{ "color": "#333333", "fontSize": "18px" }*/
 	public void setStyle(HIStyle style) {
 		this.style = style;
@@ -38,9 +39,9 @@ In styled mode, the title style is given in the .highcharts-title class.
 
 	private String verticalAlign;
 /**
-The vertical alignment of the title. Can be one of "top", "middle"
-and "bottom". When a value is given, the title behaves as if
-floating were true.
+The vertical alignment of the title. Can be one of "top",
+"middle" and "bottom". When a value is given, the title behaves
+as if floating were true.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/verticalalign/">Chart title in bottom right corner</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
@@ -91,9 +92,9 @@ and-string-formatting#html) to render the text.
 
 	private Number y;
 /**
-The y position of the title relative to the alignment within [chart.
-spacingTop](#chart.spacingTop) and chart.spacingBottom.
- By default it depends on the font size.
+The y position of the title relative to the alignment within
+chart.spacingTop and [chart.spacingBottom](
+#chart.spacingBottom). By default it depends on the font size.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/y/">Title inside the plot area</a>*/
 	public void setY(Number y) {
 		this.y = y;
@@ -105,8 +106,8 @@ spacingTop](#chart.spacingTop) and chart.spacingBottom.
 
 	private Number x;
 /**
-The x position of the title relative to the alignment within chart.
-spacingLeft and chart.spacingRight.
+The x position of the title relative to the alignment within
+chart.spacingLeft and chart.spacingRight.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/align/">Aligned to the plot area (x = 70px = margin left - spacing left)</a> <br><br><b>default:</b><br><br>&ensp;0*/
 	public void setX(Number x) {
 		this.x = x;

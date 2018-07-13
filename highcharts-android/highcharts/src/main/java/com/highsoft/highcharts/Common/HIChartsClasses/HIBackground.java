@@ -73,7 +73,7 @@ The class name for this background.
 
 	private String shape;
 /**
-Tha shape of the pane background. When solid, the background
+The shape of the pane background. When solid, the background
 is circular. When arc, the background extends only from the min
 to the max of the value axis.
  <br><br><b>accepted values:</b><br><br>&ensp;["solid", "arc"] <br><br><b>default:</b><br><br>&ensp;solid*/
@@ -97,17 +97,18 @@ The pixel border width of the pane background.
 
 	public Number getBorderWidth(){ return borderWidth; }
 
-	private HIColor backgroundColor;
+	private HIBackgroundColor backgroundColor;
 /**
 The background color or gradient for the pane.
 */
-	public void setBackgroundColor(HIColor backgroundColor) {
+	public void setBackgroundColor(HIBackgroundColor backgroundColor) {
 		this.backgroundColor = backgroundColor;
+		this.backgroundColor.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getBackgroundColor(){ return backgroundColor; }
+	public HIBackgroundColor getBackgroundColor(){ return backgroundColor; }
 
 
 
@@ -147,7 +148,7 @@ The background color or gradient for the pane.
 			params.put("borderWidth", this.borderWidth);
 		}
 		if (this.backgroundColor != null) {
-			params.put("backgroundColor", this.backgroundColor.getData());
+			params.put("backgroundColor", this.backgroundColor.getParams());
 		}
 		return params;
 	}

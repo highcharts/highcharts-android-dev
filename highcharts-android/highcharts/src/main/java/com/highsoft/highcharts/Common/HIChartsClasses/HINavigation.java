@@ -112,10 +112,10 @@ navigation.
 Whether to enable the legend navigation. In most cases, disabling
 the navigation results in an unwanted overflow.
 
-See also the [adapt chart to legend](http://www.highcharts.com/plugin-
-registry/single/8/Adapt-Chart-To-Legend) plugin for a solution to
-extend the chart height to make room for the legend, optionally in
-exported charts only.
+See also the [adapt chart to legend](
+https://www.highcharts.com/plugin-registry/single/8/Adapt-Chart-To-Legend)
+plugin for a solution to extend the chart height to make room for
+the legend, optionally in exported charts only.
  <br><br><b>default:</b><br><br>&ensp;true*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -138,24 +138,25 @@ navigation. .
 
 	public HIColor getInactiveColor(){ return inactiveColor; }
 
-	private Object /* Boolean|Object */ animation;
+	private Object animation;
 /**
-How to animate the pages when navigating up or down. A value of true
-applies the default navigation given in the chart.animation option.
-Additional options can be given as an object containing values for
-easing and duration.
+How to animate the pages when navigating up or down. A value of
+true applies the default navigation given in the
+chart.animation option. Additional options can be given as an
+object containing values for easing and duration.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation/">Legend page navigation demonstrated</a> <br><br><b>default:</b><br><br>&ensp;true*/
-	public void setAnimation(Object /* Boolean|Object */ animation) {
+	public void setAnimation(Object animation) {
 		this.animation = animation;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Boolean|Object */ getAnimation(){ return animation; }
+	public Object getAnimation(){ return animation; }
 
 	private HIColor activeColor;
 /**
-The color for the active up or down arrow in the legend page navigation.
+The color for the active up or down arrow in the legend page
+navigation.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation/">Legend page navigation demonstrated</a> <br><br><b>default:</b><br><br>&ensp;#003399*/
 	public void setActiveColor(HIColor activeColor) {
 		this.activeColor = activeColor;

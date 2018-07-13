@@ -53,7 +53,7 @@ a bottom, front and back panel.
 /**
 Set it to "auto" to automatically move the labels to the best
 edge.
- <br><br><b>accepted values:</b><br><br>&ensp;[null, "auto"] <br><br><b>default:</b><br><br>&ensp;null*/
+ <br><br><b>accepted values:</b><br><br>&ensp;[null, "auto"]*/
 	public void setAxisLabelPosition(String axisLabelPosition) {
 		this.axisLabelPosition = axisLabelPosition;
 		this.setChanged();

@@ -122,10 +122,11 @@ If a number is set, it applies in pixels.
 /**
 The color of the border surrounding each slice. When null, the
 border takes the same color as the slice fill. This can be used
-together with a borderWidth to fill drawing gaps created by antialiazing
-artefacts in borderless pies.
+together with a borderWidth to fill drawing gaps created by
+antialiazing artefacts in borderless pies.
 
-In styled mode, the border stroke is given in the .highcharts-point class.
+In styled mode, the border stroke is given in the .highcharts-point
+class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-bordercolor-black/">Black border</a> <br><br><b>default:</b><br><br>&ensp;#ffffff*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
@@ -253,7 +254,8 @@ the slices due to SVG antialiasing artefacts. To work around this,
 keep the border width at 0.5 or 1, but set the borderColor to
 null instead.
 
-In styled mode, the border stroke width is given in the .highcharts-point class.
+In styled mode, the border stroke width is given in the
+.highcharts-point class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-borderwidth/">3px border</a> <br><br><b>default:</b><br><br>&ensp;1*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;

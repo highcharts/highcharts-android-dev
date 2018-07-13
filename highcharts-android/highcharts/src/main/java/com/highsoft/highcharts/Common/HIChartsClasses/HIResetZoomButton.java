@@ -36,10 +36,10 @@ The position of the button.
 	private HITheme theme;
 /**
 A collection of attributes for the button. The object takes SVG
-attributes like fill, stroke, stroke-width or r, the border
-radius. The theme also supports style, a collection of CSS properties
-for the text. Equivalent attributes for the hover state are given
-in theme.states.hover.
+attributes like fill, stroke, stroke-width or r, the
+border radius. The theme also supports style, a collection of
+CSS properties for the text. Equivalent attributes for the hover
+state are given in theme.states.hover.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-theme/">Theming the button</a>*/
 	public void setTheme(HITheme theme) {
 		this.theme = theme;

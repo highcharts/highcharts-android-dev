@@ -106,7 +106,7 @@ largest occuring weight, multiplied with the value of maxFontSize.
 
 	private String spiral;
 /**
-Spiral used for placing a word after the inital position experienced a
+Spiral used for placing a word after the initial position experienced a
 collision with either another word or the borders.
 It is possible for users to add their own custom spiralling algorithms
 for use in word cloud. Read more about it in our

@@ -221,7 +221,14 @@ set to make sure the generated image is received in another frame,
 	private Boolean fallbackToExportServer;
 /**
 Whether or not to fall back to the export server if the offline-exporting
-module is unable to export the chart on the client side.
+module is unable to export the chart on the client side. This happens for
+certain browsers, and certain features (e.g.
+allowHTML), depending on the image type exporting
+to. For very complex charts, it is possible that export can fail in
+browsers that don't support Blob objects, due to data URL length limits.
+It is recommended to define the exporting.error
+handler if disabling fallback, in order to notify users in case export
+fails.
  <br><br><b>default:</b><br><br>&ensp;true*/
 	public void setFallbackToExportServer(Boolean fallbackToExportServer) {
 		this.fallbackToExportServer = fallbackToExportServer;
@@ -324,7 +331,8 @@ chart title by default. Set to false to disable.
 Function to call if the offline-exporting module fails to export
 a chart on the client side, and [fallbackToExportServer](
 #exporting.fallbackToExportServer) is disabled. If left undefined, an
-exception is thrown instead.
+exception is thrown instead. Receives two parameters, the exporting
+options, and the error from the module.
  <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public void setError(HIFunction error) {
 		this.error = error;

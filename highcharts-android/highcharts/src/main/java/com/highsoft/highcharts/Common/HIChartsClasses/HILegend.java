@@ -156,8 +156,12 @@ The color of the drawn border around the legend.
 
 	private String layout;
 /**
-The layout of the legend items. Can be one of "horizontal" or "vertical".
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-horizontal/">Horizontal by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-vertical/">Vertical</a> <br><br><b>accepted values:</b><br><br>&ensp;["horizontal", "vertical"] <br><br><b>default:</b><br><br>&ensp;horizontal*/
+The layout of the legend items. Can be one of horizontal or
+vertical or proximate. When proximate, the legend items will be
+placed as close as possible to the graphs they're representing,
+except in inverted charts or when the legend position doesn't allow
+it.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-horizontal/">Horizontal by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-vertical/">Vertical</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-proximate">Labels proximate to the data</a> <br><br><b>accepted values:</b><br><br>&ensp;["horizontal", "vertical", "proximate"] <br><br><b>default:</b><br><br>&ensp;horizontal*/
 	public void setLayout(String layout) {
 		this.layout = layout;
 		this.setChanged();
@@ -219,7 +223,8 @@ The background color of the legend.
 /**
 Line height for the legend items. Deprecated as of 2.1\. Instead,
 the line height for each item can be set using itemStyle.lineHeight,
-and the padding between items using itemMarginTop and itemMarginBottom.
+and the padding between items using itemMarginTop and
+itemMarginBottom.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/lineheight/">Setting padding</a> <br><br><b>default:</b><br><br>&ensp;16*/
 	public void setLineHeight(Number lineHeight) {
 		this.lineHeight = lineHeight;
@@ -257,9 +262,10 @@ showCheckbox is true.
 
 	private String labelFormat;
 /**
-A [format string](http://www.highcharts.com/docs/chart-concepts/labels-
-and-string-formatting) for each legend label. Available variables
-relates to properties on the series, or the point in case of pies.
+A [format string](
+https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting)
+for each legend label. Available variables relates to properties on
+the series, or the point in case of pies.
  <br><br><b>default:</b><br><br>&ensp;{name}*/
 	public void setLabelFormat(String labelFormat) {
 		this.labelFormat = labelFormat;
@@ -362,6 +368,9 @@ by the y option.
 In the case that the legend is aligned in a corner position, the
 layout option will determine whether to place it above/below
 or on the side of the plot area.
+
+When the layout option is proximate, the
+verticalAlign option doesn't apply.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/verticalalign/">Legend 100px from the top of the chart</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"] <br><br><b>default:</b><br><br>&ensp;bottom*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
@@ -429,8 +438,8 @@ Enable or disable the legend.
 
 	private Number maxHeight;
 /**
-Maximum pixel height for the legend. When the maximum height is extended,
- navigation will show.
+Maximum pixel height for the legend. When the maximum height is
+extended, navigation will show.
  <br><br><b>default:</b><br><br>&ensp;undefined*/
 	public void setMaxHeight(Number maxHeight) {
 		this.maxHeight = maxHeight;

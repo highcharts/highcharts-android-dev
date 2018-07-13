@@ -23,6 +23,9 @@ public class HILoading extends Observable implements HIChartsJSONSerializable {
 	private HIStyle style;
 /**
 CSS styles for the loading screen that covers the plot area.
+
+In styled mode, the loading label is styled with the
+.highcharts-loading class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/style/">Gray plot area, white text</a> <br><br><b>default:</b><br><br>&ensp;{ "position": "absolute", "backgroundColor": "#ffffff", "opacity": 0.5, "textAlign": "center" }*/
 	public void setStyle(HIStyle style) {
 		this.style = style;

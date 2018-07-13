@@ -115,7 +115,7 @@ to screen reader users.
 Defaults to the same format as in tooltip.
 
 For an overview of the replacement codes, see
-dateFormat.
+[dateFormat](/class-reference/Highcharts#dateFormat).
 */
 	public void setPointDateFormat(String pointDateFormat) {
 		this.pointDateFormat = pointDateFormat;
@@ -162,7 +162,7 @@ Formatter function to determine the date/time format used with
 points on datetime axes when describing them to screen reader users.
 Receives one argument, point, referring to the point to describe.
 Should return a date format string compatible with
-dateFormat.
+[dateFormat](/class-reference/Highcharts#dateFormat).
 */
 	public void setPointDateFormatter(HIFunction pointDateFormatter) {
 		this.pointDateFormatter = pointDateFormatter;
@@ -172,25 +172,21 @@ dateFormat.
 
 	public HIFunction getPointDateFormatter(){ return pointDateFormatter; }
 
-	private HIChartTypes chartTypes;
+	private HISeries series;
 /**
-Chart type description strings. This is added to the chart
-information region.
-
-If there is only a single series type used in the chart, we use
-the format string for the series type, or default if missing.
-There is one format string for cases where there is only a single
-series in the chart, and one for multiple series of the same
-type.
+Lang configuration for different series types. For more dynamic
+control over the series element descriptions, see
+[accessibility.seriesDescriptionFormatter](
+accessibility.seriesDescriptionFormatter).
 */
-	public void setChartTypes(HIChartTypes chartTypes) {
-		this.chartTypes = chartTypes;
-		this.chartTypes.addObserver(updateObserver);
+	public void setSeries(HISeries series) {
+		this.series = series;
+		this.series.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIChartTypes getChartTypes(){ return chartTypes; }
+	public HISeries getSeries(){ return series; }
 
 	private String longDescriptionHeading;
 	public void setLongDescriptionHeading(String longDescriptionHeading) {
@@ -241,34 +237,25 @@ Axis description format strings.
 
 	public HIAxis getAxis(){ return axis; }
 
-	private HISeries series;
+	private HIChartTypes chartTypes;
 /**
-Lang configuration for different series types. For more dynamic
-control over the series element descriptions, see
-[accessibility.seriesDescriptionFormatter](
-accessibility.seriesDescriptionFormatter).
+Chart type description strings. This is added to the chart
+information region.
+
+If there is only a single series type used in the chart, we use
+the format string for the series type, or default if missing.
+There is one format string for cases where there is only a single
+series in the chart, and one for multiple series of the same
+type.
 */
-	public void setSeries(HISeries series) {
-		this.series = series;
-		this.series.addObserver(updateObserver);
+	public void setChartTypes(HIChartTypes chartTypes) {
+		this.chartTypes = chartTypes;
+		this.chartTypes.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HISeries getSeries(){ return series; }
-
-	private HIExporting exporting;
-/**
-Exporting menu format strings for accessibility module.
-*/
-	public void setExporting(HIExporting exporting) {
-		this.exporting = exporting;
-		this.exporting.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIExporting getExporting(){ return exporting; }
+	public HIChartTypes getChartTypes(){ return chartTypes; }
 
 	private String mapZoomOut;
 	public void setMapZoomOut(String mapZoomOut) {
@@ -296,6 +283,19 @@ Exporting menu format strings for accessibility module.
 	}
 
 	public String getRangeSelectorButton(){ return rangeSelectorButton; }
+
+	private HIExporting exporting;
+/**
+Exporting menu format strings for accessibility module.
+*/
+	public void setExporting(HIExporting exporting) {
+		this.exporting = exporting;
+		this.exporting.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIExporting getExporting(){ return exporting; }
 
 	private String legendItem;
 	public void setLegendItem(String legendItem) {
@@ -457,8 +457,8 @@ when these series types are used.
 		if (this.pointDateFormatter != null) {
 			params.put("pointDateFormatter", this.pointDateFormatter);
 		}
-		if (this.chartTypes != null) {
-			params.put("chartTypes", this.chartTypes.getParams());
+		if (this.series != null) {
+			params.put("series", this.series.getParams());
 		}
 		if (this.longDescriptionHeading != null) {
 			params.put("longDescriptionHeading", this.longDescriptionHeading);
@@ -475,11 +475,8 @@ when these series types are used.
 		if (this.axis != null) {
 			params.put("axis", this.axis.getParams());
 		}
-		if (this.series != null) {
-			params.put("series", this.series.getParams());
-		}
-		if (this.exporting != null) {
-			params.put("exporting", this.exporting.getParams());
+		if (this.chartTypes != null) {
+			params.put("chartTypes", this.chartTypes.getParams());
 		}
 		if (this.mapZoomOut != null) {
 			params.put("mapZoomOut", this.mapZoomOut);
@@ -489,6 +486,9 @@ when these series types are used.
 		}
 		if (this.rangeSelectorButton != null) {
 			params.put("rangeSelectorButton", this.rangeSelectorButton);
+		}
+		if (this.exporting != null) {
+			params.put("exporting", this.exporting.getParams());
 		}
 		if (this.legendItem != null) {
 			params.put("legendItem", this.legendItem);

@@ -24,7 +24,7 @@ public class HIFilter extends Observable implements HIChartsJSONSerializable {
 /**
 The operator to compare by. Can be one of >, <, >=, <=, ==,
 and ===.
- <br><br><b>accepted values:</b><br><br>&ensp;[">", "<", ">=", "<=", "==", "===""]*/
+ <br><br><b>accepted values:</b><br><br>&ensp;[">", "<", ">=", "<=", "==", "==="]*/
 	public void setOperator(String operator) {
 		this.operator = operator;
 		this.setChanged();

@@ -24,7 +24,8 @@ public class HISubtitle extends Observable implements HIChartsJSONSerializable {
 /**
 CSS styles for the title.
 
-In styled mode, the subtitle style is given in the .highcharts-subtitle class.
+In styled mode, the subtitle style is given in the
+.highcharts-subtitle class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/style/">Custom color and weight</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/titles/">Styled mode</a> <br><br><b>default:</b><br><br>&ensp;{ "color": "#666666" }*/
 	public void setStyle(HashMap<String,String> style) {
 		this.style = style;
@@ -87,9 +88,9 @@ and-string-formatting#html) to render the text.
 
 	private Number y;
 /**
-The y position of the subtitle relative to the alignment within chart.
-spacingTop and chart.spacingBottom. By default the subtitle is laid
-out below the title unless the title is floating.
+The y position of the subtitle relative to the alignment within
+chart.spacingTop and chart.spacingBottom. By default the subtitle
+is laid out below the title unless the title is floating.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/verticalalign/">Footnote at the bottom right of plot area</a> <br><br><b>default:</b><br><br>&ensp;null*/
 	public void setY(Number y) {
 		this.y = y;
@@ -101,8 +102,8 @@ out below the title unless the title is floating.
 
 	private Number x;
 /**
-The x position of the subtitle relative to the alignment within chart.
-spacingLeft and chart.spacingRight.
+The x position of the subtitle relative to the alignment within
+chart.spacingLeft and chart.spacingRight.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/align/">Footnote at right of plot area</a> <br><br><b>default:</b><br><br>&ensp;0*/
 	public void setX(Number x) {
 		this.x = x;

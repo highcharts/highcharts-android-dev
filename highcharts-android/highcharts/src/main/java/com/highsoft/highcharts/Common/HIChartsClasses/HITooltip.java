@@ -55,7 +55,8 @@ curly brackets. Available variables are point.key, series.name,
 series.color and other members from the point and series
 objects. The point.key variable contains the category name, x
 value or datetime string depending on the type of axis. For datetime
-axes, the point.key date format can be set using tooltip.xDateFormat.
+axes, the point.key date format can be set using
+tooltip.xDateFormat.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/footerformat/">A HTML table in the tooltip</a>*/
 	public void setHeaderFormat(String headerFormat) {
 		this.headerFormat = headerFormat;
@@ -67,8 +68,8 @@ axes, the point.key date format can be set using tooltip.xDateFormat.
 
 	private String valueSuffix;
 /**
-A string to append to each series' y value. Overridable in each series'
-tooltip options object.
+A string to append to each series' y value. Overridable in each
+series' tooltip options object.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/valuedecimals/">Set decimals, prefix and suffix for the value</a>*/
 	public void setValueSuffix(String valueSuffix) {
 		this.valueSuffix = valueSuffix;
@@ -97,7 +98,7 @@ For series on a datetime axes, the date format in the tooltip's
 header will by default be guessed based on the closest data points.
 This member gives the default string representations used for
 each unit. For an overview of the replacement codes, see
-dateFormat.
+[dateFormat](/class-reference/Highcharts#dateFormat).
 
 Defaults to:
 
@@ -155,9 +156,9 @@ The return should be an object containing x and y values, for example
 	private Boolean useHTML;
 /**
 Use HTML to render the contents of the tooltip instead of SVG. Using
-HTML allows advanced formatting like tables and images in the tooltip.
-It is also recommended for rtl languages as it works around rtl
-bugs in early Firefox.
+HTML allows advanced formatting like tables and images in the
+tooltip. It is also recommended for rtl languages as it works around
+rtl bugs in early Firefox.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/footerformat/">A table for value alignment</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/fullhtml/">Full HTML tooltip</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;
@@ -206,10 +207,27 @@ A string to append to the tooltip format.
 
 	public String getFooterFormat(){ return footerFormat; }
 
+	private Boolean outside;
+/**
+Whether to allow the tooltip to render outside the chart's SVG
+element box. By default (false), the tooltip is rendered within the
+chart's SVG element, which results in the tooltip being aligned
+inside the chart area. For small charts, this may result in clipping
+or overlapping. When true, a separate SVG element is created and
+overlaid on the page, allowing the tooltip to be aligned inside the
+page itself.
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/outside">Small charts with tooltips outside</a> <br><br><b>default:</b><br><br>&ensp;false*/
+	public void setOutside(Boolean outside) {
+		this.outside = outside;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getOutside(){ return outside; }
+
 	private Boolean animation;
 /**
-Enable or disable animation of the tooltip. In slow legacy IE browsers
-the animation is disabled by default.
+Enable or disable animation of the tooltip.
  <br><br><b>default:</b><br><br>&ensp;true*/
 	public void setAnimation(Boolean animation) {
 		this.animation = animation;
@@ -222,9 +240,9 @@ the animation is disabled by default.
 	private Boolean split;
 /**
 Split the tooltip into one label per series, with the header close
-to the axis. This is recommended over shared tooltips
-for charts with multiple line series, generally making them easier
-to read. This option takes precedence over tooltip.shared.
+to the axis. This is recommended over shared
+tooltips for charts with multiple line series, generally making them
+easier to read. This option takes precedence over tooltip.shared.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/split/">Split tooltip</a> <br><br><b>default:</b><br><br>&ensp;false*/
 	public void setSplit(Boolean split) {
 		this.split = split;
@@ -238,7 +256,8 @@ to read. This option takes precedence over tooltip.shared.
 /**
 The background color or gradient for the tooltip.
 
-In styled mode, the stroke width is set in the .highcharts-tooltip-box class.
+In styled mode, the stroke width is set in the
+.highcharts-tooltip-box class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/backgroundcolor-solid/">Yellowish background</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/backgroundcolor-gradient/">Gradient</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/tooltip-border-background/">Tooltip in styled mode</a> <br><br><b>default:</b><br><br>&ensp;rgba(247,247,247,0.85)*/
 	public void setBackgroundColor(HIColor backgroundColor) {
 		this.backgroundColor = backgroundColor;
@@ -254,8 +273,8 @@ Proximity snap for graphs or single points. It defaults to 10 for
 mouse-powered devices and 25 for touch devices.
 
 Note that in most cases the whole plot area captures the mouse
-movement, and in these cases tooltip.snap doesn't make sense.
-This applies when stickyTracking
+movement, and in these cases tooltip.snap doesn't make sense. This
+applies when stickyTracking
 is true (default) and when the tooltip is shared
 or split.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/bordercolor-default/">10 px by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/snap-50/">50 px on graph</a> <br><br><b>default:</b><br><br>&ensp;10/25*/
@@ -289,14 +308,15 @@ tooltip.split option takes precedence over tooltip.shared.
 
 	private HIFunction formatter;
 /**
-Callback function to format the text of the tooltip from scratch. Return
-false to disable tooltip for a specific point on series.
+Callback function to format the text of the tooltip from scratch.
+Return false to disable tooltip for a specific point on series.
 
-A subset of HTML is supported. Unless useHTML is true, the HTML of the
-tooltip is parsed and converted to SVG, therefore this isn't a complete HTML
-renderer. The following tags are supported: , , , ,
-, . Spans can be styled with a style attribute,
-but only text-related CSS that is shared with SVG is handled.
+A subset of HTML is supported. Unless useHTML is true, the HTML of
+the tooltip is parsed and converted to SVG, therefore this isn't a
+complete HTML renderer. The following tags are supported: ,
+, , , , . Spans can be styled
+with a style attribute, but only text-related CSS that is shared
+with SVG is handled.
 
 Since version 2.1 the tooltip can be shared between multiple series
 through the shared option. The available data in the formatter
@@ -308,14 +328,16 @@ Available data are:
 
 
 this.percentage (not shared) / this.points[i].percentage (shared)
-Stacked series and pies only. The point's percentage of the total.
+
+Stacked series and pies only. The point's percentage of the
+total.
 
 this.point (not shared) / this.points[i].point (shared)
-The point object. The point name, if defined, is available through
-this.point.name.
+The point object. The point name, if defined, is available
+through this.point.name.
 this.points
-In a shared tooltip, this is an array containing all other properties
-for each point.
+In a shared tooltip, this is an array containing all other
+properties for each point.
 this.series (not shared) / this.points[i].series (shared)
 The series object. The series name is available through
 this.series.name.
@@ -341,10 +363,10 @@ The y value.
 /**
 The HTML of the point's line in the tooltip. Variables are enclosed
 by curly brackets. Available variables are point.x, point.y, series.
-name and series.color and other properties on the same form. Furthermore,
-point.y can be extended by the tooltip.valuePrefix and
-tooltip.valueSuffix variables. This can also be overridden for each
-series, which makes it a good hook for displaying units.
+name and series.color and other properties on the same form.
+Furthermore, point.y can be extended by the tooltip.valuePrefix
+and tooltip.valueSuffix variables. This can also be overridden for
+each series, which makes it a good hook for displaying units.
 
 In styled mode, the dot is colored by a class name rather
 than the point color.
@@ -410,7 +432,8 @@ Enable or disable the tooltip.
 	private HIFunction pointFormatter;
 /**
 A callback function for formatting the HTML output for a single point
-in the tooltip. Like the pointFormat string, but with more flexibility.
+in the tooltip. Like the pointFormat string, but with more
+flexibility.
 */
 	public void setPointFormatter(HIFunction pointFormatter) {
 		this.pointFormatter = pointFormatter;
@@ -424,7 +447,8 @@ in the tooltip. Like the pointFormat string, but with more flexibility.
 /**
 The pixel width of the tooltip border.
 
-In styled mode, the stroke width is set in the .highcharts-tooltip-box class.
+In styled mode, the stroke width is set in the
+.highcharts-tooltip-box class.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/bordercolor-default/">2px by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/borderwidth/">No border (shadow only)</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/tooltip-border-background/">Tooltip in styled mode</a> <br><br><b>default:</b><br><br>&ensp;1*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
@@ -436,10 +460,10 @@ In styled mode, the stroke width is set in the .highcharts-tooltip-box class.
 
 	private Boolean followPointer;
 /**
-Whether the tooltip should follow the mouse as it moves across columns,
-pie slices and other point types with an extent. By default it behaves
-this way for scatter, bubble and pie series by override in the plotOptions
-for those series types.
+Whether the tooltip should follow the mouse as it moves across
+columns, pie slices and other point types with an extent. By default
+it behaves this way for scatter, bubble and pie series by override
+in the plotOptions for those series types.
 
 For touch moves to behave the same way, [followTouchMove](
 #tooltip.followTouchMove) must be true also.
@@ -467,9 +491,9 @@ mouse out from a point or chart.
 
 	private Number valueDecimals;
 /**
-How many decimals to show in each series' y value. This is overridable
-in each series' tooltip options object. The default is to preserve
-all decimals.
+How many decimals to show in each series' y value. This is
+overridable in each series' tooltip options object. The default is to
+preserve all decimals.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/valuedecimals/">Set decimals, prefix and suffix for the value</a>*/
 	public void setValueDecimals(Number valueDecimals) {
 		this.valueDecimals = valueDecimals;
@@ -570,6 +594,9 @@ of a sankey diagram series, as opposed to links.
 		}
 		if (this.footerFormat != null) {
 			params.put("footerFormat", this.footerFormat);
+		}
+		if (this.outside != null) {
+			params.put("outside", this.outside);
 		}
 		if (this.animation != null) {
 			params.put("animation", this.animation);

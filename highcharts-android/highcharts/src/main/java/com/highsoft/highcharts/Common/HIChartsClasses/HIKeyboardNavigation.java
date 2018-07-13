@@ -59,7 +59,7 @@ In "serialize" mode, points are instead navigated as a single
 list. Left/right behaves as in "normal" mode. Up/down arrow keys
 will behave like left/right. This is useful for unifying
 navigation behavior with/without screen readers enabled.
- <br><br><b>default:</b><br><br>&ensp;normal*/
+ <br><br><b>accepted values:</b><br><br>&ensp;["normal", "serialize"] <br><br><b>default:</b><br><br>&ensp;normal*/
 	public void setMode(String mode) {
 		this.mode = mode;
 		this.setChanged();

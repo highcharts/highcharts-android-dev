@@ -23,51 +23,51 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	private ArrayList /* <Data|Number|ArrayList> */ data;
 /**
-An array of data points for the series. The points can be given in three ways:
+An array of data points for the series. The points can be given in three ways:
  
-An array of numerical values. In this case, the numerical values will 
- 	be interpreted as y values, and x values will be automatically calculated,
- 	either starting at 0 and incrementing by 1, or from pointStart 
- 	and pointInterval given in the plotOptions. If the axis is
- 	has categories, these will be used. This option is not available for range series. Example:
+An array of numerical values. In this case, the numerical values will 
+ 	be interpreted as y values, and x values will be automatically calculated,
+ 	either starting at 0 and incrementing by 1, or from pointStart 
+ 	and pointInterval given in the plotOptions. If the axis is
+ 	has categories, these will be used. This option is not available for range series. Example:
 data: [0, 5, 3, 5]
 
-An array of arrays with two values. In this case, the first value is the
- 	x value and the second is the y value. If the first value is a string, it is
- 	applied as the name of the point, and the x value is incremented following
+An array of arrays with two values. In this case, the first value is the
+ 	x value and the second is the y value. If the first value is a string, it is
+ 	applied as the name of the point, and the x value is incremented following
  	the above rules.
-For range series, the arrays will be interpreted as [x, low, high]. In this cases, the X value can be skipped altogether to make use of pointStart and pointRange.
-
- Example:
+For range series, the arrays will be interpreted as [x, low, high]. In this cases, the X value can be skipped altogether to make use of pointStart and pointRange.
+
+ Example:
 data: [[5, 2], [6, 3], [8, 2]]
-An array of objects with named values. In this case the objects are
+An array of objects with named values. In this case the objects are
  	point configuration objects as seen below.
-Range series values are given by low and high.
-
-Example:
-data: [{
-	name: 'Point 1',
-	color: '#00FF00',
-	y: 0
-}, {
-	name: 'Point 2',
-	color: '#FF00FF',
-	y: 5
+Range series values are given by low and high.
+
+Example:
+data: [{
+	name: 'Point 1',
+	color: '#00FF00',
+	y: 0
+}, {
+	name: 'Point 2',
+	color: '#FF00FF',
+	y: 5
 }]
 
 Note that line series and derived types like spline and area, require data to be sorted by X because it interpolates mouse coordinates for the tooltip. Column and scatter series, where each point has its own mouse event, does not require sorting.
- <br><br><b><i>Try it:</b></i><br><ul>
-<li><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/chart/reflow-true/" target="_blank">1) Numerical values</a></li>
-
-<li><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-arrays/" target="_blank">2a) arrays of numeric x and y</a></li>
-
-<li><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-arrays-datetime/" target="_blank">2b) arrays of datetime x and y</a></li>
-
-<li><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-name-value/" target="_blank">2c) arrays of point.name and y</a></li>
-
-<li><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-objects/" target="_blank">3) config objects</a></li>
-
-<li><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/demo/3d-column-null-values/" target="_blank">4) 3D column with null values</a></li>
+ <br><br><b><i>Try it:</b></i><br><ul>
+<li><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/chart/reflow-true/" target="_blank">1) Numerical values</a></li>
+
+<li><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-arrays/" target="_blank">2a) arrays of numeric x and y</a></li>
+
+<li><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-arrays-datetime/" target="_blank">2b) arrays of datetime x and y</a></li>
+
+<li><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-name-value/" target="_blank">2c) arrays of point.name and y</a></li>
+
+<li><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-objects/" target="_blank">3) config objects</a></li>
+
+<li><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/demo/3d-column-null-values/" target="_blank">4) 3D column with null values</a></li>
 </ul>*/
 	public void setData(ArrayList /* <Data|Number|ArrayList> */ data) {
 		this.data = data;
@@ -176,7 +176,7 @@ When using dual or multiple y axes, this number defines which yAxis the particul
 	private Number zIndex;
 /**
 Define the visual z index of the series.
- <br><br><b><i>Try it:</b></i><br><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-zindex-default/" target="_blank">With no z index, the series defined last are on top</a>,
+ <br><br><b><i>Try it:</b></i><br><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-zindex-default/" target="_blank">With no z index, the series defined last are on top</a>,
 			<a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-zindex/" target="_blank">with a z index, the series with the highest z index is on top</a>.*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
@@ -810,7 +810,8 @@ Defines the Axis on which the zones are applied.
 /**
 An array defining zones within a series. Zones can be applied to
 the X axis, Y axis or Z axis for bubbles, according to the zoneAxis
-option.
+option. The zone definitions have to be in ascending order regarding to
+the value.
 
 In styled mode, the color zones are styled with the
 .highcharts-zone-{n} class, or custom classed from the className
@@ -925,7 +926,8 @@ In styled mode, the data labels can be styled wtih the
 
 	private String className;
 /**
-A class name to apply to the series' graphical elements.
+An additional class name to apply to the series' graphical elements. This
+option does not replace default class names of the graphical element.
 */
 	public void setClassName(String className) {
 		this.className = className;

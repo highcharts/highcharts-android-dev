@@ -123,9 +123,9 @@ state following a call to chart.showLoading.
 	private ArrayList<String> numericSymbols;
 /**
 [Metric prefixes](http://en.wikipedia.org/wiki/Metric_prefix) used
-to shorten high numbers in axis labels. Replacing any of the positions
-with null causes the full number to be written. Setting numericSymbols
-to null disables shortening altogether.
+to shorten high numbers in axis labels. Replacing any of the
+positions with null causes the full number to be written. Setting
+numericSymbols to null disables shortening altogether.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbols/">Replacing the symbols with text</a> <br><br><b>default:</b><br><br>&ensp;[ "k" , "M" , "G" , "T" , "P" , "E"]*/
 	public void setNumericSymbols(ArrayList<String> numericSymbols) {
 		this.numericSymbols = numericSymbols;
