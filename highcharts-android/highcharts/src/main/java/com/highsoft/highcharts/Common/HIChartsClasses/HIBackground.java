@@ -97,18 +97,17 @@ The pixel border width of the pane background.
 
 	public Number getBorderWidth(){ return borderWidth; }
 
-	private HIBackgroundColor backgroundColor;
+	private HIColor backgroundColor;
 /**
 The background color or gradient for the pane.
 */
-	public void setBackgroundColor(HIBackgroundColor backgroundColor) {
+	public void setBackgroundColor(HIColor backgroundColor) {
 		this.backgroundColor = backgroundColor;
-		this.backgroundColor.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIBackgroundColor getBackgroundColor(){ return backgroundColor; }
+	public HIColor getBackgroundColor(){ return backgroundColor; }
 
 
 
@@ -148,7 +147,7 @@ The background color or gradient for the pane.
 			params.put("borderWidth", this.borderWidth);
 		}
 		if (this.backgroundColor != null) {
-			params.put("backgroundColor", this.backgroundColor.getParams());
+			params.put("backgroundColor", this.backgroundColor.getData());
 		}
 		return params;
 	}
