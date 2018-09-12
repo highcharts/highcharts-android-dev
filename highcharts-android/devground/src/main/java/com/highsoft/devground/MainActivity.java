@@ -9,6 +9,7 @@ import com.highsoft.highcharts.Common.HIChartsClasses.HIChart;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIColumn;
 import com.highsoft.highcharts.Common.HIChartsClasses.HICredits;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIDataLabels;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIEvents;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIHover;
 import com.highsoft.highcharts.Common.HIChartsClasses.HILabels;
 import com.highsoft.highcharts.Common.HIChartsClasses.HILegend;
@@ -121,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
         scrollablePlotArea.setMinWidth(720);
         chart.setScrollablePlotArea(scrollablePlotArea);
 
+
         options.setChart(chart);
 
         //defs
@@ -158,8 +160,8 @@ public class MainActivity extends AppCompatActivity {
         bottomXAxis.setTickLength(0);
         bottomXAxis.setGridLineWidth(1);
         bottomXAxis.setGridLineColor(HIColor.initWithHexValue("F0F0F0"));
-        bottomXAxis.setStartOnTick(false);
-        bottomXAxis.setEndOnTick(false);
+        bottomXAxis.setStartOnTick(true);
+        bottomXAxis.setEndOnTick(true);
         bottomXAxis.setMinPadding(0);
         bottomXAxis.setMaxPadding(0);
         bottomXAxis.setOffset(30);

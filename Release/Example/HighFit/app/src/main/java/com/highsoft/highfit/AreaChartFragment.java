@@ -20,7 +20,6 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Map;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */

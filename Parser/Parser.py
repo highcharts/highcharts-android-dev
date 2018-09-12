@@ -280,9 +280,42 @@ def get_java_type(x):
         # 6.1.1
         "AnimationOptions|Boolean": 'Object',
         "Boolean|AnimationOptions": 'Object',
-        "Array.<number>": 'ArrayList<Number',
-        "Boolean|AnimationObject": 'Object'
-
+        "Array.<number>": 'ArrayList<Number>',
+        "Boolean|AnimationObject": 'Object',
+        # 6.1.2
+        "HTMLElement|String": 'Object',
+        "number": 'Number',
+        "string": 'String',
+        "Highcharts.ColorString": 'HIColor',
+        "boolean": 'Boolean',
+        "Highcharts.PlotSeriesDataLabelsOptions": 'Object',
+        "Highcharts.CSSObject": 'HashMap<String, String>',
+        "Highcharts.Dictionary.<string>": 'Object',
+        "*": 'Object',  # xAxis.labels
+        "Array.<*>": 'ArrayList',  # xAxis.plotBands
+        "Array.<Array.<(string|Array.<number>)>>": 'ArrayList',
+        "Array.<string>": 'ArrayList<String>',
+        "*|boolean": 'Object',
+        "null|number|string": 'Object',
+        "Number|Undefined": 'Number',
+        "Highcharts.AnimationOptionsObject|boolean": 'Object',
+        "Highcharts.PlotSeriesStatesHoverHaloOptions": 'Object',
+        "Highcharts.CSSObject|boolean": 'Object',
+        "Object|String": 'Object /* String, Object */',
+        "object": 'Object',
+        "Number|String|function": 'Object /* Number, String, Function */',
+        "Array.<Array.<(number|Highcharts.ColorString)>>": 'ArrayList<ArrayList>',
+        "Array.<Object>|Array.<String>": 'ArrayList',
+        "Highcharts.SVGDOMElement|string": 'Object',
+        "null|number": 'Number',
+        "Array.<number>|number": 'ArrayList',
+        "Highcharts.AnimationObject|boolean": 'Object',
+        "Boolean|Number": 'Number',
+        "number|string": 'Object /* Number, String */',
+        "Highcharts.PlotSeriesStatesOptions": 'Object',
+        "Highcharts.SeriesShadowOptions|boolean": 'Object',
+        "Array.<Highcharts.ColorString>": 'ArrayList<HIColor>',
+        "Highcharts.SVGAttributes": 'Object'
     }[str(x)]
 
 
@@ -885,9 +918,10 @@ def format_to_java(name, source):
                     methods += "\t\t\tparams.put(\"{0}\", this.{1}.getData());\n".format(get_last(field.name),
                                                                                          get_last(field.name))
                 elif get_java_type(structure[field.name].data_type) == 'ArrayList<HIColor>':
-                    methods += "\t\t\tArrayList<HIColor> array = new ArrayList<>();\n"
+                    imports += "\nimport com.highsoft.highcharts.Common.HIColor;"
+                    methods += "\t\t\tArrayList<Object> array = new ArrayList<>();\n"
                     methods += "\t\t\tfor (HIColor hiColor : this.{0})".format(get_last(field.name)) + " {\n"
-                    methods += "\t\t\t\tarray.add((HIColor) hiColor.getData());\n".format(
+                    methods += "\t\t\t\tarray.add(hiColor.getData());\n".format(
                         get_last(field.name))
                     methods += "\t\t\t}\n"
                     methods += "\t\t\tparams.put(\"{0}\", array);\n".format(get_last(field.name))

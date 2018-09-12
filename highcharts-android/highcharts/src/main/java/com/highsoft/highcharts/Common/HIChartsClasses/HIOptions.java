@@ -67,6 +67,20 @@ access to the axis.
 
 	public ArrayList<HISeries> getSeries(){ return series; }
 
+	private HILabels labels;
+
+/**
+HTML labels that can be positioned anywhere in the chart area.
+*/
+	public void setLabels(HILabels labels) {
+		this.labels = labels;
+		this.labels.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HILabels getLabels(){ return labels; }
+
 	private HIAccessibility accessibility;
 
 /**
@@ -112,7 +126,7 @@ In Highcharts 2.x, the default colors were:
 colors: ['#4572A7', '#AA4643', '#89A54E', '#80699B', '#3D96AE',
    '#DB843D', '#92A8CD', '#A47D7C', '#B5CA92']
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/colors/">Assign a global color theme</a> <br><br><b>default:</b><br><br>&ensp;["#7cb5ec", "#434348", "#90ed7d", "#f7a35c", "#8085e9",
-         "#f15c80", "#e4d354", "#2b908f", "#f45b5b", "#91e8e1"]*/
+            "#f15c80", "#e4d354", "#2b908f", "#f45b5b", "#91e8e1"]*/
 	public void setColors(ArrayList<HIColor> colors) {
 		this.colors = colors;
 		this.setChanged();
@@ -203,10 +217,6 @@ The chart's main title.
 
 	private HITooltip tooltip;
 
-/**
-Options for the tooltip that appears when the user hovers over a
-series or point.
-*/
 	public void setTooltip(HITooltip tooltip) {
 		this.tooltip = tooltip;
 		this.tooltip.addObserver(updateObserver);
@@ -243,7 +253,7 @@ the series array.
 
 /**
 Options for the exporting module. For an overview on the matter, see
-[the docs](http://www.highcharts.com/docs/export-module/export-module-overview).
+[the docs](https://www.highcharts.com/docs/export-module/export-module-overview).
 */
 	public void setExporting(HIExporting exporting) {
 		this.exporting = exporting;
@@ -271,7 +281,7 @@ boostThreshold that defines when the
 boost should kick in.
 
 Requires the modules/boost.js module.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/line">Line chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/line-series-heavy">Line chart with hundreds of series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/scatter">Scatter chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/area">Area chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/arearange">Area range chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/column">Column chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/columnrange">Column range chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/bubble">Bubble chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/heatmap">Heat map</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/treemap">Tree map</a>*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/arearange">Area range chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/line">Line chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/line-series-heavy">Line chart with hundreds of series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/scatter">Scatter chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/area">Area chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/column">Column chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/columnrange">Column range chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/bubble">Bubble chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/heatmap">Heat map</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/treemap">Tree map</a>*/
 	public void setBoost(HIBoost boost) {
 		this.boost = boost;
 		this.boost.addObserver(updateObserver);
@@ -300,9 +310,9 @@ pixel coordinates.
 
 /**
 Styled mode only. Configuration object for adding SVG definitions for
-reusable elements. See [gradients, shadows and patterns](http://www.
-highcharts.com/docs/chart-design-and-style/gradients-shadows-and-
-patterns) for more information and code examples.
+reusable elements. See [gradients, shadows and
+patterns](https://www.highcharts.com/docs/chart-design-and-style/gradients-shadows-and-patterns)
+for more information and code examples.
  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/custom-markers/">Define a custom marker for annotations</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/annotations-markers/">Define markers in a styled mode</a>*/
 	public void setDefs(Object defs) {
 		this.defs = defs;
@@ -311,20 +321,6 @@ patterns) for more information and code examples.
 	}
 
 	public Object getDefs(){ return defs; }
-
-	private HILabels labels;
-
-/**
-HTML labels that can be positioned anywhere in the chart area.
-*/
-	public void setLabels(HILabels labels) {
-		this.labels = labels;
-		this.labels.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HILabels getLabels(){ return labels; }
 
 	private HIChart chart;
 
@@ -414,7 +410,7 @@ found in the modules directory of the download package, or online at
 /**
 The Data module provides a simplified interface for adding data to
 a chart from sources like CVS, HTML tables or grid views. See also
-the [tutorial article on the Data module](http://www.highcharts.com/docs/working-
+the [tutorial article on the Data module](https://www.highcharts.com/docs/working-
 with-data/data-module).
 
 It requires the modules/data.js file to be loaded.
@@ -435,13 +431,8 @@ option.
 	private HILegend legend;
 
 /**
-The legend is a box containing a symbol and name for each series
-item or point item in the chart. Each series (or points in case
-of pie charts) is represented by a symbol and its name in the legend.
-
-It is possible to override the symbol creator function and
-create [custom legend symbols](http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/studies/legend-
-custom-symbol/).
+Options for the tooltip that appears when the user hovers over a
+series or point.
 */
 	public void setLegend(HILegend legend) {
 		this.legend = legend;
@@ -461,7 +452,7 @@ legend, depending on whether the axis is scalar or based on data
 classes.
 
 For supported color formats, see the
-[docs article about colors](http://www.highcharts.com/docs/chart-design-and-style/colors).
+[docs article about colors](https://www.highcharts.com/docs/chart-design-and-style/colors).
 
 A scalar color axis is represented by a gradient. The colors either
 range between the minColor and the
@@ -563,9 +554,9 @@ public Map<String, Object> getParams() {
 		if (this.subtitle != null) {
 			params.put("subtitle", this.subtitle.getParams());
 		}
-		if (this.xAxis != null) {
+		if (this.yAxis != null) {
 			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.xAxis) {
+			for (Object obj : this.yAxis) {
 				if (obj instanceof HIChartsJSONSerializable) {
 					array.add(((HIChartsJSONSerializable) obj).getParams());
 				}
@@ -573,7 +564,7 @@ public Map<String, Object> getParams() {
 					array.add(obj);
 				}
 			}
-			params.put("xAxis", array);
+			params.put("yAxis", array);
 		}
 		if (this.series != null) {
 			ArrayList<Object> array = new ArrayList<>();
@@ -586,6 +577,9 @@ public Map<String, Object> getParams() {
 				}
 			}
 			params.put("series", array);
+		}
+		if (this.labels != null) {
+			params.put("labels", this.labels.getParams());
 		}
 		if (this.accessibility != null) {
 			params.put("accessibility", this.accessibility.getParams());
@@ -639,9 +633,6 @@ public Map<String, Object> getParams() {
 		if (this.defs != null) {
 			params.put("defs", this.defs);
 		}
-		if (this.labels != null) {
-			params.put("labels", this.labels.getParams());
-		}
 		if (this.chart != null) {
 			params.put("chart", this.chart.getParams());
 		}
@@ -660,9 +651,9 @@ public Map<String, Object> getParams() {
 			}
 			params.put("zAxis", array);
 		}
-		if (this.yAxis != null) {
+		if (this.xAxis != null) {
 			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.yAxis) {
+			for (Object obj : this.xAxis) {
 				if (obj instanceof HIChartsJSONSerializable) {
 					array.add(((HIChartsJSONSerializable) obj).getParams());
 				}
@@ -670,7 +661,7 @@ public Map<String, Object> getParams() {
 					array.add(obj);
 				}
 			}
-			params.put("yAxis", array);
+			params.put("xAxis", array);
 		}
 		if (this.drilldown != null) {
 			params.put("drilldown", this.drilldown.getParams());

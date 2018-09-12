@@ -1,51 +1,21 @@
 package com.highsoft.devground;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
-import com.highsoft.highcharts.Common.HIChartsClasses.HIAnnotations;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIBoost;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIChart;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIColumn;
-import com.highsoft.highcharts.Common.HIChartsClasses.HICondition;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIData;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIEvents;
-import com.highsoft.highcharts.Common.HIChartsClasses.HILabel;
-import com.highsoft.highcharts.Common.HIChartsClasses.HILabels;
-import com.highsoft.highcharts.Common.HIChartsClasses.HILegend;
-import com.highsoft.highcharts.Common.HIChartsClasses.HILine;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIMarker;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIExporting;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIOptions;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIPlotOptions;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIPoint;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIResponsive;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIRules;
 import com.highsoft.highcharts.Common.HIChartsClasses.HISeries;
-import com.highsoft.highcharts.Common.HIChartsClasses.HISpline;
-import com.highsoft.highcharts.Common.HIChartsClasses.HISubtitle;
-import com.highsoft.highcharts.Common.HIChartsClasses.HITitle;
-import com.highsoft.highcharts.Common.HIChartsClasses.HITooltip;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIXAxis;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIYAxis;
 import com.highsoft.highcharts.Common.HIColor;
 import com.highsoft.highcharts.Core.HIChartView;
-import com.highsoft.highcharts.Core.HIFunction;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
 
 public class IssuesActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,85 +23,96 @@ public class IssuesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_issues);
 
         HIChartView chartView = findViewById(R.id.hc);
-//        Button button = findViewById(R.id.button1);
-//        button.setOnClickListener(new View.OnClickListener() {
+        HIOptions options = new HIOptions();
+
+        options.setExporting(new HIExporting());
+        options.getExporting().setEnabled(false);
+
+//
+//        Button btn = findViewById(R.id.btn);
+//        btn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-////                chartView.getHTMLContent();
+//                final LayoutInflater inflater = getLayoutInflater();
+//                final View alertLayout = inflater.inflate(R.layout.dialog_custom, null);
+//
+//                HIChartView chartView = alertLayout.findViewById(R.id.hc);
+//                HIColumn column = new HIColumn();
+//                column.setType("column");
+//                column.setName("Rainfall");
+//                ArrayList<HIColor> listColors = new ArrayList<>();
+//                Number[] columnData = new Number[] {49.9, 71.5, 106.4};
+//                HIColor c1 = HIColor.initWithHexValue("ff0000");
+//                HIColor c2 = HIColor.initWithHexValue("00ff00");
+//                HIColor c3 = HIColor.initWithHexValue("0000ff");
+//                listColors.add(c1);
+//                listColors.add(c2);
+//                listColors.add(c3);
+//                options.setColors(listColors);
+//                column.setData(new ArrayList<>(Arrays.asList(columnData)));
+//                column.setTooltip(new HITooltip());
+//                column.getTooltip().setValueSuffix(" mm");
+//
+//                options.setSeries(new ArrayList<>(Collections.singletonList(column)));
+//                chartView.setOptions(options);
+//
+//                AlertDialog.Builder alert = new AlertDialog.Builder(IssuesActivity.this);
+//                alert.setTitle("Graph");
+//                alert.setView(alertLayout);
+//                alert.setCancelable(false);
+//
+//                alert.setNegativeButton("Cancel", (dialog, which) -> Toast.makeText(getBaseContext(), "Cancel clicked", Toast.LENGTH_SHORT).show());
+//                alert.setPositiveButton("Done", (dialog, which) -> Toast.makeText(getBaseContext(), "Done click", Toast.LENGTH_SHORT).show());
+//
+//                AlertDialog dialog = alert.create();
+//                dialog.show();
 //            }
 //        });
-        chartView.plugins = new ArrayList<>();
-        chartView.plugins.add("data");
-        chartView.plugins.add("series-label");
-        chartView.plugins.add("export-data");
 
-//        HIOptions options = new HIOptions();
-//
-//        HIChart chart = new HIChart();
-//        chart.type = "spline";
-//        options.chart = chart;
-//
-//        HITitle title = new HITitle();
-//        title.text = "Monthly Average Temperature";
-//        options.title = title;
-//
-//        HISubtitle subtitle = new HISubtitle();
-//        subtitle.text = "Source: WorldClimate.com";
-//        options.subtitle = subtitle;
-//
-//        final HIXAxis xAxis = new HIXAxis();
-//        String[] categoriesList = new String[] {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-//        xAxis.categories = new ArrayList<>(Arrays.asList(categoriesList));
-//        options.xAxis = new ArrayList<HIXAxis>(){{add(xAxis);}};
-//
-//        final HIYAxis yAxis = new HIYAxis();
-//        yAxis.title = new HITitle();
-//        yAxis.title.text = "Temperature";
-//        yAxis.labels = new HILabels();
-////        yAxis.labels.formatter = new HIFunction("function () { return this.value + ''; }");
-//        yAxis.labels.formatter = new HIFunction(f -> "" + f.getProperty("value"), new String[] {"value"});
-//        options.yAxis = new ArrayList<HIYAxis>(){{add(yAxis);}};
-//
-//        HITooltip tooltip = new HITooltip();
-//        tooltip.shared = true;
-//        options.tooltip = tooltip;
-//
-//        HIPlotOptions plotOptions = new HIPlotOptions();
-//        plotOptions.spline = new HISpline();
-//        plotOptions.spline.marker = new HIMarker();
-//        plotOptions.spline.marker.radius = 4;
-//        plotOptions.spline.marker.lineColor = HIColor.initWithHexValue("666666");
-//        plotOptions.spline.marker.lineWidth = 1;
-//        options.plotOptions = plotOptions;
-//
-//        HISpline series1 = new HISpline();
-//        series1.name = "Tokyo";
-//        series1.marker = new HIMarker();
-//        series1.marker.symbol = "square";
-//        HIData data1 = new HIData();
-//        data1.y = 26.5;
-//        data1.marker = new HIMarker();
-//        data1.marker.symbol = "url(https://www.highcharts.com/samples/graphics/sun.png)";
-//
-//        Object[] series1_data = new Object[] { 7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, data1, 23.3, 18.3, 13.9, 9.6 };
-//        series1.data = new ArrayList<>(Arrays.asList(series1_data));
-//
-//        HISpline series2 = new HISpline();
-//        series2.name = "London";
-//        series2.marker = new HIMarker();
-//        series2.marker.symbol = "diamond";
-//        HIData data2 = new HIData();
-//        data2.y = 3.9;
-//        data2.marker = new HIMarker();
-//        data2.marker.symbol = "url(https://www.highcharts.com/samples/graphics/snow.png)";
-//
-//        Object[] series2_data = new Object[] { data2, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8 };
-//        series2.data = new ArrayList<>(Arrays.asList(series2_data));
-//
-//        options.series = new ArrayList<>(Arrays.asList(series1, series2));
 
-//        chartView.options = options;
+        HIColumn series1 = new HIColumn();
+        series1.setName("Realisasi");
+        ArrayList<ChartData> listData = new ArrayList<>();
+        listData.add(new ChartData(1, "blue"));
+        listData.add(new ChartData(3, "yellow"));
+        listData.add(new ChartData(4, "blue"));
+        listData.add(new ChartData(1, "blue"));
+        ArrayList<HIData> listDataFromApi = new ArrayList<>();
+        for (int i = 0; i < listData.size(); i++) {
+            HIData data = new HIData();
+            data.setY(listData.get(i).realisasi_simplified);
+            if(listData.get(i).color.equals("blue")){
+                HIColor blue = HIColor.initWithHexValue("3f89df");
+                data.setColor(blue);
+
+            }else if (listData.get(i).color.equals("yellow")){
+                HIColor yellow = HIColor.initWithHexValue("ffad48");
+                data.setColor(yellow);
+            }
+            listDataFromApi.add(data);
+        }
+        series1.setData(listDataFromApi);
+        series1.setPointPadding(0.2);
+        series1.setPointPlacement(-0.2);
+
+//        HIColumn series3 = new HIColumn();
+//        series3.setName("Target Realisasi");
+//        series3.setColor(HIColor.initWithHexValue("f3f3f3"));
+//        ArrayList<Float> listDataSeries3 = new ArrayList<>();
+//        for (int i = 0; i < listData.size(); i++) {
+//            listDataSeries3.add(listData.get(i).target_simplified);
+//        }
+//        series3.setData(listDataSeries3);
+//        series3.setPointPadding(0.4);
+//        series3.setPointPlacement(-0.2);
+
+        ArrayList<HISeries> listSeries = new ArrayList<>();
+        listSeries.add(series1);
+//        listSeries.add(series3);
+        options.setSeries(listSeries);
+
+
+        chartView.setOptions(options);
 
     }
-
 }
