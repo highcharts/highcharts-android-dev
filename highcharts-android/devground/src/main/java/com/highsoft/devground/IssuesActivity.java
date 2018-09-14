@@ -82,7 +82,7 @@ public class IssuesActivity extends AppCompatActivity {
             HIData data = new HIData();
             data.setY(listData.get(i).realisasi_simplified);
             if(listData.get(i).color.equals("blue")){
-                HIColor blue = HIColor.initWithHexValue("3f89df");
+                HIColor blue = HIColor.initWithHexValue("lol");
                 data.setColor(blue);
 
             }else if (listData.get(i).color.equals("yellow")){

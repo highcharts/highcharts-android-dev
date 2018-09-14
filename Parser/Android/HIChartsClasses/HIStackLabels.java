@@ -147,7 +147,7 @@ on orientation and whether the stack is positive or negative.
 	private Number rotation;
 /**
 Rotation of the labels in degrees.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-rotation/">Labels rotated 45ĂÂ°</a> <br><br><b>default:</b><br><br>&ensp;0*/
+ <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-rotation/">Labels rotated 45Â°</a> <br><br><b>default:</b><br><br>&ensp;0*/
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;
 		this.setChanged();
