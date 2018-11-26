@@ -19,13 +19,14 @@ import com.highsoft.highcharts.Common.HIColor;
 
 
 
+
+
 public class HILegend extends Observable implements HIChartsJSONSerializable { 
 
 	private Number symbolRadius;
 /**
-The border radius of the symbol for series types that use a rectangle
-in the legend. Defaults to half the symbolHeight.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/symbolradius/">Round symbols</a>*/
+/** The border radius of the symbol for series types that use a rectangle in the legend. Defaults to half the symbolHeight. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/symbolradius/">Round symbols</a>
+*/
 	public void setSymbolRadius(Number symbolRadius) {
 		this.symbolRadius = symbolRadius;
 		this.setChanged();
@@ -36,8 +37,8 @@ in the legend. Defaults to half the symbolHeight.
 
 	private Number borderRadius;
 /**
-The border corner radius of the legend.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/borderradius-default/">Square by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/borderradius-round/">5px rounded</a>*/
+/** The border corner radius of the legend. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/borderradius-defaults/">Square by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/borderradius-round/">5px rounded</a>
+*/
 	public void setBorderRadius(Number borderRadius) {
 		this.borderRadius = borderRadius;
 		this.setChanged();
@@ -48,9 +49,8 @@ The border corner radius of the legend.
 
 	private Boolean rtl;
 /**
-Whether to show the symbol on the right side of the text rather than
-the left side. This is common in Arabic and Hebraic.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/rtl/">Symbol to the right</a> <br><br><b>default:</b><br><br>&ensp;false*/
+/** Whether to show the symbol on the right side of the text rather than the left side. This is common in Arabic and Hebraic. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/rtl/">Symbol to the right</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
 	public void setRtl(Boolean rtl) {
 		this.rtl = rtl;
 		this.setChanged();
@@ -61,10 +61,8 @@ the left side. This is common in Arabic and Hebraic.
 
 	private Boolean squareSymbol;
 /**
-When this is true, the legend symbol width will be the same as
-the symbol height, which in turn defaults to the font size of the
-legend items.
- <br><br><b>default:</b><br><br>&ensp;true*/
+/** When this is true, the legend symbol width will be the same as the symbol height, which in turn defaultss to the font size of the legend items. 
+*/
 	public void setSquareSymbol(Boolean squareSymbol) {
 		this.squareSymbol = squareSymbol;
 		this.setChanged();
@@ -75,11 +73,8 @@ legend items.
 
 	private Number itemWidth;
 /**
-The width for each legend item. By default the items are laid out
-successively. In a [horizontal layout](legend.layout), if the items
-are laid out across two rows or more, they will be vertically aligned
-depending on the [legend.alignColumns](legend.alignColumns) option.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/itemwidth-default/">Undefined by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/itemwidth-80/">80 for aligned legend items</a>*/
+/** The width for each legend item. By defaults the items are laid out successively. In a `horizontal layout`, if the items are laid out across two rows or more, they will be vertically aligned depending on the `legend.alignColumns` option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/itemwidth-defaults/">Undefined by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/itemwidth-80/">80 for aligned legend items</a>
+*/
 	public void setItemWidth(Number itemWidth) {
 		this.itemWidth = itemWidth;
 		this.setChanged();
@@ -90,9 +85,8 @@ depending on the [legend.alignColumns](legend.alignColumns) option.
 
 	private Number symbolPadding;
 /**
-The pixel padding between the legend item symbol and the legend
-item text.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/symbolpadding/">Greater symbol width and padding</a> <br><br><b>default:</b><br><br>&ensp;5*/
+/** The pixel padding between the legend item symbol and the legend item text. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/symbolpadding/">Greater symbol width and padding</a>
+*/
 	public void setSymbolPadding(Number symbolPadding) {
 		this.symbolPadding = symbolPadding;
 		this.setChanged();
@@ -101,27 +95,22 @@ item text.
 
 	public Number getSymbolPadding(){ return symbolPadding; }
 
-	private String floating;
+	private Boolean floating;
 /**
-The layout of the legend items. Can be one of horizontal or
-vertical or proximate. When proximate, the legend items will be
-placed as close as possible to the graphs they're representing,
-except in inverted charts or when the legend position doesn't allow
-it.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-horizontal/">Horizontal by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-vertical/">Vertical</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-proximate">Labels proximate to the data</a> <br><br><b>accepted values:</b><br><br>&ensp;["horizontal", "vertical", "proximate"] <br><br><b>default:</b><br><br>&ensp;horizontal*/
-	public void setFloating(String floating) {
+/** When the legend is floating, the plot area ignores it and is allowed to be placed below it. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/floating-false/">False by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/floating-true/">True</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
+	public void setFloating(Boolean floating) {
 		this.floating = floating;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getFloating(){ return floating; }
+	public Boolean getFloating(){ return floating; }
 
 	private Number symbolWidth;
 /**
-The pixel width of the legend item symbol. When the squareSymbol
-option is set, this defaults to the symbolHeight, otherwise 16.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/symbolwidth/">Greater symbol width and padding</a>*/
+/** The pixel width of the legend item symbol. When the squareSymbol option is set, this defaultss to the symbolHeight, otherwise 16. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/symbolwidth/">Greater symbol width and padding</a>
+*/
 	public void setSymbolWidth(Number symbolWidth) {
 		this.symbolWidth = symbolWidth;
 		this.setChanged();
@@ -132,12 +121,8 @@ option is set, this defaults to the symbolHeight, otherwise 16.
 
 	private Boolean useHTML;
 /**
-Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/
-labels-and-string-formatting#html) to render the legend item texts.
-
-Prior to 4.1.7, when using HTML, [legend.navigation](
-#legend.navigation) was disabled.
- <br><br><b>default:</b><br><br>&ensp;false*/
+/** Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/ labels-and-string-formatting#html) to render the legend item texts. Prior to 4.1.7, when using HTML, `legend.navigation` was disabled. 
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;
 		this.setChanged();
@@ -148,8 +133,8 @@ Prior to 4.1.7, when using HTML, [legend.navigation](
 
 	private HIColor borderColor;
 /**
-The color of the drawn border around the legend.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/bordercolor/">Brown border</a> <br><br><b>default:</b><br><br>&ensp;#999999*/
+/** The color of the drawn border around the legend. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/bordercolor/">Brown border</a>
+*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
@@ -159,6 +144,9 @@ The color of the drawn border around the legend.
 	public HIColor getBorderColor(){ return borderColor; }
 
 	private String layout;
+/**
+/** The layout of the legend items. Can be one of horizontal or vertical or proximate. When proximate, the legend items will be placed as close as possible to the graphs they're representing, except in inverted charts or when the legend position doesn't allow it. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-horizontal/">Horizontal by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-vertical/">Vertical</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-proximate">Labels proximate to the data</a> <br><br><b>accepted values:</b><br><br>&ensp;["horizontal", "vertical", "proximate"]
+*/
 	public void setLayout(String layout) {
 		this.layout = layout;
 		this.setChanged();
@@ -169,8 +157,8 @@ The color of the drawn border around the legend.
 
 	private HITitle title;
 /**
-A title to be added on top of the legend.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/title/">Legend title</a>*/
+/** A title to be added on top of the legend. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/title/">Legend title</a>
+*/
 	public void setTitle(HITitle title) {
 		this.title = title;
 		this.title.addObserver(updateObserver);
@@ -182,8 +170,8 @@ A title to be added on top of the legend.
 
 	private Number width;
 /**
-The width of the legend box.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/width/">Aligned to the plot area</a>*/
+/** The width of the legend box. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/width/">Aligned to the plot area</a>
+*/
 	public void setWidth(Number width) {
 		this.width = width;
 		this.setChanged();
@@ -194,8 +182,8 @@ The width of the legend box.
 
 	private Number itemMarginBottom;
 /**
-The pixel bottom margin for each legend item.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/padding-itemmargin/">Padding and item margins demonstrated</a> <br><br><b>default:</b><br><br>&ensp;0*/
+/** The pixel bottom margin for each legend item. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/padding-itemmargin/">Padding and item margins demonstrated</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0*/
 	public void setItemMarginBottom(Number itemMarginBottom) {
 		this.itemMarginBottom = itemMarginBottom;
 		this.setChanged();
@@ -206,8 +194,8 @@ The pixel bottom margin for each legend item.
 
 	private HIColor backgroundColor;
 /**
-The background color of the legend.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/backgroundcolor/">Yellowish background</a>*/
+/** The background color of the legend. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/backgroundcolor/">Yellowish background</a>
+*/
 	public void setBackgroundColor(HIColor backgroundColor) {
 		this.backgroundColor = backgroundColor;
 		this.setChanged();
@@ -216,25 +204,10 @@ The background color of the legend.
 
 	public HIColor getBackgroundColor(){ return backgroundColor; }
 
-	private Number lineHeight;
-/**
-Line height for the legend items. Deprecated as of 2.1\. Instead,
-the line height for each item can be set using itemStyle.lineHeight,
-and the padding between items using itemMarginTop and
-itemMarginBottom.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/lineheight/">Setting padding</a> <br><br><b>default:</b><br><br>&ensp;16*/
-	public void setLineHeight(Number lineHeight) {
-		this.lineHeight = lineHeight;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getLineHeight(){ return lineHeight; }
-
 	private Number itemMarginTop;
 /**
-The pixel top margin for each legend item.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/padding-itemmargin/">Padding and item margins demonstrated</a> <br><br><b>default:</b><br><br>&ensp;0*/
+/** The pixel top margin for each legend item. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/padding-itemmargin/">Padding and item margins demonstrated</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0*/
 	public void setItemMarginTop(Number itemMarginTop) {
 		this.itemMarginTop = itemMarginTop;
 		this.setChanged();
@@ -243,27 +216,22 @@ The pixel top margin for each legend item.
 
 	public Number getItemMarginTop(){ return itemMarginTop; }
 
-	private HIItemCheckboxStyle itemCheckboxStyle;
+	private HICSSObject itemCheckboxStyle;
 /**
-Default styling for the checkbox next to a legend item when
-showCheckbox is true.
-*/
-	public void setItemCheckboxStyle(HIItemCheckboxStyle itemCheckboxStyle) {
+/** Default styling for the checkbox next to a legend item when showCheckbox is true. 
+ <br><br><b>defaults:</b><br><br>&ensp;{"width": "13px", "height": "13px", "position":"absolute"}*/
+	public void setItemCheckboxStyle(HICSSObject itemCheckboxStyle) {
 		this.itemCheckboxStyle = itemCheckboxStyle;
-		this.itemCheckboxStyle.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIItemCheckboxStyle getItemCheckboxStyle(){ return itemCheckboxStyle; }
+	public HICSSObject getItemCheckboxStyle(){ return itemCheckboxStyle; }
 
 	private String labelFormat;
 /**
-A [format string](https://www.highcharts.com/docs/chart-concepts/
-labels-and-string-formatting) for each legend label. Available
-variables relates to properties on the series, or the point in case
-of pies.
- <br><br><b>default:</b><br><br>&ensp;{name}*/
+/** A [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) for each legend label. Available variables relates to properties on the series, or the point in case of pies. 
+ <br><br><b>defaults:</b><br><br>&ensp;{name}*/
 	public void setLabelFormat(String labelFormat) {
 		this.labelFormat = labelFormat;
 		this.setChanged();
@@ -272,28 +240,22 @@ of pies.
 
 	public String getLabelFormat(){ return labelFormat; }
 
-	private HIItemStyle itemStyle;
+	private HICSSObject itemStyle;
 /**
-CSS styles for each legend item. Only a subset of CSS is supported,
-notably those options related to text. The default textOverflow
-property makes long texts truncate. Set it to undefined to wrap
-text instead. A width property can be added to control the text
-width.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/itemstyle/">Bold black text</a> <br><br><b>default:</b><br><br>&ensp;{"color": "#333333", "cursor": "pointer", "fontSize": "12px", "fontWeight": "bold", "textOverflow": "ellipsis"}*/
-	public void setItemStyle(HIItemStyle itemStyle) {
+/** CSS styles for each legend item. Only a subset of CSS is supported, notably those options related to text. The defaults textOverflow property makes long texts truncate. Set it to undefined to wrap text instead. A width property can be added to control the text width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/itemstyle/">Bold black text</a>
+ <br><br><b>defaults:</b><br><br>&ensp;{"color": "#333333", "cursor": "pointer", "fontSize": "12px", "fontWeight": "bold", "textOverflow": "ellipsis"}*/
+	public void setItemStyle(HICSSObject itemStyle) {
 		this.itemStyle = itemStyle;
-		this.itemStyle.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIItemStyle getItemStyle(){ return itemStyle; }
+	public HICSSObject getItemStyle(){ return itemStyle; }
 
 	private Boolean reversed;
 /**
-Whether to reverse the order of the legend items compared to the
-order of the series or points as defined in the configuration object.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/reversed/">Stacked bar with reversed legend</a> <br><br><b>default:</b><br><br>&ensp;false*/
+/** Whether to reverse the order of the legend items compared to the order of the series or points as defined in the configuration object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/reversed/">Stacked bar with reversed legend</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
 	public void setReversed(Boolean reversed) {
 		this.reversed = reversed;
 		this.setChanged();
@@ -304,8 +266,8 @@ order of the series or points as defined in the configuration object.
 
 	private Number padding;
 /**
-The inner padding of the legend box.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/padding-itemmargin/">Padding and item margins demonstrated</a> <br><br><b>default:</b><br><br>&ensp;8*/
+/** The inner padding of the legend box. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/padding-itemmargin/">Padding and item margins demonstrated</a>
+ <br><br><b>defaults:</b><br><br>&ensp;8*/
 	public void setPadding(Number padding) {
 		this.padding = padding;
 		this.setChanged();
@@ -314,62 +276,10 @@ The inner padding of the legend box.
 
 	public Number getPadding(){ return padding; }
 
-	private String verticalAlign;
-/**
-The vertical alignment of the legend box. Can be one of top,
-middle or bottom. Vertical position can be further determined
-by the y option.
-
-In the case that the legend is aligned in a corner position, the
-layout option will determine whether to place it above/below
-or on the side of the plot area.
-
-When the layout option is proximate, the
-verticalAlign option doesn't apply.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/verticalalign/">Legend 100px from the top of the chart</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"] <br><br><b>default:</b><br><br>&ensp;bottom*/
-	public void setVerticalAlign(String verticalAlign) {
-		this.verticalAlign = verticalAlign;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getVerticalAlign(){ return verticalAlign; }
-
-	private Object shadow;
-/**
-Whether to apply a drop shadow to the legend. A backgroundColor
-also needs to be applied for this to take effect. The shadow can be
-an object configuration containing color, offsetX, offsetY,
-opacity and width.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/shadow/">White background and drop shadow</a> <br><br><b>default:</b><br><br>&ensp;false*/
-	public void setShadow(Object shadow) {
-		this.shadow = shadow;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object getShadow(){ return shadow; }
-
-	private HIItemHoverStyle itemHoverStyle;
-/**
-CSS styles for each legend item in hover mode. Only a subset of
-CSS is supported, notably those options related to text. Properties
-are inherited from style unless overridden here.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/itemhoverstyle/">Red on hover</a> <br><br><b>default:</b><br><br>&ensp;{"color": "#000000"}*/
-	public void setItemHoverStyle(HIItemHoverStyle itemHoverStyle) {
-		this.itemHoverStyle = itemHoverStyle;
-		this.itemHoverStyle.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIItemHoverStyle getItemHoverStyle(){ return itemHoverStyle; }
-
 	private Number itemDistance;
 /**
-In a legend with horizontal layout, the itemDistance defines the
-pixel distance between each item.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-horizontal/">50px item distance</a> <br><br><b>default:</b><br><br>&ensp;20*/
+/** In a legend with horizontal layout, the itemDistance defines the pixel distance between each item. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-horizontal/">50px item distance</a>
+ <br><br><b>defaults:</b><br><br>&ensp;20*/
 	public void setItemDistance(Number itemDistance) {
 		this.itemDistance = itemDistance;
 		this.setChanged();
@@ -378,32 +288,58 @@ pixel distance between each item.
 
 	public Number getItemDistance(){ return itemDistance; }
 
-	private HINavigation navigation;
+	private Number /* boolean */ shadow;
 /**
-Options for the paging or navigation appearing when the legend
-is overflown. Navigation works well on screen, but not in static
-exported images. One way of working around that is to
-[increase the chart height in
-export](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation-enabled-false/).
+/** Whether to apply a drop shadow to the legend. A backgroundColor also needs to be applied for this to take effect. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/shadow/">White background and drop shadow</a>
 */
-	public void setNavigation(HINavigation navigation) {
-		this.navigation = navigation;
-		this.navigation.addObserver(updateObserver);
+	public void setShadow(Number /* boolean */ shadow) {
+		this.shadow = shadow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HINavigation getNavigation(){ return navigation; }
+	public Number /* boolean */ getShadow(){ return shadow; }
+
+	private HICSSObject itemHoverStyle;
+/**
+/** CSS styles for each legend item in hover mode. Only a subset of CSS is supported, notably those options related to text. Properties are inherited from style unless overridden here. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/itemhoverstyle/">Red on hover</a>
+ <br><br><b>defaults:</b><br><br>&ensp;{"color": "#000000"}*/
+	public void setItemHoverStyle(HICSSObject itemHoverStyle) {
+		this.itemHoverStyle = itemHoverStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HICSSObject getItemHoverStyle(){ return itemHoverStyle; }
+
+	private String verticalAlign;
+/**
+/** The vertical alignment of the legend box. Can be one of top, middle or bottom. Vertical position can be further determined by the y option. In the case that the legend is aligned in a corner position, the layout option will determine whether to place it above/below or on the side of the plot area. When the layout option is proximate, the verticalAlign option doesn't apply. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/verticalalign/">Legend 100px from the top of the chart</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]
+*/
+	public void setVerticalAlign(String verticalAlign) {
+		this.verticalAlign = verticalAlign;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getVerticalAlign(){ return verticalAlign; }
+
+	private Number margin;
+/**
+/** If the plot area sized is calculated automatically and the legend is not floating, the legend margin is the space between the legend and the axis labels or plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/margin-defaults/">12 pixels by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/margin-30/">30 pixels</a>
+ <br><br><b>defaults:</b><br><br>&ensp;12*/
+	public void setMargin(Number margin) {
+		this.margin = margin;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getMargin(){ return margin; }
 
 	private String align;
 /**
-The horizontal alignment of the legend box within the chart area.
-Valid values are left, center and right.
-
-In the case that the legend is aligned in a corner position, the
-layout option will determine whether to place it above/below
-or on the side of the plot area.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/align/">Legend at the right of the chart</a> <br><br><b>accepted values:</b><br><br>&ensp;["left", "center", "right"]*/
+/** The horizontal alignment of the legend box within the chart area. Valid values are left, center and right. In the case that the legend is aligned in a corner position, the layout option will determine whether to place it above/below or on the side of the plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/align/">Legend at the right of the chart</a> <br><br><b>accepted values:</b><br><br>&ensp;["left", "center", "right"]
+*/
 	public void setAlign(String align) {
 		this.align = align;
 		this.setChanged();
@@ -414,7 +350,7 @@ or on the side of the plot area.
 
 	private HIKeyboardNavigation keyboardNavigation;
 /**
-Keyboard navigation for the legend. Requires the Accessibility module.
+/** Keyboard navigation for the legend. Requires the Accessibility module. 
 */
 	public void setKeyboardNavigation(HIKeyboardNavigation keyboardNavigation) {
 		this.keyboardNavigation = keyboardNavigation;
@@ -427,8 +363,8 @@ Keyboard navigation for the legend. Requires the Accessibility module.
 
 	private Boolean enabled;
 /**
-Enable or disable the legend.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/enabled-false/">Legend disabled</a>*/
+/** Enable or disable the legend. There is also a series-specific option, showInLegend, that can hide the series from the legend. In some series types this is false by defaults, so it must set to true in order to show the legend for the series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/enabled-false/">Legend disabled</a>
+*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -439,8 +375,7 @@ Enable or disable the legend.
 
 	private Number maxHeight;
 /**
-Maximum pixel height for the legend. When the maximum height is
-extended, navigation will show.
+/** Maximum pixel height for the legend. When the maximum height is extended, navigation will show. 
 */
 	public void setMaxHeight(Number maxHeight) {
 		this.maxHeight = maxHeight;
@@ -450,28 +385,21 @@ extended, navigation will show.
 
 	public Number getMaxHeight(){ return maxHeight; }
 
-	private HIItemHiddenStyle itemHiddenStyle;
+	private HICSSObject itemHiddenStyle;
 /**
-CSS styles for each legend item when the corresponding series or
-point is hidden. Only a subset of CSS is supported, notably those
-options related to text. Properties are inherited from style
-unless overridden here.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/itemhiddenstyle/">Darker gray color</a> <br><br><b>default:</b><br><br>&ensp;{"color": "#cccccc"}*/
-	public void setItemHiddenStyle(HIItemHiddenStyle itemHiddenStyle) {
+/** CSS styles for each legend item when the corresponding series or point is hidden. Only a subset of CSS is supported, notably those options related to text. Properties are inherited from style unless overridden here. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/itemhiddenstyle/">Darker gray color</a>
+ <br><br><b>defaults:</b><br><br>&ensp;{"color": "#cccccc"}*/
+	public void setItemHiddenStyle(HICSSObject itemHiddenStyle) {
 		this.itemHiddenStyle = itemHiddenStyle;
-		this.itemHiddenStyle.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIItemHiddenStyle getItemHiddenStyle(){ return itemHiddenStyle; }
+	public HICSSObject getItemHiddenStyle(){ return itemHiddenStyle; }
 
 	private Boolean alignColumns;
 /**
-If the [layout](legend.layout) is horizontal and the legend items
-span over two lines or more, whether to align the items into vertical
-columns. Setting this to false makes room for more items, but will
-look more messy.
+/** If the `layout` is horizontal and the legend items span over two lines or more, whether to align the items into vertical columns. Setting this to false makes room for more items, but will look more messy. 
 */
 	public void setAlignColumns(Boolean alignColumns) {
 		this.alignColumns = alignColumns;
@@ -483,8 +411,7 @@ look more messy.
 
 	private Number symbolHeight;
 /**
-The pixel height of the symbol for series types that use a rectangle
-in the legend. Defaults to the font size of legend items.
+/** The pixel height of the symbol for series types that use a rectangle in the legend. Defaults to the font size of legend items. 
 */
 	public void setSymbolHeight(Number symbolHeight) {
 		this.symbolHeight = symbolHeight;
@@ -496,8 +423,8 @@ in the legend. Defaults to the font size of legend items.
 
 	private Number borderWidth;
 /**
-The width of the drawn border around the legend.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/borderwidth/">2px border width</a> <br><br><b>default:</b><br><br>&ensp;0*/
+/** The width of the drawn border around the legend. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/borderwidth/">2px border width</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
 		this.setChanged();
@@ -506,26 +433,22 @@ The width of the drawn border around the legend.
 
 	public Number getBorderWidth(){ return borderWidth; }
 
-	private HIFunction labelFormatter;
+	private Object labelFormatter;
 /**
-Callback function to format each of the series' labels. The this
-keyword refers to the series object, or the point object in case
-of pie charts. By default the series or point name is printed.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/labelformatter/">Add text</a>*/
-	public void setLabelFormatter(HIFunction labelFormatter) {
+/** Callback function to format each of the series' labels. The this keyword refers to the series object, or the point object in case of pie charts. By defaults the series or point name is printed. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/labelformatter/">Add text</a>
+*/
+	public void setLabelFormatter(Object labelFormatter) {
 		this.labelFormatter = labelFormatter;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIFunction getLabelFormatter(){ return labelFormatter; }
+	public Object getLabelFormatter(){ return labelFormatter; }
 
 	private Number y;
 /**
-The vertical offset of the legend relative to it's vertical alignment
-verticalAlign within chart.spacingTop and chart.spacingBottom.
- Negative y moves it up, positive y moves it down.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/verticalalign/">Legend 100px from the top of the chart</a> <br><br><b>default:</b><br><br>&ensp;0*/
+/** The vertical offset of the legend relative to it's vertical alignment verticalAlign within chart.spacingTop and chart.spacingBottom. Negative y moves it up, positive y moves it down. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/verticalalign/">Legend 100px from the top of the chart</a>
+*/
 	public void setY(Number y) {
 		this.y = y;
 		this.setChanged();
@@ -536,10 +459,8 @@ verticalAlign within chart.spacingTop and chart.spacingBottom.
 
 	private Number x;
 /**
-The x offset of the legend relative to its horizontal alignment
-align within chart.spacingLeft and chart.spacingRight. Negative
-x moves it to the left, positive x moves it to the right.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/width/">Aligned to the plot area</a> <br><br><b>default:</b><br><br>&ensp;0*/
+/** The x offset of the legend relative to its horizontal alignment align within chart.spacingLeft and chart.spacingRight. Negative x moves it to the left, positive x moves it to the right. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/width/">Aligned to the plot area</a>
+*/
 	public void setX(Number x) {
 		this.x = x;
 		this.setChanged();
@@ -548,19 +469,18 @@ x moves it to the left, positive x moves it to the right.
 
 	public Number getX(){ return x; }
 
-	private Number margin;
+	private HINavigation navigation;
 /**
-If the plot area sized is calculated automatically and the legend
-is not floating, the legend margin is the space between the legend
-and the axis labels or plot area.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/margin-default/">12 pixels by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/margin-30/">30 pixels</a> <br><br><b>default:</b><br><br>&ensp;12*/
-	public void setMargin(Number margin) {
-		this.margin = margin;
+/** Options for the paging or navigation appearing when the legend is overflown. Navigation works well on screen, but not in static exported images. One way of working around that is to [increase the chart height in export](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation-enabled-false/). 
+*/
+	public void setNavigation(HINavigation navigation) {
+		this.navigation = navigation;
+		this.navigation.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getMargin(){ return margin; }
+	public HINavigation getNavigation(){ return navigation; }
 
 
 
@@ -626,9 +546,6 @@ and the axis labels or plot area.
 		if (this.backgroundColor != null) {
 			params.put("backgroundColor", this.backgroundColor.getData());
 		}
-		if (this.lineHeight != null) {
-			params.put("lineHeight", this.lineHeight);
-		}
 		if (this.itemMarginTop != null) {
 			params.put("itemMarginTop", this.itemMarginTop);
 		}
@@ -647,20 +564,20 @@ and the axis labels or plot area.
 		if (this.padding != null) {
 			params.put("padding", this.padding);
 		}
-		if (this.verticalAlign != null) {
-			params.put("verticalAlign", this.verticalAlign);
+		if (this.itemDistance != null) {
+			params.put("itemDistance", this.itemDistance);
 		}
 		if (this.shadow != null) {
 			params.put("shadow", this.shadow);
 		}
 		if (this.itemHoverStyle != null) {
-			params.put("itemHoverStyle", this.itemHoverStyle.getParams());
+			params.put("itemHoverStyle", this.itemHoverStyle);
 		}
-		if (this.itemDistance != null) {
-			params.put("itemDistance", this.itemDistance);
+		if (this.verticalAlign != null) {
+			params.put("verticalAlign", this.verticalAlign);
 		}
-		if (this.navigation != null) {
-			params.put("navigation", this.navigation.getParams());
+		if (this.margin != null) {
+			params.put("margin", this.margin);
 		}
 		if (this.align != null) {
 			params.put("align", this.align);
@@ -675,7 +592,7 @@ and the axis labels or plot area.
 			params.put("maxHeight", this.maxHeight);
 		}
 		if (this.itemHiddenStyle != null) {
-			params.put("itemHiddenStyle", this.itemHiddenStyle.getParams());
+			params.put("itemHiddenStyle", this.itemHiddenStyle);
 		}
 		if (this.alignColumns != null) {
 			params.put("alignColumns", this.alignColumns);
@@ -687,7 +604,6 @@ and the axis labels or plot area.
 			params.put("borderWidth", this.borderWidth);
 		}
 		if (this.labelFormatter != null) {
-			params.put("labelFormatter", this.labelFormatter);
 		}
 		if (this.y != null) {
 			params.put("y", this.y);
@@ -695,8 +611,8 @@ and the axis labels or plot area.
 		if (this.x != null) {
 			params.put("x", this.x);
 		}
-		if (this.margin != null) {
-			params.put("margin", this.margin);
+		if (this.navigation != null) {
+			params.put("navigation", this.navigation.getParams());
 		}
 		return params;
 	}

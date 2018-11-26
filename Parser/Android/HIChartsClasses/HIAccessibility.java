@@ -18,18 +18,14 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIAccessibility extends Observable implements HIChartsJSONSerializable { 
 
 	private HIFunction screenReaderSectionFormatter;
 /**
-A formatter function to create the HTML contents of the hidden screen
-reader information region. Receives one argument, chart, referring
-to the chart object. Should return a String with the HTML content
-of the region.
-
-The link to view the chart as a data table will be added
-automatically after the custom HTML content.
- <br><br><b>default:</b><br><br>&ensp;undefined*/
+/** A formatter function to create the HTML contents of the hidden screen reader information region. Receives one argument, chart, referring to the chart object. Should return a String with the HTML content of the region. The link to view the chart as a data table will be added automatically after the custom HTML content. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined*/
 	public void setScreenReaderSectionFormatter(HIFunction screenReaderSectionFormatter) {
 		this.screenReaderSectionFormatter = screenReaderSectionFormatter;
 		this.setChanged();
@@ -40,9 +36,8 @@ automatically after the custom HTML content.
 
 	private Boolean describeSingleSeries;
 /**
-Whether or not to add series descriptions to charts with a single
-series.
- <br><br><b>default:</b><br><br>&ensp;false*/
+/** Whether or not to add series descriptions to charts with a single series. 
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
 	public void setDescribeSingleSeries(Boolean describeSingleSeries) {
 		this.describeSingleSeries = describeSingleSeries;
 		this.setChanged();
@@ -53,7 +48,7 @@ series.
 
 	private HIKeyboardNavigation keyboardNavigation;
 /**
-Options for keyboard navigation.
+/** Options for keyboard navigation. 
 */
 	public void setKeyboardNavigation(HIKeyboardNavigation keyboardNavigation) {
 		this.keyboardNavigation = keyboardNavigation;
@@ -66,8 +61,8 @@ Options for keyboard navigation.
 
 	private Boolean enabled;
 /**
-Enable accessibility features for the chart.
- <br><br><b>default:</b><br><br>&ensp;true*/
+/** Enable accessibility features for the chart. 
+ <br><br><b>defaults:</b><br><br>&ensp;true*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -76,28 +71,21 @@ Enable accessibility features for the chart.
 
 	public Boolean getEnabled(){ return enabled; }
 
-	private Number pointDescriptionThreshold;
+	private Object /* Boolean|String */ pointDescriptionThreshold;
 /**
-When a series contains more points than this, we no longer expose
-information about individual points to screen readers.
-
-Set to false to disable.
+/** When a series contains more points than this, we no longer expose information about individual points to screen readers. Set to false to disable. 
 */
-	public void setPointDescriptionThreshold(Number pointDescriptionThreshold) {
+	public void setPointDescriptionThreshold(Object /* Boolean|String */ pointDescriptionThreshold) {
 		this.pointDescriptionThreshold = pointDescriptionThreshold;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getPointDescriptionThreshold(){ return pointDescriptionThreshold; }
+	public Object /* Boolean|String */ getPointDescriptionThreshold(){ return pointDescriptionThreshold; }
 
 	private HIFunction pointDescriptionFormatter;
 /**
-Formatter function to use instead of the default for point
-descriptions.
-Receives one argument, point, referring to the point to describe.
-Should return a String with the description of the point for a screen
-reader user.
+/** Formatter function to use instead of the defaults for point descriptions. Receives one argument, point, referring to the point to describe. Should return a String with the description of the point for a screen reader user. 
 */
 	public void setPointDescriptionFormatter(HIFunction pointDescriptionFormatter) {
 		this.pointDescriptionFormatter = pointDescriptionFormatter;
@@ -109,13 +97,7 @@ reader user.
 
 	private String pointDateFormat;
 /**
-Date format to use for points on datetime axes when describing them
-to screen reader users.
-
-Defaults to the same format as in tooltip.
-
-For an overview of the replacement codes, see
-[dateFormat](/class-reference/Highcharts#dateFormat).
+/** Date format to use for points on datetime axes when describing them to screen reader users. Defaults to the same format as in tooltip. For an overview of the replacement codes, see `dateFormat`. 
 */
 	public void setPointDateFormat(String pointDateFormat) {
 		this.pointDateFormat = pointDateFormat;
@@ -127,10 +109,7 @@ For an overview of the replacement codes, see
 
 	private HIFunction seriesDescriptionFormatter;
 /**
-Formatter function to use instead of the default for series
-descriptions. Receives one argument, series, referring to the
-series to describe. Should return a String with the description of
-the series for a screen reader user.
+/** Formatter function to use instead of the defaults for series descriptions. Receives one argument, series, referring to the series to describe. Should return a String with the description of the series for a screen reader user. 
 */
 	public void setSeriesDescriptionFormatter(HIFunction seriesDescriptionFormatter) {
 		this.seriesDescriptionFormatter = seriesDescriptionFormatter;
@@ -142,11 +121,7 @@ the series for a screen reader user.
 
 	private HIFunction onTableAnchorClick;
 /**
-Function to run upon clicking the "View as Data Table" link in the
-screen reader region.
-
-By default Highcharts will insert and set focus to a data table
-representation of the chart.
+/** Function to run upon clicking the "View as Data Table" link in the screen reader region. By defaults Highcharts will insert and set focus to a data table representation of the chart. 
 */
 	public void setOnTableAnchorClick(HIFunction onTableAnchorClick) {
 		this.onTableAnchorClick = onTableAnchorClick;
@@ -158,11 +133,7 @@ representation of the chart.
 
 	private HIFunction pointDateFormatter;
 /**
-Formatter function to determine the date/time format used with
-points on datetime axes when describing them to screen reader users.
-Receives one argument, point, referring to the point to describe.
-Should return a date format string compatible with
-[dateFormat](/class-reference/Highcharts#dateFormat).
+/** Formatter function to determine the date/time format used with points on datetime axes when describing them to screen reader users. Receives one argument, point, referring to the point to describe. Should return a date format string compatible with `dateFormat`. 
 */
 	public void setPointDateFormatter(HIFunction pointDateFormatter) {
 		this.pointDateFormatter = pointDateFormatter;
@@ -172,21 +143,18 @@ Should return a date format string compatible with
 
 	public HIFunction getPointDateFormatter(){ return pointDateFormatter; }
 
-	private HISeries series;
+	private HIChartTypes chartTypes;
 /**
-Lang configuration for different series types. For more dynamic
-control over the series element descriptions, see
-[accessibility.seriesDescriptionFormatter](
-accessibility.seriesDescriptionFormatter).
+/** Chart type description strings. This is added to the chart information region. If there is only a single series type used in the chart, we use the format string for the series type, or defaults if missing. There is one format string for cases where there is only a single series in the chart, and one for multiple series of the same type. 
 */
-	public void setSeries(HISeries series) {
-		this.series = series;
-		this.series.addObserver(updateObserver);
+	public void setChartTypes(HIChartTypes chartTypes) {
+		this.chartTypes = chartTypes;
+		this.chartTypes.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HISeries getSeries(){ return series; }
+	public HIChartTypes getChartTypes(){ return chartTypes; }
 
 	private String longDescriptionHeading;
 	public void setLongDescriptionHeading(String longDescriptionHeading) {
@@ -224,38 +192,9 @@ accessibility.seriesDescriptionFormatter).
 
 	public String getChartContainerLabel(){ return chartContainerLabel; }
 
-	private String mapZoomOut;
-	public void setMapZoomOut(String mapZoomOut) {
-		this.mapZoomOut = mapZoomOut;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getMapZoomOut(){ return mapZoomOut; }
-
-	private HIChartTypes chartTypes;
-/**
-Chart type description strings. This is added to the chart
-information region.
-
-If there is only a single series type used in the chart, we use
-the format string for the series type, or default if missing.
-There is one format string for cases where there is only a single
-series in the chart, and one for multiple series of the same
-type.
-*/
-	public void setChartTypes(HIChartTypes chartTypes) {
-		this.chartTypes = chartTypes;
-		this.chartTypes.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIChartTypes getChartTypes(){ return chartTypes; }
-
 	private HIAxis axis;
 /**
-Axis description format strings.
+/** Axis description format strings. 
 */
 	public void setAxis(HIAxis axis) {
 		this.axis = axis;
@@ -265,6 +204,41 @@ Axis description format strings.
 	}
 
 	public HIAxis getAxis(){ return axis; }
+
+	private HISeries series;
+/**
+/** Lang configuration for different series types. For more dynamic control over the series element descriptions, see `accessibility.seriesDescriptionFormatter`. 
+*/
+	public void setSeries(HISeries series) {
+		this.series = series;
+		this.series.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HISeries getSeries(){ return series; }
+
+	private HIExporting exporting;
+/**
+/** Exporting menu format strings for accessibility module. 
+*/
+	public void setExporting(HIExporting exporting) {
+		this.exporting = exporting;
+		this.exporting.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIExporting getExporting(){ return exporting; }
+
+	private String mapZoomOut;
+	public void setMapZoomOut(String mapZoomOut) {
+		this.mapZoomOut = mapZoomOut;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getMapZoomOut(){ return mapZoomOut; }
 
 	private String rangeSelectorMinInput;
 	public void setRangeSelectorMinInput(String rangeSelectorMinInput) {
@@ -283,19 +257,6 @@ Axis description format strings.
 	}
 
 	public String getRangeSelectorButton(){ return rangeSelectorButton; }
-
-	private HIExporting exporting;
-/**
-Exporting menu format strings for accessibility module.
-*/
-	public void setExporting(HIExporting exporting) {
-		this.exporting = exporting;
-		this.exporting.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIExporting getExporting(){ return exporting; }
 
 	private String legendItem;
 	public void setLegendItem(String legendItem) {
@@ -333,14 +294,14 @@ Exporting menu format strings for accessibility module.
 
 	public String getViewAsDataTable(){ return viewAsDataTable; }
 
-	private String defaultChartTitle;
-	public void setDefaultChartTitle(String defaultChartTitle) {
-		this.defaultChartTitle = defaultChartTitle;
+	private String defaultsChartTitle;
+	public void setDefaultChartTitle(String defaultsChartTitle) {
+		this.defaultsChartTitle = defaultsChartTitle;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getDefaultChartTitle(){ return defaultChartTitle; }
+	public String getDefaultChartTitle(){ return defaultsChartTitle; }
 
 	private String screenReaderRegionLabel;
 	public void setScreenReaderRegionLabel(String screenReaderRegionLabel) {
@@ -371,10 +332,7 @@ Exporting menu format strings for accessibility module.
 
 	private String svgContainerTitle;
 /**
-Title element text for the chart SVG element. Leave this
-empty to disable adding the title element. Browsers will display
-this content when hovering over elements in the chart. Assistive
-technology may use this element to label the chart.
+/** Title element text for the chart SVG element. Leave this empty to disable adding the title element. Browsers will display this content when hovering over elements in the chart. Assistive technology may use this element to label the chart. 
 */
 	public void setSvgContainerTitle(String svgContainerTitle) {
 		this.svgContainerTitle = svgContainerTitle;
@@ -395,9 +353,7 @@ technology may use this element to label the chart.
 
 	private HISeriesTypeDescriptions seriesTypeDescriptions;
 /**
-Descriptions of lesser known series types. The relevant
-description is added to the screen reader information region
-when these series types are used.
+/** Descriptions of lesser known series types. The relevant description is added to the screen reader information region when these series types are used. 
 */
 	public void setSeriesTypeDescriptions(HISeriesTypeDescriptions seriesTypeDescriptions) {
 		this.seriesTypeDescriptions = seriesTypeDescriptions;
@@ -457,8 +413,8 @@ when these series types are used.
 		if (this.pointDateFormatter != null) {
 			params.put("pointDateFormatter", this.pointDateFormatter);
 		}
-		if (this.series != null) {
-			params.put("series", this.series.getParams());
+		if (this.chartTypes != null) {
+			params.put("chartTypes", this.chartTypes.getParams());
 		}
 		if (this.longDescriptionHeading != null) {
 			params.put("longDescriptionHeading", this.longDescriptionHeading);
@@ -472,23 +428,23 @@ when these series types are used.
 		if (this.chartContainerLabel != null) {
 			params.put("chartContainerLabel", this.chartContainerLabel);
 		}
-		if (this.mapZoomOut != null) {
-			params.put("mapZoomOut", this.mapZoomOut);
-		}
-		if (this.chartTypes != null) {
-			params.put("chartTypes", this.chartTypes.getParams());
-		}
 		if (this.axis != null) {
 			params.put("axis", this.axis.getParams());
+		}
+		if (this.series != null) {
+			params.put("series", this.series.getParams());
+		}
+		if (this.exporting != null) {
+			params.put("exporting", this.exporting.getParams());
+		}
+		if (this.mapZoomOut != null) {
+			params.put("mapZoomOut", this.mapZoomOut);
 		}
 		if (this.rangeSelectorMinInput != null) {
 			params.put("rangeSelectorMinInput", this.rangeSelectorMinInput);
 		}
 		if (this.rangeSelectorButton != null) {
 			params.put("rangeSelectorButton", this.rangeSelectorButton);
-		}
-		if (this.exporting != null) {
-			params.put("exporting", this.exporting.getParams());
 		}
 		if (this.legendItem != null) {
 			params.put("legendItem", this.legendItem);
@@ -502,8 +458,8 @@ when these series types are used.
 		if (this.viewAsDataTable != null) {
 			params.put("viewAsDataTable", this.viewAsDataTable);
 		}
-		if (this.defaultChartTitle != null) {
-			params.put("defaultChartTitle", this.defaultChartTitle);
+		if (this.defaultsChartTitle != null) {
+			params.put("defaultsChartTitle", this.defaultsChartTitle);
 		}
 		if (this.screenReaderRegionLabel != null) {
 			params.put("screenReaderRegionLabel", this.screenReaderRegionLabel);

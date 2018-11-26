@@ -18,25 +18,9 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIItemCheckboxStyle extends Observable implements HIChartsJSONSerializable { 
-
-	private String position;
-	public void setPosition(String position) {
-		this.position = position;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getPosition(){ return position; }
-
-	private String width;
-	public void setWidth(String width) {
-		this.width = width;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getWidth(){ return width; }
 
 	private String height;
 	public void setHeight(String height) {
@@ -66,12 +50,6 @@ public class HIItemCheckboxStyle extends Observable implements HIChartsJSONSeria
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.position != null) {
-			params.put("position", this.position);
-		}
-		if (this.width != null) {
-			params.put("width", this.width);
-		}
 		if (this.height != null) {
 			params.put("height", this.height);
 		}

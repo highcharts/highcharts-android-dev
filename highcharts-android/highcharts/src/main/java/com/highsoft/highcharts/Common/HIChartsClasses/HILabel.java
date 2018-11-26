@@ -18,29 +18,26 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HILabel extends Observable implements HIChartsJSONSerializable { 
 
-	private HIStyle style;
+	private HICSSObject style;
 /**
-CSS styles for the text label.
-
-In styled mode, the labels are styled by the
-.highcharts-plot-line-label class.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-style/">Blue and bold label</a>*/
-	public void setStyle(HIStyle style) {
+/** CSS styles for the text label. In styled mode, the labels are styled by the .highcharts-plot-line-label class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-style/">Blue and bold label</a>
+*/
+	public void setStyle(HICSSObject style) {
 		this.style = style;
-		this.style.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIStyle getStyle(){ return style; }
+	public HICSSObject getStyle(){ return style; }
 
 	private String verticalAlign;
 /**
-Vertical alignment of the label relative to the plot line. Can be
-one of "top", "middle" or "bottom".
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-verticalalign-middle/">Vertically centered label</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"] <br><br><b>default:</b><br><br>&ensp;top*/
+/** Vertical alignment of the label relative to the plot line. Can be one of "top", "middle" or "bottom". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-verticalalign-middle/">Vertically centered label</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]
+ <br><br><b>defaults:</b><br><br>&ensp;top*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
 		this.setChanged();
@@ -51,7 +48,7 @@ one of "top", "middle" or "bottom".
 
 	private String text;
 /**
-The text itself. A subset of HTML is supported.
+/** The text itself. A subset of HTML is supported. 
 */
 	public void setText(String text) {
 		this.text = text;
@@ -63,9 +60,8 @@ The text itself. A subset of HTML is supported.
 
 	private String align;
 /**
-Horizontal alignment of the label. Can be one of "left", "center"
-or "right".
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-align-right/">Aligned to the right</a> <br><br><b>accepted values:</b><br><br>&ensp;["center", "left", "right"] <br><br><b>default:</b><br><br>&ensp;left*/
+/** Horizontal alignment of the label. Can be one of "left", "center" or "right". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-align-right/">Aligned to the right</a> <br><br><b>accepted values:</b><br><br>&ensp;["center", "left", "right"]
+ <br><br><b>defaults:</b><br><br>&ensp;left*/
 	public void setAlign(String align) {
 		this.align = align;
 		this.setChanged();
@@ -76,12 +72,8 @@ or "right".
 
 	private String textAlign;
 /**
-The text alignment for the label. While align determines where
-the texts anchor point is placed within the plot band, textAlign
-determines how the text is aligned against its anchor point. Possible
-values are "left", "center" and "right". Defaults to the same as
-the align option.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-textalign/">Text label in bottom position</a>*/
+/** The text alignment for the label. While align determines where the texts anchor point is placed within the plot band, textAlign determines how the text is aligned against its anchor point. Possible values are "left", "center" and "right". Defaults to the same as the align option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-textalign/">Text label in bottom position</a>
+*/
 	public void setTextAlign(String textAlign) {
 		this.textAlign = textAlign;
 		this.setChanged();
@@ -92,9 +84,8 @@ the align option.
 
 	private Number y;
 /**
-Vertical position of the text baseline relative to the alignment.
- Default varies by orientation.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-y/">Label below the plot line</a>*/
+/** Vertical position of the text baseline relative to the alignment. Default varies by orientation. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-y/">Label below the plot line</a>
+*/
 	public void setY(Number y) {
 		this.y = y;
 		this.setChanged();
@@ -105,9 +96,8 @@ Vertical position of the text baseline relative to the alignment.
 
 	private Number x;
 /**
-Horizontal position relative the alignment. Default varies by
-orientation.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-align-right/">Aligned 10px from the right edge</a>*/
+/** Horizontal position relative the alignment. Default varies by orientation. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-align-right/">Aligned 10px from the right edge</a>
+*/
 	public void setX(Number x) {
 		this.x = x;
 		this.setChanged();
@@ -118,9 +108,8 @@ orientation.
 
 	private Number rotation;
 /**
-Rotation of the text label in degrees. Defaults to 0 for horizontal
-plot lines and 90 for vertical lines.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-verticalalign-middle/">Slanted text</a>*/
+/** Rotation of the text label in degrees. Defaults to 0 for horizontal plot lines and 90 for vertical lines. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-verticalalign-middle/">Slanted text</a>
+*/
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;
 		this.setChanged();
@@ -131,9 +120,8 @@ plot lines and 90 for vertical lines.
 
 	private Boolean useHTML;
 /**
-Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-
-and-string-formatting#html) to render the labels.
- <br><br><b>default:</b><br><br>&ensp;false*/
+/** Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts /labels-and-string-formatting#html) to render the labels. 
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;
 		this.setChanged();
@@ -144,9 +132,7 @@ and-string-formatting#html) to render the labels.
 
 	private Number minFontSize;
 /**
-For area-like series, allow the font size to vary so that
-small areas get a smaller font size. The default applies this
-effect to area-like series but not line-like series.
+/** For area-like series, allow the font size to vary so that small areas get a smaller font size. The defaults applies this effect to area-like series but not line-like series. 
 */
 	public void setMinFontSize(Number minFontSize) {
 		this.minFontSize = minFontSize;
@@ -158,9 +144,7 @@ effect to area-like series but not line-like series.
 
 	private Number maxFontSize;
 /**
-For area-like series, allow the font size to vary so that
-small areas get a smaller font size. The default applies this
-effect to area-like series but not line-like series.
+/** For area-like series, allow the font size to vary so that small areas get a smaller font size. The defaults applies this effect to area-like series but not line-like series. 
 */
 	public void setMaxFontSize(Number maxFontSize) {
 		this.maxFontSize = maxFontSize;
@@ -172,7 +156,7 @@ effect to area-like series but not line-like series.
 
 	private Boolean enabled;
 /**
-Enable the series label per series.
+/** Enable the series label per series. 
 */
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -184,8 +168,7 @@ Enable the series label per series.
 
 	private Number connectorNeighbourDistance;
 /**
-If the label is closer than this to a neighbour graph, draw a
-connector.
+/** If the label is closer than this to a neighbour graph, draw a connector. 
 */
 	public void setConnectorNeighbourDistance(Number connectorNeighbourDistance) {
 		this.connectorNeighbourDistance = connectorNeighbourDistance;
@@ -197,9 +180,7 @@ connector.
 
 	private Boolean onArea;
 /**
-Draw the label on the area of an area series. By default it
-is drawn on the area. Set it to false to draw it next to
-the graph instead.
+/** Draw the label on the area of an area series. By defaults it is drawn on the area. Set it to false to draw it next to the graph instead. 
 */
 	public void setOnArea(Boolean onArea) {
 		this.onArea = onArea;
@@ -211,8 +192,7 @@ the graph instead.
 
 	private ArrayList boxesToAvoid;
 /**
-An array of boxes to avoid when laying out the labels. Each
-item has a left, right, top and bottom property.
+/** An array of boxes to avoid when laying out the labels. Each item has a left, right, top and bottom property. 
 */
 	public void setBoxesToAvoid(ArrayList boxesToAvoid) {
 		this.boxesToAvoid = boxesToAvoid;
@@ -224,12 +204,7 @@ item has a left, right, top and bottom property.
 
 	private Boolean connectorAllowed;
 /**
-Allow labels to be placed distant to the graph if necessary,
-and draw a connector line to the graph. Setting this option
-to true may decrease the performance significantly, since the
-algorithm with systematically search for open spaces in the
-while plot area. Visually, it may also result in a more
-cluttered chart, though more of the series will be labeled.
+/** Allow labels to be placed distant to the graph if necessary, and draw a connector line to the graph. Setting this option to true may decrease the performance significantly, since the algorithm with systematically search for open spaces in the while plot area. Visually, it may also result in a more cluttered chart, though more of the series will be labeled. 
 */
 	public void setConnectorAllowed(Boolean connectorAllowed) {
 		this.connectorAllowed = connectorAllowed;

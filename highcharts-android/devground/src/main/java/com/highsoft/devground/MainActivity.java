@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.highsoft.highcharts.Common.HIChartsClasses.HICSSObject;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIChart;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIColumn;
 import com.highsoft.highcharts.Common.HIChartsClasses.HICredits;
@@ -130,10 +131,10 @@ public class MainActivity extends AppCompatActivity {
         HITitle title = new HITitle();
         title.setText(chartTitle);
         title.setAlign("left");
-        HIStyle titleStyle = new HIStyle();
-        titleStyle.setWhiteSpace("nowrap");
-        titleStyle.setTextOverflow("ellipsis");
-        title.setStyle(titleStyle);
+//        HIStyle titleStyle = new HIStyle();
+//        titleStyle.setWhiteSpace("nowrap");
+//        titleStyle.setTextOverflow("ellipsis");
+//        title.setStyle(titleStyle);
 
         options.setTitle(title);
 
@@ -191,8 +192,6 @@ public class MainActivity extends AppCompatActivity {
         temperatureAxis.getTitle().setText("");
         HILabels temperatureAxisLabels = new HILabels();
         temperatureAxisLabels.setFormat("{value}°");
-        temperatureAxisLabels.setStyle(new HIStyle());
-        temperatureAxisLabels.getStyle().setFontSize("10px");
         temperatureAxisLabels.setX(-3);
         temperatureAxis.setLabels(temperatureAxisLabels);
         HIPlotLines temperatureAxisPlotLines = new HIPlotLines(); // zero plane
@@ -223,16 +222,11 @@ public class MainActivity extends AppCompatActivity {
         airPressureTitle.setOffset(0);
         airPressureTitle.setAlign("high");
         airPressureTitle.setRotation(0);
-        airPressureTitle.setStyle(new HIStyle());
-        airPressureTitle.getStyle().setFontSize("10px");
-        airPressureTitle.getStyle().setColor("#21bc5f");
         airPressureTitle.setAlign("left");
         airPressureTitle.setX(3);
         airPressure.setTitle(airPressureTitle);
         HILabels airPressureLabels = new HILabels();
-        airPressureLabels.setStyle(new HIStyle());
-        airPressureLabels.getStyle().setFontSize("8px");
-        airPressureLabels.getStyle().setColor("#21bc5f");
+
         airPressureLabels.setY(2);
         airPressureLabels.setX(3);
         airPressure.setLabels(airPressureLabels);
@@ -281,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
         HIDataLabels precipErrDataLabels = new HIDataLabels();
         precipErrDataLabels.setEnabled(hasPrecipitationError);
         precipErrDataLabels.setFormatter(new HIFunction("function() { if (this.point.maxvalue > 0) { return this.point.maxvalue; }"));
-        precipErrDataLabels.setStyle(new HIStyle());
+        precipErrDataLabels.setStyle(new HICSSObject());
         precipErrDataLabels.getStyle().setFontSize("8px");
         precipErrDataLabels.getStyle().setColor("gray");
         options.getSeries().add(precipErrSeries);
@@ -297,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
         HIDataLabels precipDataLabels = new HIDataLabels();
         precipDataLabels.setEnabled(!hasPrecipitationError);
         precipDataLabels.setFormatter(new HIFunction("function () { if (this.y > 0) { return this.y; }"));
-        precipDataLabels.setStyle(new HIStyle());
+        precipDataLabels.setStyle(new HICSSObject());
         precipDataLabels.getStyle().setFontSize("8px");
         precipDataLabels.getStyle().setColor("gray");
         precipSeries.setTooltip(new HITooltip());
@@ -310,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
         airPressureSeries.setData(pressures);
         airPressureSeries.setMarker(new HIMarker());
         airPressureSeries.getMarker().setEnabled(false);
-        airPressureSeries.setShadow(false);
+        airPressureSeries.setShadow(1);
         airPressureSeries.setTooltip(new HITooltip());
         airPressureSeries.getTooltip().setValueSuffix(" hPa");
         airPressureSeries.setDashStyle("shortdot");

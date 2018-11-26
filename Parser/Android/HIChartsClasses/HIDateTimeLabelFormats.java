@@ -18,79 +18,89 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIDateTimeLabelFormats extends Observable implements HIChartsJSONSerializable { 
 
-	private String millisecond;
-	public void setMillisecond(String millisecond) {
+	private HIMillisecond millisecond;
+	public void setMillisecond(HIMillisecond millisecond) {
 		this.millisecond = millisecond;
+		this.millisecond.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getMillisecond(){ return millisecond; }
+	public HIMillisecond getMillisecond(){ return millisecond; }
 
-	private String week;
-	public void setWeek(String week) {
+	private HIWeek week;
+	public void setWeek(HIWeek week) {
 		this.week = week;
+		this.week.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getWeek(){ return week; }
+	public HIWeek getWeek(){ return week; }
 
-	private String hour;
-	public void setHour(String hour) {
+	private HIHour hour;
+	public void setHour(HIHour hour) {
 		this.hour = hour;
+		this.hour.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getHour(){ return hour; }
+	public HIHour getHour(){ return hour; }
 
-	private String month;
-	public void setMonth(String month) {
+	private HIMonth month;
+	public void setMonth(HIMonth month) {
 		this.month = month;
+		this.month.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getMonth(){ return month; }
+	public HIMonth getMonth(){ return month; }
 
-	private String second;
-	public void setSecond(String second) {
+	private HISecond second;
+	public void setSecond(HISecond second) {
 		this.second = second;
+		this.second.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getSecond(){ return second; }
+	public HISecond getSecond(){ return second; }
 
-	private String year;
-	public void setYear(String year) {
+	private HIYear year;
+	public void setYear(HIYear year) {
 		this.year = year;
+		this.year.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getYear(){ return year; }
+	public HIYear getYear(){ return year; }
 
-	private String day;
-	public void setDay(String day) {
+	private HIDay day;
+	public void setDay(HIDay day) {
 		this.day = day;
+		this.day.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getDay(){ return day; }
+	public HIDay getDay(){ return day; }
 
-	private String minute;
-	public void setMinute(String minute) {
+	private HIMinute minute;
+	public void setMinute(HIMinute minute) {
 		this.minute = minute;
+		this.minute.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getMinute(){ return minute; }
+	public HIMinute getMinute(){ return minute; }
 
 
 
@@ -112,28 +122,28 @@ public class HIDateTimeLabelFormats extends Observable implements HIChartsJSONSe
 
 		Map<String, Object> params = new HashMap<>();
 		if (this.millisecond != null) {
-			params.put("millisecond", this.millisecond);
+			params.put("millisecond", this.millisecond.getParams());
 		}
 		if (this.week != null) {
-			params.put("week", this.week);
+			params.put("week", this.week.getParams());
 		}
 		if (this.hour != null) {
-			params.put("hour", this.hour);
+			params.put("hour", this.hour.getParams());
 		}
 		if (this.month != null) {
-			params.put("month", this.month);
+			params.put("month", this.month.getParams());
 		}
 		if (this.second != null) {
-			params.put("second", this.second);
+			params.put("second", this.second.getParams());
 		}
 		if (this.year != null) {
-			params.put("year", this.year);
+			params.put("year", this.year.getParams());
 		}
 		if (this.day != null) {
-			params.put("day", this.day);
+			params.put("day", this.day.getParams());
 		}
 		if (this.minute != null) {
-			params.put("minute", this.minute);
+			params.put("minute", this.minute.getParams());
 		}
 		return params;
 	}

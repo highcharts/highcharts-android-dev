@@ -19,14 +19,14 @@ import com.highsoft.highcharts.Common.HIColor;
 
 
 
+
+
 public class HIDial extends Observable implements HIChartsJSONSerializable { 
 
 	private HIColor borderColor;
 /**
-The border color or stroke of the gauge's dial. By default, the
-borderWidth is 0, so this must be set in addition to a custom border
-color.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a> <br><br><b>default:</b><br><br>&ensp;#cccccc*/
+/** The border color or stroke of the gauge's dial. By defaults, the borderWidth is 0, so this must be set in addition to a custom border color. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a>
+ <br><br><b>defaults:</b><br><br>&ensp;#cccccc*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
@@ -37,9 +37,8 @@ color.
 
 	private String rearLength;
 /**
-The length of the dial's rear end, the part that extends out on the
-other side of the pivot. Relative to the dial's length.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a> <br><br><b>default:</b><br><br>&ensp;10%*/
+/** The length of the dial's rear end, the part that extends out on the other side of the pivot. Relative to the dial's length. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a>
+ <br><br><b>defaults:</b><br><br>&ensp;10%*/
 	public void setRearLength(String rearLength) {
 		this.rearLength = rearLength;
 		this.setChanged();
@@ -50,9 +49,8 @@ other side of the pivot. Relative to the dial's length.
 
 	private String baseLength;
 /**
-The length of the dial's base part, relative to the total radius
-or length of the dial.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a> <br><br><b>default:</b><br><br>&ensp;70%*/
+/** The length of the dial's base part, relative to the total radius or length of the dial. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a>
+ <br><br><b>defaults:</b><br><br>&ensp;70%*/
 	public void setBaseLength(String baseLength) {
 		this.baseLength = baseLength;
 		this.setChanged();
@@ -63,9 +61,8 @@ or length of the dial.
 
 	private String radius;
 /**
-The radius or length of the dial, in percentages relative to the
-radius of the gauge itself.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a> <br><br><b>default:</b><br><br>&ensp;80%*/
+/** The radius or length of the dial, in percentages relative to the radius of the gauge itself. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a>
+ <br><br><b>defaults:</b><br><br>&ensp;80%*/
 	public void setRadius(String radius) {
 		this.radius = radius;
 		this.setChanged();
@@ -76,8 +73,8 @@ radius of the gauge itself.
 
 	private Number borderWidth;
 /**
-The width of the gauge dial border in pixels.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a> <br><br><b>default:</b><br><br>&ensp;0*/
+/** The width of the gauge dial border in pixels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
 		this.setChanged();
@@ -88,8 +85,8 @@ The width of the gauge dial border in pixels.
 
 	private HIColor backgroundColor;
 /**
-The background or fill color of the gauge's dial.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a> <br><br><b>default:</b><br><br>&ensp;#000000*/
+/** The background or fill color of the gauge's dial. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a>
+ <br><br><b>defaults:</b><br><br>&ensp;#000000*/
 	public void setBackgroundColor(HIColor backgroundColor) {
 		this.backgroundColor = backgroundColor;
 		this.setChanged();
@@ -100,9 +97,8 @@ The background or fill color of the gauge's dial.
 
 	private Number topWidth;
 /**
-The width of the top of the dial, closest to the perimeter. The pivot
-narrows in from the base to the top.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a> <br><br><b>default:</b><br><br>&ensp;1*/
+/** The width of the top of the dial, closest to the perimeter. The pivot narrows in from the base to the top. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a>
+ <br><br><b>defaults:</b><br><br>&ensp;1*/
 	public void setTopWidth(Number topWidth) {
 		this.topWidth = topWidth;
 		this.setChanged();
@@ -113,9 +109,8 @@ narrows in from the base to the top.
 
 	private Number baseWidth;
 /**
-The pixel width of the base of the gauge dial. The base is the part
-closest to the pivot, defined by baseLength.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a> <br><br><b>default:</b><br><br>&ensp;3*/
+/** The pixel width of the base of the gauge dial. The base is the part closest to the pivot, defined by baseLength. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a>
+ <br><br><b>defaults:</b><br><br>&ensp;3*/
 	public void setBaseWidth(Number baseWidth) {
 		this.baseWidth = baseWidth;
 		this.setChanged();

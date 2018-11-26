@@ -18,13 +18,14 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIFilter extends Observable implements HIChartsJSONSerializable { 
 
 	private String operator;
 /**
-The operator to compare by. Can be one of >, <, >=, <=, ==,
-and ===.
- <br><br><b>accepted values:</b><br><br>&ensp;[">", "<", ">=", "<=", "==", "==="]*/
+/** The operator to compare by. Can be one of >, <, >=, <=, ==, and ===. <br><br><b>accepted values:</b><br><br>&ensp;[">", "<", ">=", "<=", "==", "==="]
+*/
 	public void setOperator(String operator) {
 		this.operator = operator;
 		this.setChanged();
@@ -35,10 +36,7 @@ and ===.
 
 	private String property;
 /**
-The point property to filter by. Point options are passed directly to
-properties, additionally there are y value, percentage and others
-listed under [Point](https://api.highcharts.com/class-reference/Highcharts.Point)
-members.
+/** The point property to filter by. Point options are passed directly to properties, additionally there are y value, percentage and others listed under [Point](https://api.highcharts.com/class-reference/Highcharts.Point) members. 
 */
 	public void setProperty(String property) {
 		this.property = property;
@@ -50,7 +48,7 @@ members.
 
 	private Object value;
 /**
-The value to compare against.
+/** The value to compare against. 
 */
 	public void setValue(Object value) {
 		this.value = value;

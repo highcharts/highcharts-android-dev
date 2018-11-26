@@ -18,12 +18,14 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIResetZoomButton extends Observable implements HIChartsJSONSerializable { 
 
 	private HIPosition position;
 /**
-The position of the button.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-position/">Above the plot area</a>*/
+/** The position of the button. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-position/">Above the plot area</a>
+*/
 	public void setPosition(HIPosition position) {
 		this.position = position;
 		this.position.addObserver(updateObserver);
@@ -35,12 +37,8 @@ The position of the button.
 
 	private HITheme theme;
 /**
-A collection of attributes for the button. The object takes SVG
-attributes like fill, stroke, stroke-width or r, the
-border radius. The theme also supports style, a collection of
-CSS properties for the text. Equivalent attributes for the hover
-state are given in theme.states.hover.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-theme/">Theming the button</a>*/
+/** A collection of attributes for the button. The object takes SVG attributes like fill, stroke, stroke-width or r, the border radius. The theme also supports style, a collection of CSS properties for the text. Equivalent attributes for the hover state are given in theme.states.hover. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-theme/">Theming the button</a>
+*/
 	public void setTheme(HITheme theme) {
 		this.theme = theme;
 		this.theme.addObserver(updateObserver);
@@ -52,9 +50,8 @@ state are given in theme.states.hover.
 
 	private String relativeTo;
 /**
-What frame the button should be placed related to. Can be either
-plot or chart
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-relativeto/">Relative to the chart</a> <br><br><b>accepted values:</b><br><br>&ensp;["plot", "chart"] <br><br><b>default:</b><br><br>&ensp;plot*/
+/** What frame the button should be placed related to. Can be either plot or chart <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-relativeto/">Relative to the chart</a> <br><br><b>accepted values:</b><br><br>&ensp;["plot", "chart"]
+ <br><br><b>defaults:</b><br><br>&ensp;plot*/
 	public void setRelativeTo(String relativeTo) {
 		this.relativeTo = relativeTo;
 		this.setChanged();

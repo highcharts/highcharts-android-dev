@@ -18,32 +18,14 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HICsv extends Observable implements HIChartsJSONSerializable { 
 
 	private HIFunction columnHeaderFormatter;
 /**
-Formatter callback for the column headers. Parameters are:
-- item - The series or axis object)
-- key -  The point key, for example y or z
-- keyLength - The amount of value keys for this item, for
-  example a range series has the keys low and high so the
-  key length is 2.
-
-If useMultiLevelHeaders is
-true, columnHeaderFormatter by default returns an object with
-columnTitle and topLevelColumnTitle for each key. Columns with
-the same topLevelColumnTitle have their titles merged into a
-single cell with colspan for table/Excel export.
-
-If useMultiLevelHeaders is false, or for CSV export, it returns
-the series name, followed by the key if there is more than one
-key.
-
-For the axis it returns the axis title or "Category" or
-"DateTime" by default.
-
-Return false to use Highcharts' proposed header.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table">Multiple table headers</a>*/
+/** Formatter callback for the column headers. Parameters are: - item - The series or axis object) - key - The point key, for example y or z - keyLength - The amount of value keys for this item, for  example a range series has the keys low and high so the  key length is 2. If useMultiLevelHeaders is true, columnHeaderFormatter by defaults returns an object with columnTitle and topLevelColumnTitle for each key. Columns with the same topLevelColumnTitle have their titles merged into a single cell with colspan for table/Excel export. If useMultiLevelHeaders is false, or for CSV export, it returns the series name, followed by the key if there is more than one key. For the axis it returns the axis title or "Category" or "DateTime" by defaults. Return false to use Highcharts' proposed header. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table">Multiple table headers</a>
+*/
 	public void setColumnHeaderFormatter(HIFunction columnHeaderFormatter) {
 		this.columnHeaderFormatter = columnHeaderFormatter;
 		this.setChanged();
@@ -54,9 +36,7 @@ Return false to use Highcharts' proposed header.
 
 	private String decimalPoint;
 /**
-Which decimal point to use for exported CSV. Defaults to the same
-as the browser locale, typically . (English) or , (German,
-French etc).
+/** Which decimal point to use for exported CSV. Defaults to the same as the browser locale, typically . (English) or , (German, French etc). 
 */
 	public void setDecimalPoint(String decimalPoint) {
 		this.decimalPoint = decimalPoint;
@@ -68,7 +48,7 @@ French etc).
 
 	private String lineDelimiter;
 /**
-The line delimiter in the exported data, defaults to a newline.
+/** The line delimiter in the exported data, defaultss to a newline. 
 */
 	public void setLineDelimiter(String lineDelimiter) {
 		this.lineDelimiter = lineDelimiter;
@@ -80,10 +60,7 @@ The line delimiter in the exported data, defaults to a newline.
 
 	private String itemDelimiter;
 /**
-The item delimiter in the exported data. Use ; for direct
-exporting to Excel. Defaults to a best guess based on the browser
-locale. If the locale _decimal point_ is ,, the itemDelimiter
-defaults to ;, otherwise the itemDelimiter defaults to ,.
+/** The item delimiter in the exported data. Use ; for direct exporting to Excel. Defaults to a best guess based on the browser locale. If the locale _decimal point_ is ,, the itemDelimiter defaultss to ;, otherwise the itemDelimiter defaultss to ,. 
 */
 	public void setItemDelimiter(String itemDelimiter) {
 		this.itemDelimiter = itemDelimiter;
@@ -95,8 +72,7 @@ defaults to ;, otherwise the itemDelimiter defaults to ,.
 
 	private String dateFormat;
 /**
-Which date format to use for exported dates on a datetime X axis.
-See Highcharts.dateFormat.
+/** Which date format to use for exported dates on a datetime X axis. See Highcharts.dateFormat. 
 */
 	public void setDateFormat(String dateFormat) {
 		this.dateFormat = dateFormat;

@@ -18,11 +18,13 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIRotation extends Observable implements HIChartsJSONSerializable { 
 
 	private Number to;
 /**
-The largest degree of rotation for a word.
+/** The largest degree of rotation for a word. 
 */
 	public void setTo(Number to) {
 		this.to = to;
@@ -34,7 +36,7 @@ The largest degree of rotation for a word.
 
 	private Number from;
 /**
-The smallest degree of rotation for a word.
+/** The smallest degree of rotation for a word. 
 */
 	public void setFrom(Number from) {
 		this.from = from;
@@ -46,8 +48,7 @@ The smallest degree of rotation for a word.
 
 	private Number orientations;
 /**
-The number of possible orientations for a word, within the range of
-rotation.from and rotation.to.
+/** The number of possible orientations for a word, within the range of rotation.from and rotation.to. 
 */
 	public void setOrientations(Number orientations) {
 		this.orientations = orientations;

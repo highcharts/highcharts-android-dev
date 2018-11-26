@@ -18,13 +18,14 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIKeyboardNavigation extends Observable implements HIChartsJSONSerializable { 
 
 	private Boolean enabled;
 /**
-Enable/disable keyboard navigation for the legend. Requires the Accessibility
-module.
- <br><br><b>default:</b><br><br>&ensp;true*/
+/** Enable/disable keyboard navigation for the legend. Requires the Accessibility module. 
+ <br><br><b>defaults:</b><br><br>&ensp;true*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -35,9 +36,8 @@ module.
 
 	private HIFocusBorder focusBorder;
 /**
-Options for the focus border drawn around elements while
-navigating through them.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/accessibility/custom-focus">Custom focus ring</a>*/
+/** Options for the focus border drawn around elements while navigating through them. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/accessibility/custom-focus">Custom focus ring</a>
+*/
 	public void setFocusBorder(HIFocusBorder focusBorder) {
 		this.focusBorder = focusBorder;
 		this.focusBorder.addObserver(updateObserver);
@@ -49,17 +49,8 @@ navigating through them.
 
 	private String mode;
 /**
-Set the keyboard navigation mode for the chart. Can be "normal"
-or "serialize". In normal mode, left/right arrow keys move
-between points in a series, while up/down arrow keys move between
-series. Up/down navigation acts intelligently to figure out which
-series makes sense to move to from any given point.
-
-In "serialize" mode, points are instead navigated as a single
-list. Left/right behaves as in "normal" mode. Up/down arrow keys
-will behave like left/right. This is useful for unifying
-navigation behavior with/without screen readers enabled.
- <br><br><b>accepted values:</b><br><br>&ensp;["normal", "serialize"] <br><br><b>default:</b><br><br>&ensp;normal*/
+/** Set the keyboard navigation mode for the chart. Can be "normal" or "serialize". In normal mode, left/right arrow keys move between points in a series, while up/down arrow keys move between series. Up/down navigation acts intelligently to figure out which series makes sense to move to from any given point. In "serialize" mode, points are instead navigated as a single list. Left/right behaves as in "normal" mode. Up/down arrow keys will behave like left/right. This is useful for unifying navigation behavior with/without screen readers enabled. <br><br><b>accepted values:</b><br><br>&ensp;["normal", "serialize"]
+ <br><br><b>defaults:</b><br><br>&ensp;normal*/
 	public void setMode(String mode) {
 		this.mode = mode;
 		this.setChanged();
@@ -70,9 +61,8 @@ navigation behavior with/without screen readers enabled.
 
 	private Boolean skipNullPoints;
 /**
-Skip null points when navigating through points with the
-keyboard.
- <br><br><b>default:</b><br><br>&ensp;true*/
+/** Skip null points when navigating through points with the keyboard. 
+ <br><br><b>defaults:</b><br><br>&ensp;true*/
 	public void setSkipNullPoints(Boolean skipNullPoints) {
 		this.skipNullPoints = skipNullPoints;
 		this.setChanged();

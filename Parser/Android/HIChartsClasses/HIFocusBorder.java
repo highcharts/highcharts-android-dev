@@ -18,12 +18,14 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIFocusBorder extends Observable implements HIChartsJSONSerializable { 
 
 	private Number margin;
 /**
-Focus border margin around the elements.
- <br><br><b>default:</b><br><br>&ensp;2*/
+/** Focus border margin around the elements. 
+ <br><br><b>defaults:</b><br><br>&ensp;2*/
 	public void setMargin(Number margin) {
 		this.margin = margin;
 		this.setChanged();
@@ -34,13 +36,7 @@ Focus border margin around the elements.
 
 	private HIStyle style;
 /**
-Style options for the focus border drawn around elements
-while navigating through them. Note that some browsers in
-addition draw their own borders for focused elements. These
-automatic borders can not be styled by Highcharts.
-
-In styled mode, the border is given the
-.highcharts-focus-border class.
+/** Style options for the focus border drawn around elements while navigating through them. Note that some browsers in addition draw their own borders for focused elements. These automatic borders can not be styled by Highcharts. In styled mode, the border is given the .highcharts-focus-border class. 
 */
 	public void setStyle(HIStyle style) {
 		this.style = style;
@@ -53,8 +49,8 @@ In styled mode, the border is given the
 
 	private Boolean enabled;
 /**
-Enable/disable focus border for chart.
- <br><br><b>default:</b><br><br>&ensp;true*/
+/** Enable/disable focus border for chart. 
+ <br><br><b>defaults:</b><br><br>&ensp;true*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -65,8 +61,8 @@ Enable/disable focus border for chart.
 
 	private Boolean hideBrowserFocusOutline;
 /**
-Hide the browser's default focus indicator.
- <br><br><b>default:</b><br><br>&ensp;true*/
+/** Hide the browser's defaults focus indicator. 
+ <br><br><b>defaults:</b><br><br>&ensp;true*/
 	public void setHideBrowserFocusOutline(Boolean hideBrowserFocusOutline) {
 		this.hideBrowserFocusOutline = hideBrowserFocusOutline;
 		this.setChanged();

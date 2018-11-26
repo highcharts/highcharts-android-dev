@@ -19,11 +19,13 @@ import com.highsoft.highcharts.Common.HIColor;
 
 
 
+
+
 public class HILevels extends Observable implements HIChartsJSONSerializable { 
 
 	private HIColor borderColor;
 /**
-Can set a borderColor on all points which lies on the same level.
+/** Can set a borderColor on all points which lies on the same level. 
 */
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
@@ -35,7 +37,7 @@ Can set a borderColor on all points which lies on the same level.
 
 	private HIColorVariation colorVariation;
 /**
-Can set a colorVariation on all points which lies on the same level.
+/** Can set a colorVariation on all points which lies on the same level. 
 */
 	public void setColorVariation(HIColorVariation colorVariation) {
 		this.colorVariation = colorVariation;
@@ -48,7 +50,7 @@ Can set a colorVariation on all points which lies on the same level.
 
 	private Object levelSize;
 /**
-Can set a levelSize on all points which lies on the same level.
+/** Can set a levelSize on all points which lies on the same level. 
 */
 	public void setLevelSize(Object levelSize) {
 		this.levelSize = levelSize;
@@ -60,7 +62,7 @@ Can set a levelSize on all points which lies on the same level.
 
 	private String borderDashStyle;
 /**
-Can set a borderDashStyle on all points which lies on the same level.
+/** Can set a borderDashStyle on all points which lies on the same level. 
 */
 	public void setBorderDashStyle(String borderDashStyle) {
 		this.borderDashStyle = borderDashStyle;
@@ -72,7 +74,7 @@ Can set a borderDashStyle on all points which lies on the same level.
 
 	private HIColor color;
 /**
-Can set a color on all points which lies on the same level.
+/** Can set a color on all points which lies on the same level. 
 */
 	public void setColor(HIColor color) {
 		this.color = color;
@@ -84,7 +86,7 @@ Can set a color on all points which lies on the same level.
 
 	private Object dataLabels;
 /**
-Can set a dataLabels on all points which lies on the same level.
+/** Can set a dataLabels on all points which lies on the same level. 
 */
 	public void setDataLabels(Object dataLabels) {
 		this.dataLabels = dataLabels;
@@ -96,7 +98,7 @@ Can set a dataLabels on all points which lies on the same level.
 
 	private String rotationMode;
 /**
-Can set a rotationMode on all points which lies on the same level.
+/** Can set a rotationMode on all points which lies on the same level. 
 */
 	public void setRotationMode(String rotationMode) {
 		this.rotationMode = rotationMode;
@@ -108,7 +110,7 @@ Can set a rotationMode on all points which lies on the same level.
 
 	private Number borderWidth;
 /**
-Can set a borderWidth on all points which lies on the same level.
+/** Can set a borderWidth on all points which lies on the same level. 
 */
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
@@ -120,7 +122,7 @@ Can set a borderWidth on all points which lies on the same level.
 
 	private Number rotation;
 /**
-Can set a rotation on all points which lies on the same level.
+/** Can set a rotation on all points which lies on the same level. 
 */
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;
@@ -132,9 +134,8 @@ Can set a rotation on all points which lies on the same level.
 
 	private Number level;
 /**
-Decides which level takes effect from the options set in the levels
-object.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-levels/">Styling of both levels</a>*/
+/** Decides which level takes effect from the options set in the levels object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-levels/">Styling of both levels</a>
+*/
 	public void setLevel(Number level) {
 		this.level = level;
 		this.setChanged();
@@ -145,8 +146,8 @@ object.
 
 	private String layoutAlgorithm;
 /**
-Can set the layoutAlgorithm option on a specific level.
- <br><br><b>accepted values:</b><br><br>&ensp;["sliceAndDice", "stripes", "squarified", "strip"]*/
+/** Can set the layoutAlgorithm option on a specific level. <br><br><b>accepted values:</b><br><br>&ensp;["sliceAndDice", "stripes", "squarified", "strip"]
+*/
 	public void setLayoutAlgorithm(String layoutAlgorithm) {
 		this.layoutAlgorithm = layoutAlgorithm;
 		this.setChanged();
@@ -157,8 +158,8 @@ Can set the layoutAlgorithm option on a specific level.
 
 	private String layoutStartingDirection;
 /**
-Can set the layoutStartingDirection option on a specific level.
- <br><br><b>accepted values:</b><br><br>&ensp;["vertical", "horizontal"]*/
+/** Can set the layoutStartingDirection option on a specific level. <br><br><b>accepted values:</b><br><br>&ensp;["vertical", "horizontal"]
+*/
 	public void setLayoutStartingDirection(String layoutStartingDirection) {
 		this.layoutStartingDirection = layoutStartingDirection;
 		this.setChanged();

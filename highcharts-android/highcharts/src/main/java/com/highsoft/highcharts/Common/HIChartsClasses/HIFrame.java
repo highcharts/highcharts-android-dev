@@ -18,11 +18,13 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIFrame extends Observable implements HIChartsJSONSerializable { 
 
 	private HIRight right;
 /**
-The right of the frame around a 3D chart.
+/** The right of the frame around a 3D chart. 
 */
 	public void setRight(HIRight right) {
 		this.right = right;
@@ -35,7 +37,7 @@ The right of the frame around a 3D chart.
 
 	private HIBottom bottom;
 /**
-The bottom of the frame around a 3D chart.
+/** The bottom of the frame around a 3D chart. 
 */
 	public void setBottom(HIBottom bottom) {
 		this.bottom = bottom;
@@ -48,7 +50,7 @@ The bottom of the frame around a 3D chart.
 
 	private HITop top;
 /**
-The top of the frame around a 3D chart.
+/** The top of the frame around a 3D chart. 
 */
 	public void setTop(HITop top) {
 		this.top = top;
@@ -61,7 +63,7 @@ The top of the frame around a 3D chart.
 
 	private HIBack back;
 /**
-The back side of the frame around a 3D chart.
+/** The back side of the frame around a 3D chart. 
 */
 	public void setBack(HIBack back) {
 		this.back = back;
@@ -74,7 +76,7 @@ The back side of the frame around a 3D chart.
 
 	private String visible;
 /**
-Whether the frames are visible.
+/** Whether the frames are visible. 
 */
 	public void setVisible(String visible) {
 		this.visible = visible;
@@ -86,7 +88,7 @@ Whether the frames are visible.
 
 	private HIFront front;
 /**
-The front of the frame around a 3D chart.
+/** The front of the frame around a 3D chart. 
 */
 	public void setFront(HIFront front) {
 		this.front = front;
@@ -99,7 +101,7 @@ The front of the frame around a 3D chart.
 
 	private Number size;
 /**
-General pixel thickness for the frame faces.
+/** General pixel thickness for the frame faces. 
 */
 	public void setSize(Number size) {
 		this.size = size;
@@ -111,10 +113,7 @@ General pixel thickness for the frame faces.
 
 	private HISide side;
 /**
-Note: As of v5.0.12, frame.left or frame.right should be used
-instead.
-
-The side for the frame around a 3D chart.
+/** Note: As of v5.0.12, frame.left or frame.right should be used instead. The side for the frame around a 3D chart. 
 */
 	public void setSide(HISide side) {
 		this.side = side;
@@ -127,7 +126,7 @@ The side for the frame around a 3D chart.
 
 	private HILeft left;
 /**
-The left side of the frame around a 3D chart.
+/** The left side of the frame around a 3D chart. 
 */
 	public void setLeft(HILeft left) {
 		this.left = left;

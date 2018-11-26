@@ -18,25 +18,26 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HICredits extends Observable implements HIChartsJSONSerializable { 
 
-	private HIStyle style;
+	private HICSSObject style;
 /**
-CSS styles for the credits label.
- <br><br><b>default:</b><br><br>&ensp;{"cursor": "pointer", "color": "#999999", "fontSize": "10px"}*/
-	public void setStyle(HIStyle style) {
+/** CSS styles for the credits label. 
+ <br><br><b>defaults:</b><br><br>&ensp;{"cursor": "pointer", "color": "#999999", "fontSize": "10px"}*/
+	public void setStyle(HICSSObject style) {
 		this.style = style;
-		this.style.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIStyle getStyle(){ return style; }
+	public HICSSObject getStyle(){ return style; }
 
 	private String text;
 /**
-The text for the credits label.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/href/">Custom URL and text</a> <br><br><b>default:</b><br><br>&ensp;Highcharts.com*/
+/** The text for the credits label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/href/">Custom URL and text</a>
+*/
 	public void setText(String text) {
 		this.text = text;
 		this.setChanged();
@@ -47,8 +48,8 @@ The text for the credits label.
 
 	private Boolean enabled;
 /**
-Whether to show the credits text.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/enabled-false/">Credits disabled</a>*/
+/** Whether to show the credits text. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/enabled-false/">Credits disabled</a>
+*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -59,8 +60,8 @@ Whether to show the credits text.
 
 	private String href;
 /**
-The URL for the credits label.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/href/">Custom URL and text</a>*/
+/** The URL for the credits label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/href/">Custom URL and text</a>
+*/
 	public void setHref(String href) {
 		this.href = href;
 		this.setChanged();
@@ -71,8 +72,8 @@ The URL for the credits label.
 
 	private HIPosition position;
 /**
-Position configuration for the credits label.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/position-left/">Left aligned</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/position-left/">Left aligned</a>*/
+/** Position configuration for the credits label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/position-left/">Left aligned</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/position-left/">Left aligned</a>
+*/
 	public void setPosition(HIPosition position) {
 		this.position = position;
 		this.position.addObserver(updateObserver);
@@ -102,7 +103,7 @@ Position configuration for the credits label.
 
 		Map<String, Object> params = new HashMap<>();
 		if (this.style != null) {
-			params.put("style", this.style.getParams());
+			params.put("style", this.style);
 		}
 		if (this.text != null) {
 			params.put("text", this.text);

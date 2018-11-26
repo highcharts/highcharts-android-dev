@@ -18,12 +18,13 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HITheme extends Observable implements HIChartsJSONSerializable { 
 
 	private Number zIndex;
 /**
-The Z index for the reset zoom button. The default value
-places it below the tooltip that has Z index 7.
+/** The Z index for the reset zoom button. The defaults value places it below the tooltip that has Z index 7. 
 */
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
@@ -53,7 +54,7 @@ places it below the tooltip that has Z index 7.
 
 	private String fill;
 /**
-The default fill exists only to capture hover events.
+/** The defaults fill exists only to capture hover events. 
 */
 	public void setFill(String fill) {
 		this.fill = fill;

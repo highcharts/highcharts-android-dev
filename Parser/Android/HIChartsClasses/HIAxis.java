@@ -18,6 +18,8 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIAxis extends Observable implements HIChartsJSONSerializable { 
 
 	private String xAxisDescriptionSingular;

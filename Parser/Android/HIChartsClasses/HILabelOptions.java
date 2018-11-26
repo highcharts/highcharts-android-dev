@@ -19,14 +19,14 @@ import com.highsoft.highcharts.Common.HIColor;
 
 
 
+
+
 public class HILabelOptions extends Observable implements HIChartsJSONSerializable { 
 
 	private Boolean allowOverlap;
 /**
-Whether to allow the annotation's labels to overlap.
-To make the labels less sensitive for overlapping,
-the can be set to 0.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/tooltip-like/">Hide overlapping labels</a>*/
+/** Whether to allow the annotation's labels to overlap. To make the labels less sensitive for overlapping, the can be set to 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/tooltip-like/">Hide overlapping labels</a>
+*/
 	public void setAllowOverlap(Boolean allowOverlap) {
 		this.allowOverlap = allowOverlap;
 		this.setChanged();
@@ -37,8 +37,8 @@ the can be set to 0.
 
 	private HIColor borderColor;
 /**
-The border color for the annotation's label.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>*/
+/** The border color for the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
+*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
@@ -49,8 +49,8 @@ The border color for the annotation's label.
 
 	private HIStyle style;
 /**
-Styles for the annotation's label.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>*/
+/** Styles for the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
+*/
 	public void setStyle(HIStyle style) {
 		this.style = style;
 		this.style.addObserver(updateObserver);
@@ -62,9 +62,8 @@ Styles for the annotation's label.
 
 	private Number padding;
 /**
-When either the borderWidth or the backgroundColor is set,
-this    is the padding within the box.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>*/
+/** When either the borderWidth or the backgroundColor is set, this  is the padding within the box. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
+*/
 	public void setPadding(Number padding) {
 		this.padding = padding;
 		this.setChanged();
@@ -75,8 +74,8 @@ this    is the padding within the box.
 
 	private String verticalAlign;
 /**
-The vertical alignment of the annotation's label.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]*/
+/** The vertical alignment of the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]
+*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
 		this.setChanged();
@@ -87,8 +86,8 @@ The vertical alignment of the annotation's label.
 
 	private Number distance;
 /**
-The label's pixel distance from the point.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a> <br><br><b>default:</b><br><br>&ensp;undefined*/
+/** The label's pixel distance from the point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined*/
 	public void setDistance(Number distance) {
 		this.distance = distance;
 		this.setChanged();
@@ -99,8 +98,8 @@ The label's pixel distance from the point.
 
 	private Number borderRadius;
 /**
-The border radius in pixels for the annotaiton's label.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>*/
+/** The border radius in pixels for the annotaiton's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
+*/
 	public void setBorderRadius(Number borderRadius) {
 		this.borderRadius = borderRadius;
 		this.setChanged();
@@ -111,8 +110,8 @@ The border radius in pixels for the annotaiton's label.
 
 	private String text;
 /**
-Alias for the format option.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-text/">Set labels text</a> <br><br><b>default:</b><br><br>&ensp;undefined*/
+/** Alias for the format option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-text/">Set labels text</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined*/
 	public void setText(String text) {
 		this.text = text;
 		this.setChanged();
@@ -123,9 +122,8 @@ Alias for the format option.
 
 	private String align;
 /**
-The alignment of the annotation's label. If right,
-the right side of the label should be touching the point.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a> <br><br><b>accepted values:</b><br><br>&ensp;["left", "center", "right"]*/
+/** The alignment of the annotation's label. If right, the right side of the label should be touching the point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a> <br><br><b>accepted values:</b><br><br>&ensp;["left", "center", "right"]
+*/
 	public void setAlign(String align) {
 		this.align = align;
 		this.setChanged();
@@ -136,8 +134,8 @@ the right side of the label should be touching the point.
 
 	private String format;
 /**
-A [format](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) string for the data label.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-text/">Set labels text</a> <br><br><b>default:</b><br><br>&ensp;undefined*/
+/** A [format](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) string for the data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-text/">Set labels text</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined*/
 	public void setFormat(String format) {
 		this.format = format;
 		this.setChanged();
@@ -148,9 +146,8 @@ A [format](https://www.highcharts.com/docs/chart-concepts/labels-and-string-form
 
 	private Boolean crop;
 /**
-Whether to hide the annotation's label that is outside the plot
-area.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-crop-overflow/">Crop or justify labels</a>*/
+/** Whether to hide the annotation's label that is outside the plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-crop-overflow/">Crop or justify labels</a>
+*/
 	public void setCrop(Boolean crop) {
 		this.crop = crop;
 		this.setChanged();
@@ -161,9 +158,8 @@ area.
 
 	private Boolean useHTML;
 /**
-Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html)
-to render the annotation's label.
- <br><br><b>default:</b><br><br>&ensp;false*/
+/** Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the annotation's label. 
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;
 		this.setChanged();
@@ -174,8 +170,8 @@ to render the annotation's label.
 
 	private String className;
 /**
-A class name for styling by CSS.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/annotations">Styled mode annotations</a>*/
+/** A class name for styling by CSS. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/annotations">Styled mode annotations</a>
+*/
 	public void setClassName(String className) {
 		this.className = className;
 		this.setChanged();
@@ -186,9 +182,8 @@ A class name for styling by CSS.
 
 	private String shape;
 /**
-The name of a symbol to use for the border around the label.
-Symbols are predefined functions on the Renderer object.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shapes/">Available shapes for labels</a>*/
+/** The name of a symbol to use for the border around the label. Symbols are predefined functions on the Renderer object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shapes/">Available shapes for labels</a>
+*/
 	public void setShape(String shape) {
 		this.shape = shape;
 		this.setChanged();
@@ -199,8 +194,8 @@ Symbols are predefined functions on the Renderer object.
 
 	private Number borderWidth;
 /**
-The border width in pixels for the annotation's label
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>*/
+/** The border width in pixels for the annotation's label <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
+*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
 		this.setChanged();
@@ -211,8 +206,8 @@ The border width in pixels for the annotation's label
 
 	private HIColor backgroundColor;
 /**
-The background color or gradient for the annotation's label.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>*/
+/** The background color or gradient for the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
+*/
 	public void setBackgroundColor(HIColor backgroundColor) {
 		this.backgroundColor = backgroundColor;
 		this.setChanged();
@@ -223,10 +218,8 @@ The background color or gradient for the annotation's label.
 
 	private Number y;
 /**
-The y position offset of the label relative to the point.
-Note that if a distance is defined, the distance takes
-precedence over x and y options.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a>*/
+/** The y position offset of the label relative to the point. Note that if a distance is defined, the distance takes precedence over x and y options. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a>
+*/
 	public void setY(Number y) {
 		this.y = y;
 		this.setChanged();
@@ -237,10 +230,8 @@ precedence over x and y options.
 
 	private Number x;
 /**
-The x position offset of the label relative to the point.
-Note that if a distance is defined, the distance takes
-precedence over x and y options.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a>*/
+/** The x position offset of the label relative to the point. Note that if a distance is defined, the distance takes precedence over x and y options. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a>
+*/
 	public void setX(Number x) {
 		this.x = x;
 		this.setChanged();
@@ -251,10 +242,8 @@ precedence over x and y options.
 
 	private String overflow;
 /**
-How to handle the annotation's label that flow outside the plot
-area. The justify option aligns the label inside the plot area.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-crop-overflow/">Crop or justify labels
-*</a> <br><br><b>accepted values:</b><br><br>&ensp;["none", "justify"]*/
+/** How to handle the annotation's label that flow outside the plot area. The justify option aligns the label inside the plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-crop-overflow/">Crop or justify labels *</a> <br><br><b>accepted values:</b><br><br>&ensp;["allow", "justify"]
+*/
 	public void setOverflow(String overflow) {
 		this.overflow = overflow;
 		this.setChanged();
@@ -265,11 +254,8 @@ area. The justify option aligns the label inside the plot area.
 
 	private HIFunction formatter;
 /**
-Callback JavaScript function to format the annotation's label.
-Note that if a format or text are defined, the format or text
-take precedence and the formatter is ignored. This refers to a
-point object.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-text/">Set labels text</a> <br><br><b>default:</b><br><br>&ensp;function () {
+/** Callback JavaScript function to format the annotation's label. Note that if a format or text are defined, the format or text take precedence and the formatter is ignored. This refers to a point object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-text/">Set labels text</a>
+ <br><br><b>defaults:</b><br><br>&ensp;function () {
     return defined(this.y) ? this.y : 'Annotation label';
 }*/
 	public void setFormatter(HIFunction formatter) {
@@ -282,9 +268,8 @@ point object.
 
 	private Object /* Boolean|Object */ shadow;
 /**
-The shadow of the box. The shadow can be an object configuration
-containing color, offsetX, offsetY, opacity and width.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>*/
+/** The shadow of the box. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
+*/
 	public void setShadow(Object /* Boolean|Object */ shadow) {
 		this.shadow = shadow;
 		this.setChanged();

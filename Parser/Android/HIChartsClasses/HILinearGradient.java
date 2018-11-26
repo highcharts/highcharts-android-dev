@@ -18,16 +18,9 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HILinearGradient extends Observable implements HIChartsJSONSerializable { 
-
-	private Number x2;
-	public void setX2(Number x2) {
-		this.x2 = x2;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getX2(){ return x2; }
 
 	private Number y1;
 	public void setY1(Number y1) {
@@ -37,6 +30,15 @@ public class HILinearGradient extends Observable implements HIChartsJSONSerializ
 	}
 
 	public Number getY1(){ return y1; }
+
+	private Number x2;
+	public void setX2(Number x2) {
+		this.x2 = x2;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getX2(){ return x2; }
 
 	private Number x1;
 	public void setX1(Number x1) {
@@ -75,11 +77,11 @@ public class HILinearGradient extends Observable implements HIChartsJSONSerializ
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.x2 != null) {
-			params.put("x2", this.x2);
-		}
 		if (this.y1 != null) {
 			params.put("y1", this.y1);
+		}
+		if (this.x2 != null) {
+			params.put("x2", this.x2);
 		}
 		if (this.x1 != null) {
 			params.put("x1", this.x1);

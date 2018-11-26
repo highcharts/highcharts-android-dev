@@ -18,6 +18,8 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HISummary extends Observable implements HIChartsJSONSerializable { 
 
 	private String pieCombination;
@@ -182,14 +184,14 @@ public class HISummary extends Observable implements HIChartsJSONSerializable {
 
 	public String getMapCombination(){ return mapCombination; }
 
-	private String default;
-	public void setDefault(String default) {
-		this.default = default;
+	private String defaults;
+	public void setDefault(String defaults) {
+		this.defaults = defaults;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getDefault(){ return default; }
+	public String getDefault(){ return defaults; }
 
 	private String mapbubbleCombination;
 	public void setMapbubbleCombination(String mapbubbleCombination) {
@@ -200,14 +202,14 @@ public class HISummary extends Observable implements HIChartsJSONSerializable {
 
 	public String getMapbubbleCombination(){ return mapbubbleCombination; }
 
-	private String defaultCombination;
-	public void setDefaultCombination(String defaultCombination) {
-		this.defaultCombination = defaultCombination;
+	private String defaultsCombination;
+	public void setDefaultCombination(String defaultsCombination) {
+		this.defaultsCombination = defaultsCombination;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getDefaultCombination(){ return defaultCombination; }
+	public String getDefaultCombination(){ return defaultsCombination; }
 
 	private String column;
 	public void setColumn(String column) {
@@ -309,14 +311,14 @@ public class HISummary extends Observable implements HIChartsJSONSerializable {
 		if (this.mapCombination != null) {
 			params.put("mapCombination", this.mapCombination);
 		}
-		if (this.default != null) {
-			params.put("default", this.default);
+		if (this.defaults != null) {
+			params.put("default", this.defaults);
 		}
 		if (this.mapbubbleCombination != null) {
 			params.put("mapbubbleCombination", this.mapbubbleCombination);
 		}
-		if (this.defaultCombination != null) {
-			params.put("defaultCombination", this.defaultCombination);
+		if (this.defaultsCombination != null) {
+			params.put("defaultsCombination", this.defaultsCombination);
 		}
 		if (this.column != null) {
 			params.put("column", this.column);

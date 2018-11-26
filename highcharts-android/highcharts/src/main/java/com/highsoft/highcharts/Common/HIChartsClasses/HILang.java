@@ -18,11 +18,13 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HILang extends Observable implements HIChartsJSONSerializable { 
 
 	private String downloadCSV;
 /**
-Export-data module only. The text for the menu item.
+/** Export-data module only. The text for the menu item. 
 */
 	public void setDownloadCSV(String downloadCSV) {
 		this.downloadCSV = downloadCSV;
@@ -34,7 +36,7 @@ Export-data module only. The text for the menu item.
 
 	private String downloadXLS;
 /**
-Export-data module only. The text for the menu item.
+/** Export-data module only. The text for the menu item. 
 */
 	public void setDownloadXLS(String downloadXLS) {
 		this.downloadXLS = downloadXLS;
@@ -46,8 +48,8 @@ Export-data module only. The text for the menu item.
 
 	private String downloadPNG;
 /**
-Exporting module only. The text for the PNG download menu item.
- <br><br><b>default:</b><br><br>&ensp;Download PNG image*/
+/** Exporting module only. The text for the PNG download menu item. 
+ <br><br><b>defaults:</b><br><br>&ensp;Download PNG image*/
 	public void setDownloadPNG(String downloadPNG) {
 		this.downloadPNG = downloadPNG;
 		this.setChanged();
@@ -58,19 +60,7 @@ Exporting module only. The text for the PNG download menu item.
 
 	private HIAccessibility accessibility;
 /**
-Configure the accessibility strings in the chart. Requires the
-[accessibility module](//code.highcharts.com/modules/accessibility.
-js) to be loaded. For a description of the module and information
-on its features, see [Highcharts Accessibility](http://www.highcharts.
-com/docs/chart-concepts/accessibility).
-
-For more dynamic control over the accessibility functionality, see
-[accessibility.pointDescriptionFormatter](
-accessibility.pointDescriptionFormatter),
-[accessibility.seriesDescriptionFormatter](
-accessibility.seriesDescriptionFormatter), and
-[accessibility.screenReaderSectionFormatter](
-accessibility.screenReaderSectionFormatter).
+/** Configure the accessibility strings in the chart. Requires the [accessibility module](https://code.highcharts.com/modules/accessibility.js) to be loaded. For a description of the module and information on its features, see [Highcharts Accessibility](http://www.highcharts.com/docs/chart-concepts/accessibility). For more dynamic control over the accessibility functionality, see `accessibility.pointDescriptionFormatter`, `accessibility.seriesDescriptionFormatter`, and `accessibility.screenReaderSectionFormatter`. 
 */
 	public void setAccessibility(HIAccessibility accessibility) {
 		this.accessibility = accessibility;
@@ -83,9 +73,8 @@ accessibility.screenReaderSectionFormatter).
 
 	private ArrayList<String> shortWeekdays;
 /**
-Short week days, starting Sunday. If not specified, Highcharts uses
-the first three letters of the lang.weekdays option.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/shortweekdays/">Finnish two-letter abbreviations</a>*/
+/** Short week days, starting Sunday. If not specified, Highcharts uses the first three letters of the lang.weekdays option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/shortweekdays/">Finnish two-letter abbreviations</a>
+*/
 	public void setShortWeekdays(ArrayList<String> shortWeekdays) {
 		this.shortWeekdays = shortWeekdays;
 		this.setChanged();
@@ -96,9 +85,8 @@ the first three letters of the lang.weekdays option.
 
 	private String noData;
 /**
-The text to display when the chart contains no data. Requires the
-no-data module, see noData.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line">No-data text</a> <br><br><b>default:</b><br><br>&ensp;No data to display*/
+/** The text to display when the chart contains no data. Requires the no-data module, see noData. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line">No-data text</a>
+ <br><br><b>defaults:</b><br><br>&ensp;No data to display*/
 	public void setNoData(String noData) {
 		this.noData = noData;
 		this.setChanged();
@@ -109,9 +97,8 @@ no-data module, see noData.
 
 	private String loading;
 /**
-The loading text that appears when the chart is set into the loading
-state following a call to chart.showLoading.
- <br><br><b>default:</b><br><br>&ensp;Loading...*/
+/** The loading text that appears when the chart is set into the loading state following a call to chart.showLoading. 
+*/
 	public void setLoading(String loading) {
 		this.loading = loading;
 		this.setChanged();
@@ -122,11 +109,8 @@ state following a call to chart.showLoading.
 
 	private ArrayList<String> numericSymbols;
 /**
-[Metric prefixes](http://en.wikipedia.org/wiki/Metric_prefix) used
-to shorten high numbers in axis labels. Replacing any of the
-positions with null causes the full number to be written. Setting
-numericSymbols to null disables shortening altogether.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbols/">Replacing the symbols with text</a> <br><br><b>default:</b><br><br>&ensp;["k", "M", "G", "T", "P", "E"]*/
+/** [Metric prefixes](http://en.wikipedia.org/wiki/Metric_prefix) used to shorten high numbers in axis labels. Replacing any of the positions with null causes the full number to be written. Setting numericSymbols to null disables shortening altogether. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbols/">Replacing the symbols with text</a>
+ <br><br><b>defaults:</b><br><br>&ensp;["k", "M", "G", "T", "P", "E"]*/
 	public void setNumericSymbols(ArrayList<String> numericSymbols) {
 		this.numericSymbols = numericSymbols;
 		this.setChanged();
@@ -135,24 +119,22 @@ numericSymbols to null disables shortening altogether.
 
 	public ArrayList<String> getNumericSymbols(){ return numericSymbols; }
 
-	private String printChart;
+	private String downloadSVG;
 /**
-Exporting module only. The text for the menu item to print the chart.
- <br><br><b>default:</b><br><br>&ensp;Print chart*/
-	public void setPrintChart(String printChart) {
-		this.printChart = printChart;
+/** Exporting module only. The text for the SVG download menu item. 
+ <br><br><b>defaults:</b><br><br>&ensp;Download SVG vector image*/
+	public void setDownloadSVG(String downloadSVG) {
+		this.downloadSVG = downloadSVG;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getPrintChart(){ return printChart; }
+	public String getDownloadSVG(){ return downloadSVG; }
 
 	private Number numericSymbolMagnitude;
 /**
-The magnitude of numericSymbols replacements.
-Use 10000 for Japanese, Korean and various Chinese locales, which
-use symbols for 10^4, 10^8 and 10^12.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbolmagnitude/">10000 magnitude for Japanese</a> <br><br><b>default:</b><br><br>&ensp;1000*/
+/** The magnitude of numericSymbols replacements. Use 10000 for Japanese, Korean and various Chinese locales, which use symbols for 10^4, 10^8 and 10^12. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbolmagnitude/">10000 magnitude for Japanese</a>
+ <br><br><b>defaults:</b><br><br>&ensp;1000*/
 	public void setNumericSymbolMagnitude(Number numericSymbolMagnitude) {
 		this.numericSymbolMagnitude = numericSymbolMagnitude;
 		this.setChanged();
@@ -163,9 +145,9 @@ use symbols for 10^4, 10^8 and 10^12.
 
 	private ArrayList<String> weekdays;
 /**
-An array containing the weekday names.
- <br><br><b>default:</b><br><br>&ensp;["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
-            "Friday", "Saturday"]*/
+/** An array containing the weekday names. 
+ <br><br><b>defaults:</b><br><br>&ensp;["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
+         "Friday", "Saturday"]*/
 	public void setWeekdays(ArrayList<String> weekdays) {
 		this.weekdays = weekdays;
 		this.setChanged();
@@ -174,24 +156,22 @@ An array containing the weekday names.
 
 	public ArrayList<String> getWeekdays(){ return weekdays; }
 
-	private String downloadSVG;
+	private String printChart;
 /**
-Exporting module only. The text for the SVG download menu item.
- <br><br><b>default:</b><br><br>&ensp;Download SVG vector image*/
-	public void setDownloadSVG(String downloadSVG) {
-		this.downloadSVG = downloadSVG;
+/** Exporting module only. The text for the menu item to print the chart. 
+ <br><br><b>defaults:</b><br><br>&ensp;Print chart*/
+	public void setPrintChart(String printChart) {
+		this.printChart = printChart;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getDownloadSVG(){ return downloadSVG; }
+	public String getPrintChart(){ return printChart; }
 
 	private String drillUpText;
 /**
-The text for the button that appears when drilling down, linking
-back to the parent series. The parent series' name is inserted for
-{series.name}.
- <br><br><b>default:</b><br><br>&ensp;Back to {series.name}*/
+/** The text for the button that appears when drilling down, linking back to the parent series. The parent series' name is inserted for {series.name}. 
+ <br><br><b>defaults:</b><br><br>&ensp;Back to {series.name}*/
 	public void setDrillUpText(String drillUpText) {
 		this.drillUpText = drillUpText;
 		this.setChanged();
@@ -202,7 +182,7 @@ back to the parent series. The parent series' name is inserted for
 
 	private String viewData;
 /**
-Export-data module only. The text for the menu item.
+/** Export-data module only. The text for the menu item. 
 */
 	public void setViewData(String viewData) {
 		this.viewData = viewData;
@@ -214,9 +194,8 @@ Export-data module only. The text for the menu item.
 
 	private String contextButtonTitle;
 /**
-Exporting module menu. The tooltip title for the context menu holding
-print and export menu items.
- <br><br><b>default:</b><br><br>&ensp;Chart context menu*/
+/** Exporting module menu. The tooltip title for the context menu holding print and export menu items. 
+ <br><br><b>defaults:</b><br><br>&ensp;Chart context menu*/
 	public void setContextButtonTitle(String contextButtonTitle) {
 		this.contextButtonTitle = contextButtonTitle;
 		this.setChanged();
@@ -227,8 +206,7 @@ print and export menu items.
 
 	private String invalidDate;
 /**
-What to show in a date field for invalid dates. Defaults to an empty
-string.
+/** What to show in a date field for invalid dates. Defaults to an empty string. 
 */
 	public void setInvalidDate(String invalidDate) {
 		this.invalidDate = invalidDate;
@@ -240,8 +218,8 @@ string.
 
 	private String resetZoom;
 /**
-The text for the label appearing when a chart is zoomed.
- <br><br><b>default:</b><br><br>&ensp;Reset zoom*/
+/** The text for the label appearing when a chart is zoomed. 
+*/
 	public void setResetZoom(String resetZoom) {
 		this.resetZoom = resetZoom;
 		this.setChanged();
@@ -252,8 +230,8 @@ The text for the label appearing when a chart is zoomed.
 
 	private String downloadPDF;
 /**
-Exporting module only. The text for the PDF download menu item.
- <br><br><b>default:</b><br><br>&ensp;Download PDF document*/
+/** Exporting module only. The text for the PDF download menu item. 
+ <br><br><b>defaults:</b><br><br>&ensp;Download PDF document*/
 	public void setDownloadPDF(String downloadPDF) {
 		this.downloadPDF = downloadPDF;
 		this.setChanged();
@@ -264,7 +242,7 @@ Exporting module only. The text for the PDF download menu item.
 
 	private String openInCloud;
 /**
-Export-data module only. The text for the menu item.
+/** Export-data module only. The text for the menu item. 
 */
 	public void setOpenInCloud(String openInCloud) {
 		this.openInCloud = openInCloud;
@@ -276,11 +254,10 @@ Export-data module only. The text for the menu item.
 
 	private ArrayList<String> months;
 /**
-An array containing the months names. Corresponds to the %B format
-in Highcharts.dateFormat().
- <br><br><b>default:</b><br><br>&ensp;["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November",
-            "December"]*/
+/** An array containing the months names. Corresponds to the %B format in Highcharts.dateFormat(). 
+ <br><br><b>defaults:</b><br><br>&ensp;["January", "February", "March", "April", "May", "June",
+         "July", "August", "September", "October", "November",
+         "December"]*/
 	public void setMonths(ArrayList<String> months) {
 		this.months = months;
 		this.setChanged();
@@ -291,10 +268,9 @@ in Highcharts.dateFormat().
 
 	private ArrayList<String> shortMonths;
 /**
-An array containing the months names in abbreviated form. Corresponds
-to the %b format in Highcharts.dateFormat().
- <br><br><b>default:</b><br><br>&ensp;["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]*/
+/** An array containing the months names in abbreviated form. Corresponds to the %b format in Highcharts.dateFormat(). 
+ <br><br><b>defaults:</b><br><br>&ensp;["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]*/
 	public void setShortMonths(ArrayList<String> shortMonths) {
 		this.shortMonths = shortMonths;
 		this.setChanged();
@@ -305,8 +281,8 @@ to the %b format in Highcharts.dateFormat().
 
 	private String downloadJPEG;
 /**
-Exporting module only. The text for the JPEG download menu item.
- <br><br><b>default:</b><br><br>&ensp;Download JPEG image*/
+/** Exporting module only. The text for the JPEG download menu item. 
+ <br><br><b>defaults:</b><br><br>&ensp;Download JPEG image*/
 	public void setDownloadJPEG(String downloadJPEG) {
 		this.downloadJPEG = downloadJPEG;
 		this.setChanged();
@@ -317,9 +293,8 @@ Exporting module only. The text for the JPEG download menu item.
 
 	private String decimalPoint;
 /**
-The default decimal point used in the Highcharts.numberFormat
-method unless otherwise specified in the function arguments.
- <br><br><b>default:</b><br><br>&ensp;.*/
+/** The defaults decimal point used in the Highcharts.numberFormat method unless otherwise specified in the function arguments. 
+*/
 	public void setDecimalPoint(String decimalPoint) {
 		this.decimalPoint = decimalPoint;
 		this.setChanged();
@@ -330,8 +305,8 @@ method unless otherwise specified in the function arguments.
 
 	private String resetZoomTitle;
 /**
-The tooltip title for the label appearing when a chart is zoomed.
- <br><br><b>default:</b><br><br>&ensp;Reset zoom level 1:1*/
+/** The tooltip title for the label appearing when a chart is zoomed. 
+*/
 	public void setResetZoomTitle(String resetZoomTitle) {
 		this.resetZoomTitle = resetZoomTitle;
 		this.setChanged();
@@ -342,14 +317,8 @@ The tooltip title for the label appearing when a chart is zoomed.
 
 	private String thousandsSep;
 /**
-The default thousands separator used in the Highcharts.numberFormat
-method unless otherwise specified in the function arguments. Since
-Highcharts 4.1 it defaults to a single space character, which is
-compatible with ISO and works across Anglo-American and continental
-European languages.
-
-The default is a single space.
- <br><br><b>default:</b><br><br>&ensp;\u0020*/
+/** The defaults thousands separator used in the Highcharts.numberFormat method unless otherwise specified in the function arguments. Since Highcharts 4.1 it defaultss to a single space character, which is compatible with ISO and works across Anglo-American and continental European languages. The defaults is a single space. 
+ <br><br><b>defaults:</b><br><br>&ensp;\u0020*/
 	public void setThousandsSep(String thousandsSep) {
 		this.thousandsSep = thousandsSep;
 		this.setChanged();
@@ -419,8 +388,8 @@ The default is a single space.
 			}
 			params.put("numericSymbols", array);
 		}
-		if (this.printChart != null) {
-			params.put("printChart", this.printChart);
+		if (this.downloadSVG != null) {
+			params.put("downloadSVG", this.downloadSVG);
 		}
 		if (this.numericSymbolMagnitude != null) {
 			params.put("numericSymbolMagnitude", this.numericSymbolMagnitude);
@@ -437,8 +406,8 @@ The default is a single space.
 			}
 			params.put("weekdays", array);
 		}
-		if (this.downloadSVG != null) {
-			params.put("downloadSVG", this.downloadSVG);
+		if (this.printChart != null) {
+			params.put("printChart", this.printChart);
 		}
 		if (this.drillUpText != null) {
 			params.put("drillUpText", this.drillUpText);

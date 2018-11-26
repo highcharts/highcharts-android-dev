@@ -18,16 +18,21 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HINormal extends Observable implements HIChartsJSONSerializable { 
 
-	private Boolean animation;
-	public void setAnimation(Boolean animation) {
+	private HIAnimationOptionsObject animation;
+/**
+/** Animation when returning to normal state after hovering. 
+*/
+	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getAnimation(){ return animation; }
+	public HIAnimationOptionsObject getAnimation(){ return animation; }
 
 
 

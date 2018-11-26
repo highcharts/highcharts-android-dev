@@ -18,20 +18,22 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HIItemHoverStyle extends Observable implements HIChartsJSONSerializable { 
 
-	private String color;
-	public void setColor(String color) {
-		this.color = color;
+
+public class HIMonth extends Observable implements HIChartsJSONSerializable { 
+
+	private String main;
+	public void setMain(String main) {
+		this.main = main;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getColor(){ return color; }
+	public String getMain(){ return main; }
 
 
 
-	public HIItemHoverStyle() {
+	public HIMonth() {
 
 	}
 
@@ -48,8 +50,8 @@ public class HIItemHoverStyle extends Observable implements HIChartsJSONSerializ
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.color != null) {
-			params.put("color", this.color);
+		if (this.main != null) {
+			params.put("main", this.main);
 		}
 		return params;
 	}

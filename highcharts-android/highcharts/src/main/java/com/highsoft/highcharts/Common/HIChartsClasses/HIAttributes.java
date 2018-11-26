@@ -18,6 +18,8 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIAttributes extends Observable implements HIChartsJSONSerializable { 
 
 	private Number zIndex;

@@ -19,12 +19,14 @@ import com.highsoft.highcharts.Common.HIColor;
 
 
 
+
+
 public class HIMarker extends Observable implements HIChartsJSONSerializable { 
 
 	private HIColor color;
 /**
-The color of the marker.
- <br><br><b>default:</b><br><br>&ensp;#999999*/
+/** The color of the marker. 
+ <br><br><b>defaults:</b><br><br>&ensp;#999999*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -35,8 +37,7 @@ The color of the marker.
 
 	private HIAnimation animation;
 /**
-Animation for the marker as it moves between values. Set to
-false to disable animation. Defaults to { duration: 50 }.
+/** Animation for the marker as it moves between values. Set to false to disable animation. Defaults to { duration: 50 }. 
 */
 	public void setAnimation(HIAnimation animation) {
 		this.animation = animation;
@@ -58,18 +59,8 @@ false to disable animation. Defaults to { duration: 50 }.
 
 	private String symbol;
 /**
-A predefined shape or symbol for the marker. When undefined, the
-symbol is pulled from options.symbols. Other possible values are
-"circle", "square", "diamond", "triangle" and "triangle-down".
-
-Additionally, the URL to a graphic can be given on this form:
-"url(graphic.png)". Note that for the image to be applied to exported
-charts, its URL needs to be accessible by the export server.
-
-Custom callbacks for symbol path generation can also be added to
-Highcharts.SVGRenderer.prototype.symbols. The callback is then
-used by its method name, as shown in the demo.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-symbol/">Predefined, graphic and custom markers</a>*/
+/** A predefined shape or symbol for the marker. When undefined, the symbol is pulled from options.symbols. Other possible values are "circle", "square", "diamond", "triangle" and "triangle-down". Additionally, the URL to a graphic can be given on this form: "url(graphic.png)". Note that for the image to be applied to exported charts, its URL needs to be accessible by the export server. Custom callbacks for symbol path generation can also be added to Highcharts.SVGRenderer.prototype.symbols. The callback is then used by its method name, as shown in the demo. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-symbol/">Predefined, graphic and custom markers</a>
+*/
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
 		this.setChanged();
@@ -80,7 +71,7 @@ used by its method name, as shown in the demo.
 
 	private HIStates states;
 /**
-States for a single point marker.
+/** States for a single point marker. 
 */
 	public void setStates(HIStates states) {
 		this.states = states;
@@ -93,9 +84,8 @@ States for a single point marker.
 
 	private HIColor fillColor;
 /**
-The fill color of the point marker. When undefined, the series' or
-point's color is used.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-fillcolor/">White fill</a>*/
+/** The fill color of the point marker. When undefined, the series' or point's color is used. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-fillcolor/">White fill</a>
+*/
 	public void setFillColor(HIColor fillColor) {
 		this.fillColor = fillColor;
 		this.setChanged();
@@ -106,9 +96,8 @@ point's color is used.
 
 	private HIColor lineColor;
 /**
-The color of the point marker's outline. When undefined, the
-series' or point's color is used.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-fillcolor/">Inherit from series color (undefined)</a>*/
+/** The color of the point marker's outline. When undefined, the series' or point's color is used. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-fillcolor/">Inherit from series color (undefined)</a>
+*/
 	public void setLineColor(HIColor lineColor) {
 		this.lineColor = lineColor;
 		this.setChanged();
@@ -119,8 +108,8 @@ series' or point's color is used.
 
 	private Number lineWidth;
 /**
-The width of the point marker's outline.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-fillcolor/">2px blue marker</a> <br><br><b>default:</b><br><br>&ensp;0*/
+/** The width of the point marker's outline. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-fillcolor/">2px blue marker</a>
+*/
 	public void setLineWidth(Number lineWidth) {
 		this.lineWidth = lineWidth;
 		this.setChanged();
@@ -131,7 +120,7 @@ The width of the point marker's outline.
 
 	private Number fillOpacity;
 /**
-The fill opacity of the bubble markers.
+/** The fill opacity of the bubble markers. 
 */
 	public void setFillOpacity(Number fillOpacity) {
 		this.fillOpacity = fillOpacity;
@@ -143,9 +132,8 @@ The fill opacity of the bubble markers.
 
 	private Number height;
 /**
-Image markers only. Set the image width explicitly. When using this
-option, a width must also be set.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-width-height/">Fixed width and height</a>*/
+/** Image markers only. Set the image width explicitly. When using this option, a width must also be set. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-width-height/">Fixed width and height</a>
+*/
 	public void setHeight(Number height) {
 		this.height = height;
 		this.setChanged();
@@ -156,9 +144,8 @@ option, a width must also be set.
 
 	private Number width;
 /**
-Image markers only. Set the image width explicitly. When using this
-option, a height must also be set.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-width-height/">Fixed width and height</a>*/
+/** Image markers only. Set the image width explicitly. When using this option, a height must also be set. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-width-height/">Fixed width and height</a>
+*/
 	public void setWidth(Number width) {
 		this.width = width;
 		this.setChanged();
@@ -169,8 +156,8 @@ option, a height must also be set.
 
 	private Number radius;
 /**
-The radius of the point marker.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-radius/">Bigger markers</a> <br><br><b>default:</b><br><br>&ensp;4*/
+/** The radius of the point marker. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-radius/">Bigger markers</a>
+*/
 	public void setRadius(Number radius) {
 		this.radius = radius;
 		this.setChanged();
@@ -181,12 +168,8 @@ The radius of the point marker.
 
 	private Number enabledThreshold;
 /**
-The threshold for how dense the point markers should be before they
-are hidden, given that enabled is not defined. The number indicates
-the horizontal distance between the two closest points in the series,
-as multiples of the marker.radius. In other words, the default
-value of 2 means points are hidden if overlapping horizontally.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-enabledthreshold">A higher threshold</a> <br><br><b>default:</b><br><br>&ensp;2*/
+/** The threshold for how dense the point markers should be before they are hidden, given that enabled is not defined. The number indicates the horizontal distance between the two closest points in the series, as multiples of the marker.radius. In other words, the defaults value of 2 means points are hidden if overlapping horizontally. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-enabledthreshold">A higher threshold</a>
+*/
 	public void setEnabledThreshold(Number enabledThreshold) {
 		this.enabledThreshold = enabledThreshold;
 		this.setChanged();

@@ -19,12 +19,14 @@ import com.highsoft.highcharts.Common.HIColor;
 
 
 
+
+
 public class HIBack extends Observable implements HIChartsJSONSerializable { 
 
 	private HIColor color;
 /**
-The color of the panel.
- <br><br><b>default:</b><br><br>&ensp;transparent*/
+/** The color of the panel. 
+ <br><br><b>defaults:</b><br><br>&ensp;transparent*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -35,11 +37,8 @@ The color of the panel.
 
 	private Object /* Boolean|String */ visible;
 /**
-Whether to display the frame. Possible values are true,
-false, "auto" to display only the frames behind the data,
-and "default" to display faces behind the data based on the
-axis layout, ignoring the point of view.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/scatter-frame/">Auto frames</a> <br><br><b>accepted values:</b><br><br>&ensp;["default", "auto", true, false] <br><br><b>default:</b><br><br>&ensp;default*/
+/** Whether to display the frame. Possible values are true, false, "auto" to display only the frames behind the data, and "default" to display faces behind the data based on the axis layout, ignoring the point of view. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/scatter-frame/">Auto frames</a> <br><br><b>accepted values:</b><br><br>&ensp;["default", "auto", true, false]
+ <br><br><b>defaults:</b><br><br>&ensp;defaults*/
 	public void setVisible(Object /* Boolean|String */ visible) {
 		this.visible = visible;
 		this.setChanged();
@@ -50,8 +49,8 @@ axis layout, ignoring the point of view.
 
 	private Number size;
 /**
-The thickness of the panel.
- <br><br><b>default:</b><br><br>&ensp;1*/
+/** The thickness of the panel. 
+ <br><br><b>defaults:</b><br><br>&ensp;1*/
 	public void setSize(Number size) {
 		this.size = size;
 		this.setChanged();

@@ -18,12 +18,14 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HICondition extends Observable implements HIChartsJSONSerializable { 
 
 	private Number minWidth;
 /**
-The responsive rule applies if the chart width is greater than this.
- <br><br><b>default:</b><br><br>&ensp;0*/
+/** The responsive rule applies if the chart width is greater than this. 
+ <br><br><b>defaults:</b><br><br>&ensp;0*/
 	public void setMinWidth(Number minWidth) {
 		this.minWidth = minWidth;
 		this.setChanged();
@@ -34,10 +36,7 @@ The responsive rule applies if the chart width is greater than this.
 
 	private HIFunction callback;
 /**
-A callback function to gain complete control on when the responsive
-rule applies. Return true if it applies. This opens for checking
-against other metrics than the chart size, or example the document
-size or other elements.
+/** A callback function to gain complete control on when the responsive rule applies. Return true if it applies. This opens for checking against other metrics than the chart size, or example the document size or other elements. 
 */
 	public void setCallback(HIFunction callback) {
 		this.callback = callback;
@@ -49,8 +48,8 @@ size or other elements.
 
 	private Number minHeight;
 /**
-The responsive rule applies if the chart height is greater than this.
- <br><br><b>default:</b><br><br>&ensp;0*/
+/** The responsive rule applies if the chart height is greater than this. 
+ <br><br><b>defaults:</b><br><br>&ensp;0*/
 	public void setMinHeight(Number minHeight) {
 		this.minHeight = minHeight;
 		this.setChanged();
@@ -61,8 +60,8 @@ The responsive rule applies if the chart height is greater than this.
 
 	private Number maxWidth;
 /**
-The responsive rule applies if the chart width is less than this.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/">Max width is 500</a>*/
+/** The responsive rule applies if the chart width is less than this. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/">Max width is 500</a>
+*/
 	public void setMaxWidth(Number maxWidth) {
 		this.maxWidth = maxWidth;
 		this.setChanged();
@@ -73,7 +72,7 @@ The responsive rule applies if the chart width is less than this.
 
 	private Number maxHeight;
 /**
-The responsive rule applies if the chart height is less than this.
+/** The responsive rule applies if the chart height is less than this. 
 */
 	public void setMaxHeight(Number maxHeight) {
 		this.maxHeight = maxHeight;

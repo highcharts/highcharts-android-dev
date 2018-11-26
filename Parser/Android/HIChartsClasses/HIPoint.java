@@ -18,6 +18,8 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIPoint extends Observable implements HIChartsJSONSerializable { 
 
 	private HIEvents events;
@@ -32,8 +34,7 @@ public class HIPoint extends Observable implements HIChartsJSONSerializable {
 
 	private Number y;
 /**
-The y position of the point. Units can be either in axis
-or chart pixel coordinates.
+/** The y position of the point. Units can be either in axis or chart pixel coordinates. 
 */
 	public void setY(Number y) {
 		this.y = y;
@@ -45,8 +46,7 @@ or chart pixel coordinates.
 
 	private Number x;
 /**
-The x position of the point. Units can be either in axis
-or chart pixel coordinates.
+/** The x position of the point. Units can be either in axis or chart pixel coordinates. 
 */
 	public void setX(Number x) {
 		this.x = x;
@@ -58,10 +58,7 @@ or chart pixel coordinates.
 
 	private Object /* Number|String */ xAxis;
 /**
-This number defines which xAxis the point is connected to. It refers
-to either the axis id or the index of the axis in the xAxis array.
-If the option is not configured or the axis is not found the point's
-x coordinate refers to the chart pixels.
+/** This number defines which xAxis the point is connected to. It refers to either the axis id or the index of the axis in the xAxis array. If the option is not configured or the axis is not found the point's x coordinate refers to the chart pixels. 
 */
 	public void setXAxis(Object /* Number|String */ xAxis) {
 		this.xAxis = xAxis;
@@ -73,10 +70,7 @@ x coordinate refers to the chart pixels.
 
 	private Object /* Number|String */ yAxis;
 /**
-This number defines which yAxis the point is connected to. It refers
-to either the axis id or the index of the axis in the yAxis array.
-If the option is not configured or the axis is not found the point's
-y coordinate refers to the chart pixels.
+/** This number defines which yAxis the point is connected to. It refers to either the axis id or the index of the axis in the yAxis array. If the option is not configured or the axis is not found the point's y coordinate refers to the chart pixels. 
 */
 	public void setYAxis(Object /* Number|String */ yAxis) {
 		this.yAxis = yAxis;

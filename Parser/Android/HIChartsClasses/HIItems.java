@@ -18,29 +18,25 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIItems extends Observable implements HIChartsJSONSerializable { 
 
-	private HashMap<String, String> style;
+	private HICSSObject style;
 /**
-CSS styles for each label. To position the label, use left and top
-like this:
-
-style: {
-    left: '100px',
-    top: '100px'
-}
+/** CSS styles for each label. To position the label, use left and top like this: style: {   left: '100px',   top: '100px' } 
 */
-	public void setStyle(HashMap<String, String> style) {
+	public void setStyle(HICSSObject style) {
 		this.style = style;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HashMap<String, String> getStyle(){ return style; }
+	public HICSSObject getStyle(){ return style; }
 
 	private String html;
 /**
-Inner HTML or text for the label.
+/** Inner HTML or text for the label. 
 */
 	public void setHtml(String html) {
 		this.html = html;

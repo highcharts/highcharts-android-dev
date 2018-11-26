@@ -18,14 +18,13 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIBackgroundColor extends Observable implements HIChartsJSONSerializable { 
 
 	private HILinearGradient linearGradient;
 /**
-Definition of the gradient, similar to SVG: object literal holds
-start position (x1, y1) and the end position (x2, y2) relative
-to the shape, where 0 means top/left and 1 is bottom/right.
-All positions are floats between 0 and 1.
+/** Definition of the gradient, similar to SVG: object literal holds start position (x1, y1) and the end position (x2, y2) relative to the shape, where 0 means top/left and 1 is bottom/right. All positions are floats between 0 and 1. 
 */
 	public void setLinearGradient(HILinearGradient linearGradient) {
 		this.linearGradient = linearGradient;
@@ -38,10 +37,8 @@ All positions are floats between 0 and 1.
 
 	private ArrayList<ArrayList> stops;
 /**
-The stops is an array of tuples, where the first item is a float
-between 0 and 1 assigning the relative position in the gradient,
-and the second item is the color.
- <br><br><b>default:</b><br><br>&ensp;[[0, #ffffff], [1, #e6e6e6]]*/
+/** The stops is an array of tuples, where the first item is a float between 0 and 1 assigning the relative position in the gradient, and the second item is the color. 
+ <br><br><b>defaults:</b><br><br>&ensp;[[0, #ffffff], [1, #e6e6e6]]*/
 	public void setStops(ArrayList<ArrayList> stops) {
 		this.stops = stops;
 		this.setChanged();

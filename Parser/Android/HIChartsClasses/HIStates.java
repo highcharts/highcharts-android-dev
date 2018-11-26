@@ -18,6 +18,8 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIStates extends Observable implements HIChartsJSONSerializable { 
 
 	private HIHover hover;
@@ -42,8 +44,7 @@ public class HIStates extends Observable implements HIChartsJSONSerializable {
 
 	private HINormal normal;
 /**
-The normal state of a single point marker. Currently only used
-for setting animation when returning to normal state from hover.
+/** The normal state of a single point marker. Currently only used for setting animation when returning to normal state from hover. 
 */
 	public void setNormal(HINormal normal) {
 		this.normal = normal;

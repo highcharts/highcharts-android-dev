@@ -19,12 +19,14 @@ import com.highsoft.highcharts.Common.HIColor;
 
 
 
+
+
 public class HISide extends Observable implements HIChartsJSONSerializable { 
 
 	private HIColor color;
 /**
-The color of the panel.
- <br><br><b>default:</b><br><br>&ensp;transparent*/
+/** The color of the panel. 
+ <br><br><b>defaults:</b><br><br>&ensp;transparent*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -35,8 +37,8 @@ The color of the panel.
 
 	private Number size;
 /**
-The thickness of the panel.
- <br><br><b>default:</b><br><br>&ensp;1*/
+/** The thickness of the panel. 
+ <br><br><b>defaults:</b><br><br>&ensp;1*/
 	public void setSize(Number size) {
 		this.size = size;
 		this.setChanged();

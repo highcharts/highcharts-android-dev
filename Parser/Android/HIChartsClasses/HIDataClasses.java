@@ -19,14 +19,13 @@ import com.highsoft.highcharts.Common.HIColor;
 
 
 
+
+
 public class HIDataClasses extends Observable implements HIChartsJSONSerializable { 
 
 	private HIColor color;
 /**
-The color of each data class. If not set, the color is pulled
-from the global or chart-specific colors array. In
-styled mode, this option is ignored. Instead, use colors defined
-in CSS.
+/** The color of each data class. If not set, the color is pulled from the global or chart-specific colors array. In styled mode, this option is ignored. Instead, use colors defined in CSS. 
 */
 	public void setColor(HIColor color) {
 		this.color = color;
@@ -38,11 +37,7 @@ in CSS.
 
 	private Number to;
 /**
-The end of the value range that the data class represents,
-relating to the point value.
-
-The range of each dataClass is closed in both ends, but can be
-overridden by the next dataClass.
+/** The end of the value range that the data class represents, relating to the point value. The range of each dataClass is closed in both ends, but can be overridden by the next dataClass. 
 */
 	public void setTo(Number to) {
 		this.to = to;
@@ -54,11 +49,7 @@ overridden by the next dataClass.
 
 	private Number from;
 /**
-The start of the value range that the data class represents,
-relating to the point value.
-
-The range of each dataClass is closed in both ends, but can be
-overridden by the next dataClass.
+/** The start of the value range that the data class represents, relating to the point value. The range of each dataClass is closed in both ends, but can be overridden by the next dataClass. 
 */
 	public void setFrom(Number from) {
 		this.from = from;
@@ -70,11 +61,7 @@ overridden by the next dataClass.
 
 	private String name;
 /**
-The name of the data class as it appears in the legend.
-If no name is given, it is automatically created based on the
-from and to values. For full programmatic control,
-legend.labelFormatter can be used.
-In the formatter, this.from and this.to can be accessed.
+/** The name of the data class as it appears in the legend. If no name is given, it is automatically created based on the from and to values. For full programmatic control, legend.labelFormatter can be used. In the formatter, this.from and this.to can be accessed. 
 */
 	public void setName(String name) {
 		this.name = name;

@@ -18,31 +18,14 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HILevelSize extends Observable implements HIChartsJSONSerializable { 
-
-	private Number value;
-/**
-The value used for calculating the width of the ring. Its' affect is
-determined by levelSize.unit.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-levelsize/">Sunburst with various sizes per level</a>*/
-	public void setValue(Number value) {
-		this.value = value;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getValue(){ return value; }
 
 	private String unit;
 /**
-How to interpret levelSize.value.
-percentage gives a width relative to result of outer radius minus
-inner radius.
-pixels gives the ring a fixed width in pixels.
-weight takes the remaining width after percentage and pixels, and
-distributes it accross all "weighted" levels. The value relative to
-the sum of all weights determines the width.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-levelsize/">Sunburst with various sizes per level</a> <br><br><b>accepted values:</b><br><br>&ensp;["percentage", "pixels", "weight"]*/
+/** How to interpret levelSize.value. percentage gives a width relative to result of outer radius minus inner radius. pixels gives the ring a fixed width in pixels. weight takes the remaining width after percentage and pixels, and distributes it accross all "weighted" levels. The value relative to the sum of all weights determines the width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-levelsize/">Sunburst with various sizes per level</a> <br><br><b>accepted values:</b><br><br>&ensp;["percentage", "pixels", "weight"]
+*/
 	public void setUnit(String unit) {
 		this.unit = unit;
 		this.setChanged();
@@ -50,6 +33,18 @@ the sum of all weights determines the width.
 	}
 
 	public String getUnit(){ return unit; }
+
+	private Number value;
+/**
+/** The value used for calculating the width of the ring. Its' affect is determined by levelSize.unit. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-levelsize/">Sunburst with various sizes per level</a>
+*/
+	public void setValue(Number value) {
+		this.value = value;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getValue(){ return value; }
 
 
 
@@ -70,11 +65,11 @@ the sum of all weights determines the width.
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.value != null) {
-			params.put("value", this.value);
-		}
 		if (this.unit != null) {
 			params.put("unit", this.unit);
+		}
+		if (this.value != null) {
+			params.put("value", this.value);
 		}
 		return params;
 	}

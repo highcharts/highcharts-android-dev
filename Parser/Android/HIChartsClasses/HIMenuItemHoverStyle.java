@@ -18,6 +18,8 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIMenuItemHoverStyle extends Observable implements HIChartsJSONSerializable { 
 
 	private String color;

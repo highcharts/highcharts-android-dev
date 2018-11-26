@@ -18,38 +18,26 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HILabelStyle extends Observable implements HIChartsJSONSerializable { 
 
-	private String fontWeight;
-	public void setFontWeight(String fontWeight) {
-		this.fontWeight = fontWeight;
+
+public class HIGuideBox extends Observable implements HIChartsJSONSerializable { 
+
+	private HIDefault defaults;
+/**
+/** Style options for the guide box defaults state. 
+*/
+	public void setDefault(HIDefault defaults) {
+		this.defaults = defaults;
+		this.defaults.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getFontWeight(){ return fontWeight; }
-
-	private String top;
-	public void setTop(String top) {
-		this.top = top;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getTop(){ return top; }
-
-	private String position;
-	public void setPosition(String position) {
-		this.position = position;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getPosition(){ return position; }
+	public HIDefault getDefault(){ return defaults; }
 
 
 
-	public HILabelStyle() {
+	public HIGuideBox() {
 
 	}
 
@@ -66,14 +54,8 @@ public class HILabelStyle extends Observable implements HIChartsJSONSerializable
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.fontWeight != null) {
-			params.put("fontWeight", this.fontWeight);
-		}
-		if (this.top != null) {
-			params.put("top", this.top);
-		}
-		if (this.position != null) {
-			params.put("position", this.position);
+		if (this.defaults != null) {
+			params.put("default", this.defaults.getParams());
 		}
 		return params;
 	}

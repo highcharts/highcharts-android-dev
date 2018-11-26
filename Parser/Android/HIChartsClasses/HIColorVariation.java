@@ -18,12 +18,13 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIColorVariation extends Observable implements HIChartsJSONSerializable { 
 
 	private Number to;
 /**
-The ending value of a color variation. The last sibling will receive this
-value.
+/** The ending value of a color variation. The last sibling will receive this value. 
 */
 	public void setTo(Number to) {
 		this.to = to;
@@ -35,8 +36,8 @@ value.
 
 	private String key;
 /**
-The key of a color variation. Currently supports brightness only.
- <br><br><b>accepted values:</b><br><br>&ensp;["brightness"]*/
+/** The key of a color variation. Currently supports brightness only. <br><br><b>accepted values:</b><br><br>&ensp;["brightness"]
+*/
 	public void setKey(String key) {
 		this.key = key;
 		this.setChanged();

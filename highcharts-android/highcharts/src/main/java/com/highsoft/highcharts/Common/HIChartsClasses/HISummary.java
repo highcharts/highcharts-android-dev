@@ -18,6 +18,8 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HISummary extends Observable implements HIChartsJSONSerializable { 
 
 	private String pieCombination;
@@ -200,14 +202,14 @@ public class HISummary extends Observable implements HIChartsJSONSerializable {
 
 	public String getMapbubbleCombination(){ return mapbubbleCombination; }
 
-	private String defaultCombination;
-	public void setDefaultCombination(String defaultCombination) {
-		this.defaultCombination = defaultCombination;
+	private String defaultsCombination;
+	public void setDefaultCombination(String defaultsCombination) {
+		this.defaultsCombination = defaultsCombination;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getDefaultCombination(){ return defaultCombination; }
+	public String getDefaultCombination(){ return defaultsCombination; }
 
 	private String column;
 	public void setColumn(String column) {
@@ -315,8 +317,8 @@ public class HISummary extends Observable implements HIChartsJSONSerializable {
 		if (this.mapbubbleCombination != null) {
 			params.put("mapbubbleCombination", this.mapbubbleCombination);
 		}
-		if (this.defaultCombination != null) {
-			params.put("defaultCombination", this.defaultCombination);
+		if (this.defaultsCombination != null) {
+			params.put("defaultsCombination", this.defaultsCombination);
 		}
 		if (this.column != null) {
 			params.put("column", this.column);

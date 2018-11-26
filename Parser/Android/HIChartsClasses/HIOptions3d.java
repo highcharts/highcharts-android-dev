@@ -18,15 +18,14 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIOptions3d extends Observable implements HIChartsJSONSerializable { 
 
 	private Number viewDistance;
 /**
-Defines the distance the viewer is standing in front of the
-chart, this setting is important to calculate the perspective
-effect in column and scatter charts. It is not used for 3D pie
-charts.
- <br><br><b>default:</b><br><br>&ensp;100*/
+/** Defines the distance the viewer is standing in front of the chart, this setting is important to calculate the perspective effect in column and scatter charts. It is not used for 3D pie charts. 
+ <br><br><b>defaults:</b><br><br>&ensp;100*/
 	public void setViewDistance(Number viewDistance) {
 		this.viewDistance = viewDistance;
 		this.setChanged();
@@ -37,8 +36,7 @@ charts.
 
 	private HIFrame frame;
 /**
-Provides the option to draw a frame around the charts by defining
-a bottom, front and back panel.
+/** Provides the option to draw a frame around the charts by defining a bottom, front and back panel. 
 */
 	public void setFrame(HIFrame frame) {
 		this.frame = frame;
@@ -51,9 +49,8 @@ a bottom, front and back panel.
 
 	private String axisLabelPosition;
 /**
-Set it to "auto" to automatically move the labels to the best
-edge.
- <br><br><b>accepted values:</b><br><br>&ensp;[null, "auto"]*/
+/** Set it to "auto" to automatically move the labels to the best edge. <br><br><b>accepted values:</b><br><br>&ensp;[null, "auto"]
+*/
 	public void setAxisLabelPosition(String axisLabelPosition) {
 		this.axisLabelPosition = axisLabelPosition;
 		this.setChanged();
@@ -64,8 +61,8 @@ edge.
 
 	private Boolean enabled;
 /**
-Wether to render the chart using the 3D functionality.
- <br><br><b>default:</b><br><br>&ensp;false*/
+/** Wether to render the chart using the 3D functionality. 
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -74,22 +71,10 @@ Wether to render the chart using the 3D functionality.
 
 	public Boolean getEnabled(){ return enabled; }
 
-	private Number depth;
-/**
-The total depth of the chart.
- <br><br><b>default:</b><br><br>&ensp;100*/
-	public void setDepth(Number depth) {
-		this.depth = depth;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getDepth(){ return depth; }
-
 	private Number beta;
 /**
-One of the two rotation angles for the chart.
- <br><br><b>default:</b><br><br>&ensp;0*/
+/** One of the two rotation angles for the chart. 
+ <br><br><b>defaults:</b><br><br>&ensp;0*/
 	public void setBeta(Number beta) {
 		this.beta = beta;
 		this.setChanged();
@@ -98,11 +83,22 @@ One of the two rotation angles for the chart.
 
 	public Number getBeta(){ return beta; }
 
+	private Number depth;
+/**
+/** The total depth of the chart. 
+ <br><br><b>defaults:</b><br><br>&ensp;100*/
+	public void setDepth(Number depth) {
+		this.depth = depth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getDepth(){ return depth; }
+
 	private Boolean fitToPlot;
 /**
-Whether the 3d box should automatically adjust to the chart plot
-area.
- <br><br><b>default:</b><br><br>&ensp;true*/
+/** Whether the 3d box should automatically adjust to the chart plot area. 
+ <br><br><b>defaults:</b><br><br>&ensp;true*/
 	public void setFitToPlot(Boolean fitToPlot) {
 		this.fitToPlot = fitToPlot;
 		this.setChanged();
@@ -113,8 +109,8 @@ area.
 
 	private Number alpha;
 /**
-One of the two rotation angles for the chart.
- <br><br><b>default:</b><br><br>&ensp;0*/
+/** One of the two rotation angles for the chart. 
+ <br><br><b>defaults:</b><br><br>&ensp;0*/
 	public void setAlpha(Number alpha) {
 		this.alpha = alpha;
 		this.setChanged();
@@ -154,11 +150,11 @@ One of the two rotation angles for the chart.
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);
 		}
-		if (this.depth != null) {
-			params.put("depth", this.depth);
-		}
 		if (this.beta != null) {
 			params.put("beta", this.beta);
+		}
+		if (this.depth != null) {
+			params.put("depth", this.depth);
 		}
 		if (this.fitToPlot != null) {
 			params.put("fitToPlot", this.fitToPlot);

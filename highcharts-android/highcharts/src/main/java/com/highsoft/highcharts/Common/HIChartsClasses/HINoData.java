@@ -18,12 +18,14 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HINoData extends Observable implements HIChartsJSONSerializable { 
 
 	private HIPosition position;
 /**
-The position of the no-data label, relative to the plot area.
- <br><br><b>default:</b><br><br>&ensp;{ "x": 0, "y": 0, "align": "center", "verticalAlign": "middle" }*/
+/** The position of the no-data label, relative to the plot area. 
+ <br><br><b>defaults:</b><br><br>&ensp;{ "x": 0, "y": 0, "align": "center", "verticalAlign": "middle" }*/
 	public void setPosition(HIPosition position) {
 		this.position = position;
 		this.position.addObserver(updateObserver);
@@ -35,8 +37,8 @@ The position of the no-data label, relative to the plot area.
 
 	private HIStyle style;
 /**
-CSS styles for the no-data label.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line">Styled no-data text</a>*/
+/** CSS styles for the no-data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line">Styled no-data text</a>
+*/
 	public void setStyle(HIStyle style) {
 		this.style = style;
 		this.style.addObserver(updateObserver);
@@ -48,7 +50,7 @@ CSS styles for the no-data label.
 
 	private Object attr;
 /**
-An object of additional SVG attributes for the no-data label.
+/** An object of additional SVG attributes for the no-data label. 
 */
 	public void setAttr(Object attr) {
 		this.attr = attr;
@@ -60,9 +62,8 @@ An object of additional SVG attributes for the no-data label.
 
 	private Boolean useHTML;
 /**
-Whether to insert the label as HTML, or as pseudo-HTML rendered with
-SVG.
- <br><br><b>default:</b><br><br>&ensp;false*/
+/** Whether to insert the label as HTML, or as pseudo-HTML rendered with SVG. 
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;
 		this.setChanged();

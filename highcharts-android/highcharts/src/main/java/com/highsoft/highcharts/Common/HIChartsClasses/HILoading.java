@@ -18,41 +18,38 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HILoading extends Observable implements HIChartsJSONSerializable { 
 
-	private HIStyle style;
+	private HICSSObject style;
 /**
-CSS styles for the loading screen that covers the plot area.
-
-In styled mode, the loading label is styled with the
-.highcharts-loading class.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/style/">Gray plot area, white text</a> <br><br><b>default:</b><br><br>&ensp;{"position": "absolute", "backgroundColor": "#ffffff", "opacity": 0.5, "textAlign": "center"}*/
-	public void setStyle(HIStyle style) {
+/** CSS styles for the loading screen that covers the plot area. In styled mode, the loading label is styled with the .highcharts-loading class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/style/">Gray plot area, white text</a>
+ <br><br><b>defaults:</b><br><br>&ensp;{"position": "absolute", "backgroundColor": "#ffffff", "opacity": 0.5, "textAlign": "center"}*/
+	public void setStyle(HICSSObject style) {
 		this.style = style;
-		this.style.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIStyle getStyle(){ return style; }
+	public HICSSObject getStyle(){ return style; }
 
-	private HILabelStyle labelStyle;
+	private HICSSObject labelStyle;
 /**
-CSS styles for the loading label span.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/labelstyle/">Vertically centered</a> <br><br><b>default:</b><br><br>&ensp;{"fontWeight": "bold", "position": "relative", "top": "45%"}*/
-	public void setLabelStyle(HILabelStyle labelStyle) {
+/** CSS styles for the loading label span. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/labelstyle/">Vertically centered</a>
+ <br><br><b>defaults:</b><br><br>&ensp;{"fontWeight": "bold", "position": "relative", "top": "45%"}*/
+	public void setLabelStyle(HICSSObject labelStyle) {
 		this.labelStyle = labelStyle;
-		this.labelStyle.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HILabelStyle getLabelStyle(){ return labelStyle; }
+	public HICSSObject getLabelStyle(){ return labelStyle; }
 
 	private Number hideDuration;
 /**
-The duration in milliseconds of the fade out effect.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/hideduration/">Fade in and out over a second</a> <br><br><b>default:</b><br><br>&ensp;100*/
+/** The duration in milliseconds of the fade out effect. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/hideduration/">Fade in and out over a second</a>
+ <br><br><b>defaults:</b><br><br>&ensp;100*/
 	public void setHideDuration(Number hideDuration) {
 		this.hideDuration = hideDuration;
 		this.setChanged();
@@ -63,8 +60,8 @@ The duration in milliseconds of the fade out effect.
 
 	private Number showDuration;
 /**
-The duration in milliseconds of the fade in effect.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/hideduration/">Fade in and out over a second</a> <br><br><b>default:</b><br><br>&ensp;100*/
+/** The duration in milliseconds of the fade in effect. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/hideduration/">Fade in and out over a second</a>
+ <br><br><b>defaults:</b><br><br>&ensp;100*/
 	public void setShowDuration(Number showDuration) {
 		this.showDuration = showDuration;
 		this.setChanged();
@@ -93,10 +90,10 @@ The duration in milliseconds of the fade in effect.
 
 		Map<String, Object> params = new HashMap<>();
 		if (this.style != null) {
-			params.put("style", this.style.getParams());
+			params.put("style", this.style);
 		}
 		if (this.labelStyle != null) {
-			params.put("labelStyle", this.labelStyle.getParams());
+			params.put("labelStyle", this.labelStyle);
 		}
 		if (this.hideDuration != null) {
 			params.put("hideDuration", this.hideDuration);

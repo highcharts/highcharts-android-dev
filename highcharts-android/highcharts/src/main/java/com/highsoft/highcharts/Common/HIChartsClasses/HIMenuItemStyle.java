@@ -18,16 +18,9 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIMenuItemStyle extends Observable implements HIChartsJSONSerializable { 
-
-	private String color;
-	public void setColor(String color) {
-		this.color = color;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getColor(){ return color; }
 
 	private String padding;
 	public void setPadding(String padding) {
@@ -37,6 +30,15 @@ public class HIMenuItemStyle extends Observable implements HIChartsJSONSerializa
 	}
 
 	public String getPadding(){ return padding; }
+
+	private String color;
+	public void setColor(String color) {
+		this.color = color;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getColor(){ return color; }
 
 	private String transition;
 	public void setTransition(String transition) {
@@ -49,7 +51,7 @@ public class HIMenuItemStyle extends Observable implements HIChartsJSONSerializa
 
 	private String fontSize;
 /**
-Defaults to 14px on touch devices and 11px on desktop.
+/** Defaults to 14px on touch devices and 11px on desktop. 
 */
 	public void setFontSize(String fontSize) {
 		this.fontSize = fontSize;
@@ -87,11 +89,11 @@ Defaults to 14px on touch devices and 11px on desktop.
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.color != null) {
-			params.put("color", this.color);
-		}
 		if (this.padding != null) {
 			params.put("padding", this.padding);
+		}
+		if (this.color != null) {
+			params.put("color", this.color);
 		}
 		if (this.transition != null) {
 			params.put("transition", this.transition);

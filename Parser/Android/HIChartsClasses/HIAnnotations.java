@@ -18,25 +18,25 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIAnnotations extends Observable implements HIChartsJSONSerializable { 
 
-	private Number zIndex;
+	private ArrayList <HIShapes> shapes;
 /**
-The Z index of the annotation.
- <br><br><b>default:</b><br><br>&ensp;6*/
-	public void setZIndex(Number zIndex) {
-		this.zIndex = zIndex;
+/** An array of shapes for the annotation. For options that apply to multiple shapes, then can be added to the `shapeOptions`. 
+*/
+	public void setShapes(ArrayList shapes) {
+		this.shapes = shapes;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getZIndex(){ return zIndex; }
+	public ArrayList getShapes(){ return shapes; }
 
 	private ArrayList <HILabels> labels;
 /**
-An array of labels for the annotation. For options that apply to
-multiple labels, they can be added to the
-[labelOptions](annotations.labelOptions.html).
+/** An array of labels for the annotation. For options that apply to multiple labels, they can be added to the `labelOptions`. 
 */
 	public void setLabels(ArrayList labels) {
 		this.labels = labels;
@@ -48,9 +48,7 @@ multiple labels, they can be added to the
 
 	private HILabelOptions labelOptions;
 /**
-Options for annotation's labels. Each label inherits options
-from the labelOptions object. An option from the labelOptions can be
-overwritten by config for a specific label.
+/** Options for annotation's labels. Each label inherits options from the labelOptions object. An option from the labelOptions can be overwritten by config for a specific label. 
 */
 	public void setLabelOptions(HILabelOptions labelOptions) {
 		this.labelOptions = labelOptions;
@@ -61,24 +59,22 @@ overwritten by config for a specific label.
 
 	public HILabelOptions getLabelOptions(){ return labelOptions; }
 
-	private ArrayList <HIShapes> shapes;
+	private Number zIndex;
 /**
-An array of shapes for the annotation. For options that apply to
-multiple shapes, then can be added to the
-[shapeOptions](annotations.shapeOptions.html).
-*/
-	public void setShapes(ArrayList shapes) {
-		this.shapes = shapes;
+/** The Z index of the annotation. 
+ <br><br><b>defaults:</b><br><br>&ensp;6*/
+	public void setZIndex(Number zIndex) {
+		this.zIndex = zIndex;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList getShapes(){ return shapes; }
+	public Number getZIndex(){ return zIndex; }
 
 	private Boolean visible;
 /**
-Whether the annotation is visible.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/visible/">Set annotation visibility</a>*/
+/** Whether the annotation is visible. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/visible/">Set annotation visibility</a>
+*/
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
 		this.setChanged();
@@ -89,9 +85,7 @@ Whether the annotation is visible.
 
 	private HIShapeOptions shapeOptions;
 /**
-Options for annotation's shapes. Each shape inherits options
-from the shapeOptions object. An option from the shapeOptions can be
-overwritten by config for a specific shape.
+/** Options for annotation's shapes. Each shape inherits options from the shapeOptions object. An option from the shapeOptions can be overwritten by config for a specific shape. 
 */
 	public void setShapeOptions(HIShapeOptions shapeOptions) {
 		this.shapeOptions = shapeOptions;
@@ -121,8 +115,17 @@ overwritten by config for a specific shape.
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.zIndex != null) {
-			params.put("zIndex", this.zIndex);
+		if (this.shapes != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.shapes) {
+				if (obj instanceof HIChartsJSONSerializable) {
+					array.add(((HIChartsJSONSerializable) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("shapes", array);
 		}
 		if (this.labels != null) {
 			ArrayList<Object> array = new ArrayList<>();
@@ -139,17 +142,8 @@ overwritten by config for a specific shape.
 		if (this.labelOptions != null) {
 			params.put("labelOptions", this.labelOptions.getParams());
 		}
-		if (this.shapes != null) {
-			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.shapes) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
-			}
-			params.put("shapes", array);
+		if (this.zIndex != null) {
+			params.put("zIndex", this.zIndex);
 		}
 		if (this.visible != null) {
 			params.put("visible", this.visible);

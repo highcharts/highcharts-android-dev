@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">DevGround</string>
+    <string name="app_name">Example</string>
     <string name="title_activity_issues">IssuesActivity</string>
+    <string name="button">Reload</string>
 </resources>

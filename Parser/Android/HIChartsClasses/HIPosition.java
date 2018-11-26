@@ -18,11 +18,13 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIPosition extends Observable implements HIChartsJSONSerializable { 
 
 	private Number y;
 /**
-Vertical offset of the button.
+/** Vertical offset of the button. 
 */
 	public void setY(Number y) {
 		this.y = y;
@@ -34,8 +36,8 @@ Vertical offset of the button.
 
 	private Number x;
 /**
-Horizontal offset of the button.
- <br><br><b>default:</b><br><br>&ensp;-10*/
+/** Horizontal offset of the button. 
+ <br><br><b>defaults:</b><br><br>&ensp;-10*/
 	public void setX(Number x) {
 		this.x = x;
 		this.setChanged();
@@ -46,8 +48,8 @@ Horizontal offset of the button.
 
 	private String align;
 /**
-Horizontal alignment of the button.
- <br><br><b>accepted values:</b><br><br>&ensp;["left", "center", "right"]*/
+/** Horizontal alignment of the button. <br><br><b>accepted values:</b><br><br>&ensp;["left", "center", "right"]
+*/
 	public void setAlign(String align) {
 		this.align = align;
 		this.setChanged();
@@ -58,8 +60,8 @@ Horizontal alignment of the button.
 
 	private String verticalAlign;
 /**
-Vertical alignment of the button.
- <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"] <br><br><b>default:</b><br><br>&ensp;top*/
+/** Vertical alignment of the button. <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]
+ <br><br><b>defaults:</b><br><br>&ensp;top*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
 		this.setChanged();

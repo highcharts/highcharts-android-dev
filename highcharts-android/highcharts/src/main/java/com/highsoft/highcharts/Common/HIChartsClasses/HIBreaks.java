@@ -18,11 +18,13 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIBreaks extends Observable implements HIChartsJSONSerializable { 
 
 	private Number to;
 /**
-The point where the break ends.
+/** The point where the break ends. 
 */
 	public void setTo(Number to) {
 		this.to = to;
@@ -34,11 +36,8 @@ The point where the break ends.
 
 	private Number breakSize;
 /**
-A number indicating how much space should be left between the start
-and the end of the break. The break size is given in axis units,
-so for instance on a datetime axis, a break size of 3600000 would
-indicate the equivalent of an hour.
- <br><br><b>default:</b><br><br>&ensp;0*/
+/** A number indicating how much space should be left between the start and the end of the break. The break size is given in axis units, so for instance on a datetime axis, a break size of 3600000 would indicate the equivalent of an hour. 
+ <br><br><b>defaults:</b><br><br>&ensp;0*/
 	public void setBreakSize(Number breakSize) {
 		this.breakSize = breakSize;
 		this.setChanged();
@@ -49,7 +48,7 @@ indicate the equivalent of an hour.
 
 	private Number from;
 /**
-The point where the break starts.
+/** The point where the break starts. 
 */
 	public void setFrom(Number from) {
 		this.from = from;
@@ -61,9 +60,8 @@ The point where the break starts.
 
 	private Number repeat;
 /**
-Defines an interval after which the break appears again. By default
-the breaks do not repeat.
- <br><br><b>default:</b><br><br>&ensp;0*/
+/** Defines an interval after which the break appears again. By defaults the breaks do not repeat. 
+ <br><br><b>defaults:</b><br><br>&ensp;0*/
 	public void setRepeat(Number repeat) {
 		this.repeat = repeat;
 		this.setChanged();

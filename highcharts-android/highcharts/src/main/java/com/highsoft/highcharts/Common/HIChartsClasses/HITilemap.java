@@ -19,41 +19,17 @@ import com.highsoft.highcharts.Common.HIColor;
 
 
 
+
+
 /**
-A tilemap series. If the type option is
-not specified, it is inherited from chart.type.
-
-Configuration options for the series are given in three levels:
-1. Options for all series in a chart are defined in the
-   [plotOptions.series](plotOptions.series) object.
-2. Options for all tilemap series are defined in
-   [plotOptions.tilemap](plotOptions.tilemap).
-3. Options for one single series are given in
-   [the series instance array](series.tilemap).
-
-
-Highcharts.chart('container', {
-    plotOptions: {
-        series: {
-            // general options for all series
-        },
-        tilemap: {
-            // shared options for all tilemap series
-        }
-    },
-    series: [{
-        // specific options for this series instance
-        type: 'tilemap'
-    }]
-});
-
+/** A tilemap series. If the type option is not specified, it is inherited from chart.type. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all tilemap series are defined in  `plotOptions.tilemap`. 3. Options for one single series are given in  `the series instance array`.  Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     tilemap: {       // shared options for all tilemap series     }   },   series: [{     // specific options for this series instance     type: 'tilemap'   }] });  
 */
 
 public class HITilemap extends HISeries {
 	private Number pointPadding;
 /**
-* description: The padding between points in the tilemap.
-* demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/tilemap-pointpadding : Point padding on tiles* default: 0
+/** * description: The padding between points in the tilemap. * demo:  •  Point padding on tiles
+* defaults: 0
 */
 	public void setPointPadding(Number pointPadding) {
 		this.pointPadding = pointPadding;
@@ -63,25 +39,22 @@ public class HITilemap extends HISeries {
 
 	public Number getPointPadding(){ return pointPadding; }
 
-	private Number colsize;
+	private String tileShape;
 /**
-* description: The column size - how many X axis units each column in the tilemap
-should span. Works as in Heatmaps.
-* demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/heatmap/ : One day* default: 1
+/** The shape of the tiles in the tilemap. Possible values are hexagon, circle, diamond, and square. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/circlemap-africa">Circular tile shapes</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/diamondmap">Diamond tile shapes</a> <br><br><b>accepted values:</b><br><br>&ensp;["circle", "diamond", "hexagon", "square"]
 */
-	public void setColsize(Number colsize) {
-		this.colsize = colsize;
+	public void setTileShape(String tileShape) {
+		this.tileShape = tileShape;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getColsize(){ return colsize; }
+	public String getTileShape(){ return tileShape; }
 
 	private Number rowsize;
 /**
-* description: The row size - how many Y axis units each tilemap row should span.
-Analogous to colsize.
-* demo:  •  https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/heatmap/ : 1 by default* default: 1
+/** * description: The row size - how many Y axis units each tilemap row should span. Analogous to colsize. * demo:  •  1 by defaults
+* defaults: 1
 */
 	public void setRowsize(Number rowsize) {
 		this.rowsize = rowsize;
@@ -91,23 +64,22 @@ Analogous to colsize.
 
 	public Number getRowsize(){ return rowsize; }
 
-	private String tileShape;
+	private Number colsize;
 /**
-The shape of the tiles in the tilemap. Possible values are hexagon,
-circle, diamond, and square.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/circlemap-africa">Circular tile shapes</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/diamondmap">Diamond tile shapes</a>*/
-	public void setTileShape(String tileShape) {
-		this.tileShape = tileShape;
+/** * description: The column size - how many X axis units each column in the tilemap should span. Works as in Heatmaps. * demo:  •  One day
+* defaults: 1
+*/
+	public void setColsize(Number colsize) {
+		this.colsize = colsize;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getTileShape(){ return tileShape; }
+	public Number getColsize(){ return colsize; }
 
 	private HIColor nullColor;
 /**
-The color applied to null points. In styled mode, a general CSS class is
-applied instead.
+/** The color applied to null points. In styled mode, a general CSS class is applied instead. 
 */
 	public void setNullColor(HIColor nullColor) {
 		this.nullColor = nullColor;
@@ -141,14 +113,14 @@ applied instead.
 		if (this.pointPadding != null) {
 			params.put("pointPadding", this.pointPadding);
 		}
-		if (this.colsize != null) {
-			params.put("colsize", this.colsize);
+		if (this.tileShape != null) {
+			params.put("tileShape", this.tileShape);
 		}
 		if (this.rowsize != null) {
 			params.put("rowsize", this.rowsize);
 		}
-		if (this.tileShape != null) {
-			params.put("tileShape", this.tileShape);
+		if (this.colsize != null) {
+			params.put("colsize", this.colsize);
 		}
 		if (this.nullColor != null) {
 			params.put("nullColor", this.nullColor.getData());

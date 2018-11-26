@@ -18,12 +18,13 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIGlobal extends Observable implements HIChartsJSONSerializable { 
 
 	private String VMLRadialGradientURL;
 /**
-Path to the pattern image required by VML browsers in order to
-draw radial gradients.
+/** Path to the pattern image required by VML browsers in order to draw radial gradients. 
 */
 	public void setVMLRadialGradientURL(String VMLRadialGradientURL) {
 		this.VMLRadialGradientURL = VMLRadialGradientURL;

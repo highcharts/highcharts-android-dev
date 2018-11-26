@@ -19,24 +19,25 @@ import com.highsoft.highcharts.Common.HIColor;
 
 
 
+
+
 public class HINodes extends Observable implements HIChartsJSONSerializable { 
 
-	private Number colorIndex;
+	private String name;
 /**
-The color index of the auto generated node, especially for use in styled
-mode.
+/** The name to display for the node in data labels and tooltips. Use this when the name is different from the id. Where the id must be unique for each node, this is not necessary for the name. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/sankey/">Sankey diagram with node options</a>
 */
-	public void setColorIndex(Number colorIndex) {
-		this.colorIndex = colorIndex;
+	public void setName(String name) {
+		this.name = name;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getColorIndex(){ return colorIndex; }
+	public String getName(){ return name; }
 
 	private HIColor color;
 /**
-The color of the auto generated node.
+/** The color of the auto generated node. 
 */
 	public void setColor(HIColor color) {
 		this.color = color;
@@ -48,9 +49,8 @@ The color of the auto generated node.
 
 	private Number column;
 /**
-An optional column index of where to place the node. The default behaviour is
-to place it next to the preceding node.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-node-column/">Specified node column</a> <br><br><b>default:</b><br><br>&ensp;undefined*/
+/** An optional column index of where to place the node. The defaults behaviour is to place it next to the preceding node. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-node-column/">Specified node column</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined*/
 	public void setColumn(Number column) {
 		this.column = column;
 		this.setChanged();
@@ -61,9 +61,8 @@ to place it next to the preceding node.
 
 	private Number offset;
 /**
-The vertical offset of a node in terms of weight. Positive values shift the
-node downwards, negative shift it upwards.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-node-column/">Specified node offset</a> <br><br><b>default:</b><br><br>&ensp;0*/
+/** The vertical offset of a node in terms of weight. Positive values shift the node downwards, negative shift it upwards. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-node-column/">Specified node offset</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0*/
 	public void setOffset(Number offset) {
 		this.offset = offset;
 		this.setChanged();
@@ -74,8 +73,7 @@ node downwards, negative shift it upwards.
 
 	private String id;
 /**
-The id of the auto-generated node, refering to the from or to setting of
-the link.
+/** The id of the auto-generated node, refering to the from or to setting of the link. 
 */
 	public void setId(String id) {
 		this.id = id;
@@ -85,19 +83,17 @@ the link.
 
 	public String getId(){ return id; }
 
-	private String name;
+	private Number colorIndex;
 /**
-The name to display for the node in data labels and tooltips. Use this when
-the name is different from the id. Where the id must be unique for each
-node, this is not necessary for the name.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/sankey/">Sankey diagram with node options</a>*/
-	public void setName(String name) {
-		this.name = name;
+/** The color index of the auto generated node, especially for use in styled mode. 
+*/
+	public void setColorIndex(Number colorIndex) {
+		this.colorIndex = colorIndex;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getName(){ return name; }
+	public Number getColorIndex(){ return colorIndex; }
 
 
 
@@ -118,8 +114,8 @@ node, this is not necessary for the name.
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.colorIndex != null) {
-			params.put("colorIndex", this.colorIndex);
+		if (this.name != null) {
+			params.put("name", this.name);
 		}
 		if (this.color != null) {
 			params.put("color", this.color.getData());
@@ -133,8 +129,8 @@ node, this is not necessary for the name.
 		if (this.id != null) {
 			params.put("id", this.id);
 		}
-		if (this.name != null) {
-			params.put("name", this.name);
+		if (this.colorIndex != null) {
+			params.put("colorIndex", this.colorIndex);
 		}
 		return params;
 	}

@@ -2,30 +2,46 @@ package com.highsoft.devground;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-import com.highsoft.highcharts.Common.HIChartsClasses.HIAxis;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIArea;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIBar;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIChart;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIColumn;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIData;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIExporting;
+import com.highsoft.highcharts.Common.HIChartsClasses.HICredits;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIDataLabels;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIEvents;
 import com.highsoft.highcharts.Common.HIChartsClasses.HILabels;
+import com.highsoft.highcharts.Common.HIChartsClasses.HILang;
+import com.highsoft.highcharts.Common.HIChartsClasses.HILegend;
 import com.highsoft.highcharts.Common.HIChartsClasses.HILine;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIMarker;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIOptions;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIScrollablePlotArea;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIPlotLines;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIPlotOptions;
+import com.highsoft.highcharts.Common.HIChartsClasses.HIPoint;
 import com.highsoft.highcharts.Common.HIChartsClasses.HISeries;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIStyle;
+import com.highsoft.highcharts.Common.HIChartsClasses.HISpline;
+import com.highsoft.highcharts.Common.HIChartsClasses.HISubtitle;
+import com.highsoft.highcharts.Common.HIChartsClasses.HITime;
 import com.highsoft.highcharts.Common.HIChartsClasses.HITitle;
 import com.highsoft.highcharts.Common.HIChartsClasses.HITooltip;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIXAxis;
 import com.highsoft.highcharts.Common.HIChartsClasses.HIYAxis;
 import com.highsoft.highcharts.Common.HIColor;
+import com.highsoft.highcharts.Common.HIGradient;
+import com.highsoft.highcharts.Common.HIStop;
 import com.highsoft.highcharts.Core.HIChartView;
 import com.highsoft.highcharts.Core.HIFunction;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Random;
+import java.util.logging.Logger;
 
 public class IssuesActivity extends AppCompatActivity {
 
@@ -37,82 +53,48 @@ public class IssuesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_issues);
 
         Button btn = findViewById(R.id.btn);
+        btn.setText("Series update");
+        HIChartView hiChartView = findViewById(R.id.hc);
+        HIOptions hiOptions = new HIOptions();
 
-        HIChartView chartView = findViewById(R.id.hc);
-        HIOptions options = new HIOptions();
+        HILang hiLang = new HILang();
+        hiLang.setThousandsSep(",");
+        hiChartView.lang = hiLang;
 
-//        HIChart chart = new HIChart();
-//        HIScrollablePlotArea scrollablePlotArea = new HIScrollablePlotArea();
-//        scrollablePlotArea.setMinWidth(1000);
-//        scrollablePlotArea.setScrollPositionX(1);
-//        chart.setScrollablePlotArea(scrollablePlotArea);
-//        options.setChart(chart);
-
-        ArrayList<HIYAxis> yaxis = new ArrayList<>();
-        yaxis.add(new HIYAxis());
-        options.setYAxis(yaxis);
-
-        ArrayList<HIXAxis> xAxes = new ArrayList<>();
-        HIXAxis hixAxis = new HIXAxis();
-        xAxes.add(hixAxis);
-        options.setXAxis(xAxes);
+        HILine line = new HILine();
+        line.setData(randData(10));
+        HILine line1 = new HILine();
+        line1.setData(randData(10));
 
         HITooltip tooltip = new HITooltip();
-        //general formatting
-        tooltip.setBorderWidth(0);
-        tooltip.setShadow(false);
-        tooltip.setBorderColor(HIColor.initWithName("white"));
-        //position of the tooltip
-        tooltip.setPositioner(new HIFunction("function () { return { x: 100, y: 100 }; }"));
-        //styling
-        HIStyle tooltipStyle = new HIStyle();
-        tooltipStyle.setFontFamily("serif");
-        tooltipStyle.setColor("red");
-        tooltip.setStyle(tooltipStyle);
-        //text formatting, two lines
-        tooltip.setFormatter(new HIFunction(f -> {
-            String txt = f.getProperty("series.name") + "<br>" + "Value: " + f.getProperty("x");
-            return txt;
-        }, new String[] {"series.name", "x"}));
-        options.setTooltip(tooltip);
-
-        ArrayList<Number> data1 = new ArrayList<>();
-        data1.add(2);
-        data1.add(1);
-        data1.add(5);
-        data1.add(4);
-        HILine line1 = new HILine();
-        line1.setData(data1);
+        tooltip.setShared(true);
+        hiOptions.setTooltip(tooltip);
 
 
-        options.setSeries(new ArrayList<>());
-        options.getSeries().add(line1);
-        chartView.setOptions(options);
+        hiOptions.setSeries(new ArrayList<>(Arrays.asList(line, line1)));
+        hiChartView.setOptions(hiOptions);
+
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                HILabels yLablesCompare = new HILabels();
-                HIYAxis yaxis2 = new HIYAxis();
-                yaxis2.setOpposite(true);
-                yaxis2.setLabels(yLablesCompare);
-                options.getYAxis().add(yaxis2);
-
-                ArrayList<Number> data2 = new ArrayList<>();
-                data2.add(4);
-                data2.add(3);
-                data2.add(2);
-                data2.add(6);
-                HILine line2 = new HILine();
-                line2.setYAxis(0);
-                line2.setData(data2);
-                options.getSeries().add(line2);
-
-                chartView.reload();
+                HILine series = new HILine();
+                series.setData(randData(5));
+                hiOptions.setSeries(new ArrayList<>(Collections.singletonList(series)));
+                HIYAxis hiyaxis = new HIYAxis();
+                hiyaxis.setMax(8);
+                hiyaxis.setMin(-3);
+                hiOptions.setYAxis(new ArrayList<>(Collections.singletonList(hiyaxis)));
             }
         });
+    }
 
-
+    private ArrayList randData(int bound){
+        ArrayList<Integer> data = new ArrayList<>();
+        Random r = new Random();
+        for(int i = 0 ; i < 10 ; i ++){
+            data.add(r.nextInt(bound));
+        }
+        return data;
     }
 }

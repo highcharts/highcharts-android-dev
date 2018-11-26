@@ -18,13 +18,14 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIResponsive extends Observable implements HIChartsJSONSerializable { 
 
 	private ArrayList <HIRules> rules;
 /**
-A set of rules for responsive settings. The rules are executed from
-the top down.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/">Axis changes</a>*/
+/** A set of rules for responsive settings. The rules are executed from the top down. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/">Axis changes</a>
+*/
 	public void setRules(ArrayList rules) {
 		this.rules = rules;
 		this.setChanged();

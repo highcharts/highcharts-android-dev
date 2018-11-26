@@ -19,12 +19,14 @@ import com.highsoft.highcharts.Common.HIColor;
 
 
 
+
+
 public class HIPlotLines extends Observable implements HIChartsJSONSerializable { 
 
 	private Number zIndex;
 /**
-The z index of the plot line within the chart.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-zindex-behind/">Behind plot lines by default</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-zindex-above/">Above plot lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-zindex-above-all/">Above plot lines and series</a>*/
+/** The z index of the plot line within the chart. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-zindex-behind/">Behind plot lines by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-zindex-above/">Above plot lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-zindex-above-all/">Above plot lines and series</a>
+*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
 		this.setChanged();
@@ -35,10 +37,8 @@ The z index of the plot line within the chart.
 
 	private String dashStyle;
 /**
-The dashing or dot style for the plot line. For possible values see
-[this overview](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-
-dashstyle-all/).
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-dashstyle/">Dash and dot pattern</a> <br><br><b>accepted values:</b><br><br>&ensp;["Solid", "ShortDash", "ShortDot", "ShortDashDot", "ShortDashDotDot", "Dot", "Dash" ,"LongDash", "DashDot", "LongDashDot", "LongDashDotDot"] <br><br><b>default:</b><br><br>&ensp;Solid*/
+/** The dashing or dot style for the plot line. For possible values see [this overview](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-dashstyle/">Dash and dot pattern</a> <br><br><b>accepted values:</b><br><br>&ensp;["Solid", "ShortDash", "ShortDot", "ShortDashDot",       "ShortDashDotDot", "Dot", "Dash" ,"LongDash", "DashDot",       "LongDashDot", "LongDashDotDot"]
+ <br><br><b>defaults:</b><br><br>&ensp;Solid*/
 	public void setDashStyle(String dashStyle) {
 		this.dashStyle = dashStyle;
 		this.setChanged();
@@ -49,8 +49,8 @@ dashstyle-all/).
 
 	private HIColor color;
 /**
-The color of the line.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">A red line from X axis</a>*/
+/** The color of the line. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">A red line from X axis</a>
+*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -61,8 +61,8 @@ The color of the line.
 
 	private Number value;
 /**
-The position of the line in axis units.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">Between two categories on X axis</a>*/
+/** The position of the line in axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">Between two categories on X axis</a>
+*/
 	public void setValue(Number value) {
 		this.value = value;
 		this.setChanged();
@@ -71,23 +71,21 @@ The position of the line in axis units.
 
 	public Number getValue(){ return value; }
 
-	private HILabel label;
+	private String id;
 /**
-Text labels for the plot bands
+/** An id used for identifying the plot line in Axis.removePlotLine. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-id/">Remove plot line by id</a>
 */
-	public void setLabel(HILabel label) {
-		this.label = label;
-		this.label.addObserver(updateObserver);
+	public void setId(String id) {
+		this.id = id;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HILabel getLabel(){ return label; }
+	public String getId(){ return id; }
 
 	private String className;
 /**
-A custom class name, in addition to the default
-highcharts-plot-line, to apply to each individual line.
+/** A custom class name, in addition to the defaults highcharts-plot-line, to apply to each individual line. 
 */
 	public void setClassName(String className) {
 		this.className = className;
@@ -99,8 +97,8 @@ highcharts-plot-line, to apply to each individual line.
 
 	private Number width;
 /**
-The width or thickness of the plot line.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">2px wide line from X axis</a>*/
+/** The width or thickness of the plot line. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">2px wide line from X axis</a>
+*/
 	public void setWidth(Number width) {
 		this.width = width;
 		this.setChanged();
@@ -109,23 +107,23 @@ The width or thickness of the plot line.
 
 	public Number getWidth(){ return width; }
 
-	private String id;
+	private HILabel label;
 /**
-An id used for identifying the plot line in Axis.removePlotLine.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-id/">Remove plot line by id</a>*/
-	public void setId(String id) {
-		this.id = id;
+/** Text labels for the plot bands 
+*/
+	public void setLabel(HILabel label) {
+		this.label = label;
+		this.label.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getId(){ return id; }
+	public HILabel getLabel(){ return label; }
 
 	private Object events;
 /**
-An object defining mouse events for the plot line. Supported
-properties are click, mouseover, mouseout, mousemove.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-events/">Mouse events demonstrated</a>*/
+/** An object defining mouse events for the plot line. Supported properties are click, mouseover, mouseout, mousemove. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-events/">Mouse events demonstrated</a>
+*/
 	public void setEvents(Object events) {
 		this.events = events;
 		this.setChanged();
@@ -165,8 +163,8 @@ properties are click, mouseover, mouseout, mousemove.
 		if (this.value != null) {
 			params.put("value", this.value);
 		}
-		if (this.label != null) {
-			params.put("label", this.label.getParams());
+		if (this.id != null) {
+			params.put("id", this.id);
 		}
 		if (this.className != null) {
 			params.put("className", this.className);
@@ -174,8 +172,8 @@ properties are click, mouseover, mouseout, mousemove.
 		if (this.width != null) {
 			params.put("width", this.width);
 		}
-		if (this.id != null) {
-			params.put("id", this.id);
+		if (this.label != null) {
+			params.put("label", this.label.getParams());
 		}
 		if (this.events != null) {
 			params.put("events", this.events);

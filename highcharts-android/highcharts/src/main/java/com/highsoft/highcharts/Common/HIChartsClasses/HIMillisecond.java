@@ -18,20 +18,31 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
-public class HIItemHiddenStyle extends Observable implements HIChartsJSONSerializable { 
 
-	private String color;
-	public void setColor(String color) {
-		this.color = color;
+
+public class HIMillisecond extends Observable implements HIChartsJSONSerializable { 
+
+	private Boolean range;
+	public void setRange(Boolean range) {
+		this.range = range;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getColor(){ return color; }
+	public Boolean getRange(){ return range; }
+
+	private String main;
+	public void setMain(String main) {
+		this.main = main;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getMain(){ return main; }
 
 
 
-	public HIItemHiddenStyle() {
+	public HIMillisecond() {
 
 	}
 
@@ -48,8 +59,11 @@ public class HIItemHiddenStyle extends Observable implements HIChartsJSONSeriali
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.color != null) {
-			params.put("color", this.color);
+		if (this.range != null) {
+			params.put("range", this.range);
+		}
+		if (this.main != null) {
+			params.put("main", this.main);
 		}
 		return params;
 	}

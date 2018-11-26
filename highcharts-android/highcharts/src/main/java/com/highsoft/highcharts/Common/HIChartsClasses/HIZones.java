@@ -19,12 +19,14 @@ import com.highsoft.highcharts.Common.HIColor;
 
 
 
+
+
 public class HIZones extends Observable implements HIChartsJSONSerializable { 
 
 	private String className;
 /**
-Styled mode only. A custom class name for the zone.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/">Zones styled by class name</a>*/
+/** Styled mode only. A custom class name for the zone. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/">Zones styled by class name</a>
+*/
 	public void setClassName(String className) {
 		this.className = className;
 		this.setChanged();
@@ -35,7 +37,7 @@ Styled mode only. A custom class name for the zone.
 
 	private HIColor color;
 /**
-Defines the color of the series.
+/** Defines the color of the series. 
 */
 	public void setColor(HIColor color) {
 		this.color = color;
@@ -47,8 +49,8 @@ Defines the color of the series.
 
 	private String dashStyle;
 /**
-A name for the dash style to use for the graph.
- <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/color-zones-dashstyle-dot/">Dashed line indicates prognosis</a>*/
+/** A name for the dash style to use for the graph. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/color-zones-dashstyle-dot/">Dashed line indicates prognosis</a>
+*/
 	public void setDashStyle(String dashStyle) {
 		this.dashStyle = dashStyle;
 		this.setChanged();
@@ -59,7 +61,7 @@ A name for the dash style to use for the graph.
 
 	private HIColor fillColor;
 /**
-Defines the fill color for the series (in area type series)
+/** Defines the fill color for the series (in area type series) 
 */
 	public void setFillColor(HIColor fillColor) {
 		this.fillColor = fillColor;
@@ -71,8 +73,7 @@ Defines the fill color for the series (in area type series)
 
 	private Number value;
 /**
-The value up to where the zone extends, if undefined the zones stretches
-to the last value in the series.
+/** The value up to where the zone extends, if undefined the zones stretches to the last value in the series. 
 */
 	public void setValue(Number value) {
 		this.value = value;

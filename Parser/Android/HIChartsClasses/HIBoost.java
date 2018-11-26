@@ -18,12 +18,13 @@ import com.highsoft.highcharts.Common.HIChartsJSONSerializable;
 
 
 
+
+
 public class HIBoost extends Observable implements HIChartsJSONSerializable { 
 
 	private HIDebug debug;
 /**
-Debugging options for boost.
-Useful for benchmarking, and general timing.
+/** Debugging options for boost. Useful for benchmarking, and general timing. 
 */
 	public void setDebug(HIDebug debug) {
 		this.debug = debug;
@@ -36,9 +37,8 @@ Useful for benchmarking, and general timing.
 
 	private Boolean allowForce;
 /**
-If set to true, the whole chart will be boosted if one of the series
-crosses its threshold, and all the series can be boosted.
- <br><br><b>default:</b><br><br>&ensp;true*/
+/** If set to true, the whole chart will be boosted if one of the series crosses its threshold, and all the series can be boosted. 
+ <br><br><b>defaults:</b><br><br>&ensp;true*/
 	public void setAllowForce(Boolean allowForce) {
 		this.allowForce = allowForce;
 		this.setChanged();
@@ -49,14 +49,8 @@ crosses its threshold, and all the series can be boosted.
 
 	private Boolean useGPUTranslations;
 /**
-Enable or disable GPU translations. GPU translations are faster than doing
-the translation in JavaScript.
-
-This option may cause rendering issues with certain datasets.
-Namely, if your dataset has large numbers with small increments (such as
-timestamps), it won't work correctly. This is due to floating point
-precission.
- <br><br><b>default:</b><br><br>&ensp;false*/
+/** Enable or disable GPU translations. GPU translations are faster than doing the translation in JavaScript. This option may cause rendering issues with certain datasets. Namely, if your dataset has large numbers with small increments (such as timestamps), it won't work correctly. This is due to floating point precission. 
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
 	public void setUseGPUTranslations(Boolean useGPUTranslations) {
 		this.useGPUTranslations = useGPUTranslations;
 		this.setChanged();
@@ -67,8 +61,8 @@ precission.
 
 	private Boolean enabled;
 /**
-Enable or disable boost on a chart.
- <br><br><b>default:</b><br><br>&ensp;true*/
+/** Enable or disable boost on a chart. 
+ <br><br><b>defaults:</b><br><br>&ensp;true*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -79,14 +73,8 @@ Enable or disable boost on a chart.
 
 	private Number seriesThreshold;
 /**
-Set the series threshold for when the boost should kick in globally.
-
-Setting to e.g. 20 will cause the whole chart to enter boost mode
-if there are 20 or more series active. When the chart is in boost mode,
-every series in it will be rendered to a common canvas. This offers
-a significant speed improvment in charts with a very high
-amount of series.
- <br><br><b>default:</b><br><br>&ensp;null*/
+/** Set the series threshold for when the boost should kick in globally. Setting to e.g. 20 will cause the whole chart to enter boost mode if there are 20 or more series active. When the chart is in boost mode, every series in it will be rendered to a common canvas. This offers a significant speed improvment in charts with a very high amount of series. 
+ <br><br><b>defaults:</b><br><br>&ensp;null*/
 	public void setSeriesThreshold(Number seriesThreshold) {
 		this.seriesThreshold = seriesThreshold;
 		this.setChanged();
