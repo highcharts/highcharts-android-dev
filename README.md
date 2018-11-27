@@ -61,7 +61,7 @@ and following to the dependencies in your app **build.gradle** file:
 ```gradle
 dependencies {
     compile (name: 'highcharts-release', ext:'aar')
-    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.google.code.gson:gson:2.8.1'
 }
 ```
 

@@ -261,7 +261,7 @@ hc_types = {
     # tree_namespace
     "number|undefined": 'Number',
     "Array.<(number|string)>": 'ArrayList /* <Number, String> */',
-    "false": 'Number /* boolean */',
+    "false": 'Boolean /* boolean */',
     "undefined": 'Object',
     "null": 'Object',
     "Object|undefined": 'Object',
@@ -276,9 +276,9 @@ hc_types = {
     # tree
     "Highcharts.PlotSeriesDataLabelsOptions": 'Object',
     "Highcharts.Options": 'HashMap',
-    "boolean|Highcharts.ShadowOptionsObject": 'Number /* boolean */',
+    "boolean|Highcharts.ShadowOptionsObject": 'Boolean /* boolean */',
     "string|Highcharts.SVGDOMElement": 'String',
-    "boolean|Highcharts.CSSObject": 'Number /* boolean */',
+    "boolean|Highcharts.CSSObject": 'Boolean /* boolean */',
     # color fixes
     "Highcharts.ColorString": 'HIColor',
     "Highcharts.ColorString|null": 'HIColor'
@@ -320,7 +320,7 @@ def create_java_file(name):
     if source.properties:
         java = format_to_java(name, source)
         if java:
-            filename = "Android/HIChartsClasses/HI{0}.java".format(upper_first(create_name(name)))
+            filename = "Android/hichartsclasses/HI{0}.java".format(upper_first(create_name(name)))
             files.append(upper_first(create_name(name)))
             with open(filename, "w") as java_file:
                 java_file.write(java)
@@ -385,14 +385,14 @@ def format_to_java(name, source):
     import_hi_set = set()
     import_hi_string = ""
 
-    imports += "package com.highsoft.highcharts.Common.HIChartsClasses;\n"
+    imports += "package com.highsoft.highcharts.common.hichartsclasses;\n"
     imports += "\nimport java.util.HashMap;"
     imports += "\nimport java.util.Map;"
     imports += "\nimport java.util.ArrayList;"
     imports += "\nimport java.util.Observable;"
     imports += "\nimport java.util.Observer;"
-    imports += "\nimport com.highsoft.highcharts.Core.HIFunction;"
-    imports += "\nimport com.highsoft.highcharts.Common.HIChartsJSONSerializable;"
+    imports += "\nimport com.highsoft.highcharts.core.HIFunction;"
+    imports += "\nimport com.highsoft.highcharts.common.HIChartsJSONSerializable;"
 
     if source.extends:
         if class_name in comments:
@@ -639,7 +639,7 @@ def format_to_java(name, source):
                     get_last(field.name)
                 )
     if colorAdded:
-        imports += "\nimport com.highsoft.highcharts.Common.HIColor;"
+        imports += "\nimport com.highsoft.highcharts.common.HIColor;"
     imports += "\n"
 
     for mathch in import_hi_set: # set
@@ -671,7 +671,7 @@ def format_to_java(name, source):
                     methods += "\t\t\tparams.put(\"{0}\", this.{1}.getData());\n".format(get_last(field.name),
                                                                                          get_last(field.name))
                 elif get_java_type(structure[field.name].data_type) == 'ArrayList<HIColor>':
-                    imports += "\nimport com.highsoft.highcharts.Common.HIColor;"
+                    imports += "\nimport com.highsoft.highcharts.common.HIColor;"
                     methods += "\t\t\tArrayList<Object> array = new ArrayList<>();\n"
                     methods += "\t\t\tfor (HIColor hiColor : this.{0})".format(get_last(field.name)) + " {\n"
                     methods += "\t\t\t\tarray.add(hiColor.getData());\n".format(
@@ -720,15 +720,15 @@ def create_java_options_file():
     methods = ""
     javaText = ""
 
-    imports += "\npackage com.highsoft.highcharts.Common.HIChartsClasses;\n"
+    imports += "\npackage com.highsoft.highcharts.common.hichartsclasses;\n"
 
     imports += "\nimport java.util.HashMap;"
     imports += "\nimport java.util.Map;"
     imports += "\nimport java.util.ArrayList;"
     imports += "\nimport java.util.Observable;"
     imports += "\nimport java.util.Observer;"
-    imports += "\nimport com.highsoft.highcharts.Common.HIChartsJSONSerializable;"
-    imports += "\nimport com.highsoft.highcharts.Common.HIColor;"
+    imports += "\nimport com.highsoft.highcharts.common.HIChartsJSONSerializable;"
+    imports += "\nimport com.highsoft.highcharts.common.HIColor;"
 
     # SETTERS observer implementation
     fields += "\n\n\t private Observer updateObserver = new Observer() {" \
@@ -910,7 +910,7 @@ def create_java_options_file():
 
     javaText += imports + declaration + fields + methods + "\n}"
 
-    with open("Android/HIChartsClasses/HIOptions.java", "w") as j:
+    with open("Android/hichartsclasses/HIOptions.java", "w") as j:
         j.write(javaText)
 
 
@@ -922,8 +922,8 @@ def create_android_files_for_main_class(field):
 
 
 def create_android_files():
-    if not os.path.exists("Android/HIChartsClasses"):
-        os.makedirs("Android/HIChartsClasses")
+    if not os.path.exists("Android/hichartsclasses"):
+        os.makedirs("Android/hichartsclasses")
     for field in structure:
         create_android_files_for_main_class(field)
         create_java_file(field)

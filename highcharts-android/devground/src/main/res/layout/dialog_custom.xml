@@ -4,9 +4,9 @@
     android:id="@+id/dialog_custom"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <com.highsoft.highcharts.Core.HIChartView
+    <com.highsoft.highcharts.core.HIChartView
         android:id="@+id/hc"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.highsoft.highcharts.Core.HIChartView>
+    </com.highsoft.highcharts.core.HIChartView>
 </LinearLayout>

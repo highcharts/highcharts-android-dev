@@ -8,11 +8,11 @@
     android:background="@color/colorAccent"
     tools:context="com.highsoft.devground.MainActivity">
 
-    <com.highsoft.highcharts.Core.HIChartView
+    <com.highsoft.highcharts.core.HIChartView
         android:id="@+id/hc"
         android:layout_width="match_parent"
         android:layout_height="400dp">
-    </com.highsoft.highcharts.Core.HIChartView>
+    </com.highsoft.highcharts.core.HIChartView>
 
     <Button
         android:layout_below="@id/hc"

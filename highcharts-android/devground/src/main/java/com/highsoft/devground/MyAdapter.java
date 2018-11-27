@@ -6,9 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.highsoft.highcharts.Common.HIChartsClasses.HIOptions;
-import com.highsoft.highcharts.Common.HIChartsClasses.HISeries;
-import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
+import com.highsoft.highcharts.common.hichartsclasses.HISeries;
+import com.highsoft.highcharts.core.HIChartView;
 
 import java.util.ArrayList;
 import java.util.Arrays;

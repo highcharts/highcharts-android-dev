@@ -1,11 +1,5 @@
 package com.highsoft.devground;
 
-import com.google.gson.annotations.SerializedName;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIMarker;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
 /**
  * Created by bartosz on 21.03.18.
  */

@@ -7,13 +7,13 @@
     android:background="@color/colorAccent"
     tools:context="com.highsoft.devground.MainActivity">
 
-    <com.highsoft.highcharts.Core.HIChartView
+    <com.highsoft.highcharts.core.HIChartView
         android:id="@+id/hc"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="8dp" >
-    </com.highsoft.highcharts.Core.HIChartView>
+    </com.highsoft.highcharts.core.HIChartView>
 
 
 

@@ -2,46 +2,20 @@ package com.highsoft.devground;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.highsoft.highcharts.Common.HIChartsClasses.HIArea;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIBar;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIChart;
-import com.highsoft.highcharts.Common.HIChartsClasses.HICredits;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIDataLabels;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIEvents;
-import com.highsoft.highcharts.Common.HIChartsClasses.HILabels;
-import com.highsoft.highcharts.Common.HIChartsClasses.HILang;
-import com.highsoft.highcharts.Common.HIChartsClasses.HILegend;
-import com.highsoft.highcharts.Common.HIChartsClasses.HILine;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIMarker;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIOptions;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIPlotLines;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIPlotOptions;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIPoint;
-import com.highsoft.highcharts.Common.HIChartsClasses.HISeries;
-import com.highsoft.highcharts.Common.HIChartsClasses.HISpline;
-import com.highsoft.highcharts.Common.HIChartsClasses.HISubtitle;
-import com.highsoft.highcharts.Common.HIChartsClasses.HITime;
-import com.highsoft.highcharts.Common.HIChartsClasses.HITitle;
-import com.highsoft.highcharts.Common.HIChartsClasses.HITooltip;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIXAxis;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIYAxis;
-import com.highsoft.highcharts.Common.HIColor;
-import com.highsoft.highcharts.Common.HIGradient;
-import com.highsoft.highcharts.Common.HIStop;
-import com.highsoft.highcharts.Core.HIChartView;
-import com.highsoft.highcharts.Core.HIFunction;
+import com.highsoft.highcharts.common.hichartsclasses.HILang;
+import com.highsoft.highcharts.common.hichartsclasses.HILine;
+import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
+import com.highsoft.highcharts.common.hichartsclasses.HITooltip;
+import com.highsoft.highcharts.common.hichartsclasses.HIYAxis;
+import com.highsoft.highcharts.core.HIChartView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.Random;
-import java.util.logging.Logger;
 
 public class IssuesActivity extends AppCompatActivity {
 
