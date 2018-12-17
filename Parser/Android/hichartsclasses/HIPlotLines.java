@@ -71,17 +71,18 @@ public class HIPlotLines extends Observable implements HIChartsJSONSerializable 
 
 	public Number getValue(){ return value; }
 
-	private String id;
+	private HILabel label;
 /**
-/** An id used for identifying the plot line in Axis.removePlotLine. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-id/">Remove plot line by id</a>
+/** Text labels for the plot bands 
 */
-	public void setId(String id) {
-		this.id = id;
+	public void setLabel(HILabel label) {
+		this.label = label;
+		this.label.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getId(){ return id; }
+	public HILabel getLabel(){ return label; }
 
 	private String className;
 /**
@@ -107,18 +108,17 @@ public class HIPlotLines extends Observable implements HIChartsJSONSerializable 
 
 	public Number getWidth(){ return width; }
 
-	private HILabel label;
+	private String id;
 /**
-/** Text labels for the plot bands 
+/** An id used for identifying the plot line in Axis.removePlotLine. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-id/">Remove plot line by id</a>
 */
-	public void setLabel(HILabel label) {
-		this.label = label;
-		this.label.addObserver(updateObserver);
+	public void setId(String id) {
+		this.id = id;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HILabel getLabel(){ return label; }
+	public String getId(){ return id; }
 
 	private Object events;
 /**
@@ -163,8 +163,8 @@ public class HIPlotLines extends Observable implements HIChartsJSONSerializable 
 		if (this.value != null) {
 			params.put("value", this.value);
 		}
-		if (this.id != null) {
-			params.put("id", this.id);
+		if (this.label != null) {
+			params.put("label", this.label.getParams());
 		}
 		if (this.className != null) {
 			params.put("className", this.className);
@@ -172,8 +172,8 @@ public class HIPlotLines extends Observable implements HIChartsJSONSerializable 
 		if (this.width != null) {
 			params.put("width", this.width);
 		}
-		if (this.label != null) {
-			params.put("label", this.label.getParams());
+		if (this.id != null) {
+			params.put("id", this.id);
 		}
 		if (this.events != null) {
 			params.put("events", this.events);

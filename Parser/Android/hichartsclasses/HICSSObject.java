@@ -214,18 +214,6 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 
 	public String getTextAlign(){ return textAlign; }
 
-	private String textOutline;
-/**
-/** Outline style of the element text. 
-*/
-	public void setTextOutline(String textOutline) {
-		this.textOutline = textOutline;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getTextOutline(){ return textOutline; }
-
 	private String textDecoration;
 /**
 /** Additional decoration of the element text. 
@@ -237,6 +225,18 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	}
 
 	public String getTextDecoration(){ return textDecoration; }
+
+	private String textOutline;
+/**
+/** Outline style of the element text. 
+*/
+	public void setTextOutline(String textOutline) {
+		this.textOutline = textOutline;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTextOutline(){ return textOutline; }
 
 	private String textOverflow;
 /**
@@ -250,18 +250,6 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 
 	public String getTextOverflow(){ return textOverflow; }
 
-	private String transition;
-/**
-/** Animated transition of selected element properties. 
-*/
-	public void setTransition(String transition) {
-		this.transition = transition;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getTransition(){ return transition; }
-
 	private String top;
 /**
 /** Top spacing of the element relative to the parent element. 
@@ -273,6 +261,18 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	}
 
 	public String getTop(){ return top; }
+
+	private String transition;
+/**
+/** Animated transition of selected element properties. 
+*/
+	public void setTransition(String transition) {
+		this.transition = transition;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTransition(){ return transition; }
 
 	private String whiteSpace;
 /**
@@ -365,20 +365,20 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 		if (this.textAlign != null) {
 			params.put("textAlign", this.textAlign);
 		}
-		if (this.textOutline != null) {
-			params.put("textOutline", this.textOutline);
-		}
 		if (this.textDecoration != null) {
 			params.put("textDecoration", this.textDecoration);
+		}
+		if (this.textOutline != null) {
+			params.put("textOutline", this.textOutline);
 		}
 		if (this.textOverflow != null) {
 			params.put("textOverflow", this.textOverflow);
 		}
-		if (this.transition != null) {
-			params.put("transition", this.transition);
-		}
 		if (this.top != null) {
 			params.put("top", this.top);
+		}
+		if (this.transition != null) {
+			params.put("transition", this.transition);
 		}
 		if (this.whiteSpace != null) {
 			params.put("whiteSpace", this.whiteSpace);

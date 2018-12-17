@@ -25,7 +25,7 @@ public class HIFocusBorder extends Observable implements HIChartsJSONSerializabl
 	private Number margin;
 /**
 /** Focus border margin around the elements. 
- <br><br><b>defaults:</b><br><br>&ensp;2*/
+*/
 	public void setMargin(Number margin) {
 		this.margin = margin;
 		this.setChanged();
@@ -34,23 +34,22 @@ public class HIFocusBorder extends Observable implements HIChartsJSONSerializabl
 
 	public Number getMargin(){ return margin; }
 
-	private HIStyle style;
+	private HICSSObject style;
 /**
 /** Style options for the focus border drawn around elements while navigating through them. Note that some browsers in addition draw their own borders for focused elements. These automatic borders can not be styled by Highcharts. In styled mode, the border is given the .highcharts-focus-border class. 
-*/
-	public void setStyle(HIStyle style) {
+ <br><br><b>defaults:</b><br><br>&ensp;{"color": "#335cad", "lineWidth": 2, "borderRadius": 3}*/
+	public void setStyle(HICSSObject style) {
 		this.style = style;
-		this.style.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIStyle getStyle(){ return style; }
+	public HICSSObject getStyle(){ return style; }
 
 	private Boolean enabled;
 /**
 /** Enable/disable focus border for chart. 
- <br><br><b>defaults:</b><br><br>&ensp;true*/
+*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -62,7 +61,7 @@ public class HIFocusBorder extends Observable implements HIChartsJSONSerializabl
 	private Boolean hideBrowserFocusOutline;
 /**
 /** Hide the browser's defaults focus indicator. 
- <br><br><b>defaults:</b><br><br>&ensp;true*/
+*/
 	public void setHideBrowserFocusOutline(Boolean hideBrowserFocusOutline) {
 		this.hideBrowserFocusOutline = hideBrowserFocusOutline;
 		this.setChanged();
@@ -94,7 +93,7 @@ public class HIFocusBorder extends Observable implements HIChartsJSONSerializabl
 			params.put("margin", this.margin);
 		}
 		if (this.style != null) {
-			params.put("style", this.style.getParams());
+			params.put("style", this.style);
 		}
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);

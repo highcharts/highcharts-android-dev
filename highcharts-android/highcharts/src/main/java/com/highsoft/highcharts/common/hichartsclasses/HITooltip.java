@@ -49,7 +49,7 @@ public class HITooltip extends Observable implements HIChartsJSONSerializable {
 
 	private String headerFormat;
 /**
-/** The HTML of the tooltip header line. Variables are enclosed by curly brackets. Available variables are point.key, series.name, series.color and other members from the point and series objects. The point.key variable contains the category name, x value or datetime string depending on the type of axis. For datetime axes, the point.key date format can be set using tooltip.xDateFormat. To access the original point use point.point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/footerformat/">An HTML table in the tooltip</a>
+/** The HTML of the tooltip header line. Variables are enclosed by curly brackets. Available variables are point.key, series.name, series.color and other members from the point and series objects. The point.key variable contains the category name, x value or datetime string depending on the type of axis. For datetime axes, the point.key date format can be set using tooltip.xDateFormat. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/footerformat/">An HTML table in the tooltip</a>
 */
 	public void setHeaderFormat(String headerFormat) {
 		this.headerFormat = headerFormat;
@@ -83,34 +83,9 @@ public class HITooltip extends Observable implements HIChartsJSONSerializable {
 
 	public String getValuePrefix(){ return valuePrefix; }
 
-	private HIDateTimeLabelFormats dateTimeLabelFormats;
-/**
-/** For series on a datetime axes, the date format in the tooltip's header will by defaults be guessed based on the closest data points. This member gives the defaults string representations used for each unit. For an overview of the replacement codes, see `dateFormat`. 
-*/
-	public void setDateTimeLabelFormats(HIDateTimeLabelFormats dateTimeLabelFormats) {
-		this.dateTimeLabelFormats = dateTimeLabelFormats;
-		this.dateTimeLabelFormats.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIDateTimeLabelFormats getDateTimeLabelFormats(){ return dateTimeLabelFormats; }
-
-	private String shape;
-/**
-/** The name of a symbol to use for the border around the tooltip. Can be one of: "callout", "circle" or "square". Custom callbacks for symbol path generation can also be added to Highcharts.SVGRenderer.prototype.symbols the same way as for `series.marker.symbol`. <br><br><b>accepted values:</b><br><br>&ensp;["callout", "square"]
- <br><br><b>defaults:</b><br><br>&ensp;callout*/
-	public void setShape(String shape) {
-		this.shape = shape;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getShape(){ return shape; }
-
 	private HIFunction positioner;
 /**
-/** A callback function to place the tooltip in a defaults position. The callback receives three parameters: labelWidth, labelHeight and point, where point contains values for plotX and plotY telling where the reference point is in the plot area. Add chart.plotLeft and chart.plotTop to get the full coordinates. The return should be an object containing x and y values, for example { x: 100, y: 100 }. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/positioner/">A fixed tooltip position</a>
+/** A callback function to place the tooltip in a defaults position. The callback receives three parameters: labelWidth, labelHeight and point, where point contains values for plotX and plotY telling where the reference point is in the plot area. Add chart.plotLeft and chart.plotTop to get the full coordinates. Since v7, when tooltip.split option is enabled, positioner is called for each of the boxes separately, including xAxis header. xAxis header is not a point, instead point argument contains info: { plotX: Number, plotY: Number, isHeader: Boolean }  The return should be an object containing x and y values, for example { x: 100, y: 100 }. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/positioner/">A fixed tooltip position</a>
 */
 	public void setPositioner(HIFunction positioner) {
 		this.positioner = positioner;
@@ -155,6 +130,18 @@ public class HITooltip extends Observable implements HIChartsJSONSerializable {
 	}
 
 	public HICSSObject getStyle(){ return style; }
+
+	private String headerShape;
+/**
+/** The name of a symbol to use for the border around the tooltip header. Applies only when tooltip.split is enabled. Custom callbacks for symbol path generation can also be added to Highcharts.SVGRenderer.prototype.symbols the same way as for `series.marker.symbol`. <br><br><b>accepted values:</b><br><br>&ensp;["callout", "square"]
+ <br><br><b>defaults:</b><br><br>&ensp;callout*/
+	public void setHeaderShape(String headerShape) {
+		this.headerShape = headerShape;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getHeaderShape(){ return headerShape; }
 
 	private String footerFormat;
 /**
@@ -255,7 +242,7 @@ public class HITooltip extends Observable implements HIChartsJSONSerializable {
 	private String pointFormat;
 /**
 /** The HTML of the point's line in the tooltip. Variables are enclosed by curly brackets. Available variables are point.x, point.y, series. name and series.color and other properties on the same form. Furthermore, point.y can be extended by the tooltip.valuePrefix and tooltip.valueSuffix variables. This can also be overridden for each series, which makes it a good hook for displaying units. In styled mode, the dot is colored by a class name rather than the point color. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/pointformat/">A different point format with value suffix</a>
-*/
+ <br><br><b>defaults:</b><br><br>&ensp;<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}</b><br/>*/
 	public void setPointFormat(String pointFormat) {
 		this.pointFormat = pointFormat;
 		this.setChanged();
@@ -275,6 +262,19 @@ public class HITooltip extends Observable implements HIChartsJSONSerializable {
 	}
 
 	public String getXDateFormat(){ return xDateFormat; }
+
+	private HIDateTimeLabelFormats dateTimeLabelFormats;
+/**
+/** For series on a datetime axes, the date format in the tooltip's header will by defaults be guessed based on the closest data points. This member gives the defaults string representations used for each unit. For an overview of the replacement codes, see `dateFormat`. 
+*/
+	public void setDateTimeLabelFormats(HIDateTimeLabelFormats dateTimeLabelFormats) {
+		this.dateTimeLabelFormats = dateTimeLabelFormats;
+		this.dateTimeLabelFormats.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIDateTimeLabelFormats getDateTimeLabelFormats(){ return dateTimeLabelFormats; }
 
 	private Number padding;
 /**
@@ -312,6 +312,18 @@ public class HITooltip extends Observable implements HIChartsJSONSerializable {
 
 	public Boolean getEnabled(){ return enabled; }
 
+	private String shape;
+/**
+/** The name of a symbol to use for the border around the tooltip. Can be one of: "callout", "circle" or "square". When tooltip.split option is enabled, shape is applied to all boxes except header, which is controlled by tooltip.headerShape. Custom callbacks for symbol path generation can also be added to Highcharts.SVGRenderer.prototype.symbols the same way as for `series.marker.symbol`. <br><br><b>accepted values:</b><br><br>&ensp;["callout", "square"]
+ <br><br><b>defaults:</b><br><br>&ensp;callout*/
+	public void setShape(String shape) {
+		this.shape = shape;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getShape(){ return shape; }
+
 	private HIFunction pointFormatter;
 /**
 /** A callback function for formatting the HTML output for a single point in the tooltip. Like the pointFormat string, but with more flexibility. 
@@ -338,7 +350,7 @@ public class HITooltip extends Observable implements HIChartsJSONSerializable {
 
 	private Boolean followPointer;
 /**
-/** Whether the tooltip should follow the mouse as it moves across columns, pie slices and other point types with an extent. By defaults it behaves this way for scatter, bubble and pie series by override in the plotOptions for those series types. For touch moves to behave the same way, `followTouchMove` must be true also. 
+/** Whether the tooltip should follow the mouse as it moves across columns, pie slices and other point types with an extent. By defaults it behaves this way for scatter, bubble and pie series by override in the plotOptions for those series types. For touch moves to behave the same way, followTouchMove must be true also. 
  <br><br><b>defaults:</b><br><br>&ensp;false*/
 	public void setFollowPointer(Boolean followPointer) {
 		this.followPointer = followPointer;
@@ -439,12 +451,6 @@ public class HITooltip extends Observable implements HIChartsJSONSerializable {
 		if (this.valuePrefix != null) {
 			params.put("valuePrefix", this.valuePrefix);
 		}
-		if (this.dateTimeLabelFormats != null) {
-			params.put("dateTimeLabelFormats", this.dateTimeLabelFormats.getParams());
-		}
-		if (this.shape != null) {
-			params.put("shape", this.shape);
-		}
 		if (this.positioner != null) {
 			params.put("positioner", this.positioner);
 		}
@@ -456,6 +462,9 @@ public class HITooltip extends Observable implements HIChartsJSONSerializable {
 		}
 		if (this.style != null) {
 			params.put("style", this.style.getParams());
+		}
+		if (this.headerShape != null) {
+			params.put("headerShape", this.headerShape);
 		}
 		if (this.footerFormat != null) {
 			params.put("footerFormat", this.footerFormat);
@@ -487,6 +496,9 @@ public class HITooltip extends Observable implements HIChartsJSONSerializable {
 		if (this.xDateFormat != null) {
 			params.put("xDateFormat", this.xDateFormat);
 		}
+		if (this.dateTimeLabelFormats != null) {
+			params.put("dateTimeLabelFormats", this.dateTimeLabelFormats.getParams());
+		}
 		if (this.padding != null) {
 			params.put("padding", this.padding);
 		}
@@ -495,6 +507,9 @@ public class HITooltip extends Observable implements HIChartsJSONSerializable {
 		}
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);
+		}
+		if (this.shape != null) {
+			params.put("shape", this.shape);
 		}
 		if (this.pointFormatter != null) {
 			params.put("pointFormatter", this.pointFormatter);

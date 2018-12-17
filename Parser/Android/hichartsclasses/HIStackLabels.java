@@ -96,7 +96,7 @@ public class HIStackLabels extends Observable implements HIChartsJSONSerializabl
 
 	private Boolean useHTML;
 /**
-/** Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/ labels-and-string-formatting#html) to render the labels. 
+/** Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the labels. 
  <br><br><b>defaults:</b><br><br>&ensp;false*/
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;

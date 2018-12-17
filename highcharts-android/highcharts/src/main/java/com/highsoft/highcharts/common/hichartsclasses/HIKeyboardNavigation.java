@@ -62,7 +62,7 @@ public class HIKeyboardNavigation extends Observable implements HIChartsJSONSeri
 	private Boolean skipNullPoints;
 /**
 /** Skip null points when navigating through points with the keyboard. 
- <br><br><b>defaults:</b><br><br>&ensp;true*/
+*/
 	public void setSkipNullPoints(Boolean skipNullPoints) {
 		this.skipNullPoints = skipNullPoints;
 		this.setChanged();

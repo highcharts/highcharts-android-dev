@@ -70,18 +70,6 @@ public class HISubtitle extends Observable implements HIChartsJSONSerializable {
 
 	public String getAlign(){ return align; }
 
-	private Boolean useHTML;
-/**
-/** Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the text. 
- <br><br><b>defaults:</b><br><br>&ensp;false*/
-	public void setUseHTML(Boolean useHTML) {
-		this.useHTML = useHTML;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getUseHTML(){ return useHTML; }
-
 	private Number y;
 /**
 /** The y position of the subtitle relative to the alignment within chart.spacingTop and chart.spacingBottom. By defaults the subtitle is laid out below the title unless the title is floating. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/verticalalign/">Footnote at the bottom right of plot area</a>
@@ -106,6 +94,18 @@ public class HISubtitle extends Observable implements HIChartsJSONSerializable {
 
 	public Number getX(){ return x; }
 
+	private Boolean floating;
+/**
+/** When the subtitle is floating, the plot area will not move to make space for it. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/floating/">Floating title and subtitle</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
+	public void setFloating(Boolean floating) {
+		this.floating = floating;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getFloating(){ return floating; }
+
 	private Number widthAdjust;
 /**
 /** Adjustment made to the subtitle width, normally to reserve space for the exporting burger menu. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/widthadjust/">Wider menu, greater padding</a>
@@ -118,17 +118,17 @@ public class HISubtitle extends Observable implements HIChartsJSONSerializable {
 
 	public Number getWidthAdjust(){ return widthAdjust; }
 
-	private Boolean floating;
+	private Boolean useHTML;
 /**
-/** When the subtitle is floating, the plot area will not move to make space for it. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/floating/">Floating title and subtitle</a>
+/** Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the text. 
  <br><br><b>defaults:</b><br><br>&ensp;false*/
-	public void setFloating(Boolean floating) {
-		this.floating = floating;
+	public void setUseHTML(Boolean useHTML) {
+		this.useHTML = useHTML;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getFloating(){ return floating; }
+	public Boolean getUseHTML(){ return useHTML; }
 
 
 
@@ -161,20 +161,20 @@ public class HISubtitle extends Observable implements HIChartsJSONSerializable {
 		if (this.align != null) {
 			params.put("align", this.align);
 		}
-		if (this.useHTML != null) {
-			params.put("useHTML", this.useHTML);
-		}
 		if (this.y != null) {
 			params.put("y", this.y);
 		}
 		if (this.x != null) {
 			params.put("x", this.x);
 		}
+		if (this.floating != null) {
+			params.put("floating", this.floating);
+		}
 		if (this.widthAdjust != null) {
 			params.put("widthAdjust", this.widthAdjust);
 		}
-		if (this.floating != null) {
-			params.put("floating", this.floating);
+		if (this.useHTML != null) {
+			params.put("useHTML", this.useHTML);
 		}
 		return params;
 	}

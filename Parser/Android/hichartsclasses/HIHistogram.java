@@ -149,7 +149,7 @@ public class HIHistogram extends HISeries {
 
 	private ArrayList<String> colors;
 /**
-/** A series specific or series type specific color set to apply instead of the global colors when `colorByPoint` is true. 
+/** A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
 */
 	public void setColors(ArrayList<String> colors) {
 		this.colors = colors;
@@ -170,18 +170,6 @@ public class HIHistogram extends HISeries {
 	}
 
 	public HIColor getEdgeColor(){ return edgeColor; }
-
-	private Boolean colorByPoint;
-/**
-/** When using automatic point colors pulled from the global `colors` or series-specific `plotOptions.column.colors` collections, this option determines whether the chart should receive one color per series or one color per point. In styled mode, the colors or series.colors arrays are not supported, and instead this option gives the points individual color class names on the form highcharts-color-{n}. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-false/">False by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-true/">True</a>
- <br><br><b>defaults:</b><br><br>&ensp;false*/
-	public void setColorByPoint(Boolean colorByPoint) {
-		this.colorByPoint = colorByPoint;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getColorByPoint(){ return colorByPoint; }
 
 	private Number maxPointWidth;
 /**
@@ -206,6 +194,18 @@ public class HIHistogram extends HISeries {
 	}
 
 	public Number getPointWidth(){ return pointWidth; }
+
+	private Boolean colorByPoint;
+/**
+/** When using automatic point colors pulled from the global `colors` or series-specific `plotOptions.column.colors` collections, this option determines whether the chart should receive one color per series or one color per point. In styled mode, the colors or series.colors arrays are not supported, and instead this option gives the points individual color class names on the form highcharts-color-{n}. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-false/">False by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-true/">True</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
+	public void setColorByPoint(Boolean colorByPoint) {
+		this.colorByPoint = colorByPoint;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getColorByPoint(){ return colorByPoint; }
 
 	private Number edgeWidth;
 /**
@@ -309,14 +309,14 @@ public class HIHistogram extends HISeries {
 		if (this.edgeColor != null) {
 			params.put("edgeColor", this.edgeColor.getData());
 		}
-		if (this.colorByPoint != null) {
-			params.put("colorByPoint", this.colorByPoint);
-		}
 		if (this.maxPointWidth != null) {
 			params.put("maxPointWidth", this.maxPointWidth);
 		}
 		if (this.pointWidth != null) {
 			params.put("pointWidth", this.pointWidth);
+		}
+		if (this.colorByPoint != null) {
+			params.put("colorByPoint", this.colorByPoint);
 		}
 		if (this.edgeWidth != null) {
 			params.put("edgeWidth", this.edgeWidth);

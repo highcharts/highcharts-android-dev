@@ -22,6 +22,18 @@ import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 public class HIAnimationOptionsObject extends Observable implements HIChartsJSONSerializable { 
 
+	private HIFunction complete;
+/**
+/** A callback function to exectute when the animation finishes. 
+*/
+	public void setComplete(HIFunction complete) {
+		this.complete = complete;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getComplete(){ return complete; }
+
 	private Number duration;
 /**
 /** The animation duration in milliseconds. 
@@ -45,18 +57,6 @@ public class HIAnimationOptionsObject extends Observable implements HIChartsJSON
 	}
 
 	public String getEasing(){ return easing; }
-
-	private HIFunction complete;
-/**
-/** A callback function to exectute when the animation finishes. 
-*/
-	public void setComplete(HIFunction complete) {
-		this.complete = complete;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getComplete(){ return complete; }
 
 	private HIFunction step;
 /**
@@ -89,14 +89,14 @@ public class HIAnimationOptionsObject extends Observable implements HIChartsJSON
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
+		if (this.complete != null) {
+			params.put("complete", this.complete);
+		}
 		if (this.duration != null) {
 			params.put("duration", this.duration);
 		}
 		if (this.easing != null) {
 			params.put("easing", this.easing);
-		}
-		if (this.complete != null) {
-			params.put("complete", this.complete);
 		}
 		if (this.step != null) {
 			params.put("step", this.step);

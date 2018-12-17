@@ -120,7 +120,7 @@ public class HILabel extends Observable implements HIChartsJSONSerializable {
 
 	private Boolean useHTML;
 /**
-/** Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts /labels-and-string-formatting#html) to render the labels. 
+/** Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the labels. 
  <br><br><b>defaults:</b><br><br>&ensp;false*/
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;
@@ -190,17 +190,17 @@ public class HILabel extends Observable implements HIChartsJSONSerializable {
 
 	public Boolean getOnArea(){ return onArea; }
 
-	private ArrayList boxesToAvoid;
+	private ArrayList<HILabelIntersectBoxObject> boxesToAvoid;
 /**
 /** An array of boxes to avoid when laying out the labels. Each item has a left, right, top and bottom property. 
 */
-	public void setBoxesToAvoid(ArrayList boxesToAvoid) {
+	public void setBoxesToAvoid(ArrayList<HILabelIntersectBoxObject> boxesToAvoid) {
 		this.boxesToAvoid = boxesToAvoid;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList getBoxesToAvoid(){ return boxesToAvoid; }
+	public ArrayList<HILabelIntersectBoxObject> getBoxesToAvoid(){ return boxesToAvoid; }
 
 	private Boolean connectorAllowed;
 /**
@@ -234,7 +234,7 @@ public class HILabel extends Observable implements HIChartsJSONSerializable {
 
 		Map<String, Object> params = new HashMap<>();
 		if (this.style != null) {
-			params.put("style", this.style.getParams());
+			params.put("style", this.style);
 		}
 		if (this.verticalAlign != null) {
 			params.put("verticalAlign", this.verticalAlign);

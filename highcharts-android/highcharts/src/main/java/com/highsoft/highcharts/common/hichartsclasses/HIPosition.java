@@ -37,7 +37,7 @@ public class HIPosition extends Observable implements HIChartsJSONSerializable {
 	private Number x;
 /**
 /** Horizontal offset of the button. 
- <br><br><b>defaults:</b><br><br>&ensp;-10*/
+*/
 	public void setX(Number x) {
 		this.x = x;
 		this.setChanged();

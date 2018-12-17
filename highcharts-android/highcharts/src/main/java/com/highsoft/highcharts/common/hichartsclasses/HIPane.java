@@ -46,17 +46,17 @@ public class HIPane extends Observable implements HIChartsJSONSerializable {
 
 	public Number getStartAngle(){ return startAngle; }
 
-	private ArrayList /* <String|Number> */ center;
+	private ArrayList /* <String, Number> */ center;
 /**
 /** The center of a polar chart or angular gauge, given as an array of [x, y] positions. Positions can be given as integers that transform to pixels, or as percentages of the plot area size. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-vu-meter/">Two gauges with different center</a>
  <br><br><b>defaults:</b><br><br>&ensp;["50%", "50%"]*/
-	public void setCenter(ArrayList /* <String|Number> */ center) {
+	public void setCenter(ArrayList /* <String, Number> */ center) {
 		this.center = center;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList /* <String|Number> */ getCenter(){ return center; }
+	public ArrayList /* <String, Number> */ getCenter(){ return center; }
 
 	private ArrayList <HIBackground> background;
 /**
@@ -70,17 +70,17 @@ public class HIPane extends Observable implements HIChartsJSONSerializable {
 
 	public ArrayList getBackground(){ return background; }
 
-	private Object /* Number|String */ size;
+	private Object /* Number, String */ size;
 /**
 /** The size of the pane, either as a number defining pixels, or a percentage defining a percentage of the plot are. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-vu-meter/">Smaller size</a>
- <br><br><b>defaults:</b><br><br>&ensp;85%*/
-	public void setSize(Object /* Number|String */ size) {
+*/
+	public void setSize(Object /* Number, String */ size) {
 		this.size = size;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number|String */ getSize(){ return size; }
+	public Object /* Number, String */ getSize(){ return size; }
 
 
 

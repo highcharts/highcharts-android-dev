@@ -23,17 +23,18 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HIChart extends Observable implements HIChartsJSONSerializable { 
 
-	private String plotBackgroundImage;
+	private HIParallelAxes parallelAxes;
 /**
-/** The URL for an image to use as the plot background. To set an image as the background for the entire chart, set a CSS background image to the container element. Note that for the image to be applied to exported charts, its URL needs to be accessible by the export server. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/plotbackgroundimage/">Skies</a>
+/** Common options for all yAxes rendered in a parallel coordinates plot. This feature requires modules/parallel-coordinates.js. The defaults options are:  parallelAxes: {  lineWidth: 1,    // classic mode only  gridlinesWidth: 0, // classic mode only  title: {    text: '',    reserveSpace: false  },  labels: {    x: 0,    y: 0,    align: 'center',    reserveSpace: false  },  offset: 0 } <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/parallel-coordinates/parallelaxes/">Set the same tickAmount for all yAxes</a>
 */
-	public void setPlotBackgroundImage(String plotBackgroundImage) {
-		this.plotBackgroundImage = plotBackgroundImage;
+	public void setParallelAxes(HIParallelAxes parallelAxes) {
+		this.parallelAxes = parallelAxes;
+		this.parallelAxes.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getPlotBackgroundImage(){ return plotBackgroundImage; }
+	public HIParallelAxes getParallelAxes(){ return parallelAxes; }
 
 	private Number borderRadius;
 /**
@@ -59,6 +60,18 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 
 	public Number getSpacingBottom(){ return spacingBottom; }
 
+	private Boolean /* boolean */ plotShadow;
+/**
+/** Whether to apply a drop shadow to the plot area. Requires that plotBackgroundColor be set. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/plotshadow/">Plot shadow</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
+	public void setPlotShadow(Boolean /* boolean */ plotShadow) {
+		this.plotShadow = plotShadow;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean /* boolean */ getPlotShadow(){ return plotShadow; }
+
 	private Object /* Number, String */ height;
 /**
 /** An explicit height for the chart. If a _number_, the height is given in pixels. If given a _percentage string_ (for example '56%'), the height is given as the percentage of the actual chart width. This allows for preserving the aspect ratio across responsive sizes. By defaults (when null) the height is calculated from the offset height of the containing element, or 400 pixels if the containing element's height is 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/height/">500px height</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/height-percent/">Highcharts with percentage height</a>
@@ -70,18 +83,6 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 	}
 
 	public Object /* Number, String */ getHeight(){ return height; }
-
-	private HICSSObject style;
-/**
-/** Additional CSS styles to apply inline to the container div. Note that since the defaults font styles are applied in the renderer, it is ignorant of the individual chart options and must be set globally. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/style-serif-font/">Using a serif type font</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/em/">Styled mode with relative font sizes</a>
- <br><br><b>defaults:</b><br><br>&ensp;{"fontFamily": "\"Lucida Grande\", \"Lucida Sans Unicode\", Verdana, Arial, Helvetica, sans-serif","fontSize":"12px"}*/
-	public void setStyle(HICSSObject style) {
-		this.style = style;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HICSSObject getStyle(){ return style; }
 
 	private Boolean alignTicks;
 /**
@@ -95,18 +96,17 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 
 	public Boolean getAlignTicks(){ return alignTicks; }
 
-	private HIParallelAxes parallelAxes;
+	private Boolean displayErrors;
 /**
-/** Common options for all yAxes rendered in a parallel coordinates plot. This feature requires modules/parallel-coordinates.js. The defaults options are:  parallelAxes: {  lineWidth: 1,    // classic mode only  gridlinesWidth: 0, // classic mode only  title: {    text: '',    reserveSpace: false  },  labels: {    x: 0,    y: 0,    align: 'center',    reserveSpace: false  },  offset: 0 } <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/parallel-coordinates/parallelaxes/">Set the same tickAmount for all yAxes</a>
+/** Whether to display errors on the chart. When false, the errors will be shown only in the console. Requires debugger.js module. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/display-errors/">Show errors on chart</a>
 */
-	public void setParallelAxes(HIParallelAxes parallelAxes) {
-		this.parallelAxes = parallelAxes;
-		this.parallelAxes.addObserver(updateObserver);
+	public void setDisplayErrors(Boolean displayErrors) {
+		this.displayErrors = displayErrors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIParallelAxes getParallelAxes(){ return parallelAxes; }
+	public Boolean getDisplayErrors(){ return displayErrors; }
 
 	private Number marginRight;
 /**
@@ -156,21 +156,21 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 
 	public HIColor getBorderColor(){ return borderColor; }
 
-	private Number colorCount;
+	private String className;
 /**
-/** In styled mode, this sets how many colors the class names should rotate between. With ten colors, series (or points) are given class names like highcharts-color-0, highcharts-color-0 [...] highcharts-color-9. The equivalent in non-styled mode is to set colors using the colors setting. 
+/** A CSS class name to apply to the charts container div, allowing unique CSS styling for each chart. 
 */
-	public void setColorCount(Number colorCount) {
-		this.colorCount = colorCount;
+	public void setClassName(String className) {
+		this.className = className;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getColorCount(){ return colorCount; }
+	public String getClassName(){ return className; }
 
 	private Boolean polar;
 /**
-/** When true, cartesian charts like line, spline, area and column are transformed into the polar coordinate system. Requires highcharts-more.js. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar/">Polar chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar-wind-rose/">Wind rose, stacked polar column chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar-spider/">Spider web chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/parallel-coordinates/polar/">Star plot, multivariate data in a polar chart</a>
+/** When true, cartesian charts like line, spline, area and column are transformed into the polar coordinate system. This produces _polar charts_, also known as _radar charts_. Requires highcharts-more.js. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar/">Polar chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar-wind-rose/">Wind rose, stacked polar column chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar-spider/">Spider web chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/parallel-coordinates/polar/">Star plot, multivariate data in a polar chart</a>
  <br><br><b>defaults:</b><br><br>&ensp;false*/
 	public void setPolar(Boolean polar) {
 		this.polar = polar;
@@ -252,17 +252,17 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 
 	public Number getWidth(){ return width; }
 
-	private HIAnimationOptionsObject animation;
+	private Number marginLeft;
 /**
-/** Set the overall animation for all chart updating. Animation can be disabled throughout the chart by setting it to false here. It can be overridden for each individual API method as a function parameter. The only animation not affected by this option is the initial series animation, see `plotOptions.series.animation`. The animation can either be set as a boolean or a configuration object. If true, it will use the 'swing' jQuery easing and a duration of 500 ms. If used as a configuration object, the following properties are supported:  duration The duration of the animation in milliseconds. easing A string reference to an easing function set on the Math object. See [the easing demo](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/).   <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-none/">Updating with no animation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-duration/">With a longer duration</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-easing/">With a jQuery UI easing</a>
- <br><br><b>defaults:</b><br><br>&ensp;true*/
-	public void setAnimation(HIAnimationOptionsObject animation) {
-		this.animation = animation;
+/** The margin between the left outer edge of the chart and the plot area. Use this to set a fixed pixel value for the margin as opposed to the defaults dynamic margin. See also spacingLeft. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/marginleft/">150px left margin</a>
+*/
+	public void setMarginLeft(Number marginLeft) {
+		this.marginLeft = marginLeft;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIAnimationOptionsObject getAnimation(){ return animation; }
+	public Number getMarginLeft(){ return marginLeft; }
 
 	private HIColor plotBackgroundColor;
 /**
@@ -290,7 +290,7 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 
 	private Boolean panning;
 /**
-/** Allow panning in a chart. Best used with panKey to combine zooming and panning. On touch devices, when the `tooltip.followTouchMove` option is true (defaults), panning requires two fingers. To allow panning with one finger, set followTouchMove to false. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/pankey/">Zooming and panning</a>
+/** Allow panning in a chart. Best used with panKey to combine zooming and panning. On touch devices, when the tooltip.followTouchMove option is true (defaults), panning requires two fingers. To allow panning with one finger, set followTouchMove to false. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/pankey/">Zooming and panning</a>
  <br><br><b>defaults:</b><br><br>&ensp;false*/
 	public void setPanning(Boolean panning) {
 		this.panning = panning;
@@ -353,7 +353,7 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 	private String definition;
 /**
 /** A text description of the chart. If the Accessibility module is loaded, this is included by defaults as a long description of the chart and its contents in the hidden screen reader information region. 
- <br><br><b>defaults:</b><br><br>&ensp;undefined*/
+*/
 	public void setDefinition(String definition) {
 		this.definition = definition;
 		this.setChanged();
@@ -361,18 +361,6 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 	}
 
 	public String getDefinition(){ return definition; }
-
-	private String panKey;
-/**
-/** Allows setting a key to switch between zooming and panning. Can be one of alt, ctrl, meta (the command key on Mac and Windows key on Windows) or shift. The keys are mapped directly to the key properties of the click event argument (event.altKey, event.ctrlKey, event.metaKey and event.shiftKey). <br><br><b>accepted values:</b><br><br>&ensp;["alt", "ctrl", "meta", "shift"]
-*/
-	public void setPanKey(String panKey) {
-		this.panKey = panKey;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getPanKey(){ return panKey; }
 
 	private ArrayList<Number> spacing;
 /**
@@ -386,17 +374,29 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 
 	public ArrayList<Number> getSpacing(){ return spacing; }
 
-	private Number marginLeft;
+	private String panKey;
 /**
-/** The margin between the left outer edge of the chart and the plot area. Use this to set a fixed pixel value for the margin as opposed to the defaults dynamic margin. See also spacingLeft. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/marginleft/">150px left margin</a>
+/** Allows setting a key to switch between zooming and panning. Can be one of alt, ctrl, meta (the command key on Mac and Windows key on Windows) or shift. The keys are mapped directly to the key properties of the click event argument (event.altKey, event.ctrlKey, event.metaKey and event.shiftKey). <br><br><b>accepted values:</b><br><br>&ensp;["alt", "ctrl", "meta", "shift"]
 */
-	public void setMarginLeft(Number marginLeft) {
-		this.marginLeft = marginLeft;
+	public void setPanKey(String panKey) {
+		this.panKey = panKey;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getMarginLeft(){ return marginLeft; }
+	public String getPanKey(){ return panKey; }
+
+	private HICSSObject style;
+/**
+/** Additional CSS styles to apply inline to the container div. Note that since the defaults font styles are applied in the renderer, it is ignorant of the individual chart options and must be set globally. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/style-serif-font/">Using a serif type font</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/em/">Styled mode with relative font sizes</a>
+ <br><br><b>defaults:</b><br><br>&ensp;{"fontFamily": "\"Lucida Grande\", \"Lucida Sans Unicode\", Verdana, Arial, Helvetica, sans-serif","fontSize":"12px"}*/
+	public void setStyle(HICSSObject style) {
+		this.style = style;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HICSSObject getStyle(){ return style; }
 
 	private HIScrollablePlotArea scrollablePlotArea;
 /**
@@ -434,6 +434,18 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 	}
 
 	public Boolean getInverted(){ return inverted; }
+
+	private HIAnimationOptionsObject animation;
+/**
+/** Set the overall animation for all chart updating. Animation can be disabled throughout the chart by setting it to false here. It can be overridden for each individual API method as a function parameter. The only animation not affected by this option is the initial series animation, see plotOptions.series.animation. The animation can either be set as a boolean or a configuration object. If true, it will use the 'swing' jQuery easing and a duration of 500 ms. If used as a configuration object, the following properties are supported:  duration The duration of the animation in milliseconds. easing A string reference to an easing function set on the Math object. See [the easing demo](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/).   <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-none/">Updating with no animation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-duration/">With a longer duration</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-easing/">With a jQuery UI easing</a>
+ <br><br><b>defaults:</b><br><br>&ensp;true*/
+	public void setAnimation(HIAnimationOptionsObject animation) {
+		this.animation = animation;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAnimationOptionsObject getAnimation(){ return animation; }
 
 	private Number plotBorderWidth;
 /**
@@ -483,21 +495,21 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 
 	public HIColor getSelectionMarkerFill(){ return selectionMarkerFill; }
 
-	private Boolean /* boolean */ plotShadow;
+	private String plotBackgroundImage;
 /**
-/** Whether to apply a drop shadow to the plot area. Requires that plotBackgroundColor be set. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/plotshadow/">Plot shadow</a>
- <br><br><b>defaults:</b><br><br>&ensp;false*/
-	public void setPlotShadow(Boolean /* boolean */ plotShadow) {
-		this.plotShadow = plotShadow;
+/** The URL for an image to use as the plot background. To set an image as the background for the entire chart, set a CSS background image to the container element. Note that for the image to be applied to exported charts, its URL needs to be accessible by the export server. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/plotbackgroundimage/">Skies</a>
+*/
+	public void setPlotBackgroundImage(String plotBackgroundImage) {
+		this.plotBackgroundImage = plotBackgroundImage;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean /* boolean */ getPlotShadow(){ return plotShadow; }
+	public String getPlotBackgroundImage(){ return plotBackgroundImage; }
 
 	private String pinchType;
 /**
-/** Equivalent to zoomType, but for multitouch gestures only. By defaults, the pinchType is the same as the zoomType setting. However, pinching can be enabled separately in some cases, for example in stock charts where a mouse drag pans the chart, while pinching is enabled. When `tooltip.followTouchMove` is true, pinchType only applies to two-finger touches. <br><br><b>accepted values:</b><br><br>&ensp;["x", "y", "xy"]
+/** Equivalent to zoomType, but for multitouch gestures only. By defaults, the pinchType is the same as the zoomType setting. However, pinching can be enabled separately in some cases, for example in stock charts where a mouse drag pans the chart, while pinching is enabled. When tooltip.followTouchMove is true, pinchType only applies to two-finger touches. <br><br><b>accepted values:</b><br><br>&ensp;["x", "y", "xy"]
  <br><br><b>defaults:</b><br><br>&ensp;undefined*/
 	public void setPinchType(String pinchType) {
 		this.pinchType = pinchType;
@@ -507,17 +519,17 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 
 	public String getPinchType(){ return pinchType; }
 
-	private String className;
+	private Number colorCount;
 /**
-/** A CSS class name to apply to the charts container div, allowing unique CSS styling for each chart. 
+/** In styled mode, this sets how many colors the class names should rotate between. With ten colors, series (or points) are given class names like highcharts-color-0, highcharts-color-0 [...] highcharts-color-9. The equivalent in non-styled mode is to set colors using the colors setting. 
 */
-	public void setClassName(String className) {
-		this.className = className;
+	public void setColorCount(Number colorCount) {
+		this.colorCount = colorCount;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getClassName(){ return className; }
+	public Number getColorCount(){ return colorCount; }
 
 	private Boolean parallelCoordinates;
 /**
@@ -571,7 +583,7 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 	private String typeDescription;
 /**
 /** A text description of the chart type. If the Accessibility module is loaded, this will be included in the description of the chart in the screen reader information region. Highcharts will by defaults attempt to guess the chart type, but for more complex charts it is recommended to specify this property for clarity. 
- <br><br><b>defaults:</b><br><br>&ensp;undefined*/
+*/
 	public void setTypeDescription(String typeDescription) {
 		this.typeDescription = typeDescription;
 		this.setChanged();
@@ -604,6 +616,18 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 
 	public ArrayList<Number> getMargin(){ return margin; }
 
+	private Boolean styledMode;
+/**
+/** Whether to apply styled mode. When in styled mode, no presentational attributes or CSS are applied to the chart SVG. Instead, CSS rules are required to style the chart. The defaults style sheet is available from https://code.highcharts.com/css/highcharts.css. 
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
+	public void setStyledMode(Boolean styledMode) {
+		this.styledMode = styledMode;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getStyledMode(){ return styledMode; }
+
 
 
 	public HIChart() {
@@ -623,8 +647,8 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.plotBackgroundImage != null) {
-			params.put("plotBackgroundImage", this.plotBackgroundImage);
+		if (this.parallelAxes != null) {
+			params.put("parallelAxes", this.parallelAxes.getParams());
 		}
 		if (this.borderRadius != null) {
 			params.put("borderRadius", this.borderRadius);
@@ -632,17 +656,17 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 		if (this.spacingBottom != null) {
 			params.put("spacingBottom", this.spacingBottom);
 		}
+		if (this.plotShadow != null) {
+			params.put("plotShadow", this.plotShadow);
+		}
 		if (this.height != null) {
 			params.put("height", this.height);
-		}
-		if (this.style != null) {
-			params.put("style", this.style);
 		}
 		if (this.alignTicks != null) {
 			params.put("alignTicks", this.alignTicks);
 		}
-		if (this.parallelAxes != null) {
-			params.put("parallelAxes", this.parallelAxes.getParams());
+		if (this.displayErrors != null) {
+			params.put("displayErrors", this.displayErrors);
 		}
 		if (this.marginRight != null) {
 			params.put("marginRight", this.marginRight);
@@ -656,8 +680,8 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
 		}
-		if (this.colorCount != null) {
-			params.put("colorCount", this.colorCount);
+		if (this.className != null) {
+			params.put("className", this.className);
 		}
 		if (this.polar != null) {
 			params.put("polar", this.polar);
@@ -680,8 +704,8 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 		if (this.width != null) {
 			params.put("width", this.width);
 		}
-		if (this.animation != null) {
-			params.put("animation", this.animation);
+		if (this.marginLeft != null) {
+			params.put("marginLeft", this.marginLeft);
 		}
 		if (this.plotBackgroundColor != null) {
 			params.put("plotBackgroundColor", this.plotBackgroundColor.getData());
@@ -707,9 +731,6 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 		if (this.definition != null) {
 			params.put("definition", this.definition);
 		}
-		if (this.panKey != null) {
-			params.put("panKey", this.panKey);
-		}
 		if (this.spacing != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.spacing) {
@@ -722,8 +743,11 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 			}
 			params.put("spacing", array);
 		}
-		if (this.marginLeft != null) {
-			params.put("marginLeft", this.marginLeft);
+		if (this.panKey != null) {
+			params.put("panKey", this.panKey);
+		}
+		if (this.style != null) {
+			params.put("style", this.style);
 		}
 		if (this.scrollablePlotArea != null) {
 			params.put("scrollablePlotArea", this.scrollablePlotArea.getParams());
@@ -733,6 +757,9 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 		}
 		if (this.inverted != null) {
 			params.put("inverted", this.inverted);
+		}
+		if (this.animation != null) {
+			params.put("animation", this.animation);
 		}
 		if (this.plotBorderWidth != null) {
 			params.put("plotBorderWidth", this.plotBorderWidth);
@@ -746,14 +773,14 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 		if (this.selectionMarkerFill != null) {
 			params.put("selectionMarkerFill", this.selectionMarkerFill.getData());
 		}
-		if (this.plotShadow != null) {
-			params.put("plotShadow", this.plotShadow);
+		if (this.plotBackgroundImage != null) {
+			params.put("plotBackgroundImage", this.plotBackgroundImage);
 		}
 		if (this.pinchType != null) {
 			params.put("pinchType", this.pinchType);
 		}
-		if (this.className != null) {
-			params.put("className", this.className);
+		if (this.colorCount != null) {
+			params.put("colorCount", this.colorCount);
 		}
 		if (this.parallelCoordinates != null) {
 			params.put("parallelCoordinates", this.parallelCoordinates);
@@ -784,6 +811,9 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 				}
 			}
 			params.put("margin", array);
+		}
+		if (this.styledMode != null) {
+			params.put("styledMode", this.styledMode);
 		}
 		return params;
 	}

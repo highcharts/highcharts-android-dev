@@ -23,7 +23,7 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HIShapes extends Observable implements HIChartsJSONSerializable { 
 
-	private ArrayList points;
+	private ArrayList <HIPoints> points;
 /**
 /** An array of points for the shape. This option is available for shapes which can use multiple points such as path. A point can be either a point object or a point's id. 
 */
@@ -156,6 +156,18 @@ public class HIShapes extends Observable implements HIChartsJSONSerializable {
 
 	public HIColor getFill(){ return fill; }
 
+	private Number snap;
+/**
+/** Defines additional snapping area around an annotation making this annotation to focus. Defined in pixels. 
+*/
+	public void setSnap(Number snap) {
+		this.snap = snap;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getSnap(){ return snap; }
+
 
 
 	public HIShapes() {
@@ -216,6 +228,9 @@ public class HIShapes extends Observable implements HIChartsJSONSerializable {
 		}
 		if (this.fill != null) {
 			params.put("fill", this.fill.getData());
+		}
+		if (this.snap != null) {
+			params.put("snap", this.snap);
 		}
 		return params;
 	}

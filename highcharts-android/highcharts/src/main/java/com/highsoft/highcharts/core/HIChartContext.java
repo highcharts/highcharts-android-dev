@@ -3,10 +3,6 @@ package com.highsoft.highcharts.core;
 import java.util.Map;
 
 /**
- * Created by bartosz on 12.03.18.
- */
-
-/**
  *  Chart's context class.
  *  The class contains the current chart context that can be used in lambdas.
  */

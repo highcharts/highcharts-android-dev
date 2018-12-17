@@ -28,7 +28,7 @@ public class HIBubble extends HISeries {
 	private Number zMax;
 /**
 /** The minimum for the Z value range. Defaults to the highest Z value in the data. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-zmin-zmax/">Z has a possible range of 0-100</a>
- <br><br><b>defaults:</b><br><br>&ensp;null*/
+*/
 	public void setZMax(Number zMax) {
 		this.zMax = zMax;
 		this.setChanged();
@@ -52,7 +52,7 @@ public class HIBubble extends HISeries {
 	private Number zMin;
 /**
 /** The minimum for the Z value range. Defaults to the lowest Z value in the data. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-zmin-zmax/">Z has a possible range of 0-100</a>
- <br><br><b>defaults:</b><br><br>&ensp;null*/
+*/
 	public void setZMin(Number zMin) {
 		this.zMin = zMin;
 		this.setChanged();
@@ -61,41 +61,29 @@ public class HIBubble extends HISeries {
 
 	public Number getZMin(){ return zMin; }
 
-	private Object /* Number|String */ minSize;
+	private Object /* Number, String */ minSize;
 /**
 /** Minimum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the z value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-size/">Bubble size</a>
 */
-	public void setMinSize(Object /* Number|String */ minSize) {
+	public void setMinSize(Object /* Number, String */ minSize) {
 		this.minSize = minSize;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number|String */ getMinSize(){ return minSize; }
+	public Object /* Number, String */ getMinSize(){ return minSize; }
 
-	private Object /* Number|String */ maxSize;
+	private Object /* Number, String */ maxSize;
 /**
 /** Maximum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the z value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-size/">Bubble size</a>
 */
-	public void setMaxSize(Object /* Number|String */ maxSize) {
+	public void setMaxSize(Object /* Number, String */ maxSize) {
 		this.maxSize = maxSize;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number|String */ getMaxSize(){ return maxSize; }
-
-	private Number zThreshold;
-/**
-/** When displayNegative is false, bubbles with lower Z values are skipped. When displayNegative is true and a negativeColor is given, points with lower Z is colored. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-negative/">Negative bubbles</a>
- <br><br><b>defaults:</b><br><br>&ensp;0*/
-	public void setZThreshold(Number zThreshold) {
-		this.zThreshold = zThreshold;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getZThreshold(){ return zThreshold; }
+	public Object /* Number, String */ getMaxSize(){ return maxSize; }
 
 	private Boolean displayNegative;
 /**
@@ -108,6 +96,18 @@ public class HIBubble extends HISeries {
 	}
 
 	public Boolean getDisplayNegative(){ return displayNegative; }
+
+	private Number zThreshold;
+/**
+/** When displayNegative is false, bubbles with lower Z values are skipped. When displayNegative is true and a negativeColor is given, points with lower Z is colored. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-negative/">Negative bubbles</a>
+*/
+	public void setZThreshold(Number zThreshold) {
+		this.zThreshold = zThreshold;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getZThreshold(){ return zThreshold; }
 
 	private Boolean sizeByAbsoluteValue;
 /**
@@ -157,11 +157,11 @@ public class HIBubble extends HISeries {
 		if (this.maxSize != null) {
 			params.put("maxSize", this.maxSize);
 		}
-		if (this.zThreshold != null) {
-			params.put("zThreshold", this.zThreshold);
-		}
 		if (this.displayNegative != null) {
 			params.put("displayNegative", this.displayNegative);
+		}
+		if (this.zThreshold != null) {
+			params.put("zThreshold", this.zThreshold);
 		}
 		if (this.sizeByAbsoluteValue != null) {
 			params.put("sizeByAbsoluteValue", this.sizeByAbsoluteValue);

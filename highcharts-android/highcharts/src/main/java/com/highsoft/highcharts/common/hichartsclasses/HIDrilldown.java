@@ -22,18 +22,17 @@ import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 public class HIDrilldown extends Observable implements HIChartsJSONSerializable { 
 
-	private HIActiveDataLabelStyle activeDataLabelStyle;
+	private HICSSObject activeDataLabelStyle;
 /**
-/** Additional styles to apply to the data label of a point that has drilldown data. By defaults it is underlined and blue to invite to interaction. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/labels/">Label styles</a>
+/** Additional styles to apply to the data label of a point that has drilldown data. By defaults it is underlined and blue to invite to interaction. In styled mode, active data label styles can be applied with the .highcharts-drilldown-data-label class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/labels/">Label styles</a>
  <br><br><b>defaults:</b><br><br>&ensp;{ "cursor": "pointer", "color": "#003399", "fontWeight": "bold", "textDecoration": "underline" }*/
-	public void setActiveDataLabelStyle(HIActiveDataLabelStyle activeDataLabelStyle) {
+	public void setActiveDataLabelStyle(HICSSObject activeDataLabelStyle) {
 		this.activeDataLabelStyle = activeDataLabelStyle;
-		this.activeDataLabelStyle.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIActiveDataLabelStyle getActiveDataLabelStyle(){ return activeDataLabelStyle; }
+	public HICSSObject getActiveDataLabelStyle(){ return activeDataLabelStyle; }
 
 	private ArrayList series;
 /**
@@ -59,18 +58,17 @@ public class HIDrilldown extends Observable implements HIChartsJSONSerializable 
 
 	public Boolean getAllowPointDrilldown(){ return allowPointDrilldown; }
 
-	private HIAnimation animation;
+	private HIAnimationOptionsObject animation;
 /**
-/** Set the animation for all drilldown animations. Animation of a drilldown occurs when drilling between a column point and a column series, or a pie slice and a full pie series. Drilldown can still be used between series and points of different types, but animation will not occur. The animation can either be set as a boolean or a configuration object. If true, it will use the 'swing' jQuery easing and a duration of 500 ms. If used as a configuration object, the following properties are supported:  duration The duration of the animation in milliseconds. easing A string reference to an easing function set on the Math object. See [the easing demo](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/).  
-*/
-	public void setAnimation(HIAnimation animation) {
+/** Set the animation for all drilldown animations. Animation of a drilldown occurs when drilling between a column point and a column series, or a pie slice and a full pie series. Drilldown can still be used between series and points of different types, but animation will not occur. The animation can either be set as a boolean or a configuration object. If true, it will use the 'swing' jQuery easing and a duration of 500 ms. If used as a configuration object, the following properties are supported: - duration: The duration of the animation in milliseconds. - easing: A string reference to an easing function set on the Math  object. See  [the easing demo](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/). 
+ <br><br><b>defaults:</b><br><br>&ensp;{ "duration": 500 }*/
+	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
-		this.animation.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIAnimation getAnimation(){ return animation; }
+	public HIAnimationOptionsObject getAnimation(){ return animation; }
 
 	private HIDrillUpButton drillUpButton;
 /**
@@ -85,18 +83,17 @@ public class HIDrilldown extends Observable implements HIChartsJSONSerializable 
 
 	public HIDrillUpButton getDrillUpButton(){ return drillUpButton; }
 
-	private HIActiveAxisLabelStyle activeAxisLabelStyle;
+	private HICSSObject activeAxisLabelStyle;
 /**
-/** Additional styles to apply to the X axis label for a point that has drilldown data. By defaults it is underlined and blue to invite to interaction. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/labels/">Label styles</a>
+/** Additional styles to apply to the X axis label for a point that has drilldown data. By defaults it is underlined and blue to invite to interaction. In styled mode, active label styles can be set with the .highcharts-drilldown-axis-label class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/labels/">Label styles</a>
  <br><br><b>defaults:</b><br><br>&ensp;{ "cursor": "pointer", "color": "#003399", "fontWeight": "bold", "textDecoration": "underline" }*/
-	public void setActiveAxisLabelStyle(HIActiveAxisLabelStyle activeAxisLabelStyle) {
+	public void setActiveAxisLabelStyle(HICSSObject activeAxisLabelStyle) {
 		this.activeAxisLabelStyle = activeAxisLabelStyle;
-		this.activeAxisLabelStyle.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIActiveAxisLabelStyle getActiveAxisLabelStyle(){ return activeAxisLabelStyle; }
+	public HICSSObject getActiveAxisLabelStyle(){ return activeAxisLabelStyle; }
 
 
 
@@ -136,13 +133,13 @@ public class HIDrilldown extends Observable implements HIChartsJSONSerializable 
 			params.put("allowPointDrilldown", this.allowPointDrilldown);
 		}
 		if (this.animation != null) {
-			params.put("animation", this.animation.getParams());
+			params.put("animation", this.animation);
 		}
 		if (this.drillUpButton != null) {
 			params.put("drillUpButton", this.drillUpButton.getParams());
 		}
 		if (this.activeAxisLabelStyle != null) {
-			params.put("activeAxisLabelStyle", this.activeAxisLabelStyle.getParams());
+			params.put("activeAxisLabelStyle", this.activeAxisLabelStyle);
 		}
 		return params;
 	}

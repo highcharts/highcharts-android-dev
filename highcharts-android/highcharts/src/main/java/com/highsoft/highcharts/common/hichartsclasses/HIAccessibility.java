@@ -62,7 +62,7 @@ public class HIAccessibility extends Observable implements HIChartsJSONSerializa
 	private Boolean enabled;
 /**
 /** Enable accessibility features for the chart. 
- <br><br><b>defaults:</b><br><br>&ensp;true*/
+*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -71,17 +71,17 @@ public class HIAccessibility extends Observable implements HIChartsJSONSerializa
 
 	public Boolean getEnabled(){ return enabled; }
 
-	private Object /* Boolean|String */ pointDescriptionThreshold;
+	private Number pointDescriptionThreshold;
 /**
 /** When a series contains more points than this, we no longer expose information about individual points to screen readers. Set to false to disable. 
 */
-	public void setPointDescriptionThreshold(Object /* Boolean|String */ pointDescriptionThreshold) {
+	public void setPointDescriptionThreshold(Number pointDescriptionThreshold) {
 		this.pointDescriptionThreshold = pointDescriptionThreshold;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Boolean|String */ getPointDescriptionThreshold(){ return pointDescriptionThreshold; }
+	public Number getPointDescriptionThreshold(){ return pointDescriptionThreshold; }
 
 	private HIFunction pointDescriptionFormatter;
 /**
@@ -143,18 +143,18 @@ public class HIAccessibility extends Observable implements HIChartsJSONSerializa
 
 	public HIFunction getPointDateFormatter(){ return pointDateFormatter; }
 
-	private HIChartTypes chartTypes;
+	private HISeries series;
 /**
-/** Chart type description strings. This is added to the chart information region. If there is only a single series type used in the chart, we use the format string for the series type, or defaults if missing. There is one format string for cases where there is only a single series in the chart, and one for multiple series of the same type. 
+/** Lang configuration for different series types. For more dynamic control over the series element descriptions, see `accessibility.seriesDescriptionFormatter`. 
 */
-	public void setChartTypes(HIChartTypes chartTypes) {
-		this.chartTypes = chartTypes;
-		this.chartTypes.addObserver(updateObserver);
+	public void setSeries(HISeries series) {
+		this.series = series;
+		this.series.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIChartTypes getChartTypes(){ return chartTypes; }
+	public HISeries getSeries(){ return series; }
 
 	private String longDescriptionHeading;
 	public void setLongDescriptionHeading(String longDescriptionHeading) {
@@ -192,6 +192,28 @@ public class HIAccessibility extends Observable implements HIChartsJSONSerializa
 
 	public String getChartContainerLabel(){ return chartContainerLabel; }
 
+	private String mapZoomOut;
+	public void setMapZoomOut(String mapZoomOut) {
+		this.mapZoomOut = mapZoomOut;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getMapZoomOut(){ return mapZoomOut; }
+
+	private HIChartTypes chartTypes;
+/**
+/** Chart type description strings. This is added to the chart information region. If there is only a single series type used in the chart, we use the format string for the series type, or defaults if missing. There is one format string for cases where there is only a single series in the chart, and one for multiple series of the same type. 
+*/
+	public void setChartTypes(HIChartTypes chartTypes) {
+		this.chartTypes = chartTypes;
+		this.chartTypes.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIChartTypes getChartTypes(){ return chartTypes; }
+
 	private HIAxis axis;
 /**
 /** Axis description format strings. 
@@ -204,41 +226,6 @@ public class HIAccessibility extends Observable implements HIChartsJSONSerializa
 	}
 
 	public HIAxis getAxis(){ return axis; }
-
-	private HISeries series;
-/**
-/** Lang configuration for different series types. For more dynamic control over the series element descriptions, see `accessibility.seriesDescriptionFormatter`. 
-*/
-	public void setSeries(HISeries series) {
-		this.series = series;
-		this.series.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HISeries getSeries(){ return series; }
-
-	private HIExporting exporting;
-/**
-/** Exporting menu format strings for accessibility module. 
-*/
-	public void setExporting(HIExporting exporting) {
-		this.exporting = exporting;
-		this.exporting.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIExporting getExporting(){ return exporting; }
-
-	private String mapZoomOut;
-	public void setMapZoomOut(String mapZoomOut) {
-		this.mapZoomOut = mapZoomOut;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getMapZoomOut(){ return mapZoomOut; }
 
 	private String rangeSelectorMinInput;
 	public void setRangeSelectorMinInput(String rangeSelectorMinInput) {
@@ -257,6 +244,19 @@ public class HIAccessibility extends Observable implements HIChartsJSONSerializa
 	}
 
 	public String getRangeSelectorButton(){ return rangeSelectorButton; }
+
+	private HIExporting exporting;
+/**
+/** Exporting menu format strings for accessibility module. 
+*/
+	public void setExporting(HIExporting exporting) {
+		this.exporting = exporting;
+		this.exporting.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIExporting getExporting(){ return exporting; }
 
 	private String legendItem;
 	public void setLegendItem(String legendItem) {
@@ -413,8 +413,8 @@ public class HIAccessibility extends Observable implements HIChartsJSONSerializa
 		if (this.pointDateFormatter != null) {
 			params.put("pointDateFormatter", this.pointDateFormatter);
 		}
-		if (this.chartTypes != null) {
-			params.put("chartTypes", this.chartTypes.getParams());
+		if (this.series != null) {
+			params.put("series", this.series.getParams());
 		}
 		if (this.longDescriptionHeading != null) {
 			params.put("longDescriptionHeading", this.longDescriptionHeading);
@@ -428,23 +428,23 @@ public class HIAccessibility extends Observable implements HIChartsJSONSerializa
 		if (this.chartContainerLabel != null) {
 			params.put("chartContainerLabel", this.chartContainerLabel);
 		}
-		if (this.axis != null) {
-			params.put("axis", this.axis.getParams());
-		}
-		if (this.series != null) {
-			params.put("series", this.series.getParams());
-		}
-		if (this.exporting != null) {
-			params.put("exporting", this.exporting.getParams());
-		}
 		if (this.mapZoomOut != null) {
 			params.put("mapZoomOut", this.mapZoomOut);
+		}
+		if (this.chartTypes != null) {
+			params.put("chartTypes", this.chartTypes.getParams());
+		}
+		if (this.axis != null) {
+			params.put("axis", this.axis.getParams());
 		}
 		if (this.rangeSelectorMinInput != null) {
 			params.put("rangeSelectorMinInput", this.rangeSelectorMinInput);
 		}
 		if (this.rangeSelectorButton != null) {
 			params.put("rangeSelectorButton", this.rangeSelectorButton);
+		}
+		if (this.exporting != null) {
+			params.put("exporting", this.exporting.getParams());
 		}
 		if (this.legendItem != null) {
 			params.put("legendItem", this.legendItem);

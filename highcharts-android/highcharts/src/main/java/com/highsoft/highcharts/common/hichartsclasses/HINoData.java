@@ -25,7 +25,7 @@ public class HINoData extends Observable implements HIChartsJSONSerializable {
 	private HIPosition position;
 /**
 /** The position of the no-data label, relative to the plot area. 
- <br><br><b>defaults:</b><br><br>&ensp;{ "x": 0, "y": 0, "align": "center", "verticalAlign": "middle" }*/
+*/
 	public void setPosition(HIPosition position) {
 		this.position = position;
 		this.position.addObserver(updateObserver);
@@ -35,30 +35,29 @@ public class HINoData extends Observable implements HIChartsJSONSerializable {
 
 	public HIPosition getPosition(){ return position; }
 
-	private HIStyle style;
+	private HICSSObject style;
 /**
 /** CSS styles for the no-data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line">Styled no-data text</a>
 */
-	public void setStyle(HIStyle style) {
+	public void setStyle(HICSSObject style) {
 		this.style = style;
-		this.style.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIStyle getStyle(){ return style; }
+	public HICSSObject getStyle(){ return style; }
 
-	private Object attr;
+	private HISVGAttributes attr;
 /**
 /** An object of additional SVG attributes for the no-data label. 
 */
-	public void setAttr(Object attr) {
+	public void setAttr(HISVGAttributes attr) {
 		this.attr = attr;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getAttr(){ return attr; }
+	public HISVGAttributes getAttr(){ return attr; }
 
 	private Boolean useHTML;
 /**
@@ -95,7 +94,7 @@ public class HINoData extends Observable implements HIChartsJSONSerializable {
 			params.put("position", this.position.getParams());
 		}
 		if (this.style != null) {
-			params.put("style", this.style.getParams());
+			params.put("style", this.style);
 		}
 		if (this.attr != null) {
 			params.put("attr", this.attr);

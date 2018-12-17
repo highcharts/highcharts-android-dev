@@ -59,29 +59,29 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	public String getLineDelimiter(){ return lineDelimiter; }
 
-	private Object table;
+	private String table;
 /**
 /** An HTML table or the id of such to be parsed as input data. Related options are startRow, endRow, startColumn and endColumn to delimit what part of the table is used. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/column-parsed/">Parsed table</a>
 */
-	public void setTable(Object table) {
+	public void setTable(String table) {
 		this.table = table;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getTable(){ return table; }
+	public String getTable(){ return table; }
 
-	private HIFunction parsed;
+	private String rowsURL;
 /**
-/** A callback function to access the parsed columns, the two-dimentional input data array directly, before they are interpreted into series data and categories. Return false to stop completion, or call this.complete() to continue async. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/parsed/">Modify data after parse</a>
+/** A URL to a remote JSON dataset, structured as a row array. Will be fetched when the chart is created using Ajax. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/livedata-rows">Rows with live polling</a>
 */
-	public void setParsed(HIFunction parsed) {
-		this.parsed = parsed;
+	public void setRowsURL(String rowsURL) {
+		this.rowsURL = rowsURL;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIFunction getParsed(){ return parsed; }
+	public String getRowsURL(){ return rowsURL; }
 
 	private HIFunction parseDate;
 /**
@@ -97,7 +97,7 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	private ArrayList seriesMapping;
 /**
-/** An array containing object with Point property names along with what column id the property should be taken from. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/seriesmapping-label/">Label from data set</a>
+/** An array containing dictionaries for each series. A dictionary exists of Point property names as the key and the CSV column index as the value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/seriesmapping-label/">Label from data set</a>
 */
 	public void setSeriesMapping(ArrayList seriesMapping) {
 		this.seriesMapping = seriesMapping;
@@ -121,7 +121,7 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	private String csvURL;
 /**
-/** A URL to a remote CSV dataset. Will be fetched when the chart is created using Ajax. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/livedata-columns">Categorized bar chart with CSV and live polling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/livedata-csv">Time based line chart with CSV and live polling</a>
+/** An URL to a remote CSV dataset. Will be fetched when the chart is created using Ajax. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/livedata-columns">Categorized bar chart with CSV and live polling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/livedata-csv">Time based line chart with CSV and live polling</a>
 */
 	public void setCsvURL(String csvURL) {
 		this.csvURL = csvURL;
@@ -133,7 +133,7 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	private String dateFormat;
 /**
-/** Which of the predefined date formats in Date.prototype.dateFormats to use to parse date values. Defaults to a best guess based on what format gives valid and ordered dates. Valid options include: *  YYYY/mm/dd *  dd/mm/YYYY *  mm/dd/YYYY *  dd/mm/YY *  mm/dd/YY <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/dateformat-auto/">Best guess date format</a> <br><br><b>accepted values:</b><br><br>&ensp;[undefined, "YYYY/mm/dd", "dd/mm/YYYY", "mm/dd/YYYY",       "dd/mm/YYYY", "dd/mm/YY", "mm/dd/YY"]
+/** Which of the predefined date formats in Date.prototype.dateFormats to use to parse date values. Defaults to a best guess based on what format gives valid and ordered dates. Valid options include: YYYY/mm/dd, dd/mm/YYYY, mm/dd/YYYY, dd/mm/YY, mm/dd/YY. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/dateformat-auto/">Best guess date format</a> <br><br><b>accepted values:</b><br><br>&ensp;["YYYY/mm/dd", "dd/mm/YYYY", "mm/dd/YYYY", "dd/mm/YYYY",       "dd/mm/YY", "mm/dd/YY"]
 */
 	public void setDateFormat(String dateFormat) {
 		this.dateFormat = dateFormat;
@@ -167,17 +167,17 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	public Number getDataRefreshRate(){ return dataRefreshRate; }
 
-	private String rowsURL;
+	private HIFunction parsed;
 /**
-/** A URL to a remote JSON dataset, structured as a row array. Will be fetched when the chart is created using Ajax. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/livedata-rows">Rows with live polling</a>
+/** A callback function to access the parsed columns, the two-dimentional input data array directly, before they are interpreted into series data and categories. Return false to stop completion, or call this.complete() to continue async. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/parsed/">Modify data after parse</a>
 */
-	public void setRowsURL(String rowsURL) {
-		this.rowsURL = rowsURL;
+	public void setParsed(HIFunction parsed) {
+		this.parsed = parsed;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getRowsURL(){ return rowsURL; }
+	public HIFunction getParsed(){ return parsed; }
 
 	private Number startRow;
 /**
@@ -193,7 +193,7 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	private String csv;
 /**
-/** A comma delimited string to be parsed. Related options are `startRow`, endRow, startColumn and endColumn to delimit what part of the table is used. The lineDelimiter and `itemDelimiter` options define the CSV delimiter formats. The built-in CSV parser doesn't support all flavours of CSV, so in some cases it may be necessary to use an external CSV parser. See [this example](https://jsfiddle.net/highcharts/u59176h4/) of parsing CSV through the MIT licensed [Papa Parse](http://papaparse.com/) library. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/csv/">Data from CSV</a>
+/** A comma delimited string to be parsed. Related options are startRow, endRow, startColumn and endColumn to delimit what part of the table is used. The lineDelimiter and itemDelimiter options define the CSV delimiter formats. The built-in CSV parser doesn't support all flavours of CSV, so in some cases it may be necessary to use an external CSV parser. See [this example](https://jsfiddle.net/highcharts/u59176h4/) of parsing CSV through the MIT licensed [Papa Parse](http://papaparse.com/) library. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/csv/">Data from CSV</a>
 */
 	public void setCsv(String csv) {
 		this.csv = csv;
@@ -313,7 +313,7 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	private String decimalPoint;
 /**
-/** The decimal point used for parsing numbers in the CSV. If both this and data.delimiter is set to false, the parser will attempt to deduce the decimal point automatically. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/delimiters/">Comma as decimal point</a>
+/** The decimal point used for parsing numbers in the CSV. If both this and data.delimiter is set to undefined, the parser will attempt to deduce the decimal point automatically. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/delimiters/">Comma as decimal point</a>
  <br><br><b>defaults:</b><br><br>&ensp;.*/
 	public void setDecimalPoint(String decimalPoint) {
 		this.decimalPoint = decimalPoint;
@@ -407,17 +407,29 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	public Number getLabelrank(){ return labelrank; }
 
-	private Number colorIndex;
+	private Number y;
 /**
-/** A specific color index to use for the point, so its graphic representations are given the class name highcharts-color-{n}. In styled mode this will change the color of the graphic. In non-styled mode, the color by is set by the fill attribute, so the change in class name won't have a visual effect by defaults. 
+/** The y value of the point. 
 */
-	public void setColorIndex(Number colorIndex) {
-		this.colorIndex = colorIndex;
+	public void setY(Number y) {
+		this.y = y;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getColorIndex(){ return colorIndex; }
+	public Number getY(){ return y; }
+
+	private String definition;
+/**
+/** A description of the point to add to the screen reader information about the point. Requires the Accessibility module. 
+*/
+	public void setDefinition(String definition) {
+		this.definition = definition;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDefinition(){ return definition; }
 
 	private String name;
 /**
@@ -457,7 +469,7 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	private Object dataLabels;
 /**
-/** Individual data label for each point. The options are the same as the ones for `plotOptions.series.dataLabels`. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/datalabels/">Show a label for the last value</a>
+/** Individual data label for each point. The options are the same as the ones for plotOptions.series.dataLabels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/datalabels/">Show a label for the last value</a>
 */
 	public void setDataLabels(Object dataLabels) {
 		this.dataLabels = dataLabels;
@@ -479,19 +491,6 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	public String getClassName(){ return className; }
 
-	private HIEvents events;
-/**
-/** Individual point events 
-*/
-	public void setEvents(HIEvents events) {
-		this.events = events;
-		this.events.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIEvents getEvents(){ return events; }
-
 	private HIDragDrop dragDrop;
 /**
 /** Point specific options for the draggable-points module. Overrides options on series.dragDrop. Requires the draggable-points module. 
@@ -505,17 +504,17 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	public HIDragDrop getDragDrop(){ return dragDrop; }
 
-	private Number y;
+	private String id;
 /**
-/** The y value of the point. 
+/** An id for the point. This can be used after render time to get a pointer to the point object through chart.get(). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/id/">Remove an id'd point</a>
 */
-	public void setY(Number y) {
-		this.y = y;
+	public void setId(String id) {
+		this.id = id;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getY(){ return y; }
+	public String getId(){ return id; }
 
 	private Number x;
 /**
@@ -541,29 +540,30 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	public String getDrilldown(){ return drilldown; }
 
-	private String id;
+	private HIEvents events;
 /**
-/** An id for the point. This can be used after render time to get a pointer to the point object through chart.get(). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/id/">Remove an id'd point</a>
+/** Individual point events 
 */
-	public void setId(String id) {
-		this.id = id;
+	public void setEvents(HIEvents events) {
+		this.events = events;
+		this.events.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getId(){ return id; }
+	public HIEvents getEvents(){ return events; }
 
-	private String definition;
+	private Number colorIndex;
 /**
-/** A description of the point to add to the screen reader information about the point. Requires the Accessibility module. 
+/** A specific color index to use for the point, so its graphic representations are given the class name highcharts-color-{n}. In styled mode this will change the color of the graphic. In non-styled mode, the color by is set by the fill attribute, so the change in class name won't have a visual effect by defaults. 
 */
-	public void setDefinition(String definition) {
-		this.definition = definition;
+	public void setColorIndex(Number colorIndex) {
+		this.colorIndex = colorIndex;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getDefinition(){ return definition; }
+	public Number getColorIndex(){ return colorIndex; }
 
 	private Number legendIndex;
 /**
@@ -587,18 +587,6 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	public HIMarker getMarker(){ return marker; }
 
-	private Number length;
-/**
-/** The length of the vector. The rendered length will relate to the vectorLength setting. 
-*/
-	public void setLength(Number length) {
-		this.length = length;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getLength(){ return length; }
-
 	private Number direction;
 /**
 /** The vector direction in degrees, where 0 is north (pointing towards south). 
@@ -611,65 +599,42 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	public Number getDirection(){ return direction; }
 
-	private Number value;
+	private Number length;
 /**
-/** The value of the point, resulting in a color controled by options as set in the colorAxis configuration. 
+/** The length of the vector. The rendered length will relate to the vectorLength setting. 
 */
-	public void setValue(Number value) {
-		this.value = value;
+	public void setLength(Number length) {
+		this.length = length;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getValue(){ return value; }
+	public Number getLength(){ return length; }
 
-	private Number pointPadding;
+	private Number target;
 /**
-/** Point padding for a single point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/tilemap-pointpadding">Point padding on tiles</a>
+/** The target value of a point. 
 */
-	public void setPointPadding(Number pointPadding) {
-		this.pointPadding = pointPadding;
+	public void setTarget(Number target) {
+		this.target = target;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getPointPadding(){ return pointPadding; }
+	public Number getTarget(){ return target; }
 
-	private Boolean isIntermediateSum;
+	private HITargetOptions targetOptions;
 /**
-/** When this property is true, the points acts as a summary column for the values added or substracted since the last intermediate sum, or since the start of the series. The y value is ignored. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/waterfall/">Waterfall</a>
- <br><br><b>defaults:</b><br><br>&ensp;false*/
-	public void setIsIntermediateSum(Boolean isIntermediateSum) {
-		this.isIntermediateSum = isIntermediateSum;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getIsIntermediateSum(){ return isIntermediateSum; }
-
-	private Boolean isSum;
-/**
-/** When this property is true, the point display the total sum across the entire series. The y value is ignored. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/waterfall/">Waterfall</a>
- <br><br><b>defaults:</b><br><br>&ensp;false*/
-	public void setIsSum(Boolean isSum) {
-		this.isSum = isSum;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getIsSum(){ return isSum; }
-
-	private Boolean sliced;
-/**
-/** Whether to display a slice offset from the center. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/sliced/">One sliced point</a>
+/** Individual target options for each point. 
 */
-	public void setSliced(Boolean sliced) {
-		this.sliced = sliced;
+	public void setTargetOptions(HITargetOptions targetOptions) {
+		this.targetOptions = targetOptions;
+		this.targetOptions.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getSliced(){ return sliced; }
+	public HITargetOptions getTargetOptions(){ return targetOptions; }
 
 	private HIColor borderColor;
 /**
@@ -707,29 +672,65 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	public Number getBorderWidth(){ return borderWidth; }
 
-	private Object /* Number|String */ innerRadius;
+	private Number pointPadding;
 /**
-/** The inner radius of an individual point in a solid gauge. Can be given as a number (pixels) or percentage string. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/solidgauge-radius/">Individual radius and innerRadius</a>
+/** Point padding for a single point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/tilemap-pointpadding">Point padding on tiles</a>
 */
-	public void setInnerRadius(Object /* Number|String */ innerRadius) {
-		this.innerRadius = innerRadius;
+	public void setPointPadding(Number pointPadding) {
+		this.pointPadding = pointPadding;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number|String */ getInnerRadius(){ return innerRadius; }
+	public Number getPointPadding(){ return pointPadding; }
 
-	private Object /* Number|String */ radius;
+	private Number value;
 /**
-/** The outer radius of an individual point in a solid gauge. Can be given as a number (pixels) or percentage string. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/solidgauge-radius/">Individual radius and innerRadius</a>
+/** The value of the point, resulting in a color controled by options as set in the colorAxis configuration. 
 */
-	public void setRadius(Object /* Number|String */ radius) {
-		this.radius = radius;
+	public void setValue(Number value) {
+		this.value = value;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number|String */ getRadius(){ return radius; }
+	public Number getValue(){ return value; }
+
+	private Boolean isIntermediateSum;
+/**
+/** When this property is true, the points acts as a summary column for the values added or substracted since the last intermediate sum, or since the start of the series. The y value is ignored. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/waterfall/">Waterfall</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
+	public void setIsIntermediateSum(Boolean isIntermediateSum) {
+		this.isIntermediateSum = isIntermediateSum;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getIsIntermediateSum(){ return isIntermediateSum; }
+
+	private Boolean isSum;
+/**
+/** When this property is true, the point display the total sum across the entire series. The y value is ignored. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/waterfall/">Waterfall</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
+	public void setIsSum(Boolean isSum) {
+		this.isSum = isSum;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getIsSum(){ return isSum; }
+
+	private Boolean sliced;
+/**
+/** Whether to display a slice offset from the center. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/sliced/">One sliced point</a>
+*/
+	public void setSliced(Boolean sliced) {
+		this.sliced = sliced;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getSliced(){ return sliced; }
 
 	private String to;
 /**
@@ -742,18 +743,6 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 	}
 
 	public String getTo(){ return to; }
-
-	private Boolean outgoing;
-/**
-/** Whether the link goes out of the system. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-outgoing">Sankey chart with outgoing links</a>
- <br><br><b>defaults:</b><br><br>&ensp;false*/
-	public void setOutgoing(Boolean outgoing) {
-		this.outgoing = outgoing;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getOutgoing(){ return outgoing; }
 
 	private String from;
 /**
@@ -778,6 +767,42 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 	}
 
 	public Number getWeight(){ return weight; }
+
+	private Object /* Number, String */ innerRadius;
+/**
+/** The inner radius of an individual point in a solid gauge. Can be given as a number (pixels) or percentage string. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/solidgauge-radius/">Individual radius and innerRadius</a>
+*/
+	public void setInnerRadius(Object /* Number, String */ innerRadius) {
+		this.innerRadius = innerRadius;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getInnerRadius(){ return innerRadius; }
+
+	private Object /* Number, String */ radius;
+/**
+/** The outer radius of an individual point in a solid gauge. Can be given as a number (pixels) or percentage string. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/solidgauge-radius/">Individual radius and innerRadius</a>
+*/
+	public void setRadius(Object /* Number, String */ radius) {
+		this.radius = radius;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getRadius(){ return radius; }
+
+	private Boolean outgoing;
+/**
+/** Whether the link goes out of the system. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-outgoing">Sankey chart with outgoing links</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
+	public void setOutgoing(Boolean outgoing) {
+		this.outgoing = outgoing;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getOutgoing(){ return outgoing; }
 
 	private Number z;
 /**
@@ -816,22 +841,10 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	public HIPartialFill getPartialFill(){ return partialFill; }
 
-	private Number colorValue;
-/**
-/** Serves a purpose only if a colorAxis object is defined in the chart options. This value will decide which color the point gets from the scale of the colorAxis. 
- <br><br><b>defaults:</b><br><br>&ensp;undefined*/
-	public void setColorValue(Number colorValue) {
-		this.colorValue = colorValue;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getColorValue(){ return colorValue; }
-
 	private String parent;
 /**
 /** Only for treemap. Use this option to build a tree structure. The value should be the id of the point which is the parent. If no points has a matching id, or this option is undefined, then the parent will be set to the root. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/parent/">Point parent</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/treemap-with-levels/">Example where parent id is not matching</a>
- <br><br><b>defaults:</b><br><br>&ensp;undefined*/
+*/
 	public void setParent(String parent) {
 		this.parent = parent;
 		this.setChanged();
@@ -840,30 +853,29 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	public String getParent(){ return parent; }
 
-	private Number target;
+	private Number colorValue;
 /**
-/** The target value of a point. 
+/** Serves a purpose only if a colorAxis object is defined in the chart options. This value will decide which color the point gets from the scale of the colorAxis. 
 */
-	public void setTarget(Number target) {
-		this.target = target;
+	public void setColorValue(Number colorValue) {
+		this.colorValue = colorValue;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getTarget(){ return target; }
+	public Number getColorValue(){ return colorValue; }
 
-	private HITargetOptions targetOptions;
+	private ArrayList<String> sets;
 /**
-/** Individual target options for each point. 
+/** The set or sets the options will be applied to. If a single entry is defined, then it will create a new set. If more than one entry is defined, then it will define the overlap between the sets in the array. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/venn-diagram/">Venn diagram</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/euler-diagram/">Euler diagram</a>
 */
-	public void setTargetOptions(HITargetOptions targetOptions) {
-		this.targetOptions = targetOptions;
-		this.targetOptions.addObserver(updateObserver);
+	public void setSets(ArrayList<String> sets) {
+		this.sets = sets;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HITargetOptions getTargetOptions(){ return targetOptions; }
+	public ArrayList<String> getSets(){ return sets; }
 
 
 
@@ -896,8 +908,8 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 		if (this.table != null) {
 			params.put("table", this.table);
 		}
-		if (this.parsed != null) {
-			params.put("parsed", this.parsed);
+		if (this.rowsURL != null) {
+			params.put("rowsURL", this.rowsURL);
 		}
 		if (this.parseDate != null) {
 			params.put("parseDate", this.parseDate);
@@ -938,8 +950,8 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 		if (this.dataRefreshRate != null) {
 			params.put("dataRefreshRate", this.dataRefreshRate);
 		}
-		if (this.rowsURL != null) {
-			params.put("rowsURL", this.rowsURL);
+		if (this.parsed != null) {
+			params.put("parsed", this.parsed);
 		}
 		if (this.startRow != null) {
 			params.put("startRow", this.startRow);
@@ -1007,8 +1019,11 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 		if (this.labelrank != null) {
 			params.put("labelrank", this.labelrank);
 		}
-		if (this.colorIndex != null) {
-			params.put("colorIndex", this.colorIndex);
+		if (this.y != null) {
+			params.put("y", this.y);
+		}
+		if (this.definition != null) {
+			params.put("definition", this.definition);
 		}
 		if (this.name != null) {
 			params.put("name", this.name);
@@ -1025,14 +1040,11 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 		if (this.className != null) {
 			params.put("className", this.className);
 		}
-		if (this.events != null) {
-			params.put("events", this.events.getParams());
-		}
 		if (this.dragDrop != null) {
 			params.put("dragDrop", this.dragDrop.getParams());
 		}
-		if (this.y != null) {
-			params.put("y", this.y);
+		if (this.id != null) {
+			params.put("id", this.id);
 		}
 		if (this.x != null) {
 			params.put("x", this.x);
@@ -1040,11 +1052,11 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 		if (this.drilldown != null) {
 			params.put("drilldown", this.drilldown);
 		}
-		if (this.id != null) {
-			params.put("id", this.id);
+		if (this.events != null) {
+			params.put("events", this.events.getParams());
 		}
-		if (this.definition != null) {
-			params.put("definition", this.definition);
+		if (this.colorIndex != null) {
+			params.put("colorIndex", this.colorIndex);
 		}
 		if (this.legendIndex != null) {
 			params.put("legendIndex", this.legendIndex);
@@ -1052,26 +1064,17 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 		if (this.marker != null) {
 			params.put("marker", this.marker.getParams());
 		}
-		if (this.length != null) {
-			params.put("length", this.length);
-		}
 		if (this.direction != null) {
 			params.put("direction", this.direction);
 		}
-		if (this.value != null) {
-			params.put("value", this.value);
+		if (this.length != null) {
+			params.put("length", this.length);
 		}
-		if (this.pointPadding != null) {
-			params.put("pointPadding", this.pointPadding);
+		if (this.target != null) {
+			params.put("target", this.target);
 		}
-		if (this.isIntermediateSum != null) {
-			params.put("isIntermediateSum", this.isIntermediateSum);
-		}
-		if (this.isSum != null) {
-			params.put("isSum", this.isSum);
-		}
-		if (this.sliced != null) {
-			params.put("sliced", this.sliced);
+		if (this.targetOptions != null) {
+			params.put("targetOptions", this.targetOptions.getParams());
 		}
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
@@ -1082,23 +1085,38 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);
 		}
-		if (this.innerRadius != null) {
-			params.put("innerRadius", this.innerRadius);
+		if (this.pointPadding != null) {
+			params.put("pointPadding", this.pointPadding);
 		}
-		if (this.radius != null) {
-			params.put("radius", this.radius);
+		if (this.value != null) {
+			params.put("value", this.value);
+		}
+		if (this.isIntermediateSum != null) {
+			params.put("isIntermediateSum", this.isIntermediateSum);
+		}
+		if (this.isSum != null) {
+			params.put("isSum", this.isSum);
+		}
+		if (this.sliced != null) {
+			params.put("sliced", this.sliced);
 		}
 		if (this.to != null) {
 			params.put("to", this.to);
-		}
-		if (this.outgoing != null) {
-			params.put("outgoing", this.outgoing);
 		}
 		if (this.from != null) {
 			params.put("from", this.from);
 		}
 		if (this.weight != null) {
 			params.put("weight", this.weight);
+		}
+		if (this.innerRadius != null) {
+			params.put("innerRadius", this.innerRadius);
+		}
+		if (this.radius != null) {
+			params.put("radius", this.radius);
+		}
+		if (this.outgoing != null) {
+			params.put("outgoing", this.outgoing);
 		}
 		if (this.z != null) {
 			params.put("z", this.z);
@@ -1109,17 +1127,23 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 		if (this.partialFill != null) {
 			params.put("partialFill", this.partialFill.getParams());
 		}
-		if (this.colorValue != null) {
-			params.put("colorValue", this.colorValue);
-		}
 		if (this.parent != null) {
 			params.put("parent", this.parent);
 		}
-		if (this.target != null) {
-			params.put("target", this.target);
+		if (this.colorValue != null) {
+			params.put("colorValue", this.colorValue);
 		}
-		if (this.targetOptions != null) {
-			params.put("targetOptions", this.targetOptions.getParams());
+		if (this.sets != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.sets) {
+				if (obj instanceof HIChartsJSONSerializable) {
+					array.add(((HIChartsJSONSerializable) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("sets", array);
 		}
 		return params;
 	}

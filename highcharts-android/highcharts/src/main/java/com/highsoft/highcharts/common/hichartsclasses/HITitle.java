@@ -22,6 +22,18 @@ import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 public class HITitle extends Observable implements HIChartsJSONSerializable { 
 
+	private Number widthAdjust;
+/**
+/** Adjustment made to the title width, normally to reserve space for the exporting burger menu. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/widthadjust/">Wider menu, greater padding</a>
+*/
+	public void setWidthAdjust(Number widthAdjust) {
+		this.widthAdjust = widthAdjust;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getWidthAdjust(){ return widthAdjust; }
+
 	private HICSSObject style;
 /**
 /** CSS styles for the title. Use this for font styling, but use align, x and y for text alignment. In styled mode, the title style is given in the .highcharts-title class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/style/">Custom color and weight</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/titles/">Styled mode</a>
@@ -70,21 +82,9 @@ public class HITitle extends Observable implements HIChartsJSONSerializable {
 
 	public String getAlign(){ return align; }
 
-	private Boolean useHTML;
-/**
-/** Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the text. 
- <br><br><b>defaults:</b><br><br>&ensp;false*/
-	public void setUseHTML(Boolean useHTML) {
-		this.useHTML = useHTML;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getUseHTML(){ return useHTML; }
-
 	private Number y;
 /**
-/** The y position of the title relative to the alignment within chart.spacingTop and `chart.spacingBottom`. By defaults it depends on the font size. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/y/">Title inside the plot area</a>
+/** The y position of the title relative to the alignment within chart.spacingTop and chart.spacingBottom. By defaults it depends on the font size. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/y/">Title inside the plot area</a>
 */
 	public void setY(Number y) {
 		this.y = y;
@@ -106,17 +106,17 @@ public class HITitle extends Observable implements HIChartsJSONSerializable {
 
 	public Number getX(){ return x; }
 
-	private Number widthAdjust;
+	private Boolean floating;
 /**
-/** Adjustment made to the title width, normally to reserve space for the exporting burger menu. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/widthadjust/">Wider menu, greater padding</a>
-*/
-	public void setWidthAdjust(Number widthAdjust) {
-		this.widthAdjust = widthAdjust;
+/** When the title is floating, the plot area will not move to make space for it. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/zoomtype-none/">False by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/floating/">True - title on top of the plot area</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
+	public void setFloating(Boolean floating) {
+		this.floating = floating;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getWidthAdjust(){ return widthAdjust; }
+	public Boolean getFloating(){ return floating; }
 
 	private Number margin;
 /**
@@ -130,17 +130,17 @@ public class HITitle extends Observable implements HIChartsJSONSerializable {
 
 	public Number getMargin(){ return margin; }
 
-	private Boolean floating;
+	private Boolean useHTML;
 /**
-/** When the title is floating, the plot area will not move to make space for it. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/zoomtype-none/">False by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/floating/">True - title on top of the plot area</a>
+/** Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the text. 
  <br><br><b>defaults:</b><br><br>&ensp;false*/
-	public void setFloating(Boolean floating) {
-		this.floating = floating;
+	public void setUseHTML(Boolean useHTML) {
+		this.useHTML = useHTML;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getFloating(){ return floating; }
+	public Boolean getUseHTML(){ return useHTML; }
 
 	private Number rotation;
 /**
@@ -154,18 +154,6 @@ public class HITitle extends Observable implements HIChartsJSONSerializable {
 
 	public Number getRotation(){ return rotation; }
 
-	private Boolean skew3d;
-/**
-/** If enabled, the axis title will skewed to follow the perspective. This will fix overlapping labels and titles, but texts become less legible due to the distortion. The final appearance depends heavily on title.position3d. A null value will use the config from labels.skew3d. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/">Skewed labels</a> <br><br><b>accepted values:</b><br><br>&ensp;[false, true, null]
-*/
-	public void setSkew3d(Boolean skew3d) {
-		this.skew3d = skew3d;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getSkew3d(){ return skew3d; }
-
 	private Boolean reserveSpace;
 /**
 /** Whether to reserve space for the title when laying out the axis. 
@@ -178,9 +166,21 @@ public class HITitle extends Observable implements HIChartsJSONSerializable {
 
 	public Boolean getReserveSpace(){ return reserveSpace; }
 
+	private Boolean skew3d;
+/**
+/** If enabled, the axis title will skewed to follow the perspective. This will fix overlapping labels and titles, but texts become less legible due to the distortion. The final appearance depends heavily on title.position3d. A null value will use the config from labels.skew3d. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/">Skewed labels</a>
+*/
+	public void setSkew3d(Boolean skew3d) {
+		this.skew3d = skew3d;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getSkew3d(){ return skew3d; }
+
 	private String position3d;
 /**
-/** Defines how the title is repositioned according to the 3D chart orientation. - 'offset': Maintain a fixed horizontal/vertical distance from the  tick marks, despite the chart orientation. This is the backwards  compatible behavior, and causes skewing of X and Z axes. - 'chart': Preserve 3D position relative to the chart. This looks nice, but hard to read if the text isn't  forward-facing. - 'flap': Rotated text along the axis to compensate for the chart  orientation. This tries to maintain text as legible as possible on  all orientations. - 'ortho': Rotated text along the axis direction so that the labels  are orthogonal to the axis. This is very similar to 'flap', but  prevents skewing the labels (X and Y scaling are still present). - null: Will use the config from labels.position3d <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/">Skewed labels</a> <br><br><b>accepted values:</b><br><br>&ensp;['offset', 'chart', 'flap', 'ortho', null]
+/** Defines how the title is repositioned according to the 3D chart orientation. - 'offset': Maintain a fixed horizontal/vertical distance from the  tick marks, despite the chart orientation. This is the backwards  compatible behavior, and causes skewing of X and Z axes. - 'chart': Preserve 3D position relative to the chart. This looks nice, but hard to read if the text isn't  forward-facing. - 'flap': Rotated text along the axis to compensate for the chart  orientation. This tries to maintain text as legible as possible on  all orientations. - 'ortho': Rotated text along the axis direction so that the labels  are orthogonal to the axis. This is very similar to 'flap', but  prevents skewing the labels (X and Y scaling are still present). - undefined: Will use the config from labels.position3d <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/">Skewed labels</a>
 */
 	public void setPosition3d(String position3d) {
 		this.position3d = position3d;
@@ -233,6 +233,9 @@ public class HITitle extends Observable implements HIChartsJSONSerializable {
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
+		if (this.widthAdjust != null) {
+			params.put("widthAdjust", this.widthAdjust);
+		}
 		if (this.style != null) {
 			params.put("style", this.style);
 		}
@@ -245,32 +248,29 @@ public class HITitle extends Observable implements HIChartsJSONSerializable {
 		if (this.align != null) {
 			params.put("align", this.align);
 		}
-		if (this.useHTML != null) {
-			params.put("useHTML", this.useHTML);
-		}
 		if (this.y != null) {
 			params.put("y", this.y);
 		}
 		if (this.x != null) {
 			params.put("x", this.x);
 		}
-		if (this.widthAdjust != null) {
-			params.put("widthAdjust", this.widthAdjust);
+		if (this.floating != null) {
+			params.put("floating", this.floating);
 		}
 		if (this.margin != null) {
 			params.put("margin", this.margin);
 		}
-		if (this.floating != null) {
-			params.put("floating", this.floating);
+		if (this.useHTML != null) {
+			params.put("useHTML", this.useHTML);
 		}
 		if (this.rotation != null) {
 			params.put("rotation", this.rotation);
 		}
-		if (this.skew3d != null) {
-			params.put("skew3d", this.skew3d);
-		}
 		if (this.reserveSpace != null) {
 			params.put("reserveSpace", this.reserveSpace);
+		}
+		if (this.skew3d != null) {
+			params.put("skew3d", this.skew3d);
 		}
 		if (this.position3d != null) {
 			params.put("position3d", this.position3d);

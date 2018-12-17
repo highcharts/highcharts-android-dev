@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  *  This is main class that operates on HTML, loading, parsing etc...
  */
-final class HIGHTML implements Serializable{
+final class HIGHTML implements Serializable {
 
     /**
      *  This is base URL path for bundle.
@@ -39,8 +39,8 @@ final class HIGHTML implements Serializable{
     public String scripts;
     private HIGJavaScript js;
 
-    HIGHTML(WebView webView) {
-        this.js = new HIGJavaScript(webView);
+    HIGHTML(HIFunctionHandler handler){
+        this.js = new HIGJavaScript(handler);
     }
 
     /**
@@ -141,6 +141,5 @@ final class HIGHTML implements Serializable{
         bufferedReader.close();
         return buf.toString();
     }
-
 }
 

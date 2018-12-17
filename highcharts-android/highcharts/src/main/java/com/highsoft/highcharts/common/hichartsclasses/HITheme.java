@@ -15,6 +15,7 @@ import java.util.Observable;
 import java.util.Observer;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -35,6 +36,9 @@ public class HITheme extends Observable implements HIChartsJSONSerializable {
 	public Number getZIndex(){ return zIndex; }
 
 	private Number padding;
+/**
+/** Padding for the button. 
+*/
 	public void setPadding(Number padding) {
 		this.padding = padding;
 		this.setChanged();
@@ -43,26 +47,29 @@ public class HITheme extends Observable implements HIChartsJSONSerializable {
 
 	public Number getPadding(){ return padding; }
 
-	private String stroke;
-	public void setStroke(String stroke) {
+	private HIColor stroke;
+/**
+/** Default stroke for the buttons. 
+*/
+	public void setStroke(HIColor stroke) {
 		this.stroke = stroke;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getStroke(){ return stroke; }
+	public HIColor getStroke(){ return stroke; }
 
-	private String fill;
+	private HIColor fill;
 /**
 /** The defaults fill exists only to capture hover events. 
 */
-	public void setFill(String fill) {
+	public void setFill(HIColor fill) {
 		this.fill = fill;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getFill(){ return fill; }
+	public HIColor getFill(){ return fill; }
 
 
 
@@ -90,10 +97,10 @@ public class HITheme extends Observable implements HIChartsJSONSerializable {
 			params.put("padding", this.padding);
 		}
 		if (this.stroke != null) {
-			params.put("stroke", this.stroke);
+			params.put("stroke", this.stroke.getData());
 		}
 		if (this.fill != null) {
-			params.put("fill", this.fill);
+			params.put("fill", this.fill.getData());
 		}
 		return params;
 	}

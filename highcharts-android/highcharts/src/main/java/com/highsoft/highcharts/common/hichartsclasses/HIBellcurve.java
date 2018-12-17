@@ -26,17 +26,17 @@ import com.highsoft.highcharts.common.HIColor;
 */
 
 public class HIBellcurve extends HISeries {
-	private Object /* Number|String */ baseSeries;
+	private Object /* Number, String */ baseSeries;
 /**
 /** An integer identifying the index to use for the base series, or a string representing the id of the series. 
- <br><br><b>defaults:</b><br><br>&ensp;undefined*/
-	public void setBaseSeries(Object /* Number|String */ baseSeries) {
+*/
+	public void setBaseSeries(Object /* Number, String */ baseSeries) {
 		this.baseSeries = baseSeries;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number|String */ getBaseSeries(){ return baseSeries; }
+	public Object /* Number, String */ getBaseSeries(){ return baseSeries; }
 
 	private Number intervals;
 /**

@@ -37,7 +37,7 @@ public class HISunburst extends HISeries {
 	private String rootId;
 /**
 /** Which point to use as a root in the visualization. 
- <br><br><b>defaults:</b><br><br>&ensp;undefined*/
+*/
 	public void setRootId(String rootId) {
 		this.rootId = rootId;
 		this.setChanged();
@@ -59,18 +59,18 @@ public class HISunburst extends HISeries {
 
 	public HILevelSize getLevelSize(){ return levelSize; }
 
-	private ArrayList /* <String|Number> */ center;
+	private ArrayList /* <Number, String> */ center;
 /**
 /** * description: The center of the sunburst chart relative to the plot area. Can be percentages or pixel values. * demo:  •  Centered at 100, 100
-* defaults: [null, null]
+* defaults: ["50%", "50%"]
 */
-	public void setCenter(ArrayList /* <String|Number> */ center) {
+	public void setCenter(ArrayList /* <Number, String> */ center) {
 		this.center = center;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList /* <String|Number> */ getCenter(){ return center; }
+	public ArrayList /* <Number, String> */ getCenter(){ return center; }
 
 	private Number slicedOffset;
 /**

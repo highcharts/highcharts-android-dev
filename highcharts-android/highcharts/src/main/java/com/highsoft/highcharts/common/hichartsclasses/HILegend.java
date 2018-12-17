@@ -121,7 +121,7 @@ public class HILegend extends Observable implements HIChartsJSONSerializable {
 
 	private Boolean useHTML;
 /**
-/** Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/ labels-and-string-formatting#html) to render the legend item texts. Prior to 4.1.7, when using HTML, `legend.navigation` was disabled. 
+/** Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the legend item texts. Prior to 4.1.7, when using HTML, legend.navigation was disabled. 
  <br><br><b>defaults:</b><br><br>&ensp;false*/
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;
@@ -216,17 +216,18 @@ public class HILegend extends Observable implements HIChartsJSONSerializable {
 
 	public Number getItemMarginTop(){ return itemMarginTop; }
 
-	private HICSSObject itemCheckboxStyle;
+	private HIBubbleLegend bubbleLegend;
 /**
-/** Default styling for the checkbox next to a legend item when showCheckbox is true. 
- <br><br><b>defaults:</b><br><br>&ensp;{"width": "13px", "height": "13px", "position":"absolute"}*/
-	public void setItemCheckboxStyle(HICSSObject itemCheckboxStyle) {
-		this.itemCheckboxStyle = itemCheckboxStyle;
+/** The bubble legend is an additional element in legend which presents the scale of the bubble series. Individual bubble ranges can be defined by user or calculated from series. In the case of automatically calculated ranges, a 1px margin of error is permitted. Requires highcharts-more.js. 
+*/
+	public void setBubbleLegend(HIBubbleLegend bubbleLegend) {
+		this.bubbleLegend = bubbleLegend;
+		this.bubbleLegend.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HICSSObject getItemCheckboxStyle(){ return itemCheckboxStyle; }
+	public HIBubbleLegend getBubbleLegend(){ return bubbleLegend; }
 
 	private String labelFormat;
 /**
@@ -264,6 +265,18 @@ public class HILegend extends Observable implements HIChartsJSONSerializable {
 
 	public Boolean getReversed(){ return reversed; }
 
+	private HICSSObject itemCheckboxStyle;
+/**
+/** Default styling for the checkbox next to a legend item when showCheckbox is true. 
+ <br><br><b>defaults:</b><br><br>&ensp;{"width": "13px", "height": "13px", "position":"absolute"}*/
+	public void setItemCheckboxStyle(HICSSObject itemCheckboxStyle) {
+		this.itemCheckboxStyle = itemCheckboxStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HICSSObject getItemCheckboxStyle(){ return itemCheckboxStyle; }
+
 	private Number padding;
 /**
 /** The inner padding of the legend box. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/padding-itemmargin/">Padding and item margins demonstrated</a>
@@ -276,17 +289,17 @@ public class HILegend extends Observable implements HIChartsJSONSerializable {
 
 	public Number getPadding(){ return padding; }
 
-	private Number itemDistance;
+	private String verticalAlign;
 /**
-/** In a legend with horizontal layout, the itemDistance defines the pixel distance between each item. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-horizontal/">50px item distance</a>
- <br><br><b>defaults:</b><br><br>&ensp;20*/
-	public void setItemDistance(Number itemDistance) {
-		this.itemDistance = itemDistance;
+/** The vertical alignment of the legend box. Can be one of top, middle or bottom. Vertical position can be further determined by the y option. In the case that the legend is aligned in a corner position, the layout option will determine whether to place it above/below or on the side of the plot area. When the layout option is proximate, the verticalAlign option doesn't apply. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/verticalalign/">Legend 100px from the top of the chart</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]
+*/
+	public void setVerticalAlign(String verticalAlign) {
+		this.verticalAlign = verticalAlign;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getItemDistance(){ return itemDistance; }
+	public String getVerticalAlign(){ return verticalAlign; }
 
 	private Boolean /* boolean */ shadow;
 /**
@@ -312,29 +325,30 @@ public class HILegend extends Observable implements HIChartsJSONSerializable {
 
 	public HICSSObject getItemHoverStyle(){ return itemHoverStyle; }
 
-	private String verticalAlign;
+	private Number itemDistance;
 /**
-/** The vertical alignment of the legend box. Can be one of top, middle or bottom. Vertical position can be further determined by the y option. In the case that the legend is aligned in a corner position, the layout option will determine whether to place it above/below or on the side of the plot area. When the layout option is proximate, the verticalAlign option doesn't apply. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/verticalalign/">Legend 100px from the top of the chart</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]
+/** In a legend with horizontal layout, the itemDistance defines the pixel distance between each item. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-horizontal/">50px item distance</a>
+ <br><br><b>defaults:</b><br><br>&ensp;20*/
+	public void setItemDistance(Number itemDistance) {
+		this.itemDistance = itemDistance;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getItemDistance(){ return itemDistance; }
+
+	private HINavigation navigation;
+/**
+/** Options for the paging or navigation appearing when the legend is overflown. Navigation works well on screen, but not in static exported images. One way of working around that is to [increase the chart height in export](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation-enabled-false/). 
 */
-	public void setVerticalAlign(String verticalAlign) {
-		this.verticalAlign = verticalAlign;
+	public void setNavigation(HINavigation navigation) {
+		this.navigation = navigation;
+		this.navigation.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getVerticalAlign(){ return verticalAlign; }
-
-	private Number margin;
-/**
-/** If the plot area sized is calculated automatically and the legend is not floating, the legend margin is the space between the legend and the axis labels or plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/margin-defaults/">12 pixels by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/margin-30/">30 pixels</a>
- <br><br><b>defaults:</b><br><br>&ensp;12*/
-	public void setMargin(Number margin) {
-		this.margin = margin;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getMargin(){ return margin; }
+	public HINavigation getNavigation(){ return navigation; }
 
 	private String align;
 /**
@@ -469,18 +483,17 @@ public class HILegend extends Observable implements HIChartsJSONSerializable {
 
 	public Number getX(){ return x; }
 
-	private HINavigation navigation;
+	private Number margin;
 /**
-/** Options for the paging or navigation appearing when the legend is overflown. Navigation works well on screen, but not in static exported images. One way of working around that is to [increase the chart height in export](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation-enabled-false/). 
-*/
-	public void setNavigation(HINavigation navigation) {
-		this.navigation = navigation;
-		this.navigation.addObserver(updateObserver);
+/** If the plot area sized is calculated automatically and the legend is not floating, the legend margin is the space between the legend and the axis labels or plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/margin-defaults/">12 pixels by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/margin-30/">30 pixels</a>
+ <br><br><b>defaults:</b><br><br>&ensp;12*/
+	public void setMargin(Number margin) {
+		this.margin = margin;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HINavigation getNavigation(){ return navigation; }
+	public Number getMargin(){ return margin; }
 
 
 
@@ -549,23 +562,26 @@ public class HILegend extends Observable implements HIChartsJSONSerializable {
 		if (this.itemMarginTop != null) {
 			params.put("itemMarginTop", this.itemMarginTop);
 		}
-		if (this.itemCheckboxStyle != null) {
-			params.put("itemCheckboxStyle", this.itemCheckboxStyle.getParams());
+		if (this.bubbleLegend != null) {
+			params.put("bubbleLegend", this.bubbleLegend.getParams());
 		}
 		if (this.labelFormat != null) {
 			params.put("labelFormat", this.labelFormat);
 		}
 		if (this.itemStyle != null) {
-			params.put("itemStyle", this.itemStyle.getParams());
+			params.put("itemStyle", this.itemStyle);
 		}
 		if (this.reversed != null) {
 			params.put("reversed", this.reversed);
 		}
+		if (this.itemCheckboxStyle != null) {
+			params.put("itemCheckboxStyle", this.itemCheckboxStyle.getParams());
+		}
 		if (this.padding != null) {
 			params.put("padding", this.padding);
 		}
-		if (this.itemDistance != null) {
-			params.put("itemDistance", this.itemDistance);
+		if (this.verticalAlign != null) {
+			params.put("verticalAlign", this.verticalAlign);
 		}
 		if (this.shadow != null) {
 			params.put("shadow", this.shadow);
@@ -573,11 +589,11 @@ public class HILegend extends Observable implements HIChartsJSONSerializable {
 		if (this.itemHoverStyle != null) {
 			params.put("itemHoverStyle", this.itemHoverStyle);
 		}
-		if (this.verticalAlign != null) {
-			params.put("verticalAlign", this.verticalAlign);
+		if (this.itemDistance != null) {
+			params.put("itemDistance", this.itemDistance);
 		}
-		if (this.margin != null) {
-			params.put("margin", this.margin);
+		if (this.navigation != null) {
+			params.put("navigation", this.navigation.getParams());
 		}
 		if (this.align != null) {
 			params.put("align", this.align);
@@ -611,8 +627,8 @@ public class HILegend extends Observable implements HIChartsJSONSerializable {
 		if (this.x != null) {
 			params.put("x", this.x);
 		}
-		if (this.navigation != null) {
-			params.put("navigation", this.navigation.getParams());
+		if (this.margin != null) {
+			params.put("margin", this.margin);
 		}
 		return params;
 	}

@@ -120,7 +120,7 @@ public class HIEvents extends Observable implements HIChartsJSONSerializable {
 
 	private HIFunction selection;
 /**
-/** Fires when an area of the chart has been selected. Selection is enabled by setting the chart's zoomType. One parameter, event, is passed to the function, containing common event information. The defaults action for the selection event is to zoom the chart to the selected area. It can be prevented by calling event.preventDefault(). Information on the selected area can be found through event.xAxis and event.yAxis, which are arrays containing the axes of each dimension and each axis' min and max values. The primary axes are event.xAxis[0] and event.yAxis[0]. Remember the unit of a datetime axis is milliseconds since 1970-01-01 00:00:00. selection: function(event) {   // log the min and max of the primary, datetime x-axis   console.log(     Highcharts.dateFormat(       '%Y-%m-%d %H:%M:%S',       event.xAxis[0].min     ),     Highcharts.dateFormat(       '%Y-%m-%d %H:%M:%S',       event.xAxis[0].max     )   );   // log the min and max of the y axis   console.log(event.yAxis[0].min, event.yAxis[0].max); } <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-selection/">Report on selection and reset</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-selection-points/">Select a range of points through a drag selection</a>
+/** Fires when an area of the chart has been selected. Selection is enabled by setting the chart's zoomType. One parameter, event, is passed to the function, containing common event information. The defaults action for the selection event is to zoom the chart to the selected area. It can be prevented by calling event.preventDefault() or return false. Information on the selected area can be found through event.xAxis and event.yAxis, which are arrays containing the axes of each dimension and each axis' min and max values. The primary axes are event.xAxis[0] and event.yAxis[0]. Remember the unit of a datetime axis is milliseconds since 1970-01-01 00:00:00. selection: function(event) {   // log the min and max of the primary, datetime x-axis   console.log(     Highcharts.dateFormat(       '%Y-%m-%d %H:%M:%S',       event.xAxis[0].min     ),     Highcharts.dateFormat(       '%Y-%m-%d %H:%M:%S',       event.xAxis[0].max     )   );   // log the min and max of the y axis   console.log(event.yAxis[0].min, event.yAxis[0].max); } <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-selection/">Report on selection and reset</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-selection-points/">Select a range of points through a drag selection</a>
 */
 	public void setSelection(HIFunction selection) {
 		this.selection = selection;
@@ -192,7 +192,7 @@ public class HIEvents extends Observable implements HIChartsJSONSerializable {
 
 	private HIFunction drilldown;
 /**
-/** Fires when a drilldown point is clicked, before the new series is added. This event is also utilized for async drilldown, where the seriesOptions are not added by option, but rather loaded async. Note that when clicking a category label to trigger multiple series drilldown, one drilldown event is triggered per point in the category. Event arguments:  category If a category label was clicked, which index. point The originating point. originalEvent The original browser event (usually click) that triggered the drilldown. points If a category label was clicked, this array holds all points corresponing to the category. seriesOptions Options for the new series  <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/async/">Async drilldown</a>
+/** Fires when a drilldown point is clicked, before the new series is added. This event is also utilized for async drilldown, where the seriesOptions are not added by option, but rather loaded async. Note that when clicking a category label to trigger multiple series drilldown, one drilldown event is triggered per point in the category. Event arguments: - category: If a category label was clicked, which index. - originalEvent: The original browser event (usually click) that triggered  the drilldown. - point: The originating point. - points: If a category label was clicked, this array holds all points  corresponing to the category. - seriesOptions: Options for the new series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/async/">Async drilldown</a>
 */
 	public void setDrilldown(HIFunction drilldown) {
 		this.drilldown = drilldown;
@@ -346,6 +346,54 @@ public class HIEvents extends Observable implements HIChartsJSONSerializable {
 
 	public HIFunction getDragStart(){ return dragStart; }
 
+	private HIFunction selectButton;
+/**
+/** Event fired on a button click. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/gui/">Change icon in a dropddown on event</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/gui-buttons/">Change button class on event</a>
+*/
+	public void setSelectButton(HIFunction selectButton) {
+		this.selectButton = selectButton;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getSelectButton(){ return selectButton; }
+
+	private HIFunction showPopup;
+/**
+/** A showPopup event. Fired when selecting for example an annotation. 
+*/
+	public void setShowPopup(HIFunction showPopup) {
+		this.showPopup = showPopup;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getShowPopup(){ return showPopup; }
+
+	private HIFunction hidePopup;
+/**
+/** A hidePopop event. Fired when Popup should be hidden, for exampole when clicking on an annotation again. 
+*/
+	public void setHidePopup(HIFunction hidePopup) {
+		this.hidePopup = hidePopup;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getHidePopup(){ return hidePopup; }
+
+	private HIFunction deselectButton;
+/**
+/** Event fired when button state should change, for example after adding an annotation. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/gui/">Change icon in a dropddown on event</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/gui-buttons/">Change button class on event</a>
+*/
+	public void setDeselectButton(HIFunction deselectButton) {
+		this.deselectButton = deselectButton;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getDeselectButton(){ return deselectButton; }
+
 	private HIFunction hide;
 /**
 /** Fires when the series is hidden after chart generation time, either by clicking the legend item or by calling .hide(). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-events-hide/">Alert when the series is hidden by clicking the legend item</a>
@@ -481,6 +529,18 @@ public class HIEvents extends Observable implements HIChartsJSONSerializable {
 		}
 		if (this.dragStart != null) {
 			params.put("dragStart", this.dragStart);
+		}
+		if (this.selectButton != null) {
+			params.put("selectButton", this.selectButton);
+		}
+		if (this.showPopup != null) {
+			params.put("showPopup", this.showPopup);
+		}
+		if (this.hidePopup != null) {
+			params.put("hidePopup", this.hidePopup);
+		}
+		if (this.deselectButton != null) {
+			params.put("deselectButton", this.deselectButton);
 		}
 		if (this.hide != null) {
 			params.put("hide", this.hide);

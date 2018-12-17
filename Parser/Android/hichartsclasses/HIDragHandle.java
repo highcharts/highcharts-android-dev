@@ -23,42 +23,6 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HIDragHandle extends Observable implements HIChartsJSONSerializable { 
 
-	private String className;
-/**
-/** The class name of the drag handles. Defaults to highcharts-drag-handle. 
-*/
-	public void setClassName(String className) {
-		this.className = className;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getClassName(){ return className; }
-
-	private Number zIndex;
-/**
-/** The z index for the drag handles. 
- <br><br><b>defaults:</b><br><br>&ensp;901*/
-	public void setZIndex(Number zIndex) {
-		this.zIndex = zIndex;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getZIndex(){ return zIndex; }
-
-	private HIColor color;
-/**
-/** The fill color of the drag handles. 
- <br><br><b>defaults:</b><br><br>&ensp;#fff*/
-	public void setColor(HIColor color) {
-		this.color = color;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getColor(){ return color; }
-
 	private String cursor;
 /**
 /** The mouse cursor to use for the drag handles. By defaults this is intelligently switching between ew-resize and ns-resize depending on the direction the point is being dragged. 
@@ -70,6 +34,42 @@ public class HIDragHandle extends Observable implements HIChartsJSONSerializable
 	}
 
 	public String getCursor(){ return cursor; }
+
+	private Number zIndex;
+/**
+/** The z index for the drag handles. 
+*/
+	public void setZIndex(Number zIndex) {
+		this.zIndex = zIndex;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getZIndex(){ return zIndex; }
+
+	private HIColor color;
+/**
+/** The fill color of the drag handles. 
+*/
+	public void setColor(HIColor color) {
+		this.color = color;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getColor(){ return color; }
+
+	private String className;
+/**
+/** The class name of the drag handles. Defaults to highcharts-drag-handle. 
+*/
+	public void setClassName(String className) {
+		this.className = className;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getClassName(){ return className; }
 
 	private HIFunction pathFormatter;
 /**
@@ -86,7 +86,7 @@ public class HIDragHandle extends Observable implements HIChartsJSONSerializable
 	private HIColor lineColor;
 /**
 /** The line color of the drag handles. 
- <br><br><b>defaults:</b><br><br>&ensp;rgba(0, 0, 0, 0.6)*/
+*/
 	public void setLineColor(HIColor lineColor) {
 		this.lineColor = lineColor;
 		this.setChanged();
@@ -98,7 +98,7 @@ public class HIDragHandle extends Observable implements HIChartsJSONSerializable
 	private Number lineWidth;
 /**
 /** The line width for the drag handles. 
- <br><br><b>defaults:</b><br><br>&ensp;2*/
+*/
 	public void setLineWidth(Number lineWidth) {
 		this.lineWidth = lineWidth;
 		this.setChanged();
@@ -126,8 +126,8 @@ public class HIDragHandle extends Observable implements HIChartsJSONSerializable
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.className != null) {
-			params.put("className", this.className);
+		if (this.cursor != null) {
+			params.put("cursor", this.cursor);
 		}
 		if (this.zIndex != null) {
 			params.put("zIndex", this.zIndex);
@@ -135,8 +135,8 @@ public class HIDragHandle extends Observable implements HIChartsJSONSerializable
 		if (this.color != null) {
 			params.put("color", this.color.getData());
 		}
-		if (this.cursor != null) {
-			params.put("cursor", this.cursor);
+		if (this.className != null) {
+			params.put("className", this.className);
 		}
 		if (this.pathFormatter != null) {
 			params.put("pathFormatter", this.pathFormatter);

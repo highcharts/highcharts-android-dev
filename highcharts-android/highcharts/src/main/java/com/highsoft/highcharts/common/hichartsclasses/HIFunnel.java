@@ -25,18 +25,18 @@ import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 */
 
 public class HIFunnel extends HISeries {
-	private ArrayList /* <String|Number> */ center;
+	private ArrayList /* <Number, String> */ center;
 /**
 /** * description: The center of the series. By defaults, it is centered in the middle of the plot area, so it fills the plot area height. * demo:  •  Centered at 100, 100
 * defaults: ["50%", "50%"]
 */
-	public void setCenter(ArrayList /* <String|Number> */ center) {
+	public void setCenter(ArrayList /* <Number, String> */ center) {
 		this.center = center;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList /* <String|Number> */ getCenter(){ return center; }
+	public ArrayList /* <Number, String> */ getCenter(){ return center; }
 
 	private Boolean reversed;
 /**
@@ -50,65 +50,65 @@ public class HIFunnel extends HISeries {
 
 	public Boolean getReversed(){ return reversed; }
 
-	private Object /* Number|String */ neckHeight;
-/**
-/** The height of the neck, the lower part of the funnel. A number defines pixel width, a percentage string defines a percentage of the plot area height. 
-*/
-	public void setNeckHeight(Object /* Number|String */ neckHeight) {
-		this.neckHeight = neckHeight;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object /* Number|String */ getNeckHeight(){ return neckHeight; }
-
-	private Object /* Number|String */ height;
-/**
-/** The height of the funnel or pyramid. If it is a number it defines the pixel height, if it is a percentage string it is the percentage of the plot area height. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/funnel/">Funnel demo</a>
-*/
-	public void setHeight(Object /* Number|String */ height) {
-		this.height = height;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object /* Number|String */ getHeight(){ return height; }
-
-	private Object /* Number|String */ width;
-/**
-/** The width of the funnel compared to the width of the plot area, or the pixel width if it is a number. 
-*/
-	public void setWidth(Object /* Number|String */ width) {
-		this.width = width;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object /* Number|String */ getWidth(){ return width; }
-
-	private Object /* Number|String */ neckWidth;
+	private Object /* Number, String */ neckWidth;
 /**
 /** The width of the neck, the lower part of the funnel. A number defines pixel width, a percentage string defines a percentage of the plot area width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/funnel/">Funnel demo</a>
 */
-	public void setNeckWidth(Object /* Number|String */ neckWidth) {
+	public void setNeckWidth(Object /* Number, String */ neckWidth) {
 		this.neckWidth = neckWidth;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number|String */ getNeckWidth(){ return neckWidth; }
+	public Object /* Number, String */ getNeckWidth(){ return neckWidth; }
 
-	private Number endAngle;
+	private Object /* Number, String */ height;
 /**
-/** The end angle of the pie in degrees where 0 is top and 90 is right. Defaults to startAngle plus 360. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-semi-circle/">Semi-circle donut</a>
+/** The height of the funnel or pyramid. If it is a number it defines the pixel height, if it is a percentage string it is the percentage of the plot area height. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/funnel/">Funnel demo</a>
 */
-	public void setEndAngle(Number endAngle) {
-		this.endAngle = endAngle;
+	public void setHeight(Object /* Number, String */ height) {
+		this.height = height;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getEndAngle(){ return endAngle; }
+	public Object /* Number, String */ getHeight(){ return height; }
+
+	private Object /* Number, String */ width;
+/**
+/** The width of the funnel compared to the width of the plot area, or the pixel width if it is a number. 
+*/
+	public void setWidth(Object /* Number, String */ width) {
+		this.width = width;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getWidth(){ return width; }
+
+	private Object /* Number, String */ neckHeight;
+/**
+/** The height of the neck, the lower part of the funnel. A number defines pixel width, a percentage string defines a percentage of the plot area height. 
+*/
+	public void setNeckHeight(Object /* Number, String */ neckHeight) {
+		this.neckHeight = neckHeight;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getNeckHeight(){ return neckHeight; }
+
+	private Number minSize;
+/**
+/** The minimum size for a pie in response to auto margins. The pie will try to shrink to make room for data labels in side the plot area, but only to this size. 
+ <br><br><b>defaults:</b><br><br>&ensp;80*/
+	public void setMinSize(Number minSize) {
+		this.minSize = minSize;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getMinSize(){ return minSize; }
 
 	private Object /* Number, String */ innerSize;
 /**
@@ -146,6 +146,18 @@ public class HIFunnel extends HISeries {
 
 	public Number getDepth(){ return depth; }
 
+	private Number endAngle;
+/**
+/** The end angle of the pie in degrees where 0 is top and 90 is right. Defaults to startAngle plus 360. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-semi-circle/">Semi-circle donut</a>
+*/
+	public void setEndAngle(Number endAngle) {
+		this.endAngle = endAngle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getEndAngle(){ return endAngle; }
+
 	private ArrayList<String> colors;
 /**
 /** A series specific or series type specific color set to use instead of the global colors. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/">Set defaults colors for all pies</a>
@@ -158,27 +170,6 @@ public class HIFunnel extends HISeries {
 
 	public ArrayList<String> getColors(){ return colors; }
 
-	private Number minSize;
-/**
-/** The minimum size for a pie in response to auto margins. The pie will try to shrink to make room for data labels in side the plot area, but only to this size. 
- <br><br><b>defaults:</b><br><br>&ensp;80*/
-	public void setMinSize(Number minSize) {
-		this.minSize = minSize;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getMinSize(){ return minSize; }
-
-	private String legendType;
-	public void setLegendType(String legendType) {
-		this.legendType = legendType;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getLegendType(){ return legendType; }
-
 	private Number startAngle;
 /**
 /** The start angle of the pie slices in degrees where 0 is top and 90 right. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-startangle-90/">Start from right</a>
@@ -190,6 +181,15 @@ public class HIFunnel extends HISeries {
 	}
 
 	public Number getStartAngle(){ return startAngle; }
+
+	private String legendType;
+	public void setLegendType(String legendType) {
+		this.legendType = legendType;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getLegendType(){ return legendType; }
 
 	private Boolean ignoreHiddenPoint;
 /**
@@ -239,8 +239,8 @@ public class HIFunnel extends HISeries {
 		if (this.reversed != null) {
 			params.put("reversed", this.reversed);
 		}
-		if (this.neckHeight != null) {
-			params.put("neckHeight", this.neckHeight);
+		if (this.neckWidth != null) {
+			params.put("neckWidth", this.neckWidth);
 		}
 		if (this.height != null) {
 			params.put("height", this.height);
@@ -248,11 +248,11 @@ public class HIFunnel extends HISeries {
 		if (this.width != null) {
 			params.put("width", this.width);
 		}
-		if (this.neckWidth != null) {
-			params.put("neckWidth", this.neckWidth);
+		if (this.neckHeight != null) {
+			params.put("neckHeight", this.neckHeight);
 		}
-		if (this.endAngle != null) {
-			params.put("endAngle", this.endAngle);
+		if (this.minSize != null) {
+			params.put("minSize", this.minSize);
 		}
 		if (this.innerSize != null) {
 			params.put("innerSize", this.innerSize);
@@ -262,6 +262,9 @@ public class HIFunnel extends HISeries {
 		}
 		if (this.depth != null) {
 			params.put("depth", this.depth);
+		}
+		if (this.endAngle != null) {
+			params.put("endAngle", this.endAngle);
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();
@@ -275,14 +278,11 @@ public class HIFunnel extends HISeries {
 			}
 			params.put("colors", array);
 		}
-		if (this.minSize != null) {
-			params.put("minSize", this.minSize);
+		if (this.startAngle != null) {
+			params.put("startAngle", this.startAngle);
 		}
 		if (this.legendType != null) {
 			params.put("legendType", this.legendType);
-		}
-		if (this.startAngle != null) {
-			params.put("startAngle", this.startAngle);
 		}
 		if (this.ignoreHiddenPoint != null) {
 			params.put("ignoreHiddenPoint", this.ignoreHiddenPoint);

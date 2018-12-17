@@ -35,17 +35,17 @@ public class HIBottom extends Observable implements HIChartsJSONSerializable {
 
 	public HIColor getColor(){ return color; }
 
-	private Object /* Boolean|String */ visible;
+	private Object /* boolean, String */ visible;
 /**
-/** Whether to display the frame. Possible values are true, false, "auto" to display only the frames behind the data, and "default" to display faces behind the data based on the axis layout, ignoring the point of view. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/scatter-frame/">Auto frames</a> <br><br><b>accepted values:</b><br><br>&ensp;["default", "auto", true, false]
+/** Whether to display the frame. Possible values are true, false, "auto" to display only the frames behind the data, and "default" to display faces behind the data based on the axis layout, ignoring the point of view. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/scatter-frame/">Auto frames</a>
  <br><br><b>defaults:</b><br><br>&ensp;defaults*/
-	public void setVisible(Object /* Boolean|String */ visible) {
+	public void setVisible(Object /* boolean, String */ visible) {
 		this.visible = visible;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Boolean|String */ getVisible(){ return visible; }
+	public Object /* boolean, String */ getVisible(){ return visible; }
 
 	private Number size;
 /**

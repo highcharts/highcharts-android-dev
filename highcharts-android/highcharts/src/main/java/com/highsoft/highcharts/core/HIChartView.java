@@ -22,6 +22,7 @@ import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -75,6 +76,8 @@ public class HIChartView extends RelativeLayout {
     private int height;
     private boolean loaded = false;
 
+    private HashMap<HIFunctionHandler, String> jsHandlersMap;
+
     /**
      * Basic constructor with default chart size
      *
@@ -82,6 +85,7 @@ public class HIChartView extends RelativeLayout {
      */
     public HIChartView(Context c) {
         super(c);
+        jsHandlersMap = new HashMap<>();
         this.activity = (Activity) c;
         initialize(c);
     }
@@ -93,26 +97,22 @@ public class HIChartView extends RelativeLayout {
      */
     public HIChartView(Context c, AttributeSet attrs){
         super(c, attrs);
+        jsHandlersMap = new HashMap<>();
         this.setWillNotDraw(false);
         this.activity = (Activity) c;
         initialize(c);
     }
 
+
     @SuppressLint({"AddJavascriptInterface", "SetJavaScriptEnabled"})
     private void initialize(final Context context) {
         this.debug = false;
         this.webView = new WebView(context);
-        this.HTML = new HIGHTML(this.webView);
-        this.HTML.baseURL = "";
-        HIGWebViewClient webViewClient = new HIGWebViewClient();
-        try {
-            this.HTML.loadHTML(context, "highcharts.html");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         this.webView.setBackgroundColor(Color.TRANSPARENT);
         this.webView.getSettings().setJavaScriptEnabled(true);
         this.webView.getSettings().setDomStorageEnabled(true);
+        HIGWebViewClient webViewClient = new HIGWebViewClient();
         this.webView.setWebViewClient(webViewClient);
         //improve chart loading performance, CSS animations are loading faster!
         this.webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
@@ -122,8 +122,8 @@ public class HIChartView extends RelativeLayout {
         //JS Handler for export
         this.webView.addJavascriptInterface(higExportModule, "AndroidExport");
         //JS Handler for HIChartContext
-        HIFunctionHandler hiFunctionHandler = new HIFunctionHandler(this.webView);
-        this.webView.addJavascriptInterface(hiFunctionHandler, "Android");
+        HIFunctionHandler hiFunctionHandler = new HIFunctionHandler();
+        this.webView.addJavascriptInterface(hiFunctionHandler, "Native");
 
         //this handler is made for displaying logs from JS code in Android console
         if(this.debug){
@@ -137,10 +137,17 @@ public class HIChartView extends RelativeLayout {
         } else {
             this.webView.setWebChromeClient(new WebChromeClient(){
                 public boolean onConsoleMessage(ConsoleMessage cm){
-                    Log.e("libHC", cm.message());
+                    Log.e("Highcharts", cm.message());
                     return true;
                 }
             });
+        }
+        this.HTML = new HIGHTML(hiFunctionHandler);
+        this.HTML.baseURL = "";
+        try {
+            this.HTML.loadHTML(context, "highcharts.html");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         this.addView(webView);
     }
@@ -263,13 +270,14 @@ public class HIChartView extends RelativeLayout {
     }
 
     //--- Testing UPDATE Feature ---//
-
     private Observer optionsChanged = new Observer() {
         @Override
         public void update(Observable observable, Object o) {
             HTML.prepareOptions(options.getParams());
-            String options = String.format("updateOptions(%s)", HTML.options);
-            webView.evaluateJavascript(options, new ValueCallback<String>() {
+            String strOptions = String.format("javascript:updateOptions(%s)", HTML.options);
+
+            webView.evaluateJavascript(strOptions, new ValueCallback<String>() {
+                @SuppressLint("JavascriptInterface")
                 @Override
                 public void onReceiveValue(String s) {
 //                    Log.i("HIChartView", "Updated");
@@ -277,6 +285,9 @@ public class HIChartView extends RelativeLayout {
             });
         }
     };
+
+
+
 
     /**
      *  Options are main configuration entry point for chart view, for more
@@ -294,7 +305,7 @@ public class HIChartView extends RelativeLayout {
 
     private void getHTMLContent(){
         //TO COMMENT
-        System.out.println("HTML CONTENT");
+//        System.out.println("HTML CONTENT");
         this.webView.evaluateJavascript(
 //                "(function() { return ('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>'); })();",
 //                "javascript:window.HtmlViewer.showHTML" +

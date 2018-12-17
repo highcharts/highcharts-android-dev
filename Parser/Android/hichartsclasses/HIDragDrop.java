@@ -108,7 +108,7 @@ public class HIDragDrop extends Observable implements HIChartsJSONSerializable {
 
 	private HIGuideBox guideBox;
 /**
-/** Style options for the guide box. The guide box has one state by defaults, the "default" state. 
+/** Style options for the guide box. The guide box has one state by defaults, the defaults state. 
 */
 	public void setGuideBox(HIGuideBox guideBox) {
 		this.guideBox = guideBox;

@@ -111,19 +111,6 @@ public class HIFrame extends Observable implements HIChartsJSONSerializable {
 
 	public Number getSize(){ return size; }
 
-	private HISide side;
-/**
-/** Note: As of v5.0.12, frame.left or frame.right should be used instead. The side for the frame around a 3D chart. 
-*/
-	public void setSide(HISide side) {
-		this.side = side;
-		this.side.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HISide getSide(){ return side; }
-
 	private HILeft left;
 /**
 /** The left side of the frame around a 3D chart. 
@@ -176,9 +163,6 @@ public class HIFrame extends Observable implements HIChartsJSONSerializable {
 		}
 		if (this.size != null) {
 			params.put("size", this.size);
-		}
-		if (this.side != null) {
-			params.put("side", this.side.getParams());
 		}
 		if (this.left != null) {
 			params.put("left", this.left.getParams());

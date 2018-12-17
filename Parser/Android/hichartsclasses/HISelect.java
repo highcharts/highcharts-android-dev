@@ -23,17 +23,17 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HISelect extends Observable implements HIChartsJSONSerializable { 
 
-	private Boolean enabled;
+	private Number radius;
 /**
-/** Enable or disable visible feedback for selection. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-select-enabled/">Disabled select state</a>
- <br><br><b>defaults:</b><br><br>&ensp;true*/
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
+/** The radius of the point marker. In hover state, it defaultss to the normal state's radius + 2. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-select-radius/">10px radius for selected points</a>
+*/
+	public void setRadius(Number radius) {
+		this.radius = radius;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getEnabled(){ return enabled; }
+	public Number getRadius(){ return radius; }
 
 	private Number lineWidth;
 /**
@@ -47,17 +47,17 @@ public class HISelect extends Observable implements HIChartsJSONSerializable {
 
 	public Number getLineWidth(){ return lineWidth; }
 
-	private Number radius;
+	private Boolean enabled;
 /**
-/** The radius of the point marker. In hover state, it defaultss to the normal state's radius + 2. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-select-radius/">10px radius for selected points</a>
-*/
-	public void setRadius(Number radius) {
-		this.radius = radius;
+/** Enable or disable visible feedback for selection. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-select-enabled/">Disabled select state</a>
+ <br><br><b>defaults:</b><br><br>&ensp;true*/
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getRadius(){ return radius; }
+	public Boolean getEnabled(){ return enabled; }
 
 	private HIColor fillColor;
 /**
@@ -83,18 +83,6 @@ public class HISelect extends Observable implements HIChartsJSONSerializable {
 
 	public HIColor getLineColor(){ return lineColor; }
 
-	private HIColor color;
-/**
-/** A specific color for the selected point. 
- <br><br><b>defaults:</b><br><br>&ensp;#cccccc*/
-	public void setColor(HIColor color) {
-		this.color = color;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getColor(){ return color; }
-
 	private HIColor borderColor;
 /**
 /** A specific border color for the selected point. 
@@ -106,6 +94,18 @@ public class HISelect extends Observable implements HIChartsJSONSerializable {
 	}
 
 	public HIColor getBorderColor(){ return borderColor; }
+
+	private HIColor color;
+/**
+/** A specific color for the selected point. 
+ <br><br><b>defaults:</b><br><br>&ensp;#cccccc*/
+	public void setColor(HIColor color) {
+		this.color = color;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getColor(){ return color; }
 
 	private HIAnimationOptionsObject animation;
 /**
@@ -163,14 +163,14 @@ public class HISelect extends Observable implements HIChartsJSONSerializable {
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.enabled != null) {
-			params.put("enabled", this.enabled);
+		if (this.radius != null) {
+			params.put("radius", this.radius);
 		}
 		if (this.lineWidth != null) {
 			params.put("lineWidth", this.lineWidth);
 		}
-		if (this.radius != null) {
-			params.put("radius", this.radius);
+		if (this.enabled != null) {
+			params.put("enabled", this.enabled);
 		}
 		if (this.fillColor != null) {
 			params.put("fillColor", this.fillColor.getData());
@@ -178,11 +178,11 @@ public class HISelect extends Observable implements HIChartsJSONSerializable {
 		if (this.lineColor != null) {
 			params.put("lineColor", this.lineColor.getData());
 		}
-		if (this.color != null) {
-			params.put("color", this.color.getData());
-		}
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
+		}
+		if (this.color != null) {
+			params.put("color", this.color.getData());
 		}
 		if (this.animation != null) {
 			params.put("animation", this.animation.getParams());

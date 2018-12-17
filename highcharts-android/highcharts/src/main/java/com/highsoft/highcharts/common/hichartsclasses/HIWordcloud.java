@@ -38,18 +38,17 @@ public class HIWordcloud extends HISeries {
 
 	public Boolean getColorByPoint(){ return colorByPoint; }
 
-	private HIStyle style;
+	private HICSSObject style;
 /**
 /** CSS styles for the words. 
  <br><br><b>defaults:</b><br><br>&ensp;{"fontFamily":"sans-serif", "fontWeight": "900"}*/
-	public void setStyle(HIStyle style) {
+	public void setStyle(HICSSObject style) {
 		this.style = style;
-		this.style.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIStyle getStyle(){ return style; }
+	public HICSSObject getStyle(){ return style; }
 
 	private Number minFontSize;
 /**
@@ -138,7 +137,7 @@ public class HIWordcloud extends HISeries {
 
 	private ArrayList<String> colors;
 /**
-/** A series specific or series type specific color set to apply instead of the global colors when `colorByPoint` is true. 
+/** A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
 */
 	public void setColors(ArrayList<String> colors) {
 		this.colors = colors;
@@ -185,7 +184,7 @@ public class HIWordcloud extends HISeries {
 			params.put("colorByPoint", this.colorByPoint);
 		}
 		if (this.style != null) {
-			params.put("style", this.style.getParams());
+			params.put("style", this.style);
 		}
 		if (this.minFontSize != null) {
 			params.put("minFontSize", this.minFontSize);

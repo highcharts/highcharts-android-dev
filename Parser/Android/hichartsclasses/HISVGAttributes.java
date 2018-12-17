@@ -49,15 +49,6 @@ public class HISVGAttributes extends Observable implements HIChartsJSONSerializa
 
 	public ArrayList<Number> getMatrix(){ return matrix; }
 
-	private String stroke;
-	public void setStroke(String stroke) {
-		this.stroke = stroke;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getStroke(){ return stroke; }
-
 	private String rotation;
 	public void setRotation(String rotation) {
 		this.rotation = rotation;
@@ -102,6 +93,15 @@ public class HISVGAttributes extends Observable implements HIChartsJSONSerializa
 	}
 
 	public Number getScaleY(){ return scaleY; }
+
+	private String stroke;
+	public void setStroke(String stroke) {
+		this.stroke = stroke;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getStroke(){ return stroke; }
 
 	private Number translateX;
 	public void setTranslateX(Number translateX) {
@@ -176,9 +176,6 @@ public class HISVGAttributes extends Observable implements HIChartsJSONSerializa
 			}
 			params.put("matrix", array);
 		}
-		if (this.stroke != null) {
-			params.put("stroke", this.stroke);
-		}
 		if (this.rotation != null) {
 			params.put("rotation", this.rotation);
 		}
@@ -193,6 +190,9 @@ public class HISVGAttributes extends Observable implements HIChartsJSONSerializa
 		}
 		if (this.scaleY != null) {
 			params.put("scaleY", this.scaleY);
+		}
+		if (this.stroke != null) {
+			params.put("stroke", this.stroke);
 		}
 		if (this.translateX != null) {
 			params.put("translateX", this.translateX);

@@ -32,6 +32,34 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 
 	public Number getRadiusPlus(){ return radiusPlus; }
 
+	private String borderColor;
+	public void setBorderColor(String borderColor) {
+		this.borderColor = borderColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getBorderColor(){ return borderColor; }
+
+	private Number opacity;
+	public void setOpacity(Number opacity) {
+		this.opacity = opacity;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getOpacity(){ return opacity; }
+
+	private HIHalo halo;
+	public void setHalo(HIHalo halo) {
+		this.halo = halo;
+		this.halo.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIHalo getHalo(){ return halo; }
+
 	private Boolean enabled;
 /**
 /** Enable separate styles for the hovered series to visualize that the user hovers either the series itself or the legend. . <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-enabled/">Line</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-enabled-column/">Column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-enabled-pie/">Pie</a>
@@ -80,18 +108,17 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 
 	public Number getLineWidthPlus(){ return lineWidthPlus; }
 
-	private HIHalo halo;
+	private Number radius;
 /**
-/** Options for the halo appearing around the hovered point in line- type series as well as outside the hovered slice in pie charts. By defaults the halo is filled by the current point or series color with an opacity of 0.25\. The halo can be disabled by setting the halo option to false. In styled mode, the halo is styled with the .highcharts-halo class, with colors inherited from .highcharts-color-{n}. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/halo/">Halo options</a>
+/** The radius of the point marker. In hover state, it defaultss to the normal state's radius + 2 as per the radiusPlus option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-radius/">10px radius</a>
 */
-	public void setHalo(HIHalo halo) {
-		this.halo = halo;
-		this.halo.addObserver(updateObserver);
+	public void setRadius(Number radius) {
+		this.radius = radius;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIHalo getHalo(){ return halo; }
+	public Number getRadius(){ return radius; }
 
 	private HIColor fillColor;
 /**
@@ -117,18 +144,6 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 
 	public HIColor getLineColor(){ return lineColor; }
 
-	private Number radius;
-/**
-/** The radius of the point marker. In hover state, it defaultss to the normal state's radius + 2 as per the `radiusPlus` option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-radius/">10px radius</a>
-*/
-	public void setRadius(Number radius) {
-		this.radius = radius;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getRadius(){ return radius; }
-
 	private Number brightness;
 /**
 /** How much to brighten the point on interaction. Requires the main color to be defined in hex or rgb(a) format. In styled mode, the hover brightening is by defaults replaced with a fill-opacity set in the .highcharts-point:hover rule. 
@@ -152,30 +167,6 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 	}
 
 	public Number getLinkOpacity(){ return linkOpacity; }
-
-	private String borderColor;
-/**
-/** The border color for the hovered state. 
-*/
-	public void setBorderColor(String borderColor) {
-		this.borderColor = borderColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getBorderColor(){ return borderColor; }
-
-	private Number opacity;
-/**
-/** The opacity of a point in treemap. When a point has children, the visibility of the children is determined by the opacity. 
- <br><br><b>defaults:</b><br><br>&ensp;0.75*/
-	public void setOpacity(Number opacity) {
-		this.opacity = opacity;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getOpacity(){ return opacity; }
 
 	private Boolean shadow;
 /**
@@ -223,6 +214,15 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 		if (this.radiusPlus != null) {
 			params.put("radiusPlus", this.radiusPlus);
 		}
+		if (this.borderColor != null) {
+			params.put("borderColor", this.borderColor);
+		}
+		if (this.opacity != null) {
+			params.put("opacity", this.opacity);
+		}
+		if (this.halo != null) {
+			params.put("halo", this.halo.getParams());
+		}
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);
 		}
@@ -235,8 +235,8 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 		if (this.lineWidthPlus != null) {
 			params.put("lineWidthPlus", this.lineWidthPlus);
 		}
-		if (this.halo != null) {
-			params.put("halo", this.halo.getParams());
+		if (this.radius != null) {
+			params.put("radius", this.radius);
 		}
 		if (this.fillColor != null) {
 			params.put("fillColor", this.fillColor.getData());
@@ -244,20 +244,11 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 		if (this.lineColor != null) {
 			params.put("lineColor", this.lineColor.getData());
 		}
-		if (this.radius != null) {
-			params.put("radius", this.radius);
-		}
 		if (this.brightness != null) {
 			params.put("brightness", this.brightness);
 		}
 		if (this.linkOpacity != null) {
 			params.put("linkOpacity", this.linkOpacity);
-		}
-		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor);
-		}
-		if (this.opacity != null) {
-			params.put("opacity", this.opacity);
 		}
 		if (this.shadow != null) {
 			params.put("shadow", this.shadow);

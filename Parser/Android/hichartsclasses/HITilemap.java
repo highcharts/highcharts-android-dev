@@ -26,6 +26,19 @@ import com.highsoft.highcharts.common.HIColor;
 */
 
 public class HITilemap extends HISeries {
+	private Number rowsize;
+/**
+/** * description: The row size - how many Y axis units each tilemap row should span. Analogous to colsize. * demo:  •  1 by defaults
+* defaults: 1
+*/
+	public void setRowsize(Number rowsize) {
+		this.rowsize = rowsize;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getRowsize(){ return rowsize; }
+
 	private Number pointPadding;
 /**
 /** * description: The padding between points in the tilemap. * demo:  •  Point padding on tiles
@@ -50,19 +63,6 @@ public class HITilemap extends HISeries {
 	}
 
 	public String getTileShape(){ return tileShape; }
-
-	private Number rowsize;
-/**
-/** * description: The row size - how many Y axis units each tilemap row should span. Analogous to colsize. * demo:  •  1 by defaults
-* defaults: 1
-*/
-	public void setRowsize(Number rowsize) {
-		this.rowsize = rowsize;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getRowsize(){ return rowsize; }
 
 	private Number colsize;
 /**
@@ -110,14 +110,14 @@ public class HITilemap extends HISeries {
 
 		Map<String, Object> params = new HashMap<>();
 		params = super.getParams();
+		if (this.rowsize != null) {
+			params.put("rowsize", this.rowsize);
+		}
 		if (this.pointPadding != null) {
 			params.put("pointPadding", this.pointPadding);
 		}
 		if (this.tileShape != null) {
 			params.put("tileShape", this.tileShape);
-		}
-		if (this.rowsize != null) {
-			params.put("rowsize", this.rowsize);
 		}
 		if (this.colsize != null) {
 			params.put("colsize", this.colsize);

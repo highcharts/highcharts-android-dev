@@ -266,8 +266,6 @@ hc_types = {
     "null": 'Object',
     "Object|undefined": 'Object',
     "false|Highcharts.XAxisCrosshairOptions|Highcharts.YAxisCrosshairOptions": 'Object',
-    "\"contrast\"": 'String',
-    "\"contrast\"|string": 'String',
     "Array.<Point>": 'ArrayList',
     "string|Array.<(number|string)>": 'ArrayList /* <Number, String> */',
     "Highcharts.Dictionary.<function()>": 'HashMap',
@@ -281,7 +279,44 @@ hc_types = {
     "boolean|Highcharts.CSSObject": 'Boolean /* boolean */',
     # color fixes
     "Highcharts.ColorString": 'HIColor',
-    "Highcharts.ColorString|null": 'HIColor'
+    "Highcharts.ColorString|null": 'HIColor',
+    # 7.0.0
+    "string|global.HTMLElement": 'String',
+    "Array.<Highcharts.Dictionary.<number>>": 'ArrayList',
+    "Array.<Array.<*>>": 'ArrayList<ArrayList>',
+    "string|Highcharts.GradientColorObject|Highcharts.PatternObject": 'HIColor',
+    "Highcharts.FormatterCallbackFunction.<Highcharts.TooltipFormatterContextObject>": 'HIFunction',
+    "Highcharts.Dictionary.<*>": 'HashMap',
+    "Array.<Array.<string, (Array.<number>|null)>>": 'ArrayList<ArrayList>',
+    "string|Highcharts.GradientColorObject": 'HIColor',
+    "string|MockPointOptions": 'String',
+    "Array.<(string|number)>": 'ArrayList /* <String, Number> */',
+    "Highcharts.FormatterCallbackFunction.<Highcharts.SeriesDataLabelsFormatterContextObject>": 'HIFunction',
+    "Annotation.ControlPoint.Options": 'Object',
+    "Highcharts.FormatterCallbackFunction.<object>": 'HIFunction',
+    "boolean|null": 'Boolean',
+    "false|number": 'Number',
+    "String|function": 'String',
+    "*|Array.<*>": 'ArrayList',
+    "function|undefined": 'HIFunction',
+    "string|undefined": 'String',
+    "Highcharts.GradientColorObject": 'HIColor',
+    # tree-namespace
+    "Array.<Array.<number, string>>|undefined": 'ArrayList<ArrayList>',
+    "string|*": 'String',
+    "Array.<*>|undefined": 'ArrayList',
+    "boolean|undefined": 'Boolean',
+    "Array.<number>|undefined": 'ArrayList<Number>',
+    "object|undefined": 'Object',
+    "boolean|*|undefined": 'Boolean',
+    "string|Array.<(number|string)>|undefined": 'ArrayList /* <Number, String> */',
+    "Array<number>": 'ArrayList<Number>',
+    "boolean|Array.<*>|undefined": 'Object',
+    "Array.<function()>|undefined": 'ArrayList<HIFunction>',
+    "*|undefined": 'Object',
+    "Highcharts.Dictionary.<number>": 'HashMap',
+    "Object|*": 'Object'
+
 }
 
 
@@ -307,6 +342,16 @@ def get_last(x):
     if last == 'description':
         last = 'definition'
     return last
+
+
+def removeDuplicates(listofElements):
+    uniqueList = []
+
+    for elem in listofElements:
+        if elem not in uniqueList:
+            uniqueList.append(elem)
+
+    return uniqueList
 
 
 def create_name(source):
@@ -516,7 +561,7 @@ def format_to_java(name, source):
                     upper_first(get_last(field.name)),
                     get_last(field.name)
                 )
-                hi_match = re.search(r'<(HI[A-Z]{1}[a-z]+) \*>', get_java_type(field.data_type)) # dodane
+                hi_match = re.search(r'<(HI[A-Z]{1}[a-zA-Z]+) \*>', get_java_type(field.data_type)) # dodane
                 if hi_match:
                     import_hi_set.add(hi_match.group(1))
             elif field.data_type == "Object" or field.data_type == "object":
@@ -1155,16 +1200,23 @@ def create_class(node):
 
             if "type" in doclet:
                 type = doclet["type"]
-                if len(type["names"]) == 1:
-                    data_type = type["names"][0]
-                elif len(type["names"]) == 2:
-                    data_type = type["names"][0] + "|" + type["names"][1]
-                elif len(type["names"]) == 3:
-                    data_type = type["names"][0] + "|" + type["names"][1] + "|" + type["names"][2]
 
-                if 'Highcharts.' in data_type and data_type not in hc_types:
-                    new_types_from_namespace.add(data_type)
-                    data_type = type_from_namespace(data_type)
+                if "names" in type:
+                    types = type["names"]
+
+                    for ind, curr_type in enumerate(types):
+                        if '\"' in curr_type:
+                            types[ind] = 'string'
+                        elif 'Highcharts.Dictionary.<Highcharts.' in curr_type:
+                            types[ind] = "Object"
+
+                    types = removeDuplicates(types)
+
+                    data_type = '|'.join(types)
+
+                    if 'Highcharts.' in data_type and data_type not in hc_types:
+                        new_types_from_namespace.add(data_type)
+                        data_type = type_from_namespace(data_type)
 
             if "products" in doclet:
                 products = doclet["products"]
@@ -1347,14 +1399,16 @@ def create_namespace_class(node):
 
             if "types" in doclet:
                 types = doclet["types"]
-                if len(types) == 1:
-                    data_type = types[0]
-                elif len(types) == 2:
-                    data_type = types[0] + "|" + types[1]
-                elif len(types) == 3:
-                    data_type = types[0] + "|" + types[1] + "|" + types[2]
-                elif len(types) == 4:
-                    data_type = types[0] + "|" + types[1] + "|" + types[2] + "|" + types[3]
+
+                for ind, type in enumerate(types):
+                    if '\"' in type:
+                        types[ind] = 'string'
+                    elif 'Highcharts.Dictionary.<Highcharts.' in type:
+                        types[ind] = "Object"
+
+                types = removeDuplicates(types)
+
+                data_type = '|'.join(types)
 
                 namespace_types[node.name] = data_type
             else:
@@ -1500,10 +1554,9 @@ def get_namespace_type(name):
 
             types[index] = type
 
-        new_type = '|'.join(types)
+        types = removeDuplicates(types)
 
-        if len(types) > 1 and len(set(types)) == 1:
-            new_type = types[0]
+        new_type = '|'.join(types)
 
         if not new_type in hc_types:
             unknown_type_namespace.add(new_type)
@@ -1525,6 +1578,9 @@ def find_namespace_array_type(type):
                 temp = namespace_structure[temp].data_type
             else:
                 temp = 'HI.' + get_last(temp)
+        else:
+            print temp + " not in namespace structure!"
+            temp = "*"
 
         if temp.startswith('Array'):
             temp = find_namespace_array_type(temp)
@@ -1570,10 +1626,9 @@ def find_namespace_type(name):
 
         types[index] = type
 
-    new_type = '|'.join(types)
+    types = removeDuplicates(types)
 
-    if len(types) > 1 and len(set(types)) == 1:
-        new_type = types[0]
+    new_type = '|'.join(types)
 
     return new_type
 

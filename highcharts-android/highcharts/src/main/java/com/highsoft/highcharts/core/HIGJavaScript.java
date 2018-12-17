@@ -1,8 +1,5 @@
 package com.highsoft.highcharts.core;
 
-import android.annotation.SuppressLint;
-import android.webkit.WebView;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -15,13 +12,12 @@ import java.lang.reflect.Type;
 /**
  *  This class is needed to JSON operations.
  */
-final class HIGJavaScript{
+final class HIGJavaScript {
 
-    private WebView webView;
-    private static int counter = 1;
+    private HIFunctionHandler handler;
 
-    HIGJavaScript(WebView webView) {
-        this.webView = webView;
+    HIGJavaScript(HIFunctionHandler functionHandler) {
+        this.handler = functionHandler;
     }
 
     /**
@@ -52,30 +48,25 @@ final class HIGJavaScript{
      * Custom serializer which let Gson serialize HIFunction class properly
      */
     private class FunctionStringSerializer implements JsonSerializer<HIFunction> {
+
         @Override
         public JsonElement serialize(HIFunction src, Type typeOfSrc, JsonSerializationContext context) {
             if(!src.isSimple()) setJSInterface(src);
             return new JsonPrimitive(src.getFunction());
         }
 
-        @SuppressLint("AddJavascriptInterface")
         void setJSInterface(HIFunction function){
             HIConsumer<HIChartContext> hiC = function.getHiConsumer();
-            HIFunctionInterface<HIChartContext, String> hiFI = function.getHiFunctionInterface();
-            String[] properties = function.getProperties();
-            Runnable runnable = function.getRfunction();
+            HIFunctionInterface<HIChartContext, String> hifi = function.getHiFunctionInterface();
+            Runnable runnable = function.getRunnable();
             String id = function.getId();
-            HIFunctionHandler hiFunctionHandler;
             if(hiC != null){
-                hiFunctionHandler = new HIFunctionHandler(hiC, webView, id, properties);
-                webView.addJavascriptInterface(hiFunctionHandler, id);
-            } else if (hiFI != null){
-                hiFunctionHandler = new HIFunctionHandler(hiFI, webView, id, properties);
-                webView.addJavascriptInterface(hiFunctionHandler, id);
+               handler.addHIConsumer(id, hiC);
+            } else if (hifi != null){
+                handler.addHIFunctionInterface(id, hifi);
             }
             else if(runnable != null){
-                hiFunctionHandler = new HIFunctionHandler(runnable);
-                webView.addJavascriptInterface(hiFunctionHandler, id);
+                handler.addRunnable(id, runnable);
             }
         }
     }

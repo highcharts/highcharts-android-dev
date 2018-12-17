@@ -37,7 +37,7 @@ public class HIPartialFill extends Observable implements HIChartsJSONSerializabl
 
 	private HIColor fill;
 /**
-/** * description: The fill color to be used for partial fills. Defaults to a darker shade of the point color. 
+/** The fill color to be used for partial fills. Defaults to a darker shade of the point color. 
 */
 	public void setFill(HIColor fill) {
 		this.fill = fill;

@@ -23,6 +23,18 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HIParallelAxes extends Observable implements HIChartsJSONSerializable { 
 
+	private Object title;
+/**
+/** * description: Titles for yAxes are taken from xAxis.categories. All options for xAxis.labels applies to parallel coordinates titles. For example, to style categories, use xAxis.labels.style. 
+*/
+	public void setTitle(Object title) {
+		this.title = title;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getTitle(){ return title; }
+
 	private HILabels labels;
 /**
 /** * description: The axis labels show the number or category for each tick. 
@@ -35,19 +47,6 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 	}
 
 	public HILabels getLabels(){ return labels; }
-
-	private Number lineWidth;
-/**
-/** * description: The width of the line marking the axis itself. In styled mode, the stroke width is given in the .highcharts-axis-line or .highcharts-xaxis-line class. * demo:  •  A 1px line on Y axis •  Axes in styled mode
-* defaults: 1
-*/
-	public void setLineWidth(Number lineWidth) {
-		this.lineWidth = lineWidth;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getLineWidth(){ return lineWidth; }
 
 	private Number offset;
 /**
@@ -62,17 +61,18 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 
 	public Number getOffset(){ return offset; }
 
-	private Object title;
+	private Number lineWidth;
 /**
-/** * description: Titles for yAxes are taken from xAxis.categories. All options for xAxis.labels applies to parallel coordinates titles. For example, to style categories, use xAxis.labels.style. 
+/** * description: The width of the line marking the axis itself. In styled mode, the stroke width is given in the .highcharts-axis-line or .highcharts-xaxis-line class. * demo:  •  A 1px line on Y axis •  Axes in styled mode
+* defaults: 1
 */
-	public void setTitle(Object title) {
-		this.title = title;
+	public void setLineWidth(Number lineWidth) {
+		this.lineWidth = lineWidth;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getTitle(){ return title; }
+	public Number getLineWidth(){ return lineWidth; }
 
 	private Number minPadding;
 /**
@@ -89,7 +89,7 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 
 	private Number softMax;
 /**
-/** * description: A soft maximum for the axis. If the series data maximum is less than this, the axis will stay at this maximum, but if the series data maximum is higher, the axis will flex to show all data. **Note**: The `series.softThreshold` option takes precedence over this option. * demo:  •  Soft min and max
+/** * description: A soft maximum for the axis. If the series data maximum is less than this, the axis will stay at this maximum, but if the series data maximum is higher, the axis will flex to show all data. **Note**: The series.softThreshold option takes precedence over this option. * demo:  •  Soft min and max
 */
 	public void setSoftMax(Number softMax) {
 		this.softMax = softMax;
@@ -99,17 +99,17 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 
 	public Number getSoftMax(){ return softMax; }
 
-	private Boolean startOnTick;
+	private Number min;
 /**
-/** * description: Whether to force the axis to start on a tick. Use this option with the maxPadding option to control the axis start. * demo:  •  False by defaults •  True
+/** * description: The minimum value of the axis. If null the min value is automatically calculated. If the startOnTick option is true (defaults), the min value might be rounded down. The automatically calculated minimum value is also affected by floor, softMin, minPadding, minRange as well as series.threshold and series.softThreshold. * demo:  •  -50 with startOnTick to false •  -50 with startOnTick true by defaults
 */
-	public void setStartOnTick(Boolean startOnTick) {
-		this.startOnTick = startOnTick;
+	public void setMin(Number min) {
+		this.min = min;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getStartOnTick(){ return startOnTick; }
+	public Number getMin(){ return min; }
 
 	private Boolean endOnTick;
 /**
@@ -137,7 +137,7 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 
 	private Number softMin;
 /**
-/** * description: A soft minimum for the axis. If the series data minimum is greater than this, the axis will stay at this minimum, but if the series data minimum is lower, the axis will flex to show all data. **Note**: The `series.softThreshold` option takes precedence over this option. * demo:  •  Soft min and max
+/** * description: A soft minimum for the axis. If the series data minimum is greater than this, the axis will stay at this minimum, but if the series data minimum is lower, the axis will flex to show all data. **Note**: The series.softThreshold option takes precedence over this option. * demo:  •  Soft min and max
 */
 	public void setSoftMin(Number softMin) {
 		this.softMin = softMin;
@@ -149,7 +149,7 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 
 	private String type;
 /**
-/** * description: The type of axis. Can be one of linear, logarithmic, datetime, category or treegrid. Defaults to treegrid for Gantt charts, linear for other chart types. In a datetime axis, the numbers are given in milliseconds, and tick marks are placed on appropriate values, like full hours or days. In a category or treegrid axis, the point names of the chart's series are used for categories, if a categories array is not defined. * demo:  •  Logarithmic with minor grid lines •  Logarithmic with extension to emulate negative values* accepted values: ["linear", "logarithmic", "datetime", "category", "treegrid"] 
+/** * description: The type of axis. Can be one of linear, logarithmic, datetime, category or treegrid. Defaults to treegrid for Gantt charts, linear for other chart types. In a datetime axis, the numbers are given in milliseconds, and tick marks are placed on appropriate values, like full hours or days. In a category or treegrid axis, the point names of the chart's series are used for categories, if a categories array is not defined. * demo:  •  Logarithmic with minor grid lines •  Logarithmic with extension to emulate negative values* accepted values: ["linear", "logarithmic", "datetime", "category",       "treegrid"] 
 * defaults: linear
 */
 	public void setType(String type) {
@@ -162,7 +162,7 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 
 	private Number tickPixelInterval;
 /**
-/** * description: If tickInterval is null this option sets the approximate pixel interval of the tick marks. Not applicable to categorized axis. The tick interval is also influenced by the `minTickInterval` option, that, by defaults prevents ticks from being denser than the data points. * demo:  •  50 px on X axis
+/** * description: If tickInterval is null this option sets the approximate pixel interval of the tick marks. Not applicable to categorized axis. The tick interval is also influenced by the minTickInterval option, that, by defaults prevents ticks from being denser than the data points. * demo:  •  50 px on X axis
 */
 	public void setTickPixelInterval(Number tickPixelInterval) {
 		this.tickPixelInterval = tickPixelInterval;
@@ -213,7 +213,7 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 
 	private String tooltipValueFormat;
 /**
-/** Parallel coordinates only. Format that will be used for point.y and available in tooltip.pointFormat as {point.formattedValue}. If not set, {point.formattedValue} will use other options, in this order: 1. yAxis.labels.format will be used if  set 2. if yAxis is a category, then category name will be displayed 3. if yAxis is a datetime, then value will use the same format as  yAxis labels 4. if yAxis is linear/logarithmic type, then simple value will be  used <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples//highcharts/parallel-coordinates/tooltipvalueformat/">Different tooltipValueFormats's</a>
+/** Parallel coordinates only. Format that will be used for point.y and available in tooltip.pointFormat as {point.formattedValue}. If not set, {point.formattedValue} will use other options, in this order: 1. yAxis.labels.format will be used if  set 2. If yAxis is a category, then category name will be displayed 3. If yAxis is a datetime, then value will use the same format as  yAxis labels 4. If yAxis is linear/logarithmic type, then simple value will be  used <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples//highcharts/parallel-coordinates/tooltipvalueformat/">Different tooltipValueFormats's</a>
  <br><br><b>defaults:</b><br><br>&ensp;undefined*/
 	public void setTooltipValueFormat(String tooltipValueFormat) {
 		this.tooltipValueFormat = tooltipValueFormat;
@@ -249,6 +249,18 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 
 	public Boolean getShowLastLabel(){ return showLastLabel; }
 
+	private Boolean startOnTick;
+/**
+/** * description: Whether to force the axis to start on a tick. Use this option with the maxPadding option to control the axis start. * demo:  •  False by defaults •  True
+*/
+	public void setStartOnTick(Boolean startOnTick) {
+		this.startOnTick = startOnTick;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getStartOnTick(){ return startOnTick; }
+
 	private Number maxPadding;
 /**
 /** * description: Padding of the max value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the highest data value to appear on the edge of the plot area. When the axis' max option is set or a max extreme is set using axis.setExtremes(), the maxPadding will be ignored. * demo:  •  Max padding of 0.2
@@ -262,18 +274,6 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 
 	public Number getMaxPadding(){ return maxPadding; }
 
-	private Number min;
-/**
-/** * description: The minimum value of the axis. If null the min value is automatically calculated. If the startOnTick option is true (defaults), the min value might be rounded down. The automatically calculated minimum value is also affected by floor, softMin, minPadding, minRange as well as series.threshold and series.softThreshold. * demo:  •  -50 with startOnTick to false •  -50 with startOnTick true by defaults
-*/
-	public void setMin(Number min) {
-		this.min = min;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getMin(){ return min; }
-
 	private HIColor lineColor;
 /**
 /** * description: The color of the line marking the axis itself. In styled mode, the line stroke is given in the .highcharts-axis-line or .highcharts-xaxis-line class. * demo:  •  A red line on Y axis •  Axes in styled mode
@@ -286,6 +286,18 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 	}
 
 	public HIColor getLineColor(){ return lineColor; }
+
+	private HIColor minorTickColor;
+/**
+/** Color for the minor tick marks. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minortickcolor/">Black tick marks on Y axis</a>
+ <br><br><b>defaults:</b><br><br>&ensp;#999999*/
+	public void setMinorTickColor(HIColor minorTickColor) {
+		this.minorTickColor = minorTickColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getMinorTickColor(){ return minorTickColor; }
 
 	private Number gridZIndex;
 /**
@@ -374,7 +386,7 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 
 	private ArrayList<Number> tickPositions;
 /**
-/** An array defining where the ticks are laid out on the axis. This overrides the defaults behaviour of `tickPixelInterval` and tickInterval. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickpositions-tickpositioner/">Demo of tickPositions and tickPositioner</a>
+/** An array defining where the ticks are laid out on the axis. This overrides the defaults behaviour of tickPixelInterval and tickInterval. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickpositions-tickpositioner/">Demo of tickPositions and tickPositioner</a>
 */
 	public void setTickPositions(ArrayList<Number> tickPositions) {
 		this.tickPositions = tickPositions;
@@ -398,7 +410,7 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 
 	private String tickmarkPlacement;
 /**
-/** For categorized axes only. If on the tick mark is placed in the center of the category, if between the tick mark is placed between categories. The defaults is between if the tickInterval is 1, else on. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickmarkplacement-between/">"between" by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickmarkplacement-on/">"on"</a> <br><br><b>accepted values:</b><br><br>&ensp;[null, "on", "between"]
+/** For categorized axes only. If on the tick mark is placed in the center of the category, if between the tick mark is placed between categories. The defaults is between if the tickInterval is 1, else on. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickmarkplacement-between/">"between" by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickmarkplacement-on/">"on"</a> <br><br><b>accepted values:</b><br><br>&ensp;["on", "between"]
 */
 	public void setTickmarkPlacement(String tickmarkPlacement) {
 		this.tickmarkPlacement = tickmarkPlacement;
@@ -420,9 +432,21 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 
 	public Boolean getAllowDecimals(){ return allowDecimals; }
 
+	private Number floor;
+/**
+/** The lowest allowed value for automatically computed axis extremes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/floor-ceiling/">Floor and ceiling</a>
+*/
+	public void setFloor(Number floor) {
+		this.floor = floor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getFloor(){ return floor; }
+
 	private HIFunction tickPositioner;
 /**
-/** A callback function returning array defining where the ticks are laid out on the axis. This overrides the defaults behaviour of tickPixelInterval and `tickInterval`. The automatic tick positions are accessible through this.tickPositions and can be modified by the callback. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickpositions-tickpositioner/">Demo of tickPositions and tickPositioner</a>
+/** A callback function returning array defining where the ticks are laid out on the axis. This overrides the defaults behaviour of tickPixelInterval and tickInterval. The automatic tick positions are accessible through this.tickPositions and can be modified by the callback. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickpositions-tickpositioner/">Demo of tickPositions and tickPositioner</a>
 */
 	public void setTickPositioner(HIFunction tickPositioner) {
 		this.tickPositioner = tickPositioner;
@@ -469,18 +493,17 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 
 	public HIEvents getEvents(){ return events; }
 
-	private HICrosshair crosshair;
+	private Number tickLength;
 /**
-/** Configure a crosshair that follows either the mouse pointer or the hovered point. In styled mode, the crosshairs are styled in the .highcharts-crosshair, .highcharts-crosshair-thin or .highcharts-xaxis-category classes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-both/">Crosshair on both axes</a>
- <br><br><b>defaults:</b><br><br>&ensp;false*/
-	public void setCrosshair(HICrosshair crosshair) {
-		this.crosshair = crosshair;
-		this.crosshair.addObserver(updateObserver);
+/** The pixel length of the main tick marks. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/ticklength/">20 px tick length on the X axis</a>
+*/
+	public void setTickLength(Number tickLength) {
+		this.tickLength = tickLength;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HICrosshair getCrosshair(){ return crosshair; }
+	public Number getTickLength(){ return tickLength; }
 
 	private Number ceiling;
 /**
@@ -493,6 +516,18 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 	}
 
 	public Number getCeiling(){ return ceiling; }
+
+	private Boolean showEmpty;
+/**
+/** Whether to show the axis line and title when the axis has no data. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/showempty/">When clicking the legend to hide series, one axis preserves line and title, the other doesn't</a>
+ <br><br><b>defaults:</b><br><br>&ensp;true*/
+	public void setShowEmpty(Boolean showEmpty) {
+		this.showEmpty = showEmpty;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getShowEmpty(){ return showEmpty; }
 
 	private String definition;
 /**
@@ -518,18 +553,6 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 
 	public String getMinorTickPosition(){ return minorTickPosition; }
 
-	private Boolean showEmpty;
-/**
-/** Whether to show the axis line and title when the axis has no data. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/showempty/">When clicking the legend to hide series, one axis preserves line and title, the other doesn't</a>
- <br><br><b>defaults:</b><br><br>&ensp;true*/
-	public void setShowEmpty(Boolean showEmpty) {
-		this.showEmpty = showEmpty;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getShowEmpty(){ return showEmpty; }
-
 	private Boolean minorTicks;
 /**
 /** Enable or disable minor ticks. Unless minorTickInterval is set, the tick interval is calculated as a fifth of the tickInterval. On a logarithmic axis, minor ticks are laid out based on a best guess, attempting to enter approximately 5 minor ticks between each major tick. Prior to v6.0.0, ticks were unabled in auto layout by setting minorTickInterval to "auto". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minorticks-true/">Enabled on linear Y axis</a>
@@ -553,18 +576,6 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 	}
 
 	public Number getMinorTickWidth(){ return minorTickWidth; }
-
-	private Number floor;
-/**
-/** The lowest allowed value for automatically computed axis extremes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/floor-ceiling/">Floor and ceiling</a>
-*/
-	public void setFloor(Number floor) {
-		this.floor = floor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getFloor(){ return floor; }
 
 	private HIColor tickColor;
 /**
@@ -602,17 +613,17 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 
 	public Number getTickInterval(){ return tickInterval; }
 
-	private Object /* Number, String */ minorTickInterval;
+	private String tickPosition;
 /**
-/** Specific tick interval in axis units for the minor ticks. On a linear axis, if "auto", the minor tick interval is calculated as a fifth of the tickInterval. If null or undefined, minor ticks are not shown. On logarithmic axes, the unit is the power of the value. For example, setting the minorTickInterval to 1 puts one tick on each of 0.1, 1, 10, 100 etc. Setting the minorTickInterval to 0.1 produces 9 ticks between 1 and 10, 10 and 100 etc. If user settings dictate minor ticks to become too dense, they don't make sense, and will be ignored to prevent performance problems. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minortickinterval-null/">Null by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minortickinterval-5/">5 units</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minortickinterval-log-auto/">"auto"</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minortickinterval-log/">0.1</a>
+/** The position of the major tick marks relative to the axis line. Can be one of inside and outside. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickposition-outside/">"outside" by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickposition-inside/">"inside"</a> <br><br><b>accepted values:</b><br><br>&ensp;["inside", "outside"]
 */
-	public void setMinorTickInterval(Object /* Number, String */ minorTickInterval) {
-		this.minorTickInterval = minorTickInterval;
+	public void setTickPosition(String tickPosition) {
+		this.tickPosition = tickPosition;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number, String */ getMinorTickInterval(){ return minorTickInterval; }
+	public String getTickPosition(){ return tickPosition; }
 
 	private ArrayList<String> categories;
 /**
@@ -637,18 +648,6 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 	}
 
 	public Number getLinkedTo(){ return linkedTo; }
-
-	private HIColor minorTickColor;
-/**
-/** Color for the minor tick marks. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minortickcolor/">Black tick marks on Y axis</a>
- <br><br><b>defaults:</b><br><br>&ensp;#999999*/
-	public void setMinorTickColor(HIColor minorTickColor) {
-		this.minorTickColor = minorTickColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getMinorTickColor(){ return minorTickColor; }
 
 	private Boolean uniqueNames;
 /**
@@ -686,29 +685,30 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 
 	public Number getTickAmount(){ return tickAmount; }
 
-	private Number tickLength;
+	private HICrosshair crosshair;
 /**
-/** The pixel length of the main tick marks. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/ticklength/">20 px tick length on the X axis</a>
-*/
-	public void setTickLength(Number tickLength) {
-		this.tickLength = tickLength;
+/** Configure a crosshair that follows either the mouse pointer or the hovered point. In styled mode, the crosshairs are styled in the .highcharts-crosshair, .highcharts-crosshair-thin or .highcharts-xaxis-category classes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-both/">Crosshair on both axes</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
+	public void setCrosshair(HICrosshair crosshair) {
+		this.crosshair = crosshair;
+		this.crosshair.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getTickLength(){ return tickLength; }
+	public HICrosshair getCrosshair(){ return crosshair; }
 
-	private String tickPosition;
+	private Object /* Number, String */ minorTickInterval;
 /**
-/** The position of the major tick marks relative to the axis line. Can be one of inside and outside. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickposition-outside/">"outside" by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickposition-inside/">"inside"</a> <br><br><b>accepted values:</b><br><br>&ensp;["inside", "outside"]
+/** Specific tick interval in axis units for the minor ticks. On a linear axis, if "auto", the minor tick interval is calculated as a fifth of the tickInterval. If null or undefined, minor ticks are not shown. On logarithmic axes, the unit is the power of the value. For example, setting the minorTickInterval to 1 puts one tick on each of 0.1, 1, 10, 100 etc. Setting the minorTickInterval to 0.1 produces 9 ticks between 1 and 10, 10 and 100 etc. If user settings dictate minor ticks to become too dense, they don't make sense, and will be ignored to prevent performance problems. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minortickinterval-null/">Null by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minortickinterval-5/">5 units</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minortickinterval-log-auto/">"auto"</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minortickinterval-log/">0.1</a>
 */
-	public void setTickPosition(String tickPosition) {
-		this.tickPosition = tickPosition;
+	public void setMinorTickInterval(Object /* Number, String */ minorTickInterval) {
+		this.minorTickInterval = minorTickInterval;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getTickPosition(){ return tickPosition; }
+	public Object /* Number, String */ getMinorTickInterval(){ return minorTickInterval; }
 
 
 
@@ -729,17 +729,17 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
+		if (this.title != null) {
+			params.put("title", this.title);
+		}
 		if (this.labels != null) {
 			params.put("labels", this.labels.getParams());
-		}
-		if (this.lineWidth != null) {
-			params.put("lineWidth", this.lineWidth);
 		}
 		if (this.offset != null) {
 			params.put("offset", this.offset);
 		}
-		if (this.title != null) {
-			params.put("title", this.title);
+		if (this.lineWidth != null) {
+			params.put("lineWidth", this.lineWidth);
 		}
 		if (this.minPadding != null) {
 			params.put("minPadding", this.minPadding);
@@ -747,8 +747,8 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 		if (this.softMax != null) {
 			params.put("softMax", this.softMax);
 		}
-		if (this.startOnTick != null) {
-			params.put("startOnTick", this.startOnTick);
+		if (this.min != null) {
+			params.put("min", this.min);
 		}
 		if (this.endOnTick != null) {
 			params.put("endOnTick", this.endOnTick);
@@ -783,14 +783,17 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 		if (this.showLastLabel != null) {
 			params.put("showLastLabel", this.showLastLabel);
 		}
+		if (this.startOnTick != null) {
+			params.put("startOnTick", this.startOnTick);
+		}
 		if (this.maxPadding != null) {
 			params.put("maxPadding", this.maxPadding);
 		}
-		if (this.min != null) {
-			params.put("min", this.min);
-		}
 		if (this.lineColor != null) {
 			params.put("lineColor", this.lineColor.getData());
+		}
+		if (this.minorTickColor != null) {
+			params.put("minorTickColor", this.minorTickColor.getData());
 		}
 		if (this.gridZIndex != null) {
 			params.put("gridZIndex", this.gridZIndex);
@@ -834,6 +837,9 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 		if (this.allowDecimals != null) {
 			params.put("allowDecimals", this.allowDecimals);
 		}
+		if (this.floor != null) {
+			params.put("floor", this.floor);
+		}
 		if (this.tickPositioner != null) {
 			params.put("tickPositioner", this.tickPositioner);
 		}
@@ -855,11 +861,14 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 		if (this.events != null) {
 			params.put("events", this.events.getParams());
 		}
-		if (this.crosshair != null) {
-			params.put("crosshair", this.crosshair.getParams());
+		if (this.tickLength != null) {
+			params.put("tickLength", this.tickLength);
 		}
 		if (this.ceiling != null) {
 			params.put("ceiling", this.ceiling);
+		}
+		if (this.showEmpty != null) {
+			params.put("showEmpty", this.showEmpty);
 		}
 		if (this.definition != null) {
 			params.put("definition", this.definition);
@@ -867,17 +876,11 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 		if (this.minorTickPosition != null) {
 			params.put("minorTickPosition", this.minorTickPosition);
 		}
-		if (this.showEmpty != null) {
-			params.put("showEmpty", this.showEmpty);
-		}
 		if (this.minorTicks != null) {
 			params.put("minorTicks", this.minorTicks);
 		}
 		if (this.minorTickWidth != null) {
 			params.put("minorTickWidth", this.minorTickWidth);
-		}
-		if (this.floor != null) {
-			params.put("floor", this.floor);
 		}
 		if (this.tickColor != null) {
 			params.put("tickColor", this.tickColor.getData());
@@ -888,8 +891,8 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 		if (this.tickInterval != null) {
 			params.put("tickInterval", this.tickInterval);
 		}
-		if (this.minorTickInterval != null) {
-			params.put("minorTickInterval", this.minorTickInterval);
+		if (this.tickPosition != null) {
+			params.put("tickPosition", this.tickPosition);
 		}
 		if (this.categories != null) {
 			ArrayList<Object> array = new ArrayList<>();
@@ -906,9 +909,6 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 		if (this.linkedTo != null) {
 			params.put("linkedTo", this.linkedTo);
 		}
-		if (this.minorTickColor != null) {
-			params.put("minorTickColor", this.minorTickColor.getData());
-		}
 		if (this.uniqueNames != null) {
 			params.put("uniqueNames", this.uniqueNames);
 		}
@@ -918,11 +918,11 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 		if (this.tickAmount != null) {
 			params.put("tickAmount", this.tickAmount);
 		}
-		if (this.tickLength != null) {
-			params.put("tickLength", this.tickLength);
+		if (this.crosshair != null) {
+			params.put("crosshair", this.crosshair.getParams());
 		}
-		if (this.tickPosition != null) {
-			params.put("tickPosition", this.tickPosition);
+		if (this.minorTickInterval != null) {
+			params.put("minorTickInterval", this.minorTickInterval);
 		}
 		return params;
 	}

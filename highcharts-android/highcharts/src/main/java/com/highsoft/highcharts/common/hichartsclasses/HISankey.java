@@ -100,7 +100,7 @@ public class HISankey extends HISeries {
 
 	private ArrayList<String> colors;
 /**
-/** A series specific or series type specific color set to apply instead of the global colors when `colorByPoint` is true. 
+/** A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
 */
 	public void setColors(ArrayList<String> colors) {
 		this.colors = colors;

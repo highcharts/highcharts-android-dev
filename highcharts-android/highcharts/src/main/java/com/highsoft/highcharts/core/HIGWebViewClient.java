@@ -15,6 +15,8 @@ import java.util.List;
 
 final class HIGWebViewClient extends WebViewClient{
 
+
+
     /** Method for opening credits in the web browser for older API **/
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -48,5 +50,7 @@ final class HIGWebViewClient extends WebViewClient{
         }
         return false;
     }
+
+    
 
 }

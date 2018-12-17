@@ -23,31 +23,6 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HIMarker extends Observable implements HIChartsJSONSerializable { 
 
-	private HIColor color;
-/**
-/** The color of the marker. 
- <br><br><b>defaults:</b><br><br>&ensp;#999999*/
-	public void setColor(HIColor color) {
-		this.color = color;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getColor(){ return color; }
-
-	private HIAnimation animation;
-/**
-/** Animation for the marker as it moves between values. Set to false to disable animation. Defaults to { duration: 50 }. 
-*/
-	public void setAnimation(HIAnimation animation) {
-		this.animation = animation;
-		this.animation.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIAnimation getAnimation(){ return animation; }
-
 	private Boolean enabled;
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -56,6 +31,30 @@ public class HIMarker extends Observable implements HIChartsJSONSerializable {
 	}
 
 	public Boolean getEnabled(){ return enabled; }
+
+	private HIColor color;
+/**
+/** The color of the marker. 
+*/
+	public void setColor(HIColor color) {
+		this.color = color;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getColor(){ return color; }
+
+	private HIAnimationOptionsObject animation;
+/**
+/** Animation for the marker as it moves between values. Set to false to disable animation. Defaults to { duration: 50 }. 
+ <br><br><b>defaults:</b><br><br>&ensp;{"duration": 50}*/
+	public void setAnimation(HIAnimationOptionsObject animation) {
+		this.animation = animation;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAnimationOptionsObject getAnimation(){ return animation; }
 
 	private String symbol;
 /**
@@ -197,14 +196,14 @@ public class HIMarker extends Observable implements HIChartsJSONSerializable {
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
+		if (this.enabled != null) {
+			params.put("enabled", this.enabled);
+		}
 		if (this.color != null) {
 			params.put("color", this.color.getData());
 		}
 		if (this.animation != null) {
-			params.put("animation", this.animation.getParams());
-		}
-		if (this.enabled != null) {
-			params.put("enabled", this.enabled);
+			params.put("animation", this.animation);
 		}
 		if (this.symbol != null) {
 			params.put("symbol", this.symbol);

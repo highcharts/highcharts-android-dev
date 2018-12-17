@@ -37,7 +37,7 @@ public class HIPlotBands extends Observable implements HIChartsJSONSerializable 
 
 	private Object /* Number, String */ innerRadius;
 /**
-/** In a gauge chart, this option determines the inner radius of the plot band that stretches along the perimeter. It can be given as a percentage string, like "100%", or as a pixel number, like 100. By defaults, the inner radius is controlled by the `thickness` option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-gauge">Gauge plot band</a>
+/** In a gauge chart, this option determines the inner radius of the plot band that stretches along the perimeter. It can be given as a percentage string, like "100%", or as a pixel number, like 100. By defaults, the inner radius is controlled by the thickness option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-gauge">Gauge plot band</a>
 */
 	public void setInnerRadius(Object /* Number, String */ innerRadius) {
 		this.innerRadius = innerRadius;

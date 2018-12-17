@@ -49,7 +49,7 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	private String downloadPNG;
 /**
 /** Exporting module only. The text for the PNG download menu item. 
- <br><br><b>defaults:</b><br><br>&ensp;Download PNG image*/
+*/
 	public void setDownloadPNG(String downloadPNG) {
 		this.downloadPNG = downloadPNG;
 		this.setChanged();
@@ -86,7 +86,7 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	private String noData;
 /**
 /** The text to display when the chart contains no data. Requires the no-data module, see noData. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line">No-data text</a>
- <br><br><b>defaults:</b><br><br>&ensp;No data to display*/
+*/
 	public void setNoData(String noData) {
 		this.noData = noData;
 		this.setChanged();
@@ -119,17 +119,17 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 
 	public ArrayList<String> getNumericSymbols(){ return numericSymbols; }
 
-	private String downloadSVG;
+	private String printChart;
 /**
-/** Exporting module only. The text for the SVG download menu item. 
- <br><br><b>defaults:</b><br><br>&ensp;Download SVG vector image*/
-	public void setDownloadSVG(String downloadSVG) {
-		this.downloadSVG = downloadSVG;
+/** Exporting module only. The text for the menu item to print the chart. 
+*/
+	public void setPrintChart(String printChart) {
+		this.printChart = printChart;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getDownloadSVG(){ return downloadSVG; }
+	public String getPrintChart(){ return printChart; }
 
 	private Number numericSymbolMagnitude;
 /**
@@ -156,22 +156,22 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 
 	public ArrayList<String> getWeekdays(){ return weekdays; }
 
-	private String printChart;
+	private String downloadSVG;
 /**
-/** Exporting module only. The text for the menu item to print the chart. 
- <br><br><b>defaults:</b><br><br>&ensp;Print chart*/
-	public void setPrintChart(String printChart) {
-		this.printChart = printChart;
+/** Exporting module only. The text for the SVG download menu item. 
+*/
+	public void setDownloadSVG(String downloadSVG) {
+		this.downloadSVG = downloadSVG;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getPrintChart(){ return printChart; }
+	public String getDownloadSVG(){ return downloadSVG; }
 
 	private String drillUpText;
 /**
 /** The text for the button that appears when drilling down, linking back to the parent series. The parent series' name is inserted for {series.name}. 
- <br><br><b>defaults:</b><br><br>&ensp;Back to {series.name}*/
+*/
 	public void setDrillUpText(String drillUpText) {
 		this.drillUpText = drillUpText;
 		this.setChanged();
@@ -195,7 +195,7 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	private String contextButtonTitle;
 /**
 /** Exporting module menu. The tooltip title for the context menu holding print and export menu items. 
- <br><br><b>defaults:</b><br><br>&ensp;Chart context menu*/
+*/
 	public void setContextButtonTitle(String contextButtonTitle) {
 		this.contextButtonTitle = contextButtonTitle;
 		this.setChanged();
@@ -231,7 +231,7 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	private String downloadPDF;
 /**
 /** Exporting module only. The text for the PDF download menu item. 
- <br><br><b>defaults:</b><br><br>&ensp;Download PDF document*/
+*/
 	public void setDownloadPDF(String downloadPDF) {
 		this.downloadPDF = downloadPDF;
 		this.setChanged();
@@ -251,6 +251,18 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	}
 
 	public String getOpenInCloud(){ return openInCloud; }
+
+	private String resetZoomTitle;
+/**
+/** The tooltip title for the label appearing when a chart is zoomed. 
+*/
+	public void setResetZoomTitle(String resetZoomTitle) {
+		this.resetZoomTitle = resetZoomTitle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getResetZoomTitle(){ return resetZoomTitle; }
 
 	private ArrayList<String> months;
 /**
@@ -282,7 +294,7 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	private String downloadJPEG;
 /**
 /** Exporting module only. The text for the JPEG download menu item. 
- <br><br><b>defaults:</b><br><br>&ensp;Download JPEG image*/
+*/
 	public void setDownloadJPEG(String downloadJPEG) {
 		this.downloadJPEG = downloadJPEG;
 		this.setChanged();
@@ -303,21 +315,22 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 
 	public String getDecimalPoint(){ return decimalPoint; }
 
-	private String resetZoomTitle;
+	private HINavigation navigation;
 /**
-/** The tooltip title for the label appearing when a chart is zoomed. 
+/** Configure the Popup strings in the chart. Requires the annotations.js or annotations-advanced.src.js module to be loaded. 
 */
-	public void setResetZoomTitle(String resetZoomTitle) {
-		this.resetZoomTitle = resetZoomTitle;
+	public void setNavigation(HINavigation navigation) {
+		this.navigation = navigation;
+		this.navigation.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getResetZoomTitle(){ return resetZoomTitle; }
+	public HINavigation getNavigation(){ return navigation; }
 
 	private String thousandsSep;
 /**
-/** The defaults thousands separator used in the Highcharts.numberFormat method unless otherwise specified in the function arguments. Since Highcharts 4.1 it defaultss to a single space character, which is compatible with ISO and works across Anglo-American and continental European languages. The defaults is a single space. 
+/** The defaults thousands separator used in the Highcharts.numberFormat method unless otherwise specified in the function arguments. Defaults to a single space character, which is recommended in [ISO 31-0](https://en.wikipedia.org/wiki/ISO_31-0#Numbers) and works across Anglo-American and continental European languages. 
  <br><br><b>defaults:</b><br><br>&ensp;\u0020*/
 	public void setThousandsSep(String thousandsSep) {
 		this.thousandsSep = thousandsSep;
@@ -388,8 +401,8 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 			}
 			params.put("numericSymbols", array);
 		}
-		if (this.downloadSVG != null) {
-			params.put("downloadSVG", this.downloadSVG);
+		if (this.printChart != null) {
+			params.put("printChart", this.printChart);
 		}
 		if (this.numericSymbolMagnitude != null) {
 			params.put("numericSymbolMagnitude", this.numericSymbolMagnitude);
@@ -406,8 +419,8 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 			}
 			params.put("weekdays", array);
 		}
-		if (this.printChart != null) {
-			params.put("printChart", this.printChart);
+		if (this.downloadSVG != null) {
+			params.put("downloadSVG", this.downloadSVG);
 		}
 		if (this.drillUpText != null) {
 			params.put("drillUpText", this.drillUpText);
@@ -429,6 +442,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 		}
 		if (this.openInCloud != null) {
 			params.put("openInCloud", this.openInCloud);
+		}
+		if (this.resetZoomTitle != null) {
+			params.put("resetZoomTitle", this.resetZoomTitle);
 		}
 		if (this.months != null) {
 			ArrayList<Object> array = new ArrayList<>();
@@ -460,8 +476,8 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 		if (this.decimalPoint != null) {
 			params.put("decimalPoint", this.decimalPoint);
 		}
-		if (this.resetZoomTitle != null) {
-			params.put("resetZoomTitle", this.resetZoomTitle);
+		if (this.navigation != null) {
+			params.put("navigation", this.navigation.getParams());
 		}
 		if (this.thousandsSep != null) {
 			params.put("thousandsSep", this.thousandsSep);

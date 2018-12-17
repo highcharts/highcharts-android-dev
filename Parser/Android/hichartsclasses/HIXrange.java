@@ -63,6 +63,18 @@ public class HIXrange extends HISeries {
 
 	public Number getBorderRadius(){ return borderRadius; }
 
+	private Number pointPadding;
+/**
+/** Padding between each column or bar, in x axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-defaults/">0.1 by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-025/">0.25</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-none/">0 for tightly packed columns</a>
+*/
+	public void setPointPadding(Number pointPadding) {
+		this.pointPadding = pointPadding;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPointPadding(){ return pointPadding; }
+
 	private Number minPointLength;
 /**
 /** The minimal height for a column or width for a bar. By defaults, 0 values are not shown. To visualize a 0 (or close to zero) point, set the minimal point length to a pixel value like 3\. In stacked column charts, minPointLength might not be respected for tightly packed values. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-minpointlength/">Zero base value</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-minpointlength-pos-and-neg/">Positive and negative close to zero values</a>
@@ -89,7 +101,7 @@ public class HIXrange extends HISeries {
 
 	private ArrayList<String> colors;
 /**
-/** A series specific or series type specific color set to apply instead of the global colors when `colorByPoint` is true. 
+/** A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
 */
 	public void setColors(ArrayList<String> colors) {
 		this.colors = colors;
@@ -122,18 +134,6 @@ public class HIXrange extends HISeries {
 	}
 
 	public Number getPointWidth(){ return pointWidth; }
-
-	private Number pointPadding;
-/**
-/** Padding between each column or bar, in x axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-defaults/">0.1 by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-025/">0.25</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-none/">0 for tightly packed columns</a>
-*/
-	public void setPointPadding(Number pointPadding) {
-		this.pointPadding = pointPadding;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getPointPadding(){ return pointPadding; }
 
 	private Number groupPadding;
 /**
@@ -189,6 +189,9 @@ public class HIXrange extends HISeries {
 		if (this.borderRadius != null) {
 			params.put("borderRadius", this.borderRadius);
 		}
+		if (this.pointPadding != null) {
+			params.put("pointPadding", this.pointPadding);
+		}
 		if (this.minPointLength != null) {
 			params.put("minPointLength", this.minPointLength);
 		}
@@ -212,9 +215,6 @@ public class HIXrange extends HISeries {
 		}
 		if (this.pointWidth != null) {
 			params.put("pointWidth", this.pointWidth);
-		}
-		if (this.pointPadding != null) {
-			params.put("pointPadding", this.pointPadding);
 		}
 		if (this.groupPadding != null) {
 			params.put("groupPadding", this.groupPadding);

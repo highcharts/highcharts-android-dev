@@ -22,16 +22,6 @@ import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 public class HIPoint extends Observable implements HIChartsJSONSerializable { 
 
-	private HIEvents events;
-	public void setEvents(HIEvents events) {
-		this.events = events;
-		this.events.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIEvents getEvents(){ return events; }
-
 	private Number y;
 /**
 /** The y position of the point. Units can be either in axis or chart pixel coordinates. 
@@ -56,29 +46,39 @@ public class HIPoint extends Observable implements HIChartsJSONSerializable {
 
 	public Number getX(){ return x; }
 
-	private Object /* Number|String */ xAxis;
+	private Object /* Number, String */ xAxis;
 /**
 /** This number defines which xAxis the point is connected to. It refers to either the axis id or the index of the axis in the xAxis array. If the option is not configured or the axis is not found the point's x coordinate refers to the chart pixels. 
 */
-	public void setXAxis(Object /* Number|String */ xAxis) {
+	public void setXAxis(Object /* Number, String */ xAxis) {
 		this.xAxis = xAxis;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number|String */ getXAxis(){ return xAxis; }
+	public Object /* Number, String */ getXAxis(){ return xAxis; }
 
-	private Object /* Number|String */ yAxis;
+	private Object /* Number, String */ yAxis;
 /**
 /** This number defines which yAxis the point is connected to. It refers to either the axis id or the index of the axis in the yAxis array. If the option is not configured or the axis is not found the point's y coordinate refers to the chart pixels. 
 */
-	public void setYAxis(Object /* Number|String */ yAxis) {
+	public void setYAxis(Object /* Number, String */ yAxis) {
 		this.yAxis = yAxis;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number|String */ getYAxis(){ return yAxis; }
+	public Object /* Number, String */ getYAxis(){ return yAxis; }
+
+	private HIEvents events;
+	public void setEvents(HIEvents events) {
+		this.events = events;
+		this.events.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIEvents getEvents(){ return events; }
 
 
 
@@ -99,9 +99,6 @@ public class HIPoint extends Observable implements HIChartsJSONSerializable {
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.events != null) {
-			params.put("events", this.events.getParams());
-		}
 		if (this.y != null) {
 			params.put("y", this.y);
 		}
@@ -113,6 +110,9 @@ public class HIPoint extends Observable implements HIChartsJSONSerializable {
 		}
 		if (this.yAxis != null) {
 			params.put("yAxis", this.yAxis);
+		}
+		if (this.events != null) {
+			params.put("events", this.events.getParams());
 		}
 		return params;
 	}

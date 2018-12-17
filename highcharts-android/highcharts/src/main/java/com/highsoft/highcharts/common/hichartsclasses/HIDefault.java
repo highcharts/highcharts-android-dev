@@ -26,7 +26,7 @@ public class HIDefault extends Observable implements HIChartsJSONSerializable {
 	private Number zIndex;
 /**
 /** Guide box zIndex. 
- <br><br><b>defaults:</b><br><br>&ensp;900*/
+*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
 		this.setChanged();
@@ -38,7 +38,7 @@ public class HIDefault extends Observable implements HIChartsJSONSerializable {
 	private HIColor color;
 /**
 /** Guide box fill color. 
- <br><br><b>defaults:</b><br><br>&ensp;rgba(0, 0, 0, 0.1)*/
+*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -62,7 +62,7 @@ public class HIDefault extends Observable implements HIChartsJSONSerializable {
 	private String cursor;
 /**
 /** Guide box cursor. 
- <br><br><b>defaults:</b><br><br>&ensp;move*/
+*/
 	public void setCursor(String cursor) {
 		this.cursor = cursor;
 		this.setChanged();
@@ -74,7 +74,7 @@ public class HIDefault extends Observable implements HIChartsJSONSerializable {
 	private HIColor lineColor;
 /**
 /** Color of the border around the guide box. 
- <br><br><b>defaults:</b><br><br>&ensp;#888*/
+*/
 	public void setLineColor(HIColor lineColor) {
 		this.lineColor = lineColor;
 		this.setChanged();
@@ -86,7 +86,7 @@ public class HIDefault extends Observable implements HIChartsJSONSerializable {
 	private Number lineWidth;
 /**
 /** Width of the line around the guide box. 
- <br><br><b>defaults:</b><br><br>&ensp;1*/
+*/
 	public void setLineWidth(Number lineWidth) {
 		this.lineWidth = lineWidth;
 		this.setChanged();

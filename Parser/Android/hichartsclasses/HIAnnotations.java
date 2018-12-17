@@ -22,47 +22,10 @@ import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 public class HIAnnotations extends Observable implements HIChartsJSONSerializable { 
 
-	private ArrayList <HIShapes> shapes;
-/**
-/** An array of shapes for the annotation. For options that apply to multiple shapes, then can be added to the `shapeOptions`. 
-*/
-	public void setShapes(ArrayList shapes) {
-		this.shapes = shapes;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public ArrayList getShapes(){ return shapes; }
-
-	private ArrayList <HILabels> labels;
-/**
-/** An array of labels for the annotation. For options that apply to multiple labels, they can be added to the `labelOptions`. 
-*/
-	public void setLabels(ArrayList labels) {
-		this.labels = labels;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public ArrayList getLabels(){ return labels; }
-
-	private HILabelOptions labelOptions;
-/**
-/** Options for annotation's labels. Each label inherits options from the labelOptions object. An option from the labelOptions can be overwritten by config for a specific label. 
-*/
-	public void setLabelOptions(HILabelOptions labelOptions) {
-		this.labelOptions = labelOptions;
-		this.labelOptions.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HILabelOptions getLabelOptions(){ return labelOptions; }
-
 	private Number zIndex;
 /**
 /** The Z index of the annotation. 
- <br><br><b>defaults:</b><br><br>&ensp;6*/
+*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
 		this.setChanged();
@@ -83,6 +46,56 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 
 	public Boolean getVisible(){ return visible; }
 
+	private HILabelOptions labelOptions;
+/**
+/** Options for annotation's labels. Each label inherits options from the labelOptions object. An option from the labelOptions can be overwritten by config for a specific label. 
+*/
+	public void setLabelOptions(HILabelOptions labelOptions) {
+		this.labelOptions = labelOptions;
+		this.labelOptions.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HILabelOptions getLabelOptions(){ return labelOptions; }
+
+	private ArrayList <HILabels> labels;
+/**
+/** An array of labels for the annotation. For options that apply to multiple labels, they can be added to the `labelOptions`. 
+*/
+	public void setLabels(ArrayList labels) {
+		this.labels = labels;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList getLabels(){ return labels; }
+
+	private ArrayList <HIShapes> shapes;
+/**
+/** An array of shapes for the annotation. For options that apply to multiple shapes, then can be added to the `shapeOptions`. 
+*/
+	public void setShapes(ArrayList shapes) {
+		this.shapes = shapes;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList getShapes(){ return shapes; }
+
+	private HIBase base;
+/**
+/** A basic type of an annotation. It allows to add custom labels or shapes. The items can be tied to points, axis coordinates or chart pixel coordinates. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/basic/">Basic annotations</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/annotations/">Advanced annotations</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/annotations">Styled mode</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations-advanced/controllable">Controllable items</a>
+*/
+	public void setBase(HIBase base) {
+		this.base = base;
+		this.base.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIBase getBase(){ return base; }
+
 	private HIShapeOptions shapeOptions;
 /**
 /** Options for annotation's shapes. Each shape inherits options from the shapeOptions object. An option from the shapeOptions can be overwritten by config for a specific shape. 
@@ -95,6 +108,18 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 	}
 
 	public HIShapeOptions getShapeOptions(){ return shapeOptions; }
+
+	private String id;
+/**
+/** Sets an ID for an annotation. Can be user later when removing an annotation in `Chart#removeAnnotation(id)` method. 
+*/
+	public void setId(String id) {
+		this.id = id;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getId(){ return id; }
 
 
 
@@ -115,17 +140,14 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.shapes != null) {
-			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.shapes) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
-			}
-			params.put("shapes", array);
+		if (this.zIndex != null) {
+			params.put("zIndex", this.zIndex);
+		}
+		if (this.visible != null) {
+			params.put("visible", this.visible);
+		}
+		if (this.labelOptions != null) {
+			params.put("labelOptions", this.labelOptions.getParams());
 		}
 		if (this.labels != null) {
 			ArrayList<Object> array = new ArrayList<>();
@@ -139,17 +161,26 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 			}
 			params.put("labels", array);
 		}
-		if (this.labelOptions != null) {
-			params.put("labelOptions", this.labelOptions.getParams());
+		if (this.shapes != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.shapes) {
+				if (obj instanceof HIChartsJSONSerializable) {
+					array.add(((HIChartsJSONSerializable) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("shapes", array);
 		}
-		if (this.zIndex != null) {
-			params.put("zIndex", this.zIndex);
-		}
-		if (this.visible != null) {
-			params.put("visible", this.visible);
+		if (this.base != null) {
+			params.put("base", this.base.getParams());
 		}
 		if (this.shapeOptions != null) {
 			params.put("shapeOptions", this.shapeOptions.getParams());
+		}
+		if (this.id != null) {
+			params.put("id", this.id);
 		}
 		return params;
 	}

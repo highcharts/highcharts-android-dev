@@ -181,7 +181,7 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	private HISummary summary;
 /**
-/** Lang configuration for the series main summary. Each series type has two modes:   1. This series type is the only series type used in the    chart  2. This is a combination chart with multiple series types If a definition does not exist for the specific series type and mode, the 'defaults' lang definitions are used. 
+/** Lang configuration for the series main summary. Each series type has two modes: 1. This series type is the only series type used in the  chart 2. This is a combination chart with multiple series types If a definition does not exist for the specific series type and mode, the 'defaults' lang definitions are used. 
 */
 	public void setSummary(HISummary summary) {
 		this.summary = summary;
@@ -191,6 +191,19 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 	}
 
 	public HISummary getSummary(){ return summary; }
+
+	private HIPoint point;
+/**
+/** Properties for each single point. 
+*/
+	public void setPoint(HIPoint point) {
+		this.point = point;
+		this.point.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIPoint getPoint(){ return point; }
 
 	private Boolean selected;
 /**
@@ -228,18 +241,17 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	public Boolean getClip(){ return clip; }
 
-	private HIPoint point;
+	private HIColor negativeColor;
 /**
-/** Properties for each single point. 
+/** The color for the parts of the graph or points that are below the threshold. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-negative-color/">Spline, area and column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-negativecolor/">Arearange</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-negative-color/">Styled mode</a>
 */
-	public void setPoint(HIPoint point) {
-		this.point = point;
-		this.point.addObserver(updateObserver);
+	public void setNegativeColor(HIColor negativeColor) {
+		this.negativeColor = negativeColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIPoint getPoint(){ return point; }
+	public HIColor getNegativeColor(){ return negativeColor; }
 
 	private HIColor color;
 /**
@@ -290,18 +302,6 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	public HIStates getStates(){ return states; }
 
-	private Number threshold;
-/**
-/** The threshold, also called zero level or base level. For line type series this is only used in conjunction with negativeColor. 
- <br><br><b>defaults:</b><br><br>&ensp;0*/
-	public void setThreshold(Number threshold) {
-		this.threshold = threshold;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getThreshold(){ return threshold; }
-
 	private Boolean softThreshold;
 /**
 /** When this is true, the series will not cause the Y axis to cross the zero plane (or threshold option) unless the data actually crosses the plane. For example, if softThreshold is false, a series of 0, 1, 2, 3 will make the Y axis show negative values according to the minPadding option. If softThreshold is true, the Y axis starts at 0. 
@@ -316,7 +316,7 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	private HIDragDrop dragDrop;
 /**
-/** The draggable-points module allows points to be moved around or modified in the chart. In addition to the options mentioned under the dragDrop API structure, the module fires three events, `point.dragStart`, `point.drag` and `point.drop`. It requires the modules/draggable-points.js file to be loaded. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/resize-column">Draggable column and line series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-bubble">Draggable bubbles</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-xrange">Draggable X range series</a>
+/** The draggable-points module allows points to be moved around or modified in the chart. In addition to the options mentioned under the dragDrop API structure, the module fires three events, `point.dragStart`, `point.drag` and `point.drop`. It requires the modules/draggable-points.js file to be loaded. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/resize-column">Draggable column and line series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/bar-series">Draggable bar</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-bubble">Draggable bubbles</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-xrange">Draggable X range series</a>
 */
 	public void setDragDrop(HIDragDrop dragDrop) {
 		this.dragDrop = dragDrop;
@@ -340,9 +340,22 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	public HIMarker getMarker(){ return marker; }
 
+	private HITooltip tooltip;
+/**
+/** A configuration object for the tooltip rendering of each single series. Properties are inherited from tooltip, but only the following properties can be defined on a series level. 
+*/
+	public void setTooltip(HITooltip tooltip) {
+		this.tooltip = tooltip;
+		this.tooltip.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HITooltip getTooltip(){ return tooltip; }
+
 	private HIFunction pointDescriptionFormatter;
 /**
-/** Same as `accessibility.pointDescriptionFormatter`, but for an individual series. Overrides the chart wide configuration. 
+/** Same as accessibility.pointDescriptionFormatter, but for an individual series. Overrides the chart wide configuration. 
 */
 	public void setPointDescriptionFormatter(HIFunction pointDescriptionFormatter) {
 		this.pointDescriptionFormatter = pointDescriptionFormatter;
@@ -355,7 +368,7 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 	private HIColor borderColor;
 /**
 /** The border color of the map areas. In styled mode, the border stroke is given in the .highcharts-point class. 
- <br><br><b>defaults:</b><br><br>&ensp;#cccccc*/
+ <br><br><b>defaults:</b><br><br>&ensp;'#cccccc'*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
@@ -364,17 +377,17 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	public HIColor getBorderColor(){ return borderColor; }
 
-	private String cursor;
+	private String className;
 /**
-/** You can set the cursor to "pointer" if you have click events attached to the series, to signal to the user that the points and lines can be clicked. In styled mode, the series cursor can be set with the same classes as listed under series.color. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-cursor-line/">On line graph</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-cursor-column/">On columns</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-cursor-scatter/">On scatter markers</a> <br><br><b>accepted values:</b><br><br>&ensp;["crosshair","default","help","none","pointer"]
+/** An additional class name to apply to the series' graphical elements. This option does not replace defaults class names of the graphical element. 
 */
-	public void setCursor(String cursor) {
-		this.cursor = cursor;
+	public void setClassName(String className) {
+		this.className = className;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getCursor(){ return cursor; }
+	public String getClassName(){ return className; }
 
 	private String dashStyle;
 /**
@@ -390,7 +403,7 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	private Object /* String, Number */ pointPlacement;
 /**
-/** Possible values: "on", "between", number. In a column chart, when pointPlacement is "on", the point will not create any padding of the X axis. In a polar column chart this means that the first column points directly north. If the pointPlacement is "between", the columns will be laid out between ticks. This is useful for example for visualising an amount between two points in time or in a certain sector of a polar chart. Since Highcharts 3.0.2, the point placement can also be numeric, where 0 is on the axis value, -0.5 is between this value and the previous, and 0.5 is between this value and the next. Unlike the textual options, numeric point placement options won't affect axis padding. Note that pointPlacement needs a `pointRange` to work. For column series this is computed, but for line-type series it needs to be set. For the xrange series type and gantt charts, if the Y axis is a category axis, the pointPlacement applies to the Y axis rather than the (typically datetime) X axis. Defaults to undefined in cartesian charts, "between" in polar charts. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointplacement-between/">Between in a column chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointplacement-numeric/">Numeric placement for custom layout</a>
+/** Possible values: "on", "between", number. In a column chart, when pointPlacement is "on", the point will not create any padding of the X axis. In a polar column chart this means that the first column points directly north. If the pointPlacement is "between", the columns will be laid out between ticks. This is useful for example for visualising an amount between two points in time or in a certain sector of a polar chart. Since Highcharts 3.0.2, the point placement can also be numeric, where 0 is on the axis value, -0.5 is between this value and the previous, and 0.5 is between this value and the next. Unlike the textual options, numeric point placement options won't affect axis padding. Note that pointPlacement needs a pointRange to work. For column series this is computed, but for line-type series it needs to be set. For the xrange series type and gantt charts, if the Y axis is a category axis, the pointPlacement applies to the Y axis rather than the (typically datetime) X axis. Defaults to undefined in cartesian charts, "between" in polar charts. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointplacement-between/">Between in a column chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointplacement-numeric/">Numeric placement for custom layout</a>
 */
 	public void setPointPlacement(Object /* String, Number */ pointPlacement) {
 		this.pointPlacement = pointPlacement;
@@ -411,18 +424,6 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 	}
 
 	public Boolean getConnectNulls(){ return connectNulls; }
-
-	private HIColor negativeColor;
-/**
-/** The color for the parts of the graph or points that are below the threshold. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-negative-color/">Spline, area and column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-negativecolor/">Arearange</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-negative-color/">Styled mode</a>
-*/
-	public void setNegativeColor(HIColor negativeColor) {
-		this.negativeColor = negativeColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getNegativeColor(){ return negativeColor; }
 
 	private Boolean enableMouseTracking;
 /**
@@ -461,6 +462,18 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	public String getStacking(){ return stacking; }
 
+	private HIAnimationOptionsObject animation;
+/**
+/** Enable or disable the initial animation when a series is displayed. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation of the series itself. For other animations, see chart.animation and the animation parameter under the API methods. The following properties are supported:  duration The duration of the animation in milliseconds. easing Can be a string reference to an easing function set on the Math object or a function. See the _Custom easing function_ demo below.  Due to poor performance, animation is disabled in old IE browsers for several chart types. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-disabled/">Animation disabled</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-slower/">Slower animation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/">Custom easing function</a>
+ <br><br><b>defaults:</b><br><br>&ensp;true*/
+	public void setAnimation(HIAnimationOptionsObject animation) {
+		this.animation = animation;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAnimationOptionsObject getAnimation(){ return animation; }
+
 	private String findNearestPointBy;
 /**
 /** Determines whether the series should look for the nearest point in both dimensions or just the x-dimension when hovering the series. Defaults to 'xy' for scatter series and 'x' for most other series. If the data has duplicate x-values, it is recommended to set this to 'xy' to allow hovering over all points. Applies only to series types using nearest neighbor search (not direct hover) for tooltip. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/findnearestpointby/">Different hover behaviors</a> <br><br><b>accepted values:</b><br><br>&ensp;["x", "xy"]
@@ -472,6 +485,18 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 	}
 
 	public String getFindNearestPointBy(){ return findNearestPointBy; }
+
+	private Number threshold;
+/**
+/** The threshold, also called zero level or base level. For line type series this is only used in conjunction with negativeColor. 
+ <br><br><b>defaults:</b><br><br>&ensp;0*/
+	public void setThreshold(Number threshold) {
+		this.threshold = threshold;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getThreshold(){ return threshold; }
 
 	private Boolean showCheckbox;
 /**
@@ -606,31 +631,6 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	public Boolean /* boolean */ getShadow(){ return shadow; }
 
-	private HIAnimationOptionsObject animation;
-/**
-/** Enable or disable the initial animation when a series is displayed. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation of the series itself. For other animations, see `chart.animation` and the animation parameter under the API methods. The following properties are supported:  duration The duration of the animation in milliseconds. easing Can be a string reference to an easing function set on the Math object or a function. See the _Custom easing function_ demo below.  Due to poor performance, animation is disabled in old IE browsers for several chart types. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-disabled/">Animation disabled</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-slower/">Slower animation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/">Custom easing function</a>
- <br><br><b>defaults:</b><br><br>&ensp;true*/
-	public void setAnimation(HIAnimationOptionsObject animation) {
-		this.animation = animation;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIAnimationOptionsObject getAnimation(){ return animation; }
-
-	private HITooltip tooltip;
-/**
-/** A configuration object for the tooltip rendering of each single series. Properties are inherited from tooltip, but only the following properties can be defined on a series level. 
-*/
-	public void setTooltip(HITooltip tooltip) {
-		this.tooltip = tooltip;
-		this.tooltip.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HITooltip getTooltip(){ return tooltip; }
-
 	private String zoneAxis;
 /**
 /** Defines the Axis on which the zones are applied. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/color-zones-zoneaxis-x/">Zones on the X-Axis</a>
@@ -667,17 +667,17 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	public String getPointIntervalUnit(){ return pointIntervalUnit; }
 
-	private Boolean connectEnds;
+	private Number lineWidth;
 /**
-/** Polar charts only. Whether to connect the ends of a line series plot across the extremes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/line-connectends-false/">Do not connect</a>
+/** Pixel width of the graph line. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-linewidth-general/">On all series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-linewidth-specific/">On one single series</a>
 */
-	public void setConnectEnds(Boolean connectEnds) {
-		this.connectEnds = connectEnds;
+	public void setLineWidth(Number lineWidth) {
+		this.lineWidth = lineWidth;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getConnectEnds(){ return connectEnds; }
+	public Number getLineWidth(){ return lineWidth; }
 
 	private Boolean visible;
 /**
@@ -703,17 +703,17 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	public String getLinkedTo(){ return linkedTo; }
 
-	private Number boostThreshold;
+	private Boolean stickyTracking;
 /**
-/** Set the point threshold for when a series should enter boost mode. Setting it to e.g. 2000 will cause the series to enter boost mode when there are 2000 or more points in the series. To disable boosting on the series, set the boostThreshold to 0. Setting it to 1 will force boosting. Requires modules/boost.js. 
- <br><br><b>defaults:</b><br><br>&ensp;5000*/
-	public void setBoostThreshold(Number boostThreshold) {
-		this.boostThreshold = boostThreshold;
+/** Sticky tracking of mouse events. When true, the mouseOut event on a series isn't triggered until the mouse moves over another series, or out of the plot area. When false, the mouseOut event on a series is triggered when the mouse leaves the area around the series' graph or markers. This also implies the tooltip when not shared. When stickyTracking is false and tooltip.shared is false, the tooltip will be hidden when moving the mouse between series. Defaults to true for line and area type series, but to false for columns, pies etc. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stickytracking-true/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stickytracking-false/">False</a>
+ <br><br><b>defaults:</b><br><br>&ensp;true*/
+	public void setStickyTracking(Boolean stickyTracking) {
+		this.stickyTracking = stickyTracking;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getBoostThreshold(){ return boostThreshold; }
+	public Boolean getStickyTracking(){ return stickyTracking; }
 
 	private HIDataLabels dataLabels;
 /**
@@ -728,17 +728,17 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	public HIDataLabels getDataLabels(){ return dataLabels; }
 
-	private String className;
+	private String cursor;
 /**
-/** An additional class name to apply to the series' graphical elements. This option does not replace defaults class names of the graphical element. 
+/** You can set the cursor to "pointer" if you have click events attached to the series, to signal to the user that the points and lines can be clicked. In styled mode, the series cursor can be set with the same classes as listed under series.color. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-cursor-line/">On line graph</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-cursor-column/">On columns</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-cursor-scatter/">On scatter markers</a>
 */
-	public void setClassName(String className) {
-		this.className = className;
+	public void setCursor(String cursor) {
+		this.cursor = cursor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getClassName(){ return className; }
+	public String getCursor(){ return cursor; }
 
 	private Number pointStart;
 /**
@@ -752,17 +752,17 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	public Number getPointStart(){ return pointStart; }
 
-	private Object borderWidth;
+	private Number borderWidth;
 /**
-/** The border width of each map area. In styled mode, the border stroke width is given in the .highcharts-point class. 
+/** The border width of each map area. In styled mode, the border stroke width is given in the .highcharts-point class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/series-border/">Borders demo</a>
 */
-	public void setBorderWidth(Object borderWidth) {
+	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getBorderWidth(){ return borderWidth; }
+	public Number getBorderWidth(){ return borderWidth; }
 
 	private String linecap;
 /**
@@ -776,29 +776,29 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	public String getLinecap(){ return linecap; }
 
-	private Number lineWidth;
+	private Boolean connectEnds;
 /**
-/** Pixel width of the graph line. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-linewidth-general/">On all series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-linewidth-specific/">On one single series</a>
+/** Polar charts only. Whether to connect the ends of a line series plot across the extremes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/line-connectends-false/">Do not connect</a>
 */
-	public void setLineWidth(Number lineWidth) {
-		this.lineWidth = lineWidth;
+	public void setConnectEnds(Boolean connectEnds) {
+		this.connectEnds = connectEnds;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getLineWidth(){ return lineWidth; }
+	public Boolean getConnectEnds(){ return connectEnds; }
 
-	private Boolean stickyTracking;
+	private Number boostThreshold;
 /**
-/** Sticky tracking of mouse events. When true, the mouseOut event on a series isn't triggered until the mouse moves over another series, or out of the plot area. When false, the mouseOut event on a series is triggered when the mouse leaves the area around the series' graph or markers. This also implies the tooltip when not shared. When stickyTracking is false and tooltip.shared is false, the tooltip will be hidden when moving the mouse between series. Defaults to true for line and area type series, but to false for columns, pies etc. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stickytracking-true/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stickytracking-false/">False</a>
- <br><br><b>defaults:</b><br><br>&ensp;true*/
-	public void setStickyTracking(Boolean stickyTracking) {
-		this.stickyTracking = stickyTracking;
+/** Set the point threshold for when a series should enter boost mode. Setting it to e.g. 2000 will cause the series to enter boost mode when there are 2000 or more points in the series. To disable boosting on the series, set the boostThreshold to 0. Setting it to 1 will force boosting. Note that the `cropThreshold` also affects this setting. When zooming in on a series that has fewer points than the cropThreshold, all points are rendered although outside the visible plot area, and the boostThreshold won't take effect. Requires modules/boost.js. 
+ <br><br><b>defaults:</b><br><br>&ensp;5000*/
+	public void setBoostThreshold(Number boostThreshold) {
+		this.boostThreshold = boostThreshold;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getStickyTracking(){ return stickyTracking; }
+	public Number getBoostThreshold(){ return boostThreshold; }
 
 	private Boolean showInLegend;
 /**
@@ -882,6 +882,9 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 		if (this.summary != null) {
 			params.put("summary", this.summary.getParams());
 		}
+		if (this.point != null) {
+			params.put("point", this.point.getParams());
+		}
 		if (this.selected != null) {
 			params.put("selected", this.selected);
 		}
@@ -891,8 +894,8 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 		if (this.clip != null) {
 			params.put("clip", this.clip);
 		}
-		if (this.point != null) {
-			params.put("point", this.point.getParams());
+		if (this.negativeColor != null) {
+			params.put("negativeColor", this.negativeColor.getData());
 		}
 		if (this.color != null) {
 			params.put("color", this.color.getData());
@@ -906,9 +909,6 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 		if (this.states != null) {
 			params.put("states", this.states.getParams());
 		}
-		if (this.threshold != null) {
-			params.put("threshold", this.threshold);
-		}
 		if (this.softThreshold != null) {
 			params.put("softThreshold", this.softThreshold);
 		}
@@ -918,14 +918,17 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 		if (this.marker != null) {
 			params.put("marker", this.marker.getParams());
 		}
+		if (this.tooltip != null) {
+			params.put("tooltip", this.tooltip.getParams());
+		}
 		if (this.pointDescriptionFormatter != null) {
 			params.put("pointDescriptionFormatter", this.pointDescriptionFormatter);
 		}
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
 		}
-		if (this.cursor != null) {
-			params.put("cursor", this.cursor);
+		if (this.className != null) {
+			params.put("className", this.className);
 		}
 		if (this.dashStyle != null) {
 			params.put("dashStyle", this.dashStyle);
@@ -936,9 +939,6 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 		if (this.connectNulls != null) {
 			params.put("connectNulls", this.connectNulls);
 		}
-		if (this.negativeColor != null) {
-			params.put("negativeColor", this.negativeColor.getData());
-		}
 		if (this.enableMouseTracking != null) {
 			params.put("enableMouseTracking", this.enableMouseTracking);
 		}
@@ -948,8 +948,14 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 		if (this.stacking != null) {
 			params.put("stacking", this.stacking);
 		}
+		if (this.animation != null) {
+			params.put("animation", this.animation.getParams());
+		}
 		if (this.findNearestPointBy != null) {
 			params.put("findNearestPointBy", this.findNearestPointBy);
+		}
+		if (this.threshold != null) {
+			params.put("threshold", this.threshold);
 		}
 		if (this.showCheckbox != null) {
 			params.put("showCheckbox", this.showCheckbox);
@@ -993,12 +999,6 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 		if (this.shadow != null) {
 			params.put("shadow", this.shadow);
 		}
-		if (this.animation != null) {
-			params.put("animation", this.animation.getParams());
-		}
-		if (this.tooltip != null) {
-			params.put("tooltip", this.tooltip.getParams());
-		}
 		if (this.zoneAxis != null) {
 			params.put("zoneAxis", this.zoneAxis);
 		}
@@ -1017,8 +1017,8 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 		if (this.pointIntervalUnit != null) {
 			params.put("pointIntervalUnit", this.pointIntervalUnit);
 		}
-		if (this.connectEnds != null) {
-			params.put("connectEnds", this.connectEnds);
+		if (this.lineWidth != null) {
+			params.put("lineWidth", this.lineWidth);
 		}
 		if (this.visible != null) {
 			params.put("visible", this.visible);
@@ -1026,28 +1026,29 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 		if (this.linkedTo != null) {
 			params.put("linkedTo", this.linkedTo);
 		}
-		if (this.boostThreshold != null) {
-			params.put("boostThreshold", this.boostThreshold);
+		if (this.stickyTracking != null) {
+			params.put("stickyTracking", this.stickyTracking);
 		}
 		if (this.dataLabels != null) {
 			params.put("dataLabels", this.dataLabels.getParams());
 		}
-		if (this.className != null) {
-			params.put("className", this.className);
+		if (this.cursor != null) {
+			params.put("cursor", this.cursor);
 		}
 		if (this.pointStart != null) {
 			params.put("pointStart", this.pointStart);
 		}
 		if (this.borderWidth != null) {
+			params.put("borderWidth", this.borderWidth);
 		}
 		if (this.linecap != null) {
 			params.put("linecap", this.linecap);
 		}
-		if (this.lineWidth != null) {
-			params.put("lineWidth", this.lineWidth);
+		if (this.connectEnds != null) {
+			params.put("connectEnds", this.connectEnds);
 		}
-		if (this.stickyTracking != null) {
-			params.put("stickyTracking", this.stickyTracking);
+		if (this.boostThreshold != null) {
+			params.put("boostThreshold", this.boostThreshold);
 		}
 		if (this.showInLegend != null) {
 			params.put("showInLegend", this.showInLegend);

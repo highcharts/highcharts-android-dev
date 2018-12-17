@@ -24,8 +24,8 @@ public class HIExporting extends Observable implements HIChartsJSONSerializable 
 
 	private Object menuItemDefinitions;
 /**
-/** An object consisting of definitions for the menu items in the context menu. Each key value pair has a key that is referenced in the menuItems setting, and a value, which is an object with the following properties:  onclick The click handler for the menu item text The text for the menu item textKey If internationalization is required, the key to a language string   <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/menuitemdefinitions/">Menu item definitions</a>
-*/
+/** An object consisting of definitions for the menu items in the context menu. Each key value pair has a key that is referenced in the menuItems setting, and a value, which is an object with the following properties: - **onclick:** The click handler for the menu item - **text:** The text for the menu item - **textKey:** If internationalization is required, the key to a language  string <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/menuitemdefinitions/">Menu item definitions</a>
+ <br><br><b>defaults:</b><br><br>&ensp;{"printChart": {}, "separator": {}, "downloadPNG": {}, "downloadJPEG": {}, "downloadPDF": {}, "downloadSVG": {}}*/
 	public void setMenuItemDefinitions(Object menuItemDefinitions) {
 		this.menuItemDefinitions = menuItemDefinitions;
 		this.setChanged();
@@ -48,7 +48,7 @@ public class HIExporting extends Observable implements HIChartsJSONSerializable 
 
 	private Number sourceWidth;
 /**
-/** The width of the original chart when exported, unless an explicit chart.width is set. The width exported raster image is then multiplied by scale. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/sourcewidth/">Source size demo</a>
+/** The width of the original chart when exported, unless an explicit chart.width is set, or a pixel width is set on the container. The width exported raster image is then multiplied by scale. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/sourcewidth/">Source size demo</a>
 */
 	public void setSourceWidth(Number sourceWidth) {
 		this.sourceWidth = sourceWidth;
@@ -109,8 +109,8 @@ public class HIExporting extends Observable implements HIChartsJSONSerializable 
 
 	private Number width;
 /**
-/** The pixel width of charts exported to PNG or JPG. As of Highcharts 3.0, the defaults pixel width is a function of the `chart.width` or exporting.sourceWidth and the exporting.scale. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/width/">Export to 200px wide images</a>
- <br><br><b>defaults:</b><br><br>&ensp;undefined*/
+/** The pixel width of charts exported to PNG or JPG. As of Highcharts 3.0, the defaults pixel width is a function of the chart.width or exporting.sourceWidth and the exporting.scale. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/width/">Export to 200px wide images</a>
+*/
 	public void setWidth(Number width) {
 		this.width = width;
 		this.setChanged();
@@ -122,7 +122,7 @@ public class HIExporting extends Observable implements HIChartsJSONSerializable 
 	private Number printMaxWidth;
 /**
 /** When printing the chart from the menu item in the burger menu, if the on-screen chart exceeds this width, it is resized. After printing or cancelled, it is restored. The defaults width makes the chart fit into typical paper format. Note that this does not affect the chart when printing the web page as a whole. 
- <br><br><b>defaults:</b><br><br>&ensp;780*/
+*/
 	public void setPrintMaxWidth(Number printMaxWidth) {
 		this.printMaxWidth = printMaxWidth;
 		this.setChanged();
@@ -156,21 +156,21 @@ public class HIExporting extends Observable implements HIChartsJSONSerializable 
 
 	public String getType(){ return type; }
 
-	private Object chartOptions;
+	private Object /* boolean, String */ tableCaption;
 /**
-/** Additional chart options to be merged into an exported chart. For example, a common use case is to add data labels to improve readability of the exported chart, or to add a printer-friendly color scheme. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/chartoptions-data-labels/">Added data labels</a>
- <br><br><b>defaults:</b><br><br>&ensp;null*/
-	public void setChartOptions(Object chartOptions) {
-		this.chartOptions = chartOptions;
+/** Export-data module required. Caption for the data table. Same as chart title by defaults. Set to false to disable. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table">Multiple table headers</a>
+*/
+	public void setTableCaption(Object /* boolean, String */ tableCaption) {
+		this.tableCaption = tableCaption;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getChartOptions(){ return chartOptions; }
+	public Object /* boolean, String */ getTableCaption(){ return tableCaption; }
 
 	private Object formAttributes;
 /**
-/** An object containing additional attributes for the POST form that sends the SVG to the export server. For example, a target can be set to make sure the generated image is received in another frame, or a custom enctype or encoding can be set. 
+/** An object containing additional key value data for the POST form that sends the SVG to the export server. For example, a target can be set to make sure the generated image is received in another frame, or a custom enctype or encoding can be set. 
 */
 	public void setFormAttributes(Object formAttributes) {
 		this.formAttributes = formAttributes;
@@ -180,17 +180,17 @@ public class HIExporting extends Observable implements HIChartsJSONSerializable 
 
 	public Object getFormAttributes(){ return formAttributes; }
 
-	private Boolean fallbackToExportServer;
+	private Boolean useMultiLevelHeaders;
 /**
-/** Whether or not to fall back to the export server if the offline-exporting module is unable to export the chart on the client side. This happens for certain browsers, and certain features (e.g.allowHTML), depending on the image type exporting to. For very complex charts, it is possible that export can fail in browsers that don't support Blob objects, due to data URL length limits. It is recommended to define the exporting.error handler if disabling fallback, in order to notify users in case export fails. 
- <br><br><b>defaults:</b><br><br>&ensp;true*/
-	public void setFallbackToExportServer(Boolean fallbackToExportServer) {
-		this.fallbackToExportServer = fallbackToExportServer;
+/** Export-data module required. Use multi level headers in data table. If csv.columnHeaderFormatter is defined, it has to return objects in order for multi level headers to work. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table">Multiple table headers</a>
+*/
+	public void setUseMultiLevelHeaders(Boolean useMultiLevelHeaders) {
+		this.useMultiLevelHeaders = useMultiLevelHeaders;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getFallbackToExportServer(){ return fallbackToExportServer; }
+	public Boolean getUseMultiLevelHeaders(){ return useMultiLevelHeaders; }
 
 	private Boolean useRowspanHeaders;
 /**
@@ -204,17 +204,17 @@ public class HIExporting extends Observable implements HIChartsJSONSerializable 
 
 	public Boolean getUseRowspanHeaders(){ return useRowspanHeaders; }
 
-	private Boolean useMultiLevelHeaders;
+	private Boolean fallbackToExportServer;
 /**
-/** Export-data module required. Use multi level headers in data table. If csv.columnHeaderFormatter is defined, it has to return objects in order for multi level headers to work. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table">Multiple table headers</a>
-*/
-	public void setUseMultiLevelHeaders(Boolean useMultiLevelHeaders) {
-		this.useMultiLevelHeaders = useMultiLevelHeaders;
+/** Whether or not to fall back to the export server if the offline-exporting module is unable to export the chart on the client side. This happens for certain browsers, and certain features (e.g.allowHTML), depending on the image type exporting to. For very complex charts, it is possible that export can fail in browsers that don't support Blob objects, due to data URL length limits. It is recommended to define the exporting.error handler if disabling fallback, in order to notify users in case export fails. 
+ <br><br><b>defaults:</b><br><br>&ensp;true*/
+	public void setFallbackToExportServer(Boolean fallbackToExportServer) {
+		this.fallbackToExportServer = fallbackToExportServer;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getUseMultiLevelHeaders(){ return useMultiLevelHeaders; }
+	public Boolean getFallbackToExportServer(){ return fallbackToExportServer; }
 
 	private String url;
 /**
@@ -252,22 +252,22 @@ public class HIExporting extends Observable implements HIChartsJSONSerializable 
 
 	public Boolean getAllowHTML(){ return allowHTML; }
 
-	private Object /* Boolean|String */ tableCaption;
+	private HashMap chartOptions;
 /**
-/** Export-data module required. Caption for the data table. Same as chart title by defaults. Set to false to disable. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table">Multiple table headers</a>
- <br><br><b>defaults:</b><br><br>&ensp;undefined*/
-	public void setTableCaption(Object /* Boolean|String */ tableCaption) {
-		this.tableCaption = tableCaption;
+/** Additional chart options to be merged into an exported chart. For example, a common use case is to add data labels to improve readability of the exported chart, or to add a printer-friendly color scheme. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/chartoptions-data-labels/">Added data labels</a>
+*/
+	public void setChartOptions(HashMap chartOptions) {
+		this.chartOptions = chartOptions;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Boolean|String */ getTableCaption(){ return tableCaption; }
+	public HashMap getChartOptions(){ return chartOptions; }
 
 	private HIFunction error;
 /**
-/** Function to call if the offline-exporting module fails to export a chart on the client side, and `fallbackToExportServer` is disabled. If left undefined, an exception is thrown instead. Receives two parameters, the exporting options, and the error from the module. 
- <br><br><b>defaults:</b><br><br>&ensp;undefined*/
+/** Function to call if the offline-exporting module fails to export a chart on the client side, and fallbackToExportServer is disabled. If left undefined, an exception is thrown instead. Receives two parameters, the exporting options, and the error from the module. 
+*/
 	public void setError(HIFunction error) {
 		this.error = error;
 		this.setChanged();
@@ -367,20 +367,20 @@ public class HIExporting extends Observable implements HIChartsJSONSerializable 
 		if (this.type != null) {
 			params.put("type", this.type);
 		}
-		if (this.chartOptions != null) {
-			params.put("chartOptions", this.chartOptions);
+		if (this.tableCaption != null) {
+			params.put("tableCaption", this.tableCaption);
 		}
 		if (this.formAttributes != null) {
 			params.put("formAttributes", this.formAttributes);
 		}
-		if (this.fallbackToExportServer != null) {
-			params.put("fallbackToExportServer", this.fallbackToExportServer);
+		if (this.useMultiLevelHeaders != null) {
+			params.put("useMultiLevelHeaders", this.useMultiLevelHeaders);
 		}
 		if (this.useRowspanHeaders != null) {
 			params.put("useRowspanHeaders", this.useRowspanHeaders);
 		}
-		if (this.useMultiLevelHeaders != null) {
-			params.put("useMultiLevelHeaders", this.useMultiLevelHeaders);
+		if (this.fallbackToExportServer != null) {
+			params.put("fallbackToExportServer", this.fallbackToExportServer);
 		}
 		if (this.url != null) {
 			params.put("url", this.url);
@@ -391,8 +391,8 @@ public class HIExporting extends Observable implements HIChartsJSONSerializable 
 		if (this.allowHTML != null) {
 			params.put("allowHTML", this.allowHTML);
 		}
-		if (this.tableCaption != null) {
-			params.put("tableCaption", this.tableCaption);
+		if (this.chartOptions != null) {
+			params.put("chartOptions", this.chartOptions);
 		}
 		if (this.error != null) {
 			params.put("error", this.error);

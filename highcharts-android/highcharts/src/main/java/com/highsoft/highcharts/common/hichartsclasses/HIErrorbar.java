@@ -51,17 +51,17 @@ public class HIErrorbar extends HISeries {
 
 	public Boolean getGrouping(){ return grouping; }
 
-	private HIColor medianColor;
+	private Number stemWidth;
 /**
-/** The color of the median line. If null, the general series color applies. In styled mode, the median stroke width can be set with the .highcharts-boxplot-median class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/error-bar-styling/">Error bar styling</a>
- <br><br><b>defaults:</b><br><br>&ensp;null*/
-	public void setMedianColor(HIColor medianColor) {
-		this.medianColor = medianColor;
+/** The width of the stem, the vertical line extending from the box to the whiskers. If undefined, the width is inherited from the lineWidth option. In styled mode, the stem stroke width can be set with the .highcharts-boxplot-stem class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/error-bar-styling/">Error bar styling</a>
+*/
+	public void setStemWidth(Number stemWidth) {
+		this.stemWidth = stemWidth;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getMedianColor(){ return medianColor; }
+	public Number getStemWidth(){ return stemWidth; }
 
 	private Number medianWidth;
 /**
@@ -77,8 +77,8 @@ public class HIErrorbar extends HISeries {
 
 	private HIColor whiskerColor;
 /**
-/** The color of the whiskers, the horizontal lines marking low and high values. When null, the general series color is used. In styled mode, the whisker stroke can be set with the .highcharts-boxplot-whisker class . <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>
- <br><br><b>defaults:</b><br><br>&ensp;null*/
+/** The color of the whiskers, the horizontal lines marking low and high values. When undefined, the general series color is used. In styled mode, the whisker stroke can be set with the .highcharts-boxplot-whisker class . <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>
+*/
 	public void setWhiskerColor(HIColor whiskerColor) {
 		this.whiskerColor = whiskerColor;
 		this.setChanged();
@@ -87,29 +87,17 @@ public class HIErrorbar extends HISeries {
 
 	public HIColor getWhiskerColor(){ return whiskerColor; }
 
-	private HIColor stemColor;
+	private HIColor medianColor;
 /**
-/** The color of the stem, the vertical line extending from the box to the whiskers. If null, the series color is used. In styled mode, the stem stroke can be set with the .highcharts-boxplot-stem class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/error-bar-styling/">Error bar styling</a>
- <br><br><b>defaults:</b><br><br>&ensp;null*/
-	public void setStemColor(HIColor stemColor) {
-		this.stemColor = stemColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getStemColor(){ return stemColor; }
-
-	private Object /* Number|String */ whiskerLength;
-/**
-/** The length of the whiskers, the horizontal lines marking low and high values. It can be a numerical pixel value, or a percentage value of the box width. Set 0 to disable whiskers. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">True by defaults</a>
+/** The color of the median line. If undefined, the general series color applies. In styled mode, the median stroke width can be set with the .highcharts-boxplot-median class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/error-bar-styling/">Error bar styling</a>
 */
-	public void setWhiskerLength(Object /* Number|String */ whiskerLength) {
-		this.whiskerLength = whiskerLength;
+	public void setMedianColor(HIColor medianColor) {
+		this.medianColor = medianColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number|String */ getWhiskerLength(){ return whiskerLength; }
+	public HIColor getMedianColor(){ return medianColor; }
 
 	private String stemDashStyle;
 /**
@@ -123,17 +111,17 @@ public class HIErrorbar extends HISeries {
 
 	public String getStemDashStyle(){ return stemDashStyle; }
 
-	private Number stemWidth;
+	private Object /* Number, String */ whiskerLength;
 /**
-/** The width of the stem, the vertical line extending from the box to the whiskers. If null, the width is inherited from the lineWidth option. In styled mode, the stem stroke width can be set with the .highcharts-boxplot-stem class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/error-bar-styling/">Error bar styling</a>
- <br><br><b>defaults:</b><br><br>&ensp;null*/
-	public void setStemWidth(Number stemWidth) {
-		this.stemWidth = stemWidth;
+/** The length of the whiskers, the horizontal lines marking low and high values. It can be a numerical pixel value, or a percentage value of the box width. Set 0 to disable whiskers. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">True by defaults</a>
+*/
+	public void setWhiskerLength(Object /* Number, String */ whiskerLength) {
+		this.whiskerLength = whiskerLength;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getStemWidth(){ return stemWidth; }
+	public Object /* Number, String */ getWhiskerLength(){ return whiskerLength; }
 
 	private HIColor fillColor;
 /**
@@ -146,6 +134,18 @@ public class HIErrorbar extends HISeries {
 	}
 
 	public HIColor getFillColor(){ return fillColor; }
+
+	private Number pointPadding;
+/**
+/** Padding between each column or bar, in x axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-defaults/">0.1 by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-025/">0.25</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-none/">0 for tightly packed columns</a>
+*/
+	public void setPointPadding(Number pointPadding) {
+		this.pointPadding = pointPadding;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPointPadding(){ return pointPadding; }
 
 	private Number pointRange;
 /**
@@ -173,7 +173,7 @@ public class HIErrorbar extends HISeries {
 
 	private ArrayList<String> colors;
 /**
-/** A series specific or series type specific color set to apply instead of the global colors when `colorByPoint` is true. 
+/** A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
 */
 	public void setColors(ArrayList<String> colors) {
 		this.colors = colors;
@@ -194,18 +194,6 @@ public class HIErrorbar extends HISeries {
 	}
 
 	public HIColor getEdgeColor(){ return edgeColor; }
-
-	private Boolean colorByPoint;
-/**
-/** When using automatic point colors pulled from the global `colors` or series-specific `plotOptions.column.colors` collections, this option determines whether the chart should receive one color per series or one color per point. In styled mode, the colors or series.colors arrays are not supported, and instead this option gives the points individual color class names on the form highcharts-color-{n}. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-false/">False by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-true/">True</a>
- <br><br><b>defaults:</b><br><br>&ensp;false*/
-	public void setColorByPoint(Boolean colorByPoint) {
-		this.colorByPoint = colorByPoint;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getColorByPoint(){ return colorByPoint; }
 
 	private Number maxPointWidth;
 /**
@@ -231,17 +219,17 @@ public class HIErrorbar extends HISeries {
 
 	public Number getPointWidth(){ return pointWidth; }
 
-	private Number pointPadding;
+	private Boolean colorByPoint;
 /**
-/** Padding between each column or bar, in x axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-defaults/">0.1 by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-025/">0.25</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-none/">0 for tightly packed columns</a>
-*/
-	public void setPointPadding(Number pointPadding) {
-		this.pointPadding = pointPadding;
+/** When using automatic point colors pulled from the global `colors` or series-specific `plotOptions.column.colors` collections, this option determines whether the chart should receive one color per series or one color per point. In styled mode, the colors or series.colors arrays are not supported, and instead this option gives the points individual color class names on the form highcharts-color-{n}. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-false/">False by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-true/">True</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
+	public void setColorByPoint(Boolean colorByPoint) {
+		this.colorByPoint = colorByPoint;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getPointPadding(){ return pointPadding; }
+	public Boolean getColorByPoint(){ return colorByPoint; }
 
 	private Number groupPadding;
 /**
@@ -318,8 +306,8 @@ public class HIErrorbar extends HISeries {
 		if (this.grouping != null) {
 			params.put("grouping", this.grouping);
 		}
-		if (this.medianColor != null) {
-			params.put("medianColor", this.medianColor.getData());
+		if (this.stemWidth != null) {
+			params.put("stemWidth", this.stemWidth);
 		}
 		if (this.medianWidth != null) {
 			params.put("medianWidth", this.medianWidth);
@@ -327,20 +315,20 @@ public class HIErrorbar extends HISeries {
 		if (this.whiskerColor != null) {
 			params.put("whiskerColor", this.whiskerColor.getData());
 		}
-		if (this.stemColor != null) {
-			params.put("stemColor", this.stemColor.getData());
-		}
-		if (this.whiskerLength != null) {
-			params.put("whiskerLength", this.whiskerLength);
+		if (this.medianColor != null) {
+			params.put("medianColor", this.medianColor.getData());
 		}
 		if (this.stemDashStyle != null) {
 			params.put("stemDashStyle", this.stemDashStyle);
 		}
-		if (this.stemWidth != null) {
-			params.put("stemWidth", this.stemWidth);
+		if (this.whiskerLength != null) {
+			params.put("whiskerLength", this.whiskerLength);
 		}
 		if (this.fillColor != null) {
 			params.put("fillColor", this.fillColor.getData());
+		}
+		if (this.pointPadding != null) {
+			params.put("pointPadding", this.pointPadding);
 		}
 		if (this.pointRange != null) {
 			params.put("pointRange", this.pointRange);
@@ -363,17 +351,14 @@ public class HIErrorbar extends HISeries {
 		if (this.edgeColor != null) {
 			params.put("edgeColor", this.edgeColor.getData());
 		}
-		if (this.colorByPoint != null) {
-			params.put("colorByPoint", this.colorByPoint);
-		}
 		if (this.maxPointWidth != null) {
 			params.put("maxPointWidth", this.maxPointWidth);
 		}
 		if (this.pointWidth != null) {
 			params.put("pointWidth", this.pointWidth);
 		}
-		if (this.pointPadding != null) {
-			params.put("pointPadding", this.pointPadding);
+		if (this.colorByPoint != null) {
+			params.put("colorByPoint", this.colorByPoint);
 		}
 		if (this.groupPadding != null) {
 			params.put("groupPadding", this.groupPadding);

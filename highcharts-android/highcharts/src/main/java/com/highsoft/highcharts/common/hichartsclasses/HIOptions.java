@@ -1,7 +1,6 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.sql.Array;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
@@ -61,6 +60,20 @@ public class HIOptions extends Observable {
 	}
 
 	public ArrayList<HISeries> getSeries(){ return series; }
+
+	private HILabels labels;
+
+/**
+/** HTML labels that can be positioned anywhere in the chart area. 
+*/
+	public void setLabels(HILabels labels) {
+		this.labels = labels;
+		this.labels.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HILabels getLabels(){ return labels; }
 
 	private HIAccessibility accessibility;
 
@@ -177,7 +190,7 @@ public class HIOptions extends Observable {
 	private HIPlotOptions plotOptions;
 
 /**
-/** The plotOptions is a wrapper object for config objects for each series type. The config objects for each series can also be overridden for each series item as given in the series array. Configuration options for the series are given in three levels. Options for all series in a chart are given in the `plotOptions.series` object. Then options for all series of a specific type are given in the plotOptions of that type, for example plotOptions.line. Next, options for one single series are given in the series array. 
+/** The plotOptions is a wrapper object for config objects for each series type. The config objects for each series can also be overridden for each series item as given in the series array. Configuration options for the series are given in three levels. Options for all series in a chart are given in the plotOptions.series object. Then options for all series of a specific type are given in the plotOptions of that type, for example plotOptions.line. Next, options for one single series are given in the series array. 
 */
 	public void setPlotOptions(HIPlotOptions plotOptions) {
 		this.plotOptions = plotOptions;
@@ -205,7 +218,7 @@ public class HIOptions extends Observable {
 	private HIBoost boost;
 
 /**
-/** Options for the Boost module. The Boost module allows certain series types to be rendered by WebGL instead of the default SVG. This allows hundreds of thousands of data points to be rendered in milliseconds. In addition to the WebGL rendering it saves time by skipping processing and inspection of the data wherever possible. This introduces some limitations to what features are available in Boost mode. See `the docs` for details. In addition to the global boost option, each series has a boostThreshold that defines when the boost should kick in. Requires the modules/boost.js module. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/line">Line chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/line-series-heavy">Line chart with hundreds of series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/scatter">Scatter chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/area">Area chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/arearange">Area range chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/column">Column chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/columnrange">Column range chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/bubble">Bubble chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/heatmap">Heat map</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/treemap">Tree map</a>
+/** Options for the Boost module. The Boost module allows certain series types to be rendered by WebGL instead of the default SVG. This allows hundreds of thousands of data points to be rendered in milliseconds. In addition to the WebGL rendering it saves time by skipping processing and inspection of the data wherever possible. This introduces some limitations to what features are available in Boost mode. See [the docs](https://www.highcharts.com/docs/advanced-chart-features/boost-module) for details. In addition to the global boost option, each series has a boostThreshold that defines when the boost should kick in. Requires the modules/boost.js module. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/line">Line chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/line-series-heavy">Line chart with hundreds of series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/scatter">Scatter chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/area">Area chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/arearange">Area range chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/column">Column chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/columnrange">Column range chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/bubble">Bubble chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/heatmap">Heat map</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/treemap">Tree map</a>
 */
 	public void setBoost(HIBoost boost) {
 		this.boost = boost;
@@ -242,20 +255,6 @@ public class HIOptions extends Observable {
 
 	public Object getDefs(){ return defs; }
 
-	private HILabels labels;
-
-/**
-/** HTML labels that can be positioned anywhere in the chart area. 
-*/
-	public void setLabels(HILabels labels) {
-		this.labels = labels;
-		this.labels.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HILabels getLabels(){ return labels; }
-
 	private HIChart chart;
 
 /**
@@ -287,7 +286,7 @@ public class HIOptions extends Observable {
 	private ArrayList<HIZAxis> zAxis;
 
 /**
-/** The Z axis or depth axis for 3D plots. See `the Axis object` for programmatic access to the axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/scatter-zaxis-categories/">Z-Axis with Categories</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/scatter-zaxis-grid/">Z-Axis with styling</a>
+/** The Z axis or depth axis for 3D plots. See the `Axis class` for programmatic access to the axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/scatter-zaxis-categories/">Z-Axis with Categories</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/scatter-zaxis-grid/">Z-Axis with styling</a>
 */
 	public void setZAxis(ArrayList<HIZAxis> zAxis) {
 		this.zAxis = zAxis;
@@ -300,7 +299,7 @@ public class HIOptions extends Observable {
 	private ArrayList<HIXAxis> xAxis;
 
 /**
-/** The X axis or category axis. Normally this is the horizontal axis, though if the chart is inverted this is the vertical axis. In case of multiple axes, the xAxis node is an array of configuration objects. See `the Axis object` for programmatic access to the axis. 
+/** The X axis or category axis. Normally this is the horizontal axis, though if the chart is inverted this is the vertical axis. In case of multiple axes, the xAxis node is an array of configuration objects. See the `Axis class` for programmatic access to the axis. 
 */
 	public void setXAxis(ArrayList<HIXAxis> xAxis) {
 		this.xAxis = xAxis;
@@ -313,7 +312,7 @@ public class HIOptions extends Observable {
 	private HIDrilldown drilldown;
 
 /**
-/** Options for drill down, the concept of inspecting increasingly high resolution data through clicking on chart items like columns or pie slices. The drilldown feature requires the drilldown.js file to be loaded, found in the modules directory of the download package, or online at `https://code.highcharts.com/modules/drilldown.js `. 
+/** Options for drill down, the concept of inspecting increasingly high resolution data through clicking on chart items like columns or pie slices. The drilldown feature requires the drilldown.js file to be loaded, found in the modules directory of the download package, or online at `https://code.highcharts.com/modules/drilldown.js`. 
 */
 	public void setDrilldown(HIDrilldown drilldown) {
 		this.drilldown = drilldown;
@@ -429,6 +428,9 @@ public Map<String, Object> getParams() {
 			}
 			params.put("series", array);
 		}
+		if (this.labels != null) {
+			params.put("labels", this.labels.getParams());
+		}
 		if (this.accessibility != null) {
 			params.put("accessibility", this.accessibility.getParams());
 		}
@@ -486,9 +488,6 @@ public Map<String, Object> getParams() {
 		if (this.defs != null) {
 			params.put("defs", this.defs);
 		}
-		if (this.labels != null) {
-			params.put("labels", this.labels.getParams());
-		}
 		if (this.chart != null) {
 			params.put("chart", this.chart.getParams());
 		}
@@ -502,7 +501,7 @@ public Map<String, Object> getParams() {
 					array.add(((HIChartsJSONSerializable) obj).getParams());
 				}
 				else {
-					array.add(obj);
+				array.add(obj);
 				}
 			}
 			params.put("zAxis", array);

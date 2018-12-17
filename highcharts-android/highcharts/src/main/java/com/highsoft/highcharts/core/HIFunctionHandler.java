@@ -1,16 +1,12 @@
 package com.highsoft.highcharts.core;
 
-import android.annotation.SuppressLint;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.webkit.JavascriptInterface;
-import android.webkit.ValueCallback;
-import android.webkit.WebView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -19,70 +15,52 @@ import java.util.Map;
 
 final class HIFunctionHandler {
 
-    private HIConsumer<HIChartContext> hiConsumer;
-    private String[] properties;
-    private HIFunctionInterface<HIChartContext, String> hiFunctionInterface;
-    private Runnable runnable;
-    private WebView webView;
-    private String id;
+    private HashMap<String, Runnable> runnablesMap;
+    private HashMap<String, HIConsumer<HIChartContext>> hiConsumersMap;
+    private HashMap<String, HIFunctionInterface<HIChartContext, String>> hiFunctionInterfacesMap;
 
-    HIFunctionHandler(WebView webView) {
-        this.webView = webView;
+    HIFunctionHandler() {
+        runnablesMap = new HashMap<>();
+        hiConsumersMap = new HashMap<>();
+        hiFunctionInterfacesMap = new HashMap<>();
     }
 
-    HIFunctionHandler(Runnable runnable) {
-        this.runnable = runnable;
-    }
-
-    HIFunctionHandler(HIConsumer<HIChartContext> hiConsumer, WebView webView, String id, String[] properties) {
-        this.hiConsumer = hiConsumer;
-        this.properties = properties;
-        this.webView = webView;
-        this.id = id;
-    }
-
-    HIFunctionHandler(HIFunctionInterface<HIChartContext, String> hiFunctionInterface, WebView webView, String id, String[] properties) {
-        this.hiFunctionInterface = hiFunctionInterface;
-        this.properties = properties;
-        this.webView = webView;
-        this.id = id;
-    }
-
-    @SuppressLint("AddJavascriptInterface")
     @JavascriptInterface
-    public void androidHandler(){
-        if(this.hiConsumer != null) {
-            String script = "javascript:getPropertiesDictionary('%s', %s, false)";
-            String argsStr = "[";
-            for (String arg : properties) {
-                argsStr = argsStr.concat("'" + arg + "',");
-            }
-            argsStr = argsStr.substring(0, argsStr.length() - 1).concat("]");
-            script = String.format(script, this.id, argsStr);
-            String finalScript = script;
-            webView.post(new Runnable() {
-                @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-                @Override
-                public void run() {
-                    webView.evaluateJavascript(finalScript, new ValueCallback<String>() {
-                                @Override
-                                public void onReceiveValue(String s) {
-                                    Type mapType = new TypeToken<Map<String, Object>>(){}.getType();
-                                    Map<String, Object> map = new Gson().fromJson(s, mapType);
-                                    hiConsumer.accept(new HIChartContext(map));
-                                }
-                            });
-                }
-            });
-        }
-        else this.runnable.run();
-    }
-
-    @SuppressLint("AddJavascriptInterface")
-    @JavascriptInterface
-    public String androidReturnHandler(String s){
+    public String androidReturnHandler(String id, String properties){
         Type mapType = new TypeToken<Map<String, Object>>(){}.getType();
-        Map<String, Object> map = new Gson().fromJson(s, mapType);
-        return hiFunctionInterface.apply(new HIChartContext(map));
+        Map<String, Object> map = new Gson().fromJson(properties, mapType);
+        HIFunctionInterface<HIChartContext, String> hifi = hiFunctionInterfacesMap.get(id);
+        return hifi.apply(new HIChartContext(map));
     }
+
+    @JavascriptInterface
+    public void androidHandler(int type, String id, String properties){
+        switch (type) {
+            case 0:
+                Runnable runnable = runnablesMap.get(id);
+                runnable.run();
+                break;
+            case 1:
+                HIConsumer<HIChartContext> hiConsumer = hiConsumersMap.get(id);
+                Type mapType = new TypeToken<Map<String, Object>>(){}.getType();
+                Map<String, Object> map = new Gson().fromJson(properties, mapType);
+                hiConsumer.accept(new HIChartContext(map));
+                break;
+            default:
+                break;
+        }
+    }
+
+    void addRunnable(String id, Runnable r){
+        runnablesMap.put(id, r);
+    }
+
+    void addHIConsumer(String id, HIConsumer<HIChartContext> hic){
+        hiConsumersMap.put(id, hic);
+    }
+
+    void addHIFunctionInterface(String id, HIFunctionInterface<HIChartContext, String> hifi){
+        hiFunctionInterfacesMap.put(id, hifi);
+    }
+
 }

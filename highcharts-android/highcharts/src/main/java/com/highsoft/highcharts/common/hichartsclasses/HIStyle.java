@@ -49,38 +49,23 @@ public class HIStyle extends Observable implements HIChartsJSONSerializable {
 
 	public String getFontSize(){ return fontSize; }
 
-	private String fontFamily;
-	public void setFontFamily(String fontFamily) {
-		this.fontFamily = fontFamily;
+	private String stroke;
+	public void setStroke(String stroke) {
+		this.stroke = stroke;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getFontFamily(){ return fontFamily; }
+	public String getStroke(){ return stroke; }
 
-	private Number borderRadius;
-/**
-/** Border radius of the focus border. 
- <br><br><b>defaults:</b><br><br>&ensp;3*/
-	public void setBorderRadius(Number borderRadius) {
-		this.borderRadius = borderRadius;
+	private String fill;
+	public void setFill(String fill) {
+		this.fill = fill;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getBorderRadius(){ return borderRadius; }
-
-	private Number lineWidth;
-/**
-/** Line width of the focus border. 
- <br><br><b>defaults:</b><br><br>&ensp;2*/
-	public void setLineWidth(Number lineWidth) {
-		this.lineWidth = lineWidth;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getLineWidth(){ return lineWidth; }
+	public String getFill(){ return fill; }
 
 	private String textOverflow;
 	public void setTextOverflow(String textOverflow) {
@@ -128,14 +113,11 @@ public class HIStyle extends Observable implements HIChartsJSONSerializable {
 		if (this.fontSize != null) {
 			params.put("fontSize", this.fontSize);
 		}
-		if (this.fontFamily != null) {
-			params.put("fontFamily", this.fontFamily);
+		if (this.stroke != null) {
+			params.put("stroke", this.stroke);
 		}
-		if (this.borderRadius != null) {
-			params.put("borderRadius", this.borderRadius);
-		}
-		if (this.lineWidth != null) {
-			params.put("lineWidth", this.lineWidth);
+		if (this.fill != null) {
+			params.put("fill", this.fill);
 		}
 		if (this.textOverflow != null) {
 			params.put("textOverflow", this.textOverflow);

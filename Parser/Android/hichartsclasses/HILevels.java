@@ -86,7 +86,7 @@ public class HILevels extends Observable implements HIChartsJSONSerializable {
 
 	private Object dataLabels;
 /**
-/** Can set a dataLabels on all points which lies on the same level. 
+/** Can set dataLabels on all points which lies on the same level. 
 */
 	public void setDataLabels(Object dataLabels) {
 		this.dataLabels = dataLabels;

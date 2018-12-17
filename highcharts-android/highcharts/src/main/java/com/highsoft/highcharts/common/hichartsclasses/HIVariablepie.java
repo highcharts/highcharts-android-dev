@@ -37,17 +37,17 @@ public class HIVariablepie extends HISeries {
 
 	public Number getZMax(){ return zMax; }
 
-	private Object /* String|Number */ minPointSize;
+	private Object /* Number, String */ minPointSize;
 /**
 /** The minimum size of the points' radius related to chart's plotArea. If a number is set, it applies in pixels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/min-max-point-size/">Example of minPointSize and maxPointSize</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/min-point-size-100/">minPointSize set to 100</a>
 */
-	public void setMinPointSize(Object /* String|Number */ minPointSize) {
+	public void setMinPointSize(Object /* Number, String */ minPointSize) {
 		this.minPointSize = minPointSize;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* String|Number */ getMinPointSize(){ return minPointSize; }
+	public Object /* Number, String */ getMinPointSize(){ return minPointSize; }
 
 	private String sizeBy;
 /**
@@ -73,29 +73,29 @@ public class HIVariablepie extends HISeries {
 
 	public Number getZMin(){ return zMin; }
 
-	private Object /* String|Number */ maxPointSize;
+	private Object /* Number, String */ maxPointSize;
 /**
 /** The maximum size of the points' radius related to chart's plotArea. If a number is set, it applies in pixels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/min-max-point-size/">Example of minPointSize and maxPointSize</a>
 */
-	public void setMaxPointSize(Object /* String|Number */ maxPointSize) {
+	public void setMaxPointSize(Object /* Number, String */ maxPointSize) {
 		this.maxPointSize = maxPointSize;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* String|Number */ getMaxPointSize(){ return maxPointSize; }
+	public Object /* Number, String */ getMaxPointSize(){ return maxPointSize; }
 
-	private Number endAngle;
+	private Number minSize;
 /**
-/** The end angle of the pie in degrees where 0 is top and 90 is right. Defaults to startAngle plus 360. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-semi-circle/">Semi-circle donut</a>
-*/
-	public void setEndAngle(Number endAngle) {
-		this.endAngle = endAngle;
+/** The minimum size for a pie in response to auto margins. The pie will try to shrink to make room for data labels in side the plot area, but only to this size. 
+ <br><br><b>defaults:</b><br><br>&ensp;80*/
+	public void setMinSize(Number minSize) {
+		this.minSize = minSize;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getEndAngle(){ return endAngle; }
+	public Number getMinSize(){ return minSize; }
 
 	private Object /* Number, String */ innerSize;
 /**
@@ -145,6 +145,18 @@ public class HIVariablepie extends HISeries {
 
 	public Number getDepth(){ return depth; }
 
+	private Number endAngle;
+/**
+/** The end angle of the pie in degrees where 0 is top and 90 is right. Defaults to startAngle plus 360. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-semi-circle/">Semi-circle donut</a>
+*/
+	public void setEndAngle(Number endAngle) {
+		this.endAngle = endAngle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getEndAngle(){ return endAngle; }
+
 	private ArrayList<String> colors;
 /**
 /** A series specific or series type specific color set to use instead of the global colors. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/">Set defaults colors for all pies</a>
@@ -157,27 +169,6 @@ public class HIVariablepie extends HISeries {
 
 	public ArrayList<String> getColors(){ return colors; }
 
-	private Number minSize;
-/**
-/** The minimum size for a pie in response to auto margins. The pie will try to shrink to make room for data labels in side the plot area, but only to this size. 
- <br><br><b>defaults:</b><br><br>&ensp;80*/
-	public void setMinSize(Number minSize) {
-		this.minSize = minSize;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getMinSize(){ return minSize; }
-
-	private String legendType;
-	public void setLegendType(String legendType) {
-		this.legendType = legendType;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getLegendType(){ return legendType; }
-
 	private Number startAngle;
 /**
 /** The start angle of the pie slices in degrees where 0 is top and 90 right. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-startangle-90/">Start from right</a>
@@ -189,6 +180,15 @@ public class HIVariablepie extends HISeries {
 	}
 
 	public Number getStartAngle(){ return startAngle; }
+
+	private String legendType;
+	public void setLegendType(String legendType) {
+		this.legendType = legendType;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getLegendType(){ return legendType; }
 
 	private Object /* Number, String */ size;
 /**
@@ -250,8 +250,8 @@ public class HIVariablepie extends HISeries {
 		if (this.maxPointSize != null) {
 			params.put("maxPointSize", this.maxPointSize);
 		}
-		if (this.endAngle != null) {
-			params.put("endAngle", this.endAngle);
+		if (this.minSize != null) {
+			params.put("minSize", this.minSize);
 		}
 		if (this.innerSize != null) {
 			params.put("innerSize", this.innerSize);
@@ -274,6 +274,9 @@ public class HIVariablepie extends HISeries {
 		if (this.depth != null) {
 			params.put("depth", this.depth);
 		}
+		if (this.endAngle != null) {
+			params.put("endAngle", this.endAngle);
+		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.colors) {
@@ -286,14 +289,11 @@ public class HIVariablepie extends HISeries {
 			}
 			params.put("colors", array);
 		}
-		if (this.minSize != null) {
-			params.put("minSize", this.minSize);
+		if (this.startAngle != null) {
+			params.put("startAngle", this.startAngle);
 		}
 		if (this.legendType != null) {
 			params.put("legendType", this.legendType);
-		}
-		if (this.startAngle != null) {
-			params.put("startAngle", this.startAngle);
 		}
 		if (this.size != null) {
 			params.put("size", this.size);

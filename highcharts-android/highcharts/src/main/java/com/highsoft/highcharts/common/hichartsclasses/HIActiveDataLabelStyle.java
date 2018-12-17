@@ -22,15 +22,6 @@ import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 public class HIActiveDataLabelStyle extends Observable implements HIChartsJSONSerializable { 
 
-	private String cursor;
-	public void setCursor(String cursor) {
-		this.cursor = cursor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getCursor(){ return cursor; }
-
 	private String color;
 	public void setColor(String color) {
 		this.color = color;
@@ -39,6 +30,15 @@ public class HIActiveDataLabelStyle extends Observable implements HIChartsJSONSe
 	}
 
 	public String getColor(){ return color; }
+
+	private String cursor;
+	public void setCursor(String cursor) {
+		this.cursor = cursor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getCursor(){ return cursor; }
 
 	private String textDecoration;
 	public void setTextDecoration(String textDecoration) {
@@ -77,11 +77,11 @@ public class HIActiveDataLabelStyle extends Observable implements HIChartsJSONSe
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.cursor != null) {
-			params.put("cursor", this.cursor);
-		}
 		if (this.color != null) {
 			params.put("color", this.color);
+		}
+		if (this.cursor != null) {
+			params.put("cursor", this.cursor);
 		}
 		if (this.textDecoration != null) {
 			params.put("textDecoration", this.textDecoration);

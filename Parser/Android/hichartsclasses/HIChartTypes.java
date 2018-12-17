@@ -31,6 +31,15 @@ public class HIChartTypes extends Observable implements HIChartsJSONSerializable
 
 	public String getScatterMultiple(){ return scatterMultiple; }
 
+	private String boxplotSingle;
+	public void setBoxplotSingle(String boxplotSingle) {
+		this.boxplotSingle = boxplotSingle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getBoxplotSingle(){ return boxplotSingle; }
+
 	private String defaultsMultiple;
 	public void setDefaultMultiple(String defaultsMultiple) {
 		this.defaultsMultiple = defaultsMultiple;
@@ -93,15 +102,6 @@ public class HIChartTypes extends Observable implements HIChartsJSONSerializable
 	}
 
 	public String getColumnSingle(){ return columnSingle; }
-
-	private String pieSingle;
-	public void setPieSingle(String pieSingle) {
-		this.pieSingle = pieSingle;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getPieSingle(){ return pieSingle; }
 
 	private String splineMultiple;
 	public void setSplineMultiple(String splineMultiple) {
@@ -211,14 +211,14 @@ public class HIChartTypes extends Observable implements HIChartsJSONSerializable
 
 	public String getBubbleSingle(){ return bubbleSingle; }
 
-	private String boxplotSingle;
-	public void setBoxplotSingle(String boxplotSingle) {
-		this.boxplotSingle = boxplotSingle;
+	private String pieSingle;
+	public void setPieSingle(String pieSingle) {
+		this.pieSingle = pieSingle;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getBoxplotSingle(){ return boxplotSingle; }
+	public String getPieSingle(){ return pieSingle; }
 
 
 
@@ -242,6 +242,9 @@ public class HIChartTypes extends Observable implements HIChartsJSONSerializable
 		if (this.scatterMultiple != null) {
 			params.put("scatterMultiple", this.scatterMultiple);
 		}
+		if (this.boxplotSingle != null) {
+			params.put("boxplotSingle", this.boxplotSingle);
+		}
 		if (this.defaultsMultiple != null) {
 			params.put("defaultsMultiple", this.defaultsMultiple);
 		}
@@ -262,9 +265,6 @@ public class HIChartTypes extends Observable implements HIChartsJSONSerializable
 		}
 		if (this.columnSingle != null) {
 			params.put("columnSingle", this.columnSingle);
-		}
-		if (this.pieSingle != null) {
-			params.put("pieSingle", this.pieSingle);
 		}
 		if (this.splineMultiple != null) {
 			params.put("splineMultiple", this.splineMultiple);
@@ -302,8 +302,8 @@ public class HIChartTypes extends Observable implements HIChartsJSONSerializable
 		if (this.bubbleSingle != null) {
 			params.put("bubbleSingle", this.bubbleSingle);
 		}
-		if (this.boxplotSingle != null) {
-			params.put("boxplotSingle", this.boxplotSingle);
+		if (this.pieSingle != null) {
+			params.put("pieSingle", this.pieSingle);
 		}
 		return params;
 	}

@@ -41,7 +41,7 @@ public class HIWaterfall extends HISeries {
 	private HIColor lineColor;
 /**
 /** The color of the line that connects columns in a waterfall series. In styled mode, the stroke can be set with the .highcharts-graph class. 
- <br><br><b>defaults:</b><br><br>&ensp;#333333*/
+*/
 	public void setLineColor(HIColor lineColor) {
 		this.lineColor = lineColor;
 		this.setChanged();
@@ -49,6 +49,18 @@ public class HIWaterfall extends HISeries {
 	}
 
 	public HIColor getLineColor(){ return lineColor; }
+
+	private Number pointPadding;
+/**
+/** Padding between each column or bar, in x axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-defaults/">0.1 by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-025/">0.25</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-none/">0 for tightly packed columns</a>
+*/
+	public void setPointPadding(Number pointPadding) {
+		this.pointPadding = pointPadding;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPointPadding(){ return pointPadding; }
 
 	private Number borderRadius;
 /**
@@ -100,7 +112,7 @@ public class HIWaterfall extends HISeries {
 
 	private ArrayList<String> colors;
 /**
-/** A series specific or series type specific color set to apply instead of the global colors when `colorByPoint` is true. 
+/** A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
 */
 	public void setColors(ArrayList<String> colors) {
 		this.colors = colors;
@@ -121,18 +133,6 @@ public class HIWaterfall extends HISeries {
 	}
 
 	public HIColor getEdgeColor(){ return edgeColor; }
-
-	private Boolean colorByPoint;
-/**
-/** When using automatic point colors pulled from the global `colors` or series-specific `plotOptions.column.colors` collections, this option determines whether the chart should receive one color per series or one color per point. In styled mode, the colors or series.colors arrays are not supported, and instead this option gives the points individual color class names on the form highcharts-color-{n}. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-false/">False by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-true/">True</a>
- <br><br><b>defaults:</b><br><br>&ensp;false*/
-	public void setColorByPoint(Boolean colorByPoint) {
-		this.colorByPoint = colorByPoint;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getColorByPoint(){ return colorByPoint; }
 
 	private Number maxPointWidth;
 /**
@@ -158,17 +158,17 @@ public class HIWaterfall extends HISeries {
 
 	public Number getPointWidth(){ return pointWidth; }
 
-	private Number pointPadding;
+	private Boolean colorByPoint;
 /**
-/** Padding between each column or bar, in x axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-defaults/">0.1 by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-025/">0.25</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-none/">0 for tightly packed columns</a>
-*/
-	public void setPointPadding(Number pointPadding) {
-		this.pointPadding = pointPadding;
+/** When using automatic point colors pulled from the global `colors` or series-specific `plotOptions.column.colors` collections, this option determines whether the chart should receive one color per series or one color per point. In styled mode, the colors or series.colors arrays are not supported, and instead this option gives the points individual color class names on the form highcharts-color-{n}. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-false/">False by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-true/">True</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
+	public void setColorByPoint(Boolean colorByPoint) {
+		this.colorByPoint = colorByPoint;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getPointPadding(){ return pointPadding; }
+	public Boolean getColorByPoint(){ return colorByPoint; }
 
 	private Number groupPadding;
 /**
@@ -257,6 +257,9 @@ public class HIWaterfall extends HISeries {
 		if (this.lineColor != null) {
 			params.put("lineColor", this.lineColor.getData());
 		}
+		if (this.pointPadding != null) {
+			params.put("pointPadding", this.pointPadding);
+		}
 		if (this.borderRadius != null) {
 			params.put("borderRadius", this.borderRadius);
 		}
@@ -284,17 +287,14 @@ public class HIWaterfall extends HISeries {
 		if (this.edgeColor != null) {
 			params.put("edgeColor", this.edgeColor.getData());
 		}
-		if (this.colorByPoint != null) {
-			params.put("colorByPoint", this.colorByPoint);
-		}
 		if (this.maxPointWidth != null) {
 			params.put("maxPointWidth", this.maxPointWidth);
 		}
 		if (this.pointWidth != null) {
 			params.put("pointWidth", this.pointWidth);
 		}
-		if (this.pointPadding != null) {
-			params.put("pointPadding", this.pointPadding);
+		if (this.colorByPoint != null) {
+			params.put("colorByPoint", this.colorByPoint);
 		}
 		if (this.groupPadding != null) {
 			params.put("groupPadding", this.groupPadding);
