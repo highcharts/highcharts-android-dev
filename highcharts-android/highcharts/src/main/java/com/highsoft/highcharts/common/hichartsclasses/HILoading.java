@@ -90,10 +90,10 @@ public class HILoading extends Observable implements HIChartsJSONSerializable {
 
 		Map<String, Object> params = new HashMap<>();
 		if (this.style != null) {
-			params.put("style", this.style);
+			params.put("style", this.style.getParams());
 		}
 		if (this.labelStyle != null) {
-			params.put("labelStyle", this.labelStyle);
+			params.put("labelStyle", this.labelStyle.getParams());
 		}
 		if (this.hideDuration != null) {
 			params.put("hideDuration", this.hideDuration);

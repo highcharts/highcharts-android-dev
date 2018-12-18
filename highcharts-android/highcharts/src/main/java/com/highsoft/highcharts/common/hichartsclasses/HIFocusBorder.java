@@ -93,7 +93,7 @@ public class HIFocusBorder extends Observable implements HIChartsJSONSerializabl
 			params.put("margin", this.margin);
 		}
 		if (this.style != null) {
-			params.put("style", this.style);
+			params.put("style", this.style.getParams());
 		}
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);

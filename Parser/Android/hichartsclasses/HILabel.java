@@ -234,7 +234,7 @@ public class HILabel extends Observable implements HIChartsJSONSerializable {
 
 		Map<String, Object> params = new HashMap<>();
 		if (this.style != null) {
-			params.put("style", this.style);
+			params.put("style", this.style.getParams());
 		}
 		if (this.verticalAlign != null) {
 			params.put("verticalAlign", this.verticalAlign);

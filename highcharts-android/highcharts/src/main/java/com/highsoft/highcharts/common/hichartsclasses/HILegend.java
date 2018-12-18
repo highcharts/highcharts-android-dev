@@ -569,7 +569,7 @@ public class HILegend extends Observable implements HIChartsJSONSerializable {
 			params.put("labelFormat", this.labelFormat);
 		}
 		if (this.itemStyle != null) {
-			params.put("itemStyle", this.itemStyle);
+			params.put("itemStyle", this.itemStyle.getParams());
 		}
 		if (this.reversed != null) {
 			params.put("reversed", this.reversed);
@@ -587,7 +587,7 @@ public class HILegend extends Observable implements HIChartsJSONSerializable {
 			params.put("shadow", this.shadow);
 		}
 		if (this.itemHoverStyle != null) {
-			params.put("itemHoverStyle", this.itemHoverStyle);
+			params.put("itemHoverStyle", this.itemHoverStyle.getParams());
 		}
 		if (this.itemDistance != null) {
 			params.put("itemDistance", this.itemDistance);
@@ -608,7 +608,7 @@ public class HILegend extends Observable implements HIChartsJSONSerializable {
 			params.put("maxHeight", this.maxHeight);
 		}
 		if (this.itemHiddenStyle != null) {
-			params.put("itemHiddenStyle", this.itemHiddenStyle);
+			params.put("itemHiddenStyle", this.itemHiddenStyle.getParams());
 		}
 		if (this.alignColumns != null) {
 			params.put("alignColumns", this.alignColumns);

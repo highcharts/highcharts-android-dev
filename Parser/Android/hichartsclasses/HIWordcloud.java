@@ -184,7 +184,7 @@ public class HIWordcloud extends HISeries {
 			params.put("colorByPoint", this.colorByPoint);
 		}
 		if (this.style != null) {
-			params.put("style", this.style);
+			params.put("style", this.style.getParams());
 		}
 		if (this.minFontSize != null) {
 			params.put("minFontSize", this.minFontSize);

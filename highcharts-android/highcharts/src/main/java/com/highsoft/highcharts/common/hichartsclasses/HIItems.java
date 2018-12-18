@@ -66,7 +66,7 @@ public class HIItems extends Observable implements HIChartsJSONSerializable {
 
 		Map<String, Object> params = new HashMap<>();
 		if (this.style != null) {
-			params.put("style", this.style);
+			params.put("style", this.style.getParams());
 		}
 		if (this.html != null) {
 			params.put("html", this.html);

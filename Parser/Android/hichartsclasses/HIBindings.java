@@ -78,13 +78,13 @@ public class HIBindings extends Observable implements HIChartsJSONSerializable {
 
 		Map<String, Object> params = new HashMap<>();
 		if (this.rectangleAnnotation != null) {
-			params.put("rectangleAnnotation", this.rectangleAnnotation);
+			params.put("rectangleAnnotation", this.rectangleAnnotation.getParams());
 		}
 		if (this.labelAnnotation != null) {
-			params.put("labelAnnotation", this.labelAnnotation);
+			params.put("labelAnnotation", this.labelAnnotation.getParams());
 		}
 		if (this.circleAnnotation != null) {
-			params.put("circleAnnotation", this.circleAnnotation);
+			params.put("circleAnnotation", this.circleAnnotation.getParams());
 		}
 		return params;
 	}

@@ -189,7 +189,7 @@ public class HIStackLabels extends Observable implements HIChartsJSONSerializabl
 			params.put("allowOverlap", this.allowOverlap);
 		}
 		if (this.style != null) {
-			params.put("style", this.style);
+			params.put("style", this.style.getParams());
 		}
 		if (this.verticalAlign != null) {
 			params.put("verticalAlign", this.verticalAlign);

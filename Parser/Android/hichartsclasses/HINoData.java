@@ -94,10 +94,10 @@ public class HINoData extends Observable implements HIChartsJSONSerializable {
 			params.put("position", this.position.getParams());
 		}
 		if (this.style != null) {
-			params.put("style", this.style);
+			params.put("style", this.style.getParams());
 		}
 		if (this.attr != null) {
-			params.put("attr", this.attr);
+			params.put("attr", this.attr.getParams());
 		}
 		if (this.useHTML != null) {
 			params.put("useHTML", this.useHTML);

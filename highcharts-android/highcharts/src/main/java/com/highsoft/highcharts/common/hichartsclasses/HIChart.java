@@ -747,7 +747,7 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 			params.put("panKey", this.panKey);
 		}
 		if (this.style != null) {
-			params.put("style", this.style);
+			params.put("style", this.style.getParams());
 		}
 		if (this.scrollablePlotArea != null) {
 			params.put("scrollablePlotArea", this.scrollablePlotArea.getParams());
@@ -759,7 +759,7 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 			params.put("inverted", this.inverted);
 		}
 		if (this.animation != null) {
-			params.put("animation", this.animation);
+			params.put("animation", this.animation.getParams());
 		}
 		if (this.plotBorderWidth != null) {
 			params.put("plotBorderWidth", this.plotBorderWidth);

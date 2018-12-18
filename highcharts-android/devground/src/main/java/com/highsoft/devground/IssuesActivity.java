@@ -136,18 +136,129 @@ public class IssuesActivity extends AppCompatActivity {
 
     public HIOptions firstChart(){
 
-        HIOptions options = new HIOptions();
+//        HIOptions options = new HIOptions();
+//
+////        chart.setType("line");
+////        chart.getAnimation();
+//
+//        HITooltip tooltip = new HITooltip();
+//        options.setTooltip(tooltip);
+//        HIChart chart = new HIChart();
+//        chart.setEvents(new HIEvents());
+//        chart.getEvents().setLoad(new HIFunction(
+//                "function () { this.series[0].data[0].setState('hover'); this.series[1].data[4].setState('hover'); }"
+//        ));
+//        options.setChart(chart);
+//
+//        HIExporting exporting = new HIExporting();
+//        exporting.setEnabled(false);
+//        options.setExporting(exporting);
+//
+//        HICredits credits = new HICredits();
+//        credits.setEnabled(false);
+//        options.setCredits(credits);
+//
+//        HICSSObject titleStyle = new HICSSObject();
+//        titleStyle.setFontFamily("serif");
+//        titleStyle.setFontSize("20px");
+//        titleStyle.setColor("red");
+//
+//        HITitle title = new HITitle();
+//        title.setText("First Chart");
+//        title.setStyle(titleStyle);
+//        options.setTitle(title);
+//
+//        String categories[] = new String[0];
+//        categories = new String[]{"100Kg", "200Kg", "300Kg", "400Kg", "500Kg", "600Kg", "700Kg", "800Kg"};
+//
+//        HIMarker marker = new HIMarker();
+//        marker.setEnabled(true);
+//
+//        final HIXAxis xaxis = new HIXAxis();
+//        xaxis.setLabels(new HILabels());
+//        xaxis.getLabels().setStyle(new HICSSObject());
+//        xaxis.getLabels().getStyle().setColor("red");
+//        xaxis.setTickmarkPlacement("on");
+//
+//        HICSSObject hicssObject = new HICSSObject();
+//        hicssObject.setFontFamily("Arial");
+//        hicssObject.setFontSize("20px");
+//        hicssObject.setColor("red");
+//
+//        xaxis.getLabels().setStyle(hicssObject);
+//        xaxis.getLabels().setY(0);
+//        xaxis.getLabels().setStep(2);
+//        xaxis.getLabels().setRotation(270);
+//        xaxis.setCategories(new ArrayList<>(Arrays.asList(categories)));
+//        options.setXAxis(new ArrayList<HIXAxis>(){{add(xaxis);}});
+//
+//        final HIYAxis yaxis = new HIYAxis();
+//        yaxis.setLineWidth(1);
+//        yaxis.setGridLineWidth(1);
+//        yaxis.setLabels(new HILabels());
+//        yaxis.getLabels().setStyle(hicssObject);
+//        yaxis.getLabels().setX(-3);
+//        yaxis.setTitle(new HITitle());
+//        yaxis.getTitle().setText("");
+//        options.setYAxis(new ArrayList<HIYAxis>(){{add(yaxis);}});
+//
+//        HIDataLabels dataLabels = new HIDataLabels();
+//        dataLabels.setEnabled(true);
+//
+//        HILine line1 = new HILine();
+//        line1.setName("line1");
+//        line1.setDataLabels(dataLabels);
+//        line1.setColor(HIColor.initWithRGBA(0, 155, 255, 1));
+//        line1.getDataLabels().setY(-30);
+//        line1.getDataLabels().setRotation(270);
+//        line1.setData(new ArrayList<>(Arrays.asList(934, 503, 177, 658, 031, 931, 133, 175)));
+//        line1.setPoint(new HIPoint());
+//        line1.getPoint().setEvents(new HIEvents());
+////        line1.getPoint().getEvents().setClick(new HIFunction(
+////                f -> {
+////                    double xVal = (double) f.getProperty("x");
+////                    Toast.makeText(this, "FIRST TOAST; val: " + xVal, Toast.LENGTH_SHORT).show();
+////                    int indx = (int) xVal;
+////                    double rem = xVal - indx;
+////                    if (rem > 0.5) {
+////                        indx += 1;
+////                    }
+////                    getSelectedValues(indx);
+////                },
+////                new String[]{"x"}
+////        ));
+//
+//
+//        options.setTooltip(new HITooltip());
+//        options.getTooltip().setFormatter(new HIFunction(
+//                f -> {
+//                    return myMethod(f.getProperty("x"), f.getProperty("y"));
+//                },
+//                new String[] {"x", "y"}
+//        ));
+//
+//        HILine line2 = new HILine();
+//        line2.setName("line2");
+//        line2.setColor(HIColor.initWithRGBA(255, 104, 0, 1));
+//        line2.setData(new ArrayList<>(Arrays.asList(916, 164, 742, 851, 490, 282, 121, 340)));
+//        line2.setPoint(new HIPoint());
+//        line2.getPoint().setEvents(new HIEvents());
+////        line2.getPoint().getEvents().setClick(new HIFunction(
+////                () -> new AlertDialog.Builder(this)
+////                .setTitle("Series point clicked")
+////                .setMessage("Clciked FIRST time")
+////                .create().show()
+////        ));
+//
+//        options.setSeries(new ArrayList<HISeries>(Arrays.asList(line1, line2)));
 
-//        chart.setType("line");
-//        chart.getAnimation();
+        HIOptions options = new HIOptions();
+        HIChart chart = new HIChart();
+        chart.setType("line");
 
         HITooltip tooltip = new HITooltip();
+        tooltip.setEnabled(false);
         options.setTooltip(tooltip);
-        HIChart chart = new HIChart();
-        chart.setEvents(new HIEvents());
-        chart.getEvents().setLoad(new HIFunction(
-                "function () { this.series[0].data[0].setState('hover'); this.series[1].data[4].setState('hover'); }"
-        ));
         options.setChart(chart);
 
         HIExporting exporting = new HIExporting();
@@ -158,15 +269,17 @@ public class IssuesActivity extends AppCompatActivity {
         credits.setEnabled(false);
         options.setCredits(credits);
 
-        HICSSObject titleStyle = new HICSSObject();
-        titleStyle.setFontFamily("serif");
-        titleStyle.setFontSize("20px");
-        titleStyle.setColor("red");
+        //here
+        HICSSObject ChartTitleStyle = new HICSSObject();
+        ChartTitleStyle.setColor("red");
+        ChartTitleStyle.setFontSize("5px");
+        ChartTitleStyle.setFontFamily("Arial");
 
         HITitle title = new HITitle();
         title.setText("First Chart");
-        title.setStyle(titleStyle);
+        title.setStyle(ChartTitleStyle);
         options.setTitle(title);
+        //here
 
         String categories[] = new String[0];
         categories = new String[]{"100Kg", "200Kg", "300Kg", "400Kg", "500Kg", "600Kg", "700Kg", "800Kg"};
@@ -176,14 +289,11 @@ public class IssuesActivity extends AppCompatActivity {
 
         final HIXAxis xaxis = new HIXAxis();
         xaxis.setLabels(new HILabels());
-        xaxis.getLabels().setStyle(new HICSSObject());
-        xaxis.getLabels().getStyle().setColor("red");
         xaxis.setTickmarkPlacement("on");
 
         HICSSObject hicssObject = new HICSSObject();
         hicssObject.setFontFamily("Arial");
-        hicssObject.setFontSize("20px");
-        hicssObject.setColor("red");
+        hicssObject.setFontSize("10px");
 
         xaxis.getLabels().setStyle(hicssObject);
         xaxis.getLabels().setY(0);
@@ -214,41 +324,23 @@ public class IssuesActivity extends AppCompatActivity {
         line1.setData(new ArrayList<>(Arrays.asList(934, 503, 177, 658, 031, 931, 133, 175)));
         line1.setPoint(new HIPoint());
         line1.getPoint().setEvents(new HIEvents());
-//        line1.getPoint().getEvents().setClick(new HIFunction(
-//                f -> {
-//                    double xVal = (double) f.getProperty("x");
-//                    Toast.makeText(this, "FIRST TOAST; val: " + xVal, Toast.LENGTH_SHORT).show();
-//                    int indx = (int) xVal;
-//                    double rem = xVal - indx;
-//                    if (rem > 0.5) {
-//                        indx += 1;
-//                    }
-//                    getSelectedValues(indx);
-//                },
-//                new String[]{"x"}
-//        ));
-
-
-        options.setTooltip(new HITooltip());
-        options.getTooltip().setFormatter(new HIFunction(
+        line1.getPoint().getEvents().setClick(new HIFunction(
                 f -> {
-                    return myMethod(f.getProperty("x"), f.getProperty("y"));
+                    double xVal = (double) f.getProperty("x");
+                    int indx = (int) xVal;
+                    double rem = xVal - indx;
+                    if (rem > 0.5) {
+                        indx += 1;
+                    }
+                    getSelectedValues(indx);
                 },
-                new String[] {"x", "y"}
+                new String[]{"x"}
         ));
 
         HILine line2 = new HILine();
         line2.setName("line2");
         line2.setColor(HIColor.initWithRGBA(255, 104, 0, 1));
         line2.setData(new ArrayList<>(Arrays.asList(916, 164, 742, 851, 490, 282, 121, 340)));
-        line2.setPoint(new HIPoint());
-        line2.getPoint().setEvents(new HIEvents());
-//        line2.getPoint().getEvents().setClick(new HIFunction(
-//                () -> new AlertDialog.Builder(this)
-//                .setTitle("Series point clicked")
-//                .setMessage("Clciked FIRST time")
-//                .create().show()
-//        ));
 
         options.setSeries(new ArrayList<HISeries>(Arrays.asList(line1, line2)));
 

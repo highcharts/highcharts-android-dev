@@ -215,7 +215,7 @@ hc_types = {
     "String|Array.<Object>": 'String',
     "String|undefined": 'String',
     "Array.<String>|Array.<Object>": 'ArrayList',
-    "String|Number|function": 'Object /* String|Number|HIFunction */',
+    "String|Number|function": 'Object',
     "Array.<(Object|Array|Number)>": 'ArrayList /* <Object|Number|ArrayList> */',
     "String|null": 'String',
     "Array.<Array<Mixed>>": 'ArrayList<ArrayList>',
@@ -241,7 +241,7 @@ hc_types = {
     "Array.<string>": 'ArrayList<String>',
     "null|number|string": 'Object /* Number, String */',
     "object": 'Object',
-    "Number|String|function": 'Object /* Number, String, HIFunction */',
+    "Number|String|function": 'Object',
     "Array.<Object>|Array.<String>": 'ArrayList /* <Object, String> */',
     "null|number": 'Number',
     "Array.<number>|number": 'ArrayList<Number>',
@@ -736,7 +736,10 @@ def format_to_java(name, source):
                     methods += "\t\t\t\t}\n"
                     methods += "\t\t\t}\n"
                     methods += "\t\t\tparams.put(\"{0}\", array);\n".format(get_last(field.name))
-                elif structure[field.name].properties:
+                elif get_java_type(structure[field.name].data_type) == 'HIFunction':
+                    methods += "\t\t\tparams.put(\"{0}\", this.{1});\n".format(get_last(field.name),
+                                                                               get_last(field.name))
+                elif structure[field.name].properties or 'HI' in get_java_type(field.data_type):
                     methods += "\t\t\tparams.put(\"{0}\", this.{1}.getParams());\n".format(get_last(field.name),
                                                                                            get_last(field.name))
                 else:

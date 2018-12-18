@@ -62,17 +62,17 @@ public class HIHistogram extends HISeries {
 
 	public Number getBinWidth(){ return binWidth; }
 
-	private Object /* String|Number|HIFunction */ binsNumber;
+	private Object binsNumber;
 /**
 /** A preferable number of bins. It is a suggestion, so a histogram may have a different number of bins. By defaults it is set to the square root of the base series' data length. Available options are: square-root, sturges, rice. You can also define a function which takes a baseSeries as a parameter and should return a positive integer. <br><br><b>accepted values:</b><br><br>&ensp;["square-root", "sturges", "rice"]
 */
-	public void setBinsNumber(Object /* String|Number|HIFunction */ binsNumber) {
+	public void setBinsNumber(Object binsNumber) {
 		this.binsNumber = binsNumber;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* String|Number|HIFunction */ getBinsNumber(){ return binsNumber; }
+	public Object getBinsNumber(){ return binsNumber; }
 
 	private Number groupPadding;
 /**

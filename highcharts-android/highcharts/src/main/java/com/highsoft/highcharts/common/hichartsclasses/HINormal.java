@@ -54,7 +54,7 @@ public class HINormal extends Observable implements HIChartsJSONSerializable {
 
 		Map<String, Object> params = new HashMap<>();
 		if (this.animation != null) {
-			params.put("animation", this.animation);
+			params.put("animation", this.animation.getParams());
 		}
 		return params;
 	}

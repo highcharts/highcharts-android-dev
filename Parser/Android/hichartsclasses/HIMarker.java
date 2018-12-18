@@ -203,7 +203,7 @@ public class HIMarker extends Observable implements HIChartsJSONSerializable {
 			params.put("color", this.color.getData());
 		}
 		if (this.animation != null) {
-			params.put("animation", this.animation);
+			params.put("animation", this.animation.getParams());
 		}
 		if (this.symbol != null) {
 			params.put("symbol", this.symbol);

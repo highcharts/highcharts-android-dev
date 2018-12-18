@@ -215,7 +215,7 @@ public class HINavigation extends Observable implements HIChartsJSONSerializable
 
 		Map<String, Object> params = new HashMap<>();
 		if (this.menuStyle != null) {
-			params.put("menuStyle", this.menuStyle);
+			params.put("menuStyle", this.menuStyle.getParams());
 		}
 		if (this.buttonOptions != null) {
 			params.put("buttonOptions", this.buttonOptions.getParams());
@@ -227,16 +227,16 @@ public class HINavigation extends Observable implements HIChartsJSONSerializable
 			params.put("events", this.events.getParams());
 		}
 		if (this.menuItemStyle != null) {
-			params.put("menuItemStyle", this.menuItemStyle);
+			params.put("menuItemStyle", this.menuItemStyle.getParams());
 		}
 		if (this.menuItemHoverStyle != null) {
-			params.put("menuItemHoverStyle", this.menuItemHoverStyle);
+			params.put("menuItemHoverStyle", this.menuItemHoverStyle.getParams());
 		}
 		if (this.bindings != null) {
 			params.put("bindings", this.bindings.getParams());
 		}
 		if (this.style != null) {
-			params.put("style", this.style);
+			params.put("style", this.style.getParams());
 		}
 		if (this.inactiveColor != null) {
 			params.put("inactiveColor", this.inactiveColor.getData());
@@ -248,7 +248,7 @@ public class HINavigation extends Observable implements HIChartsJSONSerializable
 			params.put("arrowSize", this.arrowSize);
 		}
 		if (this.animation != null) {
-			params.put("animation", this.animation);
+			params.put("animation", this.animation.getParams());
 		}
 		if (this.activeColor != null) {
 			params.put("activeColor", this.activeColor.getData());

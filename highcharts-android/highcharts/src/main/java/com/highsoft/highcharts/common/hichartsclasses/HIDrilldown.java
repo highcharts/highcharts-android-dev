@@ -133,13 +133,13 @@ public class HIDrilldown extends Observable implements HIChartsJSONSerializable 
 			params.put("allowPointDrilldown", this.allowPointDrilldown);
 		}
 		if (this.animation != null) {
-			params.put("animation", this.animation);
+			params.put("animation", this.animation.getParams());
 		}
 		if (this.drillUpButton != null) {
 			params.put("drillUpButton", this.drillUpButton.getParams());
 		}
 		if (this.activeAxisLabelStyle != null) {
-			params.put("activeAxisLabelStyle", this.activeAxisLabelStyle);
+			params.put("activeAxisLabelStyle", this.activeAxisLabelStyle.getParams());
 		}
 		return params;
 	}
