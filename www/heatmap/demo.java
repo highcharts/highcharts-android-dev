@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         HIHeatmap heatmap = new HIHeatmap();
         heatmap.setName("Sales per employee");
+        heatmap.setBorderWidth(1);
         heatmap.setDataLabels(new HIDataLabels());
         heatmap.getDataLabels().setEnabled(true);
         heatmap.getDataLabels().setColor(HIColor.initWithHexValue("000000"));

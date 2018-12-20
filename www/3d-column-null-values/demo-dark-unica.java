@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         chartView.theme = "dark-unica";
 
-        HIChart chart = new HIChart();
+                HIChart chart = new HIChart();
         chart.setRenderTo("container");
         chart.setType("column");
         chart.setOptions3d(new HIOptions3d());
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         xAxis.setCategories(new ArrayList<>(Arrays.asList(shortMonths)));
         xAxis.setLabels(new HILabels());
         xAxis.getLabels().setSkew3d(true);
-        xAxis.getLabels().setStyle(new HIStyle());
+        xAxis.getLabels().setStyle(new HICSSObject());
         xAxis.getLabels().getStyle().setFontSize("16px");
         options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 

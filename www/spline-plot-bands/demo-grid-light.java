@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 		plotBands1.setColor(HIColor.initWithRGBA(68, 170, 213, 0.1));
 		plotBands1.setLabel(new HILabel());
 		plotBands1.getLabel().setText("Light air");
-		plotBands1.getLabel().setStyle(new HIStyle());
+		plotBands1.getLabel().setStyle(new HICSSObject());
 		plotBands1.getLabel().getStyle().setColor("606060");
 
 		HIPlotBands plotBands2 = new HIPlotBands();
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 		plotBands2.setColor(HIColor.initWithRGBA(0, 0, 0, 0));
 		plotBands2.setLabel(new HILabel());
 		plotBands2.getLabel().setText("Light breeze");
-		plotBands2.getLabel().setStyle(new HIStyle());
+		plotBands2.getLabel().setStyle(new HICSSObject());
 		plotBands2.getLabel().getStyle().setColor("#606060");
 
 		HIPlotBands plotBands3 = new HIPlotBands();
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 		plotBands3.setColor(HIColor.initWithRGBA(68, 170, 213, 0.1));
 		plotBands3.setLabel(new HILabel());
 		plotBands3.getLabel().setText("Gentle breeze");
-		plotBands3.getLabel().setStyle(new HIStyle());
+		plotBands3.getLabel().setStyle(new HICSSObject());
 		plotBands3.getLabel().getStyle().setColor("#606060");
 
 		HIPlotBands plotBands4 = new HIPlotBands();
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 		plotBands4.setColor(HIColor.initWithRGBA(0, 0, 0, 0));
 		plotBands4.setLabel(new HILabel());
 		plotBands4.getLabel().setText("Moderate breeze");
-		plotBands4.getLabel().setStyle(new HIStyle());
+		plotBands4.getLabel().setStyle(new HICSSObject());
 		plotBands4.getLabel().getStyle().setColor("#606060");
 
 		HIPlotBands plotBands5 = new HIPlotBands();
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 		plotBands5.setColor(HIColor.initWithRGBA(68, 170, 213, 0.1));
 		plotBands5.setLabel(new HILabel());
 		plotBands5.getLabel().setText("Fresh breeze");
-		plotBands5.getLabel().setStyle(new HIStyle());
+		plotBands5.getLabel().setStyle(new HICSSObject());
 		plotBands5.getLabel().getStyle().setColor("#606060");
 
 		HIPlotBands plotBands6 = new HIPlotBands();
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 		plotBands6.setColor(HIColor.initWithRGBA(0, 0, 0, 0));
 		plotBands6.setLabel(new HILabel());
 		plotBands6.getLabel().setText("Strong breeze");
-		plotBands6.getLabel().setStyle(new HIStyle());
+		plotBands6.getLabel().setStyle(new HICSSObject());
 		plotBands6.getLabel().getStyle().setColor("#606060");
 
 		HIPlotBands plotBands7 = new HIPlotBands();
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 		plotBands7.setColor(HIColor.initWithRGBA(68, 170, 213, 0.1));
 		plotBands6.setLabel(new HILabel());
 		plotBands6.getLabel().setText("High wind");
-		plotBands6.getLabel().setStyle(new HIStyle());
+		plotBands6.getLabel().setStyle(new HICSSObject());
 		plotBands6.getLabel().getStyle().setColor("#606060");
 
 		HIPlotBands[] plotBandsList = new HIPlotBands[] { plotBands1, plotBands2, plotBands3, plotBands4, plotBands5, plotBands6, plotBands7 };
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 		options.setSeries(new ArrayList<>(Arrays.asList(series1, series2)));
 
 		HINavigation navigation = new HINavigation();
-		navigation.setMenuItemStyle(new HIMenuItemStyle());
+		navigation.setMenuItemStyle(new HICSSObject());
 		navigation.getMenuItemStyle().setFontSize("10px");
 		options.setNavigation(navigation);
 		

@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         HITitle title = new HITitle();
         title.setText("Activity");
-        title.setStyle(new HIStyle());
+        title.setStyle(new HICSSObject());
         title.getStyle().setFontSize("24px");
         options.setTitle(title);
 
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         tooltip.setBorderWidth(0);
         tooltip.setBackgroundColor(HIColor.initWithName("none"));
         tooltip.setShadow(false);
-        tooltip.setStyle(new HIStyle());
+        tooltip.setStyle(new HICSSObject());
         tooltip.getStyle().setFontSize("16px");
         tooltip.setPointFormat("{series.name}<br><span style=\"font-size:2em; color: {point.color}; font-weight: bold\">{point.y}%</span>");
         tooltip.setPositioner(

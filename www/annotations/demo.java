@@ -132,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
         annotations3.getLabelOptions().setCrop(true);
         annotations3.getLabelOptions().setStyle(new HIStyle());
         annotations3.getLabelOptions().getStyle().setFontSize("0.8em");
-        annotations3.getLabelOptions().getStyle().setTextOutline("1px white");
 
         HILabels labels10 = new HILabels();
         labels10.setPoint(new HIPoint());

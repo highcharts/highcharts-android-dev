@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         HITitle title = new HITitle();
         title.setText("Highcharts export server overview");
-        title.setStyle(new HIStyle());
+        title.setStyle(new HICSSObject());
         title.getStyle().setColor( "black");
         options.setTitle(title);
 

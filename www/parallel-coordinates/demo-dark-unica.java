@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
 		HIPlotOptions plotOptions = new HIPlotOptions();
 		plotOptions.setSeries(new HISeries());
-		plotOptions.getSeries().setAnimation(new HIAnimation());
+		plotOptions.getSeries().setAnimation(new HIAnimationOptionsObject());
 		plotOptions.getSeries().getAnimation().setDuration(0);
 		plotOptions.getSeries().setMarker(new HIMarker());
 		plotOptions.getSeries().getMarker().setEnabled(false);

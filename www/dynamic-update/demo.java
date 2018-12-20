@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         HIChart chart = new HIChart();
         chart.setType("spline");
-        chart.setAnimation("Highcharts.svg");
         chart.setMarginRight(10);
         HIEvents events = new HIEvents();
         events.setLoad(

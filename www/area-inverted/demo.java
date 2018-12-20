@@ -30,10 +30,8 @@ public class MainActivity extends AppCompatActivity {
         options.setTitle(title);
 
         HISubtitle subtitle = new HISubtitle();
-        subtitle.setStyle(new HashMap<>());
-        subtitle.getStyle().put("position", "absolute");
-        subtitle.getStyle().put("right", "0px");
-        subtitle.getStyle().put("bottom", "10px");
+        subtitle.setStyle(new HICSSObject());
+        subtitle.getStyle().setPosition("absolute");
         options.setSubtitle(subtitle);
 
         HIXAxis xaxis = new HIXAxis();

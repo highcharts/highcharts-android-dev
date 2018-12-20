@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         xAxis.setType("category");
         xAxis.setLabels(new HILabels());
         xAxis.getLabels().setRotation(-45);
-        xAxis.getLabels().setStyle(new HIStyle());
+        xAxis.getLabels().setStyle(new HICSSObject());
         xAxis.getLabels().getStyle().setFontSize("13px");
         xAxis.getLabels().getStyle().setFontFamily("Verdana, sans-serif");
         options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         series1.getDataLabels().setAlign("right");
         series1.getDataLabels().setFormat("{point.y:.1f}");
         series1.getDataLabels().setY(10);
-        series1.getDataLabels().setStyle(new HIStyle());
+        series1.getDataLabels().setStyle(new HICSSObject());
         series1.getDataLabels().getStyle().setFontSize("13px");
         series1.getDataLabels().getStyle().setFontFamily("Verdana, sans-serif");
         options.setSeries(new ArrayList<>(Arrays.asList(series1)));

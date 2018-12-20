@@ -41,21 +41,21 @@ public class MainActivity extends AppCompatActivity {
         HIYAxis yaxis1 = new HIYAxis();
         yaxis1.setLabels(new HILabels());
         yaxis1.getLabels().setFormat("{value}°C");
-        yaxis1.getLabels().setStyle(new HIStyle());
+        yaxis1.getLabels().setStyle(new HICSSObject());
         yaxis1.getLabels().getStyle().setColor("#434348");
         yaxis1.setTitle(new HITitle());
         yaxis1.getTitle().setText("Temperature");
-        yaxis1.getTitle().setStyle(new HIStyle());
+        yaxis1.getTitle().setStyle(new HICSSObject());
         yaxis1.getTitle().getStyle().setColor("#434348");
 
         HIYAxis yaxis2 = new HIYAxis();
         yaxis2.setLabels(new HILabels());
         yaxis2.getLabels().setFormat("{value} mm");
-        yaxis2.getLabels().setStyle(new HIStyle());
+        yaxis2.getLabels().setStyle(new HICSSObject());
         yaxis2.getLabels().getStyle().setColor("#7cb5ec");
         yaxis2.setTitle(new HITitle());
         yaxis2.getTitle().setText("Rainfall");
-        yaxis2.getTitle().setStyle(new HIStyle());
+        yaxis2.getTitle().setStyle(new HICSSObject());
         yaxis2.getTitle().getStyle().setColor("#7cb5ec");
         yaxis2.setOpposite(true);
 

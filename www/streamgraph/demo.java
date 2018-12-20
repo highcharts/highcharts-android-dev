@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 		plotoptions.getSeries().setLabel(new HILabel());
 		plotoptions.getSeries().getLabel().setMinFontSize(5);
 		plotoptions.getSeries().getLabel().setMaxFontSize(15);
-		plotoptions.getSeries().getLabel().setStyle(new HIStyle());
+		plotoptions.getSeries().getLabel().setStyle(new HICSSObject());
 		plotoptions.getSeries().getLabel().getStyle().setColor("rgba(255,255,255,0.75)");
 		options.setPlotOptions(plotoptions);
 

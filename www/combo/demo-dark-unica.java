@@ -35,10 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
         HIItems item = new HIItems();
         item.setHtml("Total fruit consumption");
-        item.setStyle(new HashMap<>());
-        item.getStyle().put("left", "50px");
-        item.getStyle().put("top", "18px");
-        item.getStyle().put("colort", "black");
+        item.setStyle(new HICSSObject());
+        item.getStyle().setTop("18px");
+        item.getStyle().setColor("black");
 
         HILabels labels = new HILabels();
         labels.setItems(new ArrayList<>(Collections.singletonList(item)));

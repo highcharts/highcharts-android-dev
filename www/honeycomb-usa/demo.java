@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 		plotOptions.getSeries().getDataLabels().setEnabled(true);
 		plotOptions.getSeries().getDataLabels().setFormat("{point.hc-a2}");
 		plotOptions.getSeries().getDataLabels().setColor(HIColor.initWithHexValue("000000"));
-		plotOptions.getSeries().getDataLabels().setStyle(new HIStyle());
+		plotOptions.getSeries().getDataLabels().setStyle(new HICSSObject());
 		plotOptions.getSeries().getDataLabels().getStyle().setTextOutline("false");
 		options.setPlotOptions(plotOptions);
 

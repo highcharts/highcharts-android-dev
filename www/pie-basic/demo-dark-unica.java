@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         plotOptions.getPie().setDataLabels(new HIDataLabels());
         plotOptions.getPie().getDataLabels().setEnabled(true);
         plotOptions.getPie().getDataLabels().setFormat("<b>{point.name}</b>: {point.percentage:.1f} %"); ;
-        plotOptions.getPie().getDataLabels().setStyle(new HIStyle());
+        plotOptions.getPie().getDataLabels().setStyle(new HICSSObject());
         plotOptions.getPie().getDataLabels().getStyle().setColor("black");
         options.setPlotOptions(plotOptions);
 

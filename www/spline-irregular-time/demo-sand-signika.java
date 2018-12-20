@@ -33,8 +33,10 @@ public class MainActivity extends AppCompatActivity {
 		HIXAxis xAxis = new HIXAxis();
 		xAxis.setType("datetime");
 		xAxis.setDateTimeLabelFormats(new HIDateTimeLabelFormats());
-		xAxis.getDateTimeLabelFormats().setMonth("%e. %b");
-		xAxis.getDateTimeLabelFormats().setYear("%b");
+		xAxis.getDateTimeLabelFormats().setMonth(new HIMonth());
+		xAxis.getDateTimeLabelFormats().getMonth().setMain("%e. %b");
+		xAxis.getDateTimeLabelFormats().setYear(new HIYear());
+		xAxis.getDateTimeLabelFormats().getYear().setMain("%b");
 		xAxis.setTitle(new HITitle());
 		xAxis.getTitle().setText("Date");
 		options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});

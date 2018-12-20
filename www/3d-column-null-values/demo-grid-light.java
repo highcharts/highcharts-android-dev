@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         xAxis.setCategories(new ArrayList<>(Arrays.asList(shortMonths)));
         xAxis.setLabels(new HILabels());
         xAxis.getLabels().setSkew3d(true);
-        xAxis.getLabels().setStyle(new HIStyle());
+        xAxis.getLabels().setStyle(new HICSSObject());
         xAxis.getLabels().getStyle().setFontSize("16px");
         options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         series1.setName("Sales");
         series1.setData(new ArrayList<>(Arrays.asList(2, 3, null, 4, 0, 5, 1, 4, 6, 3)));
         options.setSeries(new ArrayList<>(Arrays.asList(series1)));
-
         chartView.setOptions(options);
     }
 }

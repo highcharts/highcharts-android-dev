@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         yaxis.getTitle().setText("Total fruit consumption");
         yaxis.setStackLabels(new HIStackLabels());
         yaxis.getStackLabels().setEnabled(true);
-        yaxis.getStackLabels().setStyle(new HIStyle());
+        yaxis.getStackLabels().setStyle(new HICSSObject());
         yaxis.getStackLabels().getStyle().setFontWeight("bold");
         yaxis.getStackLabels().getStyle().setColor("gray");
         options.setYAxis(new ArrayList<>(Collections.singletonList(yaxis)));
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         plotoptions.getColumn().setDataLabels(new HIDataLabels());
         plotoptions.getColumn().getDataLabels().setEnabled(true);
         plotoptions.getColumn().getDataLabels().setColor(HIColor.initWithName("white"));
-        plotoptions.getColumn().getDataLabels().setStyle(new HIStyle());
+        plotoptions.getColumn().getDataLabels().setStyle(new HICSSObject());
         plotoptions.getColumn().getDataLabels().getStyle().setTextOutline("0 0 3px black");
         options.setPlotOptions(plotoptions);
 

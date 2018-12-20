@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         plotlines.setLabel(new HILabel());
         plotlines.getLabel().setText("Theoretical mean: 932");
         plotlines.getLabel().setAlign("center");
-        plotlines.getLabel().setStyle(new HIStyle());
+        plotlines.getLabel().setStyle(new HICSSObject());
         plotlines.getLabel().getStyle().setColor("gray");
         yaxis.setPlotLines(new ArrayList<>(Collections.singletonList(plotlines)));
         options.setYAxis(new ArrayList<>(Collections.singletonList(yaxis)));

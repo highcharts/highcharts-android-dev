@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
 		chart.getOptions3d().getFrame().setBack(new HIBack());
 		chart.getOptions3d().getFrame().getBack().setSize(1);
 		chart.getOptions3d().getFrame().getBack().setColor(HIColor.initWithRGBA(0, 0, 0, 0.04));
-		chart.getOptions3d().getFrame().setSide(new HISide());
-		chart.getOptions3d().getFrame().getSide().setSize(1);
-		chart.getOptions3d().getFrame().getSide().setColor(HIColor.initWithRGBA(0, 0, 0, 0.06));
+		chart.getOptions3d().getFrame().setLeft(new HILeft());
+    	  	chart.getOptions3d().getFrame().getLeft().setSize(1);
+     	   	chart.getOptions3d().getFrame().getLeft().setColor(HIColor.initWithRGBA(0, 0, 0, 0.06));
 		options.setChart(chart);
 
 		HITitle title = new HITitle();

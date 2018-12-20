@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         plotOptions.getPie().setDataLabels(new HIDataLabels());
         plotOptions.getPie().getDataLabels().setEnabled(true);
         plotOptions.getPie().getDataLabels().setDistance(-50);
-        plotOptions.getPie().getDataLabels().setStyle(new HIStyle());
+        plotOptions.getPie().getDataLabels().setStyle(new HICSSObject());
         plotOptions.getPie().getDataLabels().getStyle().setFontWeight("bold");
         plotOptions.getPie().getDataLabels().getStyle().setColor("white");
         plotOptions.getPie().setStartAngle(-90);

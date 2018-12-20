@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         xAxis.setCategories(new ArrayList<>(Arrays.asList(shortMonths)));
         xAxis.setLabels(new HILabels());
         xAxis.getLabels().setSkew3d(true);
-        xAxis.getLabels().setStyle(new HIStyle());
+        xAxis.getLabels().setStyle(new HICSSObject());
         xAxis.getLabels().getStyle().setFontSize("16px");
         options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 

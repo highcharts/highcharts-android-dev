@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         yaxis.setTickColor(HIColor.initWithHexValue("666"));
         yaxis.setTitle(new HITitle());
         yaxis.getTitle().setText("Powered by<br/>Highcharts");
-        yaxis.getTitle().setStyle(new HIStyle());
+        yaxis.getTitle().setStyle(new HICSSObject());
         yaxis.getTitle().getStyle().setColor("#BBB");
         yaxis.getTitle().getStyle().setFontWeight("normal");
         yaxis.getTitle().getStyle().setFontSize("8px");

@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 		series1.setDataLabels(new HIDataLabels());
 		series1.getDataLabels().setEnabled(true);
 		series1.getDataLabels().setFormatter(new HIFunction( "function () { return Highcharts.numberFormat(this.y / 1000, 0, ',') + 'k'; }"));
-		series1.getDataLabels().setStyle(new HIStyle());
+		series1.getDataLabels().setStyle(new HICSSObject());
 		series1.getDataLabels().getStyle().setFontWeight("bold");
 		series1.setPointPadding(0);
 
