@@ -21,7 +21,14 @@ import com.highsoft.highcharts.common.HIColor;
 
 
 
-public class HIData extends Observable implements HIChartsJSONSerializable { 
+public class HIData extends Observable implements HIChartsJSONSerializable {
+
+	private HashMap<String, Object> jsProperties;
+
+	public void setProperty(String name, Object value){
+		if(jsProperties == null) jsProperties = new HashMap<>();
+		jsProperties.put(name, value);
+	}
 
 	private Boolean enablePolling;
 /**
@@ -970,6 +977,11 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 				}
 			}
 			params.put("columns", array);
+		}
+		if(this.jsProperties != null){
+			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
+				params.put(entry.getKey(), entry.getValue());
+			}
 		}
 		if (this.endRow != null) {
 			params.put("endRow", this.endRow);

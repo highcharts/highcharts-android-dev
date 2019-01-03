@@ -67,45 +67,53 @@ public class MainActivity extends AppCompatActivity {
 
 		HISpline spline1 = new HISpline();
 		spline1.setName("JAWS");
+		spline1.setProperty("website", "https://www.freedomscientific.com/Products/Blindness/JAWS");
 		spline1.setData(new ArrayList<>(Arrays.asList(74, 69.6, 63.7, 63.9, 43.7)));
 
 		HISpline spline2 = new HISpline();
 		spline2.setName("NVDA");
+		spline2.setProperty("website", "https://www.nvaccess.org");
 		spline2.setData(new ArrayList<>(Arrays.asList(8, 34.8, 43.0, 51.2, 41.4)));
 		spline2.setDashStyle("Dot");
 
 		HISpline spline3 = new HISpline();
 		spline3.setName("VoiceOver");
-		spline3.setData(new ArrayList<>(Arrays.asList(8, 34.8, 43.0, 51.2, 41.4)));
+		spline3.setProperty("website", "http://www.apple.com/accessibility/osx/voiceover");
+		spline3.setData(new ArrayList<>(Arrays.asList(6, 20.2, 30.7, 36.8, 30.9)));
 		spline3.setDashStyle("ShortDot");
 		spline3.setColor(HIColor.initWithHexValue("77a1e5"));
 
 		HISpline spline4 = new HISpline();
 		spline4.setName("Window-Eyes");
+		spline4.setProperty("website", "http://www.gwmicro.com/window-eyes");
 		spline4.setData(new ArrayList<>(Arrays.asList(23, 19.0, 20.7, 13.9, 29.6)));
 		spline4.setDashStyle("Dash");
 		spline4.setColor(HIColor.initWithHexValue("2f7ed8"));
 
 		HISpline spline5 = new HISpline();
 		spline5.setName("ZoomText");
+		spline5.setProperty("website", "http://www.zoomtext.com/products/zoomtext-magnifierreader");
 		spline5.setData(new ArrayList<>(Arrays.asList(0, 6.1, 6.8, 5.3, 27.5)));
 		spline5.setDashStyle("ShortDashDot");
 		spline5.setColor(HIColor.initWithHexValue("c42525"));
 
 		HISpline spline6 = new HISpline();
 		spline6.setName("System Access To Go");
+		spline6.setProperty("website", "https://www.satogo.com");
 		spline6.setData(new ArrayList<>(Arrays.asList(0, 16.2, 22.1, 26.2, 6.9)));
 		spline6.setDashStyle("ShortDash");
 		spline6.setColor(HIColor.initWithHexValue("0d233a"));
 
 		HISpline spline7 = new HISpline();
 		spline7.setName("ChromeVox");
+		spline7.setProperty("website", "http://www.chromevox.com");
 		spline7.setData(new ArrayList<>(Arrays.asList(0, 0, 2.8, 4.8, 2.8)));
-		spline6.setDashStyle("DotDash");
-		spline6.setColor(HIColor.initWithHexValue("1aadce"));
+		spline7.setDashStyle("DotDash");
+		spline7.setColor(HIColor.initWithHexValue("1aadce"));
 
 		HISpline spline8 = new HISpline();
 		spline8.setName("Other");
+		spline8.setProperty("website", "http://www.disabled-world.com/assistivedevices/computer/screen-readers.php");
 		spline8.setData(new ArrayList<>(Arrays.asList(0, 7.4, 5.9, 9.3, 6.5)));
 		spline8.setDashStyle("LongDash");
 		spline8.setColor(HIColor.initWithHexValue("77a1e5"));

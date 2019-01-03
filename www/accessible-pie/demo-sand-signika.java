@@ -61,36 +61,46 @@ public class MainActivity extends AppCompatActivity {
 		data1.setY(30.2);
 		data1.setColor(HIColor.initWithName("url(#highcharts-default-pattern-0)"));
 		data1.setDefinition("This is the most used desktop screen reader");
+		data1.setProperty("website", "https://www.freedomscientific.com/Products/Blindness/JAWS");
 		HIData data2  = new HIData();
 		data2.setName("ZoomText");
 		data2.setY(22.2);
 		data2.setColor(HIColor.initWithName("url(#highcharts-default-pattern-1)"));
+		data2.setProperty("website", "http://www.zoomtext.com/products/zoomtext-magnifierreader");
 		HIData data3  = new HIData();
 		data3.setName("Window-Eyes");
 		data3.setY(20.7);
 		data3.setColor(HIColor.initWithName("url(#highcharts-default-pattern-2)"));
+		data3.setProperty("website", "http://www.gwmicro.com/window-eyes");
 		HIData data4  = new HIData();
 		data4.setName("NVDA");
 		data4.setY(14.6);
 		data4.setColor(HIColor.initWithName("url(#highcharts-default-pattern-4)"));
+		data4.setProperty("website", "https://www.nvaccess.org");
 		HIData data5  = new HIData();
 		data5.setName("VoiceOver");
 		data5.setY(7.6);
 		data5.setColor(HIColor.initWithName("url(#highcharts-default-pattern-3)"));
+		data5.setProperty("website", "http://www.apple.com/accessibility/osx/voiceover");
 		HIData data6  = new HIData();
 		data6.setName("System Access To Go");
 		data6.setY(1.5);
 		data6.setColor(HIColor.initWithName("url(#highcharts-default-pattern-7)"));
+		data6.setProperty("website", "https://www.satogo.com");
 		HIData data7  = new HIData();
 		data7.setName("ChromeVox");
 		data7.setY(0.3);
 		data7.setColor(HIColor.initWithName("url(#highcharts-default-pattern-6)"));
+		data7.setProperty("website", "http://www.chromevox.com");
 		HIData data8  = new HIData();
 		data8.setName("Other");
 		data8.setY(2.9);
 		data8.setColor(HIColor.initWithName("url(#highcharts-default-pattern-5)"));
+		data8.setProperty("website", "http://www.disabled-world.com/assistivedevices/computer/screen-readers.php");
 
 		pie.setData(new ArrayList<>(Arrays.asList(data1, data2, data3, data4, data5, data6, data7, data8)));
+
+		options.setSeries(new ArrayList<>(Collections.singletonList(pie)));
 
 		chartView.setOptions(options);
 	}

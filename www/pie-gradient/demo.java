@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<HIColor> colors = new ArrayList<>();
         HIGradient gradient = new HIGradient(0.5f, 0.3f, 0.7f);
-        
+
         LinkedList<HIStop> s1 = new LinkedList<>();
         s1.add(new HIStop(0, HIColor.initWithHexValue("7cb5ec")));
         s1.add(new HIStop(1, HIColor.initWithRGB(48,105,160)));
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         s3.add(new HIStop(1, HIColor.initWithRGB(68,161,49)));
 
         colors.add(HIColor.initWithLinearGradient(gradient, s3));
-        
+
         LinkedList<HIStop> s4 = new LinkedList<>();
         s4.add(new HIStop(0, HIColor.initWithHexValue("f7a35c")));
         s4.add(new HIStop(1, HIColor.initWithRGB(171,87,16)));
@@ -95,8 +95,6 @@ public class MainActivity extends AppCompatActivity {
 
         colors.add(HIColor.initWithLinearGradient(gradient, s10));
 
-        options.setColors(colors);
-
         HITitle title = new HITitle();
         title.setText("Browser market shares. January, 2015 to May, 2015");
         options.setTitle(title);
@@ -112,40 +110,47 @@ public class MainActivity extends AppCompatActivity {
         plotoptions.getPie().setDataLabels(new HIDataLabels());
         plotoptions.getPie().getDataLabels().setEnabled(true);
         plotoptions.getPie().getDataLabels().setFormat("<b>{point.name}</b>: {point.percentage:.1f} %");
-        plotoptions.getPie().getDataLabels().setStyle(new HIStyle());
+        plotoptions.getPie().getDataLabels().setStyle(new HICSSObject());
         plotoptions.getPie().getDataLabels().getStyle().setColor("black");
-        plotoptions.getPie().getDataLabels().setConnectorColor("silver");
+        plotoptions.getPie().getDataLabels().setConnectorColor(HIColor.initWithName("silver"));
         options.setPlotOptions(plotoptions);
 
         HIPie pie = new HIPie();
         pie.setName("Brands");
-        HashMap<String, Object> map1 = new HashMap<>();
-        map1.put("name", "Microsoft Internet Explorer");
-        map1.put("y", 56.33);
 
-        HashMap<String, Object> map2 = new HashMap<>();
-        map2.put("name", "Chrome");
-        map2.put("y", 24.03);
-        map2.put("sliced", true);
-        map2.put("selected", true);
+        HIData data1 = new HIData();
+        data1.setName("Chrome");
+        data1.setY(56.33);
+        data1.setColor(colors.get(0));
+        data1.setSliced(true);
+        data1.setSelected(true);
 
-        HashMap<String, Object> map3 = new HashMap<>();
-        map3.put("name", "Firefox");
-        map3.put("y", 10.38);
+        HIData data2 = new HIData();
+        data2.setName("Internet Explorer");
+        data2.setY(24.03);
+        data2.setColor(colors.get(1));
 
-        HashMap<String, Object> map4 = new HashMap<>();
-        map4.put("name", "Safari");
-        map4.put("y", 4.77);
+        HIData data3 = new HIData();
+        data3.setName("Firefox");
+        data3.setY(10.38);
+        data3.setColor(colors.get(2));
 
-        HashMap<String, Object> map5 = new HashMap<>();
-        map5.put("name", "Opera");
-        map5.put("y", 0.91);
+        HIData data4 = new HIData();
+        data4.setName("Safari");
+        data4.setY(4.77);
+        data4.setColor(colors.get(3));
 
-        HashMap<String, Object> map6 = new HashMap<>();
-        map6.put("name", "Proprietary or Undetectable");
-        map6.put("y", 0.2);
+        HIData data5 = new HIData();
+        data5.setName("Opera");
+        data5.setY(0.91);
+        data5.setColor(colors.get(4));
 
-        pie.setData(new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6)));
+        HIData data6 = new HIData();
+        data6.setName("Proprietary or Undetectable");
+        data6.setY(0.2);
+        data6.setColor(colors.get(5));
+        
+        pie.setData(new ArrayList<>(Arrays.asList(data1, data2, data3, data4, data5, data6)));
 
         options.setSeries(new ArrayList<>(Collections.singletonList(pie)));
 
