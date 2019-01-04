@@ -15,6 +15,7 @@ import java.util.Observable;
 import java.util.Observer;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -98,6 +99,18 @@ public class HIPyramid extends HISeries {
 
 	public Object /* Number, String */ getWidth(){ return width; }
 
+	private HIColor borderColor;
+/**
+/** The color of the border surrounding each slice. When null, the border takes the same color as the slice fill. This can be used together with a borderWidth to fill drawing gaps created by antialiazing artefacts in borderless pies. In styled mode, the border stroke is given in the .highcharts-point class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-bordercolor-black/">Black border</a>
+ <br><br><b>defaults:</b><br><br>&ensp;#ffffff*/
+	public void setBorderColor(HIColor borderColor) {
+		this.borderColor = borderColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getBorderColor(){ return borderColor; }
+
 	private Number minSize;
 /**
 /** The minimum size for a pie in response to auto margins. The pie will try to shrink to make room for data labels in side the plot area, but only to this size. 
@@ -169,6 +182,18 @@ public class HIPyramid extends HISeries {
 	}
 
 	public ArrayList<String> getColors(){ return colors; }
+
+	private Number borderWidth;
+/**
+/** The width of the border surrounding each slice. When setting the border width to 0, there may be small gaps between the slices due to SVG antialiasing artefacts. To work around this, keep the border width at 0.5 or 1, but set the borderColor to null instead. In styled mode, the border stroke width is given in the .highcharts-point class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-borderwidth/">3px border</a>
+*/
+	public void setBorderWidth(Number borderWidth) {
+		this.borderWidth = borderWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getBorderWidth(){ return borderWidth; }
 
 	private Number startAngle;
 /**
@@ -251,6 +276,9 @@ public class HIPyramid extends HISeries {
 		if (this.width != null) {
 			params.put("width", this.width);
 		}
+		if (this.borderColor != null) {
+			params.put("borderColor", this.borderColor.getData());
+		}
 		if (this.minSize != null) {
 			params.put("minSize", this.minSize);
 		}
@@ -277,6 +305,9 @@ public class HIPyramid extends HISeries {
 				}
 			}
 			params.put("colors", array);
+		}
+		if (this.borderWidth != null) {
+			params.put("borderWidth", this.borderWidth);
 		}
 		if (this.startAngle != null) {
 			params.put("startAngle", this.startAngle);

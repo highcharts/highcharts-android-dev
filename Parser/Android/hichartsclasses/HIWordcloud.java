@@ -15,6 +15,7 @@ import java.util.Observable;
 import java.util.Observer;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -98,6 +99,19 @@ public class HIWordcloud extends HISeries {
 
 	public String getSpiral(){ return spiral; }
 
+	private Number borderWidth;
+/**
+/** * description: The width of the border surrounding each column or bar. Defaults to 1 when there is room for a border, but to 0 when the columns are so dense that a border would cover the next column. In styled mode, the stroke width can be set with the .highcharts-point rule. * demo:  •  2px black border
+* defaults: undefined
+*/
+	public void setBorderWidth(Number borderWidth) {
+		this.borderWidth = borderWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getBorderWidth(){ return borderWidth; }
+
 	private HIRotation rotation;
 /**
 /** Rotation options for the words in the wordcloud. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/wordcloud-rotation">Word cloud with rotation</a>
@@ -146,6 +160,18 @@ public class HIWordcloud extends HISeries {
 	}
 
 	public ArrayList<String> getColors(){ return colors; }
+
+	private HIColor borderColor;
+/**
+/** The color of the border surrounding each column or bar. In styled mode, the border stroke can be set with the .highcharts-point rule. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-bordercolor/">Dark gray border</a>
+ <br><br><b>defaults:</b><br><br>&ensp;#ffffff*/
+	public void setBorderColor(HIColor borderColor) {
+		this.borderColor = borderColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getBorderColor(){ return borderColor; }
 
 	private Number edgeWidth;
 /**
@@ -198,6 +224,9 @@ public class HIWordcloud extends HISeries {
 		if (this.spiral != null) {
 			params.put("spiral", this.spiral);
 		}
+		if (this.borderWidth != null) {
+			params.put("borderWidth", this.borderWidth);
+		}
 		if (this.rotation != null) {
 			params.put("rotation", this.rotation.getParams());
 		}
@@ -218,6 +247,9 @@ public class HIWordcloud extends HISeries {
 				}
 			}
 			params.put("colors", array);
+		}
+		if (this.borderColor != null) {
+			params.put("borderColor", this.borderColor.getData());
 		}
 		if (this.edgeWidth != null) {
 			params.put("edgeWidth", this.edgeWidth);

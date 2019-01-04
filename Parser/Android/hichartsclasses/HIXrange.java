@@ -15,6 +15,7 @@ import java.util.Observable;
 import java.util.Observer;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -111,6 +112,18 @@ public class HIXrange extends HISeries {
 
 	public ArrayList<String> getColors(){ return colors; }
 
+	private HIColor borderColor;
+/**
+/** The color of the border surrounding each column or bar. In styled mode, the border stroke can be set with the .highcharts-point rule. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-bordercolor/">Dark gray border</a>
+ <br><br><b>defaults:</b><br><br>&ensp;#ffffff*/
+	public void setBorderColor(HIColor borderColor) {
+		this.borderColor = borderColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getBorderColor(){ return borderColor; }
+
 	private Number maxPointWidth;
 /**
 /** The maximum allowed pixel width for a column, translated to the height of a bar in a bar chart. This prevents the columns from becoming too wide when there is a small number of points in the chart. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-maxpointwidth-20/">Limited to 50</a>
@@ -146,6 +159,18 @@ public class HIXrange extends HISeries {
 	}
 
 	public Number getGroupPadding(){ return groupPadding; }
+
+	private Number borderWidth;
+/**
+/** The width of the border surrounding each column or bar. Defaults to 1 when there is room for a border, but to 0 when the columns are so dense that a border would cover the next column. In styled mode, the stroke width can be set with the .highcharts-point rule. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-borderwidth/">2px black border</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined*/
+	public void setBorderWidth(Number borderWidth) {
+		this.borderWidth = borderWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getBorderWidth(){ return borderWidth; }
 
 	private Boolean grouping;
 /**
@@ -210,6 +235,9 @@ public class HIXrange extends HISeries {
 			}
 			params.put("colors", array);
 		}
+		if (this.borderColor != null) {
+			params.put("borderColor", this.borderColor.getData());
+		}
 		if (this.maxPointWidth != null) {
 			params.put("maxPointWidth", this.maxPointWidth);
 		}
@@ -218,6 +246,9 @@ public class HIXrange extends HISeries {
 		}
 		if (this.groupPadding != null) {
 			params.put("groupPadding", this.groupPadding);
+		}
+		if (this.borderWidth != null) {
+			params.put("borderWidth", this.borderWidth);
 		}
 		if (this.grouping != null) {
 			params.put("grouping", this.grouping);

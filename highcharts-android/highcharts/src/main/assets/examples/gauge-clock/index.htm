@@ -6,14 +6,18 @@
 		<title>Highcharts Example</title>
 
 		<style type="text/css">
-
+#container {
+	min-width: 300px;
+	max-width: 500px;
+	margin: 0 auto;
+}
 		</style>
 	</head>
 	<body>
 <script src="../../code/highcharts.js"></script>
 <script src="../../code/highcharts-more.js"></script>
 
-<div id="container" style="width: 300px; height: 300px; margin: 0 auto"></div>
+<div id="container"></div>
 
 
 
@@ -52,7 +56,7 @@ Highcharts.chart('container', {
         plotBackgroundImage: null,
         plotBorderWidth: 0,
         plotShadow: false,
-        height: 200
+        height: '80%'
     },
 
     credits: {

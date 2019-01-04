@@ -25,6 +25,11 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	private HashMap<String, Object> jsProperties;
 
+	/**
+	 * Adds own property as a param for data which can be used in HIFunction implemented in Javascript
+	 * @param name property name
+	 * @param value property value
+	 */
 	public void setProperty(String name, Object value){
 		if(jsProperties == null) jsProperties = new HashMap<>();
 		jsProperties.put(name, value);
@@ -594,6 +599,18 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 
 	public HIMarker getMarker(){ return marker; }
 
+	private Number weight;
+/**
+/** The value of a bubble. The bubble's size proportional to its value. 
+*/
+	public void setWeight(Number weight) {
+		this.weight = weight;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getWeight(){ return weight; }
+
 	private Number direction;
 /**
 /** The vector direction in degrees, where 0 is north (pointing towards south). 
@@ -762,18 +779,6 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 	}
 
 	public String getFrom(){ return from; }
-
-	private Number weight;
-/**
-/** The weight of the link. 
-*/
-	public void setWeight(Number weight) {
-		this.weight = weight;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getWeight(){ return weight; }
 
 	private Object /* Number, String */ innerRadius;
 /**
@@ -978,11 +983,6 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 			}
 			params.put("columns", array);
 		}
-		if(this.jsProperties != null){
-			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
-				params.put(entry.getKey(), entry.getValue());
-			}
-		}
 		if (this.endRow != null) {
 			params.put("endRow", this.endRow);
 		}
@@ -1076,6 +1076,9 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 		if (this.marker != null) {
 			params.put("marker", this.marker.getParams());
 		}
+		if (this.weight != null) {
+			params.put("weight", this.weight);
+		}
 		if (this.direction != null) {
 			params.put("direction", this.direction);
 		}
@@ -1118,9 +1121,6 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 		if (this.from != null) {
 			params.put("from", this.from);
 		}
-		if (this.weight != null) {
-			params.put("weight", this.weight);
-		}
 		if (this.innerRadius != null) {
 			params.put("innerRadius", this.innerRadius);
 		}
@@ -1156,6 +1156,11 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 				}
 			}
 			params.put("sets", array);
+		}
+		if(this.jsProperties != null){
+			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
+				params.put(entry.getKey(), entry.getValue());
+			}
 		}
 		return params;
 	}

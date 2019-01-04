@@ -22,51 +22,6 @@ import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 public class HIStyle extends Observable implements HIChartsJSONSerializable { 
 
-	private String color;
-	public void setColor(String color) {
-		this.color = color;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getColor(){ return color; }
-
-	private String fontWeight;
-	public void setFontWeight(String fontWeight) {
-		this.fontWeight = fontWeight;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getFontWeight(){ return fontWeight; }
-
-	private String fontSize;
-	public void setFontSize(String fontSize) {
-		this.fontSize = fontSize;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getFontSize(){ return fontSize; }
-
-	private String stroke;
-	public void setStroke(String stroke) {
-		this.stroke = stroke;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getStroke(){ return stroke; }
-
-	private String fill;
-	public void setFill(String fill) {
-		this.fill = fill;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getFill(){ return fill; }
-
 	private String textOverflow;
 	public void setTextOverflow(String textOverflow) {
 		this.textOverflow = textOverflow;
@@ -104,21 +59,6 @@ public class HIStyle extends Observable implements HIChartsJSONSerializable {
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.color != null) {
-			params.put("color", this.color);
-		}
-		if (this.fontWeight != null) {
-			params.put("fontWeight", this.fontWeight);
-		}
-		if (this.fontSize != null) {
-			params.put("fontSize", this.fontSize);
-		}
-		if (this.stroke != null) {
-			params.put("stroke", this.stroke);
-		}
-		if (this.fill != null) {
-			params.put("fill", this.fill);
-		}
 		if (this.textOverflow != null) {
 			params.put("textOverflow", this.textOverflow);
 		}

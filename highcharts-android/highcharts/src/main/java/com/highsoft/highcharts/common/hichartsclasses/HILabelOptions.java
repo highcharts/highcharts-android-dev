@@ -47,22 +47,21 @@ public class HILabelOptions extends Observable implements HIChartsJSONSerializab
 
 	public HIColor getBorderColor(){ return borderColor; }
 
-	private HIStyle style;
+	private HICSSObject style;
 /**
 /** Styles for the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
 */
-	public void setStyle(HIStyle style) {
+	public void setStyle(HICSSObject style) {
 		this.style = style;
-		this.style.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIStyle getStyle(){ return style; }
+	public HICSSObject getStyle(){ return style; }
 
 	private Number padding;
 /**
-/** When either the borderWidth or the backgroundColor is set, this is the padding within the box. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
+/** When either the borderWidth or the backgroundColor is set, this  is the padding within the box. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
 */
 	public void setPadding(Number padding) {
 		this.padding = padding;
@@ -87,7 +86,7 @@ public class HILabelOptions extends Observable implements HIChartsJSONSerializab
 	private Number distance;
 /**
 /** The label's pixel distance from the point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a>
- <br><br><b>defaults:</b><br><br>&ensp;undefined*/
+*/
 	public void setDistance(Number distance) {
 		this.distance = distance;
 		this.setChanged();
@@ -111,7 +110,7 @@ public class HILabelOptions extends Observable implements HIChartsJSONSerializab
 	private String text;
 /**
 /** Alias for the format option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-text/">Set labels text</a>
- <br><br><b>defaults:</b><br><br>&ensp;undefined*/
+*/
 	public void setText(String text) {
 		this.text = text;
 		this.setChanged();
@@ -135,7 +134,7 @@ public class HILabelOptions extends Observable implements HIChartsJSONSerializab
 	private String format;
 /**
 /** A [format](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) string for the data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-text/">Set labels text</a>
- <br><br><b>defaults:</b><br><br>&ensp;undefined*/
+*/
 	public void setFormat(String format) {
 		this.format = format;
 		this.setChanged();
@@ -158,8 +157,8 @@ public class HILabelOptions extends Observable implements HIChartsJSONSerializab
 
 	private Boolean useHTML;
 /**
-/** Whether to [use HTML](http://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the annotation's label. 
- <br><br><b>defaults:</b><br><br>&ensp;false*/
+/** Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the annotation's label. 
+*/
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;
 		this.setChanged();
@@ -242,7 +241,7 @@ public class HILabelOptions extends Observable implements HIChartsJSONSerializab
 
 	private String overflow;
 /**
-/** How to handle the annotation's label that flow outside the plot area. The justify option aligns the label inside the plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-crop-overflow/">Crop or justify labels *</a> <br><br><b>accepted values:</b><br><br>&ensp;["none", "justify"]
+/** How to handle the annotation's label that flow outside the plot area. The justify option aligns the label inside the plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-crop-overflow/">Crop or justify labels</a> <br><br><b>accepted values:</b><br><br>&ensp;["allow", "justify"]
 */
 	public void setOverflow(String overflow) {
 		this.overflow = overflow;
@@ -254,10 +253,8 @@ public class HILabelOptions extends Observable implements HIChartsJSONSerializab
 
 	private HIFunction formatter;
 /**
-/** Callback JavaScript function to format the annotation's label. Note that if a format or text are defined, the format or text take precedence and the formatter is ignored. This refers to a * point object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-text/">Set labels text</a>
- <br><br><b>defaults:</b><br><br>&ensp;function () {
- return defined(this.y) ? this.y : 'Annotation label';
-}*/
+/** Callback JavaScript function to format the annotation's label. Note that if a format or text are defined, the format or text take precedence and the formatter is ignored. This refers to a point object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-text/">Set labels text</a>
+ <br><br><b>defaults:</b><br><br>&ensp;function () { return defined(this.y) ? this.y : 'Annotation label'; }*/
 	public void setFormatter(HIFunction formatter) {
 		this.formatter = formatter;
 		this.setChanged();
@@ -266,17 +263,17 @@ public class HILabelOptions extends Observable implements HIChartsJSONSerializab
 
 	public HIFunction getFormatter(){ return formatter; }
 
-	private Object /* Boolean|Object */ shadow;
+	private Boolean /* boolean */ shadow;
 /**
 /** The shadow of the box. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
 */
-	public void setShadow(Object /* Boolean|Object */ shadow) {
+	public void setShadow(Boolean /* boolean */ shadow) {
 		this.shadow = shadow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Boolean|Object */ getShadow(){ return shadow; }
+	public Boolean /* boolean */ getShadow(){ return shadow; }
 
 
 

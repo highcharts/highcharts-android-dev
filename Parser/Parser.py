@@ -315,7 +315,11 @@ hc_types = {
     "Array.<function()>|undefined": 'ArrayList<HIFunction>',
     "*|undefined": 'Object',
     "Highcharts.Dictionary.<number>": 'HashMap',
-    "Object|*": 'Object'
+    "Object|*": 'Object',
+    #7.0.1
+    "Highcharts.FormatterCallbackFunction.<Highcharts.AxisLabelsFormatterContextObject>": 'HIFunction',
+    "Highcharts.FormatterCallbackFunction.<Highcharts.Point>": 'HIFunction',
+    "string|Highcharts.HTMLDOMElement": 'String'
 
 }
 

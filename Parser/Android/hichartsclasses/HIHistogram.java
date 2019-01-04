@@ -159,6 +159,18 @@ public class HIHistogram extends HISeries {
 
 	public ArrayList<String> getColors(){ return colors; }
 
+	private HIColor borderColor;
+/**
+/** The color of the border surrounding each column or bar. In styled mode, the border stroke can be set with the .highcharts-point rule. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-bordercolor/">Dark gray border</a>
+ <br><br><b>defaults:</b><br><br>&ensp;#ffffff*/
+	public void setBorderColor(HIColor borderColor) {
+		this.borderColor = borderColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getBorderColor(){ return borderColor; }
+
 	private HIColor edgeColor;
 /**
 /** 3D columns only. The color of the edges. Similar to borderColor, except it defaultss to the same color as the column. 
@@ -243,6 +255,18 @@ public class HIHistogram extends HISeries {
 
 	public Number getDepth(){ return depth; }
 
+	private Number borderWidth;
+/**
+/** The width of the border surrounding each column or bar. Defaults to 1 when there is room for a border, but to 0 when the columns are so dense that a border would cover the next column. In styled mode, the stroke width can be set with the .highcharts-point rule. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-borderwidth/">2px black border</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined*/
+	public void setBorderWidth(Number borderWidth) {
+		this.borderWidth = borderWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getBorderWidth(){ return borderWidth; }
+
 
 
 	public HIHistogram() {
@@ -306,6 +330,9 @@ public class HIHistogram extends HISeries {
 			}
 			params.put("colors", array);
 		}
+		if (this.borderColor != null) {
+			params.put("borderColor", this.borderColor.getData());
+		}
 		if (this.edgeColor != null) {
 			params.put("edgeColor", this.edgeColor.getData());
 		}
@@ -326,6 +353,9 @@ public class HIHistogram extends HISeries {
 		}
 		if (this.depth != null) {
 			params.put("depth", this.depth);
+		}
+		if (this.borderWidth != null) {
+			params.put("borderWidth", this.borderWidth);
 		}
 		return params;
 	}

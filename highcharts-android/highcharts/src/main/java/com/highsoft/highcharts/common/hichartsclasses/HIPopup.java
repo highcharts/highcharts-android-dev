@@ -103,6 +103,15 @@ public class HIPopup extends Observable implements HIChartsJSONSerializable {
 
 	public String getFibonacci(){ return fibonacci; }
 
+	private String measure;
+	public void setMeasure(String measure) {
+		this.measure = measure;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getMeasure(){ return measure; }
+
 	private String removeButton;
 	public void setRemoveButton(String removeButton) {
 		this.removeButton = removeButton;
@@ -625,6 +634,9 @@ public class HIPopup extends Observable implements HIChartsJSONSerializable {
 		}
 		if (this.fibonacci != null) {
 			params.put("fibonacci", this.fibonacci);
+		}
+		if (this.measure != null) {
+			params.put("measure", this.measure);
 		}
 		if (this.removeButton != null) {
 			params.put("removeButton", this.removeButton);

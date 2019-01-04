@@ -25,6 +25,11 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	private HashMap<String, Object> jsProperties;
 
+	/**
+	 * Adds own property as a param for series which can be used in HIFunction implemented in Javascript
+	 * @param name property name
+	 * @param value property value
+	 */
 	public void setProperty(String name, Object value){
 		if(jsProperties == null) jsProperties = new HashMap<>();
 		jsProperties.put(name, value);
@@ -56,19 +61,7 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
  	name: 'Point 2',
  	color: '#FF00FF',
  	y: 5
- }]  Note that line series and derived types like spline and area, require data to be sorted by X because it interpolates mouse coordinates for the tooltip. Column and scatter series, where each point has its own mouse event, does not require sorting. <br><br><b><i>Try it:</b></i><br><ul>
- <li><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/chart/reflow-true/" target="_blank">1) Numerical values</a></li>
- 
- <li><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-arrays/" target="_blank">2a) arrays of numeric x and y</a></li>
- 
- <li><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-arrays-datetime/" target="_blank">2b) arrays of datetime x and y</a></li>
- 
- <li><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-name-value/" target="_blank">2c) arrays of point.name and y</a></li>
- 
- <li><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-objects/" target="_blank">3) config objects</a></li>
- 
- <li><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/demo/3d-column-null-values/" target="_blank">4) 3D column with null values</a></li>
- </ul>
+ }]  Note that line series and derived types like spline and area, require data to be sorted by X because it interpolates mouse coordinates for the tooltip. Column and scatter series, where each point has its own mouse event, does not require sorting. 
 */
 	public void setData(ArrayList /* <Data|Number|ArrayList> */ data) {
 		this.data = data;
@@ -410,18 +403,6 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 	}
 
 	public HIFunction getPointDescriptionFormatter(){ return pointDescriptionFormatter; }
-
-	private HIColor borderColor;
-/**
-/** The border color of the map areas. In styled mode, the border stroke is given in the .highcharts-point class. 
- <br><br><b>defaults:</b><br><br>&ensp;'#cccccc'*/
-	public void setBorderColor(HIColor borderColor) {
-		this.borderColor = borderColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getBorderColor(){ return borderColor; }
 
 	private String className;
 /**
@@ -798,18 +779,6 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	public Number getPointStart(){ return pointStart; }
 
-	private Number borderWidth;
-/**
-/** The border width of each map area. In styled mode, the border stroke width is given in the .highcharts-point class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/series-border/">Borders demo</a>
-*/
-	public void setBorderWidth(Number borderWidth) {
-		this.borderWidth = borderWidth;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getBorderWidth(){ return borderWidth; }
-
 	private String linecap;
 /**
 /** The line cap used for line ends and line joins on the graph. <br><br><b>accepted values:</b><br><br>&ensp;["round", "square"]
@@ -970,9 +939,6 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 		if (this.pointDescriptionFormatter != null) {
 			params.put("pointDescriptionFormatter", this.pointDescriptionFormatter);
 		}
-		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor.getData());
-		}
 		if (this.className != null) {
 			params.put("className", this.className);
 		}
@@ -1060,11 +1026,6 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 			}
 			params.put("zones", array);
 		}
-		if(this.jsProperties != null){
-			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
-				params.put(entry.getKey(), entry.getValue());
-			}
-		}
 		if (this.pointIntervalUnit != null) {
 			params.put("pointIntervalUnit", this.pointIntervalUnit);
 		}
@@ -1089,9 +1050,6 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 		if (this.pointStart != null) {
 			params.put("pointStart", this.pointStart);
 		}
-		if (this.borderWidth != null) {
-			params.put("borderWidth", this.borderWidth);
-		}
 		if (this.linecap != null) {
 			params.put("linecap", this.linecap);
 		}
@@ -1103,6 +1061,11 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 		}
 		if (this.showInLegend != null) {
 			params.put("showInLegend", this.showInLegend);
+		}
+		if(this.jsProperties != null){
+			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
+				params.put(entry.getKey(), entry.getValue());
+			}
 		}
 		return params;
 	}

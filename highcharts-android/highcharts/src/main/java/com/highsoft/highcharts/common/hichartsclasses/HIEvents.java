@@ -22,18 +22,6 @@ import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 public class HIEvents extends Observable implements HIChartsJSONSerializable { 
 
-	private HIFunction legendItemClick;
-/**
-/** Not applicable to pies, as the legend item is per point. See point. events. 
-*/
-	public void setLegendItemClick(HIFunction legendItemClick) {
-		this.legendItemClick = legendItemClick;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getLegendItemClick(){ return legendItemClick; }
-
 	private HIFunction checkboxClick;
 /**
 /** Fires when the checkbox next to the point name in the legend is clicked. One parameter, event, is passed to the function. The state of the checkbox is found by event.checked. The checked item is found by event.item. Return false to prevent the defaults action which is to toggle the select state of the series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-events-checkboxclick/">Alert checkbox status</a>
@@ -394,6 +382,18 @@ public class HIEvents extends Observable implements HIChartsJSONSerializable {
 
 	public HIFunction getDeselectButton(){ return deselectButton; }
 
+	private HIFunction legendItemClick;
+/**
+/** Fires when the legend item belonging to the colorAxis is clicked. One parameter, event, is passed to the function. 
+*/
+	public void setLegendItemClick(HIFunction legendItemClick) {
+		this.legendItemClick = legendItemClick;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getLegendItemClick(){ return legendItemClick; }
+
 	private HIFunction hide;
 /**
 /** Fires when the series is hidden after chart generation time, either by clicking the legend item or by calling .hide(). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-events-hide/">Alert when the series is hidden by clicking the legend item</a>
@@ -449,9 +449,6 @@ public class HIEvents extends Observable implements HIChartsJSONSerializable {
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
-		if (this.legendItemClick != null) {
-			params.put("legendItemClick", this.legendItemClick);
-		}
 		if (this.checkboxClick != null) {
 			params.put("checkboxClick", this.checkboxClick);
 		}
@@ -541,6 +538,9 @@ public class HIEvents extends Observable implements HIChartsJSONSerializable {
 		}
 		if (this.deselectButton != null) {
 			params.put("deselectButton", this.deselectButton);
+		}
+		if (this.legendItemClick != null) {
+			params.put("legendItemClick", this.legendItemClick);
 		}
 		if (this.hide != null) {
 			params.put("hide", this.hide);

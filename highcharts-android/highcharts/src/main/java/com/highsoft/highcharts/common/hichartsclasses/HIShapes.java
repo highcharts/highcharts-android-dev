@@ -156,18 +156,6 @@ public class HIShapes extends Observable implements HIChartsJSONSerializable {
 
 	public HIColor getFill(){ return fill; }
 
-	private Number snap;
-/**
-/** Defines additional snapping area around an annotation making this annotation to focus. Defined in pixels. 
-*/
-	public void setSnap(Number snap) {
-		this.snap = snap;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getSnap(){ return snap; }
-
 
 
 	public HIShapes() {
@@ -228,9 +216,6 @@ public class HIShapes extends Observable implements HIChartsJSONSerializable {
 		}
 		if (this.fill != null) {
 			params.put("fill", this.fill.getData());
-		}
-		if (this.snap != null) {
-			params.put("snap", this.snap);
 		}
 		return params;
 	}

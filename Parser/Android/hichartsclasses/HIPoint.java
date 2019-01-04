@@ -22,6 +22,16 @@ import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 public class HIPoint extends Observable implements HIChartsJSONSerializable { 
 
+	private HIEvents events;
+	public void setEvents(HIEvents events) {
+		this.events = events;
+		this.events.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIEvents getEvents(){ return events; }
+
 	private Number y;
 /**
 /** The y position of the point. Units can be either in axis or chart pixel coordinates. 
@@ -70,16 +80,6 @@ public class HIPoint extends Observable implements HIChartsJSONSerializable {
 
 	public Object /* Number, String */ getYAxis(){ return yAxis; }
 
-	private HIEvents events;
-	public void setEvents(HIEvents events) {
-		this.events = events;
-		this.events.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIEvents getEvents(){ return events; }
-
 
 
 	public HIPoint() {
@@ -99,6 +99,9 @@ public class HIPoint extends Observable implements HIChartsJSONSerializable {
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
+		if (this.events != null) {
+			params.put("events", this.events.getParams());
+		}
 		if (this.y != null) {
 			params.put("y", this.y);
 		}
@@ -110,9 +113,6 @@ public class HIPoint extends Observable implements HIChartsJSONSerializable {
 		}
 		if (this.yAxis != null) {
 			params.put("yAxis", this.yAxis);
-		}
-		if (this.events != null) {
-			params.put("events", this.events.getParams());
 		}
 		return params;
 	}

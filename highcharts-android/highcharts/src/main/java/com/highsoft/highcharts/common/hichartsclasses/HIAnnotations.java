@@ -46,6 +46,18 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 
 	public Boolean getVisible(){ return visible; }
 
+	private ArrayList <HILabels> labels;
+/**
+/** An array of labels for the annotation. For options that apply to multiple labels, they can be added to the `labelOptions`. 
+*/
+	public void setLabels(ArrayList labels) {
+		this.labels = labels;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList getLabels(){ return labels; }
+
 	private HILabelOptions labelOptions;
 /**
 /** Options for annotation's labels. Each label inherits options from the labelOptions object. An option from the labelOptions can be overwritten by config for a specific label. 
@@ -59,18 +71,6 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 
 	public HILabelOptions getLabelOptions(){ return labelOptions; }
 
-	private ArrayList <HILabels> labels;
-/**
-/** An array of labels for the annotation. For options that apply to multiple labels, they can be added to the `labelOptions`. 
-*/
-	public void setLabels(ArrayList labels) {
-		this.labels = labels;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public ArrayList getLabels(){ return labels; }
-
 	private ArrayList <HIShapes> shapes;
 /**
 /** An array of shapes for the annotation. For options that apply to multiple shapes, then can be added to the `shapeOptions`. 
@@ -82,19 +82,6 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 	}
 
 	public ArrayList getShapes(){ return shapes; }
-
-	private HIBase base;
-/**
-/** A basic type of an annotation. It allows to add custom labels or shapes. The items can be tied to points, axis coordinates or chart pixel coordinates. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/basic/">Basic annotations</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/annotations/">Advanced annotations</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/annotations">Styled mode</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations-advanced/controllable">Controllable items</a>
-*/
-	public void setBase(HIBase base) {
-		this.base = base;
-		this.base.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIBase getBase(){ return base; }
 
 	private HIShapeOptions shapeOptions;
 /**
@@ -146,9 +133,6 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 		if (this.visible != null) {
 			params.put("visible", this.visible);
 		}
-		if (this.labelOptions != null) {
-			params.put("labelOptions", this.labelOptions.getParams());
-		}
 		if (this.labels != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.labels) {
@@ -161,6 +145,9 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 			}
 			params.put("labels", array);
 		}
+		if (this.labelOptions != null) {
+			params.put("labelOptions", this.labelOptions.getParams());
+		}
 		if (this.shapes != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.shapes) {
@@ -172,9 +159,6 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 				}
 			}
 			params.put("shapes", array);
-		}
-		if (this.base != null) {
-			params.put("base", this.base.getParams());
 		}
 		if (this.shapeOptions != null) {
 			params.put("shapeOptions", this.shapeOptions.getParams());

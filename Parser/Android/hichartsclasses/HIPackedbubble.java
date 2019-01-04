@@ -25,6 +25,43 @@ import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 */
 
 public class HIPackedbubble extends HISeries {
+	private Object /* Number, String */ minSize;
+/**
+/** * description: Minimum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height. * demo:  •  Bubble size
+*/
+	public void setMinSize(Object /* Number, String */ minSize) {
+		this.minSize = minSize;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getMinSize(){ return minSize; }
+
+	private Object /* Number, String */ maxSize;
+/**
+/** * description: Maximum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height. * demo:  •  Bubble size
+*/
+	public void setMaxSize(Object /* Number, String */ maxSize) {
+		this.maxSize = maxSize;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getMaxSize(){ return maxSize; }
+
+	private String sizeBy;
+/**
+/** * description: Whether the bubble's value should be represented by the area or the width of the bubble. The defaults, area, corresponds best to the human perception of the size of each bubble. * demo:  •  Comparison of area and size* accepted values: ["area", "width"] 
+* defaults: area
+*/
+	public void setSizeBy(String sizeBy) {
+		this.sizeBy = sizeBy;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getSizeBy(){ return sizeBy; }
+
 	private Boolean displayNegative;
 /**
 /** Whether to display negative sized bubbles. The threshold is given by the zThreshold option, and negative bubbles can be visualized by setting negativeColor. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-negative/">Negative bubbles</a>
@@ -70,6 +107,15 @@ public class HIPackedbubble extends HISeries {
 
 		Map<String, Object> params = new HashMap<>();
 		params = super.getParams();
+		if (this.minSize != null) {
+			params.put("minSize", this.minSize);
+		}
+		if (this.maxSize != null) {
+			params.put("maxSize", this.maxSize);
+		}
+		if (this.sizeBy != null) {
+			params.put("sizeBy", this.sizeBy);
+		}
 		if (this.displayNegative != null) {
 			params.put("displayNegative", this.displayNegative);
 		}
