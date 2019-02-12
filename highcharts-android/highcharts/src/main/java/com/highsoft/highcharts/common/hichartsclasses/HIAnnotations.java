@@ -22,6 +22,18 @@ import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 public class HIAnnotations extends Observable implements HIChartsJSONSerializable { 
 
+	private ArrayList <HIShapes> shapes;
+/**
+/** An array of shapes for the annotation. For options that apply to multiple shapes, then can be added to the `shapeOptions`. 
+*/
+	public void setShapes(ArrayList shapes) {
+		this.shapes = shapes;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList getShapes(){ return shapes; }
+
 	private Number zIndex;
 /**
 /** The Z index of the annotation. 
@@ -46,18 +58,6 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 
 	public Boolean getVisible(){ return visible; }
 
-	private ArrayList <HILabels> labels;
-/**
-/** An array of labels for the annotation. For options that apply to multiple labels, they can be added to the `labelOptions`. 
-*/
-	public void setLabels(ArrayList labels) {
-		this.labels = labels;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public ArrayList getLabels(){ return labels; }
-
 	private HILabelOptions labelOptions;
 /**
 /** Options for annotation's labels. Each label inherits options from the labelOptions object. An option from the labelOptions can be overwritten by config for a specific label. 
@@ -71,17 +71,29 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 
 	public HILabelOptions getLabelOptions(){ return labelOptions; }
 
-	private ArrayList <HIShapes> shapes;
+	private ArrayList <HILabels> labels;
 /**
-/** An array of shapes for the annotation. For options that apply to multiple shapes, then can be added to the `shapeOptions`. 
+/** An array of labels for the annotation. For options that apply to multiple labels, they can be added to the `labelOptions`. 
 */
-	public void setShapes(ArrayList shapes) {
-		this.shapes = shapes;
+	public void setLabels(ArrayList labels) {
+		this.labels = labels;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList getShapes(){ return shapes; }
+	public ArrayList getLabels(){ return labels; }
+
+	private String draggable;
+/**
+/** Allow an annotation to be draggable by a user. Possible values are "x", "xy", "y" and "" (disabled). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/draggable/">Annotations draggable: 'xy'</a>
+*/
+	public void setDraggable(String draggable) {
+		this.draggable = draggable;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDraggable(){ return draggable; }
 
 	private HIShapeOptions shapeOptions;
 /**
@@ -127,11 +139,26 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
+		if (this.shapes != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.shapes) {
+				if (obj instanceof HIChartsJSONSerializable) {
+					array.add(((HIChartsJSONSerializable) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("shapes", array);
+		}
 		if (this.zIndex != null) {
 			params.put("zIndex", this.zIndex);
 		}
 		if (this.visible != null) {
 			params.put("visible", this.visible);
+		}
+		if (this.labelOptions != null) {
+			params.put("labelOptions", this.labelOptions.getParams());
 		}
 		if (this.labels != null) {
 			ArrayList<Object> array = new ArrayList<>();
@@ -145,20 +172,8 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 			}
 			params.put("labels", array);
 		}
-		if (this.labelOptions != null) {
-			params.put("labelOptions", this.labelOptions.getParams());
-		}
-		if (this.shapes != null) {
-			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.shapes) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
-			}
-			params.put("shapes", array);
+		if (this.draggable != null) {
+			params.put("draggable", this.draggable);
 		}
 		if (this.shapeOptions != null) {
 			params.put("shapeOptions", this.shapeOptions.getParams());

@@ -22,7 +22,7 @@ import com.highsoft.highcharts.common.HIColor;
 
 
 /**
-/** A sunburst series. If the type option is not specified, it is inherited from chart.type. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all sunburst series are defined in  `plotOptions.sunburst`. 3. Options for one single series are given in  `the series instance array`.  Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     sunburst: {       // shared options for all sunburst series     }   },   series: [{     // specific options for this series instance     type: 'sunburst'   }] });  
+/** A sunburst series. If the type option is not specified, it is inherited from chart.type. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all sunburst series are defined in  `plotOptions.sunburst`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     sunburst: {       // shared options for all sunburst series     }   },   series: [{     // specific options for this series instance     type: 'sunburst'   }] }); `       
 */
 
 public class HISunburst extends HISeries {
@@ -73,6 +73,19 @@ public class HISunburst extends HISeries {
 
 	public ArrayList /* <Number, String> */ getCenter(){ return center; }
 
+	private HITraverseUpButton traverseUpButton;
+/**
+/** Options for the button appearing when traversing down in a treemap. 
+*/
+	public void setTraverseUpButton(HITraverseUpButton traverseUpButton) {
+		this.traverseUpButton = traverseUpButton;
+		this.traverseUpButton.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HITraverseUpButton getTraverseUpButton(){ return traverseUpButton; }
+
 	private Number slicedOffset;
 /**
 /** * description: If a point is sliced, moved out from the center, how many pixels should it be moved?. * demo:  •  Sliced sunburst
@@ -84,18 +97,6 @@ public class HISunburst extends HISeries {
 	}
 
 	public Number getSlicedOffset(){ return slicedOffset; }
-
-	private Boolean levelIsConstant;
-/**
-/** Used together with the levels and allowDrillToNode options. When set to false the first level visible when drilling is considered to be level one. Otherwise the level will be the same as the tree structure. 
-*/
-	public void setLevelIsConstant(Boolean levelIsConstant) {
-		this.levelIsConstant = levelIsConstant;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getLevelIsConstant(){ return levelIsConstant; }
 
 	private ArrayList <HILevels> levels;
 /**
@@ -109,17 +110,29 @@ public class HISunburst extends HISeries {
 
 	public ArrayList getLevels(){ return levels; }
 
-	private Boolean allowDrillToNode;
+	private Boolean levelIsConstant;
 /**
-/** When enabled the user can click on a point which is a parent and zoom in on its children. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/sunburst">Allow drill to node</a>
- <br><br><b>defaults:</b><br><br>&ensp;false*/
-	public void setAllowDrillToNode(Boolean allowDrillToNode) {
-		this.allowDrillToNode = allowDrillToNode;
+/** Used together with the levels and allowDrillToNode options. When set to false the first level visible when drilling is considered to be level one. Otherwise the level will be the same as the tree structure. 
+*/
+	public void setLevelIsConstant(Boolean levelIsConstant) {
+		this.levelIsConstant = levelIsConstant;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getAllowDrillToNode(){ return allowDrillToNode; }
+	public Boolean getLevelIsConstant(){ return levelIsConstant; }
+
+	private Boolean allowTraversingTree;
+/**
+/** When enabled the user can click on a point which is a parent and zoom in on its children. 
+ <br><br><b>defaults:</b><br><br>&ensp;false*/
+	public void setAllowTraversingTree(Boolean allowTraversingTree) {
+		this.allowTraversingTree = allowTraversingTree;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getAllowTraversingTree(){ return allowTraversingTree; }
 
 	private HIColor borderColor;
 /**
@@ -223,11 +236,11 @@ public class HISunburst extends HISeries {
 			}
 			params.put("center", array);
 		}
+		if (this.traverseUpButton != null) {
+			params.put("traverseUpButton", this.traverseUpButton.getParams());
+		}
 		if (this.slicedOffset != null) {
 			params.put("slicedOffset", this.slicedOffset);
-		}
-		if (this.levelIsConstant != null) {
-			params.put("levelIsConstant", this.levelIsConstant);
 		}
 		if (this.levels != null) {
 			ArrayList<Object> array = new ArrayList<>();
@@ -241,8 +254,11 @@ public class HISunburst extends HISeries {
 			}
 			params.put("levels", array);
 		}
-		if (this.allowDrillToNode != null) {
-			params.put("allowDrillToNode", this.allowDrillToNode);
+		if (this.levelIsConstant != null) {
+			params.put("levelIsConstant", this.levelIsConstant);
+		}
+		if (this.allowTraversingTree != null) {
+			params.put("allowTraversingTree", this.allowTraversingTree);
 		}
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());

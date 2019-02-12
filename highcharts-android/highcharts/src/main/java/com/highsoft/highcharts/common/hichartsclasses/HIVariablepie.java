@@ -22,7 +22,7 @@ import com.highsoft.highcharts.common.HIColor;
 
 
 /**
-/** A variablepie series. If the type option is not specified, it is inherited from chart.type. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all variablepie series are defined in  `plotOptions.variablepie`. 3. Options for one single series are given in  `the series instance array`.  Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     variablepie: {       // shared options for all variablepie series     }   },   series: [{     // specific options for this series instance     type: 'variablepie'   }] });  
+/** A variablepie series. If the type option is not specified, it is inherited from chart.type. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all variablepie series are defined in  `plotOptions.variablepie`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     variablepie: {       // shared options for all variablepie series     }   },   series: [{     // specific options for this series instance     type: 'variablepie'   }] }); `       
 */
 
 public class HIVariablepie extends HISeries {
@@ -206,15 +206,6 @@ public class HIVariablepie extends HISeries {
 
 	public Number getStartAngle(){ return startAngle; }
 
-	private String legendType;
-	public void setLegendType(String legendType) {
-		this.legendType = legendType;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getLegendType(){ return legendType; }
-
 	private Object /* Number, String */ size;
 /**
 /** The diameter of the pie relative to the plot area. Can be a percentage or pixel value. Pixel values are given as integers. The defaults behaviour (as of 3.0) is to scale to the plot area and give room for data labels within the plot area. slicedOffset is also included in the defaults size calculation. As a consequence, the size of the pie may vary when points are updated and data labels more around. In that case it is best to set a fixed value, for example "75%". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-size/">Smaller pie</a>
@@ -322,9 +313,6 @@ public class HIVariablepie extends HISeries {
 		}
 		if (this.startAngle != null) {
 			params.put("startAngle", this.startAngle);
-		}
-		if (this.legendType != null) {
-			params.put("legendType", this.legendType);
 		}
 		if (this.size != null) {
 			params.put("size", this.size);

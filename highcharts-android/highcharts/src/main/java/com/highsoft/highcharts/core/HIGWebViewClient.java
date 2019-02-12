@@ -16,6 +16,10 @@ import java.util.List;
 final class HIGWebViewClient extends WebViewClient{
 
 
+    @Override
+    public void onPageFinished(WebView view, String url) {
+        super.onPageFinished(view, url);
+    }
 
     /** Method for opening credits in the web browser for older API **/
     @Override

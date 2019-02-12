@@ -710,6 +710,18 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 
 	public Object /* Number, String */ getMinorTickInterval(){ return minorTickInterval; }
 
+	private Number margin;
+/**
+/** If there are multiple axes on the same side of the chart, the pixel margin between the axes. Defaults to 0 on vertical axes, 15 on horizontal axes. 
+*/
+	public void setMargin(Number margin) {
+		this.margin = margin;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getMargin(){ return margin; }
+
 
 
 	public HIParallelAxes() {
@@ -923,6 +935,9 @@ public class HIParallelAxes extends Observable implements HIChartsJSONSerializab
 		}
 		if (this.minorTickInterval != null) {
 			params.put("minorTickInterval", this.minorTickInterval);
+		}
+		if (this.margin != null) {
+			params.put("margin", this.margin);
 		}
 		return params;
 	}

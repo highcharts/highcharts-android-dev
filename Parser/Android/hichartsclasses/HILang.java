@@ -58,18 +58,17 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 
 	public String getDownloadPNG(){ return downloadPNG; }
 
-	private HIAccessibility accessibility;
+	private Object accessibility;
 /**
 /** Configure the accessibility strings in the chart. Requires the [accessibility module](https://code.highcharts.com/modules/accessibility.js) to be loaded. For a description of the module and information on its features, see [Highcharts Accessibility](http://www.highcharts.com/docs/chart-concepts/accessibility). For more dynamic control over the accessibility functionality, see `accessibility.pointDescriptionFormatter`, `accessibility.seriesDescriptionFormatter`, and `accessibility.screenReaderSectionFormatter`. 
 */
-	public void setAccessibility(HIAccessibility accessibility) {
+	public void setAccessibility(Object accessibility) {
 		this.accessibility = accessibility;
-		this.accessibility.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIAccessibility getAccessibility(){ return accessibility; }
+	public Object getAccessibility(){ return accessibility; }
 
 	private ArrayList<String> shortWeekdays;
 /**
@@ -369,7 +368,6 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 			params.put("downloadPNG", this.downloadPNG);
 		}
 		if (this.accessibility != null) {
-			params.put("accessibility", this.accessibility.getParams());
 		}
 		if (this.shortWeekdays != null) {
 			ArrayList<Object> array = new ArrayList<>();

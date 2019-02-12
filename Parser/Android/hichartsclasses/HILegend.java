@@ -168,17 +168,17 @@ public class HILegend extends Observable implements HIChartsJSONSerializable {
 
 	public HITitle getTitle(){ return title; }
 
-	private Number width;
+	private Object /* Number, String */ width;
 /**
-/** The width of the legend box. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/width/">Aligned to the plot area</a>
+/** The width of the legend box. If a number is set, it translates to pixels. Since v7.0.2 it allows setting a percent string of the full chart width, for example 40%. Defaults to the full chart width from legends below or above the chart, half the chart width for legends to the left and right. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/width/">Aligned to the plot area</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/width-percent/">A percent of the chart width</a>
 */
-	public void setWidth(Number width) {
+	public void setWidth(Object /* Number, String */ width) {
 		this.width = width;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getWidth(){ return width; }
+	public Object /* Number, String */ getWidth(){ return width; }
 
 	private Number itemMarginBottom;
 /**
@@ -291,7 +291,7 @@ public class HILegend extends Observable implements HIChartsJSONSerializable {
 
 	private String verticalAlign;
 /**
-/** The vertical alignment of the legend box. Can be one of top, middle or bottom. Vertical position can be further determined by the y option. In the case that the legend is aligned in a corner position, the layout option will determine whether to place it above/below or on the side of the plot area. When the layout option is proximate, the verticalAlign option doesn't apply. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/verticalalign/">Legend 100px from the top of the chart</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]
+/** The vertical alignment of the legend box. Can be one of top, middle or bottom. Vertical position can be further determined by the y option. In the case that the legend is aligned in a corner position, the layout option will determine whether to place it above/below or on the side of the plot area. When the layout option is proximate, the verticalAlign option doesn't apply. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/verticalalign/">Legend 100px from the top of the chart</a>
 */
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
@@ -352,7 +352,7 @@ public class HILegend extends Observable implements HIChartsJSONSerializable {
 
 	private String align;
 /**
-/** The horizontal alignment of the legend box within the chart area. Valid values are left, center and right. In the case that the legend is aligned in a corner position, the layout option will determine whether to place it above/below or on the side of the plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/align/">Legend at the right of the chart</a> <br><br><b>accepted values:</b><br><br>&ensp;["left", "center", "right"]
+/** The horizontal alignment of the legend box within the chart area. Valid values are left, center and right. In the case that the legend is aligned in a corner position, the layout option will determine whether to place it above/below or on the side of the plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/align/">Legend at the right of the chart</a>
 */
 	public void setAlign(String align) {
 		this.align = align;

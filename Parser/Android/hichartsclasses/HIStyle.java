@@ -31,15 +31,6 @@ public class HIStyle extends Observable implements HIChartsJSONSerializable {
 
 	public String getTextOverflow(){ return textOverflow; }
 
-	private String whiteSpace;
-	public void setWhiteSpace(String whiteSpace) {
-		this.whiteSpace = whiteSpace;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getWhiteSpace(){ return whiteSpace; }
-
 
 
 	public HIStyle() {
@@ -61,9 +52,6 @@ public class HIStyle extends Observable implements HIChartsJSONSerializable {
 		Map<String, Object> params = new HashMap<>();
 		if (this.textOverflow != null) {
 			params.put("textOverflow", this.textOverflow);
-		}
-		if (this.whiteSpace != null) {
-			params.put("whiteSpace", this.whiteSpace);
 		}
 		return params;
 	}

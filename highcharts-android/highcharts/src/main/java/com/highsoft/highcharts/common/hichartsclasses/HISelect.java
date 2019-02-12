@@ -107,17 +107,18 @@ public class HISelect extends Observable implements HIChartsJSONSerializable {
 
 	public HIColor getColor(){ return color; }
 
-	private HIAnimationOptionsObject animation;
+	private HIAnimation animation;
 /**
-/** Animation setting for hovering the graph in line-type series. 
+/** * description: Animation setting for hovering the graph in line-type series. 
 */
-	public void setAnimation(HIAnimationOptionsObject animation) {
+	public void setAnimation(HIAnimation animation) {
 		this.animation = animation;
+		this.animation.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIAnimationOptionsObject getAnimation(){ return animation; }
+	public HIAnimation getAnimation(){ return animation; }
 
 	private Number lineWidthPlus;
 /**
@@ -133,7 +134,7 @@ public class HISelect extends Observable implements HIChartsJSONSerializable {
 
 	private HIHalo halo;
 /**
-/** Options for the halo appearing around the hovered point in line- type series as well as outside the hovered slice in pie charts. By defaults the halo is filled by the current point or series color with an opacity of 0.25\. The halo can be disabled by setting the halo option to false. In styled mode, the halo is styled with the .highcharts-halo class, with colors inherited from .highcharts-color-{n}. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/halo/">Halo options</a>
+/** Options for the halo appearing around the hovered point in line-type series as well as outside the hovered slice in pie charts. By defaults the halo is filled by the current point or series color with an opacity of 0.25\. The halo can be disabled by setting the halo option to false. In styled mode, the halo is styled with the .highcharts-halo class, with colors inherited from .highcharts-color-{n}. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/halo/">Halo options</a>
 */
 	public void setHalo(HIHalo halo) {
 		this.halo = halo;

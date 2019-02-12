@@ -22,7 +22,7 @@ import com.highsoft.highcharts.common.HIColor;
 
 
 /**
-/** A pyramid series. If the type option is not specified, it is inherited from chart.type. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all pyramid series are defined in  `plotOptions.pyramid`. 3. Options for one single series are given in  `the series instance array`.  Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     pyramid: {       // shared options for all pyramid series     }   },   series: [{     // specific options for this series instance     type: 'pyramid'   }] });  
+/** A pyramid series. If the type option is not specified, it is inherited from chart.type. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all pyramid series are defined in  `plotOptions.pyramid`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     pyramid: {       // shared options for all pyramid series     }   },   series: [{     // specific options for this series instance     type: 'pyramid'   }] }); `       
 */
 
 public class HIPyramid extends HISeries {
@@ -207,15 +207,6 @@ public class HIPyramid extends HISeries {
 
 	public Number getStartAngle(){ return startAngle; }
 
-	private String legendType;
-	public void setLegendType(String legendType) {
-		this.legendType = legendType;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getLegendType(){ return legendType; }
-
 	private Boolean ignoreHiddenPoint;
 /**
 /** Equivalent to chart.ignoreHiddenSeries, this option tells whether the series shall be redrawn as if the hidden point were null. The defaults value changed from false to true with Highcharts 3.0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-ignorehiddenpoint/">True, the hiddden point is ignored</a>
@@ -311,9 +302,6 @@ public class HIPyramid extends HISeries {
 		}
 		if (this.startAngle != null) {
 			params.put("startAngle", this.startAngle);
-		}
-		if (this.legendType != null) {
-			params.put("legendType", this.legendType);
 		}
 		if (this.ignoreHiddenPoint != null) {
 			params.put("ignoreHiddenPoint", this.ignoreHiddenPoint);

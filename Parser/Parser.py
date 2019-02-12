@@ -319,7 +319,10 @@ hc_types = {
     #7.0.1
     "Highcharts.FormatterCallbackFunction.<Highcharts.AxisLabelsFormatterContextObject>": 'HIFunction',
     "Highcharts.FormatterCallbackFunction.<Highcharts.Point>": 'HIFunction',
-    "string|Highcharts.HTMLDOMElement": 'String'
+    "string|Highcharts.HTMLDOMElement": 'String',
+    # 7.0.2
+    "Array.<(string|Highcharts.GradientColorObject|Highcharts.PatternObject)>": 'ArrayList<String>',
+    "string|function": 'String'
 
 }
 

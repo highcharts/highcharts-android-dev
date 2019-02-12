@@ -6,8 +6,8 @@
     <com.highsoft.highcharts.core.HIChartView
         android:id="@+id/hc_row"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
         android:clickable="false"
         android:focusable="false"
         android:focusableInTouchMode="false"

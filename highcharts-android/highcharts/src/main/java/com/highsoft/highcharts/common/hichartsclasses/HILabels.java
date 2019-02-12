@@ -254,17 +254,17 @@ public class HILabels extends Observable implements HIChartsJSONSerializable {
 
 	public Number getStep(){ return step; }
 
-	private Object /* boolean, String */ overflow;
+	private String overflow;
 /**
 /** How to handle overflowing labels on horizontal axis. If set to "allow", it will not be aligned at all. By defaults it "justify" labels inside the chart area. If there is room to move it, it will be aligned to the edge, else it will be removed. <br><br><b>accepted values:</b><br><br>&ensp;["allow", "justify"]
  <br><br><b>defaults:</b><br><br>&ensp;justify*/
-	public void setOverflow(Object /* boolean, String */ overflow) {
+	public void setOverflow(String overflow) {
 		this.overflow = overflow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* boolean, String */ getOverflow(){ return overflow; }
+	public String getOverflow(){ return overflow; }
 
 	private Boolean enabled;
 /**
@@ -317,7 +317,7 @@ public class HILabels extends Observable implements HIChartsJSONSerializable {
 
 	private String verticalAlign;
 /**
-/** The vertical alignment of the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]
+/** The vertical alignment of the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a>
 */
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;

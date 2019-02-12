@@ -37,7 +37,7 @@ public class HICrosshair extends Observable implements HIChartsJSONSerializable 
 
 	private String dashStyle;
 /**
-/** The dash style for the crosshair. See series.dashStyle for possible values. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-dotted/">Dotted crosshair</a> <br><br><b>accepted values:</b><br><br>&ensp;["Solid", "ShortDash", "ShortDot", "ShortDashDot",       "ShortDashDotDot", "Dot", "Dash" ,"LongDash", "DashDot",       "LongDashDot", "LongDashDotDot"]
+/** The dash style for the crosshair. See series.dashStyle for possible values. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-dotted/">Dotted crosshair</a>
  <br><br><b>defaults:</b><br><br>&ensp;Solid*/
 	public void setDashStyle(String dashStyle) {
 		this.dashStyle = dashStyle;

@@ -22,31 +22,29 @@ import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 public class HIResetZoomButton extends Observable implements HIChartsJSONSerializable { 
 
-	private HIPosition position;
+	private HIAlignObject position;
 /**
 /** The position of the button. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-position/">Above the plot area</a>
 */
-	public void setPosition(HIPosition position) {
+	public void setPosition(HIAlignObject position) {
 		this.position = position;
-		this.position.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIPosition getPosition(){ return position; }
+	public HIAlignObject getPosition(){ return position; }
 
-	private HITheme theme;
+	private HISVGAttributes theme;
 /**
 /** A collection of attributes for the button. The object takes SVG attributes like fill, stroke, stroke-width or r, the border radius. The theme also supports style, a collection of CSS properties for the text. Equivalent attributes for the hover state are given in theme.states.hover. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-theme/">Theming the button</a>
 */
-	public void setTheme(HITheme theme) {
+	public void setTheme(HISVGAttributes theme) {
 		this.theme = theme;
-		this.theme.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HITheme getTheme(){ return theme; }
+	public HISVGAttributes getTheme(){ return theme; }
 
 	private String relativeTo;
 /**

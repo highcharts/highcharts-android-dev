@@ -70,18 +70,17 @@ public class HICredits extends Observable implements HIChartsJSONSerializable {
 
 	public String getHref(){ return href; }
 
-	private HIPosition position;
+	private HIAlignObject position;
 /**
 /** Position configuration for the credits label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/position-left/">Left aligned</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/position-left/">Left aligned</a>
 */
-	public void setPosition(HIPosition position) {
+	public void setPosition(HIAlignObject position) {
 		this.position = position;
-		this.position.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIPosition getPosition(){ return position; }
+	public HIAlignObject getPosition(){ return position; }
 
 
 

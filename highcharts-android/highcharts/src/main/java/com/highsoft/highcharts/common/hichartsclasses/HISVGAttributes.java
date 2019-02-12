@@ -103,6 +103,15 @@ public class HISVGAttributes extends Observable implements HIChartsJSONSerializa
 
 	public String getStroke(){ return stroke; }
 
+	private Object style;
+	public void setStyle(Object style) {
+		this.style = style;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getStyle(){ return style; }
+
 	private Number translateX;
 	public void setTranslateX(Number translateX) {
 		this.translateX = translateX;
@@ -193,6 +202,9 @@ public class HISVGAttributes extends Observable implements HIChartsJSONSerializa
 		}
 		if (this.stroke != null) {
 			params.put("stroke", this.stroke);
+		}
+		if (this.style != null) {
+			params.put("style", this.style);
 		}
 		if (this.translateX != null) {
 			params.put("translateX", this.translateX);

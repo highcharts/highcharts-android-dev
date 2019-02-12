@@ -22,18 +22,17 @@ import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 public class HIDrillUpButton extends Observable implements HIChartsJSONSerializable { 
 
-	private HIPosition position;
+	private HIAlignObject position;
 /**
 /** Positioning options for the button within the relativeTo box. Available properties are x, y, align and verticalAlign. 
 */
-	public void setPosition(HIPosition position) {
+	public void setPosition(HIAlignObject position) {
 		this.position = position;
-		this.position.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIPosition getPosition(){ return position; }
+	public HIAlignObject getPosition(){ return position; }
 
 	private Object theme;
 /**

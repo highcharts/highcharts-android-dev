@@ -50,7 +50,7 @@ public class HITheme extends Observable implements HIChartsJSONSerializable {
 	private HIColor stroke;
 /**
 /** Default stroke for the buttons. 
-*/
+ <br><br><b>defaults:</b><br><br>&ensp;none*/
 	public void setStroke(HIColor stroke) {
 		this.stroke = stroke;
 		this.setChanged();
@@ -62,7 +62,7 @@ public class HITheme extends Observable implements HIChartsJSONSerializable {
 	private HIColor fill;
 /**
 /** The defaults fill exists only to capture hover events. 
-*/
+ <br><br><b>defaults:</b><br><br>&ensp;#ffffff*/
 	public void setFill(HIColor fill) {
 		this.fill = fill;
 		this.setChanged();

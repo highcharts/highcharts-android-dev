@@ -21,10 +21,22 @@ import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 
 /**
-/** A networkgraph series. If the type option is not specified, it is inherited from chart.type. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all networkgraph series are defined in  `plotOptions.networkgraph`. 3. Options for one single series are given in  `the series instance array`.  Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     networkgraph: {       // shared options for all networkgraph series     }   },   series: [{     // specific options for this series instance     type: 'networkgraph'   }] });  
+/** A networkgraph series. If the type option is not specified, it is inherited from chart.type. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all networkgraph series are defined in  `plotOptions.networkgraph`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     networkgraph: {       // shared options for all networkgraph series     }   },   series: [{     // specific options for this series instance     type: 'networkgraph'   }] }); `       
 */
 
 public class HINetworkgraph extends HISeries {
+	private ArrayList <HINodes> nodes;
+/**
+/** A collection of options for the individual nodes. The nodes in a networkgraph diagram are auto-generated instances of Highcharts.Point, but options can be applied here and linked by the id. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-networkgraph/data-options/">Networkgraph diagram with node options</a>
+*/
+	public void setNodes(ArrayList nodes) {
+		this.nodes = nodes;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList getNodes(){ return nodes; }
+
 	private HILayoutAlgorithm layoutAlgorithm;
 	public void setLayoutAlgorithm(HILayoutAlgorithm layoutAlgorithm) {
 		this.layoutAlgorithm = layoutAlgorithm;
@@ -81,6 +93,18 @@ public class HINetworkgraph extends HISeries {
 
 		Map<String, Object> params = new HashMap<>();
 		params = super.getParams();
+		if (this.nodes != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.nodes) {
+				if (obj instanceof HIChartsJSONSerializable) {
+					array.add(((HIChartsJSONSerializable) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("nodes", array);
+		}
 		if (this.layoutAlgorithm != null) {
 			params.put("layoutAlgorithm", this.layoutAlgorithm.getParams());
 		}

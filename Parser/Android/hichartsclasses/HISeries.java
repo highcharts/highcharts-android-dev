@@ -143,55 +143,6 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	public Number getZIndex(){ return zIndex; }
 
-	private String yAxisDescription;
-/**
-/** yAxis description for series if there are multiple yAxes in the chart. 
-*/
-	public void setYAxisDescription(String yAxisDescription) {
-		this.yAxisDescription = yAxisDescription;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getYAxisDescription(){ return yAxisDescription; }
-
-	private String xAxisDescription;
-/**
-/** xAxis description for series if there are multiple xAxes in the chart. 
-*/
-	public void setXAxisDescription(String xAxisDescription) {
-		this.xAxisDescription = xAxisDescription;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getXAxisDescription(){ return xAxisDescription; }
-
-	private String definition;
-/**
-/** User supplied description text. This is added after the main summary if present. 
-*/
-	public void setDefinition(String definition) {
-		this.definition = definition;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getDefinition(){ return definition; }
-
-	private HISummary summary;
-/**
-/** Lang configuration for the series main summary. Each series type has two modes: 1. This series type is the only series type used in the  chart 2. This is a combination chart with multiple series types If a definition does not exist for the specific series type and mode, the 'defaults' lang definitions are used. 
-*/
-	public void setSummary(HISummary summary) {
-		this.summary = summary;
-		this.summary.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HISummary getSummary(){ return summary; }
-
 	private HIPoint point;
 /**
 /** Properties for each single point. 
@@ -379,7 +330,7 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	private String dashStyle;
 /**
-/** A name for the dash style to use for the graph, or for some series types the outline of each shape. In styled mode, the [stroke dash-array](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-dashstyle/) can be set with the same classes as listed under series.color. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/">Possible values demonstrated</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle/">Chart suitable for printing in black and white</a> <br><br><b>accepted values:</b><br><br>&ensp;["Dash","DashDot","Dot","LongDash","LongDashDot",       "LongDashDotDot","ShortDash","ShortDashDot",       "ShortDashDotDot","ShortDot","Solid"]
+/** A name for the dash style to use for the graph, or for some series types the outline of each shape. In styled mode, the [stroke dash-array](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-dashstyle/) can be set with the same classes as listed under series.color. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/">Possible values demonstrated</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle/">Chart suitable for printing in black and white</a>
  <br><br><b>defaults:</b><br><br>&ensp;Solid*/
 	public void setDashStyle(String dashStyle) {
 		this.dashStyle = dashStyle;
@@ -391,7 +342,7 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	private Object /* String, Number */ pointPlacement;
 /**
-/** Possible values: "on", "between", number. In a column chart, when pointPlacement is "on", the point will not create any padding of the X axis. In a polar column chart this means that the first column points directly north. If the pointPlacement is "between", the columns will be laid out between ticks. This is useful for example for visualising an amount between two points in time or in a certain sector of a polar chart. Since Highcharts 3.0.2, the point placement can also be numeric, where 0 is on the axis value, -0.5 is between this value and the previous, and 0.5 is between this value and the next. Unlike the textual options, numeric point placement options won't affect axis padding. Note that pointPlacement needs a pointRange to work. For column series this is computed, but for line-type series it needs to be set. For the xrange series type and gantt charts, if the Y axis is a category axis, the pointPlacement applies to the Y axis rather than the (typically datetime) X axis. Defaults to undefined in cartesian charts, "between" in polar charts. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointplacement-between/">Between in a column chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointplacement-numeric/">Numeric placement for custom layout</a>
+/** Possible values: "on", "between", number. In a column chart, when pointPlacement is "on", the point will not create any padding of the X axis. In a polar column chart this means that the first column points directly north. If the pointPlacement is "between", the columns will be laid out between ticks. This is useful for example for visualising an amount between two points in time or in a certain sector of a polar chart. Since Highcharts 3.0.2, the point placement can also be numeric, where 0 is on the axis value, -0.5 is between this value and the previous, and 0.5 is between this value and the next. Unlike the textual options, numeric point placement options won't affect axis padding. Note that pointPlacement needs a pointRange to work. For column series this is computed, but for line-type series it needs to be set. For the xrange series type and gantt charts, if the Y axis is a category axis, the pointPlacement applies to the Y axis rather than the (typically datetime) X axis. Defaults to undefined in cartesian charts, "between" in polar charts. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointplacement-between/">Between in a column chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointplacement-numeric/">Numeric placement for custom layout</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-pointplacement/">Placement in heatmap</a>
 */
 	public void setPointPlacement(Object /* String, Number */ pointPlacement) {
 		this.pointPlacement = pointPlacement;
@@ -440,7 +391,7 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	private String stacking;
 /**
-/** Whether to stack the values of each series on top of each other. Possible values are undefined to disable, "normal" to stack by value or "percent". When stacking is enabled, data must be sorted in ascending X order. A special stacking option is with the streamgraph series type, where the stacking option is set to "stream". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-line/">Line</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-column/">Column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-bar/">Bar</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-area/">Area</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-percent-line/">Line</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-percent-column/">Column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-percent-bar/">Bar</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-percent-area/">Area</a> <br><br><b>accepted values:</b><br><br>&ensp;["normal", "percent"]
+/** Whether to stack the values of each series on top of each other. Possible values are undefined to disable, "normal" to stack by value or "percent". When stacking is enabled, data must be sorted in ascending X order. A special stacking option is with the streamgraph series type, where the stacking option is set to "stream". The second one is "overlap", which only applies to waterfall series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-line/">Line</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-column/">Column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-bar/">Bar</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-area/">Area</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-percent-line/">Line</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-percent-column/">Column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-percent-bar/">Bar</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-percent-area/">Area</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-waterfall-with-normal-stacking">Waterfall with normal stacking</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-waterfall-with-overlap-stacking">Waterfall with overlap stacking</a> <br><br><b>accepted values:</b><br><br>&ensp;["normal", "percent"]
 */
 	public void setStacking(String stacking) {
 		this.stacking = stacking;
@@ -452,7 +403,7 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	private HIAnimationOptionsObject animation;
 /**
-/** Enable or disable the initial animation when a series is displayed. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation of the series itself. For other animations, see chart.animation and the animation parameter under the API methods. The following properties are supported:  duration The duration of the animation in milliseconds. easing Can be a string reference to an easing function set on the Math object or a function. See the _Custom easing function_ demo below.  Due to poor performance, animation is disabled in old IE browsers for several chart types. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-disabled/">Animation disabled</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-slower/">Slower animation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/">Custom easing function</a>
+/** Enable or disable the initial animation when a series is displayed. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation of the series itself. For other animations, see chart.animation and the animation parameter under the API methods. The following properties are supported: - duration: The duration of the animation in milliseconds. - easing: Can be a string reference to an easing function set on  the Math object or a function. See the _Custom easing function_  demo below. Due to poor performance, animation is disabled in old IE browsers for several chart types. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-disabled/">Animation disabled</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-slower/">Slower animation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/">Custom easing function</a>
  <br><br><b>defaults:</b><br><br>&ensp;true*/
 	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
@@ -498,6 +449,18 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	public Boolean getShowCheckbox(){ return showCheckbox; }
 
+	private String boostBlending;
+/**
+/** Sets the color blending in the boost module. <br><br><b>accepted values:</b><br><br>&ensp;["add", "multiply", "darken"]
+ <br><br><b>defaults:</b><br><br>&ensp;undefined*/
+	public void setBoostBlending(String boostBlending) {
+		this.boostBlending = boostBlending;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getBoostBlending(){ return boostBlending; }
+
 	private HIEvents events;
 /**
 /** General event handlers for the series items. These event hooks can also be attached to the series at run time using the Highcharts.addEvent function. 
@@ -513,7 +476,7 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	private Number animationLimit;
 /**
-/** For some series, there is a limit that shuts down initial animation by defaults when the total number of points in the chart is too high. For example, for a column chart and its derivatives, animation doesn't run if there is more than 250 points totally. To disable this cap, set animationLimit to Infinity. 
+/** For some series, there is a limit that shuts down initial animation by defaults when the total number of points in the chart is too high. For example, for a column chart and its derivatives, animation does not run if there is more than 250 points totally. To disable this cap, set animationLimit to Infinity. 
 */
 	public void setAnimationLimit(Number animationLimit) {
 		this.animationLimit = animationLimit;
@@ -522,6 +485,18 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 	}
 
 	public Number getAnimationLimit(){ return animationLimit; }
+
+	private String definition;
+/**
+/** Requires the Accessibility module. A description of the series to add to the screen reader information about the series. 
+*/
+	public void setDefinition(String definition) {
+		this.definition = definition;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDefinition(){ return definition; }
 
 	private ArrayList<String> keys;
 /**
@@ -846,18 +821,6 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 		if (this.zIndex != null) {
 			params.put("zIndex", this.zIndex);
 		}
-		if (this.yAxisDescription != null) {
-			params.put("yAxisDescription", this.yAxisDescription);
-		}
-		if (this.xAxisDescription != null) {
-			params.put("xAxisDescription", this.xAxisDescription);
-		}
-		if (this.definition != null) {
-			params.put("definition", this.definition);
-		}
-		if (this.summary != null) {
-			params.put("summary", this.summary.getParams());
-		}
 		if (this.point != null) {
 			params.put("point", this.point.getParams());
 		}
@@ -933,11 +896,17 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 		if (this.showCheckbox != null) {
 			params.put("showCheckbox", this.showCheckbox);
 		}
+		if (this.boostBlending != null) {
+			params.put("boostBlending", this.boostBlending);
+		}
 		if (this.events != null) {
 			params.put("events", this.events.getParams());
 		}
 		if (this.animationLimit != null) {
 			params.put("animationLimit", this.animationLimit);
+		}
+		if (this.definition != null) {
+			params.put("definition", this.definition);
 		}
 		if (this.keys != null) {
 			ArrayList<Object> array = new ArrayList<>();

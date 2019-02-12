@@ -60,7 +60,7 @@ public class HILabel extends Observable implements HIChartsJSONSerializable {
 
 	private String align;
 /**
-/** Horizontal alignment of the label. Can be one of "left", "center" or "right". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-align-right/">Aligned to the right</a> <br><br><b>accepted values:</b><br><br>&ensp;["center", "left", "right"]
+/** Horizontal alignment of the label. Can be one of "left", "center" or "right". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-align-right/">Aligned to the right</a>
  <br><br><b>defaults:</b><br><br>&ensp;left*/
 	public void setAlign(String align) {
 		this.align = align;
@@ -204,7 +204,7 @@ public class HILabel extends Observable implements HIChartsJSONSerializable {
 
 	private Boolean connectorAllowed;
 /**
-/** Allow labels to be placed distant to the graph if necessary, and draw a connector line to the graph. Setting this option to true may decrease the performance significantly, since the algorithm with systematically search for open spaces in the while plot area. Visually, it may also result in a more cluttered chart, though more of the series will be labeled. 
+/** Allow labels to be placed distant to the graph if necessary, and draw a connector line to the graph. Setting this option to true may decrease the performance significantly, since the algorithm with systematically search for open spaces in the whole plot area. Visually, it may also result in a more cluttered chart, though more of the series will be labeled. 
 */
 	public void setConnectorAllowed(Boolean connectorAllowed) {
 		this.connectorAllowed = connectorAllowed;

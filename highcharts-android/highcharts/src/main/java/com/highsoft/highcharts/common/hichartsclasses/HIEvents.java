@@ -132,7 +132,7 @@ public class HIEvents extends Observable implements HIChartsJSONSerializable {
 
 	private HIFunction addSeries;
 /**
-/** Fires when a series is added to the chart after load time, using the addSeries method. One parameter, event, is passed to the function, containing common event information. Through event.options you can access the series options that was passed to the addSeries method. Returning false prevents the series from being added. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-addseries/">Alert on add series</a>
+/** Fires when a series is added to the chart after load time, using the addSeries method. One parameter, event, is passed to the function, containing common event information. Through event.options you can access the series options that were passed to the addSeries method. Returning false prevents the series from being added. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-addseries/">Alert on add series</a>
 */
 	public void setAddSeries(HIFunction addSeries) {
 		this.addSeries = addSeries;
@@ -334,6 +334,18 @@ public class HIEvents extends Observable implements HIChartsJSONSerializable {
 
 	public HIFunction getDragStart(){ return dragStart; }
 
+	private HIFunction setRootNode;
+/**
+/** Fires on a request for change of root node for the tree, before the update is made. An event object is passed to the function, containing additional properties newRootId, previousRootId, redraw and trigger. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-events-setrootnode/">Alert update information on setRootNode event.</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined*/
+	public void setSetRootNode(HIFunction setRootNode) {
+		this.setRootNode = setRootNode;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getSetRootNode(){ return setRootNode; }
+
 	private HIFunction selectButton;
 /**
 /** Event fired on a button click. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/gui/">Change icon in a dropddown on event</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/gui-buttons/">Change button class on event</a>
@@ -526,6 +538,9 @@ public class HIEvents extends Observable implements HIChartsJSONSerializable {
 		}
 		if (this.dragStart != null) {
 			params.put("dragStart", this.dragStart);
+		}
+		if (this.setRootNode != null) {
+			params.put("setRootNode", this.setRootNode);
 		}
 		if (this.selectButton != null) {
 			params.put("selectButton", this.selectButton);

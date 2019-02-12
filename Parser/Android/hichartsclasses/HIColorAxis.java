@@ -466,7 +466,7 @@ public class HIColorAxis extends Observable implements HIChartsJSONSerializable 
 
 	private String minorGridLineDashStyle;
 /**
-/** The dash or dot style of the minor grid lines. For possible values, see [this demonstration](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minorgridlinedashstyle/">Long dashes on minor grid lines</a> <br><br><b>accepted values:</b><br><br>&ensp;["Solid", "ShortDash", "ShortDot", "ShortDashDot",       "ShortDashDotDot", "Dot", "Dash" ,"LongDash",       "DashDot", "LongDashDot", "LongDashDotDot"]
+/** The dash or dot style of the minor grid lines. For possible values, see [this demonstration](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minorgridlinedashstyle/">Long dashes on minor grid lines</a>
  <br><br><b>defaults:</b><br><br>&ensp;Solid*/
 	public void setMinorGridLineDashStyle(String minorGridLineDashStyle) {
 		this.minorGridLineDashStyle = minorGridLineDashStyle;
@@ -526,7 +526,7 @@ public class HIColorAxis extends Observable implements HIChartsJSONSerializable 
 
 	private String gridLineDashStyle;
 /**
-/** The dash or dot style of the grid lines. For possible values, see [this demonstration](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/gridlinedashstyle/">Long dashes</a> <br><br><b>accepted values:</b><br><br>&ensp;["Solid", "ShortDash", "ShortDot", "ShortDashDot",       "ShortDashDotDot", "Dot", "Dash" ,"LongDash", "DashDot",       "LongDashDot", "LongDashDotDot"]
+/** The dash or dot style of the grid lines. For possible values, see [this demonstration](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/gridlinedashstyle/">Long dashes</a>
  <br><br><b>defaults:</b><br><br>&ensp;Solid*/
 	public void setGridLineDashStyle(String gridLineDashStyle) {
 		this.gridLineDashStyle = gridLineDashStyle;
@@ -703,6 +703,18 @@ public class HIColorAxis extends Observable implements HIChartsJSONSerializable 
 	}
 
 	public Object /* Number, String */ getMinorTickInterval(){ return minorTickInterval; }
+
+	private Number margin;
+/**
+/** If there are multiple axes on the same side of the chart, the pixel margin between the axes. Defaults to 0 on vertical axes, 15 on horizontal axes. 
+*/
+	public void setMargin(Number margin) {
+		this.margin = margin;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getMargin(){ return margin; }
 
 	private Number softMax;
 /**
@@ -938,6 +950,9 @@ public class HIColorAxis extends Observable implements HIChartsJSONSerializable 
 		}
 		if (this.minorTickInterval != null) {
 			params.put("minorTickInterval", this.minorTickInterval);
+		}
+		if (this.margin != null) {
+			params.put("margin", this.margin);
 		}
 		if (this.softMax != null) {
 			params.put("softMax", this.softMax);

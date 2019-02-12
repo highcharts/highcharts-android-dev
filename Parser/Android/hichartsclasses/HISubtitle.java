@@ -36,7 +36,7 @@ public class HISubtitle extends Observable implements HIChartsJSONSerializable {
 
 	private String verticalAlign;
 /**
-/** The vertical alignment of the title. Can be one of "top", "middle" and "bottom". When a value is given, the title behaves as floating. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/verticalalign/">Footnote at the bottom right of plot area</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]
+/** The vertical alignment of the title. Can be one of "top", "middle" and "bottom". When a value is given, the title behaves as floating. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/verticalalign/">Footnote at the bottom right of plot area</a>
 */
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
@@ -60,7 +60,7 @@ public class HISubtitle extends Observable implements HIChartsJSONSerializable {
 
 	private String align;
 /**
-/** The horizontal alignment of the subtitle. Can be one of "left", "center" and "right". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/align/">Footnote at right of plot area</a> <br><br><b>accepted values:</b><br><br>&ensp;["left", "center", "right"]
+/** The horizontal alignment of the subtitle. Can be one of "left", "center" and "right". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/align/">Footnote at right of plot area</a>
 */
 	public void setAlign(String align) {
 		this.align = align;

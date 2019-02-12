@@ -22,18 +22,17 @@ import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 public class HINoData extends Observable implements HIChartsJSONSerializable { 
 
-	private HIPosition position;
+	private HIAlignObject position;
 /**
 /** The position of the no-data label, relative to the plot area. 
 */
-	public void setPosition(HIPosition position) {
+	public void setPosition(HIAlignObject position) {
 		this.position = position;
-		this.position.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIPosition getPosition(){ return position; }
+	public HIAlignObject getPosition(){ return position; }
 
 	private HICSSObject style;
 /**

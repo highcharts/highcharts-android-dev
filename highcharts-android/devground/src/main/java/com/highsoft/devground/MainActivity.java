@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         credits.setHref(creditsUrl);
         HIPosition creditsPosition = new HIPosition();
         creditsPosition.setX(-40);
-        credits.setPosition(creditsPosition);
+//        credits.setPosition(creditsPosition);
 
         options.setCredits(credits);
 

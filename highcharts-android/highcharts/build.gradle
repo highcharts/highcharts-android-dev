@@ -13,7 +13,7 @@ ext{
     siteUrl = 'https://www.highcharts.com/'
     gitUrl = 'https://github.com/highcharts/highcharts-android'
 
-    libraryVersion = '7.0.1'
+    libraryVersion = '7.0.3'
 
     developerId = 'bgn'
     developerName = 'Bartosz Gnacek'
@@ -31,11 +31,14 @@ android {
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
-        versionName "7.0.1"
+        versionName "7.0.3"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+   /* dataBinding {
+        enabled = true
+    }*/
     buildTypes {
         release {
             minifyEnabled true

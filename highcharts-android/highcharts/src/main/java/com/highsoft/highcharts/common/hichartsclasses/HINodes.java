@@ -23,6 +23,18 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HINodes extends Observable implements HIChartsJSONSerializable { 
 
+	private HIColor color;
+/**
+/** The color of the auto generated node. 
+*/
+	public void setColor(HIColor color) {
+		this.color = color;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getColor(){ return color; }
+
 	private Number colorIndex;
 /**
 /** The color index of the auto generated node, especially for use in styled mode. 
@@ -35,17 +47,29 @@ public class HINodes extends Observable implements HIChartsJSONSerializable {
 
 	public Number getColorIndex(){ return colorIndex; }
 
-	private HIColor color;
+	private String name;
 /**
-/** The color of the auto generated node. 
+/** The name to display for the node in data labels and tooltips. Use this when the name is different from the id. Where the id must be unique for each node, this is not necessary for the name. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-networkgraph/data-options/">Networkgraph diagram with node options</a>
 */
-	public void setColor(HIColor color) {
-		this.color = color;
+	public void setName(String name) {
+		this.name = name;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getColor(){ return color; }
+	public String getName(){ return name; }
+
+	private String id;
+/**
+/** The id of the auto-generated node, refering to the from or to setting of the link. 
+*/
+	public void setId(String id) {
+		this.id = id;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getId(){ return id; }
 
 	private Number column;
 /**
@@ -71,30 +95,6 @@ public class HINodes extends Observable implements HIChartsJSONSerializable {
 
 	public Number getOffset(){ return offset; }
 
-	private String id;
-/**
-/** The id of the auto-generated node, refering to the from or to setting of the link. 
-*/
-	public void setId(String id) {
-		this.id = id;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getId(){ return id; }
-
-	private String name;
-/**
-/** The name to display for the node in data labels and tooltips. Use this when the name is different from the id. Where the id must be unique for each node, this is not necessary for the name. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/sankey/">Sankey diagram with node options</a>
-*/
-	public void setName(String name) {
-		this.name = name;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getName(){ return name; }
-
 
 
 	public HINodes() {
@@ -114,23 +114,23 @@ public class HINodes extends Observable implements HIChartsJSONSerializable {
 	public Map<String, Object> getParams() {
 
 		Map<String, Object> params = new HashMap<>();
+		if (this.color != null) {
+			params.put("color", this.color.getData());
+		}
 		if (this.colorIndex != null) {
 			params.put("colorIndex", this.colorIndex);
 		}
-		if (this.color != null) {
-			params.put("color", this.color.getData());
+		if (this.name != null) {
+			params.put("name", this.name);
+		}
+		if (this.id != null) {
+			params.put("id", this.id);
 		}
 		if (this.column != null) {
 			params.put("column", this.column);
 		}
 		if (this.offset != null) {
 			params.put("offset", this.offset);
-		}
-		if (this.id != null) {
-			params.put("id", this.id);
-		}
-		if (this.name != null) {
-			params.put("name", this.name);
 		}
 		return params;
 	}

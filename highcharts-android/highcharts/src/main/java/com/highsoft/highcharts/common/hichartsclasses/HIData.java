@@ -21,19 +21,7 @@ import com.highsoft.highcharts.common.HIColor;
 
 
 
-public class HIData extends Observable implements HIChartsJSONSerializable {
-
-	private HashMap<String, Object> jsProperties;
-
-	/**
-	 * Adds own property as a param for data which can be used in HIFunction implemented in Javascript
-	 * @param name property name
-	 * @param value property value
-	 */
-	public void setProperty(String name, Object value){
-		if(jsProperties == null) jsProperties = new HashMap<>();
-		jsProperties.put(name, value);
-	}
+public class HIData extends Observable implements HIChartsJSONSerializable { 
 
 	private Boolean enablePolling;
 /**
@@ -1156,11 +1144,6 @@ public class HIData extends Observable implements HIChartsJSONSerializable {
 				}
 			}
 			params.put("sets", array);
-		}
-		if(this.jsProperties != null){
-			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
-				params.put(entry.getKey(), entry.getValue());
-			}
 		}
 		return params;
 	}

@@ -315,7 +315,7 @@ public class HIChart extends Observable implements HIChartsJSONSerializable {
 
 	private String type;
 /**
-/** The defaults series type for the chart. Can be any of the chart types listed under plotOptions. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/type-bar/">Bar</a> <br><br><b>accepted values:</b><br><br>&ensp;["line", "spline", "column", "bar", "area", "areaspline",       "pie", "arearange", "areasplinerange", "boxplot",       "bubble", "columnrange", "errorbar", "funnel", "gauge",       "heatmap", "polygon", "pyramid", "scatter", "solidgauge",       "treemap", "waterfall"]
+/** The defaults series type for the chart. Can be any of the chart types listed under plotOptions and series or can be a series provided by an additional module. In TypeScript this option has no effect in sense of typing and instead the type option must always be set in the series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/type-bar/">Bar</a>
  <br><br><b>defaults:</b><br><br>&ensp;line*/
 	public void setType(String type) {
 		this.type = type;

@@ -288,33 +288,6 @@ public class HIExporting extends Observable implements HIChartsJSONSerializable 
 
 	public String getLibURL(){ return libURL; }
 
-	private String exportRegionLabel;
-	public void setExportRegionLabel(String exportRegionLabel) {
-		this.exportRegionLabel = exportRegionLabel;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getExportRegionLabel(){ return exportRegionLabel; }
-
-	private String menuButtonLabel;
-	public void setMenuButtonLabel(String menuButtonLabel) {
-		this.menuButtonLabel = menuButtonLabel;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getMenuButtonLabel(){ return menuButtonLabel; }
-
-	private String chartMenuLabel;
-	public void setChartMenuLabel(String chartMenuLabel) {
-		this.chartMenuLabel = chartMenuLabel;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getChartMenuLabel(){ return chartMenuLabel; }
-
 
 
 	public HIExporting() {
@@ -399,15 +372,6 @@ public class HIExporting extends Observable implements HIChartsJSONSerializable 
 		}
 		if (this.libURL != null) {
 			params.put("libURL", this.libURL);
-		}
-		if (this.exportRegionLabel != null) {
-			params.put("exportRegionLabel", this.exportRegionLabel);
-		}
-		if (this.menuButtonLabel != null) {
-			params.put("menuButtonLabel", this.menuButtonLabel);
-		}
-		if (this.chartMenuLabel != null) {
-			params.put("chartMenuLabel", this.chartMenuLabel);
 		}
 		return params;
 	}

@@ -10,6 +10,7 @@ import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.ConsoleMessage;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -35,7 +36,7 @@ import java.util.Observer;
  *  required properties.
  */
 
-public class HIChartView extends RelativeLayout {
+public class HIChartView extends RelativeLayout/*ViewGroup*/ {
 
     /**
      *  Options are main configuration entry point for chart view, for more
@@ -103,12 +104,19 @@ public class HIChartView extends RelativeLayout {
         initialize(c);
     }
 
+//    @Override
+//    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+//    }
+
 
     @SuppressLint({"AddJavascriptInterface", "SetJavaScriptEnabled"})
     private void initialize(final Context context) {
         this.debug = false;
         this.webView = new WebView(context);
 
+        this.webView.setVerticalScrollBarEnabled(false); // added for scrollbar bug
+        this.webView.setHorizontalScrollBarEnabled(false); // -- || --
+//        this.webView.setScrollbarFadingEnabled(true);
         this.webView.setBackgroundColor(Color.TRANSPARENT);
         this.webView.getSettings().setJavaScriptEnabled(true);
         this.webView.getSettings().setDomStorageEnabled(true);
