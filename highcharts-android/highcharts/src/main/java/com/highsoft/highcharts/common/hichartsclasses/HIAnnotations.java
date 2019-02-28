@@ -11,16 +11,12 @@ package com.highsoft.highcharts.common.hichartsclasses;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
+
 import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIObservable;
 
 
-
-
-
-public class HIAnnotations extends Observable implements HIChartsJSONSerializable { 
+public class HIAnnotations extends HIObservable implements HIChartsJSONSerializable {
 
 	private ArrayList <HIShapes> shapes;
 /**
@@ -127,13 +123,13 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 	}
 
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
+//	 private Observer updateObserver = new Observer() {
+//		@Override
+//		public void update(Observable observable, Object o) {
+//			setChanged();
+//			notifyObservers();
+//		}
+//	};
 
 
 	public Map<String, Object> getParams() {

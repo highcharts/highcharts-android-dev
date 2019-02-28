@@ -6,5 +6,4 @@ public interface HIChartsJSONSerializable {
 
     Map<String, Object> getParams();
 
-
 }

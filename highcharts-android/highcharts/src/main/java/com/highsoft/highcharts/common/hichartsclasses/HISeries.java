@@ -13,6 +13,8 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+
+import com.highsoft.highcharts.core.HIAbstractFoundation;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.common.HIColor;
@@ -21,11 +23,35 @@ import com.highsoft.highcharts.common.HIColor;
 
 
 
-public class HISeries extends Observable implements HIChartsJSONSerializable { 
+public class HISeries extends HIAbstractFoundation implements HIChartsJSONSerializable {
 
 	private ArrayList /* <Data|Number|ArrayList> */ data;
 /**
-/** An array of data points for the series. The points can be given in three ways:  An array of numerical values. In this case, the numerical values will  	be interpreted as y values, and x values will be automatically calculated, 	either starting at 0 and incrementing by 1, or from pointStart  	and pointInterval given in the plotOptions. If the axis is 	has categories, these will be used. This option is not available for range series. Example: data: [0, 5, 3, 5]  An array of arrays with two values. In this case, the first value is the 	x value and the second is the y value. If the first value is a string, it is 	applied as the name of the point, and the x value is incremented following 	the above rules. For range series, the arrays will be interpreted as [x, low, high]. In this cases, the X value can be skipped altogether to make use of pointStart and pointRange.  Example: data: [[5, 2], [6, 3], [8, 2]] An array of objects with named values. In this case the objects are 	point configuration objects as seen below. Range series values are given by low and high.  Example: data: [{ 	name: 'Point 1', 	color: '#00FF00', 	y: 0 }, { 	name: 'Point 2', 	color: '#FF00FF', 	y: 5 }]  Note that line series and derived types like spline and area, require data to be sorted by X because it interpolates mouse coordinates for the tooltip. Column and scatter series, where each point has its own mouse event, does not require sorting. 
+/** An array of data points for the series. The points can be given in three ways:
+  An array of numerical values. In this case, the numerical values will 
+ 	be interpreted as y values, and x values will be automatically calculated,
+ 	either starting at 0 and incrementing by 1, or from pointStart 
+ 	and pointInterval given in the plotOptions. If the axis is
+ 	has categories, these will be used. This option is not available for range series. Example:
+ data: [0, 5, 3, 5]  An array of arrays with two values. In this case, the first value is the
+ 	x value and the second is the y value. If the first value is a string, it is
+ 	applied as the name of the point, and the x value is incremented following
+ 	the above rules. For range series, the arrays will be interpreted as [x, low, high]. In this cases, the X value can be skipped altogether to make use of pointStart and pointRange.
+ 
+ Example:
+ data: [[5, 2], [6, 3], [8, 2]] An array of objects with named values. In this case the objects are
+ 	point configuration objects as seen below. Range series values are given by low and high.
+ 
+ Example:
+ data: [{
+ 	name: 'Point 1',
+ 	color: '#00FF00',
+ 	y: 0
+ }, {
+ 	name: 'Point 2',
+ 	color: '#FF00FF',
+ 	y: 5
+ }]  Note that line series and derived types like spline and area, require data to be sorted by X because it interpolates mouse coordinates for the tooltip. Column and scatter series, where each point has its own mouse event, does not require sorting. 
 */
 	public void setData(ArrayList /* <Data|Number|ArrayList> */ data) {
 		this.data = data;
@@ -97,7 +123,9 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	private String type;
 /**
-/** The type of series. Can be one of area, areaspline, bar, column, line, pie, scatter or spline. From version 2.3, arearange, areasplinerange and columnrange are supported with the highcharts-more.js component. <br><br><b><i>Try it:</b></i><br><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/type/" target="_blank">Line and column in the same chart</a> <br><br><b>accepted values:</b><br><br>&ensp;[null, "line", "spline", "column", "area", "areaspline", "pie", "arearange", "areasplinerange", "boxplot", "bubble", "columnrange", "errorbar", "funnel", "gauge", "scatter", "waterfall"]
+/** The type of series. Can be one of area, areaspline,
+ bar, column, line, pie,
+ scatter or spline. From version 2.3, arearange, areasplinerange and columnrange are supported with the highcharts-more.js component. <br><br><b><i>Try it:</b></i><br><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/type/" target="_blank">Line and column in the same chart</a> <br><br><b>accepted values:</b><br><br>&ensp;[null, "line", "spline", "column", "area", "areaspline", "pie", "arearange", "areasplinerange", "boxplot", "bubble", "columnrange", "errorbar", "funnel", "gauge", "scatter", "waterfall"]
 */
 	public void setType(String type) {
 		this.type = type;
@@ -133,7 +161,8 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 	private Number zIndex;
 /**
-/** Define the visual z index of the series. <br><br><b><i>Try it:</b></i><br><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-zindex-defaults/" target="_blank">With no z index, the series defined last are on top</a>, 			<a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-zindex/" target="_blank">with a z index, the series with the highest z index is on top</a>.
+/** Define the visual z index of the series. <br><br><b><i>Try it:</b></i><br><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-zindex-defaults/" target="_blank">With no z index, the series defined last are on top</a>,
+ 			<a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-zindex/" target="_blank">with a z index, the series with the highest z index is on top</a>.
 */
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
@@ -766,17 +795,25 @@ public class HISeries extends Observable implements HIChartsJSONSerializable {
 
 
 	public HISeries() {
+		super();
+	}
 
+	public void hide(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "hide");
+			put("id", uuid);
+		}};
 	}
 
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
+//	 private Observer updateObserver = new Observer() {
+//		@Override
+//		public void update(Observable observable, Object o) {
+//			setChanged();
+//			notifyObservers();
+//		}
+//	};
 
 
 	public Map<String, Object> getParams() {

@@ -11,6 +11,7 @@ import com.highsoft.highcharts.common.hichartsclasses.HICredits;
 import com.highsoft.highcharts.common.hichartsclasses.HIExporting;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
 import com.highsoft.highcharts.common.hichartsclasses.HISeries;
+import com.highsoft.highcharts.common.hichartsclasses.HITime;
 import com.highsoft.highcharts.common.hichartsclasses.HITitle;
 import com.highsoft.highcharts.core.HIChartView;
 
@@ -59,18 +60,21 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         options.getCredits().setEnabled(false);
         options.setExporting(new HIExporting());
         options.getExporting().setEnabled(false);
-//        HIChart chart = new HIChart();
-//        chart.setType(mValues.get(position).type);
-//        options.setChart(chart);
-//        HITitle title = new HITitle();
-//        title.setText(mValues.get(position).name);
-//        options.setTitle(title);
-//        HICredits credits = new HICredits();
-//        credits.setEnabled(false);
-//        options.setCredits(credits);
-//        HISeries series = new HISeries();
-//        series.setData(randData(10));
-//        options.setSeries(new ArrayList<>(Collections.singletonList(series)));
+        HIChart chart = new HIChart();
+        chart.setType(mValues.get(position).type);
+        options.setChart(chart);
+        HITitle title = new HITitle();
+        title.setText(mValues.get(position).name);
+        options.setTitle(title);
+        HICredits credits = new HICredits();
+        credits.setEnabled(false);
+        options.setCredits(credits);
+        HISeries series = new HISeries();
+        series.setData(randData(10));
+        options.setSeries(new ArrayList<>(Collections.singletonList(series)));
+        options.setTime(new HITime());
+        holder.chartView.plugins = new ArrayList<>();
+        holder.chartView.plugins.add("Moment");
         holder.chartView.setOptions(options);
     }
 
@@ -81,13 +85,13 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public long getItemId(int position) {
-        return position;
+        return mValues.get(position).hashCode();
     }
-
-    @Override
-    public int getItemViewType(int position) {
-        return position;
-    }
+//
+//    @Override
+//    public int getItemViewType(int position) {
+//        return position;
+//    }
 
     private ArrayList randData(int bound){
         ArrayList<Integer> data = new ArrayList<>();

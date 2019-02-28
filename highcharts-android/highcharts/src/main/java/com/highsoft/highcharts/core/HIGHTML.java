@@ -3,7 +3,7 @@ package com.highsoft.highcharts.core;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.webkit.WebView;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,6 +18,7 @@ import java.util.Map;
  */
 final class HIGHTML implements Serializable {
 
+    boolean enableCustomFont = false;
     /**
      *  This is base URL path for bundle.
      */
@@ -38,9 +39,11 @@ final class HIGHTML implements Serializable {
     private String html_tmp;
     public String scripts;
     private HIGJavaScript js;
+    HICustomFont customFont;
 
     HIGHTML(HIFunctionHandler handler){
         this.js = new HIGJavaScript(handler);
+        this.customFont = new HICustomFont();
     }
 
     /**
@@ -86,6 +89,10 @@ final class HIGHTML implements Serializable {
         this.global = this.js.JSObject(global);
     }
 
+    void prepareCustomFont(Context c, int id) {
+        this.enableCustomFont = this.customFont.addFont(c, id);
+        Log.e("HC", "Custom font enabled: " + this.enableCustomFont);
+    }
     /**
      *  Prepare options Java object to JS representation.
      *
@@ -116,6 +123,11 @@ final class HIGHTML implements Serializable {
         } else {
             this.html = this.html.replace("{{lang}}", "{ }");
         }
+        if(enableCustomFont){
+            this.html = this.html.replace("{{style}}", this.customFont.getFont());
+        } else {
+            this.html = this.html.replace("{{style}}", "");
+        }
         if(this.global != null){
             this.html = this.html.replace("{{global}}", this.global);
         } else {
@@ -124,7 +136,7 @@ final class HIGHTML implements Serializable {
         this.html = this.html
                 .replace("{{script}}", this.scripts)
                 .replace("{{options}}", this.options);
-//        System.out.println("GENERATED CHART OPTIONS\n" + this.options);
+        System.out.println("GENERATED CHART OPTIONS\n" + this.options);
     }
 
     private String getContentsOfFile(Context context, String path) throws IOException {

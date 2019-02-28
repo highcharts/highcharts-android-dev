@@ -2,9 +2,10 @@
 <html>
     <head>
         <meta charset="utf-8">
-            <meta name="viewport" content="width={{width}}, height={{height}}, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-            <title></title>
-            {{script}}
+        <meta name="viewport" content="width={{width}}, height={{height}}, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title></title>
+        {{style}}
+        {{script}}
     </head>
     <style type="text/css">
         * {
@@ -72,8 +73,9 @@
                     chart.update(options);
                 }
 
-
-
+                function onFocusOut() {
+                     Highcharts.charts[0] && Highcharts.charts[0].pointer && Highcharts.charts[0].pointer.reset(false, false);
+                }
         </script>
 </html>
 

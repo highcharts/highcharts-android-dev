@@ -3,19 +3,27 @@ package com.highsoft.highcharts.core;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.ConsoleMessage;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.highsoft.highcharts.common.hichartsclasses.HIGlobal;
 import com.highsoft.highcharts.common.hichartsclasses.HILang;
@@ -27,7 +35,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -38,6 +45,7 @@ import java.util.Observer;
 
 public class HIChartView extends RelativeLayout/*ViewGroup*/ {
 
+    private static final String TAG = "HIChartView";
     /**
      *  Options are main configuration entry point for chart view, for more
      *  information read API documentation.
@@ -57,7 +65,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/ {
      */
     private Boolean debug;
     /**
-     *  This is needed to make interactions between chart and your application view.
+     *  This is needed to make interactions between chart and your appalication view.
      */
     private Activity activity;
 
@@ -86,7 +94,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/ {
      */
     public HIChartView(Context c) {
         super(c);
-        jsHandlersMap = new HashMap<>();
+        this.jsHandlersMap = new HashMap<>();
         this.activity = (Activity) c;
         initialize(c);
     }
@@ -98,6 +106,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/ {
      */
     public HIChartView(Context c, AttributeSet attrs){
         super(c, attrs);
+        Log.e(TAG, "XML constructor called.");
         jsHandlersMap = new HashMap<>();
         this.setWillNotDraw(false);
         this.activity = (Activity) c;
@@ -109,6 +118,16 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/ {
 //    }
 
 
+    @Override
+    public void setOnFocusChangeListener(OnFocusChangeListener l) {
+        Log.e(TAG, "setOnFocusChangeListener @Override successfully");
+        super.setOnFocusChangeListener(l);
+    }
+
+    public void addFont(int id){
+        this.HTML.prepareCustomFont(activity, id);
+    }
+
     @SuppressLint({"AddJavascriptInterface", "SetJavaScriptEnabled"})
     private void initialize(final Context context) {
         this.debug = false;
@@ -116,7 +135,6 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/ {
 
         this.webView.setVerticalScrollBarEnabled(false); // added for scrollbar bug
         this.webView.setHorizontalScrollBarEnabled(false); // -- || --
-//        this.webView.setScrollbarFadingEnabled(true);
         this.webView.setBackgroundColor(Color.TRANSPARENT);
         this.webView.getSettings().setJavaScriptEnabled(true);
         this.webView.getSettings().setDomStorageEnabled(true);
@@ -132,7 +150,6 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/ {
         //JS Handler for HIChartContext
         HIFunctionHandler hiFunctionHandler = new HIFunctionHandler();
         this.webView.addJavascriptInterface(hiFunctionHandler, "Native");
-
         //this handler is made for displaying logs from JS code in Android console
         if(this.debug){
             this.webView.setWebChromeClient(new WebChromeClient(){
@@ -150,6 +167,22 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/ {
                 }
             });
         }
+        this.webView.setFocusableInTouchMode(true);
+        this.webView.setOnFocusChangeListener(new OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus) {
+                    Log.e(TAG, "onFocusChange() called; hasFocus: " + hasFocus);
+                    String strOptions = "javascript:onFocusOut()";
+                    webView.evaluateJavascript(strOptions, new ValueCallback<String>() {
+                        @Override
+                        public void onReceiveValue(String s) {
+                            Log.e("HIChartView", "Focus lost");
+                        }
+                    });
+                } else Log.e(TAG, "onFocusChange() called; hasFocus: " + hasFocus);
+            }
+        });
         this.HTML = new HIGHTML(hiFunctionHandler);
         this.HTML.baseURL = "";
         try {
@@ -159,6 +192,62 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/ {
         }
         this.addView(webView);
     }
+
+//    final GestureDetector detector = new GestureDetector(new GestureDetector.OnGestureListener() {
+//        @Override
+//        public boolean onDown(MotionEvent e) {
+//            return false;
+//        }
+//
+//        @Override
+//        public void onShowPress(MotionEvent e) {
+//
+//        }
+//
+//        @Override
+//        public boolean onSingleTapUp(MotionEvent e) {
+//            return false;
+//        }
+//
+//        @Override
+//        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+//            return false;
+//        }
+//
+//        @Override
+//        public void onLongPress(MotionEvent e) {
+//
+//        }
+//
+//        @Override
+//        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+//            return false;
+//        }
+//
+//    });
+//
+//    @Override
+//    public void onWindowFocusChanged(boolean hasWindowFocus) {
+//        super.onWindowFocusChanged(hasWindowFocus);
+//        Log.e(TAG, "onWindowFocusChanged() " + hasWindowFocus);
+//    }
+//
+//
+//    @Override
+//    public boolean onInterceptTouchEvent(MotionEvent event) {
+//        int action = event.getActionMasked();
+//        switch (action) {
+//            case (MotionEvent.ACTION_HOVER_EXIT):
+//                Log.e(TAG, "Movement occurred outside bounds " +
+//                        "of current screen element");
+//                return super.onTouchEvent(event);
+//            default:
+//                return super.onTouchEvent(event);
+//        }
+//    }
+
+
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec){
@@ -201,53 +290,56 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/ {
      */
     void loadChartHtml() {
 
-        checkForOptions(this.options);
-        float density = getResources().getDisplayMetrics().density;
-        this.HTML.prepareViewWidth(Math.round(width/density), Math.round(height/density));
+        if(isOptionsIncluded(this.options)){
+            float density = getResources().getDisplayMetrics().density;
+            this.HTML.prepareViewWidth(Math.round(width/density), Math.round(height/density));
 
-        if (this.plugins == null) {
-            this.plugins = new LinkedList<>();
+            if (this.plugins == null) {
+                this.plugins = new LinkedList<>();
+            }
+
+            String suffix = (this.debug) ? ".src.js" : ".js";
+
+            // Load Highchart main scripts.
+            this.HTML.scripts = ""; //fix for doubling scripts when update
+            this.HTML.prepareJavaScript("highcharts", "js/", suffix);
+            this.HTML.prepareJavaScript("highcharts-more", "js/", suffix);
+            this.HTML.prepareJavaScript("highcharts-3d", "js/", suffix);
+
+            List plugins = HIGDependency.pluginsForOptions(this.options.getParams());
+            this.plugins.addAll(plugins);
+            this.plugins.addAll(new LinkedList<>(Arrays.asList("exporting", "offline-exporting")));
+            this.plugins = new LinkedList<>(new HashSet(this.plugins));
+
+            for (Object plugin : this.plugins) {
+                this.HTML.prepareJavaScript((String)plugin, "js/modules/", suffix);
+            }
+
+            // Adding libraries for PDF export
+            this.HTML.prepareJavaScript("rgbcolor", "js/lib/", suffix);
+            this.HTML.prepareJavaScript("svg2pdf", "js/lib/", suffix);
+
+            // Load Highchart themes
+            this.HTML.prepareJavaScript(this.theme, "js/themes/", suffix);
+
+            if(this.lang != null)
+                this.HTML.prepareLang(this.lang.getParams());
+            if(this.global != null)
+                this.HTML.prepareGlobal(this.global.getParams());
+            this.HTML.prepareOptions(this.options.getParams());
+            this.HTML.injectJavaScriptToHTML();
+
+            /* Loading the HTML to the WebView **/
+            this.webView.loadDataWithBaseURL(
+                    "file:///android_asset/",
+                    this.HTML.html,
+                    "text/html",
+                    "UTF-8",
+                    "");
+            this.loaded = true;
+        } else {
+            Log.e(TAG, "HIOptions not attached. Chart won't render without options.");
         }
-
-        String suffix = (this.debug) ? ".src.js" : ".js";
-
-        // Load Highchart main scripts.
-        this.HTML.scripts = ""; //fix for doubling scripts when update
-        this.HTML.prepareJavaScript("highcharts", "js/", suffix);
-        this.HTML.prepareJavaScript("highcharts-more", "js/", suffix);
-        this.HTML.prepareJavaScript("highcharts-3d", "js/", suffix);
-
-        List plugins = HIGDependency.pluginsForOptions(this.options.getParams());
-        this.plugins.addAll(plugins);
-        this.plugins.addAll(new LinkedList<>(Arrays.asList("exporting", "offline-exporting")));
-        this.plugins = new LinkedList<>(new HashSet(this.plugins));
-
-        for (Object plugin : this.plugins) {
-            this.HTML.prepareJavaScript((String)plugin, "js/modules/", suffix);
-        }
-
-        // Adding libraries for PDF export
-        this.HTML.prepareJavaScript("rgbcolor", "js/lib/", suffix);
-        this.HTML.prepareJavaScript("svg2pdf", "js/lib/", suffix);
-
-        // Load Highchart themes
-        this.HTML.prepareJavaScript(this.theme, "js/themes/", suffix);
-
-        if(this.lang != null)
-            this.HTML.prepareLang(this.lang.getParams());
-        if(this.global != null)
-            this.HTML.prepareGlobal(this.global.getParams());
-        this.HTML.prepareOptions(this.options.getParams());
-        this.HTML.injectJavaScriptToHTML();
-
-        /* Loading the HTML to the WebView **/
-        this.webView.loadDataWithBaseURL(
-                "file:///android_asset/",
-                this.HTML.html,
-                "text/html",
-                "UTF-8",
-                "");
-        this.loaded = true;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -272,9 +364,8 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/ {
         this.loadChartOptions();
     }
 
-    private void checkForOptions(HIOptions options){
-        if(options == null)
-            throw new NoSuchElementException("HIOptions not found in HIChartView");
+    private boolean isOptionsIncluded(HIOptions options) {
+        return options != null;
     }
 
     //--- Testing UPDATE Feature ---//
