@@ -14,6 +14,7 @@ import com.highsoft.highcharts.common.hichartsclasses.HIData;
 import com.highsoft.highcharts.common.hichartsclasses.HILine;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
 import com.highsoft.highcharts.common.hichartsclasses.HISeries;
+import com.highsoft.highcharts.common.hichartsclasses.HITitle;
 import com.highsoft.highcharts.common.hichartsclasses.HIXAxis;
 import com.highsoft.highcharts.common.hichartsclasses.HIYAxis;
 import com.highsoft.highcharts.core.HIChartView;
@@ -60,6 +61,9 @@ public class IssuesActivity extends AppCompatActivity {
         chartView.addFont(R.font.griphite);
 
         HIOptions options = new HIOptions();
+        HITitle title = new HITitle();
+        title.setText("EXAMPLE TITLE");
+        options.setTitle(title);
         HIChart chart = new HIChart();
         chart.setPanning(true);
         chart.setZoomType("x");
@@ -86,6 +90,8 @@ public class IssuesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 series1.hide();
+                series1.setName("CHANGES MF");
+//                chartView.getOptions().getTitle().setText("CHANGED TIT");
             }
         });
     }

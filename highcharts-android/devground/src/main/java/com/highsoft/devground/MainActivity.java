@@ -75,8 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
         while (i < 0){
 
-            //todo add functionality
-
             i--;
         }
     }
@@ -87,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
      * https://github.com/YR/weather-symbols
      */
     private void drawWeatherSymbols(HIChartView chartView){
-        //todo add functionality
 
     }
 

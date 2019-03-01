@@ -99,6 +99,7 @@ final class HIGHTML implements Serializable {
      *  @param options Map object.
      */
     void prepareOptions(Map options) {
+        Log.e("HTML", "Options prepared");
         options = HIGDependency.addOptions(options);
         this.options = this.js.JSObject(options);
     }

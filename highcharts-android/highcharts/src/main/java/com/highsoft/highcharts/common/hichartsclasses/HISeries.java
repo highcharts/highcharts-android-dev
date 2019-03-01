@@ -14,16 +14,14 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import com.highsoft.highcharts.core.HIAbstractFoundation;
+import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.core.HIObservable;
 
 
-
-
-
-public class HISeries extends HIAbstractFoundation implements HIChartsJSONSerializable {
+public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private ArrayList /* <Data|Number|ArrayList> */ data;
 /**
@@ -798,15 +796,18 @@ public class HISeries extends HIAbstractFoundation implements HIChartsJSONSerial
 		super();
 	}
 
+	//todo add handling for jsClassMethod field in HCView
 	public void hide(){
 		this.jsClassMethod = new HashMap<String, Object>() {{
 			put("class", "Series");
 			put("method", "hide");
 			put("id", uuid);
 		}};
+		this.setChanged();
+		this.notifyObservers();
 	}
 
-
+//
 //	 private Observer updateObserver = new Observer() {
 //		@Override
 //		public void update(Observable observable, Object o) {

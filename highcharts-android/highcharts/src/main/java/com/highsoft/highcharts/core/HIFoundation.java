@@ -1,16 +1,19 @@
 package com.highsoft.highcharts.core;
 
+import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.UUID;
 
-public abstract class HIAbstractFoundation extends Observable {
+//todo add docs
+public abstract class HIFoundation extends Observable implements HIChartsJSONSerializable {
 
     protected String uuid;
     protected Map<String, Object> jsClassMethod;
 
-    protected HIAbstractFoundation() {
+    protected HIFoundation() {
         this.uuid = UUID.randomUUID().toString();
     }
 

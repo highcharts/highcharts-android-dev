@@ -43,6 +43,7 @@ import java.util.Observer;
  *  required properties.
  */
 
+//todo check if ViewGroup or any other view will be better as a subclass
 public class HIChartView extends RelativeLayout/*ViewGroup*/ {
 
     private static final String TAG = "HIChartView";
@@ -373,13 +374,14 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/ {
         @Override
         public void update(Observable observable, Object o) {
             HTML.prepareOptions(options.getParams());
+            Log.e(TAG, "This is updated class: " + o.toString() + " and obserable: " + observable.toString());
             String strOptions = String.format("javascript:updateOptions(%s)", HTML.options);
 
             webView.evaluateJavascript(strOptions, new ValueCallback<String>() {
                 @SuppressLint("JavascriptInterface")
                 @Override
                 public void onReceiveValue(String s) {
-//                    Log.i("HIChartView", "Updated");
+                    Log.i("HIChartView", "Updated");
                 }
             });
         }
