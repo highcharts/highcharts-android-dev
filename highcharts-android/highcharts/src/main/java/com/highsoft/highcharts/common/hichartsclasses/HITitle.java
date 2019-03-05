@@ -8,11 +8,15 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+
+import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
@@ -64,8 +68,8 @@ public class HITitle extends Observable implements HIChartsJSONSerializable {
  <br><br><b>defaults:</b><br><br>&ensp;Chart title*/
 	public void setText(String text) {
 		this.text = text;
-		this.setChanged();
-		this.notifyObservers();
+	 	setChanged();
+		notifyObservers("chartUpdateCall");
 	}
 
 	public String getText(){ return text; }
@@ -208,8 +212,8 @@ public class HITitle extends Observable implements HIChartsJSONSerializable {
 */
 	public void setTextAlign(String textAlign) {
 		this.textAlign = textAlign;
-		this.setChanged();
-		this.notifyObservers();
+		setChanged();
+		notifyObservers();
 	}
 
 	public String getTextAlign(){ return textAlign; }
@@ -223,7 +227,8 @@ public class HITitle extends Observable implements HIChartsJSONSerializable {
 
 	 private Observer updateObserver = new Observer() {
 		@Override
-		public void update(Observable observable, Object o) {
+		public void update(Observable observable, Object arg) {
+			if (arg instanceof String) Log.e("HITitle", "Operation: " + arg.toString());
 			setChanged();
 			notifyObservers();
 		}

@@ -38,11 +38,11 @@ final class HIGHTML implements Serializable {
 
     private String html_tmp;
     public String scripts;
-    private HIGJavaScript js;
-    HICustomFont customFont;
+    private HISerializer js;
+    private HICustomFont customFont;
 
     HIGHTML(HIFunctionHandler handler){
-        this.js = new HIGJavaScript(handler);
+        this.js = new HISerializer(handler);
         this.customFont = new HICustomFont();
     }
 

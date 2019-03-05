@@ -8,11 +8,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.common.hichartsclasses.HICSSObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIChart;
 import com.highsoft.highcharts.common.hichartsclasses.HIData;
 import com.highsoft.highcharts.common.hichartsclasses.HILine;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
+import com.highsoft.highcharts.common.hichartsclasses.HIPoint;
 import com.highsoft.highcharts.common.hichartsclasses.HISeries;
 import com.highsoft.highcharts.common.hichartsclasses.HITitle;
 import com.highsoft.highcharts.common.hichartsclasses.HIXAxis;
@@ -79,6 +81,7 @@ public class IssuesActivity extends AppCompatActivity {
 
         HILine series1 = new HILine();
         series1.setData(randData(10));
+        series1.setColor(HIColor.initWithName("red"));
         HILine series2 = new HILine();
         series2.setYAxis(1);
         series2.setData(randData(15));
@@ -89,9 +92,11 @@ public class IssuesActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                series1.hide();
+//                series1.setName("CHANGES MF");
+//                title.setText("CHANGED IT");
                 series1.hide();
-                series1.setName("CHANGES MF");
-//                chartView.getOptions().getTitle().setText("CHANGED TIT");
+//                options.getSeries().get(0).setColor(HIColor.initWithName("pink"));
             }
         });
     }

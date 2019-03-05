@@ -3,27 +3,18 @@ package com.highsoft.highcharts.core;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.AssetManager;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Rect;
-import android.graphics.Typeface;
 import android.os.Build;
-import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.ConsoleMessage;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.highsoft.highcharts.common.hichartsclasses.HIGlobal;
 import com.highsoft.highcharts.common.hichartsclasses.HILang;
@@ -35,6 +26,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -44,7 +36,7 @@ import java.util.Observer;
  */
 
 //todo check if ViewGroup or any other view will be better as a subclass
-public class HIChartView extends RelativeLayout/*ViewGroup*/ {
+public class HIChartView extends RelativeLayout/*ViewGroup*/{
 
     private static final String TAG = "HIChartView";
     /**
@@ -284,10 +276,11 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/ {
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
         if(!loaded) loadChartHtml(); //loading html only if it was not loaded before
+//        loadChartHtml(); //loading html only if it was not loaded before
     }
 
     /**
-     * Most operations on Chart Html are done here
+     * Most operations on Chart Html are done here`
      */
     void loadChartHtml() {
 
@@ -369,25 +362,39 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/ {
         return options != null;
     }
 
-    //--- Testing UPDATE Feature ---//
-    private Observer optionsChanged = new Observer() {
+    //--- UPDATE Feature ---//
+    protected Observer basicObserver = new Observer() {
         @Override
-        public void update(Observable observable, Object o) {
-            HTML.prepareOptions(options.getParams());
-            Log.e(TAG, "This is updated class: " + o.toString() + " and obserable: " + observable.toString());
-            String strOptions = String.format("javascript:updateOptions(%s)", HTML.options);
-
-            webView.evaluateJavascript(strOptions, new ValueCallback<String>() {
-                @SuppressLint("JavascriptInterface")
-                @Override
-                public void onReceiveValue(String s) {
-                    Log.i("HIChartView", "Updated");
+        public void update(Observable observable, Object arg) {
+            if(arg instanceof HashMap) {
+                Log.e(TAG, "Native function called!");
+                HashMap<String, Object> params = (HashMap<String, Object>) arg;
+                for (Map.Entry<String, Object> entry : params.entrySet()) { // todo delete printing
+                    System.out.println(entry.getKey() + "/" + entry.getValue());
                 }
-            });
+                String strJsMethod = String.format("javascript:%s", HINativeController.getMethodString(params));
+                Log.e(TAG, "" + strJsMethod);
+                webView.evaluateJavascript(strJsMethod, new ValueCallback<String>() {
+                    @Override
+                    public void onReceiveValue(String value) {
+                        Log.e(TAG, "Native method called.");
+                    }
+                });
+            } else {
+                Log.e(TAG, "Update called!");
+                HTML.prepareOptions(options.getParams());
+                String strOptions = String.format("javascript:updateOptions(%s)", HTML.options);
+                webView.evaluateJavascript(strOptions, new ValueCallback<String>() {
+                    @SuppressLint("JavascriptInterface")
+                    @Override
+                    public void onReceiveValue(String s) {
+                        Log.i("HIChartView", "Updated");
+                    }
+                });
+            }
         }
+
     };
-
-
 
 
     /**
@@ -396,7 +403,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/ {
      */
     public void setOptions(HIOptions options) {
         this.options = options;
-        this.options.addObserver(optionsChanged);
+        this.options.addObserver(basicObserver);
         this.options.notifyObservers();
     }
 

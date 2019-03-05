@@ -8,6 +8,8 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
@@ -26,20 +28,20 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 	private ArrayList /* <Data|Number|ArrayList> */ data;
 /**
 /** An array of data points for the series. The points can be given in three ways:
-  An array of numerical values. In this case, the numerical values will 
+  An array of numerical values. In this case, the numerical values will
  	be interpreted as y values, and x values will be automatically calculated,
- 	either starting at 0 and incrementing by 1, or from pointStart 
+ 	either starting at 0 and incrementing by 1, or from pointStart
  	and pointInterval given in the plotOptions. If the axis is
  	has categories, these will be used. This option is not available for range series. Example:
  data: [0, 5, 3, 5]  An array of arrays with two values. In this case, the first value is the
  	x value and the second is the y value. If the first value is a string, it is
  	applied as the name of the point, and the x value is incremented following
  	the above rules. For range series, the arrays will be interpreted as [x, low, high]. In this cases, the X value can be skipped altogether to make use of pointStart and pointRange.
- 
+
  Example:
  data: [[5, 2], [6, 3], [8, 2]] An array of objects with named values. In this case the objects are
  	point configuration objects as seen below. Range series values are given by low and high.
- 
+
  Example:
  data: [{
  	name: 'Point 1',
@@ -49,7 +51,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
  	name: 'Point 2',
  	color: '#FF00FF',
  	y: 5
- }]  Note that line series and derived types like spline and area, require data to be sorted by X because it interpolates mouse coordinates for the tooltip. Column and scatter series, where each point has its own mouse event, does not require sorting. 
+ }]  Note that line series and derived types like spline and area, require data to be sorted by X because it interpolates mouse coordinates for the tooltip. Column and scatter series, where each point has its own mouse event, does not require sorting.
 */
 	public void setData(ArrayList /* <Data|Number|ArrayList> */ data) {
 		this.data = data;
@@ -73,7 +75,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private Number index;
 /**
-/** The index of the series in the chart, affecting the internal index in the chart.series array, the visible Z index as well as the order in the legend. 
+/** The index of the series in the chart, affecting the internal index in the chart.series array, the visible Z index as well as the order in the legend.
 */
 	public void setIndex(Number index) {
 		this.index = index;
@@ -85,7 +87,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private Number legendIndex;
 /**
-/** The sequential index of the series in the legend. Try it: 	Legend in opposite order . 
+/** The sequential index of the series in the legend. Try it: 	Legend in opposite order .
 */
 	public void setLegendIndex(Number legendIndex) {
 		this.legendIndex = legendIndex;
@@ -135,7 +137,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private Object /* Number|String */ xAxis;
 /**
-/** When using dual or multiple x axes, this number defines which xAxis the particular series is connected to. It refers to either the axis id or the index of the axis in the xAxis array, with 0 being the first. 
+/** When using dual or multiple x axes, this number defines which xAxis the particular series is connected to. It refers to either the axis id or the index of the axis in the xAxis array, with 0 being the first.
  <br><br><b>defaults:</b><br><br>&ensp;0*/
 	public void setXAxis(Object /* Number|String */ xAxis) {
 		this.xAxis = xAxis;
@@ -172,7 +174,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private HIPoint point;
 /**
-/** Properties for each single point. 
+/** Properties for each single point.
 */
 	public void setPoint(HIPoint point) {
 		this.point = point;
@@ -197,7 +199,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private Number colorIndex;
 /**
-/** Styled mode only. A specific color index to use for the series, so its graphic representations are given the class name highcharts-color-{n}. 
+/** Styled mode only. A specific color index to use for the series, so its graphic representations are given the class name highcharts-color-{n}.
 */
 	public void setColorIndex(Number colorIndex) {
 		this.colorIndex = colorIndex;
@@ -257,7 +259,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private Number cropThreshold;
 /**
-/** When the series contains less points than the crop threshold, all points are drawn, even if the points fall outside the visible plot area at the current zoom. The advantage of drawing all points (including markers and columns), is that animation is performed on updates. On the other hand, when the series contains more points than the crop threshold, the series data is cropped to only contain points that fall within the plot area. The advantage of cropping away invisible points is to increase performance on large series. 
+/** When the series contains less points than the crop threshold, all points are drawn, even if the points fall outside the visible plot area at the current zoom. The advantage of drawing all points (including markers and columns), is that animation is performed on updates. On the other hand, when the series contains more points than the crop threshold, the series data is cropped to only contain points that fall within the plot area. The advantage of cropping away invisible points is to increase performance on large series.
 */
 	public void setCropThreshold(Number cropThreshold) {
 		this.cropThreshold = cropThreshold;
@@ -269,7 +271,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private HIStates states;
 /**
-/** A wrapper object for all the series options in specific states. 
+/** A wrapper object for all the series options in specific states.
 */
 	public void setStates(HIStates states) {
 		this.states = states;
@@ -282,7 +284,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private Boolean softThreshold;
 /**
-/** When this is true, the series will not cause the Y axis to cross the zero plane (or threshold option) unless the data actually crosses the plane. For example, if softThreshold is false, a series of 0, 1, 2, 3 will make the Y axis show negative values according to the minPadding option. If softThreshold is true, the Y axis starts at 0. 
+/** When this is true, the series will not cause the Y axis to cross the zero plane (or threshold option) unless the data actually crosses the plane. For example, if softThreshold is false, a series of 0, 1, 2, 3 will make the Y axis show negative values according to the minPadding option. If softThreshold is true, the Y axis starts at 0.
 */
 	public void setSoftThreshold(Boolean softThreshold) {
 		this.softThreshold = softThreshold;
@@ -307,7 +309,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private HIMarker marker;
 /**
-/** Options for the point markers of line-like series. Properties like fillColor, lineColor and lineWidth define the visual appearance of the markers. Other series types, like column series, don't have markers, but have visual options on the series level instead. In styled mode, the markers can be styled with the .highcharts-point, .highcharts-point-hover and .highcharts-point-select class names. 
+/** Options for the point markers of line-like series. Properties like fillColor, lineColor and lineWidth define the visual appearance of the markers. Other series types, like column series, don't have markers, but have visual options on the series level instead. In styled mode, the markers can be styled with the .highcharts-point, .highcharts-point-hover and .highcharts-point-select class names.
 */
 	public void setMarker(HIMarker marker) {
 		this.marker = marker;
@@ -320,7 +322,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private HITooltip tooltip;
 /**
-/** A configuration object for the tooltip rendering of each single series. Properties are inherited from tooltip, but only the following properties can be defined on a series level. 
+/** A configuration object for the tooltip rendering of each single series. Properties are inherited from tooltip, but only the following properties can be defined on a series level.
 */
 	public void setTooltip(HITooltip tooltip) {
 		this.tooltip = tooltip;
@@ -333,7 +335,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private HIFunction pointDescriptionFormatter;
 /**
-/** Same as accessibility.pointDescriptionFormatter, but for an individual series. Overrides the chart wide configuration. 
+/** Same as accessibility.pointDescriptionFormatter, but for an individual series. Overrides the chart wide configuration.
 */
 	public void setPointDescriptionFormatter(HIFunction pointDescriptionFormatter) {
 		this.pointDescriptionFormatter = pointDescriptionFormatter;
@@ -345,7 +347,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private String className;
 /**
-/** An additional class name to apply to the series' graphical elements. This option does not replace defaults class names of the graphical element. 
+/** An additional class name to apply to the series' graphical elements. This option does not replace defaults class names of the graphical element.
 */
 	public void setClassName(String className) {
 		this.className = className;
@@ -454,7 +456,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private Number threshold;
 /**
-/** The threshold, also called zero level or base level. For line type series this is only used in conjunction with negativeColor. 
+/** The threshold, also called zero level or base level. For line type series this is only used in conjunction with negativeColor.
  <br><br><b>defaults:</b><br><br>&ensp;0*/
 	public void setThreshold(Number threshold) {
 		this.threshold = threshold;
@@ -490,7 +492,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private HIEvents events;
 /**
-/** General event handlers for the series items. These event hooks can also be attached to the series at run time using the Highcharts.addEvent function. 
+/** General event handlers for the series items. These event hooks can also be attached to the series at run time using the Highcharts.addEvent function.
 */
 	public void setEvents(HIEvents events) {
 		this.events = events;
@@ -503,7 +505,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private Number animationLimit;
 /**
-/** For some series, there is a limit that shuts down initial animation by defaults when the total number of points in the chart is too high. For example, for a column chart and its derivatives, animation does not run if there is more than 250 points totally. To disable this cap, set animationLimit to Infinity. 
+/** For some series, there is a limit that shuts down initial animation by defaults when the total number of points in the chart is too high. For example, for a column chart and its derivatives, animation does not run if there is more than 250 points totally. To disable this cap, set animationLimit to Infinity.
 */
 	public void setAnimationLimit(Number animationLimit) {
 		this.animationLimit = animationLimit;
@@ -515,7 +517,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private String definition;
 /**
-/** Requires the Accessibility module. A description of the series to add to the screen reader information about the series. 
+/** Requires the Accessibility module. A description of the series to add to the screen reader information about the series.
 */
 	public void setDefinition(String definition) {
 		this.definition = definition;
@@ -539,7 +541,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private Number turboThreshold;
 /**
-/** When a series contains a data array that is longer than this, only one dimensional arrays of numbers, or two dimensional arrays with x and y values are allowed. Also, only the first point is tested, and the rest are assumed to be the same format. This saves expensive data checking and indexing in long series. Set it to 0 disable. 
+/** When a series contains a data array that is longer than this, only one dimensional arrays of numbers, or two dimensional arrays with x and y values are allowed. Also, only the first point is tested, and the rest are assumed to be the same format. This saves expensive data checking and indexing in long series. Set it to 0 disable.
 */
 	public void setTurboThreshold(Number turboThreshold) {
 		this.turboThreshold = turboThreshold;
@@ -551,7 +553,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private Boolean skipKeyboardNavigation;
 /**
-/** If set to true, the accessibility module will skip past the points in this series for keyboard navigation. 
+/** If set to true, the accessibility module will skip past the points in this series for keyboard navigation.
 */
 	public void setSkipKeyboardNavigation(Boolean skipKeyboardNavigation) {
 		this.skipKeyboardNavigation = skipKeyboardNavigation;
@@ -587,7 +589,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private Boolean getExtremesFromAll;
 /**
-/** Whether to use the Y extremes of the total chart width or only the zoomed area when zooming in on parts of the X axis. By defaults, the Y axis adjusts to the min and max of the visible data. Cartesian series only. 
+/** Whether to use the Y extremes of the total chart width or only the zoomed area when zooming in on parts of the X axis. By defaults, the Y axis adjusts to the min and max of the visible data. Cartesian series only.
  <br><br><b>defaults:</b><br><br>&ensp;false*/
 	public void setGetExtremesFromAll(Boolean getExtremesFromAll) {
 		this.getExtremesFromAll = getExtremesFromAll;
@@ -768,7 +770,7 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	private Number boostThreshold;
 /**
-/** Set the point threshold for when a series should enter boost mode. Setting it to e.g. 2000 will cause the series to enter boost mode when there are 2000 or more points in the series. To disable boosting on the series, set the boostThreshold to 0. Setting it to 1 will force boosting. Note that the `cropThreshold` also affects this setting. When zooming in on a series that has fewer points than the cropThreshold, all points are rendered although outside the visible plot area, and the boostThreshold won't take effect. Requires modules/boost.js. 
+/** Set the point threshold for when a series should enter boost mode. Setting it to e.g. 2000 will cause the series to enter boost mode when there are 2000 or more points in the series. To disable boosting on the series, set the boostThreshold to 0. Setting it to 1 will force boosting. Note that the `cropThreshold` also affects this setting. When zooming in on a series that has fewer points than the cropThreshold, all points are rendered although outside the visible plot area, and the boostThreshold won't take effect. Requires modules/boost.js.
  <br><br><b>defaults:</b><br><br>&ensp;5000*/
 	public void setBoostThreshold(Number boostThreshold) {
 		this.boostThreshold = boostThreshold;
@@ -794,6 +796,8 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	public HISeries() {
 		super();
+//		this.addObserver();
+
 	}
 
 	//todo add handling for jsClassMethod field in HCView
@@ -804,22 +808,12 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 			put("id", uuid);
 		}};
 		this.setChanged();
-		this.notifyObservers();
+		this.notifyObservers(jsClassMethod);
 	}
 
-//
-//	 private Observer updateObserver = new Observer() {
-//		@Override
-//		public void update(Observable observable, Object o) {
-//			setChanged();
-//			notifyObservers();
-//		}
-//	};
-
-
 	public Map<String, Object> getParams() {
-
 		Map<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.data != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.data) {

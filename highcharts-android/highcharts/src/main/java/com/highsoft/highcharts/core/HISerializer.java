@@ -12,13 +12,15 @@ import java.lang.reflect.Type;
 /**
  *  This class is needed to JSON operations.
  */
-final class HIGJavaScript {
+final class HISerializer {
 
     private HIFunctionHandler handler;
 
-    HIGJavaScript(HIFunctionHandler functionHandler) {
+    HISerializer(HIFunctionHandler functionHandler) {
         this.handler = functionHandler;
     }
+
+    HISerializer() {}
 
     /**
      *  Prepares object and returns as JSON representation.

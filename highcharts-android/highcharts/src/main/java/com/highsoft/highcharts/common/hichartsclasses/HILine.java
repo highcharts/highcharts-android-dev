@@ -28,7 +28,7 @@ public class HILine extends HISeries {
 
 
 	public HILine() {
-		super(); 
+		super();
 		this.setType("line");
 	}
 
