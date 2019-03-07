@@ -16,6 +16,7 @@ import com.highsoft.highcharts.common.hichartsclasses.HILine;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
 import com.highsoft.highcharts.common.hichartsclasses.HIPoint;
 import com.highsoft.highcharts.common.hichartsclasses.HISeries;
+import com.highsoft.highcharts.common.hichartsclasses.HISpline;
 import com.highsoft.highcharts.common.hichartsclasses.HITitle;
 import com.highsoft.highcharts.common.hichartsclasses.HIXAxis;
 import com.highsoft.highcharts.common.hichartsclasses.HIYAxis;
@@ -24,6 +25,7 @@ import com.highsoft.highcharts.core.HIChartView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class IssuesActivity extends AppCompatActivity {
@@ -92,15 +94,24 @@ public class IssuesActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                HIData data = new HIData();
+                data.setY(6);
+//                series1.addPoint( data);
+//                data.setY(8);
+//                series1.addPoint( data);
 //                series1.hide();
-//                series1.setName("CHANGES MF");
-//                title.setText("CHANGED IT");
-                series1.hide();
+//                series1.hide();
 //                options.getSeries().get(0).setColor(HIColor.initWithName("pink"));
+//                series1.setSeriesData(new ArrayList<>(Arrays.asList(5,12,5,7,8,2,4)));
+                HISpline spline = new HISpline();
+                spline.setData(new ArrayList<>(Arrays.asList(5,6,1,6,7,8,12,3,4)));
+                spline.setColor(HIColor.initWithName("pink"));
+                spline.setName("RAMBO");
+//                series1.update(spline);
+                series1.getSeriesName();
             }
         });
     }
-
 
     private ArrayList randData(int bound){
         ArrayList<Integer> data = new ArrayList<>();

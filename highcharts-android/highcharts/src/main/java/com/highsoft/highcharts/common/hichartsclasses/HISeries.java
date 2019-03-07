@@ -10,11 +10,15 @@ package com.highsoft.highcharts.common.hichartsclasses;
 
 import android.util.Log;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.stream.Collectors;
 
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.core.HIFunction;
@@ -455,7 +459,6 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 	public String getFindNearestPointBy(){ return findNearestPointBy; }
 
 	private Number threshold;
-/**
 /** The threshold, also called zero level or base level. For line type series this is only used in conjunction with negativeColor.
  <br><br><b>defaults:</b><br><br>&ensp;0*/
 	public void setThreshold(Number threshold) {
@@ -796,11 +799,85 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 
 	public HISeries() {
 		super();
-//		this.addObserver();
-
 	}
 
-	//todo add handling for jsClassMethod field in HCView
+	/*-----------------METHODS-----------------*/
+
+	public void addPoint(HIData options){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "addPoint0");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(options.getParams())));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void addPoint(HIData options, boolean redraw){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "addPoint1");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(options.getParams(), redraw)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void addPoint(HIData options, boolean redraw, boolean shift){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "addPoint2");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(options.getParams(), redraw, shift)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void addPoint(HIData options, boolean redraw, boolean shift, HIAnimationOptionsObject animation){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "addPoint3");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(options.getParams(), redraw, shift, animation)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void animate(Number init){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "animate");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(init)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void drawGraph(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "drawGraph");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void drawPoints(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "drawPoints");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
 	public void hide(){
 		this.jsClassMethod = new HashMap<String, Object>() {{
 			put("class", "Series");
@@ -810,6 +887,314 @@ public class HISeries extends HIFoundation implements HIChartsJSONSerializable {
 		this.setChanged();
 		this.notifyObservers(jsClassMethod);
 	}
+
+	public void onMouseOver(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "onMouseOver");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void onMouseOut() {
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "onMouseOut");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void remove(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "remove0");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void remove(boolean redraw){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "remove1");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(redraw)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void remove(boolean redraw, HIAnimationOptionsObject animation){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "remove2");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(redraw, animation)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void remove(boolean redraw, HIAnimationOptionsObject animation, boolean withEvents){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "remove3");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(redraw, animation, withEvents)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void removePoint(Number i){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "removePoint0");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(i)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void removePoint(Number i, boolean redraw){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "removePoint1");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(i, redraw)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void removePoint(Number i, boolean redraw, HIAnimationOptionsObject animation){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "removePoint2");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(i, redraw, animation)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void render(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "render");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void select(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "select0");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void select(boolean selected){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "select1");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(selected)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void setSeriesData(List data){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setData0");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(data)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void setSeriesData(List data, boolean redraw){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setData1");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(data, redraw)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void setSeriesData(List data, boolean redraw, HIAnimationOptionsObject animation){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setData2");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(data, redraw, animation)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void setSeriesData(List data, boolean redraw, HIAnimationOptionsObject animation, boolean updatePoints){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setData3");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(data, redraw, animation, updatePoints)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void setOptions(HISeries itemOptions){
+		Map itemOtionsCopy = itemOptions.getParams();
+		itemOtionsCopy.remove("_wrapperID");
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setOptions");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(itemOtionsCopy)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void setState(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setState1");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void setState(String state){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setState1");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(state)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void setSeriesVisible(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setVisible0");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void setSeriesVisible(boolean visible){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setVisible1");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(visible)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void setSeriesVisible(boolean visible, boolean redraw){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setVisible2");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(visible, redraw)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void show(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "show");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void sonify(Map options){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "sonify");
+			put("id", uuid);
+			put("params", options);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void translate(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "sonify");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void update(HISeries options){
+		Map optionsCopy = options.getParams();
+		optionsCopy.remove("_wrapperID");
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "update0");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(optionsCopy)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	public void update(HISeries options, boolean redraw){
+		Map optionsCopy = options.getParams();
+		optionsCopy.remove("_wrapperID");
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "update1");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(optionsCopy, redraw)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/*=== GETTERS TESTS ===*/
+
+	public String getSeriesName(){
+		this.jsClassMethod = new HashMap<String, Object>(){{
+			put("class", "Series");
+			put("method", "getName");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+		return "";
+	}
+
 
 	public Map<String, Object> getParams() {
 		Map<String, Object> params = new HashMap<>();

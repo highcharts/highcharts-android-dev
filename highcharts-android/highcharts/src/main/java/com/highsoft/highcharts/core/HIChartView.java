@@ -378,6 +378,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
                     @Override
                     public void onReceiveValue(String value) {
                         Log.e(TAG, "Native method called.");
+                        if(value != null) Log.e(TAG, "Val returned: " + value);
                     }
                 });
             } else {
@@ -388,7 +389,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
                     @SuppressLint("JavascriptInterface")
                     @Override
                     public void onReceiveValue(String s) {
-                        Log.i("HIChartView", "Updated");
+                        Log.i(TAG, "Updated");
                     }
                 });
             }

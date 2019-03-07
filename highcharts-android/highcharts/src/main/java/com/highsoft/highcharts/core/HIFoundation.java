@@ -1,9 +1,5 @@
 package com.highsoft.highcharts.core;
 
-import android.util.Log;
-
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
-
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
@@ -33,5 +29,9 @@ public abstract class HIFoundation extends Observable {
 
     // todo uncomment after parser update
 //    protected abstract Map<String, Object> getParams();
+
+
+
+    // ???????????????????
     // remove observers .. ?
 }
