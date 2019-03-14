@@ -8,24 +8,20 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-
-
-public class HILevelSize extends Observable implements HIChartsJSONSerializable { 
+public class HILevelSize extends HIFoundation { 
 
 	private Number value;
-/**
-/** The value used for calculating the width of the ring. Its' affect is determined by levelSize.unit. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-levelsize/">Sunburst with various sizes per level</a>
-*/
+	/**
+ The value used for calculating the width of the ring. Its' affect is determined by levelSize.unit. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-levelsize/">Sunburst with various sizes per level</a>
+	*/
 	public void setValue(Number value) {
 		this.value = value;
 		this.setChanged();
@@ -35,9 +31,9 @@ public class HILevelSize extends Observable implements HIChartsJSONSerializable 
 	public Number getValue(){ return value; }
 
 	private String unit;
-/**
-/** How to interpret levelSize.value. - percentage gives a width relative to result of outer radius minus  inner radius. - pixels gives the ring a fixed width in pixels. - weight takes the remaining width after percentage and pixels, and  distributes it accross all "weighted" levels. The value relative to  the sum of all weights determines the width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-levelsize/">Sunburst with various sizes per level</a> <br><br><b>accepted values:</b><br><br>&ensp;["percentage", "pixels", "weight"]
-*/
+	/**
+ How to interpret levelSize.value. - percentage gives a width relative to result of outer radius minus  inner radius. - pixels gives the ring a fixed width in pixels. - weight takes the remaining width after percentage and pixels, and  distributes it accross all "weighted" levels. The value relative to  the sum of all weights determines the width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-levelsize/">Sunburst with various sizes per level</a> <br><br><b>accepted values:</b><br><br>&ensp;["percentage", "pixels", "weight"]
+	*/
 	public void setUnit(String unit) {
 		this.unit = unit;
 		this.setChanged();
@@ -52,19 +48,11 @@ public class HILevelSize extends Observable implements HIChartsJSONSerializable 
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.value != null) {
 			params.put("value", this.value);
 		}

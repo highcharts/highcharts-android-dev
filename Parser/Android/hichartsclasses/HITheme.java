@@ -8,25 +8,21 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
 
 
-
-
-public class HITheme extends Observable implements HIChartsJSONSerializable { 
+public class HITheme extends HIFoundation { 
 
 	private Number zIndex;
-/**
-/** The Z index for the reset zoom button. The defaults value places it below the tooltip that has Z index 7. 
-*/
+	/**
+ The Z index for the reset zoom button. The defaults value places it below the tooltip that has Z index 7. 
+	*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
 		this.setChanged();
@@ -36,9 +32,9 @@ public class HITheme extends Observable implements HIChartsJSONSerializable {
 	public Number getZIndex(){ return zIndex; }
 
 	private Number padding;
-/**
-/** Padding for the button. 
-*/
+	/**
+ Padding for the button. 
+	*/
 	public void setPadding(Number padding) {
 		this.padding = padding;
 		this.setChanged();
@@ -48,9 +44,9 @@ public class HITheme extends Observable implements HIChartsJSONSerializable {
 	public Number getPadding(){ return padding; }
 
 	private HIColor stroke;
-/**
-/** Default stroke for the buttons. 
- <br><br><b>defaults:</b><br><br>&ensp;none*/
+	/**
+ Default stroke for the buttons. 
+ <br><br><b>defaults:</b><br><br>&ensp;none	*/
 	public void setStroke(HIColor stroke) {
 		this.stroke = stroke;
 		this.setChanged();
@@ -60,9 +56,9 @@ public class HITheme extends Observable implements HIChartsJSONSerializable {
 	public HIColor getStroke(){ return stroke; }
 
 	private HIColor fill;
-/**
-/** The defaults fill exists only to capture hover events. 
- <br><br><b>defaults:</b><br><br>&ensp;#ffffff*/
+	/**
+ The defaults fill exists only to capture hover events. 
+ <br><br><b>defaults:</b><br><br>&ensp;#ffffff	*/
 	public void setFill(HIColor fill) {
 		this.fill = fill;
 		this.setChanged();
@@ -77,19 +73,11 @@ public class HITheme extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.zIndex != null) {
 			params.put("zIndex", this.zIndex);
 		}

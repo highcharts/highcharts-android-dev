@@ -8,24 +8,20 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-
-
-public class HIResetZoomButton extends Observable implements HIChartsJSONSerializable { 
+public class HIResetZoomButton extends HIFoundation { 
 
 	private HIAlignObject position;
-/**
-/** The position of the button. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-position/">Above the plot area</a>
-*/
+	/**
+ The position of the button. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-position/">Above the plot area</a>
+	*/
 	public void setPosition(HIAlignObject position) {
 		this.position = position;
 		this.setChanged();
@@ -35,9 +31,9 @@ public class HIResetZoomButton extends Observable implements HIChartsJSONSeriali
 	public HIAlignObject getPosition(){ return position; }
 
 	private HISVGAttributes theme;
-/**
-/** A collection of attributes for the button. The object takes SVG attributes like fill, stroke, stroke-width or r, the border radius. The theme also supports style, a collection of CSS properties for the text. Equivalent attributes for the hover state are given in theme.states.hover. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-theme/">Theming the button</a>
-*/
+	/**
+ A collection of attributes for the button. The object takes SVG attributes like fill, stroke, stroke-width or r, the border radius. The theme also supports style, a collection of CSS properties for the text. Equivalent attributes for the hover state are given in theme.states.hover. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-theme/">Theming the button</a>
+	*/
 	public void setTheme(HISVGAttributes theme) {
 		this.theme = theme;
 		this.setChanged();
@@ -47,9 +43,9 @@ public class HIResetZoomButton extends Observable implements HIChartsJSONSeriali
 	public HISVGAttributes getTheme(){ return theme; }
 
 	private String relativeTo;
-/**
-/** What frame the button should be placed related to. Can be either plot or chart <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-relativeto/">Relative to the chart</a> <br><br><b>accepted values:</b><br><br>&ensp;["plot", "chart"]
- <br><br><b>defaults:</b><br><br>&ensp;plot*/
+	/**
+ What frame the button should be placed related to. Can be either plot or chart <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/resetzoombutton-relativeto/">Relative to the chart</a> <br><br><b>accepted values:</b><br><br>&ensp;["plot", "chart"]
+ <br><br><b>defaults:</b><br><br>&ensp;plot	*/
 	public void setRelativeTo(String relativeTo) {
 		this.relativeTo = relativeTo;
 		this.setChanged();
@@ -64,19 +60,11 @@ public class HIResetZoomButton extends Observable implements HIChartsJSONSeriali
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.position != null) {
 			params.put("position", this.position.getParams());
 		}

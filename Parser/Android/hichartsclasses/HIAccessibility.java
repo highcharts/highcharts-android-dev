@@ -8,24 +8,20 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-
-
-public class HIAccessibility extends Observable implements HIChartsJSONSerializable { 
+public class HIAccessibility extends HIFoundation { 
 
 	private HIFunction screenReaderSectionFormatter;
-/**
-/** A formatter function to create the HTML contents of the hidden screen reader information region. Receives one argument, chart, referring to the chart object. Should return a String with the HTML content of the region. The link to view the chart as a data table will be added automatically after the custom HTML content. 
- <br><br><b>defaults:</b><br><br>&ensp;undefined*/
+	/**
+ A formatter function to create the HTML contents of the hidden screen reader information region. Receives one argument, chart, referring to the chart object. Should return a String with the HTML content of the region. The link to view the chart as a data table will be added automatically after the custom HTML content. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setScreenReaderSectionFormatter(HIFunction screenReaderSectionFormatter) {
 		this.screenReaderSectionFormatter = screenReaderSectionFormatter;
 		this.setChanged();
@@ -35,9 +31,9 @@ public class HIAccessibility extends Observable implements HIChartsJSONSerializa
 	public HIFunction getScreenReaderSectionFormatter(){ return screenReaderSectionFormatter; }
 
 	private Boolean describeSingleSeries;
-/**
-/** Whether or not to add series descriptions to charts with a single series. 
- <br><br><b>defaults:</b><br><br>&ensp;false*/
+	/**
+ Whether or not to add series descriptions to charts with a single series. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setDescribeSingleSeries(Boolean describeSingleSeries) {
 		this.describeSingleSeries = describeSingleSeries;
 		this.setChanged();
@@ -47,9 +43,9 @@ public class HIAccessibility extends Observable implements HIChartsJSONSerializa
 	public Boolean getDescribeSingleSeries(){ return describeSingleSeries; }
 
 	private HIKeyboardNavigation keyboardNavigation;
-/**
-/** Options for keyboard navigation. 
-*/
+	/**
+ Options for keyboard navigation. 
+	*/
 	public void setKeyboardNavigation(HIKeyboardNavigation keyboardNavigation) {
 		this.keyboardNavigation = keyboardNavigation;
 		this.keyboardNavigation.addObserver(updateObserver);
@@ -60,9 +56,9 @@ public class HIAccessibility extends Observable implements HIChartsJSONSerializa
 	public HIKeyboardNavigation getKeyboardNavigation(){ return keyboardNavigation; }
 
 	private Boolean enabled;
-/**
-/** Enable accessibility features for the chart. 
-*/
+	/**
+ Enable accessibility features for the chart. 
+	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -72,9 +68,9 @@ public class HIAccessibility extends Observable implements HIChartsJSONSerializa
 	public Boolean getEnabled(){ return enabled; }
 
 	private Number pointDescriptionThreshold;
-/**
-/** When a series contains more points than this, we no longer expose information about individual points to screen readers. Set to false to disable. 
-*/
+	/**
+ When a series contains more points than this, we no longer expose information about individual points to screen readers. Set to false to disable. 
+	*/
 	public void setPointDescriptionThreshold(Number pointDescriptionThreshold) {
 		this.pointDescriptionThreshold = pointDescriptionThreshold;
 		this.setChanged();
@@ -84,9 +80,9 @@ public class HIAccessibility extends Observable implements HIChartsJSONSerializa
 	public Number getPointDescriptionThreshold(){ return pointDescriptionThreshold; }
 
 	private HIFunction pointDescriptionFormatter;
-/**
-/** Formatter function to use instead of the defaults for point descriptions. Receives one argument, point, referring to the point to describe. Should return a String with the description of the point for a screen reader user. 
-*/
+	/**
+ Formatter function to use instead of the defaults for point descriptions. Receives one argument, point, referring to the point to describe. Should return a String with the description of the point for a screen reader user. 
+	*/
 	public void setPointDescriptionFormatter(HIFunction pointDescriptionFormatter) {
 		this.pointDescriptionFormatter = pointDescriptionFormatter;
 		this.setChanged();
@@ -96,9 +92,9 @@ public class HIAccessibility extends Observable implements HIChartsJSONSerializa
 	public HIFunction getPointDescriptionFormatter(){ return pointDescriptionFormatter; }
 
 	private String pointDateFormat;
-/**
-/** Date format to use for points on datetime axes when describing them to screen reader users. Defaults to the same format as in tooltip. For an overview of the replacement codes, see `dateFormat`. 
-*/
+	/**
+ Date format to use for points on datetime axes when describing them to screen reader users. Defaults to the same format as in tooltip. For an overview of the replacement codes, see `dateFormat`. 
+	*/
 	public void setPointDateFormat(String pointDateFormat) {
 		this.pointDateFormat = pointDateFormat;
 		this.setChanged();
@@ -108,9 +104,9 @@ public class HIAccessibility extends Observable implements HIChartsJSONSerializa
 	public String getPointDateFormat(){ return pointDateFormat; }
 
 	private HIFunction seriesDescriptionFormatter;
-/**
-/** Formatter function to use instead of the defaults for series descriptions. Receives one argument, series, referring to the series to describe. Should return a String with the description of the series for a screen reader user. 
-*/
+	/**
+ Formatter function to use instead of the defaults for series descriptions. Receives one argument, series, referring to the series to describe. Should return a String with the description of the series for a screen reader user. 
+	*/
 	public void setSeriesDescriptionFormatter(HIFunction seriesDescriptionFormatter) {
 		this.seriesDescriptionFormatter = seriesDescriptionFormatter;
 		this.setChanged();
@@ -120,9 +116,9 @@ public class HIAccessibility extends Observable implements HIChartsJSONSerializa
 	public HIFunction getSeriesDescriptionFormatter(){ return seriesDescriptionFormatter; }
 
 	private HIFunction onTableAnchorClick;
-/**
-/** Function to run upon clicking the "View as Data Table" link in the screen reader region. By defaults Highcharts will insert and set focus to a data table representation of the chart. 
-*/
+	/**
+ Function to run upon clicking the "View as Data Table" link in the screen reader region. By defaults Highcharts will insert and set focus to a data table representation of the chart. 
+	*/
 	public void setOnTableAnchorClick(HIFunction onTableAnchorClick) {
 		this.onTableAnchorClick = onTableAnchorClick;
 		this.setChanged();
@@ -132,9 +128,9 @@ public class HIAccessibility extends Observable implements HIChartsJSONSerializa
 	public HIFunction getOnTableAnchorClick(){ return onTableAnchorClick; }
 
 	private HIFunction pointDateFormatter;
-/**
-/** Formatter function to determine the date/time format used with points on datetime axes when describing them to screen reader users. Receives one argument, point, referring to the point to describe. Should return a date format string compatible with `dateFormat`. 
-*/
+	/**
+ Formatter function to determine the date/time format used with points on datetime axes when describing them to screen reader users. Receives one argument, point, referring to the point to describe. Should return a date format string compatible with `dateFormat`. 
+	*/
 	public void setPointDateFormatter(HIFunction pointDateFormatter) {
 		this.pointDateFormatter = pointDateFormatter;
 		this.setChanged();
@@ -149,19 +145,11 @@ public class HIAccessibility extends Observable implements HIChartsJSONSerializa
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.screenReaderSectionFormatter != null) {
 			params.put("screenReaderSectionFormatter", this.screenReaderSectionFormatter);
 		}

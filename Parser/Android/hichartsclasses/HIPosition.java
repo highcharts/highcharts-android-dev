@@ -8,24 +8,20 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-
-
-public class HIPosition extends Observable implements HIChartsJSONSerializable { 
+public class HIPosition extends HIFoundation { 
 
 	private Number y;
-/**
-/** Vertical offset of the button. 
-*/
+	/**
+ Vertical offset of the button. 
+	*/
 	public void setY(Number y) {
 		this.y = y;
 		this.setChanged();
@@ -35,9 +31,9 @@ public class HIPosition extends Observable implements HIChartsJSONSerializable {
 	public Number getY(){ return y; }
 
 	private Number x;
-/**
-/** Horizontal offset of the button. 
-*/
+	/**
+ Horizontal offset of the button. 
+	*/
 	public void setX(Number x) {
 		this.x = x;
 		this.setChanged();
@@ -47,9 +43,9 @@ public class HIPosition extends Observable implements HIChartsJSONSerializable {
 	public Number getX(){ return x; }
 
 	private String align;
-/**
-/** Horizontal alignment of the button. <br><br><b>accepted values:</b><br><br>&ensp;["left", "center", "right"]
-*/
+	/**
+ Horizontal alignment of the button. <br><br><b>accepted values:</b><br><br>&ensp;["left", "center", "right"]
+	*/
 	public void setAlign(String align) {
 		this.align = align;
 		this.setChanged();
@@ -59,9 +55,9 @@ public class HIPosition extends Observable implements HIChartsJSONSerializable {
 	public String getAlign(){ return align; }
 
 	private String verticalAlign;
-/**
-/** Vertical alignment of the button. <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]
- <br><br><b>defaults:</b><br><br>&ensp;top*/
+	/**
+ Vertical alignment of the button. <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]
+ <br><br><b>defaults:</b><br><br>&ensp;top	*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
 		this.setChanged();
@@ -76,19 +72,11 @@ public class HIPosition extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.y != null) {
 			params.put("y", this.y);
 		}

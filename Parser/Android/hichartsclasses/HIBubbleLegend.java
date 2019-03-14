@@ -8,25 +8,21 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
 
 
-
-
-public class HIBubbleLegend extends Observable implements HIChartsJSONSerializable { 
+public class HIBubbleLegend extends HIFoundation { 
 
 	private HIColor borderColor;
-/**
-/** The color of the ranges borders, can be also defined for an individual range. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/similartoseries/">Similat look to the bubble series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/bordercolor/">Individual bubble border color</a>
-*/
+	/**
+ The color of the ranges borders, can be also defined for an individual range. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/similartoseries/">Similat look to the bubble series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/bordercolor/">Individual bubble border color</a>
+	*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
@@ -36,9 +32,9 @@ public class HIBubbleLegend extends Observable implements HIChartsJSONSerializab
 	public HIColor getBorderColor(){ return borderColor; }
 
 	private HIColor connectorColor;
-/**
-/** The color of the connector, can be also defined for an individual range. 
-*/
+	/**
+ The color of the connector, can be also defined for an individual range. 
+	*/
 	public void setConnectorColor(HIColor connectorColor) {
 		this.connectorColor = connectorColor;
 		this.setChanged();
@@ -48,9 +44,9 @@ public class HIBubbleLegend extends Observable implements HIChartsJSONSerializab
 	public HIColor getConnectorColor(){ return connectorColor; }
 
 	private Number zIndex;
-/**
-/** Define the visual z index of the bubble legend. 
-*/
+	/**
+ Define the visual z index of the bubble legend. 
+	*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
 		this.setChanged();
@@ -60,9 +56,9 @@ public class HIBubbleLegend extends Observable implements HIChartsJSONSerializab
 	public Number getZIndex(){ return zIndex; }
 
 	private String sizeBy;
-/**
-/** Whether the bubble legend range value should be represented by the area or the width of the bubble. The defaults, area, corresponds best to the human perception of the size of each bubble. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/ranges/">Size by width</a> <br><br><b>accepted values:</b><br><br>&ensp;["area", "width"]
-*/
+	/**
+ Whether the bubble legend range value should be represented by the area or the width of the bubble. The defaults, area, corresponds best to the human perception of the size of each bubble. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/ranges/">Size by width</a> <br><br><b>accepted values:</b><br><br>&ensp;["area", "width"]
+	*/
 	public void setSizeBy(String sizeBy) {
 		this.sizeBy = sizeBy;
 		this.setChanged();
@@ -72,9 +68,9 @@ public class HIBubbleLegend extends Observable implements HIChartsJSONSerializab
 	public String getSizeBy(){ return sizeBy; }
 
 	private Number legendIndex;
-/**
-/** The position of the bubble legend in the legend. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/connectorandlabels/">Bubble legend as last item in legend</a>
-*/
+	/**
+ The position of the bubble legend in the legend. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/connectorandlabels/">Bubble legend as last item in legend</a>
+	*/
 	public void setLegendIndex(Number legendIndex) {
 		this.legendIndex = legendIndex;
 		this.setChanged();
@@ -84,9 +80,9 @@ public class HIBubbleLegend extends Observable implements HIChartsJSONSerializab
 	public Number getLegendIndex(){ return legendIndex; }
 
 	private Number connectorWidth;
-/**
-/** The width of the connectors in pixels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/connectorandlabels/">Increased connector width</a>
-*/
+	/**
+ The width of the connectors in pixels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/connectorandlabels/">Increased connector width</a>
+	*/
 	public void setConnectorWidth(Number connectorWidth) {
 		this.connectorWidth = connectorWidth;
 		this.setChanged();
@@ -96,9 +92,9 @@ public class HIBubbleLegend extends Observable implements HIChartsJSONSerializab
 	public Number getConnectorWidth(){ return connectorWidth; }
 
 	private HIColor color;
-/**
-/** The main color of the bubble legend. Applies to ranges, if individual color is not defined. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/similartoseries/">Similat look to the bubble series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/color/">Individual bubble color</a>
-*/
+	/**
+ The main color of the bubble legend. Applies to ranges, if individual color is not defined. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/similartoseries/">Similat look to the bubble series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/color/">Individual bubble color</a>
+	*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -108,9 +104,9 @@ public class HIBubbleLegend extends Observable implements HIChartsJSONSerializab
 	public HIColor getColor(){ return color; }
 
 	private HILabels labels;
-/**
-/** Options for the bubble legend labels. 
-*/
+	/**
+ Options for the bubble legend labels. 
+	*/
 	public void setLabels(HILabels labels) {
 		this.labels = labels;
 		this.labels.addObserver(updateObserver);
@@ -121,9 +117,9 @@ public class HIBubbleLegend extends Observable implements HIChartsJSONSerializab
 	public HILabels getLabels(){ return labels; }
 
 	private Boolean enabled;
-/**
-/** Enable or disable the bubble legend. 
-*/
+	/**
+ Enable or disable the bubble legend. 
+	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -133,9 +129,9 @@ public class HIBubbleLegend extends Observable implements HIChartsJSONSerializab
 	public Boolean getEnabled(){ return enabled; }
 
 	private Boolean sizeByAbsoluteValue;
-/**
-/** When this is true, the absolute value of z determines the size of the bubble. This means that with the defaults zThreshold of 0, a bubble of value -1 will have the same size as a bubble of value 1, while a bubble of value 0 will have a smaller size according to minSize. 
-*/
+	/**
+ When this is true, the absolute value of z determines the size of the bubble. This means that with the defaults zThreshold of 0, a bubble of value -1 will have the same size as a bubble of value 1, while a bubble of value 0 will have a smaller size according to minSize. 
+	*/
 	public void setSizeByAbsoluteValue(Boolean sizeByAbsoluteValue) {
 		this.sizeByAbsoluteValue = sizeByAbsoluteValue;
 		this.setChanged();
@@ -145,9 +141,9 @@ public class HIBubbleLegend extends Observable implements HIChartsJSONSerializab
 	public Boolean getSizeByAbsoluteValue(){ return sizeByAbsoluteValue; }
 
 	private String className;
-/**
-/** An additional class name to apply to the bubble legend' circle graphical elements. This option does not replace defaults class names of the graphical element. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/bubble-legend/">Styling by CSS</a>
-*/
+	/**
+ An additional class name to apply to the bubble legend' circle graphical elements. This option does not replace defaults class names of the graphical element. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/bubble-legend/">Styling by CSS</a>
+	*/
 	public void setClassName(String className) {
 		this.className = className;
 		this.setChanged();
@@ -156,22 +152,22 @@ public class HIBubbleLegend extends Observable implements HIChartsJSONSerializab
 
 	public String getClassName(){ return className; }
 
-	private ArrayList <HIRanges> ranges;
-/**
-/** Options for specific range. One range consists of bubble, label and connector. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/ranges/">Manually defined ranges</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/autoranges/">Auto calculated ranges</a>
-*/
-	public void setRanges(ArrayList ranges) {
+	private List <HIRanges> ranges;
+	/**
+ Options for specific range. One range consists of bubble, label and connector. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/ranges/">Manually defined ranges</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/autoranges/">Auto calculated ranges</a>
+	*/
+	public void setRanges(List ranges) {
 		this.ranges = ranges;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList getRanges(){ return ranges; }
+	public List getRanges(){ return ranges; }
 
 	private Number maxSize;
-/**
-/** Miximum bubble legend range size. If values for ranges are not specified, the minSize and the maxSize are calculated from bubble series. 
-*/
+	/**
+ Miximum bubble legend range size. If values for ranges are not specified, the minSize and the maxSize are calculated from bubble series. 
+	*/
 	public void setMaxSize(Number maxSize) {
 		this.maxSize = maxSize;
 		this.setChanged();
@@ -181,9 +177,9 @@ public class HIBubbleLegend extends Observable implements HIChartsJSONSerializab
 	public Number getMaxSize(){ return maxSize; }
 
 	private Number minSize;
-/**
-/** Minimum bubble legend range size. If values for ranges are not specified, the minSize and the maxSize are calculated from bubble series. 
-*/
+	/**
+ Minimum bubble legend range size. If values for ranges are not specified, the minSize and the maxSize are calculated from bubble series. 
+	*/
 	public void setMinSize(Number minSize) {
 		this.minSize = minSize;
 		this.setChanged();
@@ -193,9 +189,9 @@ public class HIBubbleLegend extends Observable implements HIChartsJSONSerializab
 	public Number getMinSize(){ return minSize; }
 
 	private Number borderWidth;
-/**
-/** The width of the ranges borders in pixels, can be also defined for an individual range. 
-*/
+	/**
+ The width of the ranges borders in pixels, can be also defined for an individual range. 
+	*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
 		this.setChanged();
@@ -205,9 +201,9 @@ public class HIBubbleLegend extends Observable implements HIChartsJSONSerializab
 	public Number getBorderWidth(){ return borderWidth; }
 
 	private String connectorClassName;
-/**
-/** An additional class name to apply to the bubble legend's connector graphical elements. This option does not replace defaults class names of the graphical element. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/bubble-legend/">Styling by CSS</a>
-*/
+	/**
+ An additional class name to apply to the bubble legend's connector graphical elements. This option does not replace defaults class names of the graphical element. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/bubble-legend/">Styling by CSS</a>
+	*/
 	public void setConnectorClassName(String connectorClassName) {
 		this.connectorClassName = connectorClassName;
 		this.setChanged();
@@ -217,9 +213,9 @@ public class HIBubbleLegend extends Observable implements HIChartsJSONSerializab
 	public String getConnectorClassName(){ return connectorClassName; }
 
 	private Number zThreshold;
-/**
-/** Ranges with with lower value than zThreshold, are skipped. 
-*/
+	/**
+ Ranges with with lower value than zThreshold, are skipped. 
+	*/
 	public void setZThreshold(Number zThreshold) {
 		this.zThreshold = zThreshold;
 		this.setChanged();
@@ -229,9 +225,9 @@ public class HIBubbleLegend extends Observable implements HIChartsJSONSerializab
 	public Number getZThreshold(){ return zThreshold; }
 
 	private Number connectorDistance;
-/**
-/** The length of the connectors in pixels. If labels are centered, the distance is reduced to 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/connectorandlabels/">Increased connector length</a>
-*/
+	/**
+ The length of the connectors in pixels. If labels are centered, the distance is reduced to 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/connectorandlabels/">Increased connector length</a>
+	*/
 	public void setConnectorDistance(Number connectorDistance) {
 		this.connectorDistance = connectorDistance;
 		this.setChanged();
@@ -246,19 +242,11 @@ public class HIBubbleLegend extends Observable implements HIChartsJSONSerializab
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
 		}
@@ -293,10 +281,10 @@ public class HIBubbleLegend extends Observable implements HIChartsJSONSerializab
 			params.put("className", this.className);
 		}
 		if (this.ranges != null) {
-			ArrayList<Object> array = new ArrayList<>();
+			List<Object> array = new List<>();
 			for (Object obj : this.ranges) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
 				}
 				else {
 					array.add(obj);

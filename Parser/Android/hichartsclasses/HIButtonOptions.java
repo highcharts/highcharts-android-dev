@@ -8,25 +8,21 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
 
 
-
-
-public class HIButtonOptions extends Observable implements HIChartsJSONSerializable { 
+public class HIButtonOptions extends HIFoundation { 
 
 	private HIColor symbolStroke;
-/**
-/** The color of the symbol's stroke or line. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-symbolstroke/">Blue symbol stroke</a>
-*/
+	/**
+ The color of the symbol's stroke or line. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-symbolstroke/">Blue symbol stroke</a>
+	*/
 	public void setSymbolStroke(HIColor symbolStroke) {
 		this.symbolStroke = symbolStroke;
 		this.setChanged();
@@ -36,9 +32,9 @@ public class HIButtonOptions extends Observable implements HIChartsJSONSerializa
 	public HIColor getSymbolStroke(){ return symbolStroke; }
 
 	private HIColor symbolFill;
-/**
-/** Fill color for the symbol within the button. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-symbolfill/">Blue symbol stroke for one of the buttons</a>
-*/
+	/**
+ Fill color for the symbol within the button. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-symbolfill/">Blue symbol stroke for one of the buttons</a>
+	*/
 	public void setSymbolFill(HIColor symbolFill) {
 		this.symbolFill = symbolFill;
 		this.setChanged();
@@ -48,9 +44,9 @@ public class HIButtonOptions extends Observable implements HIChartsJSONSerializa
 	public HIColor getSymbolFill(){ return symbolFill; }
 
 	private String text;
-/**
-/** A text string to add to the individual button. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-text/">Full text button</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-text-symbol/">Combined symbol and text</a>
- <br><br><b>defaults:</b><br><br>&ensp;null*/
+	/**
+ A text string to add to the individual button. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-text/">Full text button</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-text-symbol/">Combined symbol and text</a>
+ <br><br><b>defaults:</b><br><br>&ensp;null	*/
 	public void setText(String text) {
 		this.text = text;
 		this.setChanged();
@@ -60,9 +56,9 @@ public class HIButtonOptions extends Observable implements HIChartsJSONSerializa
 	public String getText(){ return text; }
 
 	private Boolean enabled;
-/**
-/** Whether to enable buttons. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-enabled/">Exporting module loaded but buttons disabled</a>
- <br><br><b>defaults:</b><br><br>&ensp;true*/
+	/**
+ Whether to enable buttons. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-enabled/">Exporting module loaded but buttons disabled</a>
+ <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -72,9 +68,9 @@ public class HIButtonOptions extends Observable implements HIChartsJSONSerializa
 	public Boolean getEnabled(){ return enabled; }
 
 	private HITheme theme;
-/**
-/** A configuration object for the button theme. The object accepts SVG properties like stroke-width, stroke and fill. Tri-state button styles are supported by the states.hover and states.select objects. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-theme/">Theming the buttons</a>
-*/
+	/**
+ A configuration object for the button theme. The object accepts SVG properties like stroke-width, stroke and fill. Tri-state button styles are supported by the states.hover and states.select objects. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-theme/">Theming the buttons</a>
+	*/
 	public void setTheme(HITheme theme) {
 		this.theme = theme;
 		this.theme.addObserver(updateObserver);
@@ -85,9 +81,9 @@ public class HIButtonOptions extends Observable implements HIChartsJSONSerializa
 	public HITheme getTheme(){ return theme; }
 
 	private Number y;
-/**
-/** The vertical offset of the button's position relative to its verticalAlign. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-verticalalign/">Buttons at lower right</a>
- <br><br><b>defaults:</b><br><br>&ensp;0*/
+	/**
+ The vertical offset of the button's position relative to its verticalAlign. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-verticalalign/">Buttons at lower right</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setY(Number y) {
 		this.y = y;
 		this.setChanged();
@@ -97,9 +93,9 @@ public class HIButtonOptions extends Observable implements HIChartsJSONSerializa
 	public Number getY(){ return y; }
 
 	private Number symbolStrokeWidth;
-/**
-/** The pixel stroke width of the symbol on the button. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-height/">Bigger buttons</a>
-*/
+	/**
+ The pixel stroke width of the symbol on the button. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-height/">Bigger buttons</a>
+	*/
 	public void setSymbolStrokeWidth(Number symbolStrokeWidth) {
 		this.symbolStrokeWidth = symbolStrokeWidth;
 		this.setChanged();
@@ -114,19 +110,11 @@ public class HIButtonOptions extends Observable implements HIChartsJSONSerializa
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.symbolStroke != null) {
 			params.put("symbolStroke", this.symbolStroke.getData());
 		}

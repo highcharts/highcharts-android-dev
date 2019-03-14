@@ -8,24 +8,20 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-
-
-public class HIBoost extends Observable implements HIChartsJSONSerializable { 
+public class HIBoost extends HIFoundation { 
 
 	private Boolean allowForce;
-/**
-/** If set to true, the whole chart will be boosted if one of the series crosses its threshold, and all the series can be boosted. 
- <br><br><b>defaults:</b><br><br>&ensp;true*/
+	/**
+ If set to true, the whole chart will be boosted if one of the series crosses its threshold, and all the series can be boosted. 
+ <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setAllowForce(Boolean allowForce) {
 		this.allowForce = allowForce;
 		this.setChanged();
@@ -35,9 +31,9 @@ public class HIBoost extends Observable implements HIChartsJSONSerializable {
 	public Boolean getAllowForce(){ return allowForce; }
 
 	private Boolean enabled;
-/**
-/** Enable or disable boost on a chart. 
- <br><br><b>defaults:</b><br><br>&ensp;true*/
+	/**
+ Enable or disable boost on a chart. 
+ <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -47,9 +43,9 @@ public class HIBoost extends Observable implements HIChartsJSONSerializable {
 	public Boolean getEnabled(){ return enabled; }
 
 	private Number seriesThreshold;
-/**
-/** Set the series threshold for when the boost should kick in globally. Setting to e.g. 20 will cause the whole chart to enter boost mode if there are 20 or more series active. When the chart is in boost mode, every series in it will be rendered to a common canvas. This offers a significant speed improvment in charts with a very high amount of series. 
- <br><br><b>defaults:</b><br><br>&ensp;null*/
+	/**
+ Set the series threshold for when the boost should kick in globally. Setting to e.g. 20 will cause the whole chart to enter boost mode if there are 20 or more series active. When the chart is in boost mode, every series in it will be rendered to a common canvas. This offers a significant speed improvment in charts with a very high amount of series. 
+ <br><br><b>defaults:</b><br><br>&ensp;null	*/
 	public void setSeriesThreshold(Number seriesThreshold) {
 		this.seriesThreshold = seriesThreshold;
 		this.setChanged();
@@ -59,9 +55,9 @@ public class HIBoost extends Observable implements HIChartsJSONSerializable {
 	public Number getSeriesThreshold(){ return seriesThreshold; }
 
 	private Boolean usePreallocated;
-/**
-/** Enable or disable pre-allocation of vertex buffers. Enabling this will make it so that the binary data arrays required for storing the series data will be allocated prior to transforming the data to a WebGL-compatible format. This saves a copy operation on the order of O(n) and so is significantly more performant. However, this is currently an experimental option, and may cause visual artifacts with some datasets. As such, care should be taken when using this setting to make sure that it doesn't cause any rendering glitches with the given use-case. 
- <br><br><b>defaults:</b><br><br>&ensp;false*/
+	/**
+ Enable or disable pre-allocation of vertex buffers. Enabling this will make it so that the binary data arrays required for storing the series data will be allocated prior to transforming the data to a WebGL-compatible format. This saves a copy operation on the order of O(n) and so is significantly more performant. However, this is currently an experimental option, and may cause visual artifacts with some datasets. As such, care should be taken when using this setting to make sure that it doesn't cause any rendering glitches with the given use-case. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setUsePreallocated(Boolean usePreallocated) {
 		this.usePreallocated = usePreallocated;
 		this.setChanged();
@@ -71,9 +67,9 @@ public class HIBoost extends Observable implements HIChartsJSONSerializable {
 	public Boolean getUsePreallocated(){ return usePreallocated; }
 
 	private Boolean useGPUTranslations;
-/**
-/** Enable or disable GPU translations. GPU translations are faster than doing the translation in JavaScript. This option may cause rendering issues with certain datasets. Namely, if your dataset has large numbers with small increments (such as timestamps), it won't work correctly. This is due to floating point precission. 
- <br><br><b>defaults:</b><br><br>&ensp;false*/
+	/**
+ Enable or disable GPU translations. GPU translations are faster than doing the translation in JavaScript. This option may cause rendering issues with certain datasets. Namely, if your dataset has large numbers with small increments (such as timestamps), it won't work correctly. This is due to floating point precission. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setUseGPUTranslations(Boolean useGPUTranslations) {
 		this.useGPUTranslations = useGPUTranslations;
 		this.setChanged();
@@ -83,9 +79,9 @@ public class HIBoost extends Observable implements HIChartsJSONSerializable {
 	public Boolean getUseGPUTranslations(){ return useGPUTranslations; }
 
 	private HIDebug debug;
-/**
-/** Debugging options for boost. Useful for benchmarking, and general timing. 
-*/
+	/**
+ Debugging options for boost. Useful for benchmarking, and general timing. 
+	*/
 	public void setDebug(HIDebug debug) {
 		this.debug = debug;
 		this.debug.addObserver(updateObserver);
@@ -101,19 +97,11 @@ public class HIBoost extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.allowForce != null) {
 			params.put("allowForce", this.allowForce);
 		}

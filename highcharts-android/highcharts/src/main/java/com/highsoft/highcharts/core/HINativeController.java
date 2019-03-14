@@ -12,7 +12,7 @@ class HINativeController {
 
     private final static String TAG = "HINativeController";
 
-    static String getMethodString(HashMap<String, Object> map) {
+    static String getMethodString(Map<String, Object> map) {
 
         String[] args = new String[] {null, null, null, null, null};
         List<Object> params;
@@ -44,8 +44,8 @@ class HINativeController {
                 put("redrawItems1", String.format("(function redrawItems(wrapperID, items, animation) { chart.annotations.forEach(function(currentAnnotations) { if (currentAnnotations.options._wrapperID === wrapperID) { currentAnnotations.redrawItems(items, animation); return; } }); })(\"%s\", %s, %s);", map.get("id"), args[0], args[1]));
                 put("remove", String.format("(function remove(wrapperID) { chart.annotations.forEach(function(currentAnnotations) { if (currentAnnotations.options._wrapperID === wrapperID) { currentAnnotations.remove(); return; } }); })(\"%s\");", map.get("id")));
                 put("setOptions", String.format("(function setOptions(wrapperID) { chart.annotations.forEach(function(currentAnnotations) { if (currentAnnotations.options._wrapperID === wrapperID) { currentAnnotations.setOptions(); return; } }); })(\"%s\");", map.get("id")));
-                put("setVisible0", String.format("(function setVisible(wrapperID) { chart.annotations.forEach(function(currentAnnotations) { if (currentAnnotations.options._wrapperID === wrapperID) { currentAnnotations.setVisible(); return; } }); })(\"%s\");", map.get("id")));
-                put("setVisible1", String.format("(function setVisible(wrapperID, visibility) { chart.annotations.forEach(function(currentAnnotations) { if (currentAnnotations.options._wrapperID === wrapperID) { currentAnnotations.setVisible(visibility); return; } }); })(\"%s\", %s);", map.get("id"), args[0]));
+                put("setVisibility0", String.format("(function setVisibility(wrapperID) { chart.annotations.forEach(function(currentAnnotations) { if (currentAnnotations.options._wrapperID === wrapperID) { currentAnnotations.setVisibility(); return; } }); })(\"%s\");", map.get("id")));
+                put("setVisibility1", String.format("(function setVisibility(wrapperID, visible) { chart.annotations.forEach(function(currentAnnotations) { if (currentAnnotations.options._wrapperID === wrapperID) { currentAnnotations.setVisibility(visible); return; } }); })(\"%s\", %s);", map.get("id"), args[0]));
             }});
             put("Axis", new HashMap<String, String>(){{
                 put("addPlotBand", String.format("(function addPlotBand(axis, wrapperID, options) { switch(axis) { case \"x\": chart.xAxis.forEach(function(currentAxis){ if (currentAxis.options._wrapperID === wrapperID) { currentAxis.addPlotBand(options); return; } }); break; case \"y\": chart.yAxis.forEach(function(currentAxis){ if (currentAxis.options._wrapperID === wrapperID) { currentAxis.addPlotBand(options); return; } }); break; case \"z\": chart.zAxis.forEach(function(currentAxis){ if (currentAxis.options._wrapperID === wrapperID) { currentAxis.addPlotBand(options); return; } }); break; default: return; } })(\"%s\", \"%s\", %s);", map.get("axis"), map.get("id"), args[0]));

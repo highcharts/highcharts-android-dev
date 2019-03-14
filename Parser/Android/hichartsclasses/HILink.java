@@ -8,24 +8,20 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-
-
-public class HILink extends Observable implements HIChartsJSONSerializable { 
+public class HILink extends HIFoundation { 
 
 	private String color;
-/**
-/** Color of the link between two nodes. 
-*/
+	/**
+ Color of the link between two nodes. 
+	*/
 	public void setColor(String color) {
 		this.color = color;
 		this.setChanged();
@@ -35,9 +31,9 @@ public class HILink extends Observable implements HIChartsJSONSerializable {
 	public String getColor(){ return color; }
 
 	private Number width;
-/**
-/** Width (px) of the link between two nodes. 
-*/
+	/**
+ Width (px) of the link between two nodes. 
+	*/
 	public void setWidth(Number width) {
 		this.width = width;
 		this.setChanged();
@@ -47,9 +43,9 @@ public class HILink extends Observable implements HIChartsJSONSerializable {
 	public Number getWidth(){ return width; }
 
 	private String dashStyle;
-/**
-/** A name for the dash style to use for links. 
-*/
+	/**
+ A name for the dash style to use for links. 
+	*/
 	public void setDashStyle(String dashStyle) {
 		this.dashStyle = dashStyle;
 		this.setChanged();
@@ -64,19 +60,11 @@ public class HILink extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.color != null) {
 			params.put("color", this.color);
 		}

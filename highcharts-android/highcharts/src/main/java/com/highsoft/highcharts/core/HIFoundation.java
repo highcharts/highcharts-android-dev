@@ -5,7 +5,9 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.UUID;
 
-//todo add docs
+/**
+ * The very basic class which implement the crucial behaviours for HI objects in Highcharts Android
+ */
 public abstract class HIFoundation extends Observable {
 
     private final String TAG = "HIFoundation";
@@ -27,11 +29,7 @@ public abstract class HIFoundation extends Observable {
         }
     };
 
-    // todo uncomment after parser update
-//    protected abstract Map<String, Object> getParams();
-
-
-
+    public abstract Map<String, Object> getParams();
     // ???????????????????
     // remove observers .. ?
 }

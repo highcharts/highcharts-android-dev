@@ -8,24 +8,20 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-
-
-public class HINoData extends Observable implements HIChartsJSONSerializable { 
+public class HINoData extends HIFoundation { 
 
 	private HIAlignObject position;
-/**
-/** The position of the no-data label, relative to the plot area. 
-*/
+	/**
+ The position of the no-data label, relative to the plot area. 
+	*/
 	public void setPosition(HIAlignObject position) {
 		this.position = position;
 		this.setChanged();
@@ -35,9 +31,9 @@ public class HINoData extends Observable implements HIChartsJSONSerializable {
 	public HIAlignObject getPosition(){ return position; }
 
 	private HICSSObject style;
-/**
-/** CSS styles for the no-data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line">Styled no-data text</a>
-*/
+	/**
+ CSS styles for the no-data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line">Styled no-data text</a>
+	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
 		this.setChanged();
@@ -47,9 +43,9 @@ public class HINoData extends Observable implements HIChartsJSONSerializable {
 	public HICSSObject getStyle(){ return style; }
 
 	private HISVGAttributes attr;
-/**
-/** An object of additional SVG attributes for the no-data label. 
-*/
+	/**
+ An object of additional SVG attributes for the no-data label. 
+	*/
 	public void setAttr(HISVGAttributes attr) {
 		this.attr = attr;
 		this.setChanged();
@@ -59,9 +55,9 @@ public class HINoData extends Observable implements HIChartsJSONSerializable {
 	public HISVGAttributes getAttr(){ return attr; }
 
 	private Boolean useHTML;
-/**
-/** Whether to insert the label as HTML, or as pseudo-HTML rendered with SVG. 
- <br><br><b>defaults:</b><br><br>&ensp;false*/
+	/**
+ Whether to insert the label as HTML, or as pseudo-HTML rendered with SVG. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;
 		this.setChanged();
@@ -76,19 +72,11 @@ public class HINoData extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.position != null) {
 			params.put("position", this.position.getParams());
 		}

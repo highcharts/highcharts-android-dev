@@ -8,24 +8,20 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-
-
-public class HICSSObject extends Observable implements HIChartsJSONSerializable { 
+public class HICSSObject extends HIFoundation { 
 
 	private String background;
-/**
-/** Background style for the element. 
-*/
+	/**
+ Background style for the element. 
+	*/
 	public void setBackground(String background) {
 		this.background = background;
 		this.setChanged();
@@ -35,9 +31,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public String getBackground(){ return background; }
 
 	private String backgroundColor;
-/**
-/** Background color of the element. 
-*/
+	/**
+ Background color of the element. 
+	*/
 	public void setBackgroundColor(String backgroundColor) {
 		this.backgroundColor = backgroundColor;
 		this.setChanged();
@@ -47,9 +43,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public String getBackgroundColor(){ return backgroundColor; }
 
 	private String border;
-/**
-/** Border style for the element. 
-*/
+	/**
+ Border style for the element. 
+	*/
 	public void setBorder(String border) {
 		this.border = border;
 		this.setChanged();
@@ -59,9 +55,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public String getBorder(){ return border; }
 
 	private Number borderRadius;
-/**
-/** Radius of the element border. 
-*/
+	/**
+ Radius of the element border. 
+	*/
 	public void setBorderRadius(Number borderRadius) {
 		this.borderRadius = borderRadius;
 		this.setChanged();
@@ -71,9 +67,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public Number getBorderRadius(){ return borderRadius; }
 
 	private String color;
-/**
-/** Color used in the element. The "contrast" option is a Highcharts custom property that results in black or white, depending on the background of the element. 
-*/
+	/**
+ Color used in the element. The "contrast" option is a Highcharts custom property that results in black or white, depending on the background of the element. 
+	*/
 	public void setColor(String color) {
 		this.color = color;
 		this.setChanged();
@@ -83,9 +79,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public String getColor(){ return color; }
 
 	private String cursor;
-/**
-/** Style of the mouse cursor when resting over the element. 
-*/
+	/**
+ Style of the mouse cursor when resting over the element. 
+	*/
 	public void setCursor(String cursor) {
 		this.cursor = cursor;
 		this.setChanged();
@@ -95,9 +91,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public String getCursor(){ return cursor; }
 
 	private String fontFamily;
-/**
-/** Font family of the element text. Multiple values have to be in decreasing preference order and separated by comma. 
-*/
+	/**
+ Font family of the element text. Multiple values have to be in decreasing preference order and separated by comma. 
+	*/
 	public void setFontFamily(String fontFamily) {
 		this.fontFamily = fontFamily;
 		this.setChanged();
@@ -107,9 +103,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public String getFontFamily(){ return fontFamily; }
 
 	private String fontSize;
-/**
-/** Font size of the element text. 
-*/
+	/**
+ Font size of the element text. 
+	*/
 	public void setFontSize(String fontSize) {
 		this.fontSize = fontSize;
 		this.setChanged();
@@ -119,9 +115,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public String getFontSize(){ return fontSize; }
 
 	private String fontWeight;
-/**
-/** Font weight of the element text. 
-*/
+	/**
+ Font weight of the element text. 
+	*/
 	public void setFontWeight(String fontWeight) {
 		this.fontWeight = fontWeight;
 		this.setChanged();
@@ -131,9 +127,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public String getFontWeight(){ return fontWeight; }
 
 	private Number height;
-/**
-/** Height of the element. 
-*/
+	/**
+ Height of the element. 
+	*/
 	public void setHeight(Number height) {
 		this.height = height;
 		this.setChanged();
@@ -143,9 +139,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public Number getHeight(){ return height; }
 
 	private Number lineWidth;
-/**
-/** Width of the element border. 
-*/
+	/**
+ Width of the element border. 
+	*/
 	public void setLineWidth(Number lineWidth) {
 		this.lineWidth = lineWidth;
 		this.setChanged();
@@ -155,9 +151,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public Number getLineWidth(){ return lineWidth; }
 
 	private Number opacity;
-/**
-/** Opacity of the element. 
-*/
+	/**
+ Opacity of the element. 
+	*/
 	public void setOpacity(Number opacity) {
 		this.opacity = opacity;
 		this.setChanged();
@@ -167,9 +163,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public Number getOpacity(){ return opacity; }
 
 	private String padding;
-/**
-/** Space around the element content. 
-*/
+	/**
+ Space around the element content. 
+	*/
 	public void setPadding(String padding) {
 		this.padding = padding;
 		this.setChanged();
@@ -179,9 +175,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public String getPadding(){ return padding; }
 
 	private String pointerEvents;
-/**
-/** Behaviour of the element when the mouse cursor rests over it. 
-*/
+	/**
+ Behaviour of the element when the mouse cursor rests over it. 
+	*/
 	public void setPointerEvents(String pointerEvents) {
 		this.pointerEvents = pointerEvents;
 		this.setChanged();
@@ -191,9 +187,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public String getPointerEvents(){ return pointerEvents; }
 
 	private String position;
-/**
-/** Positioning of the element. 
-*/
+	/**
+ Positioning of the element. 
+	*/
 	public void setPosition(String position) {
 		this.position = position;
 		this.setChanged();
@@ -203,9 +199,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public String getPosition(){ return position; }
 
 	private String textAlign;
-/**
-/** Alignment of the element text. 
-*/
+	/**
+ Alignment of the element text. 
+	*/
 	public void setTextAlign(String textAlign) {
 		this.textAlign = textAlign;
 		this.setChanged();
@@ -215,9 +211,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public String getTextAlign(){ return textAlign; }
 
 	private String textDecoration;
-/**
-/** Additional decoration of the element text. 
-*/
+	/**
+ Additional decoration of the element text. 
+	*/
 	public void setTextDecoration(String textDecoration) {
 		this.textDecoration = textDecoration;
 		this.setChanged();
@@ -227,9 +223,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public String getTextDecoration(){ return textDecoration; }
 
 	private String textOutline;
-/**
-/** Outline style of the element text. 
-*/
+	/**
+ Outline style of the element text. 
+	*/
 	public void setTextOutline(String textOutline) {
 		this.textOutline = textOutline;
 		this.setChanged();
@@ -239,9 +235,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public String getTextOutline(){ return textOutline; }
 
 	private String textOverflow;
-/**
-/** Line break style of the element text. Highcharts SVG elements support `ellipsis` when a `width` is set. 
-*/
+	/**
+ Line break style of the element text. Highcharts SVG elements support `ellipsis` when a `width` is set. 
+	*/
 	public void setTextOverflow(String textOverflow) {
 		this.textOverflow = textOverflow;
 		this.setChanged();
@@ -251,9 +247,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public String getTextOverflow(){ return textOverflow; }
 
 	private String top;
-/**
-/** Top spacing of the element relative to the parent element. 
-*/
+	/**
+ Top spacing of the element relative to the parent element. 
+	*/
 	public void setTop(String top) {
 		this.top = top;
 		this.setChanged();
@@ -263,9 +259,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public String getTop(){ return top; }
 
 	private String transition;
-/**
-/** Animated transition of selected element properties. 
-*/
+	/**
+ Animated transition of selected element properties. 
+	*/
 	public void setTransition(String transition) {
 		this.transition = transition;
 		this.setChanged();
@@ -275,9 +271,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public String getTransition(){ return transition; }
 
 	private String whiteSpace;
-/**
-/** Line break style of the element text. 
-*/
+	/**
+ Line break style of the element text. 
+	*/
 	public void setWhiteSpace(String whiteSpace) {
 		this.whiteSpace = whiteSpace;
 		this.setChanged();
@@ -287,9 +283,9 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 	public String getWhiteSpace(){ return whiteSpace; }
 
 	private Number width;
-/**
-/** Width of the element. 
-*/
+	/**
+ Width of the element. 
+	*/
 	public void setWidth(Number width) {
 		this.width = width;
 		this.setChanged();
@@ -304,19 +300,11 @@ public class HICSSObject extends Observable implements HIChartsJSONSerializable 
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.background != null) {
 			params.put("background", this.background);
 		}

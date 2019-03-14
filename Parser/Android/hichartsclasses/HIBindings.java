@@ -8,24 +8,20 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-
-
-public class HIBindings extends Observable implements HIChartsJSONSerializable { 
+public class HIBindings extends HIFoundation { 
 
 	private HIStockToolsBindingsObject rectangleAnnotation;
-/**
-/** A rectangle annotation bindings. Includes start and one event in steps array. 
-*/
+	/**
+ A rectangle annotation bindings. Includes start and one event in steps array. 
+	*/
 	public void setRectangleAnnotation(HIStockToolsBindingsObject rectangleAnnotation) {
 		this.rectangleAnnotation = rectangleAnnotation;
 		this.setChanged();
@@ -35,9 +31,9 @@ public class HIBindings extends Observable implements HIChartsJSONSerializable {
 	public HIStockToolsBindingsObject getRectangleAnnotation(){ return rectangleAnnotation; }
 
 	private HIStockToolsBindingsObject labelAnnotation;
-/**
-/** A label annotation bindings. Includes start event only. 
-*/
+	/**
+ A label annotation bindings. Includes start event only. 
+	*/
 	public void setLabelAnnotation(HIStockToolsBindingsObject labelAnnotation) {
 		this.labelAnnotation = labelAnnotation;
 		this.setChanged();
@@ -47,9 +43,9 @@ public class HIBindings extends Observable implements HIChartsJSONSerializable {
 	public HIStockToolsBindingsObject getLabelAnnotation(){ return labelAnnotation; }
 
 	private HIStockToolsBindingsObject circleAnnotation;
-/**
-/** A circle annotation bindings. Includes start and one event in steps array. 
-*/
+	/**
+ A circle annotation bindings. Includes start and one event in steps array. 
+	*/
 	public void setCircleAnnotation(HIStockToolsBindingsObject circleAnnotation) {
 		this.circleAnnotation = circleAnnotation;
 		this.setChanged();
@@ -64,19 +60,11 @@ public class HIBindings extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.rectangleAnnotation != null) {
 			params.put("rectangleAnnotation", this.rectangleAnnotation.getParams());
 		}

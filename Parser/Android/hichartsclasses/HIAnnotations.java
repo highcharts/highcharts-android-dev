@@ -8,36 +8,32 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
+public class HIAnnotations extends HIFoundation { 
 
-
-public class HIAnnotations extends Observable implements HIChartsJSONSerializable { 
-
-	private ArrayList <HIShapes> shapes;
-/**
-/** An array of shapes for the annotation. For options that apply to multiple shapes, then can be added to the `shapeOptions`. 
-*/
-	public void setShapes(ArrayList shapes) {
+	private List <HIShapes> shapes;
+	/**
+ An array of shapes for the annotation. For options that apply to multiple shapes, then can be added to the `shapeOptions`. 
+	*/
+	public void setShapes(List shapes) {
 		this.shapes = shapes;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList getShapes(){ return shapes; }
+	public List getShapes(){ return shapes; }
 
 	private Number zIndex;
-/**
-/** The Z index of the annotation. 
-*/
+	/**
+ The Z index of the annotation. 
+	*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
 		this.setChanged();
@@ -47,9 +43,9 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 	public Number getZIndex(){ return zIndex; }
 
 	private Boolean visible;
-/**
-/** Whether the annotation is visible. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/visible/">Set annotation visibility</a>
-*/
+	/**
+ Whether the annotation is visible. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/visible/">Set annotation visibility</a>
+	*/
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
 		this.setChanged();
@@ -59,9 +55,9 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 	public Boolean getVisible(){ return visible; }
 
 	private HILabelOptions labelOptions;
-/**
-/** Options for annotation's labels. Each label inherits options from the labelOptions object. An option from the labelOptions can be overwritten by config for a specific label. 
-*/
+	/**
+ Options for annotation's labels. Each label inherits options from the labelOptions object. An option from the labelOptions can be overwritten by config for a specific label. 
+	*/
 	public void setLabelOptions(HILabelOptions labelOptions) {
 		this.labelOptions = labelOptions;
 		this.labelOptions.addObserver(updateObserver);
@@ -71,22 +67,22 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 
 	public HILabelOptions getLabelOptions(){ return labelOptions; }
 
-	private ArrayList <HILabels> labels;
-/**
-/** An array of labels for the annotation. For options that apply to multiple labels, they can be added to the `labelOptions`. 
-*/
-	public void setLabels(ArrayList labels) {
+	private List <HILabels> labels;
+	/**
+ An array of labels for the annotation. For options that apply to multiple labels, they can be added to the `labelOptions`. 
+	*/
+	public void setLabels(List labels) {
 		this.labels = labels;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList getLabels(){ return labels; }
+	public List getLabels(){ return labels; }
 
 	private String draggable;
-/**
-/** Allow an annotation to be draggable by a user. Possible values are "x", "xy", "y" and "" (disabled). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/draggable/">Annotations draggable: 'xy'</a>
-*/
+	/**
+ Allow an annotation to be draggable by a user. Possible values are "x", "xy", "y" and "" (disabled). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/draggable/">Annotations draggable: 'xy'</a>
+	*/
 	public void setDraggable(String draggable) {
 		this.draggable = draggable;
 		this.setChanged();
@@ -96,9 +92,9 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 	public String getDraggable(){ return draggable; }
 
 	private HIShapeOptions shapeOptions;
-/**
-/** Options for annotation's shapes. Each shape inherits options from the shapeOptions object. An option from the shapeOptions can be overwritten by config for a specific shape. 
-*/
+	/**
+ Options for annotation's shapes. Each shape inherits options from the shapeOptions object. An option from the shapeOptions can be overwritten by config for a specific shape. 
+	*/
 	public void setShapeOptions(HIShapeOptions shapeOptions) {
 		this.shapeOptions = shapeOptions;
 		this.shapeOptions.addObserver(updateObserver);
@@ -109,9 +105,9 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 	public HIShapeOptions getShapeOptions(){ return shapeOptions; }
 
 	private String id;
-/**
-/** Sets an ID for an annotation. Can be user later when removing an annotation in `Chart#removeAnnotation(id)` method. 
-*/
+	/**
+ Sets an ID for an annotation. Can be user later when removing an annotation in `Chart#removeAnnotation(id)` method. 
+	*/
 	public void setId(String id) {
 		this.id = id;
 		this.setChanged();
@@ -126,24 +122,16 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.shapes != null) {
-			ArrayList<Object> array = new ArrayList<>();
+			List<Object> array = new List<>();
 			for (Object obj : this.shapes) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
 				}
 				else {
 					array.add(obj);
@@ -161,10 +149,10 @@ public class HIAnnotations extends Observable implements HIChartsJSONSerializabl
 			params.put("labelOptions", this.labelOptions.getParams());
 		}
 		if (this.labels != null) {
-			ArrayList<Object> array = new ArrayList<>();
+			List<Object> array = new List<>();
 			for (Object obj : this.labels) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
 				}
 				else {
 					array.add(obj);

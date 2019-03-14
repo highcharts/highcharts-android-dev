@@ -8,25 +8,21 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
 
 
-
-
-public class HITargetOptions extends Observable implements HIChartsJSONSerializable { 
+public class HITargetOptions extends HIFoundation { 
 
 	private HIColor borderColor;
-/**
-/** The border color of the rectangle representing the target. When not set, the point's border color is used. In styled mode, use class highcharts-bullet-target instead. 
-*/
+	/**
+ The border color of the rectangle representing the target. When not set, the point's border color is used. In styled mode, use class highcharts-bullet-target instead. 
+	*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
@@ -36,9 +32,9 @@ public class HITargetOptions extends Observable implements HIChartsJSONSerializa
 	public HIColor getBorderColor(){ return borderColor; }
 
 	private HIColor color;
-/**
-/** The color of the rectangle representing the target. When not set, point's color (if set in point's options - color) or zone of the target value (if zones or negativeColor are set) or the same color as the point has is used. In styled mode, use class highcharts-bullet-target instead. 
-*/
+	/**
+ The color of the rectangle representing the target. When not set, point's color (if set in point's options - color) or zone of the target value (if zones or negativeColor are set) or the same color as the point has is used. In styled mode, use class highcharts-bullet-target instead. 
+	*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -48,9 +44,9 @@ public class HITargetOptions extends Observable implements HIChartsJSONSerializa
 	public HIColor getColor(){ return color; }
 
 	private Object /* Number, String */ width;
-/**
-/** The width of the rectangle representing the target. Could be set as a pixel value or as a percentage of a column width. 
-*/
+	/**
+ The width of the rectangle representing the target. Could be set as a pixel value or as a percentage of a column width. 
+	*/
 	public void setWidth(Object /* Number, String */ width) {
 		this.width = width;
 		this.setChanged();
@@ -60,9 +56,9 @@ public class HITargetOptions extends Observable implements HIChartsJSONSerializa
 	public Object /* Number, String */ getWidth(){ return width; }
 
 	private Number borderWidth;
-/**
-/** The border width of the rectangle representing the target. In styled mode, use class highcharts-bullet-target instead. 
-*/
+	/**
+ The border width of the rectangle representing the target. In styled mode, use class highcharts-bullet-target instead. 
+	*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
 		this.setChanged();
@@ -72,9 +68,9 @@ public class HITargetOptions extends Observable implements HIChartsJSONSerializa
 	public Number getBorderWidth(){ return borderWidth; }
 
 	private Number height;
-/**
-/** The height of the rectangle representing the target. 
-*/
+	/**
+ The height of the rectangle representing the target. 
+	*/
 	public void setHeight(Number height) {
 		this.height = height;
 		this.setChanged();
@@ -89,19 +85,11 @@ public class HITargetOptions extends Observable implements HIChartsJSONSerializa
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
 		}

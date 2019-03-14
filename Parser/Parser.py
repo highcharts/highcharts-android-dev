@@ -5,8 +5,8 @@
 #            Ihnat Moisieiev, Bartosz Gnacek
 #                   of Spinney
 #                 www.spinney.io
-#   
-# All commercial rights to this software belong to 
+#
+# All commercial rights to this software belong to
 #                  Highsoft AS
 #              www.highcharts.com
 
@@ -59,7 +59,7 @@ class HIChartsClass:
         self.parent = parent
 
         if self.description:
-            self.comment = "/**\n{0}\n".format(self.description)
+            self.comment = "\n{0}\n".format(self.description)
             if self.demo:
                 self.comment += cgi.escape(" <br><br><b><i>Try it:</b></i><br>{0}".format(self.demo))
             if self.values:
@@ -67,7 +67,7 @@ class HIChartsClass:
             self.comment = clean_comment(self.comment)
             if self.defaults:
                 self.comment += " <br><br><b>default:</b><br><br>&ensp;{0}".format(self.defaults)
-            self.comment += "*/\n"
+            self.comment += "\t*/\n"
 
     def update(self, data_type, description, demo, values, defaults, products, extends, exclude):
         if self.data_type is None:
@@ -146,7 +146,7 @@ def clean_comment(comment):
     comment = comment.replace('`<', '__x__').replace('>`', '__y__')
     soup = BeautifulSoup(comment, 'html.parser')
     comment = soup.get_text().replace('__x__', '`<').replace('__y__', '>`')
-    comment = "/**\n{0}\n".format(comment)
+    comment = "\t/**\n{0}\n".format(comment)
     return comment
 
 
@@ -172,22 +172,22 @@ hc_types = {
     "String": 'String',
     "Object": 'Object',
     "Function": 'HIFunction',
-    "Array<Number>": 'ArrayList<Number>',
-    "Array<Object>": 'ArrayList',
-    "Array": 'ArrayList',
-    "Array<String>": 'ArrayList<String>',
+    "Array<Number>": 'List<Number>',
+    "Array<Object>": 'List',
+    "Array": 'List',
+    "Array<String>": 'List<String>',
     "Boolean|Object": 'Object /* Boolean|Object */',
     "String|Number": 'Object /* String|Number */',
-    "Array<Array>": 'ArrayList<ArrayList>',
-    "CSSObject": 'HashMap<String,String>',
-    "Array<Color>": 'ArrayList<HIColor>',
-    "Array<Object|Array|Number>": 'ArrayList /* <Data|Number|ArrayList> */',
-    "Array<String|Number>": 'ArrayList /* <String|Number> */',
-    "Array<Object|Number>": 'ArrayList /* <Object|Number> */',
-    "Array<Object|Array>": 'ArrayList /* <Object|ArrayList> */',
+    "Array<Array>": 'List<List>',
+    "CSSObject": 'Map<String,String>',
+    "Array<Color>": 'List<HIColor>',
+    "Array<Object|Array|Number>": 'List /* <Data|Number|List> */',
+    "Array<String|Number>": 'List /* <String|Number> */',
+    "Array<Object|Number>": 'List /* <Object|Number> */',
+    "Array<Object|Array>": 'List /* <Object|List> */',
     "Number|String": 'Object /* Number|String */',
     "String|HTMLElement": 'Object',
-    "Array<Array<Mixed>>": 'ArrayList<ArrayList>',
+    "Array<Array<Mixed>>": 'List<List>',
     "String|Object": 'Object /* String|Object */',
     "Mixed": 'Object',
     "Number|Boolean": 'Object /* Boolean|String */',
@@ -197,29 +197,29 @@ hc_types = {
     # nowe typy
     "Object|Boolean": 'Object /* Boolean|Object */',
     "String|Array.<String>": 'Object',
-    "Array.<String>": 'ArrayList<String>',
+    "Array.<String>": 'List<String>',
     "function": 'HIFunction',
     "String|function": 'String',
-    "Array.<Object>": 'ArrayList',
-    "Array.<Number>": 'ArrayList<Number>',
-    "Array.<Array>": 'ArrayList<ArrayList>',
-    "Array.<Color>": 'ArrayList<HIColor>',
-    "Array.<Object|Array|Number>": 'ArrayList /* <Object|Number|ArrayList> */',
-    "Array.<String|Number>": 'ArrayList /* <String|Number> */',
-    "Array.<Object|Number>": 'ArrayList',
-    "Array.<Object|Array>": 'ArrayList',
-    "Array.<Array<Mixed>>": 'ArrayList<ArrayList>',
-    "Array.<(Object|Number)>": 'ArrayList',
-    "Array.<(String|Number)>": 'ArrayList /* <String|Number> */',
-    "Array.<(Object|Array)>": 'ArrayList',
+    "Array.<Object>": 'List',
+    "Array.<Number>": 'List<Number>',
+    "Array.<Array>": 'List<List>',
+    "Array.<Color>": 'List<HIColor>',
+    "Array.<Object|Array|Number>": 'List /* <Object|Number|List> */',
+    "Array.<String|Number>": 'List /* <String|Number> */',
+    "Array.<Object|Number>": 'List',
+    "Array.<Object|Array>": 'List',
+    "Array.<Array<Mixed>>": 'List<List>',
+    "Array.<(Object|Number)>": 'List',
+    "Array.<(String|Number)>": 'List /* <String|Number> */',
+    "Array.<(Object|Array)>": 'List',
     "String|Array.<Object>": 'String',
     "String|undefined": 'String',
-    "Array.<String>|Array.<Object>": 'ArrayList',
+    "Array.<String>|Array.<Object>": 'List',
     "String|Number|function": 'Object',
-    "Array.<(Object|Array|Number)>": 'ArrayList /* <Object|Number|ArrayList> */',
+    "Array.<(Object|Array|Number)>": 'List /* <Object|Number|List> */',
     "String|null": 'String',
-    "Array.<Array<Mixed>>": 'ArrayList<ArrayList>',
-    "Array.<Array.<Mixed>>": 'ArrayList<ArrayList>',
+    "Array.<Array<Mixed>>": 'List<List>',
+    "Array.<Array.<Mixed>>": 'List<List>',
     "Object|Number": 'Object /* Object|Number */',
     "umber": 'Number',
     "function|null": 'HIFunction',
@@ -230,21 +230,21 @@ hc_types = {
     # 6.1.1
     "AnimationOptions|Boolean": 'Object',
     "Boolean|AnimationOptions": 'Object',
-    "Array.<number>": 'ArrayList<Number>',
+    "Array.<number>": 'List<Number>',
     # 6.1.2
     "number": 'Number',
     "string": 'String',
     "boolean": 'Boolean',
     "*": 'Object',
-    "Array.<*>": 'ArrayList',
-    "Array.<Array.<(string|Array.<number>)>>": 'ArrayList<ArrayList>',
-    "Array.<string>": 'ArrayList<String>',
+    "Array.<*>": 'List',
+    "Array.<Array.<(string|Array.<number>)>>": 'List<List>',
+    "Array.<string>": 'List<String>',
     "null|number|string": 'Object /* Number, String */',
     "object": 'Object',
     "Number|String|function": 'Object',
-    "Array.<Object>|Array.<String>": 'ArrayList /* <Object, String> */',
+    "Array.<Object>|Array.<String>": 'List /* <Object, String> */',
     "null|number": 'Number',
-    "Array.<number>|number": 'ArrayList<Number>',
+    "Array.<number>|number": 'List<Number>',
     "Boolean|Number": 'Number',
     "number|string": 'Object /* Number, String */',
     # 6.1.4
@@ -252,28 +252,28 @@ hc_types = {
     "number|string|null": 'Object /* Number, String */',
     "boolean|string": 'Object /* boolean, String */',
     "number|null": 'Number',
-    "number|Array.<number>": 'ArrayList<Number>',
+    "number|Array.<number>": 'List<Number>',
     "string|number": 'Object /* String, Number */',
     # 6.2.0
-    "Array.<(number|string|null)>": 'ArrayList /* <Number, String> */',
+    "Array.<(number|string|null)>": 'List /* <Number, String> */',
     "string|null": 'String',
-    "Array.<Array.<number, string>>": 'ArrayList<ArrayList> /* <Number, String> */',
+    "Array.<Array.<number, string>>": 'List<List> /* <Number, String> */',
     # tree_namespace
     "number|undefined": 'Number',
-    "Array.<(number|string)>": 'ArrayList /* <Number, String> */',
+    "Array.<(number|string)>": 'List /* <Number, String> */',
     "false": 'Boolean /* boolean */',
     "undefined": 'Object',
     "null": 'Object',
     "Object|undefined": 'Object',
     "false|Highcharts.XAxisCrosshairOptions|Highcharts.YAxisCrosshairOptions": 'Object',
-    "Array.<Point>": 'ArrayList',
-    "string|Array.<(number|string)>": 'ArrayList /* <Number, String> */',
-    "Highcharts.Dictionary.<function()>": 'HashMap',
-    "Highcharts.Dictionary.<(boolean|number|string)>": 'HashMap',
-    "Highcharts.Dictionary.<string>": 'HashMap /* <String, String> */',
+    "Array.<Point>": 'List',
+    "string|Array.<(number|string)>": 'List /* <Number, String> */',
+    "Highcharts.Dictionary.<function()>": 'Map',
+    "Highcharts.Dictionary.<(boolean|number|string)>": 'Map',
+    "Highcharts.Dictionary.<string>": 'Map /* <String, String> */',
     # tree
     "Highcharts.PlotSeriesDataLabelsOptions": 'Object',
-    "Highcharts.Options": 'HashMap',
+    "Highcharts.Options": 'Map',
     "boolean|Highcharts.ShadowOptionsObject": 'Boolean /* boolean */',
     "string|Highcharts.SVGDOMElement": 'String',
     "boolean|Highcharts.CSSObject": 'Boolean /* boolean */',
@@ -282,46 +282,46 @@ hc_types = {
     "Highcharts.ColorString|null": 'HIColor',
     # 7.0.0
     "string|global.HTMLElement": 'String',
-    "Array.<Highcharts.Dictionary.<number>>": 'ArrayList',
-    "Array.<Array.<*>>": 'ArrayList<ArrayList>',
+    "Array.<Highcharts.Dictionary.<number>>": 'List',
+    "Array.<Array.<*>>": 'List<List>',
     "string|Highcharts.GradientColorObject|Highcharts.PatternObject": 'HIColor',
     "Highcharts.FormatterCallbackFunction.<Highcharts.TooltipFormatterContextObject>": 'HIFunction',
-    "Highcharts.Dictionary.<*>": 'HashMap',
-    "Array.<Array.<string, (Array.<number>|null)>>": 'ArrayList<ArrayList>',
+    "Highcharts.Dictionary.<*>": 'Map',
+    "Array.<Array.<string, (Array.<number>|null)>>": 'List<List>',
     "string|Highcharts.GradientColorObject": 'HIColor',
     "string|MockPointOptions": 'String',
-    "Array.<(string|number)>": 'ArrayList /* <String, Number> */',
+    "Array.<(string|number)>": 'List /* <String, Number> */',
     "Highcharts.FormatterCallbackFunction.<Highcharts.SeriesDataLabelsFormatterContextObject>": 'HIFunction',
     "Annotation.ControlPoint.Options": 'Object',
     "Highcharts.FormatterCallbackFunction.<object>": 'HIFunction',
     "boolean|null": 'Boolean',
     "false|number": 'Number',
     "String|function": 'String',
-    "*|Array.<*>": 'ArrayList',
+    "*|Array.<*>": 'List',
     "function|undefined": 'HIFunction',
     "string|undefined": 'String',
     "Highcharts.GradientColorObject": 'HIColor',
     # tree-namespace
-    "Array.<Array.<number, string>>|undefined": 'ArrayList<ArrayList>',
+    "Array.<Array.<number, string>>|undefined": 'List<List>',
     "string|*": 'String',
-    "Array.<*>|undefined": 'ArrayList',
+    "Array.<*>|undefined": 'List',
     "boolean|undefined": 'Boolean',
-    "Array.<number>|undefined": 'ArrayList<Number>',
+    "Array.<number>|undefined": 'List<Number>',
     "object|undefined": 'Object',
     "boolean|*|undefined": 'Boolean',
-    "string|Array.<(number|string)>|undefined": 'ArrayList /* <Number, String> */',
-    "Array<number>": 'ArrayList<Number>',
+    "string|Array.<(number|string)>|undefined": 'List /* <Number, String> */',
+    "Array<number>": 'List<Number>',
     "boolean|Array.<*>|undefined": 'Object',
-    "Array.<function()>|undefined": 'ArrayList<HIFunction>',
+    "Array.<function()>|undefined": 'List<HIFunction>',
     "*|undefined": 'Object',
-    "Highcharts.Dictionary.<number>": 'HashMap',
+    "Highcharts.Dictionary.<number>": 'Map',
     "Object|*": 'Object',
     #7.0.1
     "Highcharts.FormatterCallbackFunction.<Highcharts.AxisLabelsFormatterContextObject>": 'HIFunction',
     "Highcharts.FormatterCallbackFunction.<Highcharts.Point>": 'HIFunction',
     "string|Highcharts.HTMLDOMElement": 'String',
     # 7.0.2
-    "Array.<(string|Highcharts.GradientColorObject|Highcharts.PatternObject)>": 'ArrayList<String>',
+    "Array.<(string|Highcharts.GradientColorObject|Highcharts.PatternObject)>": 'List<String>',
     "string|function": 'String'
 
 }
@@ -438,13 +438,13 @@ def format_to_java(name, source):
     import_hi_string = ""
 
     imports += "package com.highsoft.highcharts.common.hichartsclasses;\n"
-    imports += "\nimport java.util.HashMap;"
     imports += "\nimport java.util.Map;"
-    imports += "\nimport java.util.ArrayList;"
-    imports += "\nimport java.util.Observable;"
-    imports += "\nimport java.util.Observer;"
+    imports += "\nimport java.util.Map;"
+    imports += "\nimport java.util.List;"
+    # imports += "\nimport java.util.Observable;"
+    # imports += "\nimport java.util.Observer;"
     imports += "\nimport com.highsoft.highcharts.core.HIFunction;"
-    imports += "\nimport com.highsoft.highcharts.common.HIChartsJSONSerializable;"
+    imports += "\nimport com.highsoft.highcharts.core.HIFoundation;"
 
     if source.extends:
         if class_name in comments:
@@ -472,18 +472,19 @@ def format_to_java(name, source):
     else:
         declaration += "public class {0}".format(class_name)
         constructor += "\n\n\tpublic {0}".format(class_name) + "() {\n\n\t}\n"  # remove closing bracket
-        declaration += " extends Observable implements HIChartsJSONSerializable { \n\n"
+        # declaration += " extends Observable implements HIChartsJSONSerializable { \n\n"
+        declaration += " extends HIFoundation { \n\n"
         # declaration += " implements HIChartsJSONSerializable { \n\n"
 
     # SETTERS observer implementation
 
-    constructor += "\n\n\t private Observer updateObserver = new Observer() {" \
-                   "\n\t\t@Override" \
-                   "\n\t\tpublic void update(Observable observable, Object o) {" \
-                   "\n\t\t\tsetChanged();" \
-                   "\n\t\t\tnotifyObservers();" \
-                   "\n\t\t}" \
-                   "\n\t};\n\n"
+    # constructor += "\n\n\t private Observer updateObserver = new Observer() {" \
+    #                "\n\t\t@Override" \
+    #                "\n\t\tpublic void update(Observable observable, Object o) {" \
+    #                "\n\t\t\tsetChanged();" \
+    #                "\n\t\t\tnotifyObservers();" \
+    #                "\n\t\t}" \
+    #                "\n\t};\n\n"
 
     setter_start = "\tpublic void set{0}({1} {2}) {{" \
                    "\n\t\tthis.{3} = {4};"
@@ -502,7 +503,7 @@ def format_to_java(name, source):
         # if field.comment:
         #     fields += "\n{0}".format(field.comment)
         if field.data_type:
-            if "Object" in str(get_java_type(field.data_type)) and "ArrayList" not in str(
+            if "Object" in str(get_java_type(field.data_type)) and "List" not in str(
                     get_java_type(field.data_type)) and not \
                     structure[field.name].properties:
                 fields += "\tprivate {0} {1};\n".format(get_java_type(field.data_type), get_last(field.name))
@@ -524,11 +525,11 @@ def format_to_java(name, source):
                     get_last(field.name)
                 )
             # pointless? no >.data in tree.json
-            elif "ArrayList" in str(get_java_type(field.data_type)) and field.name.endswith(">.data"):
+            elif "List" in str(get_java_type(field.data_type)) and field.name.endswith(">.data"):
                 fields += "\tprivate {0} {1};\n".format(get_java_type(field.data_type),
                                                       get_last(field.name))
 
-            elif "ArrayList" in str(get_java_type(field.data_type)) and structure[field.name].properties and 'HI' not in get_java_type(field.data_type):
+            elif "List" in str(get_java_type(field.data_type)) and structure[field.name].properties and 'HI' not in get_java_type(field.data_type):
                 fields += "\tprivate {0} <{1}> {2};\n".format(
                     get_java_type(field.data_type),
                     "HI" + upper_first(create_name(field.name)),
@@ -550,7 +551,7 @@ def format_to_java(name, source):
                     get_last(field.name)
                 )
                 # imports += "\nimport com.highsoft.highcharts.Common.{0};\n".format("HI" + upper_first(create_name(field.name)))  # check
-            elif "ArrayList" in str(get_java_type(field.data_type)):
+            elif "List" in str(get_java_type(field.data_type)):
                 fields += "\tprivate {0} {1};\n".format(get_java_type(field.data_type), get_last(field.name))
                 if field.comment:
                     fields += "{0}".format(field.comment)
@@ -694,24 +695,25 @@ def format_to_java(name, source):
         imports += "\nimport com.highsoft.highcharts.common.HIColor;"
     imports += "\n"
 
-    for mathch in import_hi_set: # set
-        import_hi_string += "#import \"" + mathch + ".h\"\n"
+    # for mathch in import_hi_set: # set
+    #     import_hi_string += "#import \"" + mathch + ".h\"\n"
+    #
+    # if 'HIColor' in import_hi_set:
+    #     import_hi_set.remove('HIColor')
+    # if 'HIFunction' in import_hi_set:
+    #     import_hi_set.remove('HIFunction')
+    #
+    # if imports == "" and len(import_hi_set) == 0:
+    #     imports += "#import \"HIChartsJSONSerializable.h\"\n"
+    # imports += import_hi_string
+    #
+    # imports += "\n\n"  # koniec set
 
-    if 'HIColor' in import_hi_set:
-        import_hi_set.remove('HIColor')
-    if 'HIFunction' in import_hi_set:
-        import_hi_set.remove('HIFunction')
-
-    if imports == "" and len(import_hi_set) == 0:
-        imports += "#import \"HIChartsJSONSerializable.h\"\n"
-    imports += import_hi_string
-
-    imports += "\n\n"  # koniec set
-
-    methods += "\n\tpublic Map<String, Object> getParams() {\n\n\t\tMap<String, Object> params =" \
-               " new HashMap<>();\n"
+    methods += "\n\t@Override\npublic Map<String, Object> getParams() {\n\n\t\tMap<String, Object> params =" \
+               " new Map<>();\n"
     if source.extends:
         methods += "\t\tparams = super.getParams();\n"
+    else: methods += "\t\tparams = params.put(\"_wrapperID\", this.uuid);\n"
 
     for field in classes[class_name]:
         if field_in_parent(field, source):
@@ -722,21 +724,21 @@ def format_to_java(name, source):
                 if get_java_type(structure[field.name].data_type) == 'HIColor':
                     methods += "\t\t\tparams.put(\"{0}\", this.{1}.getData());\n".format(get_last(field.name),
                                                                                          get_last(field.name))
-                elif get_java_type(structure[field.name].data_type) == 'ArrayList<HIColor>':
+                elif get_java_type(structure[field.name].data_type) == 'List<HIColor>':
                     imports += "\nimport com.highsoft.highcharts.common.HIColor;"
-                    methods += "\t\t\tArrayList<Object> array = new ArrayList<>();\n"
+                    methods += "\t\t\tList<Object> array = new List<>();\n"
                     methods += "\t\t\tfor (HIColor hiColor : this.{0})".format(get_last(field.name)) + " {\n"
                     methods += "\t\t\t\tarray.add(hiColor.getData());\n".format(
                         get_last(field.name))
                     methods += "\t\t\t}\n"
                     methods += "\t\t\tparams.put(\"{0}\", array);\n".format(get_last(field.name))
-                elif 'ArrayList' in str(get_java_type(structure[field.name].data_type)):
-                    methods += "\t\t\tArrayList<Object> array = new ArrayList<>();\n"
+                elif 'List' in str(get_java_type(structure[field.name].data_type)):
+                    methods += "\t\t\tList<Object> array = new List<>();\n"
 
                     methods += "\t\t\tfor (Object obj : this.{0})".format(get_last(field.name)) + " {\n"
-                    methods += "\t\t\t\tif (obj instanceof HIChartsJSONSerializable)".format(
+                    methods += "\t\t\t\tif (obj instanceof HIFoundation)".format(
                         get_last(field.name)) + " {\n"
-                    methods += "\t\t\t\t\tarray.add(((HIChartsJSONSerializable) obj).getParams());\n".format(
+                    methods += "\t\t\t\t\tarray.add(((HIFoundation) obj).getParams());\n".format(
                         get_last(field.name))
                     methods += "\t\t\t\t}\n"
                     methods += "\t\t\t\telse {\n\t\t\t\t\tarray.add(obj);\n"
@@ -777,32 +779,37 @@ def create_java_options_file():
 
     imports += "\npackage com.highsoft.highcharts.common.hichartsclasses;\n"
 
-    imports += "\nimport java.util.HashMap;"
     imports += "\nimport java.util.Map;"
-    imports += "\nimport java.util.ArrayList;"
-    imports += "\nimport java.util.Observable;"
-    imports += "\nimport java.util.Observer;"
-    imports += "\nimport com.highsoft.highcharts.common.HIChartsJSONSerializable;"
+    imports += "\nimport java.util.Map;"
+    imports += "\nimport java.util.List;"
+    # imports += "\nimport java.util.Observable;"
+    # imports += "\nimport java.util.Observer;"
+    imports += "\nimport com.highsoft.highcharts.core.HIFoundation;"
     imports += "\nimport com.highsoft.highcharts.common.HIColor;"
 
     # SETTERS observer implementation
-    fields += "\n\n\t private Observer updateObserver = new Observer() {" \
-              "\n\t\t@Override" \
-              "\n\t\tpublic void update(Observable observable, Object o) {" \
-              "\n\t\t\tsetChanged();" \
-              "\n\t\t\tnotifyObservers();" \
-              "\n\t\t}" \
-              "\n\t};\n\n"
+    # fields += "\n\n\t private Observer updateObserver = new Observer() {" \
+    #           "\n\t\t@Override" \
+    #           "\n\t\tpublic void update(Observable observable, Object o) {" \
+    #           "\n\t\t\tsetChanged();" \
+    #           "\n\t\t\tnotifyObservers();" \
+    #           "\n\t\t}" \
+    #           "\n\t};\n\n"
 
     setter_start = "\tpublic void set{0}({1} {2}) {{" \
                    "\n\t\tthis.{3} = {4};"
     setter_mid = "\n\t\tthis.{0}.addObserver(updateObserver);"
+    setter_loop = "\n\t\tfor(Object listElement : {0}){" \
+                    "\n\t\t\tif(listElement instanceof HIFoundation)" \
+                    "\n\t\t\t\t((HIFoundation)listElement).addObserver(updateObserver);\n\t\t}"
+
     setter_end = "\n\t\tthis.setChanged();" \
                  "\n\t\tthis.notifyObservers();" \
                  "\n\t}"
     getter = "\n\n\tpublic {0} get{1}(){{ return {2}; }}\n\n"
 
-    declaration += "public class HIOptions extends Observable {\n\n"
+    # declaration += "public class HIOptions extends Observable {\n\n"
+    declaration += "public class HIOptions extends HIFoundation {\n\n"
     constructor += "public HIOptions {\n" \
                    "\t\tHICredits credits = new HICredits();\n" \
                    "\t\tcredits.enabled = true;\n" \
@@ -812,13 +819,13 @@ def create_java_options_file():
                    "\t\treturn this;\n" \
                    "\t}\n" \
                    "}\n\n"
-    methods += "public Map<String, Object> getParams() {\n\n\tMap<String, Object> params = new HashMap<>();\n"
+    methods += "@Override\npublic Map<String, Object> getParams() {\n\n\tMap<String, Object> params = new Map<>();\n"
     for field in options:
         if field.name != 'global' and field.name != 'lang':
             # if field.comment:
             #     fields += "{0}".format(field.comment)
             if structure[field.name].data_type:
-                if "Object" in str(get_java_type(field.data_type)) and "ArrayList" not in str(
+                if "Object" in str(get_java_type(field.data_type)) and "List" not in str(
                         get_java_type(field.data_type)):
                     if structure[field.name].properties:
                         fields += "\tprivate {0} {1};\n\n".format(
@@ -858,7 +865,7 @@ def create_java_options_file():
                             upper_first(get_last(field.name)),
                             get_last(field.name)
                         )
-                elif "ArrayList" in str(get_java_type(field.data_type)) and field.properties:
+                elif "List" in str(get_java_type(field.data_type)) and field.properties:
                     fields += "\tprivate {0}<{1}> {2};\n\n".format(get_java_type(field.data_type),
                                                                 "HI" + upper_first(
                                                                     create_name(field.name)),
@@ -874,6 +881,7 @@ def create_java_options_file():
                         get_last(field.name)
                     )
                     # fields += setter_mid.format(get_last(field.name))
+                    fields += setter_loop
                     fields += setter_end
                     fields += getter.format(
                         get_java_type(field.data_type) + "<" + "HI" + upper_first(
@@ -906,15 +914,15 @@ def create_java_options_file():
                     get_last(field.name))
                 if field.comment:
                     fields += "{0}".format(field.comment)
-                fields += setter_start.format(
-                    upper_first(get_last(field.name)),
-                    "HI" + upper_first(field.name),
-                    get_last(field.name),
-                    get_last(field.name),
-                    get_last(field.name)
-                )
-                fields += setter_mid.format(get_last(field.name))
-                fields += setter_end
+                # fields += setter_start.format(
+                #     upper_first(get_last(field.name)),
+                #     "HI" + upper_first(field.name),
+                #     get_last(field.name),
+                #     get_last(field.name),
+                #     get_last(field.name)
+                # )
+                # fields += setter_mid.format(get_last(field.name))
+                # fields += setter_end
                 fields += getter.format(
                     "HI" + upper_first(field.name),
                     upper_first(get_last(field.name)),
@@ -930,19 +938,19 @@ def create_java_options_file():
                 if get_java_type(field.data_type) == 'HIColor':
                     methods += "\t\t\tparamas.put(\"{0}\", this.{1}.getData());\n".format(get_last(field.name),
                                                                                           get_last(field.name))
-                elif get_java_type(field.data_type) == 'ArrayList<HIColor>':
-                    methods += "\t\t\tArrayList<Object> array = new ArrayList<>();\n"
+                elif get_java_type(field.data_type) == 'List<HIColor>':
+                    methods += "\t\t\tList<Object> array = new List<>();\n"
                     methods += "\t\t\tfor (HIColor hiColor : this.{0})".format(get_last(field.name)) + " {\n"
                     methods += "\t\t\t\tarray.add(hiColor.getData());\n".format(
                         get_last(field.name))
                     methods += "\t\t\t}\n"
                     methods += "\t\t\tparams.put(\"{0}\", array);\n".format(get_last(field.name))
-                elif "ArrayList" in str(get_java_type(field.data_type)):
-                    methods += "\t\t\tArrayList<Object> array = new ArrayList<>();\n"
+                elif "List" in str(get_java_type(field.data_type)):
+                    methods += "\t\t\tList<Object> array = new List<>();\n"
                     methods += "\t\t\tfor (Object obj : this.{0})".format(get_last(field.name)) + " {\n"
-                    methods += "\t\t\t\tif (obj instanceof HIChartsJSONSerializable)".format(
+                    methods += "\t\t\t\tif (obj instanceof HIFoundation)".format(
                         get_last(field.name)) + " {\n"
-                    methods += "\t\t\t\t\tarray.add(((HIChartsJSONSerializable) obj).getParams());\n".format(
+                    methods += "\t\t\t\t\tarray.add(((HIFoundation) obj).getParams());\n".format(
                         get_last(field.name))
                     methods += "\t\t\t\t}\n"
                     methods += "\t\t\t\telse {\n\t\t\t\tarray.add(obj);\n"
@@ -1652,8 +1660,8 @@ def type_from_namespace(type):
             if hc_match:
                 temp = hc_match.group(1)
                 if temp in namespace_structure:
-                    print "Added type from namespace : " + new_type + ", value: " + 'ArrayList<{}>'.format('HI' + get_last(temp))
-                    hc_types[new_type] = 'ArrayList<{}>'.format('HI' + get_last(temp))
+                    print "Added type from namespace : " + new_type + ", value: " + 'List<{}>'.format('HI' + get_last(temp))
+                    hc_types[new_type] = 'List<{}>'.format('HI' + get_last(temp))
 
         elif new_type in namespace_structure:
             print "Added type from namespace : " + new_type + ", value: " + "HI" + get_last(new_type)

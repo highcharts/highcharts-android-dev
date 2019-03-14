@@ -8,24 +8,20 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-
-
-public class HIFocusBorder extends Observable implements HIChartsJSONSerializable { 
+public class HIFocusBorder extends HIFoundation { 
 
 	private Number margin;
-/**
-/** Focus border margin around the elements. 
-*/
+	/**
+ Focus border margin around the elements. 
+	*/
 	public void setMargin(Number margin) {
 		this.margin = margin;
 		this.setChanged();
@@ -35,9 +31,9 @@ public class HIFocusBorder extends Observable implements HIChartsJSONSerializabl
 	public Number getMargin(){ return margin; }
 
 	private HICSSObject style;
-/**
-/** Style options for the focus border drawn around elements while navigating through them. Note that some browsers in addition draw their own borders for focused elements. These automatic borders can not be styled by Highcharts. In styled mode, the border is given the .highcharts-focus-border class. 
- <br><br><b>defaults:</b><br><br>&ensp;{"color": "#335cad", "lineWidth": 2, "borderRadius": 3}*/
+	/**
+ Style options for the focus border drawn around elements while navigating through them. Note that some browsers in addition draw their own borders for focused elements. These automatic borders can not be styled by Highcharts. In styled mode, the border is given the .highcharts-focus-border class. 
+ <br><br><b>defaults:</b><br><br>&ensp;{"color": "#335cad", "lineWidth": 2, "borderRadius": 3}	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
 		this.setChanged();
@@ -47,9 +43,9 @@ public class HIFocusBorder extends Observable implements HIChartsJSONSerializabl
 	public HICSSObject getStyle(){ return style; }
 
 	private Boolean enabled;
-/**
-/** Enable/disable focus border for chart. 
-*/
+	/**
+ Enable/disable focus border for chart. 
+	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -59,9 +55,9 @@ public class HIFocusBorder extends Observable implements HIChartsJSONSerializabl
 	public Boolean getEnabled(){ return enabled; }
 
 	private Boolean hideBrowserFocusOutline;
-/**
-/** Hide the browser's defaults focus indicator. 
-*/
+	/**
+ Hide the browser's defaults focus indicator. 
+	*/
 	public void setHideBrowserFocusOutline(Boolean hideBrowserFocusOutline) {
 		this.hideBrowserFocusOutline = hideBrowserFocusOutline;
 		this.setChanged();
@@ -76,19 +72,11 @@ public class HIFocusBorder extends Observable implements HIChartsJSONSerializabl
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.margin != null) {
 			params.put("margin", this.margin);
 		}

@@ -8,20 +8,16 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
 
 
-
-
-public class HIHover extends Observable implements HIChartsJSONSerializable { 
+public class HIHover extends HIFoundation { 
 
 	private Number radiusPlus;
 	public void setRadiusPlus(Number radiusPlus) {
@@ -61,9 +57,9 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 	public HIHalo getHalo(){ return halo; }
 
 	private Boolean enabled;
-/**
-/** Enable separate styles for the hovered series to visualize that the user hovers either the series itself or the legend. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-enabled/">Line</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-enabled-column/">Column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-enabled-pie/">Pie</a>
- <br><br><b>defaults:</b><br><br>&ensp;true*/
+	/**
+ Enable separate styles for the hovered series to visualize that the user hovers either the series itself or the legend. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-enabled/">Line</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-enabled-column/">Column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-enabled-pie/">Pie</a>
+ <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -73,9 +69,9 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 	public Boolean getEnabled(){ return enabled; }
 
 	private HIAnimationOptionsObject animation;
-/**
-/** Animation setting for hovering the graph in line-type series. 
-*/
+	/**
+ Animation setting for hovering the graph in line-type series. 
+	*/
 	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
 		this.setChanged();
@@ -85,9 +81,9 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 	public HIAnimationOptionsObject getAnimation(){ return animation; }
 
 	private Number lineWidth;
-/**
-/** Pixel width of the graph line. By defaults this property is undefined, and the lineWidthPlus property dictates how much to increase the linewidth from normal state. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-linewidth/">5px line on hover</a>
-*/
+	/**
+ Pixel width of the graph line. By defaults this property is undefined, and the lineWidthPlus property dictates how much to increase the linewidth from normal state. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-linewidth/">5px line on hover</a>
+	*/
 	public void setLineWidth(Number lineWidth) {
 		this.lineWidth = lineWidth;
 		this.setChanged();
@@ -97,9 +93,9 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 	public Number getLineWidth(){ return lineWidth; }
 
 	private Number lineWidthPlus;
-/**
-/** The additional line width for the graph of a hovered series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-linewidthplus/">5 pixels wider</a>
-*/
+	/**
+ The additional line width for the graph of a hovered series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-linewidthplus/">5 pixels wider</a>
+	*/
 	public void setLineWidthPlus(Number lineWidthPlus) {
 		this.lineWidthPlus = lineWidthPlus;
 		this.setChanged();
@@ -109,9 +105,9 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 	public Number getLineWidthPlus(){ return lineWidthPlus; }
 
 	private Number radius;
-/**
-/** The radius of the point marker. In hover state, it defaultss to the normal state's radius + 2 as per the radiusPlus option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-radius/">10px radius</a>
-*/
+	/**
+ The radius of the point marker. In hover state, it defaultss to the normal state's radius + 2 as per the radiusPlus option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-radius/">10px radius</a>
+	*/
 	public void setRadius(Number radius) {
 		this.radius = radius;
 		this.setChanged();
@@ -121,9 +117,9 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 	public Number getRadius(){ return radius; }
 
 	private HIColor fillColor;
-/**
-/** The fill color of the marker in hover state. When undefined, the series' or point's fillColor for normal state is used. 
-*/
+	/**
+ The fill color of the marker in hover state. When undefined, the series' or point's fillColor for normal state is used. 
+	*/
 	public void setFillColor(HIColor fillColor) {
 		this.fillColor = fillColor;
 		this.setChanged();
@@ -133,9 +129,9 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 	public HIColor getFillColor(){ return fillColor; }
 
 	private HIColor lineColor;
-/**
-/** The color of the point marker's outline. When undefined, the series' or point's lineColor for normal state is used. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-linecolor/">White fill color, black line color</a>
-*/
+	/**
+ The color of the point marker's outline. When undefined, the series' or point's lineColor for normal state is used. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-linecolor/">White fill color, black line color</a>
+	*/
 	public void setLineColor(HIColor lineColor) {
 		this.lineColor = lineColor;
 		this.setChanged();
@@ -145,9 +141,9 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 	public HIColor getLineColor(){ return lineColor; }
 
 	private Number brightness;
-/**
-/** How much to brighten the point on interaction. Requires the main color to be defined in hex or rgb(a) format. In styled mode, the hover brightening is by defaults replaced with a fill-opacity set in the .highcharts-point:hover rule. 
-*/
+	/**
+ How much to brighten the point on interaction. Requires the main color to be defined in hex or rgb(a) format. In styled mode, the hover brightening is by defaults replaced with a fill-opacity set in the .highcharts-point:hover rule. 
+	*/
 	public void setBrightness(Number brightness) {
 		this.brightness = brightness;
 		this.setChanged();
@@ -157,9 +153,9 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 	public Number getBrightness(){ return brightness; }
 
 	private Number linkOpacity;
-/**
-/** Opacity for the links between nodes in the sankey diagram in hover mode. 
-*/
+	/**
+ Opacity for the links between nodes in the sankey diagram in hover mode. 
+	*/
 	public void setLinkOpacity(Number linkOpacity) {
 		this.linkOpacity = linkOpacity;
 		this.setChanged();
@@ -169,9 +165,9 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 	public Number getLinkOpacity(){ return linkOpacity; }
 
 	private Boolean shadow;
-/**
-/** The shadow option for hovered state. 
-*/
+	/**
+ The shadow option for hovered state. 
+	*/
 	public void setShadow(Boolean shadow) {
 		this.shadow = shadow;
 		this.setChanged();
@@ -181,9 +177,9 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 	public Boolean getShadow(){ return shadow; }
 
 	private HIColor color;
-/**
-/** A specific color for the hovered point. 
-*/
+	/**
+ A specific color for the hovered point. 
+	*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -198,19 +194,11 @@ public class HIHover extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.radiusPlus != null) {
 			params.put("radiusPlus", this.radiusPlus);
 		}

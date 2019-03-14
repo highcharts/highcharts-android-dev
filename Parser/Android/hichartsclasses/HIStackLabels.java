@@ -8,24 +8,20 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-
-
-public class HIStackLabels extends Observable implements HIChartsJSONSerializable { 
+public class HIStackLabels extends HIFoundation { 
 
 	private Boolean allowOverlap;
-/**
-/** Allow the stack labels to overlap. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-allowoverlap-false/">Default false</a>
-*/
+	/**
+ Allow the stack labels to overlap. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-allowoverlap-false/">Default false</a>
+	*/
 	public void setAllowOverlap(Boolean allowOverlap) {
 		this.allowOverlap = allowOverlap;
 		this.setChanged();
@@ -35,9 +31,9 @@ public class HIStackLabels extends Observable implements HIChartsJSONSerializabl
 	public Boolean getAllowOverlap(){ return allowOverlap; }
 
 	private HICSSObject style;
-/**
-/** CSS styles for the label. In styled mode, the styles are set in the .highcharts-stack-label class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-style/">Red stack total labels</a>
- <br><br><b>defaults:</b><br><br>&ensp;{"color": "#666666", "fontSize": "11px", "fontWeight": "bold", "textOutline": "1px contrast"}*/
+	/**
+ CSS styles for the label. In styled mode, the styles are set in the .highcharts-stack-label class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-style/">Red stack total labels</a>
+ <br><br><b>defaults:</b><br><br>&ensp;{"color": "#666666", "fontSize": "11px", "fontWeight": "bold", "textOutline": "1px contrast"}	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
 		this.setChanged();
@@ -47,9 +43,9 @@ public class HIStackLabels extends Observable implements HIChartsJSONSerializabl
 	public HICSSObject getStyle(){ return style; }
 
 	private String verticalAlign;
-/**
-/** Defines the vertical alignment of the stack total label. Can be one of "top", "middle" or "bottom". The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-verticalalign-top/">Vertically aligned top</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-verticalalign-middle/">Vertically aligned middle</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-verticalalign-bottom/">Vertically aligned bottom</a>
-*/
+	/**
+ Defines the vertical alignment of the stack total label. Can be one of "top", "middle" or "bottom". The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-verticalalign-top/">Vertically aligned top</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-verticalalign-middle/">Vertically aligned middle</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-verticalalign-bottom/">Vertically aligned bottom</a>
+	*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
 		this.setChanged();
@@ -59,9 +55,9 @@ public class HIStackLabels extends Observable implements HIChartsJSONSerializabl
 	public String getVerticalAlign(){ return verticalAlign; }
 
 	private String format;
-/**
-/** A [format string](http://docs.highcharts.com/#formatting) for the data label. Available variables are the same as for formatter. 
- <br><br><b>defaults:</b><br><br>&ensp;{total}*/
+	/**
+ A [format string](http://docs.highcharts.com/#formatting) for the data label. Available variables are the same as for formatter. 
+ <br><br><b>defaults:</b><br><br>&ensp;{total}	*/
 	public void setFormat(String format) {
 		this.format = format;
 		this.setChanged();
@@ -71,9 +67,9 @@ public class HIStackLabels extends Observable implements HIChartsJSONSerializabl
 	public String getFormat(){ return format; }
 
 	private String align;
-/**
-/** Defines the horizontal alignment of the stack total label. Can be one of "left", "center" or "right". The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-align-left/">Aligned to the left</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-align-center/">Aligned in center</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-align-right/">Aligned to the right</a>
-*/
+	/**
+ Defines the horizontal alignment of the stack total label. Can be one of "left", "center" or "right". The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-align-left/">Aligned to the left</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-align-center/">Aligned in center</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-align-right/">Aligned to the right</a>
+	*/
 	public void setAlign(String align) {
 		this.align = align;
 		this.setChanged();
@@ -83,9 +79,9 @@ public class HIStackLabels extends Observable implements HIChartsJSONSerializabl
 	public String getAlign(){ return align; }
 
 	private Boolean enabled;
-/**
-/** Enable or disable the stack total labels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-enabled/">Enabled stack total labels</a>
-*/
+	/**
+ Enable or disable the stack total labels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-enabled/">Enabled stack total labels</a>
+	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -95,9 +91,9 @@ public class HIStackLabels extends Observable implements HIChartsJSONSerializabl
 	public Boolean getEnabled(){ return enabled; }
 
 	private Boolean useHTML;
-/**
-/** Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the labels. 
- <br><br><b>defaults:</b><br><br>&ensp;false*/
+	/**
+ Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the labels. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;
 		this.setChanged();
@@ -107,9 +103,9 @@ public class HIStackLabels extends Observable implements HIChartsJSONSerializabl
 	public Boolean getUseHTML(){ return useHTML; }
 
 	private Number y;
-/**
-/** The y position offset of the label relative to the tick position on the axis. The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-y/">Stack total labels with y offset</a>
-*/
+	/**
+ The y position offset of the label relative to the tick position on the axis. The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-y/">Stack total labels with y offset</a>
+	*/
 	public void setY(Number y) {
 		this.y = y;
 		this.setChanged();
@@ -119,9 +115,9 @@ public class HIStackLabels extends Observable implements HIChartsJSONSerializabl
 	public Number getY(){ return y; }
 
 	private Number x;
-/**
-/** The x position offset of the label relative to the left of the stacked bar. The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-x/">Stack total labels with x offset</a>
-*/
+	/**
+ The x position offset of the label relative to the left of the stacked bar. The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-x/">Stack total labels with x offset</a>
+	*/
 	public void setX(Number x) {
 		this.x = x;
 		this.setChanged();
@@ -131,9 +127,9 @@ public class HIStackLabels extends Observable implements HIChartsJSONSerializabl
 	public Number getX(){ return x; }
 
 	private Number rotation;
-/**
-/** Rotation of the labels in degrees. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-rotation/">Labels rotated 45ĂÂ°</a>
- <br><br><b>defaults:</b><br><br>&ensp;0*/
+	/**
+ Rotation of the labels in degrees. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-rotation/">Labels rotated 45ĂÂ°</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;
 		this.setChanged();
@@ -143,9 +139,9 @@ public class HIStackLabels extends Observable implements HIChartsJSONSerializabl
 	public Number getRotation(){ return rotation; }
 
 	private HIFunction formatter;
-/**
-/** Callback JavaScript function to format the label. The value is given by this.total. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-formatter/">Added units to stack total value</a>
-*/
+	/**
+ Callback JavaScript function to format the label. The value is given by this.total. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-formatter/">Added units to stack total value</a>
+	*/
 	public void setFormatter(HIFunction formatter) {
 		this.formatter = formatter;
 		this.setChanged();
@@ -155,9 +151,9 @@ public class HIStackLabels extends Observable implements HIChartsJSONSerializabl
 	public HIFunction getFormatter(){ return formatter; }
 
 	private String textAlign;
-/**
-/** The text alignment for the label. While align determines where the texts anchor point is placed with regards to the stack, textAlign determines how the text is aligned against its anchor point. Possible values are "left", "center" and "right". The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-textalign-left/">Label in center position but text-aligned left</a>
-*/
+	/**
+ The text alignment for the label. While align determines where the texts anchor point is placed with regards to the stack, textAlign determines how the text is aligned against its anchor point. Possible values are "left", "center" and "right". The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-textalign-left/">Label in center position but text-aligned left</a>
+	*/
 	public void setTextAlign(String textAlign) {
 		this.textAlign = textAlign;
 		this.setChanged();
@@ -172,19 +168,11 @@ public class HIStackLabels extends Observable implements HIChartsJSONSerializabl
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.allowOverlap != null) {
 			params.put("allowOverlap", this.allowOverlap);
 		}

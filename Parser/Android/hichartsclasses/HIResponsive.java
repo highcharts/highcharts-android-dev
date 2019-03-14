@@ -8,31 +8,27 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
+public class HIResponsive extends HIFoundation { 
 
-
-public class HIResponsive extends Observable implements HIChartsJSONSerializable { 
-
-	private ArrayList <HIRules> rules;
-/**
-/** A set of rules for responsive settings. The rules are executed from the top down. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/">Axis changes</a>
-*/
-	public void setRules(ArrayList rules) {
+	private List <HIRules> rules;
+	/**
+ A set of rules for responsive settings. The rules are executed from the top down. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/">Axis changes</a>
+	*/
+	public void setRules(List rules) {
 		this.rules = rules;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList getRules(){ return rules; }
+	public List getRules(){ return rules; }
 
 
 
@@ -40,24 +36,16 @@ public class HIResponsive extends Observable implements HIChartsJSONSerializable
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.rules != null) {
-			ArrayList<Object> array = new ArrayList<>();
+			List<Object> array = new List<>();
 			for (Object obj : this.rules) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
 				}
 				else {
 					array.add(obj);

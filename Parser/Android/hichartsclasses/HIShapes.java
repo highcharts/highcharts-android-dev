@@ -8,37 +8,33 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
 
 
+public class HIShapes extends HIFoundation { 
 
-
-public class HIShapes extends Observable implements HIChartsJSONSerializable { 
-
-	private ArrayList <HIPoints> points;
-/**
-/** An array of points for the shape. This option is available for shapes which can use multiple points such as path. A point can be either a point object or a point's id. 
-*/
-	public void setPoints(ArrayList points) {
+	private List <HIPoints> points;
+	/**
+ An array of points for the shape. This option is available for shapes which can use multiple points such as path. A point can be either a point object or a point's id. 
+	*/
+	public void setPoints(List points) {
 		this.points = points;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList getPoints(){ return points; }
+	public List getPoints(){ return points; }
 
 	private String markerEnd;
-/**
-/** Id of the marker which will be drawn at the final vertex of the path. Custom markers can be defined in defs property. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/custom-markers/">Define a custom marker for annotations</a>
-*/
+	/**
+ Id of the marker which will be drawn at the final vertex of the path. Custom markers can be defined in defs property. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/custom-markers/">Define a custom marker for annotations</a>
+	*/
 	public void setMarkerEnd(String markerEnd) {
 		this.markerEnd = markerEnd;
 		this.setChanged();
@@ -48,9 +44,9 @@ public class HIShapes extends Observable implements HIChartsJSONSerializable {
 	public String getMarkerEnd(){ return markerEnd; }
 
 	private String markerStart;
-/**
-/** Id of the marker which will be drawn at the first vertex of the path. Custom markers can be defined in defs property. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/custom-markers/">Define a custom marker for annotations</a>
-*/
+	/**
+ Id of the marker which will be drawn at the first vertex of the path. Custom markers can be defined in defs property. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/custom-markers/">Define a custom marker for annotations</a>
+	*/
 	public void setMarkerStart(String markerStart) {
 		this.markerStart = markerStart;
 		this.setChanged();
@@ -60,9 +56,9 @@ public class HIShapes extends Observable implements HIChartsJSONSerializable {
 	public String getMarkerStart(){ return markerStart; }
 
 	private HIPoint point;
-/**
-/** This option defines the point to which the shape will be connected. It can be either the point which exists in the series - it is referenced by the point's id - or a new point with defined x, y properties and optionally axes. 
-*/
+	/**
+ This option defines the point to which the shape will be connected. It can be either the point which exists in the series - it is referenced by the point's id - or a new point with defined x, y properties and optionally axes. 
+	*/
 	public void setPoint(HIPoint point) {
 		this.point = point;
 		this.point.addObserver(updateObserver);
@@ -73,9 +69,9 @@ public class HIShapes extends Observable implements HIChartsJSONSerializable {
 	public HIPoint getPoint(){ return point; }
 
 	private Number strokeWidth;
-/**
-/** The pixel stroke width of the shape. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
-*/
+	/**
+ The pixel stroke width of the shape. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
+	*/
 	public void setStrokeWidth(Number strokeWidth) {
 		this.strokeWidth = strokeWidth;
 		this.setChanged();
@@ -85,9 +81,9 @@ public class HIShapes extends Observable implements HIChartsJSONSerializable {
 	public Number getStrokeWidth(){ return strokeWidth; }
 
 	private Number height;
-/**
-/** The height of the shape. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
-*/
+	/**
+ The height of the shape. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
+	*/
 	public void setHeight(Number height) {
 		this.height = height;
 		this.setChanged();
@@ -97,9 +93,9 @@ public class HIShapes extends Observable implements HIChartsJSONSerializable {
 	public Number getHeight(){ return height; }
 
 	private Number width;
-/**
-/** The width of the shape. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
-*/
+	/**
+ The width of the shape. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
+	*/
 	public void setWidth(Number width) {
 		this.width = width;
 		this.setChanged();
@@ -109,9 +105,9 @@ public class HIShapes extends Observable implements HIChartsJSONSerializable {
 	public Number getWidth(){ return width; }
 
 	private HIColor stroke;
-/**
-/** The color of the shape's stroke. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
-*/
+	/**
+ The color of the shape's stroke. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
+	*/
 	public void setStroke(HIColor stroke) {
 		this.stroke = stroke;
 		this.setChanged();
@@ -121,9 +117,9 @@ public class HIShapes extends Observable implements HIChartsJSONSerializable {
 	public HIColor getStroke(){ return stroke; }
 
 	private Number r;
-/**
-/** The radius of the shape. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
-*/
+	/**
+ The radius of the shape. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
+	*/
 	public void setR(Number r) {
 		this.r = r;
 		this.setChanged();
@@ -133,9 +129,9 @@ public class HIShapes extends Observable implements HIChartsJSONSerializable {
 	public Number getR(){ return r; }
 
 	private String type;
-/**
-/** The type of the shape, e.g. circle or rectangle. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
- <br><br><b>defaults:</b><br><br>&ensp;'rect'*/
+	/**
+ The type of the shape, e.g. circle or rectangle. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
+ <br><br><b>defaults:</b><br><br>&ensp;'rect'	*/
 	public void setType(String type) {
 		this.type = type;
 		this.setChanged();
@@ -145,9 +141,9 @@ public class HIShapes extends Observable implements HIChartsJSONSerializable {
 	public String getType(){ return type; }
 
 	private HIColor fill;
-/**
-/** The color of the shape's fill. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
-*/
+	/**
+ The color of the shape's fill. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
+	*/
 	public void setFill(HIColor fill) {
 		this.fill = fill;
 		this.setChanged();
@@ -162,24 +158,16 @@ public class HIShapes extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.points != null) {
-			ArrayList<Object> array = new ArrayList<>();
+			List<Object> array = new List<>();
 			for (Object obj : this.points) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
 				}
 				else {
 					array.add(obj);

@@ -518,8 +518,8 @@ public Map<String, Object> getParams() {
 		if (this.xAxis != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.xAxis) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
 				}
 				else {
 				array.add(obj);

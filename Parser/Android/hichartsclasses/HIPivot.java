@@ -8,25 +8,21 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
 
 
-
-
-public class HIPivot extends Observable implements HIChartsJSONSerializable { 
+public class HIPivot extends HIFoundation { 
 
 	private HIColor borderColor;
-/**
-/** The border or stroke color of the pivot. In able to change this, the borderWidth must also be set to something other than the defaults 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-pivot/">Pivot options demonstrated</a>
- <br><br><b>defaults:</b><br><br>&ensp;#cccccc*/
+	/**
+ The border or stroke color of the pivot. In able to change this, the borderWidth must also be set to something other than the defaults 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-pivot/">Pivot options demonstrated</a>
+ <br><br><b>defaults:</b><br><br>&ensp;#cccccc	*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
@@ -36,9 +32,9 @@ public class HIPivot extends Observable implements HIChartsJSONSerializable {
 	public HIColor getBorderColor(){ return borderColor; }
 
 	private Number radius;
-/**
-/** The pixel radius of the pivot. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-pivot/">Pivot options demonstrated</a>
- <br><br><b>defaults:</b><br><br>&ensp;5*/
+	/**
+ The pixel radius of the pivot. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-pivot/">Pivot options demonstrated</a>
+ <br><br><b>defaults:</b><br><br>&ensp;5	*/
 	public void setRadius(Number radius) {
 		this.radius = radius;
 		this.setChanged();
@@ -48,9 +44,9 @@ public class HIPivot extends Observable implements HIChartsJSONSerializable {
 	public Number getRadius(){ return radius; }
 
 	private Number borderWidth;
-/**
-/** The border or stroke width of the pivot. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-pivot/">Pivot options demonstrated</a>
- <br><br><b>defaults:</b><br><br>&ensp;0*/
+	/**
+ The border or stroke width of the pivot. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-pivot/">Pivot options demonstrated</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
 		this.setChanged();
@@ -60,9 +56,9 @@ public class HIPivot extends Observable implements HIChartsJSONSerializable {
 	public Number getBorderWidth(){ return borderWidth; }
 
 	private HIColor backgroundColor;
-/**
-/** The background color or fill of the pivot. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-pivot/">Pivot options demonstrated</a>
- <br><br><b>defaults:</b><br><br>&ensp;#000000*/
+	/**
+ The background color or fill of the pivot. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-pivot/">Pivot options demonstrated</a>
+ <br><br><b>defaults:</b><br><br>&ensp;#000000	*/
 	public void setBackgroundColor(HIColor backgroundColor) {
 		this.backgroundColor = backgroundColor;
 		this.setChanged();
@@ -77,19 +73,11 @@ public class HIPivot extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
 		}

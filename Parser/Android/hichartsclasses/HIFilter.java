@@ -8,24 +8,20 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-
-
-public class HIFilter extends Observable implements HIChartsJSONSerializable { 
+public class HIFilter extends HIFoundation { 
 
 	private String operator;
-/**
-/** The operator to compare by. Can be one of >, <, >=, <=, ==, and ===. <br><br><b>accepted values:</b><br><br>&ensp;[">", "<", ">=", "<=", "==", "==="]
-*/
+	/**
+ The operator to compare by. Can be one of >, <, >=, <=, ==, and ===. <br><br><b>accepted values:</b><br><br>&ensp;[">", "<", ">=", "<=", "==", "==="]
+	*/
 	public void setOperator(String operator) {
 		this.operator = operator;
 		this.setChanged();
@@ -35,9 +31,9 @@ public class HIFilter extends Observable implements HIChartsJSONSerializable {
 	public String getOperator(){ return operator; }
 
 	private String property;
-/**
-/** The point property to filter by. Point options are passed directly to properties, additionally there are y value, percentage and others listed under [Point](https://api.highcharts.com/class-reference/Highcharts.Point) members. 
-*/
+	/**
+ The point property to filter by. Point options are passed directly to properties, additionally there are y value, percentage and others listed under [Point](https://api.highcharts.com/class-reference/Highcharts.Point) members. 
+	*/
 	public void setProperty(String property) {
 		this.property = property;
 		this.setChanged();
@@ -47,9 +43,9 @@ public class HIFilter extends Observable implements HIChartsJSONSerializable {
 	public String getProperty(){ return property; }
 
 	private Object value;
-/**
-/** The value to compare against. 
-*/
+	/**
+ The value to compare against. 
+	*/
 	public void setValue(Object value) {
 		this.value = value;
 		this.setChanged();
@@ -64,19 +60,11 @@ public class HIFilter extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.operator != null) {
 			params.put("operator", this.operator);
 		}

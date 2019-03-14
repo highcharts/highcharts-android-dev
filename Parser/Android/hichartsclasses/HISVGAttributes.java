@@ -8,28 +8,24 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
+public class HISVGAttributes extends HIFoundation { 
 
-
-public class HISVGAttributes extends Observable implements HIChartsJSONSerializable { 
-
-	private ArrayList /* <Number, String> */ d;
-	public void setD(ArrayList /* <Number, String> */ d) {
+	private List /* <Number, String> */ d;
+	public void setD(List /* <Number, String> */ d) {
 		this.d = d;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList /* <Number, String> */ getD(){ return d; }
+	public List /* <Number, String> */ getD(){ return d; }
 
 	private Boolean inverted;
 	public void setInverted(Boolean inverted) {
@@ -40,14 +36,14 @@ public class HISVGAttributes extends Observable implements HIChartsJSONSerializa
 
 	public Boolean getInverted(){ return inverted; }
 
-	private ArrayList<Number> matrix;
-	public void setMatrix(ArrayList<Number> matrix) {
+	private List<Number> matrix;
+	public void setMatrix(List<Number> matrix) {
 		this.matrix = matrix;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<Number> getMatrix(){ return matrix; }
+	public List<Number> getMatrix(){ return matrix; }
 
 	private String rotation;
 	public void setRotation(String rotation) {
@@ -145,24 +141,16 @@ public class HISVGAttributes extends Observable implements HIChartsJSONSerializa
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.d != null) {
-			ArrayList<Object> array = new ArrayList<>();
+			List<Object> array = new List<>();
 			for (Object obj : this.d) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
 				}
 				else {
 					array.add(obj);
@@ -174,10 +162,10 @@ public class HISVGAttributes extends Observable implements HIChartsJSONSerializa
 			params.put("inverted", this.inverted);
 		}
 		if (this.matrix != null) {
-			ArrayList<Object> array = new ArrayList<>();
+			List<Object> array = new List<>();
 			for (Object obj : this.matrix) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
 				}
 				else {
 					array.add(obj);

@@ -8,25 +8,21 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
 
 
-
-
-public class HILevels extends Observable implements HIChartsJSONSerializable { 
+public class HILevels extends HIFoundation { 
 
 	private HIColor borderColor;
-/**
-/** Can set a borderColor on all points which lies on the same level. 
-*/
+	/**
+ Can set a borderColor on all points which lies on the same level. 
+	*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
@@ -36,9 +32,9 @@ public class HILevels extends Observable implements HIChartsJSONSerializable {
 	public HIColor getBorderColor(){ return borderColor; }
 
 	private HIColorVariation colorVariation;
-/**
-/** Can set a colorVariation on all points which lies on the same level. 
-*/
+	/**
+ Can set a colorVariation on all points which lies on the same level. 
+	*/
 	public void setColorVariation(HIColorVariation colorVariation) {
 		this.colorVariation = colorVariation;
 		this.colorVariation.addObserver(updateObserver);
@@ -49,9 +45,9 @@ public class HILevels extends Observable implements HIChartsJSONSerializable {
 	public HIColorVariation getColorVariation(){ return colorVariation; }
 
 	private Object levelSize;
-/**
-/** Can set a levelSize on all points which lies on the same level. 
-*/
+	/**
+ Can set a levelSize on all points which lies on the same level. 
+	*/
 	public void setLevelSize(Object levelSize) {
 		this.levelSize = levelSize;
 		this.setChanged();
@@ -61,9 +57,9 @@ public class HILevels extends Observable implements HIChartsJSONSerializable {
 	public Object getLevelSize(){ return levelSize; }
 
 	private String borderDashStyle;
-/**
-/** Can set a borderDashStyle on all points which lies on the same level. 
-*/
+	/**
+ Can set a borderDashStyle on all points which lies on the same level. 
+	*/
 	public void setBorderDashStyle(String borderDashStyle) {
 		this.borderDashStyle = borderDashStyle;
 		this.setChanged();
@@ -73,9 +69,9 @@ public class HILevels extends Observable implements HIChartsJSONSerializable {
 	public String getBorderDashStyle(){ return borderDashStyle; }
 
 	private HIColor color;
-/**
-/** Can set a color on all points which lies on the same level. 
-*/
+	/**
+ Can set a color on all points which lies on the same level. 
+	*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -85,9 +81,9 @@ public class HILevels extends Observable implements HIChartsJSONSerializable {
 	public HIColor getColor(){ return color; }
 
 	private Object dataLabels;
-/**
-/** Can set dataLabels on all points which lies on the same level. 
-*/
+	/**
+ Can set dataLabels on all points which lies on the same level. 
+	*/
 	public void setDataLabels(Object dataLabels) {
 		this.dataLabels = dataLabels;
 		this.setChanged();
@@ -97,9 +93,9 @@ public class HILevels extends Observable implements HIChartsJSONSerializable {
 	public Object getDataLabels(){ return dataLabels; }
 
 	private String rotationMode;
-/**
-/** Can set a rotationMode on all points which lies on the same level. 
-*/
+	/**
+ Can set a rotationMode on all points which lies on the same level. 
+	*/
 	public void setRotationMode(String rotationMode) {
 		this.rotationMode = rotationMode;
 		this.setChanged();
@@ -109,9 +105,9 @@ public class HILevels extends Observable implements HIChartsJSONSerializable {
 	public String getRotationMode(){ return rotationMode; }
 
 	private Number borderWidth;
-/**
-/** Can set a borderWidth on all points which lies on the same level. 
-*/
+	/**
+ Can set a borderWidth on all points which lies on the same level. 
+	*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
 		this.setChanged();
@@ -121,9 +117,9 @@ public class HILevels extends Observable implements HIChartsJSONSerializable {
 	public Number getBorderWidth(){ return borderWidth; }
 
 	private Number rotation;
-/**
-/** Can set a rotation on all points which lies on the same level. 
-*/
+	/**
+ Can set a rotation on all points which lies on the same level. 
+	*/
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;
 		this.setChanged();
@@ -133,9 +129,9 @@ public class HILevels extends Observable implements HIChartsJSONSerializable {
 	public Number getRotation(){ return rotation; }
 
 	private Number level;
-/**
-/** Decides which level takes effect from the options set in the levels object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-levels/">Styling of both levels</a>
-*/
+	/**
+ Decides which level takes effect from the options set in the levels object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-levels/">Styling of both levels</a>
+	*/
 	public void setLevel(Number level) {
 		this.level = level;
 		this.setChanged();
@@ -145,9 +141,9 @@ public class HILevels extends Observable implements HIChartsJSONSerializable {
 	public Number getLevel(){ return level; }
 
 	private String layoutAlgorithm;
-/**
-/** Can set the layoutAlgorithm option on a specific level. <br><br><b>accepted values:</b><br><br>&ensp;["sliceAndDice", "stripes", "squarified", "strip"]
-*/
+	/**
+ Can set the layoutAlgorithm option on a specific level. <br><br><b>accepted values:</b><br><br>&ensp;["sliceAndDice", "stripes", "squarified", "strip"]
+	*/
 	public void setLayoutAlgorithm(String layoutAlgorithm) {
 		this.layoutAlgorithm = layoutAlgorithm;
 		this.setChanged();
@@ -157,9 +153,9 @@ public class HILevels extends Observable implements HIChartsJSONSerializable {
 	public String getLayoutAlgorithm(){ return layoutAlgorithm; }
 
 	private String layoutStartingDirection;
-/**
-/** Can set the layoutStartingDirection option on a specific level. <br><br><b>accepted values:</b><br><br>&ensp;["vertical", "horizontal"]
-*/
+	/**
+ Can set the layoutStartingDirection option on a specific level. <br><br><b>accepted values:</b><br><br>&ensp;["vertical", "horizontal"]
+	*/
 	public void setLayoutStartingDirection(String layoutStartingDirection) {
 		this.layoutStartingDirection = layoutStartingDirection;
 		this.setChanged();
@@ -174,19 +170,11 @@ public class HILevels extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
 		}

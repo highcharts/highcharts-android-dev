@@ -8,25 +8,21 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
 
 
-
-
-public class HIDefault extends Observable implements HIChartsJSONSerializable { 
+public class HIDefault extends HIFoundation { 
 
 	private Number zIndex;
-/**
-/** Guide box zIndex. 
-*/
+	/**
+ Guide box zIndex. 
+	*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
 		this.setChanged();
@@ -36,9 +32,9 @@ public class HIDefault extends Observable implements HIChartsJSONSerializable {
 	public Number getZIndex(){ return zIndex; }
 
 	private HIColor color;
-/**
-/** Guide box fill color. 
-*/
+	/**
+ Guide box fill color. 
+	*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -48,9 +44,9 @@ public class HIDefault extends Observable implements HIChartsJSONSerializable {
 	public HIColor getColor(){ return color; }
 
 	private String className;
-/**
-/** CSS class name of the guide box in this state. Defaults to highcharts-drag-box-defaults. 
-*/
+	/**
+ CSS class name of the guide box in this state. Defaults to highcharts-drag-box-defaults. 
+	*/
 	public void setClassName(String className) {
 		this.className = className;
 		this.setChanged();
@@ -60,9 +56,9 @@ public class HIDefault extends Observable implements HIChartsJSONSerializable {
 	public String getClassName(){ return className; }
 
 	private String cursor;
-/**
-/** Guide box cursor. 
-*/
+	/**
+ Guide box cursor. 
+	*/
 	public void setCursor(String cursor) {
 		this.cursor = cursor;
 		this.setChanged();
@@ -72,9 +68,9 @@ public class HIDefault extends Observable implements HIChartsJSONSerializable {
 	public String getCursor(){ return cursor; }
 
 	private HIColor lineColor;
-/**
-/** Color of the border around the guide box. 
-*/
+	/**
+ Color of the border around the guide box. 
+	*/
 	public void setLineColor(HIColor lineColor) {
 		this.lineColor = lineColor;
 		this.setChanged();
@@ -84,9 +80,9 @@ public class HIDefault extends Observable implements HIChartsJSONSerializable {
 	public HIColor getLineColor(){ return lineColor; }
 
 	private Number lineWidth;
-/**
-/** Width of the line around the guide box. 
-*/
+	/**
+ Width of the line around the guide box. 
+	*/
 	public void setLineWidth(Number lineWidth) {
 		this.lineWidth = lineWidth;
 		this.setChanged();
@@ -101,19 +97,11 @@ public class HIDefault extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.zIndex != null) {
 			params.put("zIndex", this.zIndex);
 		}

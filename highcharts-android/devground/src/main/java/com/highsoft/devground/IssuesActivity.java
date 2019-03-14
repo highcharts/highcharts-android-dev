@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.common.hichartsclasses.HICSSObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIChart;
+import com.highsoft.highcharts.common.hichartsclasses.HICredits;
 import com.highsoft.highcharts.common.hichartsclasses.HIData;
 import com.highsoft.highcharts.common.hichartsclasses.HILine;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
@@ -82,6 +83,7 @@ public class IssuesActivity extends AppCompatActivity {
         options.setYAxis(new ArrayList<>(Arrays.asList(hiyAxis1, hiyAxis2)));
 
         HILine series1 = new HILine();
+        series1.setName("tam daradam");
         series1.setData(randData(10));
         series1.setColor(HIColor.initWithName("red"));
         HILine series2 = new HILine();
@@ -97,18 +99,29 @@ public class IssuesActivity extends AppCompatActivity {
                 HIData data = new HIData();
                 data.setY(6);
 //                series1.addPoint( data);
+                HICredits credits = new HICredits();
+                credits.setEnabled(true);
+                credits.setText("CREDITSY PRO");
+                credits.setStyle(new HICSSObject());
+                credits.getStyle().setFontSize("20sp");
+                HIYAxis axisnew = new HIYAxis();
+                axisnew.setOpposite(true);
+                axisnew.setLineColor(HIColor.initWithName("blue"));
+//                chartView.addYAxis(axisnew);
+//                chartView.addCredits(credits);
+//                chartView.redraw();
 //                data.setY(8);
 //                series1.addPoint( data);
 //                series1.hide();
 //                series1.hide();
 //                options.getSeries().get(0).setColor(HIColor.initWithName("pink"));
 //                series1.setSeriesData(new ArrayList<>(Arrays.asList(5,12,5,7,8,2,4)));
-                HISpline spline = new HISpline();
-                spline.setData(new ArrayList<>(Arrays.asList(5,6,1,6,7,8,12,3,4)));
-                spline.setColor(HIColor.initWithName("pink"));
-                spline.setName("RAMBO");
-//                series1.update(spline);
-                series1.getSeriesName();
+//                HISpline spline = new HISpline();
+//                spline.setData(new ArrayList<>(Arrays.asList(5,6,1,6,7,8,12,3,4)));
+//                spline.setColor(HIColor.initWithName("pink"));
+//                spline.setName("RAMBO");
+////                series1.update(spline);
+//                series1.getSeriesName();
             }
         });
     }

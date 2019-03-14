@@ -8,25 +8,21 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
 
 
-
-
-public class HIDragHandle extends Observable implements HIChartsJSONSerializable { 
+public class HIDragHandle extends HIFoundation { 
 
 	private String cursor;
-/**
-/** The mouse cursor to use for the drag handles. By defaults this is intelligently switching between ew-resize and ns-resize depending on the direction the point is being dragged. 
-*/
+	/**
+ The mouse cursor to use for the drag handles. By defaults this is intelligently switching between ew-resize and ns-resize depending on the direction the point is being dragged. 
+	*/
 	public void setCursor(String cursor) {
 		this.cursor = cursor;
 		this.setChanged();
@@ -36,9 +32,9 @@ public class HIDragHandle extends Observable implements HIChartsJSONSerializable
 	public String getCursor(){ return cursor; }
 
 	private Number zIndex;
-/**
-/** The z index for the drag handles. 
-*/
+	/**
+ The z index for the drag handles. 
+	*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
 		this.setChanged();
@@ -48,9 +44,9 @@ public class HIDragHandle extends Observable implements HIChartsJSONSerializable
 	public Number getZIndex(){ return zIndex; }
 
 	private HIColor color;
-/**
-/** The fill color of the drag handles. 
-*/
+	/**
+ The fill color of the drag handles. 
+	*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -60,9 +56,9 @@ public class HIDragHandle extends Observable implements HIChartsJSONSerializable
 	public HIColor getColor(){ return color; }
 
 	private String className;
-/**
-/** The class name of the drag handles. Defaults to highcharts-drag-handle. 
-*/
+	/**
+ The class name of the drag handles. Defaults to highcharts-drag-handle. 
+	*/
 	public void setClassName(String className) {
 		this.className = className;
 		this.setChanged();
@@ -72,9 +68,9 @@ public class HIDragHandle extends Observable implements HIChartsJSONSerializable
 	public String getClassName(){ return className; }
 
 	private HIFunction pathFormatter;
-/**
-/** Function to define the SVG path to use for the drag handles. Takes the point as argument. Should return an SVG path in array format. The SVG path is automatically positioned on the point. 
-*/
+	/**
+ Function to define the SVG path to use for the drag handles. Takes the point as argument. Should return an SVG path in array format. The SVG path is automatically positioned on the point. 
+	*/
 	public void setPathFormatter(HIFunction pathFormatter) {
 		this.pathFormatter = pathFormatter;
 		this.setChanged();
@@ -84,9 +80,9 @@ public class HIDragHandle extends Observable implements HIChartsJSONSerializable
 	public HIFunction getPathFormatter(){ return pathFormatter; }
 
 	private HIColor lineColor;
-/**
-/** The line color of the drag handles. 
-*/
+	/**
+ The line color of the drag handles. 
+	*/
 	public void setLineColor(HIColor lineColor) {
 		this.lineColor = lineColor;
 		this.setChanged();
@@ -96,9 +92,9 @@ public class HIDragHandle extends Observable implements HIChartsJSONSerializable
 	public HIColor getLineColor(){ return lineColor; }
 
 	private Number lineWidth;
-/**
-/** The line width for the drag handles. 
-*/
+	/**
+ The line width for the drag handles. 
+	*/
 	public void setLineWidth(Number lineWidth) {
 		this.lineWidth = lineWidth;
 		this.setChanged();
@@ -113,19 +109,11 @@ public class HIDragHandle extends Observable implements HIChartsJSONSerializable
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.cursor != null) {
 			params.put("cursor", this.cursor);
 		}

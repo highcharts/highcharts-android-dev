@@ -13,6 +13,8 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+
+import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.common.HIColor;
@@ -21,7 +23,7 @@ import com.highsoft.highcharts.common.HIColor;
 
 
 
-public class HIPlotLines extends Observable implements HIChartsJSONSerializable { 
+public class HIPlotLines extends HIFoundation implements HIChartsJSONSerializable {
 
 	private Number zIndex;
 /**
@@ -138,15 +140,18 @@ public class HIPlotLines extends Observable implements HIChartsJSONSerializable 
 
 	}
 
-
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
+	/**
+	 * Remove the plot line.
+	 */
+	public void destroy() {
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "PlotLineOrBand");
+			put("method", "destroy");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
 
 	public Map<String, Object> getParams() {
 

@@ -8,19 +8,15 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-
-
-public class HIStates extends Observable implements HIChartsJSONSerializable { 
+public class HIStates extends HIFoundation { 
 
 	private HIHover hover;
 	public void setHover(HIHover hover) {
@@ -43,9 +39,9 @@ public class HIStates extends Observable implements HIChartsJSONSerializable {
 	public HISelect getSelect(){ return select; }
 
 	private HINormal normal;
-/**
-/** The normal state of a single point marker. Currently only used for setting animation when returning to normal state from hover. 
-*/
+	/**
+ The normal state of a single point marker. Currently only used for setting animation when returning to normal state from hover. 
+	*/
 	public void setNormal(HINormal normal) {
 		this.normal = normal;
 		this.normal.addObserver(updateObserver);
@@ -61,19 +57,11 @@ public class HIStates extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.hover != null) {
 			params.put("hover", this.hover.getParams());
 		}

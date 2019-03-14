@@ -8,20 +8,16 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
 
 
-
-
-public class HIDataLabels extends Observable implements HIChartsJSONSerializable { 
+public class HIDataLabels extends HIFoundation { 
 
 	private Boolean defer;
 	public void setDefer(Boolean defer) {
@@ -96,9 +92,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public Boolean getOverflow(){ return overflow; }
 
 	private Number x;
-/**
-/** The x position of the data label relative to the data point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bar-datalabels-align-inside-bar/">Data labels inside the bar</a>
- <br><br><b>defaults:</b><br><br>&ensp;5*/
+	/**
+ The x position of the data label relative to the data point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bar-datalabels-align-inside-bar/">Data labels inside the bar</a>
+ <br><br><b>defaults:</b><br><br>&ensp;5	*/
 	public void setX(Number x) {
 		this.x = x;
 		this.setChanged();
@@ -108,9 +104,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public Number getX(){ return x; }
 
 	private String align;
-/**
-/** Alignment of the data label relative to the data point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bar-datalabels-align-inside-bar/">Data labels inside the bar</a>
- <br><br><b>defaults:</b><br><br>&ensp;left*/
+	/**
+ Alignment of the data label relative to the data point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bar-datalabels-align-inside-bar/">Data labels inside the bar</a>
+ <br><br><b>defaults:</b><br><br>&ensp;left	*/
 	public void setAlign(String align) {
 		this.align = align;
 		this.setChanged();
@@ -129,9 +125,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public Number getY(){ return y; }
 
 	private Number yHigh;
-/**
-/** Y offset of the higher data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
-*/
+	/**
+ Y offset of the higher data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
+	*/
 	public void setYHigh(Number yHigh) {
 		this.yHigh = yHigh;
 		this.setChanged();
@@ -141,9 +137,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public Number getYHigh(){ return yHigh; }
 
 	private Number xHigh;
-/**
-/** X offset of the higher data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
-*/
+	/**
+ X offset of the higher data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
+	*/
 	public void setXHigh(Number xHigh) {
 		this.xHigh = xHigh;
 		this.setChanged();
@@ -153,9 +149,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public Number getXHigh(){ return xHigh; }
 
 	private Number xLow;
-/**
-/** X offset of the lower data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
-*/
+	/**
+ X offset of the lower data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
+	*/
 	public void setXLow(Number xLow) {
 		this.xLow = xLow;
 		this.setChanged();
@@ -165,9 +161,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public Number getXLow(){ return xLow; }
 
 	private Number yLow;
-/**
-/** Y offset of the lower data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
-*/
+	/**
+ Y offset of the lower data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
+	*/
 	public void setYLow(Number yLow) {
 		this.yLow = yLow;
 		this.setChanged();
@@ -177,9 +173,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public Number getYLow(){ return yLow; }
 
 	private Number borderRadius;
-/**
-/** The border radius in pixels for the data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a>
- <br><br><b>defaults:</b><br><br>&ensp;0*/
+	/**
+ The border radius in pixels for the data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setBorderRadius(Number borderRadius) {
 		this.borderRadius = borderRadius;
 		this.setChanged();
@@ -189,9 +185,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public Number getBorderRadius(){ return borderRadius; }
 
 	private String shape;
-/**
-/** The name of a symbol to use for the border around the label. Symbols are predefined functions on the Renderer object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-shape/">A callout for annotations</a>
- <br><br><b>defaults:</b><br><br>&ensp;square*/
+	/**
+ The name of a symbol to use for the border around the label. Symbols are predefined functions on the Renderer object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-shape/">A callout for annotations</a>
+ <br><br><b>defaults:</b><br><br>&ensp;square	*/
 	public void setShape(String shape) {
 		this.shape = shape;
 		this.setChanged();
@@ -201,9 +197,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public String getShape(){ return shape; }
 
 	private Boolean useHTML;
-/**
-/** Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the labels. 
- <br><br><b>defaults:</b><br><br>&ensp;false*/
+	/**
+ Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the labels. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;
 		this.setChanged();
@@ -213,9 +209,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public Boolean getUseHTML(){ return useHTML; }
 
 	private HIColor borderColor;
-/**
-/** The border color for the data label. Defaults to undefined. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a>
-*/
+	/**
+ The border color for the data label. Defaults to undefined. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a>
+	*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
@@ -225,9 +221,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public HIColor getBorderColor(){ return borderColor; }
 
 	private HIFilter filter;
-/**
-/** A declarative filter for which data labels to display. The declarative filter is designed for use when callback functions are not available, like when the chart options require a pure JSON structure or for use with graphical editors. For programmatic control, use the formatter instead, and return undefined to disable a single data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome">Data labels filtered by percentage</a>
-*/
+	/**
+ A declarative filter for which data labels to display. The declarative filter is designed for use when callback functions are not available, like when the chart options require a pure JSON structure or for use with graphical editors. For programmatic control, use the formatter instead, and return undefined to disable a single data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome">Data labels filtered by percentage</a>
+	*/
 	public void setFilter(HIFilter filter) {
 		this.filter = filter;
 		this.filter.addObserver(updateObserver);
@@ -238,9 +234,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public HIFilter getFilter(){ return filter; }
 
 	private HICSSObject style;
-/**
-/** Styles for the label. The defaults color setting is "contrast", which is a pseudo color that Highcharts picks up and applies the maximum contrast to the underlying point item, for example the bar in a bar chart. The textOutline is a pseudo property that applies an outline of the given width with the given color, which by defaults is the maximum contrast to the text. So a bright text color will result in a black text outline for maximum readability on a mixed background. In some cases, especially with grayscale text, the text outline doesn't work well, in which cases it can be disabled by setting it to "none". When useHTML is true, the textOutline will not be picked up. In this, case, the same effect can be acheived through the text-shadow CSS property. For some series types, where each point has an extent, like for example tree maps, the data label may overflow the point. There are two strategies for handling overflow. By defaults, the text will wrap to multiple lines. The other strategy is to set style.textOverflow to ellipsis, which will keep the text on one line plus it will break inside long words. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-style/">Bold labels</a>
- <br><br><b>defaults:</b><br><br>&ensp;{"color": "contrast", "fontSize": "11px", "fontWeight": "bold", "textOutline": "1px contrast" }*/
+	/**
+ Styles for the label. The defaults color setting is "contrast", which is a pseudo color that Highcharts picks up and applies the maximum contrast to the underlying point item, for example the bar in a bar chart. The textOutline is a pseudo property that applies an outline of the given width with the given color, which by defaults is the maximum contrast to the text. So a bright text color will result in a black text outline for maximum readability on a mixed background. In some cases, especially with grayscale text, the text outline doesn't work well, in which cases it can be disabled by setting it to "none". When useHTML is true, the textOutline will not be picked up. In this, case, the same effect can be acheived through the text-shadow CSS property. For some series types, where each point has an extent, like for example tree maps, the data label may overflow the point. There are two strategies for handling overflow. By defaults, the text will wrap to multiple lines. The other strategy is to set style.textOverflow to ellipsis, which will keep the text on one line plus it will break inside long words. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-style/">Bold labels</a>
+ <br><br><b>defaults:</b><br><br>&ensp;{"color": "contrast", "fontSize": "11px", "fontWeight": "bold", "textOutline": "1px contrast" }	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
 		this.setChanged();
@@ -250,9 +246,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public HICSSObject getStyle(){ return style; }
 
 	private HIColor color;
-/**
-/** The text color for the data labels. Defaults to undefined. For certain series types, like column or map, the data labels can be drawn inside the points. In this case the data label will be drawn with maximum contrast by defaults. Additionally, it will be given a text-outline style with the opposite color, to further increase the contrast. This can be overridden by setting the text-outline style to none in the dataLabels.style option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-color/">Red data labels</a>
-*/
+	/**
+ The text color for the data labels. Defaults to undefined. For certain series types, like column or map, the data labels can be drawn inside the points. In this case the data label will be drawn with maximum contrast by defaults. Additionally, it will be given a text-outline style with the opposite color, to further increase the contrast. This can be overridden by setting the text-outline style to none in the dataLabels.style option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-color/">Red data labels</a>
+	*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -262,9 +258,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public HIColor getColor(){ return color; }
 
 	private HIColor backgroundColor;
-/**
-/** The background color or gradient for the data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a>
-*/
+	/**
+ The background color or gradient for the data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a>
+	*/
 	public void setBackgroundColor(HIColor backgroundColor) {
 		this.backgroundColor = backgroundColor;
 		this.setChanged();
@@ -274,9 +270,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public HIColor getBackgroundColor(){ return backgroundColor; }
 
 	private Boolean allowOverlap;
-/**
-/** Whether to allow data labels to overlap. To make the labels less sensitive for overlapping, the dataLabels.padding can be set to 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-allowoverlap-false/">Don't allow overlap</a>
- <br><br><b>defaults:</b><br><br>&ensp;false*/
+	/**
+ Whether to allow data labels to overlap. To make the labels less sensitive for overlapping, the dataLabels.padding can be set to 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-allowoverlap-false/">Don't allow overlap</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setAllowOverlap(Boolean allowOverlap) {
 		this.allowOverlap = allowOverlap;
 		this.setChanged();
@@ -286,9 +282,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public Boolean getAllowOverlap(){ return allowOverlap; }
 
 	private Boolean /* boolean */ shadow;
-/**
-/** The shadow of the box. Works best with borderWidth or backgroundColor. Since 2.3 the shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a>
- <br><br><b>defaults:</b><br><br>&ensp;false*/
+	/**
+ The shadow of the box. Works best with borderWidth or backgroundColor. Since 2.3 the shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setShadow(Boolean /* boolean */ shadow) {
 		this.shadow = shadow;
 		this.setChanged();
@@ -298,9 +294,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public Boolean /* boolean */ getShadow(){ return shadow; }
 
 	private String format;
-/**
-/** A [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) for the data label. Available variables are the same as for formatter. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-format/">Add a unit</a>
- <br><br><b>defaults:</b><br><br>&ensp;{y}*/
+	/**
+ A [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) for the data label. Available variables are the same as for formatter. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-format/">Add a unit</a>
+ <br><br><b>defaults:</b><br><br>&ensp;{y}	*/
 	public void setFormat(String format) {
 		this.format = format;
 		this.setChanged();
@@ -310,9 +306,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public String getFormat(){ return format; }
 
 	private Number rotation;
-/**
-/** Text rotation in degrees. Note that due to a more complex structure, backgrounds, borders and padding will be lost on a rotated data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-rotation/">Vertical labels</a>
- <br><br><b>defaults:</b><br><br>&ensp;0*/
+	/**
+ Text rotation in degrees. Note that due to a more complex structure, backgrounds, borders and padding will be lost on a rotated data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-rotation/">Vertical labels</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;
 		this.setChanged();
@@ -322,9 +318,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public Number getRotation(){ return rotation; }
 
 	private Number zIndex;
-/**
-/** The Z index of the data labels. The defaults Z index puts it above the series. Use a Z index of 2 to display it behind the series. 
- <br><br><b>defaults:</b><br><br>&ensp;6*/
+	/**
+ The Z index of the data labels. The defaults Z index puts it above the series. Use a Z index of 2 to display it behind the series. 
+ <br><br><b>defaults:</b><br><br>&ensp;6	*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
 		this.setChanged();
@@ -334,9 +330,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public Number getZIndex(){ return zIndex; }
 
 	private String className;
-/**
-/** A class name for the data label. Particularly in styled mode, this can be used to give each series' or point's data label unique styling. In addition to this option, a defaults color class name is added so that we can give the labels a [contrast text shadow](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/data-label-contrast/). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-datalabels/">Styling by CSS</a>
-*/
+	/**
+ A class name for the data label. Particularly in styled mode, this can be used to give each series' or point's data label unique styling. In addition to this option, a defaults color class name is added so that we can give the labels a [contrast text shadow](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/data-label-contrast/). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-datalabels/">Styling by CSS</a>
+	*/
 	public void setClassName(String className) {
 		this.className = className;
 		this.setChanged();
@@ -346,9 +342,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public String getClassName(){ return className; }
 
 	private Number borderWidth;
-/**
-/** The border width in pixels for the data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a>
- <br><br><b>defaults:</b><br><br>&ensp;0*/
+	/**
+ The border width in pixels for the data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
 		this.setChanged();
@@ -358,9 +354,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public Number getBorderWidth(){ return borderWidth; }
 
 	private String rotationMode;
-/**
-/** Decides how the data label will be rotated relative to the perimeter of the sunburst. Valid values are auto, parallel and perpendicular. When auto, the best fit will be computed for the point. The series.rotation option takes precedence over rotationMode. <br><br><b>accepted values:</b><br><br>&ensp;["auto", "perpendicular", "parallel"]
-*/
+	/**
+ Decides how the data label will be rotated relative to the perimeter of the sunburst. Valid values are auto, parallel and perpendicular. When auto, the best fit will be computed for the point. The series.rotation option takes precedence over rotationMode. <br><br><b>accepted values:</b><br><br>&ensp;["auto", "perpendicular", "parallel"]
+	*/
 	public void setRotationMode(String rotationMode) {
 		this.rotationMode = rotationMode;
 		this.setChanged();
@@ -370,9 +366,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public String getRotationMode(){ return rotationMode; }
 
 	private HIFunction nodeFormatter;
-/**
-/** Callback to format data labels for _nodes_ in the sankey diagram. The nodeFormat option takes precedence over the nodeFormatter. 
-*/
+	/**
+ Callback to format data labels for _nodes_ in the sankey diagram. The nodeFormat option takes precedence over the nodeFormatter. 
+	*/
 	public void setNodeFormatter(HIFunction nodeFormatter) {
 		this.nodeFormatter = nodeFormatter;
 		this.setChanged();
@@ -382,9 +378,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public HIFunction getNodeFormatter(){ return nodeFormatter; }
 
 	private String nodeFormat;
-/**
-/** The [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) specifying what to show for _nodes_ in the sankey diagram. By defaults the nodeFormatter returns {point.name}. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-link-datalabels">Node and link data labels</a>
-*/
+	/**
+ The [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) specifying what to show for _nodes_ in the sankey diagram. By defaults the nodeFormatter returns {point.name}. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-link-datalabels">Node and link data labels</a>
+	*/
 	public void setNodeFormat(String nodeFormat) {
 		this.nodeFormat = nodeFormat;
 		this.setChanged();
@@ -394,9 +390,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public String getNodeFormat(){ return nodeFormat; }
 
 	private HIColor connectorColor;
-/**
-/** The color of the line connecting the data label to the pie slice. The defaults color is the same as the point's color. In styled mode, the connector stroke is given in the .highcharts-data-label-connector class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorcolor/">Blue connectors</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/pie-point/">Styled connectors</a>
-*/
+	/**
+ The color of the line connecting the data label to the pie slice. The defaults color is the same as the point's color. In styled mode, the connector stroke is given in the .highcharts-data-label-connector class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorcolor/">Blue connectors</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/pie-point/">Styled connectors</a>
+	*/
 	public void setConnectorColor(HIColor connectorColor) {
 		this.connectorColor = connectorColor;
 		this.setChanged();
@@ -406,9 +402,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public HIColor getConnectorColor(){ return connectorColor; }
 
 	private String alignTo;
-/**
-/** Alignment method for data labels. Possible values are: 'toPlotEdges' (each label touches the nearest vertical edge of the plot area) or 'connectors' (connectors have the same x position and the widest label of each half (left & right) touches the nearest vertical edge of the plot area). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-alignto-connectors/">alignTo: connectors</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-alignto-plotedges/">alignTo: plotEdges</a>
- <br><br><b>defaults:</b><br><br>&ensp;undefined*/
+	/**
+ Alignment method for data labels. Possible values are: 'toPlotEdges' (each label touches the nearest vertical edge of the plot area) or 'connectors' (connectors have the same x position and the widest label of each half (left & right) touches the nearest vertical edge of the plot area). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-alignto-connectors/">alignTo: connectors</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-alignto-plotedges/">alignTo: plotEdges</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setAlignTo(String alignTo) {
 		this.alignTo = alignTo;
 		this.setChanged();
@@ -418,9 +414,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public String getAlignTo(){ return alignTo; }
 
 	private Number connectorWidth;
-/**
-/** The width of the line connecting the data label to the pie slice. In styled mode, the connector stroke width is given in the .highcharts-data-label-connector class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorwidth-disabled/">Disable the connector</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/pie-point/">Styled connectors</a>
- <br><br><b>defaults:</b><br><br>&ensp;1*/
+	/**
+ The width of the line connecting the data label to the pie slice. In styled mode, the connector stroke width is given in the .highcharts-data-label-connector class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorwidth-disabled/">Disable the connector</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/pie-point/">Styled connectors</a>
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setConnectorWidth(Number connectorWidth) {
 		this.connectorWidth = connectorWidth;
 		this.setChanged();
@@ -430,9 +426,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public Number getConnectorWidth(){ return connectorWidth; }
 
 	private Number softConnector;
-/**
-/** Whether to render the connector as a soft arc or a line with sharp break. Works only if connectorShape equals to fixedOffset. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-softconnector-true/">Soft</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-softconnector-false/">Non soft</a>
-*/
+	/**
+ Whether to render the connector as a soft arc or a line with sharp break. Works only if connectorShape equals to fixedOffset. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-softconnector-true/">Soft</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-softconnector-false/">Non soft</a>
+	*/
 	public void setSoftConnector(Number softConnector) {
 		this.softConnector = softConnector;
 		this.setChanged();
@@ -442,9 +438,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public Number getSoftConnector(){ return softConnector; }
 
 	private Number connectorPadding;
-/**
-/** The distance from the data label to the connector. Note that data labels also have a defaults padding, so in order for the connector to touch the text, the padding must also be 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorpadding/">No padding</a>
-*/
+	/**
+ The distance from the data label to the connector. Note that data labels also have a defaults padding, so in order for the connector to touch the text, the padding must also be 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorpadding/">No padding</a>
+	*/
 	public void setConnectorPadding(Number connectorPadding) {
 		this.connectorPadding = connectorPadding;
 		this.setChanged();
@@ -454,9 +450,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public Number getConnectorPadding(){ return connectorPadding; }
 
 	private String connectorShape;
-/**
-/** Specifies the method that is used to generate the connector path. Highcharts provides 3 built-in connector shapes: 'fixedOffset' (defaults), 'straight' and 'crookedLine'. Using 'crookedLine' has the most sense (in most of the cases) when 'alignTo' is set. Users can provide their own method by passing a function instead of a String. 3 arguments are passed to the callback: - Object that holds the information about the coordinates of the  label (x & y properties) and how the label is located in  relation to the pie (alignment property). alignment can by  one of the following:  'left' (pie on the left side of the data label),  'right' (pie on the right side of the data label) or  'center' (data label overlaps the pie). - Object that holds the information about the position of the  connector. Its touchingSliceAt porperty tells the position  of the place where the connector touches the slice. - Data label options The function has to return an SVG path definition in array form (see the example). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorshape-string/">connectorShape is a String</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorshape-function/">connectorShape is a function</a>
-*/
+	/**
+ Specifies the method that is used to generate the connector path. Highcharts provides 3 built-in connector shapes: 'fixedOffset' (defaults), 'straight' and 'crookedLine'. Using 'crookedLine' has the most sense (in most of the cases) when 'alignTo' is set. Users can provide their own method by passing a function instead of a String. 3 arguments are passed to the callback: - Object that holds the information about the coordinates of the  label (x & y properties) and how the label is located in  relation to the pie (alignment property). alignment can by  one of the following:  'left' (pie on the left side of the data label),  'right' (pie on the right side of the data label) or  'center' (data label overlaps the pie). - Object that holds the information about the position of the  connector. Its touchingSliceAt porperty tells the position  of the place where the connector touches the slice. - Data label options The function has to return an SVG path definition in array form (see the example). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorshape-string/">connectorShape is a String</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorshape-function/">connectorShape is a function</a>
+	*/
 	public void setConnectorShape(String connectorShape) {
 		this.connectorShape = connectorShape;
 		this.setChanged();
@@ -466,9 +462,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public String getConnectorShape(){ return connectorShape; }
 
 	private String crookDistance;
-/**
-/** Works only if connectorShape is 'crookedLine'. It defines how far from the vertical plot edge the coonnector path should be crooked. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-crookdistance/">crookDistance set to 90%</a>
-*/
+	/**
+ Works only if connectorShape is 'crookedLine'. It defines how far from the vertical plot edge the coonnector path should be crooked. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-crookdistance/">crookDistance set to 90%</a>
+	*/
 	public void setCrookDistance(String crookDistance) {
 		this.crookDistance = crookDistance;
 		this.setChanged();
@@ -478,9 +474,9 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 	public String getCrookDistance(){ return crookDistance; }
 
 	private Number distance;
-/**
-/** The distance of the data label from the pie's edge. Negative numbers put the data label on top of the pie slices. Connectors are only shown for data labels outside the pie. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-distance/">Data labels on top of the pie</a>
-*/
+	/**
+ The distance of the data label from the pie's edge. Negative numbers put the data label on top of the pie slices. Connectors are only shown for data labels outside the pie. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-distance/">Data labels on top of the pie</a>
+	*/
 	public void setDistance(Number distance) {
 		this.distance = distance;
 		this.setChanged();
@@ -495,19 +491,11 @@ public class HIDataLabels extends Observable implements HIChartsJSONSerializable
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.defer != null) {
 			params.put("defer", this.defer);
 		}

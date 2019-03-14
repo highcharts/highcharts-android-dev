@@ -8,24 +8,20 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-
-
-public class HIMapDataObject extends Observable implements HIChartsJSONSerializable { 
+public class HIMapDataObject extends HIFoundation { 
 
 	private String name;
-/**
-/** The name of the data. 
-*/
+	/**
+ The name of the data. 
+	*/
 	public void setName(String name) {
 		this.name = name;
 		this.setChanged();
@@ -34,22 +30,22 @@ public class HIMapDataObject extends Observable implements HIChartsJSONSerializa
 
 	public String getName(){ return name; }
 
-	private ArrayList /* <Number, String> */ path;
-/**
-/** The SVG path. 
-*/
-	public void setPath(ArrayList /* <Number, String> */ path) {
+	private List /* <Number, String> */ path;
+	/**
+ The SVG path. 
+	*/
+	public void setPath(List /* <Number, String> */ path) {
 		this.path = path;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList /* <Number, String> */ getPath(){ return path; }
+	public List /* <Number, String> */ getPath(){ return path; }
 
 	private Object properties;
-/**
-/** The GeoJSON meta data. 
-*/
+	/**
+ The GeoJSON meta data. 
+	*/
 	public void setProperties(Object properties) {
 		this.properties = properties;
 		this.setChanged();
@@ -64,27 +60,19 @@ public class HIMapDataObject extends Observable implements HIChartsJSONSerializa
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.name != null) {
 			params.put("name", this.name);
 		}
 		if (this.path != null) {
-			ArrayList<Object> array = new ArrayList<>();
+			List<Object> array = new List<>();
 			for (Object obj : this.path) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
 				}
 				else {
 					array.add(obj);

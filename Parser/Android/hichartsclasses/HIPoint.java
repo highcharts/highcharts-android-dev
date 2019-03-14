@@ -8,19 +8,15 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Map;
+import java.util.List;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-
-
-public class HIPoint extends Observable implements HIChartsJSONSerializable { 
+public class HIPoint extends HIFoundation { 
 
 	private HIEvents events;
 	public void setEvents(HIEvents events) {
@@ -33,9 +29,9 @@ public class HIPoint extends Observable implements HIChartsJSONSerializable {
 	public HIEvents getEvents(){ return events; }
 
 	private Number y;
-/**
-/** The y position of the point. Units can be either in axis or chart pixel coordinates. 
-*/
+	/**
+ The y position of the point. Units can be either in axis or chart pixel coordinates. 
+	*/
 	public void setY(Number y) {
 		this.y = y;
 		this.setChanged();
@@ -45,9 +41,9 @@ public class HIPoint extends Observable implements HIChartsJSONSerializable {
 	public Number getY(){ return y; }
 
 	private Number x;
-/**
-/** The x position of the point. Units can be either in axis or chart pixel coordinates. 
-*/
+	/**
+ The x position of the point. Units can be either in axis or chart pixel coordinates. 
+	*/
 	public void setX(Number x) {
 		this.x = x;
 		this.setChanged();
@@ -57,9 +53,9 @@ public class HIPoint extends Observable implements HIChartsJSONSerializable {
 	public Number getX(){ return x; }
 
 	private Object /* Number, String */ xAxis;
-/**
-/** This number defines which xAxis the point is connected to. It refers to either the axis id or the index of the axis in the xAxis array. If the option is not configured or the axis is not found the point's x coordinate refers to the chart pixels. 
-*/
+	/**
+ This number defines which xAxis the point is connected to. It refers to either the axis id or the index of the axis in the xAxis array. If the option is not configured or the axis is not found the point's x coordinate refers to the chart pixels. 
+	*/
 	public void setXAxis(Object /* Number, String */ xAxis) {
 		this.xAxis = xAxis;
 		this.setChanged();
@@ -69,9 +65,9 @@ public class HIPoint extends Observable implements HIChartsJSONSerializable {
 	public Object /* Number, String */ getXAxis(){ return xAxis; }
 
 	private Object /* Number, String */ yAxis;
-/**
-/** This number defines which yAxis the point is connected to. It refers to either the axis id or the index of the axis in the yAxis array. If the option is not configured or the axis is not found the point's y coordinate refers to the chart pixels. 
-*/
+	/**
+ This number defines which yAxis the point is connected to. It refers to either the axis id or the index of the axis in the yAxis array. If the option is not configured or the axis is not found the point's y coordinate refers to the chart pixels. 
+	*/
 	public void setYAxis(Object /* Number, String */ yAxis) {
 		this.yAxis = yAxis;
 		this.setChanged();
@@ -86,19 +82,11 @@ public class HIPoint extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public Map<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new Map<>();
+		params = params.put("_wrapperID", this.uuid);
 		if (this.events != null) {
 			params.put("events", this.events.getParams());
 		}
