@@ -26,12 +26,11 @@ class HICustomFont {
         String name = path.substring(path.lastIndexOf("/")+1, path.length());
         String fontFaceTemplate = "<style type=\"text/css\">@font-face { font-family: '%s'; src: url('file:///android_res/font/%s'); } </style>";
         this.fontStyle = this.fontStyle + String.format(fontFaceTemplate, fontName, name);
-        Log.e("HC", "FontStyle: " + this.fontStyle);
+        Log.i(TAG, "FontStyle: " + this.fontStyle);
         return true;
     }
 
     public String getFont() {
-        Log.e("HC", "FontStyle in getter: " + this.fontStyle);
         return this.fontStyle;
     }
 }

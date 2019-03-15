@@ -61,19 +61,23 @@ public class IssuesActivity extends AppCompatActivity {
             }
         });
         HIChartView chartView = findViewById(R.id.hc);
+        chartView.addFont(R.font.griphite);
         chartView.plugins = new ArrayList<>();
         chartView.plugins.add("data");
-        chartView.addFont(R.font.griphite);
+
+        HICSSObject style = new HICSSObject();
+        style.setFontFamily("griphite");
+        HITitle title = new HITitle();
+        title.setStyle(style);
 
         HIOptions options = new HIOptions();
-        HITitle title = new HITitle();
         title.setText("EXAMPLE TITLE");
         options.setTitle(title);
         HIChart chart = new HIChart();
-        chart.setPanning(true);
-        chart.setZoomType("x");
         chart.setStyle(new HICSSObject());
         chart.getStyle().setFontFamily("griphite");
+        chart.setPanning(true);
+        chart.setZoomType("x");
         options.setChart(chart);
         HIXAxis hixAxis = new HIXAxis();
         options.setXAxis(new ArrayList<>(Collections.singletonList(hixAxis)));
