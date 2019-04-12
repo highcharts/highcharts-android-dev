@@ -8,27 +8,19 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-
-import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
-
-
-public class HIPlotLines extends HIFoundation implements HIChartsJSONSerializable {
+public class HIPlotLines extends HIFoundation { 
 
 	private Number zIndex;
-/**
-/** The z index of the plot line within the chart. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-zindex-behind/">Behind plot lines by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-zindex-above/">Above plot lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-zindex-above-all/">Above plot lines and series</a>
-*/
+	/**
+ The z index of the plot line within the chart. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-zindex-behind/">Behind plot lines by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-zindex-above/">Above plot lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-zindex-above-all/">Above plot lines and series</a>
+	*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
 		this.setChanged();
@@ -38,9 +30,9 @@ public class HIPlotLines extends HIFoundation implements HIChartsJSONSerializabl
 	public Number getZIndex(){ return zIndex; }
 
 	private String dashStyle;
-/**
-/** The dashing or dot style for the plot line. For possible values see [this overview](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-dashstyle/">Dash and dot pattern</a>
- <br><br><b>defaults:</b><br><br>&ensp;Solid*/
+	/**
+ The dashing or dot style for the plot line. For possible values see [this overview](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-dashstyle/">Dash and dot pattern</a>
+ <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
 	public void setDashStyle(String dashStyle) {
 		this.dashStyle = dashStyle;
 		this.setChanged();
@@ -50,9 +42,9 @@ public class HIPlotLines extends HIFoundation implements HIChartsJSONSerializabl
 	public String getDashStyle(){ return dashStyle; }
 
 	private HIColor color;
-/**
-/** The color of the line. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">A red line from X axis</a>
-*/
+	/**
+ The color of the line. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">A red line from X axis</a>
+	*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -62,9 +54,9 @@ public class HIPlotLines extends HIFoundation implements HIChartsJSONSerializabl
 	public HIColor getColor(){ return color; }
 
 	private Number value;
-/**
-/** The position of the line in axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">Between two categories on X axis</a>
-*/
+	/**
+ The position of the line in axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">Between two categories on X axis</a>
+	*/
 	public void setValue(Number value) {
 		this.value = value;
 		this.setChanged();
@@ -74,9 +66,9 @@ public class HIPlotLines extends HIFoundation implements HIChartsJSONSerializabl
 	public Number getValue(){ return value; }
 
 	private HILabel label;
-/**
-/** Text labels for the plot bands 
-*/
+	/**
+ Text labels for the plot bands 
+	*/
 	public void setLabel(HILabel label) {
 		this.label = label;
 		this.label.addObserver(updateObserver);
@@ -87,9 +79,9 @@ public class HIPlotLines extends HIFoundation implements HIChartsJSONSerializabl
 	public HILabel getLabel(){ return label; }
 
 	private String className;
-/**
-/** A custom class name, in addition to the defaults highcharts-plot-line, to apply to each individual line. 
-*/
+	/**
+ A custom class name, in addition to the defaults highcharts-plot-line, to apply to each individual line. 
+	*/
 	public void setClassName(String className) {
 		this.className = className;
 		this.setChanged();
@@ -99,9 +91,9 @@ public class HIPlotLines extends HIFoundation implements HIChartsJSONSerializabl
 	public String getClassName(){ return className; }
 
 	private Number width;
-/**
-/** The width or thickness of the plot line. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">2px wide line from X axis</a>
-*/
+	/**
+ The width or thickness of the plot line. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">2px wide line from X axis</a>
+	*/
 	public void setWidth(Number width) {
 		this.width = width;
 		this.setChanged();
@@ -111,9 +103,9 @@ public class HIPlotLines extends HIFoundation implements HIChartsJSONSerializabl
 	public Number getWidth(){ return width; }
 
 	private String id;
-/**
-/** An id used for identifying the plot line in Axis.removePlotLine. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-id/">Remove plot line by id</a>
-*/
+	/**
+ An id used for identifying the plot line in Axis.removePlotLine. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-id/">Remove plot line by id</a>
+	*/
 	public void setId(String id) {
 		this.id = id;
 		this.setChanged();
@@ -123,9 +115,9 @@ public class HIPlotLines extends HIFoundation implements HIChartsJSONSerializabl
 	public String getId(){ return id; }
 
 	private Object events;
-/**
-/** An object defining mouse events for the plot line. Supported properties are click, mouseover, mouseout, mousemove. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-events/">Mouse events demonstrated</a>
-*/
+	/**
+ An object defining mouse events for the plot line. Supported properties are click, mouseover, mouseout, mousemove. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-events/">Mouse events demonstrated</a>
+	*/
 	public void setEvents(Object events) {
 		this.events = events;
 		this.setChanged();
@@ -133,12 +125,6 @@ public class HIPlotLines extends HIFoundation implements HIChartsJSONSerializabl
 	}
 
 	public Object getEvents(){ return events; }
-
-
-
-	public HIPlotLines() {
-
-	}
 
 	/**
 	 * Remove the plot line.
@@ -153,9 +139,15 @@ public class HIPlotLines extends HIFoundation implements HIChartsJSONSerializabl
 		this.notifyObservers(jsClassMethod);
 	}
 
-	public Map<String, Object> getParams() {
+	public HIPlotLines() {
 
-		Map<String, Object> params = new HashMap<>();
+	}
+
+	@Override
+public HashMap<String, Object> getParams() {
+
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.zIndex != null) {
 			params.put("zIndex", this.zIndex);
 		}

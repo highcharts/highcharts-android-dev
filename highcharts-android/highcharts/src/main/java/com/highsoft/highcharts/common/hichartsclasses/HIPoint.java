@@ -8,23 +8,64 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import com.highsoft.highcharts.core.HIFoundation;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-
-import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 
 
+public class HIPoint extends HIFoundation { 
 
+	private Number y;
+	/**
+ The y position of the point. Units can be either in axis or chart pixel coordinates. 
+	*/
+	public void setY(Number y) {
+		this.y = y;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
-public class HIPoint extends HIFoundation {
+	public Number getY(){ return y; }
+
+	private Number x;
+	/**
+ The x position of the point. Units can be either in axis or chart pixel coordinates. 
+	*/
+	public void setX(Number x) {
+		this.x = x;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getX(){ return x; }
+
+	private Object /* Number, String */ xAxis;
+	/**
+ This number defines which xAxis the point is connected to. It refers to either the axis id or the index of the axis in the xAxis array. If the option is not configured or the axis is not found the point's x coordinate refers to the chart pixels. 
+	*/
+	public void setXAxis(Object /* Number, String */ xAxis) {
+		this.xAxis = xAxis;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getXAxis(){ return xAxis; }
+
+	private Object /* Number, String */ yAxis;
+	/**
+ This number defines which yAxis the point is connected to. It refers to either the axis id or the index of the axis in the yAxis array. If the option is not configured or the axis is not found the point's y coordinate refers to the chart pixels. 
+	*/
+	public void setYAxis(Object /* Number, String */ yAxis) {
+		this.yAxis = yAxis;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getYAxis(){ return yAxis; }
 
 	private HIEvents events;
 	public void setEvents(HIEvents events) {
@@ -35,60 +76,6 @@ public class HIPoint extends HIFoundation {
 	}
 
 	public HIEvents getEvents(){ return events; }
-
-	private Number y;
-/**
-/** The y position of the point. Units can be either in axis or chart pixel coordinates. 
-*/
-	public void setY(Number y) {
-		this.y = y;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getY(){ return y; }
-
-	private Number x;
-/**
-/** The x position of the point. Units can be either in axis or chart pixel coordinates. 
-*/
-	public void setX(Number x) {
-		this.x = x;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getX(){ return x; }
-
-	private Object /* Number, String */ xAxis;
-/**
-/** This number defines which xAxis the point is connected to. It refers to either the axis id or the index of the axis in the xAxis array. If the option is not configured or the axis is not found the point's x coordinate refers to the chart pixels. 
-*/
-	public void setXAxis(Object /* Number, String */ xAxis) {
-		this.xAxis = xAxis;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object /* Number, String */ getXAxis(){ return xAxis; }
-
-	private Object /* Number, String */ yAxis;
-/**
-/** This number defines which yAxis the point is connected to. It refers to either the axis id or the index of the axis in the yAxis array. If the option is not configured or the axis is not found the point's y coordinate refers to the chart pixels. 
-*/
-	public void setYAxis(Object /* Number, String */ yAxis) {
-		this.yAxis = yAxis;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object /* Number, String */ getYAxis(){ return yAxis; }
-
-
-
-	public HIPoint() {
-		super();
-	}
 
 	/**
 	 * Cancel sonification of a point. Calls onEnd functions.
@@ -351,13 +338,15 @@ public class HIPoint extends HIFoundation {
 		this.notifyObservers(jsClassMethod);
 	}
 
-	@Override
-	public Map<String, Object> getParams() {
+	public HIPoint() {
 
-		Map<String, Object> params = new HashMap<>();
-		if (this.events != null) {
-			params.put("events", this.events.getParams());
-		}
+	}
+
+	@Override
+public HashMap<String, Object> getParams() {
+
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.y != null) {
 			params.put("y", this.y);
 		}
@@ -369,6 +358,9 @@ public class HIPoint extends HIFoundation {
 		}
 		if (this.yAxis != null) {
 			params.put("yAxis", this.yAxis);
+		}
+		if (this.events != null) {
+			params.put("events", this.events.getParams());
 		}
 		return params;
 	}

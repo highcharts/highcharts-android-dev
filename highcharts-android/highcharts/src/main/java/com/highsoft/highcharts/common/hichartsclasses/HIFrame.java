@@ -8,24 +8,18 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import com.highsoft.highcharts.core.HIFoundation;
+
 import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 
 
-
-
-public class HIFrame extends Observable implements HIChartsJSONSerializable { 
+public class HIFrame extends HIFoundation { 
 
 	private HIRight right;
-/**
-/** The right of the frame around a 3D chart. 
-*/
+	/**
+ The right of the frame around a 3D chart. 
+	*/
 	public void setRight(HIRight right) {
 		this.right = right;
 		this.right.addObserver(updateObserver);
@@ -36,9 +30,9 @@ public class HIFrame extends Observable implements HIChartsJSONSerializable {
 	public HIRight getRight(){ return right; }
 
 	private HIBottom bottom;
-/**
-/** The bottom of the frame around a 3D chart. 
-*/
+	/**
+ The bottom of the frame around a 3D chart. 
+	*/
 	public void setBottom(HIBottom bottom) {
 		this.bottom = bottom;
 		this.bottom.addObserver(updateObserver);
@@ -49,9 +43,9 @@ public class HIFrame extends Observable implements HIChartsJSONSerializable {
 	public HIBottom getBottom(){ return bottom; }
 
 	private HITop top;
-/**
-/** The top of the frame around a 3D chart. 
-*/
+	/**
+ The top of the frame around a 3D chart. 
+	*/
 	public void setTop(HITop top) {
 		this.top = top;
 		this.top.addObserver(updateObserver);
@@ -62,9 +56,9 @@ public class HIFrame extends Observable implements HIChartsJSONSerializable {
 	public HITop getTop(){ return top; }
 
 	private HIBack back;
-/**
-/** The back side of the frame around a 3D chart. 
-*/
+	/**
+ The back side of the frame around a 3D chart. 
+	*/
 	public void setBack(HIBack back) {
 		this.back = back;
 		this.back.addObserver(updateObserver);
@@ -75,9 +69,9 @@ public class HIFrame extends Observable implements HIChartsJSONSerializable {
 	public HIBack getBack(){ return back; }
 
 	private String visible;
-/**
-/** Whether the frames are visible. 
-*/
+	/**
+ Whether the frames are visible. 
+	*/
 	public void setVisible(String visible) {
 		this.visible = visible;
 		this.setChanged();
@@ -87,9 +81,9 @@ public class HIFrame extends Observable implements HIChartsJSONSerializable {
 	public String getVisible(){ return visible; }
 
 	private HIFront front;
-/**
-/** The front of the frame around a 3D chart. 
-*/
+	/**
+ The front of the frame around a 3D chart. 
+	*/
 	public void setFront(HIFront front) {
 		this.front = front;
 		this.front.addObserver(updateObserver);
@@ -100,9 +94,9 @@ public class HIFrame extends Observable implements HIChartsJSONSerializable {
 	public HIFront getFront(){ return front; }
 
 	private Number size;
-/**
-/** General pixel thickness for the frame faces. 
-*/
+	/**
+ General pixel thickness for the frame faces. 
+	*/
 	public void setSize(Number size) {
 		this.size = size;
 		this.setChanged();
@@ -112,9 +106,9 @@ public class HIFrame extends Observable implements HIChartsJSONSerializable {
 	public Number getSize(){ return size; }
 
 	private HILeft left;
-/**
-/** The left side of the frame around a 3D chart. 
-*/
+	/**
+ The left side of the frame around a 3D chart. 
+	*/
 	public void setLeft(HILeft left) {
 		this.left = left;
 		this.left.addObserver(updateObserver);
@@ -130,19 +124,11 @@ public class HIFrame extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.right != null) {
 			params.put("right", this.right.getParams());
 		}

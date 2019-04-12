@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -18,17 +18,30 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 public class HIAnnotations extends HIFoundation { 
 
-	private List <HIShapes> shapes;
+	private ArrayList <HIShapes> shapes;
 	/**
  An array of shapes for the annotation. For options that apply to multiple shapes, then can be added to the `shapeOptions`. 
 	*/
-	public void setShapes(List shapes) {
+	public void setShapes(ArrayList shapes) {
 		this.shapes = shapes;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List getShapes(){ return shapes; }
+	public ArrayList getShapes(){ return shapes; }
+
+	private HIShapeOptions shapeOptions;
+	/**
+ Options for annotation's shapes. Each shape inherits options from the shapeOptions object. An option from the shapeOptions can be overwritten by config for a specific shape. 
+	*/
+	public void setShapeOptions(HIShapeOptions shapeOptions) {
+		this.shapeOptions = shapeOptions;
+		this.shapeOptions.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIShapeOptions getShapeOptions(){ return shapeOptions; }
 
 	private Number zIndex;
 	/**
@@ -54,6 +67,18 @@ public class HIAnnotations extends HIFoundation {
 
 	public Boolean getVisible(){ return visible; }
 
+	private ArrayList <HILabels> labels;
+	/**
+ An array of labels for the annotation. For options that apply to multiple labels, they can be added to the `labelOptions`. 
+	*/
+	public void setLabels(ArrayList labels) {
+		this.labels = labels;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList getLabels(){ return labels; }
+
 	private HILabelOptions labelOptions;
 	/**
  Options for annotation's labels. Each label inherits options from the labelOptions object. An option from the labelOptions can be overwritten by config for a specific label. 
@@ -67,17 +92,15 @@ public class HIAnnotations extends HIFoundation {
 
 	public HILabelOptions getLabelOptions(){ return labelOptions; }
 
-	private List <HILabels> labels;
-	/**
- An array of labels for the annotation. For options that apply to multiple labels, they can be added to the `labelOptions`. 
-	*/
-	public void setLabels(List labels) {
-		this.labels = labels;
+	private HIEvents events;
+	public void setEvents(HIEvents events) {
+		this.events = events;
+		this.events.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List getLabels(){ return labels; }
+	public HIEvents getEvents(){ return events; }
 
 	private String draggable;
 	/**
@@ -90,19 +113,6 @@ public class HIAnnotations extends HIFoundation {
 	}
 
 	public String getDraggable(){ return draggable; }
-
-	private HIShapeOptions shapeOptions;
-	/**
- Options for annotation's shapes. Each shape inherits options from the shapeOptions object. An option from the shapeOptions can be overwritten by config for a specific shape. 
-	*/
-	public void setShapeOptions(HIShapeOptions shapeOptions) {
-		this.shapeOptions = shapeOptions;
-		this.shapeOptions.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIShapeOptions getShapeOptions(){ return shapeOptions; }
 
 	private String id;
 	/**
@@ -123,12 +133,12 @@ public class HIAnnotations extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.shapes != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.shapes) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -139,17 +149,17 @@ public Map<String, Object> getParams() {
 			}
 			params.put("shapes", array);
 		}
+		if (this.shapeOptions != null) {
+			params.put("shapeOptions", this.shapeOptions.getParams());
+		}
 		if (this.zIndex != null) {
 			params.put("zIndex", this.zIndex);
 		}
 		if (this.visible != null) {
 			params.put("visible", this.visible);
 		}
-		if (this.labelOptions != null) {
-			params.put("labelOptions", this.labelOptions.getParams());
-		}
 		if (this.labels != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.labels) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -160,11 +170,14 @@ public Map<String, Object> getParams() {
 			}
 			params.put("labels", array);
 		}
+		if (this.labelOptions != null) {
+			params.put("labelOptions", this.labelOptions.getParams());
+		}
+		if (this.events != null) {
+			params.put("events", this.events.getParams());
+		}
 		if (this.draggable != null) {
 			params.put("draggable", this.draggable);
-		}
-		if (this.shapeOptions != null) {
-			params.put("shapeOptions", this.shapeOptions.getParams());
 		}
 		if (this.id != null) {
 			params.put("id", this.id);

@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -18,6 +18,16 @@ import com.highsoft.highcharts.common.HIColor;
 
 
 public class HIMarker extends HIFoundation { 
+
+	private HIStates states;
+	public void setStates(HIStates states) {
+		this.states = states;
+		this.states.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIStates getStates(){ return states; }
 
 	private Boolean enabled;
 	public void setEnabled(Boolean enabled) {
@@ -54,8 +64,8 @@ public class HIMarker extends HIFoundation {
 
 	private String symbol;
 	/**
- A predefined shape or symbol for the marker. When undefined, the symbol is pulled from options.symbols. Other possible values are "circle", "square", "diamond", "triangle" and "triangle-down". Additionally, the URL to a graphic can be given on this form: "url(graphic.png)". Note that for the image to be applied to exported charts, its URL needs to be accessible by the export server. Custom callbacks for symbol path generation can also be added to Highcharts.SVGRenderer.prototype.symbols. The callback is then used by its method name, as shown in the demo. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-symbol/">Predefined, graphic and custom markers</a>
-	*/
+/** * description: A predefined shape or symbol for the marker. When undefined, the symbol is pulled from options.symbols. Other possible values are "circle", "square", "diamond", "triangle" and "triangle-down". Additionally, the URL to a graphic can be given on this form: "url(graphic.png)". Note that for the image to be applied to exported charts, its URL needs to be accessible by the export server. Custom callbacks for symbol path generation can also be added to Highcharts.SVGRenderer.prototype.symbols. The callback is then used by its method name, as shown in the demo. * demo:  •  Predefined, graphic and custom markers
+*/
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
 		this.setChanged();
@@ -64,47 +74,10 @@ public class HIMarker extends HIFoundation {
 
 	public String getSymbol(){ return symbol; }
 
-	private HIStates states;
-	/**
- States for a single point marker. 
-	*/
-	public void setStates(HIStates states) {
-		this.states = states;
-		this.states.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIStates getStates(){ return states; }
-
-	private HIColor fillColor;
-	/**
- The fill color of the point marker. When undefined, the series' or point's color is used. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-fillcolor/">White fill</a>
-	*/
-	public void setFillColor(HIColor fillColor) {
-		this.fillColor = fillColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getFillColor(){ return fillColor; }
-
-	private HIColor lineColor;
-	/**
- The color of the point marker's outline. When undefined, the series' or point's color is used. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-fillcolor/">Inherit from series color (undefined)</a>
-	*/
-	public void setLineColor(HIColor lineColor) {
-		this.lineColor = lineColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getLineColor(){ return lineColor; }
-
 	private Number lineWidth;
 	/**
- The width of the point marker's outline. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-fillcolor/">2px blue marker</a>
-	*/
+/** * description: The width of the point marker's outline. * demo:  •  2px blue marker
+*/
 	public void setLineWidth(Number lineWidth) {
 		this.lineWidth = lineWidth;
 		this.setChanged();
@@ -113,10 +86,31 @@ public class HIMarker extends HIFoundation {
 
 	public Number getLineWidth(){ return lineWidth; }
 
-	private Number fillOpacity;
+	private Object fillColor;
 	/**
- The fill opacity of the bubble markers. 
-	*/
+/** * description: The fill color of the point marker. When undefined, the series' or point's color is used. * demo:  •  White fill
+*/
+	public void setFillColor(Object fillColor) {
+		this.fillColor = fillColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getFillColor(){ return fillColor; }
+
+	private Object lineColor;
+	/**
+/** * description: The color of the point marker's outline. When undefined, the series' or point's color is used. * demo:  •  Inherit from series color (undefined)
+*/
+	public void setLineColor(Object lineColor) {
+		this.lineColor = lineColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getLineColor(){ return lineColor; }
+
+	private Number fillOpacity;
 	public void setFillOpacity(Number fillOpacity) {
 		this.fillOpacity = fillOpacity;
 		this.setChanged();
@@ -180,10 +174,13 @@ public class HIMarker extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
+		if (this.states != null) {
+			params.put("states", this.states.getParams());
+		}
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);
 		}
@@ -196,17 +193,14 @@ public Map<String, Object> getParams() {
 		if (this.symbol != null) {
 			params.put("symbol", this.symbol);
 		}
-		if (this.states != null) {
-			params.put("states", this.states.getParams());
-		}
-		if (this.fillColor != null) {
-			params.put("fillColor", this.fillColor.getData());
-		}
-		if (this.lineColor != null) {
-			params.put("lineColor", this.lineColor.getData());
-		}
 		if (this.lineWidth != null) {
 			params.put("lineWidth", this.lineWidth);
+		}
+		if (this.fillColor != null) {
+			params.put("fillColor", this.fillColor);
+		}
+		if (this.lineColor != null) {
+			params.put("lineColor", this.lineColor);
 		}
 		if (this.fillOpacity != null) {
 			params.put("fillOpacity", this.fillOpacity);

@@ -8,24 +8,20 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 
-
-
-public class HIStockToolsBindingsObject extends Observable implements HIChartsJSONSerializable { 
+public class HIStockToolsBindingsObject extends HIFoundation { 
 
 	private String className;
-/**
-/** ClassName of the element for a binding. 
-*/
+	/**
+ ClassName of the element for a binding. 
+	*/
 	public void setClassName(String className) {
 		this.className = className;
 		this.setChanged();
@@ -35,9 +31,9 @@ public class HIStockToolsBindingsObject extends Observable implements HIChartsJS
 	public String getClassName(){ return className; }
 
 	private HIFunction end;
-/**
-/** Last event to be fired after last step event. 
-*/
+	/**
+ Last event to be fired after last step event. 
+	*/
 	public void setEnd(HIFunction end) {
 		this.end = end;
 		this.setChanged();
@@ -47,9 +43,9 @@ public class HIStockToolsBindingsObject extends Observable implements HIChartsJS
 	public HIFunction getEnd(){ return end; }
 
 	private HIFunction init;
-/**
-/** Initial event, fired on a button click. 
-*/
+	/**
+ Initial event, fired on a button click. 
+	*/
 	public void setInit(HIFunction init) {
 		this.init = init;
 		this.setChanged();
@@ -59,9 +55,9 @@ public class HIStockToolsBindingsObject extends Observable implements HIChartsJS
 	public HIFunction getInit(){ return init; }
 
 	private HIFunction start;
-/**
-/** Event fired on first click on a chart. 
-*/
+	/**
+ Event fired on first click on a chart. 
+	*/
 	public void setStart(HIFunction start) {
 		this.start = start;
 		this.setChanged();
@@ -71,9 +67,9 @@ public class HIStockToolsBindingsObject extends Observable implements HIChartsJS
 	public HIFunction getStart(){ return start; }
 
 	private ArrayList<HIFunction> steps;
-/**
-/** Last event to be fired after last step event. Array of step events to be called sequentially after each user click. 
-*/
+	/**
+ Last event to be fired after last step event. Array of step events to be called sequentially after each user click. 
+	*/
 	public void setSteps(ArrayList<HIFunction> steps) {
 		this.steps = steps;
 		this.setChanged();
@@ -88,19 +84,11 @@ public class HIStockToolsBindingsObject extends Observable implements HIChartsJS
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.className != null) {
 			params.put("className", this.className);
 		}
@@ -116,8 +104,8 @@ public class HIStockToolsBindingsObject extends Observable implements HIChartsJS
 		if (this.steps != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.steps) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
 				}
 				else {
 					array.add(obj);

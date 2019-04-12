@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -32,17 +32,17 @@ public class HIContextButton extends HIFoundation {
 
 	public HIColor getSymbolFill(){ return symbolFill; }
 
-	private List<String> menuItems;
+	private ArrayList<String> menuItems;
 	/**
- A collection of strings pointing to config options for the menu items. The config options are defined in the menuItemDefinitions option. By defaults, there is the "Print" menu item plus one menu item for each of the available export types. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/menuitemdefinitions/">Menu item definitions</a>
- <br><br><b>defaults:</b><br><br>&ensp;["printChart", "separator", "downloadPNG", "downloadJPEG", "downloadPDF", "downloadSVG"]	*/
-	public void setMenuItems(List<String> menuItems) {
+ A collection of strings pointing to config options for the menu items. The config options are defined in the menuItemDefinitions option. By defaults, there is the "View in full screen" and "Print" menu items, plus one menu item for each of the available export types. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/menuitemdefinitions/">Menu item definitions</a>
+ <br><br><b>defaults:</b><br><br>&ensp;["viewFullscreen", "printChart", "separator", "downloadPNG", "downloadJPEG", "downloadPDF", "downloadSVG"]	*/
+	public void setMenuItems(ArrayList<String> menuItems) {
 		this.menuItems = menuItems;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<String> getMenuItems(){ return menuItems; }
+	public ArrayList<String> getMenuItems(){ return menuItems; }
 
 	private String className;
 	/**
@@ -106,7 +106,7 @@ public class HIContextButton extends HIFoundation {
 
 	private String symbol;
 	/**
- The symbol for the button. Points to a definition function in the Highcharts.Renderer.symbols collection. The defaults exportIcon function is part of the exporting module. Possible values are "circle", "square", "diamond", "triangle", "triangle-down", "menu", "menuball" or custom shape. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-contextbutton-symbol/">Use a circle for symbol</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-contextbutton-symbol-custom/">Custom shape as symbol</a> <br><br><b>accepted values:</b><br><br>&ensp;["menu", "menuball", "exportIcon", "circle", "square", "diamond", "triangle", "triangle-down"]
+ The symbol for the button. Points to a definition function in the Highcharts.Renderer.symbols collection. The defaults exportIcon function is part of the exporting module. Possible values are "circle", "square", "diamond", "triangle", "triangle-down", "menu", "menuball" or custom shape. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-contextbutton-symbol/">Use a circle for symbol</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/buttons-contextbutton-symbol-custom/">Custom shape as symbol</a>
 	*/
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
@@ -196,15 +196,15 @@ public class HIContextButton extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.symbolFill != null) {
 			params.put("symbolFill", this.symbolFill.getData());
 		}
 		if (this.menuItems != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.menuItems) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

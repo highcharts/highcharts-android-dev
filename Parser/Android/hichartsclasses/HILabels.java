@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -19,17 +19,17 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HILabels extends HIFoundation { 
 
-	private List <HIItems> items;
+	private ArrayList <HIItems> items;
 	/**
  An HTML label that can be positioned anywhere in the chart area. 
 	*/
-	public void setItems(List items) {
+	public void setItems(ArrayList items) {
 		this.items = items;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List getItems(){ return items; }
+	public ArrayList getItems(){ return items; }
 
 	private HICSSObject style;
 	/**
@@ -58,7 +58,7 @@ public class HILabels extends HIFoundation {
 
 	private String align;
 	/**
-/** * description: What part of the string the given position is anchored to. Can be one of "left", "center" or "right". The exact position also depends on the labels.x setting. Angular gauges and solid gauges defaultss to center. * demo:  •  Left* accepted values: ["left", "center", "right"] 
+/** * description: What part of the string the given position is anchored to. Can be one of "left", "center" or "right". The exact position also depends on the labels.x setting. Angular gauges and solid gauges defaultss to "center". * demo:  •  Left
 * defaults: right
 */
 	public void setAlign(String align) {
@@ -190,17 +190,17 @@ public class HILabels extends HIFoundation {
 
 	public HIFunction getFormatter(){ return formatter; }
 
-	private List<Number> autoRotation;
+	private ArrayList<Number> autoRotation;
 	/**
  For horizontal axes, the allowed degrees of label rotation to prevent overlapping labels. If there is enough space, labels are not rotated. As the chart gets narrower, it will start rotating the labels -45 degrees, then remove every second label and try again with rotations 0 and -45 etc. Set it to false to disable rotation, which will cause the labels to word-wrap if possible. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-autorotation-defaults/">Default auto rotation of 0 or -45</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-autorotation-0-90/">Custom graded auto rotation</a>
  <br><br><b>defaults:</b><br><br>&ensp;[-45]	*/
-	public void setAutoRotation(List<Number> autoRotation) {
+	public void setAutoRotation(ArrayList<Number> autoRotation) {
 		this.autoRotation = autoRotation;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<Number> getAutoRotation(){ return autoRotation; }
+	public ArrayList<Number> getAutoRotation(){ return autoRotation; }
 
 	private Number padding;
 	/**
@@ -426,12 +426,12 @@ public class HILabels extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.items != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.items) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -482,7 +482,7 @@ public Map<String, Object> getParams() {
 			params.put("formatter", this.formatter);
 		}
 		if (this.autoRotation != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.autoRotation) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

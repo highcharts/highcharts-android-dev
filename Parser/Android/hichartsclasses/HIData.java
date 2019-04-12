@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -91,29 +91,29 @@ public class HIData extends HIFoundation {
 
 	public HIFunction getParseDate(){ return parseDate; }
 
-	private List seriesMapping;
+	private ArrayList seriesMapping;
 	/**
  An array containing dictionaries for each series. A dictionary exists of Point property names as the key and the CSV column index as the value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/seriesmapping-label/">Label from data set</a>
 	*/
-	public void setSeriesMapping(List seriesMapping) {
+	public void setSeriesMapping(ArrayList seriesMapping) {
 		this.seriesMapping = seriesMapping;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List getSeriesMapping(){ return seriesMapping; }
+	public ArrayList getSeriesMapping(){ return seriesMapping; }
 
-	private List<List> rows;
+	private ArrayList<ArrayList> rows;
 	/**
  The same as the columns input option, but defining rows intead of columns. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/rows/">Data in rows</a>
 	*/
-	public void setRows(List<List> rows) {
+	public void setRows(ArrayList<ArrayList> rows) {
 		this.rows = rows;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<List> getRows(){ return rows; }
+	public ArrayList<ArrayList> getRows(){ return rows; }
 
 	private String csvURL;
 	/**
@@ -199,17 +199,17 @@ public class HIData extends HIFoundation {
 
 	public String getCsv(){ return csv; }
 
-	private List<List> columns;
+	private ArrayList<ArrayList> columns;
 	/**
  A two-dimensional array representing the input data on tabular form. This input can be used when the data is already parsed, for example from a grid view component. Each cell can be a string or number. If not switchRowsAndColumns is set, the columns are interpreted as series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/columns/">Columns</a>
 	*/
-	public void setColumns(List<List> columns) {
+	public void setColumns(ArrayList<ArrayList> columns) {
 		this.columns = columns;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<List> getColumns(){ return columns; }
+	public ArrayList<ArrayList> getColumns(){ return columns; }
 
 	private Number endRow;
 	/**
@@ -429,7 +429,7 @@ public class HIData extends HIFoundation {
 
 	private String name;
 	/**
- The name of the point as shown in the legend, tooltip, dataLabel etc. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-objects/">Point names</a>
+ The name of the point as shown in the legend, tooltip, dataLabels etc. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-objects/">Point names</a>
 	*/
 	public void setName(String name) {
 		this.name = name;
@@ -463,17 +463,27 @@ public class HIData extends HIFoundation {
 
 	public Boolean getSelected(){ return selected; }
 
-	private Object dataLabels;
+	private HIAccessibility accessibility;
+	public void setAccessibility(HIAccessibility accessibility) {
+		this.accessibility = accessibility;
+		this.accessibility.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAccessibility getAccessibility(){ return accessibility; }
+
+	private HIDataLabelsOptionsObject dataLabels;
 	/**
  Individual data label for each point. The options are the same as the ones for plotOptions.series.dataLabels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/datalabels/">Show a label for the last value</a>
 	*/
-	public void setDataLabels(Object dataLabels) {
+	public void setDataLabels(HIDataLabelsOptionsObject dataLabels) {
 		this.dataLabels = dataLabels;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getDataLabels(){ return dataLabels; }
+	public HIDataLabelsOptionsObject getDataLabels(){ return dataLabels; }
 
 	private String className;
 	/**
@@ -583,17 +593,17 @@ public class HIData extends HIFoundation {
 
 	public HIMarker getMarker(){ return marker; }
 
-	private Number weight;
+	private String label;
 	/**
- The value of a bubble. The bubble's size proportional to its value. 
+ The label of event. 
 	*/
-	public void setWeight(Number weight) {
-		this.weight = weight;
+	public void setLabel(String label) {
+		this.label = label;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getWeight(){ return weight; }
+	public String getLabel(){ return label; }
 
 	private Number direction;
 	/**
@@ -680,6 +690,18 @@ public class HIData extends HIFoundation {
 
 	public Number getBorderWidth(){ return borderWidth; }
 
+	private Boolean sliced;
+	/**
+ Whether to display a slice offset from the center. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/sliced/">One sliced point</a>
+	*/
+	public void setSliced(Boolean sliced) {
+		this.sliced = sliced;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getSliced(){ return sliced; }
+
 	private Number pointPadding;
 	/**
  Point padding for a single point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/tilemap-pointpadding">Point padding on tiles</a>
@@ -728,18 +750,6 @@ public class HIData extends HIFoundation {
 
 	public Boolean getIsSum(){ return isSum; }
 
-	private Boolean sliced;
-	/**
- Whether to display a slice offset from the center. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/sliced/">One sliced point</a>
-	*/
-	public void setSliced(Boolean sliced) {
-		this.sliced = sliced;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getSliced(){ return sliced; }
-
 	private String to;
 	/**
  The node that the link runs to. 
@@ -763,6 +773,18 @@ public class HIData extends HIFoundation {
 	}
 
 	public String getFrom(){ return from; }
+
+	private Number weight;
+	/**
+ The weight of the link. 
+	*/
+	public void setWeight(Number weight) {
+		this.weight = weight;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getWeight(){ return weight; }
 
 	private Object /* Number, String */ innerRadius;
 	/**
@@ -861,17 +883,29 @@ public class HIData extends HIFoundation {
 
 	public Number getColorValue(){ return colorValue; }
 
-	private List<String> sets;
+	private ArrayList<String> sets;
 	/**
  The set or sets the options will be applied to. If a single entry is defined, then it will create a new set. If more than one entry is defined, then it will define the overlap between the sets in the array. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/venn-diagram/">Venn diagram</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/euler-diagram/">Euler diagram</a>
 	*/
-	public void setSets(List<String> sets) {
+	public void setSets(ArrayList<String> sets) {
 		this.sets = sets;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<String> getSets(){ return sets; }
+	public ArrayList<String> getSets(){ return sets; }
+
+	private Boolean gradientForSides;
+	/**
+ By deafult sides fill is set to a gradient through this option being set to true. Set to false to get solid color for the sides. 
+	*/
+	public void setGradientForSides(Boolean gradientForSides) {
+		this.gradientForSides = gradientForSides;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getGradientForSides(){ return gradientForSides; }
 
 
 
@@ -880,10 +914,10 @@ public class HIData extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.enablePolling != null) {
 			params.put("enablePolling", this.enablePolling);
 		}
@@ -903,7 +937,7 @@ public Map<String, Object> getParams() {
 			params.put("parseDate", this.parseDate);
 		}
 		if (this.seriesMapping != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.seriesMapping) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -915,7 +949,7 @@ public Map<String, Object> getParams() {
 			params.put("seriesMapping", array);
 		}
 		if (this.rows != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.rows) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -948,7 +982,7 @@ public Map<String, Object> getParams() {
 			params.put("csv", this.csv);
 		}
 		if (this.columns != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.columns) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -1022,8 +1056,11 @@ public Map<String, Object> getParams() {
 		if (this.selected != null) {
 			params.put("selected", this.selected);
 		}
+		if (this.accessibility != null) {
+			params.put("accessibility", this.accessibility.getParams());
+		}
 		if (this.dataLabels != null) {
-			params.put("dataLabels", this.dataLabels);
+			params.put("dataLabels", this.dataLabels.getParams());
 		}
 		if (this.className != null) {
 			params.put("className", this.className);
@@ -1052,8 +1089,8 @@ public Map<String, Object> getParams() {
 		if (this.marker != null) {
 			params.put("marker", this.marker.getParams());
 		}
-		if (this.weight != null) {
-			params.put("weight", this.weight);
+		if (this.label != null) {
+			params.put("label", this.label);
 		}
 		if (this.direction != null) {
 			params.put("direction", this.direction);
@@ -1076,6 +1113,9 @@ public Map<String, Object> getParams() {
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);
 		}
+		if (this.sliced != null) {
+			params.put("sliced", this.sliced);
+		}
 		if (this.pointPadding != null) {
 			params.put("pointPadding", this.pointPadding);
 		}
@@ -1088,14 +1128,14 @@ public Map<String, Object> getParams() {
 		if (this.isSum != null) {
 			params.put("isSum", this.isSum);
 		}
-		if (this.sliced != null) {
-			params.put("sliced", this.sliced);
-		}
 		if (this.to != null) {
 			params.put("to", this.to);
 		}
 		if (this.from != null) {
 			params.put("from", this.from);
+		}
+		if (this.weight != null) {
+			params.put("weight", this.weight);
 		}
 		if (this.innerRadius != null) {
 			params.put("innerRadius", this.innerRadius);
@@ -1122,7 +1162,7 @@ public Map<String, Object> getParams() {
 			params.put("colorValue", this.colorValue);
 		}
 		if (this.sets != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.sets) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -1132,6 +1172,9 @@ public Map<String, Object> getParams() {
 				}
 			}
 			params.put("sets", array);
+		}
+		if (this.gradientForSides != null) {
+			params.put("gradientForSides", this.gradientForSides);
 		}
 		return params;
 	}

@@ -8,19 +8,14 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.highsoft.highcharts.core.HIFoundation;
+
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import java.util.HashMap;
 
 
 
-
-
-public class HISVGAttributes extends Observable implements HIChartsJSONSerializable { 
+public class HISVGAttributes extends HIFoundation { 
 
 	private ArrayList /* <Number, String> */ d;
 	public void setD(ArrayList /* <Number, String> */ d) {
@@ -30,6 +25,15 @@ public class HISVGAttributes extends Observable implements HIChartsJSONSerializa
 	}
 
 	public ArrayList /* <Number, String> */ getD(){ return d; }
+
+	private String fill;
+	public void setFill(String fill) {
+		this.fill = fill;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getFill(){ return fill; }
 
 	private Boolean inverted;
 	public void setInverted(Boolean inverted) {
@@ -145,24 +149,16 @@ public class HISVGAttributes extends Observable implements HIChartsJSONSerializa
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.d != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.d) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
 				}
 				else {
 					array.add(obj);
@@ -170,14 +166,17 @@ public class HISVGAttributes extends Observable implements HIChartsJSONSerializa
 			}
 			params.put("d", array);
 		}
+		if (this.fill != null) {
+			params.put("fill", this.fill);
+		}
 		if (this.inverted != null) {
 			params.put("inverted", this.inverted);
 		}
 		if (this.matrix != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.matrix) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
 				}
 				else {
 					array.add(obj);

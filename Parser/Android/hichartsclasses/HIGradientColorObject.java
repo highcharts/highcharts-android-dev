@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -42,17 +42,17 @@ public class HIGradientColorObject extends HIFoundation {
 
 	public Object getRadialGradient(){ return radialGradient; }
 
-	private List<List> stops;
+	private ArrayList<ArrayList> stops;
 	/**
  The first item in each tuple is the position in the gradient, where 0 is the start of the gradient and 1 is the end of the gradient. Multiple stops can be applied. The second item is the color for each stop. This color can also be given in the rgba format. 
 	*/
-	public void setStops(List<List> stops) {
+	public void setStops(ArrayList<ArrayList> stops) {
 		this.stops = stops;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<List> getStops(){ return stops; }
+	public ArrayList<ArrayList> getStops(){ return stops; }
 
 
 
@@ -61,10 +61,10 @@ public class HIGradientColorObject extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.linearGradient != null) {
 			params.put("linearGradient", this.linearGradient);
 		}
@@ -72,7 +72,7 @@ public Map<String, Object> getParams() {
 			params.put("radialGradient", this.radialGradient);
 		}
 		if (this.stops != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.stops) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

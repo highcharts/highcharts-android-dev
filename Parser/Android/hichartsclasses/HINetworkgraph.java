@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -21,17 +21,17 @@ import com.highsoft.highcharts.core.HIFoundation;
 	*/
 
 public class HINetworkgraph extends HISeries {
-	private List <HINodes> nodes;
+	private ArrayList <HINodes> nodes;
 	/**
  A collection of options for the individual nodes. The nodes in a networkgraph diagram are auto-generated instances of Highcharts.Point, but options can be applied here and linked by the id. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-networkgraph/data-options/">Networkgraph diagram with node options</a>
 	*/
-	public void setNodes(List nodes) {
+	public void setNodes(ArrayList nodes) {
 		this.nodes = nodes;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List getNodes(){ return nodes; }
+	public ArrayList getNodes(){ return nodes; }
 
 	private HILayoutAlgorithm layoutAlgorithm;
 	public void setLayoutAlgorithm(HILayoutAlgorithm layoutAlgorithm) {
@@ -76,12 +76,12 @@ public class HINetworkgraph extends HISeries {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
+		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
 		if (this.nodes != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.nodes) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

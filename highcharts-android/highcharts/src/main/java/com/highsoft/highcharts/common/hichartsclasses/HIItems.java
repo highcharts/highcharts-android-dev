@@ -8,24 +8,18 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import com.highsoft.highcharts.core.HIFoundation;
+
 import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 
 
-
-
-public class HIItems extends Observable implements HIChartsJSONSerializable { 
+public class HIItems extends HIFoundation { 
 
 	private HICSSObject style;
-/**
-/** CSS styles for each label. To position the label, use left and top like this: style: {   left: '100px',   top: '100px' } 
-*/
+	/**
+ CSS styles for each label. To position the label, use left and top like this: style: {   left: '100px',   top: '100px' } 
+	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
 		this.setChanged();
@@ -35,9 +29,9 @@ public class HIItems extends Observable implements HIChartsJSONSerializable {
 	public HICSSObject getStyle(){ return style; }
 
 	private String html;
-/**
-/** Inner HTML or text for the label. 
-*/
+	/**
+ Inner HTML or text for the label. 
+	*/
 	public void setHtml(String html) {
 		this.html = html;
 		this.setChanged();
@@ -52,19 +46,11 @@ public class HIItems extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.style != null) {
 			params.put("style", this.style.getParams());
 		}

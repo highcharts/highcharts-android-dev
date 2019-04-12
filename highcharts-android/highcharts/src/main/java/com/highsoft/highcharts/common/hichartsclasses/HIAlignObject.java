@@ -8,24 +8,18 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import com.highsoft.highcharts.core.HIFoundation;
+
 import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 
 
-
-
-public class HIAlignObject extends Observable implements HIChartsJSONSerializable { 
+public class HIAlignObject extends HIFoundation { 
 
 	private String align;
-/**
-/** Horizontal alignment. Can be one of `left`, `center` and `right`. 
-*/
+	/**
+ Horizontal alignment. Can be one of `left`, `center` and `right`. 
+	*/
 	public void setAlign(String align) {
 		this.align = align;
 		this.setChanged();
@@ -35,9 +29,9 @@ public class HIAlignObject extends Observable implements HIChartsJSONSerializabl
 	public String getAlign(){ return align; }
 
 	private Boolean alignByTranslate;
-/**
-/** Use the `transform` attribute with translateX and translateY custom attributes to align this elements rather than `x` and `y` attributes. 
-*/
+	/**
+ Use the `transform` attribute with translateX and translateY custom attributes to align this elements rather than `x` and `y` attributes. 
+	*/
 	public void setAlignByTranslate(Boolean alignByTranslate) {
 		this.alignByTranslate = alignByTranslate;
 		this.setChanged();
@@ -47,9 +41,9 @@ public class HIAlignObject extends Observable implements HIChartsJSONSerializabl
 	public Boolean getAlignByTranslate(){ return alignByTranslate; }
 
 	private String verticalAlign;
-/**
-/** Vertical alignment. Can be one of `top`, `middle` and `bottom`. 
-*/
+	/**
+ Vertical alignment. Can be one of `top`, `middle` and `bottom`. 
+	*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
 		this.setChanged();
@@ -59,9 +53,9 @@ public class HIAlignObject extends Observable implements HIChartsJSONSerializabl
 	public String getVerticalAlign(){ return verticalAlign; }
 
 	private Number x;
-/**
-/** Horizontal pixel offset from alignment. 
-*/
+	/**
+ Horizontal pixel offset from alignment. 
+	*/
 	public void setX(Number x) {
 		this.x = x;
 		this.setChanged();
@@ -71,9 +65,9 @@ public class HIAlignObject extends Observable implements HIChartsJSONSerializabl
 	public Number getX(){ return x; }
 
 	private Number y;
-/**
-/** Vertical pixel offset from alignment. 
-*/
+	/**
+ Vertical pixel offset from alignment. 
+	*/
 	public void setY(Number y) {
 		this.y = y;
 		this.setChanged();
@@ -88,19 +82,11 @@ public class HIAlignObject extends Observable implements HIChartsJSONSerializabl
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.align != null) {
 			params.put("align", this.align);
 		}

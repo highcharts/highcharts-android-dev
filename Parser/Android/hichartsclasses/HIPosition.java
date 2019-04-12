@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -20,7 +20,7 @@ public class HIPosition extends HIFoundation {
 
 	private Number y;
 	/**
- Vertical offset of the button. 
+ Vertical offset of the label, in pixels. 
 	*/
 	public void setY(Number y) {
 		this.y = y;
@@ -32,7 +32,7 @@ public class HIPosition extends HIFoundation {
 
 	private Number x;
 	/**
- Horizontal offset of the button. 
+ Horizontal offset of the label, in pixels. 
 	*/
 	public void setX(Number x) {
 		this.x = x;
@@ -44,7 +44,7 @@ public class HIPosition extends HIFoundation {
 
 	private String align;
 	/**
- Horizontal alignment of the button. <br><br><b>accepted values:</b><br><br>&ensp;["left", "center", "right"]
+ Horizontal alignment of the label. 
 	*/
 	public void setAlign(String align) {
 		this.align = align;
@@ -56,8 +56,8 @@ public class HIPosition extends HIFoundation {
 
 	private String verticalAlign;
 	/**
- Vertical alignment of the button. <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]
- <br><br><b>defaults:</b><br><br>&ensp;top	*/
+ Vertical alignment of the label. 
+	*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
 		this.setChanged();
@@ -73,10 +73,10 @@ public class HIPosition extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.y != null) {
 			params.put("y", this.y);
 		}

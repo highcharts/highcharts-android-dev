@@ -8,27 +8,19 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-
-import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
-
-
-public class HIPlotBands extends HIFoundation implements HIChartsJSONSerializable {
+public class HIPlotBands extends HIFoundation { 
 
 	private Object /* Number, String */ outerRadius;
-/**
-/** In a gauge chart, this option determines the outer radius of the plot band that stretches along the perimeter. It can be given as a percentage string, like "100%", or as a pixel number, like 100. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-gauge">Gauge plot band</a>
- <br><br><b>defaults:</b><br><br>&ensp;100%*/
+	/**
+ In a gauge chart, this option determines the outer radius of the plot band that stretches along the perimeter. It can be given as a percentage string, like "100%", or as a pixel number, like 100. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-gauge">Gauge plot band</a>
+ <br><br><b>defaults:</b><br><br>&ensp;100%	*/
 	public void setOuterRadius(Object /* Number, String */ outerRadius) {
 		this.outerRadius = outerRadius;
 		this.setChanged();
@@ -38,9 +30,9 @@ public class HIPlotBands extends HIFoundation implements HIChartsJSONSerializabl
 	public Object /* Number, String */ getOuterRadius(){ return outerRadius; }
 
 	private Object /* Number, String */ innerRadius;
-/**
-/** In a gauge chart, this option determines the inner radius of the plot band that stretches along the perimeter. It can be given as a percentage string, like "100%", or as a pixel number, like 100. By defaults, the inner radius is controlled by the thickness option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-gauge">Gauge plot band</a>
-*/
+	/**
+ In a gauge chart, this option determines the inner radius of the plot band that stretches along the perimeter. It can be given as a percentage string, like "100%", or as a pixel number, like 100. By defaults, the inner radius is controlled by the thickness option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-gauge">Gauge plot band</a>
+	*/
 	public void setInnerRadius(Object /* Number, String */ innerRadius) {
 		this.innerRadius = innerRadius;
 		this.setChanged();
@@ -50,9 +42,9 @@ public class HIPlotBands extends HIFoundation implements HIChartsJSONSerializabl
 	public Object /* Number, String */ getInnerRadius(){ return innerRadius; }
 
 	private Object /* Number, String */ thickness;
-/**
-/** In a gauge chart, this option sets the width of the plot band stretching along the perimeter. It can be given as a percentage string, like "10%", or as a pixel number, like 10. The defaults value 10 is the same as the defaults tickLength, thus making the plot band act as a background for the tick markers. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-gauge">Gauge plot band</a>
- <br><br><b>defaults:</b><br><br>&ensp;10*/
+	/**
+ In a gauge chart, this option sets the width of the plot band stretching along the perimeter. It can be given as a percentage string, like "10%", or as a pixel number, like 10. The defaults value 10 is the same as the defaults tickLength, thus making the plot band act as a background for the tick markers. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-gauge">Gauge plot band</a>
+ <br><br><b>defaults:</b><br><br>&ensp;10	*/
 	public void setThickness(Object /* Number, String */ thickness) {
 		this.thickness = thickness;
 		this.setChanged();
@@ -62,9 +54,9 @@ public class HIPlotBands extends HIFoundation implements HIChartsJSONSerializabl
 	public Object /* Number, String */ getThickness(){ return thickness; }
 
 	private HIColor borderColor;
-/**
-/** Border color for the plot band. Also requires borderWidth to be set. 
-*/
+	/**
+ Border color for the plot band. Also requires borderWidth to be set. 
+	*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
@@ -74,9 +66,9 @@ public class HIPlotBands extends HIFoundation implements HIChartsJSONSerializabl
 	public HIColor getBorderColor(){ return borderColor; }
 
 	private Number zIndex;
-/**
-/** The z index of the plot band within the chart, relative to other elements. Using the same z index as another element may give unpredictable results, as the last rendered element will be on top. Values from 0 to 20 make sense. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-color/">Behind plot lines by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-zindex/">Above plot lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-zindex-above-series/">Above plot lines and series</a>
-*/
+	/**
+ The z index of the plot band within the chart, relative to other elements. Using the same z index as another element may give unpredictable results, as the last rendered element will be on top. Values from 0 to 20 make sense. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-color/">Behind plot lines by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-zindex/">Above plot lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-zindex-above-series/">Above plot lines and series</a>
+	*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
 		this.setChanged();
@@ -86,9 +78,9 @@ public class HIPlotBands extends HIFoundation implements HIChartsJSONSerializabl
 	public Number getZIndex(){ return zIndex; }
 
 	private Number from;
-/**
-/** The start position of the plot band in axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-color/">Datetime axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-from/">Categorized axis</a>
-*/
+	/**
+ The start position of the plot band in axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-color/">Datetime axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-from/">Categorized axis</a>
+	*/
 	public void setFrom(Number from) {
 		this.from = from;
 		this.setChanged();
@@ -98,9 +90,9 @@ public class HIPlotBands extends HIFoundation implements HIChartsJSONSerializabl
 	public Number getFrom(){ return from; }
 
 	private HIColor color;
-/**
-/** The color of the plot band. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-color/">Color band</a>
-*/
+	/**
+ The color of the plot band. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-color/">Color band</a>
+	*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -110,9 +102,9 @@ public class HIPlotBands extends HIFoundation implements HIChartsJSONSerializabl
 	public HIColor getColor(){ return color; }
 
 	private String id;
-/**
-/** An id used for identifying the plot band in Axis.removePlotBand. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-id/">Remove plot band by id</a>
-*/
+	/**
+ An id used for identifying the plot band in Axis.removePlotBand. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-id/">Remove plot band by id</a>
+	*/
 	public void setId(String id) {
 		this.id = id;
 		this.setChanged();
@@ -122,9 +114,9 @@ public class HIPlotBands extends HIFoundation implements HIChartsJSONSerializabl
 	public String getId(){ return id; }
 
 	private String className;
-/**
-/** A custom class name, in addition to the defaults highcharts-plot-band, to apply to each individual band. 
-*/
+	/**
+ A custom class name, in addition to the defaults highcharts-plot-band, to apply to each individual band. 
+	*/
 	public void setClassName(String className) {
 		this.className = className;
 		this.setChanged();
@@ -134,9 +126,9 @@ public class HIPlotBands extends HIFoundation implements HIChartsJSONSerializabl
 	public String getClassName(){ return className; }
 
 	private Number to;
-/**
-/** The end position of the plot band in axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-color/">Datetime axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-from/">Categorized axis</a>
-*/
+	/**
+ The end position of the plot band in axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-color/">Datetime axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-from/">Categorized axis</a>
+	*/
 	public void setTo(Number to) {
 		this.to = to;
 		this.setChanged();
@@ -146,9 +138,9 @@ public class HIPlotBands extends HIFoundation implements HIChartsJSONSerializabl
 	public Number getTo(){ return to; }
 
 	private Number borderWidth;
-/**
-/** Border width for the plot band. Also requires borderColor to be set. 
- <br><br><b>defaults:</b><br><br>&ensp;0*/
+	/**
+ Border width for the plot band. Also requires borderColor to be set. 
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
 		this.setChanged();
@@ -158,9 +150,9 @@ public class HIPlotBands extends HIFoundation implements HIChartsJSONSerializabl
 	public Number getBorderWidth(){ return borderWidth; }
 
 	private HILabel label;
-/**
-/** Text labels for the plot bands 
-*/
+	/**
+ Text labels for the plot bands 
+	*/
 	public void setLabel(HILabel label) {
 		this.label = label;
 		this.label.addObserver(updateObserver);
@@ -171,9 +163,9 @@ public class HIPlotBands extends HIFoundation implements HIChartsJSONSerializabl
 	public HILabel getLabel(){ return label; }
 
 	private Object events;
-/**
-/** An object defining mouse events for the plot band. Supported properties are click, mouseover, mouseout, mousemove. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-events/">Mouse events demonstrated</a>
-*/
+	/**
+ An object defining mouse events for the plot band. Supported properties are click, mouseover, mouseout, mousemove. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-events/">Mouse events demonstrated</a>
+	*/
 	public void setEvents(Object events) {
 		this.events = events;
 		this.setChanged();
@@ -181,12 +173,6 @@ public class HIPlotBands extends HIFoundation implements HIChartsJSONSerializabl
 	}
 
 	public Object getEvents(){ return events; }
-
-
-
-	public HIPlotBands() {
-		super();
-	}
 
 	/**
 	 * Remove the plot band.
@@ -201,10 +187,15 @@ public class HIPlotBands extends HIFoundation implements HIChartsJSONSerializabl
 		this.notifyObservers(jsClassMethod);
 	}
 
+	public HIPlotBands() {
 
-	public Map<String, Object> getParams() {
+	}
 
-		Map<String, Object> params = new HashMap<>();
+	@Override
+public HashMap<String, Object> getParams() {
+
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.outerRadius != null) {
 			params.put("outerRadius", this.outerRadius);
 		}

@@ -8,19 +8,13 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import com.highsoft.highcharts.core.HIFoundation;
+
 import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 
 
-
-
-public class HIMinute extends Observable implements HIChartsJSONSerializable { 
+public class HIMinute extends HIFoundation { 
 
 	private Boolean range;
 	public void setRange(Boolean range) {
@@ -46,19 +40,11 @@ public class HIMinute extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.range != null) {
 			params.put("range", this.range);
 		}

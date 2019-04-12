@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -44,9 +44,22 @@ public class HINavigation extends HIFoundation {
 
 	public HIButtonOptions getButtonOptions(){ return buttonOptions; }
 
+	private HIAnnotationsOptions annotationsOptions;
+	/**
+ Additional options to be merged into all annotations. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/stock/stocktools/navigation-annotation-options">Set red color of all line annotations</a>
+	*/
+	public void setAnnotationsOptions(HIAnnotationsOptions annotationsOptions) {
+		this.annotationsOptions = annotationsOptions;
+		this.annotationsOptions.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAnnotationsOptions getAnnotationsOptions(){ return annotationsOptions; }
+
 	private String bindingsClassName;
 	/**
- A CSS class name where all bindings will be attached to. Multiple charts on the same page should have separate class names to prevent duplicating events. 
+ A CSS class name where all bindings will be attached to. Multiple charts on the same page should have separate class names to prevent duplicating events. Default value of versions < 7.0.4 highcharts-bindings-wrapper 
 	*/
 	public void setBindingsClassName(String bindingsClassName) {
 		this.bindingsClassName = bindingsClassName;
@@ -55,31 +68,6 @@ public class HINavigation extends HIFoundation {
 	}
 
 	public String getBindingsClassName(){ return bindingsClassName; }
-
-	private HIEvents events;
-	/**
- Events to communicate between Stock Tools and custom GUI. 
-	*/
-	public void setEvents(HIEvents events) {
-		this.events = events;
-		this.events.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIEvents getEvents(){ return events; }
-
-	private HICSSObject menuItemStyle;
-	/**
- CSS styles for the individual items within the popup menu appearing by defaults when the export icon is clicked. The menu items are rendered in HTML. Font size defaultss to 11px on desktop and 14px on touch devices. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/menuitemstyle/">Add a grey stripe to the left</a>
- <br><br><b>defaults:</b><br><br>&ensp;{"padding": "0.5em 1em", "color": "#333333", "background": "none", "fontSize": "11px/14px", "transition": "background 250ms, color 250ms"}	*/
-	public void setMenuItemStyle(HICSSObject menuItemStyle) {
-		this.menuItemStyle = menuItemStyle;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HICSSObject getMenuItemStyle(){ return menuItemStyle; }
 
 	private HICSSObject menuItemHoverStyle;
 	/**
@@ -93,6 +81,18 @@ public class HINavigation extends HIFoundation {
 
 	public HICSSObject getMenuItemHoverStyle(){ return menuItemHoverStyle; }
 
+	private HICSSObject menuItemStyle;
+	/**
+ CSS styles for the individual items within the popup menu appearing by defaults when the export icon is clicked. The menu items are rendered in HTML. Font size defaultss to 11px on desktop and 14px on touch devices. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/menuitemstyle/">Add a grey stripe to the left</a>
+ <br><br><b>defaults:</b><br><br>&ensp;{"padding": "0.5em 1em", "color": "#333333", "background": "none", "fontSize": "11px/14px", "transition": "background 250ms, color 250ms"}	*/
+	public void setMenuItemStyle(HICSSObject menuItemStyle) {
+		this.menuItemStyle = menuItemStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HICSSObject getMenuItemStyle(){ return menuItemStyle; }
+
 	private HIBindings bindings;
 	/**
  Bindings definitions for custom HTML buttons. Each binding implements simple event-driven interface: - className: classname used to bind event to - init: initial event, fired on button click - start: fired on first click on a chart - steps: array of sequential events fired one after another on each  of users clicks - end: last event to be called after last step event <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/stock/stocktools/stocktools-thresholds">Custom bindings in Highstock</a>
@@ -105,6 +105,19 @@ public class HINavigation extends HIFoundation {
 	}
 
 	public HIBindings getBindings(){ return bindings; }
+
+	private HIEvents events;
+	/**
+ Events to communicate between Stock Tools and custom GUI. 
+	*/
+	public void setEvents(HIEvents events) {
+		this.events = events;
+		this.events.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIEvents getEvents(){ return events; }
 
 	private HICSSObject style;
 	/**
@@ -198,30 +211,33 @@ public class HINavigation extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.menuStyle != null) {
 			params.put("menuStyle", this.menuStyle.getParams());
 		}
 		if (this.buttonOptions != null) {
 			params.put("buttonOptions", this.buttonOptions.getParams());
 		}
+		if (this.annotationsOptions != null) {
+			params.put("annotationsOptions", this.annotationsOptions.getParams());
+		}
 		if (this.bindingsClassName != null) {
 			params.put("bindingsClassName", this.bindingsClassName);
-		}
-		if (this.events != null) {
-			params.put("events", this.events.getParams());
-		}
-		if (this.menuItemStyle != null) {
-			params.put("menuItemStyle", this.menuItemStyle.getParams());
 		}
 		if (this.menuItemHoverStyle != null) {
 			params.put("menuItemHoverStyle", this.menuItemHoverStyle.getParams());
 		}
+		if (this.menuItemStyle != null) {
+			params.put("menuItemStyle", this.menuItemStyle.getParams());
+		}
 		if (this.bindings != null) {
 			params.put("bindings", this.bindings.getParams());
+		}
+		if (this.events != null) {
+			params.put("events", this.events.getParams());
 		}
 		if (this.style != null) {
 			params.put("style", this.style.getParams());

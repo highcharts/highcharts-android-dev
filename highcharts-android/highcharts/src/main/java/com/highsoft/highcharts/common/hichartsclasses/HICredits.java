@@ -8,24 +8,18 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import com.highsoft.highcharts.core.HIFoundation;
+
 import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 
 
-
-
-public class HICredits extends Observable implements HIChartsJSONSerializable { 
+public class HICredits extends HIFoundation { 
 
 	private HICSSObject style;
-/**
-/** CSS styles for the credits label. 
- <br><br><b>defaults:</b><br><br>&ensp;{"cursor": "pointer", "color": "#999999", "fontSize": "10px"}*/
+	/**
+ CSS styles for the credits label. 
+ <br><br><b>defaults:</b><br><br>&ensp;{"cursor": "pointer", "color": "#999999", "fontSize": "10px"}	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
 		this.setChanged();
@@ -35,9 +29,9 @@ public class HICredits extends Observable implements HIChartsJSONSerializable {
 	public HICSSObject getStyle(){ return style; }
 
 	private String text;
-/**
-/** The text for the credits label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/href/">Custom URL and text</a>
-*/
+	/**
+ The text for the credits label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/href/">Custom URL and text</a>
+	*/
 	public void setText(String text) {
 		this.text = text;
 		this.setChanged();
@@ -47,9 +41,9 @@ public class HICredits extends Observable implements HIChartsJSONSerializable {
 	public String getText(){ return text; }
 
 	private Boolean enabled;
-/**
-/** Whether to show the credits text. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/enabled-false/">Credits disabled</a>
-*/
+	/**
+ Whether to show the credits text. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/enabled-false/">Credits disabled</a>
+	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -59,9 +53,9 @@ public class HICredits extends Observable implements HIChartsJSONSerializable {
 	public Boolean getEnabled(){ return enabled; }
 
 	private String href;
-/**
-/** The URL for the credits label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/href/">Custom URL and text</a>
-*/
+	/**
+ The URL for the credits label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/href/">Custom URL and text</a>
+	*/
 	public void setHref(String href) {
 		this.href = href;
 		this.setChanged();
@@ -71,9 +65,9 @@ public class HICredits extends Observable implements HIChartsJSONSerializable {
 	public String getHref(){ return href; }
 
 	private HIAlignObject position;
-/**
-/** Position configuration for the credits label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/position-left/">Left aligned</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/position-left/">Left aligned</a>
-*/
+	/**
+ Position configuration for the credits label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/position-left/">Left aligned</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/position-left/">Left aligned</a>
+	*/
 	public void setPosition(HIAlignObject position) {
 		this.position = position;
 		this.setChanged();
@@ -88,19 +82,11 @@ public class HICredits extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.style != null) {
 			params.put("style", this.style.getParams());
 		}

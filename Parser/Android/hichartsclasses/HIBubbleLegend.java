@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -57,7 +57,7 @@ public class HIBubbleLegend extends HIFoundation {
 
 	private String sizeBy;
 	/**
- Whether the bubble legend range value should be represented by the area or the width of the bubble. The defaults, area, corresponds best to the human perception of the size of each bubble. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/ranges/">Size by width</a> <br><br><b>accepted values:</b><br><br>&ensp;["area", "width"]
+ Whether the bubble legend range value should be represented by the area or the width of the bubble. The defaults, area, corresponds best to the human perception of the size of each bubble. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/ranges/">Size by width</a>
 	*/
 	public void setSizeBy(String sizeBy) {
 		this.sizeBy = sizeBy;
@@ -152,17 +152,17 @@ public class HIBubbleLegend extends HIFoundation {
 
 	public String getClassName(){ return className; }
 
-	private List <HIRanges> ranges;
+	private ArrayList <HIRanges> ranges;
 	/**
  Options for specific range. One range consists of bubble, label and connector. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/ranges/">Manually defined ranges</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/autoranges/">Auto calculated ranges</a>
 	*/
-	public void setRanges(List ranges) {
+	public void setRanges(ArrayList ranges) {
 		this.ranges = ranges;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List getRanges(){ return ranges; }
+	public ArrayList getRanges(){ return ranges; }
 
 	private Number maxSize;
 	/**
@@ -243,10 +243,10 @@ public class HIBubbleLegend extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
 		}
@@ -281,7 +281,7 @@ public Map<String, Object> getParams() {
 			params.put("className", this.className);
 		}
 		if (this.ranges != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.ranges) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

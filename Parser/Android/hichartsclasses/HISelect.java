@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -130,7 +130,7 @@ public class HISelect extends HIFoundation {
 
 	private HIHalo halo;
 	/**
- Options for the halo appearing around the hovered point in line-type series as well as outside the hovered slice in pie charts. By defaults the halo is filled by the current point or series color with an opacity of 0.25\. The halo can be disabled by setting the halo option to false. In styled mode, the halo is styled with the .highcharts-halo class, with colors inherited from .highcharts-color-{n}. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/halo/">Halo options</a>
+ Options for the halo appearing around the hovered point in line-type series as well as outside the hovered slice in pie charts. By defaults the halo is filled by the current point or series color with an opacity of 0.25\. The halo can be disabled by setting the halo option to null. In styled mode, the halo is styled with the .highcharts-halo class, with colors inherited from .highcharts-color-{n}. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/halo/">Halo options</a>
 	*/
 	public void setHalo(HIHalo halo) {
 		this.halo = halo;
@@ -148,10 +148,10 @@ public class HISelect extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.radius != null) {
 			params.put("radius", this.radius);
 		}

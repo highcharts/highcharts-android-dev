@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -22,18 +22,18 @@ import com.highsoft.highcharts.common.HIColor;
 	*/
 
 public class HIFunnel extends HISeries {
-	private List /* <Number, String> */ center;
+	private ArrayList /* <Number, String> */ center;
 	/**
 /** * description: The center of the series. By defaults, it is centered in the middle of the plot area, so it fills the plot area height. * demo:  •  Centered at 100, 100
 * defaults: ["50%", "50%"]
 */
-	public void setCenter(List /* <Number, String> */ center) {
+	public void setCenter(ArrayList /* <Number, String> */ center) {
 		this.center = center;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List /* <Number, String> */ getCenter(){ return center; }
+	public ArrayList /* <Number, String> */ getCenter(){ return center; }
 
 	private Boolean reversed;
 	/**
@@ -167,17 +167,17 @@ public class HIFunnel extends HISeries {
 
 	public Number getEndAngle(){ return endAngle; }
 
-	private List<String> colors;
+	private ArrayList<String> colors;
 	/**
  A series specific or series type specific color set to use instead of the global colors. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/">Set defaults colors for all pies</a>
 	*/
-	public void setColors(List<String> colors) {
+	public void setColors(ArrayList<String> colors) {
 		this.colors = colors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<String> getColors(){ return colors; }
+	public ArrayList<String> getColors(){ return colors; }
 
 	private Number borderWidth;
 	/**
@@ -223,12 +223,12 @@ public class HIFunnel extends HISeries {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
+		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
 		if (this.center != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.center) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -273,7 +273,7 @@ public Map<String, Object> getParams() {
 			params.put("endAngle", this.endAngle);
 		}
 		if (this.colors != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.colors) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

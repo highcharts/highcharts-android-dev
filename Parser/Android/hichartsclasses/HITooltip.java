@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -30,6 +30,18 @@ public class HITooltip extends HIFoundation {
 	}
 
 	public Boolean getFollowTouchMove(){ return followTouchMove; }
+
+	private HIFunction nullFormatter;
+	/**
+ Callback function to format the text of the tooltip for visible null points. Works analogously to formatter. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-nullformat">Format data label and tooltip for null point.</a>
+	*/
+	public void setNullFormatter(HIFunction nullFormatter) {
+		this.nullFormatter = nullFormatter;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getNullFormatter(){ return nullFormatter; }
 
 	private Number borderRadius;
 	/**
@@ -235,6 +247,18 @@ public class HITooltip extends HIFoundation {
 
 	public HIFunction getFormatter(){ return formatter; }
 
+	private String nullFormat;
+	/**
+ The HTML of the null point's line in the tooltip. Works analogously to pointFormat. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-nullformat">Format data label and tooltip for null point.</a>
+	*/
+	public void setNullFormat(String nullFormat) {
+		this.nullFormat = nullFormat;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getNullFormat(){ return nullFormat; }
+
 	private String pointFormat;
 	/**
  The HTML of the point's line in the tooltip. Variables are enclosed by curly brackets. Available variables are point.x, point.y, series. name and series.color and other properties on the same form. Furthermore, point.y can be extended by the tooltip.valuePrefix and tooltip.valueSuffix variables. This can also be overridden for each series, which makes it a good hook for displaying units. In styled mode, the dot is colored by a class name rather than the point color. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/pointformat/">A different point format with value suffix</a>
@@ -310,7 +334,7 @@ public class HITooltip extends HIFoundation {
 
 	private String shape;
 	/**
- The name of a symbol to use for the border around the tooltip. Can be one of: "callout", "circle" or "square". When tooltip.split option is enabled, shape is applied to all boxes except header, which is controlled by tooltip.headerShape. Custom callbacks for symbol path generation can also be added to Highcharts.SVGRenderer.prototype.symbols the same way as for `series.marker.symbol`. <br><br><b>accepted values:</b><br><br>&ensp;["callout", "square"]
+ The name of a symbol to use for the border around the tooltip. Can be one of: "callout", "circle", or "square". When tooltip.split option is enabled, shape is applied to all boxes except header, which is controlled by tooltip.headerShape. Custom callbacks for symbol path generation can also be added to Highcharts.SVGRenderer.prototype.symbols the same way as for `series.marker.symbol`. 
  <br><br><b>defaults:</b><br><br>&ensp;callout	*/
 	public void setShape(String shape) {
 		this.shape = shape;
@@ -346,7 +370,7 @@ public class HITooltip extends HIFoundation {
 
 	private Boolean followPointer;
 	/**
- Whether the tooltip should follow the mouse as it moves across columns, pie slices and other point types with an extent. By defaults it behaves this way for scatter, bubble and pie series by override in the plotOptions for those series types. For touch moves to behave the same way, followTouchMove must be true also. 
+ Whether the tooltip should follow the mouse as it moves across columns, pie slices and other point types with an extent. By defaults it behaves this way for pie, polygon, map, sankey and wordcloud series by override in the plotOptions for those series types. For touch moves to behave the same way, followTouchMove must be true also. 
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setFollowPointer(Boolean followPointer) {
 		this.followPointer = followPointer;
@@ -380,9 +404,18 @@ public class HITooltip extends HIFoundation {
 
 	public Number getValueDecimals(){ return valueDecimals; }
 
+	private String nodeFormat;
+	public void setNodeFormat(String nodeFormat) {
+		this.nodeFormat = nodeFormat;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getNodeFormat(){ return nodeFormat; }
+
 	private HIFunction nodeFormatter;
 	/**
- A callback for defining the format for _nodes_ in the sankey chart's tooltip, as opposed to links. 
+ A callback for defining the format for _nodes_ in the chart's tooltip, as opposed to links. 
 	*/
 	public void setNodeFormatter(HIFunction nodeFormatter) {
 		this.nodeFormatter = nodeFormatter;
@@ -391,18 +424,6 @@ public class HITooltip extends HIFoundation {
 	}
 
 	public HIFunction getNodeFormatter(){ return nodeFormatter; }
-
-	private String nodeFormat;
-	/**
- The [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) specifying what to show for _nodes_ in tooltip of a sankey diagram series, as opposed to links. 
-	*/
-	public void setNodeFormat(String nodeFormat) {
-		this.nodeFormat = nodeFormat;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getNodeFormat(){ return nodeFormat; }
 
 	private Number distance;
 	public void setDistance(Number distance) {
@@ -420,12 +441,15 @@ public class HITooltip extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.followTouchMove != null) {
 			params.put("followTouchMove", this.followTouchMove);
+		}
+		if (this.nullFormatter != null) {
+			params.put("nullFormatter", this.nullFormatter);
 		}
 		if (this.borderRadius != null) {
 			params.put("borderRadius", this.borderRadius);
@@ -478,6 +502,9 @@ public Map<String, Object> getParams() {
 		if (this.formatter != null) {
 			params.put("formatter", this.formatter);
 		}
+		if (this.nullFormat != null) {
+			params.put("nullFormat", this.nullFormat);
+		}
 		if (this.pointFormat != null) {
 			params.put("pointFormat", this.pointFormat);
 		}
@@ -514,11 +541,11 @@ public Map<String, Object> getParams() {
 		if (this.valueDecimals != null) {
 			params.put("valueDecimals", this.valueDecimals);
 		}
-		if (this.nodeFormatter != null) {
-			params.put("nodeFormatter", this.nodeFormatter);
-		}
 		if (this.nodeFormat != null) {
 			params.put("nodeFormat", this.nodeFormat);
+		}
+		if (this.nodeFormatter != null) {
+			params.put("nodeFormatter", this.nodeFormatter);
 		}
 		if (this.distance != null) {
 			params.put("distance", this.distance);

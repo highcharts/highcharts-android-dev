@@ -172,22 +172,22 @@ hc_types = {
     "String": 'String',
     "Object": 'Object',
     "Function": 'HIFunction',
-    "Array<Number>": 'List<Number>',
-    "Array<Object>": 'List',
-    "Array": 'List',
-    "Array<String>": 'List<String>',
+    "Array<Number>": 'ArrayList<Number>',
+    "Array<Object>": 'ArrayList',
+    "Array": 'ArrayList',
+    "Array<String>": 'ArrayList<String>',
     "Boolean|Object": 'Object /* Boolean|Object */',
     "String|Number": 'Object /* String|Number */',
-    "Array<Array>": 'List<List>',
-    "CSSObject": 'Map<String,String>',
-    "Array<Color>": 'List<HIColor>',
-    "Array<Object|Array|Number>": 'List /* <Data|Number|List> */',
-    "Array<String|Number>": 'List /* <String|Number> */',
-    "Array<Object|Number>": 'List /* <Object|Number> */',
-    "Array<Object|Array>": 'List /* <Object|List> */',
+    "Array<Array>": 'ArrayList<ArrayList>',
+    "CSSObject": 'HashMap<String,String>',
+    "Array<Color>": 'ArrayList<HIColor>',
+    "Array<Object|Array|Number>": 'ArrayList /* <Data|Number|ArrayList> */',
+    "Array<String|Number>": 'ArrayList /* <String|Number> */',
+    "Array<Object|Number>": 'ArrayList /* <Object|Number> */',
+    "Array<Object|Array>": 'ArrayList /* <Object|ArrayList> */',
     "Number|String": 'Object /* Number|String */',
     "String|HTMLElement": 'Object',
-    "Array<Array<Mixed>>": 'List<List>',
+    "Array<Array<Mixed>>": 'ArrayList<ArrayList>',
     "String|Object": 'Object /* String|Object */',
     "Mixed": 'Object',
     "Number|Boolean": 'Object /* Boolean|String */',
@@ -197,29 +197,29 @@ hc_types = {
     # nowe typy
     "Object|Boolean": 'Object /* Boolean|Object */',
     "String|Array.<String>": 'Object',
-    "Array.<String>": 'List<String>',
+    "Array.<String>": 'ArrayList<String>',
     "function": 'HIFunction',
     "String|function": 'String',
-    "Array.<Object>": 'List',
-    "Array.<Number>": 'List<Number>',
-    "Array.<Array>": 'List<List>',
-    "Array.<Color>": 'List<HIColor>',
-    "Array.<Object|Array|Number>": 'List /* <Object|Number|List> */',
-    "Array.<String|Number>": 'List /* <String|Number> */',
-    "Array.<Object|Number>": 'List',
-    "Array.<Object|Array>": 'List',
-    "Array.<Array<Mixed>>": 'List<List>',
-    "Array.<(Object|Number)>": 'List',
-    "Array.<(String|Number)>": 'List /* <String|Number> */',
-    "Array.<(Object|Array)>": 'List',
+    "Array.<Object>": 'ArrayList',
+    "Array.<Number>": 'ArrayList<Number>',
+    "Array.<Array>": 'ArrayList<ArrayList>',
+    "Array.<Color>": 'ArrayList<HIColor>',
+    "Array.<Object|Array|Number>": 'ArrayList /* <Object|Number|ArrayList> */',
+    "Array.<String|Number>": 'ArrayList /* <String|Number> */',
+    "Array.<Object|Number>": 'ArrayList',
+    "Array.<Object|Array>": 'ArrayList',
+    "Array.<Array<Mixed>>": 'ArrayList<ArrayList>',
+    "Array.<(Object|Number)>": 'ArrayList',
+    "Array.<(String|Number)>": 'ArrayList /* <String|Number> */',
+    "Array.<(Object|Array)>": 'ArrayList',
     "String|Array.<Object>": 'String',
     "String|undefined": 'String',
-    "Array.<String>|Array.<Object>": 'List',
+    "Array.<String>|Array.<Object>": 'ArrayList',
     "String|Number|function": 'Object',
-    "Array.<(Object|Array|Number)>": 'List /* <Object|Number|List> */',
+    "Array.<(Object|Array|Number)>": 'ArrayList /* <Object|Number|ArrayList> */',
     "String|null": 'String',
-    "Array.<Array<Mixed>>": 'List<List>',
-    "Array.<Array.<Mixed>>": 'List<List>',
+    "Array.<Array<Mixed>>": 'ArrayList<ArrayList>',
+    "Array.<Array.<Mixed>>": 'ArrayList<ArrayList>',
     "Object|Number": 'Object /* Object|Number */',
     "umber": 'Number',
     "function|null": 'HIFunction',
@@ -230,21 +230,21 @@ hc_types = {
     # 6.1.1
     "AnimationOptions|Boolean": 'Object',
     "Boolean|AnimationOptions": 'Object',
-    "Array.<number>": 'List<Number>',
+    "Array.<number>": 'ArrayList<Number>',
     # 6.1.2
     "number": 'Number',
     "string": 'String',
     "boolean": 'Boolean',
     "*": 'Object',
-    "Array.<*>": 'List',
-    "Array.<Array.<(string|Array.<number>)>>": 'List<List>',
-    "Array.<string>": 'List<String>',
+    "Array.<*>": 'ArrayList',
+    "Array.<Array.<(string|Array.<number>)>>": 'ArrayList<ArrayList>',
+    "Array.<string>": 'ArrayList<String>',
     "null|number|string": 'Object /* Number, String */',
     "object": 'Object',
     "Number|String|function": 'Object',
-    "Array.<Object>|Array.<String>": 'List /* <Object, String> */',
+    "Array.<Object>|Array.<String>": 'ArrayList /* <Object, String> */',
     "null|number": 'Number',
-    "Array.<number>|number": 'List<Number>',
+    "Array.<number>|number": 'ArrayList<Number>',
     "Boolean|Number": 'Number',
     "number|string": 'Object /* Number, String */',
     # 6.1.4
@@ -252,28 +252,28 @@ hc_types = {
     "number|string|null": 'Object /* Number, String */',
     "boolean|string": 'Object /* boolean, String */',
     "number|null": 'Number',
-    "number|Array.<number>": 'List<Number>',
+    "number|Array.<number>": 'ArrayList<Number>',
     "string|number": 'Object /* String, Number */',
     # 6.2.0
-    "Array.<(number|string|null)>": 'List /* <Number, String> */',
+    "Array.<(number|string|null)>": 'ArrayList /* <Number, String> */',
     "string|null": 'String',
-    "Array.<Array.<number, string>>": 'List<List> /* <Number, String> */',
+    "Array.<Array.<number, string>>": 'ArrayList<ArrayList> /* <Number, String> */',
     # tree_namespace
     "number|undefined": 'Number',
-    "Array.<(number|string)>": 'List /* <Number, String> */',
+    "Array.<(number|string)>": 'ArrayList /* <Number, String> */',
     "false": 'Boolean /* boolean */',
     "undefined": 'Object',
     "null": 'Object',
     "Object|undefined": 'Object',
     "false|Highcharts.XAxisCrosshairOptions|Highcharts.YAxisCrosshairOptions": 'Object',
-    "Array.<Point>": 'List',
-    "string|Array.<(number|string)>": 'List /* <Number, String> */',
-    "Highcharts.Dictionary.<function()>": 'Map',
-    "Highcharts.Dictionary.<(boolean|number|string)>": 'Map',
-    "Highcharts.Dictionary.<string>": 'Map /* <String, String> */',
+    "Array.<Point>": 'ArrayList',
+    "string|Array.<(number|string)>": 'ArrayList /* <Number, String> */',
+    "Highcharts.Dictionary.<function()>": 'HashMap',
+    "Highcharts.Dictionary.<(boolean|number|string)>": 'HashMap',
+    "Highcharts.Dictionary.<string>": 'HashMap /* <String, String> */',
     # tree
     "Highcharts.PlotSeriesDataLabelsOptions": 'Object',
-    "Highcharts.Options": 'Map',
+    "Highcharts.Options": 'HashMap',
     "boolean|Highcharts.ShadowOptionsObject": 'Boolean /* boolean */',
     "string|Highcharts.SVGDOMElement": 'String',
     "boolean|Highcharts.CSSObject": 'Boolean /* boolean */',
@@ -282,47 +282,58 @@ hc_types = {
     "Highcharts.ColorString|null": 'HIColor',
     # 7.0.0
     "string|global.HTMLElement": 'String',
-    "Array.<Highcharts.Dictionary.<number>>": 'List',
-    "Array.<Array.<*>>": 'List<List>',
+    "Array.<Highcharts.Dictionary.<number>>": 'ArrayList',
+    "Array.<Array.<*>>": 'ArrayList<ArrayList>',
     "string|Highcharts.GradientColorObject|Highcharts.PatternObject": 'HIColor',
     "Highcharts.FormatterCallbackFunction.<Highcharts.TooltipFormatterContextObject>": 'HIFunction',
-    "Highcharts.Dictionary.<*>": 'Map',
-    "Array.<Array.<string, (Array.<number>|null)>>": 'List<List>',
+    "Highcharts.Dictionary.<*>": 'HashMap',
+    "Array.<Array.<string, (Array.<number>|null)>>": 'ArrayList<ArrayList>',
     "string|Highcharts.GradientColorObject": 'HIColor',
     "string|MockPointOptions": 'String',
-    "Array.<(string|number)>": 'List /* <String, Number> */',
+    "Array.<(string|number)>": 'ArrayList /* <String, Number> */',
     "Highcharts.FormatterCallbackFunction.<Highcharts.SeriesDataLabelsFormatterContextObject>": 'HIFunction',
     "Annotation.ControlPoint.Options": 'Object',
     "Highcharts.FormatterCallbackFunction.<object>": 'HIFunction',
     "boolean|null": 'Boolean',
     "false|number": 'Number',
     "String|function": 'String',
-    "*|Array.<*>": 'List',
+    "*|Array.<*>": 'ArrayList',
     "function|undefined": 'HIFunction',
     "string|undefined": 'String',
     "Highcharts.GradientColorObject": 'HIColor',
     # tree-namespace
-    "Array.<Array.<number, string>>|undefined": 'List<List>',
+    "Array.<Array.<number, string>>|undefined": 'ArrayList<ArrayList>',
     "string|*": 'String',
-    "Array.<*>|undefined": 'List',
+    "Array.<*>|undefined": 'ArrayList',
     "boolean|undefined": 'Boolean',
-    "Array.<number>|undefined": 'List<Number>',
+    "Array.<number>|undefined": 'ArrayList<Number>',
     "object|undefined": 'Object',
     "boolean|*|undefined": 'Boolean',
-    "string|Array.<(number|string)>|undefined": 'List /* <Number, String> */',
-    "Array<number>": 'List<Number>',
+    "string|Array.<(number|string)>|undefined": 'ArrayList /* <Number, String> */',
+    "Array<number>": 'ArrayList<Number>',
     "boolean|Array.<*>|undefined": 'Object',
-    "Array.<function()>|undefined": 'List<HIFunction>',
+    "Array.<function()>|undefined": 'ArrayList<HIFunction>',
     "*|undefined": 'Object',
-    "Highcharts.Dictionary.<number>": 'Map',
+    "Highcharts.Dictionary.<number>": 'HashMap',
     "Object|*": 'Object',
     #7.0.1
     "Highcharts.FormatterCallbackFunction.<Highcharts.AxisLabelsFormatterContextObject>": 'HIFunction',
     "Highcharts.FormatterCallbackFunction.<Highcharts.Point>": 'HIFunction',
     "string|Highcharts.HTMLDOMElement": 'String',
     # 7.0.2
-    "Array.<(string|Highcharts.GradientColorObject|Highcharts.PatternObject)>": 'List<String>',
-    "string|function": 'String'
+    "Array.<(string|Highcharts.GradientColorObject|Highcharts.PatternObject)>": 'ArrayList<String>',
+    "string|function": 'String',
+    #7.1.1
+    "undefined|number": 'Number',
+    "Highcharts.ScreenReaderFormatterCallbackFunction.<Highcharts.Chart>": 'HIFunction',
+    "Highcharts.ScreenReaderFormatterCallbackFunction.<Highcharts.Series>": 'HIFunction',
+    "Highcharts.ScreenReaderFormatterCallbackFunction.<Highcharts.Point>": 'HIFunction',
+    "boolean|number": 'Number',
+    "Array.<number>|false": 'ArrayList<Number>',
+    "Highcharts.AnnotationsOptions": 'Object',
+    "Highcharts.FormatterCallbackFunction.<Highcharts.SankeyNodeObject>": 'HIFunction',
+    "Highcharts.FormatterCallbackFunction.<Highcharts.StackItemObject>": 'HIFunction',
+    "null|*": 'Object'
 
 }
 
@@ -438,9 +449,9 @@ def format_to_java(name, source):
     import_hi_string = ""
 
     imports += "package com.highsoft.highcharts.common.hichartsclasses;\n"
-    imports += "\nimport java.util.Map;"
-    imports += "\nimport java.util.Map;"
-    imports += "\nimport java.util.List;"
+    imports += "\nimport java.util.HashMap;"
+    imports += "\nimport java.util.HashMap;"
+    imports += "\nimport java.util.ArrayList;"
     # imports += "\nimport java.util.Observable;"
     # imports += "\nimport java.util.Observer;"
     imports += "\nimport com.highsoft.highcharts.core.HIFunction;"
@@ -709,11 +720,11 @@ def format_to_java(name, source):
     #
     # imports += "\n\n"  # koniec set
 
-    methods += "\n\t@Override\npublic Map<String, Object> getParams() {\n\n\t\tMap<String, Object> params =" \
-               " new Map<>();\n"
+    methods += "\n\t@Override\npublic HashMap<String, Object> getParams() {\n\n\t\tHashMap<String, Object> params =" \
+               " new HashMap<>();\n"
     if source.extends:
         methods += "\t\tparams = super.getParams();\n"
-    else: methods += "\t\tparams = params.put(\"_wrapperID\", this.uuid);\n"
+    else: methods += "\t\tparams.put(\"_wrapperID\", this.uuid);\n"
 
     for field in classes[class_name]:
         if field_in_parent(field, source):
@@ -724,16 +735,16 @@ def format_to_java(name, source):
                 if get_java_type(structure[field.name].data_type) == 'HIColor':
                     methods += "\t\t\tparams.put(\"{0}\", this.{1}.getData());\n".format(get_last(field.name),
                                                                                          get_last(field.name))
-                elif get_java_type(structure[field.name].data_type) == 'List<HIColor>':
+                elif get_java_type(structure[field.name].data_type) == 'ArrayList<HIColor>':
                     imports += "\nimport com.highsoft.highcharts.common.HIColor;"
-                    methods += "\t\t\tList<Object> array = new List<>();\n"
+                    methods += "\t\t\tArrayList<Object> array = new ArrayList<>();\n"
                     methods += "\t\t\tfor (HIColor hiColor : this.{0})".format(get_last(field.name)) + " {\n"
                     methods += "\t\t\t\tarray.add(hiColor.getData());\n".format(
                         get_last(field.name))
                     methods += "\t\t\t}\n"
                     methods += "\t\t\tparams.put(\"{0}\", array);\n".format(get_last(field.name))
                 elif 'List' in str(get_java_type(structure[field.name].data_type)):
-                    methods += "\t\t\tList<Object> array = new List<>();\n"
+                    methods += "\t\t\tArrayList<Object> array = new ArrayList<>();\n"
 
                     methods += "\t\t\tfor (Object obj : this.{0})".format(get_last(field.name)) + " {\n"
                     methods += "\t\t\t\tif (obj instanceof HIFoundation)".format(
@@ -779,9 +790,9 @@ def create_java_options_file():
 
     imports += "\npackage com.highsoft.highcharts.common.hichartsclasses;\n"
 
-    imports += "\nimport java.util.Map;"
-    imports += "\nimport java.util.Map;"
-    imports += "\nimport java.util.List;"
+    imports += "\nimport java.util.HashMap;"
+    imports += "\nimport java.util.HashMap;"
+    imports += "\nimport java.util.ArrayList;"
     # imports += "\nimport java.util.Observable;"
     # imports += "\nimport java.util.Observer;"
     imports += "\nimport com.highsoft.highcharts.core.HIFoundation;"
@@ -799,9 +810,9 @@ def create_java_options_file():
     setter_start = "\tpublic void set{0}({1} {2}) {{" \
                    "\n\t\tthis.{3} = {4};"
     setter_mid = "\n\t\tthis.{0}.addObserver(updateObserver);"
-    setter_loop = "\n\t\tfor(Object listElement : {0}){" \
+    setter_loop = "\n\t\tfor(Object listElement : {0}){{" \
                     "\n\t\t\tif(listElement instanceof HIFoundation)" \
-                    "\n\t\t\t\t((HIFoundation)listElement).addObserver(updateObserver);\n\t\t}"
+                    "\n\t\t\t\t((HIFoundation)listElement).addObserver(updateObserver);\n\t\t}}"
 
     setter_end = "\n\t\tthis.setChanged();" \
                  "\n\t\tthis.notifyObservers();" \
@@ -819,7 +830,7 @@ def create_java_options_file():
                    "\t\treturn this;\n" \
                    "\t}\n" \
                    "}\n\n"
-    methods += "@Override\npublic Map<String, Object> getParams() {\n\n\tMap<String, Object> params = new Map<>();\n"
+    methods += "@Override\npublic HashMap<String, Object> getParams() {\n\n\tHashMap<String, Object> params = new HashMap<>();\n"
     for field in options:
         if field.name != 'global' and field.name != 'lang':
             # if field.comment:
@@ -881,7 +892,7 @@ def create_java_options_file():
                         get_last(field.name)
                     )
                     # fields += setter_mid.format(get_last(field.name))
-                    fields += setter_loop
+                    fields += setter_loop.format(get_last(field.name))
                     fields += setter_end
                     fields += getter.format(
                         get_java_type(field.data_type) + "<" + "HI" + upper_first(
@@ -929,7 +940,7 @@ def create_java_options_file():
                     get_last(field.name)
                 )
     fields += "/**\n* Additional options that are not listed above but are accepted by API\n*/\n"
-    fields += "public Map<String, Object> additionalOptions;\n\n"
+    fields += "public HashMap<String, Object> additionalOptions;\n\n"
     for field in options:
         if field.name != 'global' and field.name != "lang":
             methods += "\t\tif (this.{0} != null)".format(get_last(field.name)) + " {\n"
@@ -938,15 +949,15 @@ def create_java_options_file():
                 if get_java_type(field.data_type) == 'HIColor':
                     methods += "\t\t\tparamas.put(\"{0}\", this.{1}.getData());\n".format(get_last(field.name),
                                                                                           get_last(field.name))
-                elif get_java_type(field.data_type) == 'List<HIColor>':
-                    methods += "\t\t\tList<Object> array = new List<>();\n"
+                elif get_java_type(field.data_type) == 'ArrayList<HIColor>':
+                    methods += "\t\t\tArrayList<Object> array = new ArrayList<>();\n"
                     methods += "\t\t\tfor (HIColor hiColor : this.{0})".format(get_last(field.name)) + " {\n"
                     methods += "\t\t\t\tarray.add(hiColor.getData());\n".format(
                         get_last(field.name))
                     methods += "\t\t\t}\n"
                     methods += "\t\t\tparams.put(\"{0}\", array);\n".format(get_last(field.name))
                 elif "List" in str(get_java_type(field.data_type)):
-                    methods += "\t\t\tList<Object> array = new List<>();\n"
+                    methods += "\t\t\tArrayList<Object> array = new ArrayList<>();\n"
                     methods += "\t\t\tfor (Object obj : this.{0})".format(get_last(field.name)) + " {\n"
                     methods += "\t\t\t\tif (obj instanceof HIFoundation)".format(
                         get_last(field.name)) + " {\n"
@@ -1660,8 +1671,8 @@ def type_from_namespace(type):
             if hc_match:
                 temp = hc_match.group(1)
                 if temp in namespace_structure:
-                    print "Added type from namespace : " + new_type + ", value: " + 'List<{}>'.format('HI' + get_last(temp))
-                    hc_types[new_type] = 'List<{}>'.format('HI' + get_last(temp))
+                    print "Added type from namespace : " + new_type + ", value: " + 'ArrayList<{}>'.format('HI' + get_last(temp))
+                    hc_types[new_type] = 'ArrayList<{}>'.format('HI' + get_last(temp))
 
         elif new_type in namespace_structure:
             print "Added type from namespace : " + new_type + ", value: " + "HI" + get_last(new_type)

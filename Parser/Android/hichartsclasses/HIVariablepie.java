@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -48,7 +48,7 @@ public class HIVariablepie extends HISeries {
 
 	private String sizeBy;
 	/**
- Whether the pie slice's value should be represented by the area or the radius of the slice. Can be either area or radius. The defaults, area, corresponds best to the human perception of the size of each pie slice. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/sizeby/">Difference between area and radius sizeBy</a> <br><br><b>accepted values:</b><br><br>&ensp;["area", "radius"]
+ Whether the pie slice's value should be represented by the area or the radius of the slice. Can be either area or radius. The defaults, area, corresponds best to the human perception of the size of each pie slice. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/variable-radius-pie/sizeby/">Difference between area and radius sizeBy</a>
 	*/
 	public void setSizeBy(String sizeBy) {
 		this.sizeBy = sizeBy;
@@ -118,17 +118,17 @@ public class HIVariablepie extends HISeries {
 
 	public Object /* Number, String */ getInnerSize(){ return innerSize; }
 
-	private List /* <Number, String> */ center;
+	private ArrayList /* <Number, String> */ center;
 	/**
  The center of the pie chart relative to the plot area. Can be percentages or pixel values. The defaults behaviour (as of 3.0) is to center the pie so that all slices and data labels are within the plot area. As a consequence, the pie may actually jump around in a chart with dynamic values, as the data labels move. In that case, the center should be explicitly set, for example to ["50%", "50%"]. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-center/">Centered at 100, 100</a>
  <br><br><b>defaults:</b><br><br>&ensp;[null, null]	*/
-	public void setCenter(List /* <Number, String> */ center) {
+	public void setCenter(ArrayList /* <Number, String> */ center) {
 		this.center = center;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List /* <Number, String> */ getCenter(){ return center; }
+	public ArrayList /* <Number, String> */ getCenter(){ return center; }
 
 	private Number slicedOffset;
 	/**
@@ -166,17 +166,17 @@ public class HIVariablepie extends HISeries {
 
 	public Number getEndAngle(){ return endAngle; }
 
-	private List<String> colors;
+	private ArrayList<String> colors;
 	/**
  A series specific or series type specific color set to use instead of the global colors. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/">Set defaults colors for all pies</a>
 	*/
-	public void setColors(List<String> colors) {
+	public void setColors(ArrayList<String> colors) {
 		this.colors = colors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<String> getColors(){ return colors; }
+	public ArrayList<String> getColors(){ return colors; }
 
 	private Number borderWidth;
 	/**
@@ -234,9 +234,9 @@ public class HIVariablepie extends HISeries {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
+		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
 		if (this.zMax != null) {
 			params.put("zMax", this.zMax);
@@ -263,7 +263,7 @@ public Map<String, Object> getParams() {
 			params.put("innerSize", this.innerSize);
 		}
 		if (this.center != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.center) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -284,7 +284,7 @@ public Map<String, Object> getParams() {
 			params.put("endAngle", this.endAngle);
 		}
 		if (this.colors != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.colors) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

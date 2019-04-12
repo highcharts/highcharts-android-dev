@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -28,6 +28,19 @@ public class HIStates extends HIFoundation {
 
 	public HIHover getHover(){ return hover; }
 
+	private HIInactive inactive;
+	/**
+ The opposite state of a hover for a single point node/link. 
+	*/
+	public void setInactive(HIInactive inactive) {
+		this.inactive = inactive;
+		this.inactive.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIInactive getInactive(){ return inactive; }
+
 	private HISelect select;
 	public void setSelect(HISelect select) {
 		this.select = select;
@@ -40,7 +53,7 @@ public class HIStates extends HIFoundation {
 
 	private HINormal normal;
 	/**
- The normal state of a single point marker. Currently only used for setting animation when returning to normal state from hover. 
+ The normal state of a series, or for point items in column, pie and similar series. Currently only used for setting animation when returning to normal state from hover. 
 	*/
 	public void setNormal(HINormal normal) {
 		this.normal = normal;
@@ -58,12 +71,15 @@ public class HIStates extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.hover != null) {
 			params.put("hover", this.hover.getParams());
+		}
+		if (this.inactive != null) {
+			params.put("inactive", this.inactive.getParams());
 		}
 		if (this.select != null) {
 			params.put("select", this.select.getParams());

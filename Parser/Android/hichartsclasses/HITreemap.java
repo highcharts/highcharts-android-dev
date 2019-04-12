@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -33,17 +33,17 @@ public class HITreemap extends HISeries {
 
 	public Boolean getIgnoreHiddenPoint(){ return ignoreHiddenPoint; }
 
-	private List<String> colors;
+	private ArrayList<String> colors;
 	/**
  A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
 	*/
-	public void setColors(List<String> colors) {
+	public void setColors(ArrayList<String> colors) {
 		this.colors = colors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<String> getColors(){ return colors; }
+	public ArrayList<String> getColors(){ return colors; }
 
 	private Number sortIndex;
 	/**
@@ -57,30 +57,6 @@ public class HITreemap extends HISeries {
 
 	public Number getSortIndex(){ return sortIndex; }
 
-	private Boolean allowTraversingTree;
-	/**
- When enabled the user can click on a point which is a parent and zoom in on its children. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-allowtraversingtree/">Enabled</a>
-	*/
-	public void setAllowTraversingTree(Boolean allowTraversingTree) {
-		this.allowTraversingTree = allowTraversingTree;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getAllowTraversingTree(){ return allowTraversingTree; }
-
-	private Number opacity;
-	/**
- The opacity of a point in treemap. When a point has children, the visibility of the children is determined by the opacity. 
-	*/
-	public void setOpacity(Number opacity) {
-		this.opacity = opacity;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getOpacity(){ return opacity; }
-
 	private Boolean colorByPoint;
 	/**
  When using automatic point colors pulled from the options.colors collection, this option determines whether the chart should receive one color per series or one color per point. 
@@ -92,6 +68,18 @@ public class HITreemap extends HISeries {
 	}
 
 	public Boolean getColorByPoint(){ return colorByPoint; }
+
+	private Boolean allowTraversingTree;
+	/**
+ When enabled the user can click on a point which is a parent and zoom in on its children. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-allowtraversingtree/">Enabled</a>
+	*/
+	public void setAllowTraversingTree(Boolean allowTraversingTree) {
+		this.allowTraversingTree = allowTraversingTree;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getAllowTraversingTree(){ return allowTraversingTree; }
 
 	private String layoutStartingDirection;
 	/**
@@ -105,17 +93,17 @@ public class HITreemap extends HISeries {
 
 	public String getLayoutStartingDirection(){ return layoutStartingDirection; }
 
-	private List <HILevels> levels;
+	private ArrayList <HILevels> levels;
 	/**
  Set options on specific levels. Takes precedence over series options, but not point options. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-levels/">Styling dataLabels and borders</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/treemap-with-levels/">Different layoutAlgorithm</a>
 	*/
-	public void setLevels(List levels) {
+	public void setLevels(ArrayList levels) {
 		this.levels = levels;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List getLevels(){ return levels; }
+	public ArrayList getLevels(){ return levels; }
 
 	private Boolean interactByLeaf;
 	/**
@@ -186,15 +174,15 @@ public class HITreemap extends HISeries {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
+		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
 		if (this.ignoreHiddenPoint != null) {
 			params.put("ignoreHiddenPoint", this.ignoreHiddenPoint);
 		}
 		if (this.colors != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.colors) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -208,20 +196,17 @@ public Map<String, Object> getParams() {
 		if (this.sortIndex != null) {
 			params.put("sortIndex", this.sortIndex);
 		}
-		if (this.allowTraversingTree != null) {
-			params.put("allowTraversingTree", this.allowTraversingTree);
-		}
-		if (this.opacity != null) {
-			params.put("opacity", this.opacity);
-		}
 		if (this.colorByPoint != null) {
 			params.put("colorByPoint", this.colorByPoint);
+		}
+		if (this.allowTraversingTree != null) {
+			params.put("allowTraversingTree", this.allowTraversingTree);
 		}
 		if (this.layoutStartingDirection != null) {
 			params.put("layoutStartingDirection", this.layoutStartingDirection);
 		}
 		if (this.levels != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.levels) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

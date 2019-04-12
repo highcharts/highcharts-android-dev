@@ -8,19 +8,13 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import com.highsoft.highcharts.core.HIFoundation;
+
 import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 
 
-
-
-public class HIItemCheckboxStyle extends Observable implements HIChartsJSONSerializable { 
+public class HIItemCheckboxStyle extends HIFoundation { 
 
 	private String height;
 	public void setHeight(String height) {
@@ -37,19 +31,11 @@ public class HIItemCheckboxStyle extends Observable implements HIChartsJSONSeria
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.height != null) {
 			params.put("height", this.height);
 		}

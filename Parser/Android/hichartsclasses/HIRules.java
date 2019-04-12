@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -31,17 +31,17 @@ public class HIRules extends HIFoundation {
 
 	public HICondition getCondition(){ return condition; }
 
-	private Map chartOptions;
+	private HashMap chartOptions;
 	/**
  A full set of chart options to apply as overrides to the general chart options. The chart options are applied when the given rule is active. A special case is configuration objects that take arrays, for example xAxis, yAxis or series. For these collections, an id option is used to map the new option set to an existing object. If an existing object of the same id is not found, the item of the same indexupdated. So for example, setting chartOptions with two series items without an id, will cause the existing chart's two series to be updated with respective options. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/">Axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/legend/">Legend</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/classname/">Class name</a>
 	*/
-	public void setChartOptions(Map chartOptions) {
+	public void setChartOptions(HashMap chartOptions) {
 		this.chartOptions = chartOptions;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Map getChartOptions(){ return chartOptions; }
+	public HashMap getChartOptions(){ return chartOptions; }
 
 
 
@@ -50,10 +50,10 @@ public class HIRules extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.condition != null) {
 			params.put("condition", this.condition.getParams());
 		}

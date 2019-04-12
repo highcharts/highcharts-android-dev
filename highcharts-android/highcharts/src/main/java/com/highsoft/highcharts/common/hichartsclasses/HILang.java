@@ -8,24 +8,19 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.highsoft.highcharts.core.HIFoundation;
+
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import java.util.HashMap;
 
 
 
-
-
-public class HILang extends Observable implements HIChartsJSONSerializable { 
+public class HILang extends HIFoundation { 
 
 	private String downloadCSV;
-/**
-/** Export-data module only. The text for the menu item. 
-*/
+	/**
+ Export-data module only. The text for the menu item. 
+	*/
 	public void setDownloadCSV(String downloadCSV) {
 		this.downloadCSV = downloadCSV;
 		this.setChanged();
@@ -35,9 +30,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public String getDownloadCSV(){ return downloadCSV; }
 
 	private String downloadXLS;
-/**
-/** Export-data module only. The text for the menu item. 
-*/
+	/**
+ Export-data module only. The text for the menu item. 
+	*/
 	public void setDownloadXLS(String downloadXLS) {
 		this.downloadXLS = downloadXLS;
 		this.setChanged();
@@ -47,9 +42,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public String getDownloadXLS(){ return downloadXLS; }
 
 	private String downloadPNG;
-/**
-/** Exporting module only. The text for the PNG download menu item. 
-*/
+	/**
+ Exporting module only. The text for the PNG download menu item. 
+	*/
 	public void setDownloadPNG(String downloadPNG) {
 		this.downloadPNG = downloadPNG;
 		this.setChanged();
@@ -58,22 +53,23 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 
 	public String getDownloadPNG(){ return downloadPNG; }
 
-	private Object accessibility;
-/**
-/** Configure the accessibility strings in the chart. Requires the [accessibility module](https://code.highcharts.com/modules/accessibility.js) to be loaded. For a description of the module and information on its features, see [Highcharts Accessibility](http://www.highcharts.com/docs/chart-concepts/accessibility). For more dynamic control over the accessibility functionality, see `accessibility.pointDescriptionFormatter`, `accessibility.seriesDescriptionFormatter`, and `accessibility.screenReaderSectionFormatter`. 
-*/
-	public void setAccessibility(Object accessibility) {
+	private HIAccessibility accessibility;
+	/**
+ Configure the accessibility strings in the chart. Requires the [accessibility module](https://code.highcharts.com/modules/accessibility.js) to be loaded. For a description of the module and information on its features, see [Highcharts Accessibility](https://www.highcharts.com/docs/chart-concepts/accessibility). For more dynamic control over the accessibility functionality, see accessibility.pointDescriptionFormatter, accessibility.seriesDescriptionFormatter, and accessibility.screenReaderSectionFormatter. 
+	*/
+	public void setAccessibility(HIAccessibility accessibility) {
 		this.accessibility = accessibility;
+		this.accessibility.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getAccessibility(){ return accessibility; }
+	public HIAccessibility getAccessibility(){ return accessibility; }
 
 	private ArrayList<String> shortWeekdays;
-/**
-/** Short week days, starting Sunday. If not specified, Highcharts uses the first three letters of the lang.weekdays option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/shortweekdays/">Finnish two-letter abbreviations</a>
-*/
+	/**
+ Short week days, starting Sunday. If not specified, Highcharts uses the first three letters of the lang.weekdays option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/shortweekdays/">Finnish two-letter abbreviations</a>
+	*/
 	public void setShortWeekdays(ArrayList<String> shortWeekdays) {
 		this.shortWeekdays = shortWeekdays;
 		this.setChanged();
@@ -82,10 +78,22 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 
 	public ArrayList<String> getShortWeekdays(){ return shortWeekdays; }
 
+	private String viewFullscreen;
+	/**
+ Exporting module only. View the chart in full screen. 
+	*/
+	public void setViewFullscreen(String viewFullscreen) {
+		this.viewFullscreen = viewFullscreen;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getViewFullscreen(){ return viewFullscreen; }
+
 	private String noData;
-/**
-/** The text to display when the chart contains no data. Requires the no-data module, see noData. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line">No-data text</a>
-*/
+	/**
+ The text to display when the chart contains no data. Requires the no-data module, see noData. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line">No-data text</a>
+	*/
 	public void setNoData(String noData) {
 		this.noData = noData;
 		this.setChanged();
@@ -95,9 +103,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public String getNoData(){ return noData; }
 
 	private String loading;
-/**
-/** The loading text that appears when the chart is set into the loading state following a call to chart.showLoading. 
-*/
+	/**
+ The loading text that appears when the chart is set into the loading state following a call to chart.showLoading. 
+	*/
 	public void setLoading(String loading) {
 		this.loading = loading;
 		this.setChanged();
@@ -107,9 +115,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public String getLoading(){ return loading; }
 
 	private ArrayList<String> numericSymbols;
-/**
-/** [Metric prefixes](http://en.wikipedia.org/wiki/Metric_prefix) used to shorten high numbers in axis labels. Replacing any of the positions with null causes the full number to be written. Setting numericSymbols to null disables shortening altogether. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbols/">Replacing the symbols with text</a>
- <br><br><b>defaults:</b><br><br>&ensp;["k", "M", "G", "T", "P", "E"]*/
+	/**
+ [Metric prefixes](http://en.wikipedia.org/wiki/Metric_prefix) used to shorten high numbers in axis labels. Replacing any of the positions with null causes the full number to be written. Setting numericSymbols to null disables shortening altogether. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbols/">Replacing the symbols with text</a>
+ <br><br><b>defaults:</b><br><br>&ensp;["k", "M", "G", "T", "P", "E"]	*/
 	public void setNumericSymbols(ArrayList<String> numericSymbols) {
 		this.numericSymbols = numericSymbols;
 		this.setChanged();
@@ -119,9 +127,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public ArrayList<String> getNumericSymbols(){ return numericSymbols; }
 
 	private String printChart;
-/**
-/** Exporting module only. The text for the menu item to print the chart. 
-*/
+	/**
+ Exporting module only. The text for the menu item to print the chart. 
+	*/
 	public void setPrintChart(String printChart) {
 		this.printChart = printChart;
 		this.setChanged();
@@ -131,9 +139,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public String getPrintChart(){ return printChart; }
 
 	private Number numericSymbolMagnitude;
-/**
-/** The magnitude of numericSymbols replacements. Use 10000 for Japanese, Korean and various Chinese locales, which use symbols for 10^4, 10^8 and 10^12. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbolmagnitude/">10000 magnitude for Japanese</a>
- <br><br><b>defaults:</b><br><br>&ensp;1000*/
+	/**
+ The magnitude of numericSymbols replacements. Use 10000 for Japanese, Korean and various Chinese locales, which use symbols for 10^4, 10^8 and 10^12. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbolmagnitude/">10000 magnitude for Japanese</a>
+ <br><br><b>defaults:</b><br><br>&ensp;1000	*/
 	public void setNumericSymbolMagnitude(Number numericSymbolMagnitude) {
 		this.numericSymbolMagnitude = numericSymbolMagnitude;
 		this.setChanged();
@@ -143,10 +151,10 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public Number getNumericSymbolMagnitude(){ return numericSymbolMagnitude; }
 
 	private ArrayList<String> weekdays;
-/**
-/** An array containing the weekday names. 
+	/**
+ An array containing the weekday names. 
  <br><br><b>defaults:</b><br><br>&ensp;["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
-         "Friday", "Saturday"]*/
+         "Friday", "Saturday"]	*/
 	public void setWeekdays(ArrayList<String> weekdays) {
 		this.weekdays = weekdays;
 		this.setChanged();
@@ -156,9 +164,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public ArrayList<String> getWeekdays(){ return weekdays; }
 
 	private String downloadSVG;
-/**
-/** Exporting module only. The text for the SVG download menu item. 
-*/
+	/**
+ Exporting module only. The text for the SVG download menu item. 
+	*/
 	public void setDownloadSVG(String downloadSVG) {
 		this.downloadSVG = downloadSVG;
 		this.setChanged();
@@ -168,9 +176,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public String getDownloadSVG(){ return downloadSVG; }
 
 	private String drillUpText;
-/**
-/** The text for the button that appears when drilling down, linking back to the parent series. The parent series' name is inserted for {series.name}. 
-*/
+	/**
+ The text for the button that appears when drilling down, linking back to the parent series. The parent series' name is inserted for {series.name}. 
+	*/
 	public void setDrillUpText(String drillUpText) {
 		this.drillUpText = drillUpText;
 		this.setChanged();
@@ -180,9 +188,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public String getDrillUpText(){ return drillUpText; }
 
 	private String viewData;
-/**
-/** Export-data module only. The text for the menu item. 
-*/
+	/**
+ Export-data module only. The text for the menu item. 
+	*/
 	public void setViewData(String viewData) {
 		this.viewData = viewData;
 		this.setChanged();
@@ -192,9 +200,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public String getViewData(){ return viewData; }
 
 	private String contextButtonTitle;
-/**
-/** Exporting module menu. The tooltip title for the context menu holding print and export menu items. 
-*/
+	/**
+ Exporting module menu. The tooltip title for the context menu holding print and export menu items. 
+	*/
 	public void setContextButtonTitle(String contextButtonTitle) {
 		this.contextButtonTitle = contextButtonTitle;
 		this.setChanged();
@@ -204,9 +212,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public String getContextButtonTitle(){ return contextButtonTitle; }
 
 	private String invalidDate;
-/**
-/** What to show in a date field for invalid dates. Defaults to an empty string. 
-*/
+	/**
+ What to show in a date field for invalid dates. Defaults to an empty string. 
+	*/
 	public void setInvalidDate(String invalidDate) {
 		this.invalidDate = invalidDate;
 		this.setChanged();
@@ -216,9 +224,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public String getInvalidDate(){ return invalidDate; }
 
 	private String resetZoom;
-/**
-/** The text for the label appearing when a chart is zoomed. 
-*/
+	/**
+ The text for the label appearing when a chart is zoomed. 
+	*/
 	public void setResetZoom(String resetZoom) {
 		this.resetZoom = resetZoom;
 		this.setChanged();
@@ -228,9 +236,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public String getResetZoom(){ return resetZoom; }
 
 	private String downloadPDF;
-/**
-/** Exporting module only. The text for the PDF download menu item. 
-*/
+	/**
+ Exporting module only. The text for the PDF download menu item. 
+	*/
 	public void setDownloadPDF(String downloadPDF) {
 		this.downloadPDF = downloadPDF;
 		this.setChanged();
@@ -240,9 +248,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public String getDownloadPDF(){ return downloadPDF; }
 
 	private String openInCloud;
-/**
-/** Export-data module only. The text for the menu item. 
-*/
+	/**
+ Export-data module only. The text for the menu item. 
+	*/
 	public void setOpenInCloud(String openInCloud) {
 		this.openInCloud = openInCloud;
 		this.setChanged();
@@ -252,9 +260,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public String getOpenInCloud(){ return openInCloud; }
 
 	private String resetZoomTitle;
-/**
-/** The tooltip title for the label appearing when a chart is zoomed. 
-*/
+	/**
+ The tooltip title for the label appearing when a chart is zoomed. 
+	*/
 	public void setResetZoomTitle(String resetZoomTitle) {
 		this.resetZoomTitle = resetZoomTitle;
 		this.setChanged();
@@ -264,11 +272,11 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public String getResetZoomTitle(){ return resetZoomTitle; }
 
 	private ArrayList<String> months;
-/**
-/** An array containing the months names. Corresponds to the %B format in Highcharts.dateFormat(). 
+	/**
+ An array containing the months names. Corresponds to the %B format in Highcharts.dateFormat(). 
  <br><br><b>defaults:</b><br><br>&ensp;["January", "February", "March", "April", "May", "June",
          "July", "August", "September", "October", "November",
-         "December"]*/
+         "December"]	*/
 	public void setMonths(ArrayList<String> months) {
 		this.months = months;
 		this.setChanged();
@@ -278,10 +286,10 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public ArrayList<String> getMonths(){ return months; }
 
 	private ArrayList<String> shortMonths;
-/**
-/** An array containing the months names in abbreviated form. Corresponds to the %b format in Highcharts.dateFormat(). 
+	/**
+ An array containing the months names in abbreviated form. Corresponds to the %b format in Highcharts.dateFormat(). 
  <br><br><b>defaults:</b><br><br>&ensp;["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]*/
+         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]	*/
 	public void setShortMonths(ArrayList<String> shortMonths) {
 		this.shortMonths = shortMonths;
 		this.setChanged();
@@ -291,9 +299,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public ArrayList<String> getShortMonths(){ return shortMonths; }
 
 	private String downloadJPEG;
-/**
-/** Exporting module only. The text for the JPEG download menu item. 
-*/
+	/**
+ Exporting module only. The text for the JPEG download menu item. 
+	*/
 	public void setDownloadJPEG(String downloadJPEG) {
 		this.downloadJPEG = downloadJPEG;
 		this.setChanged();
@@ -303,9 +311,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public String getDownloadJPEG(){ return downloadJPEG; }
 
 	private String decimalPoint;
-/**
-/** The defaults decimal point used in the Highcharts.numberFormat method unless otherwise specified in the function arguments. 
-*/
+	/**
+ The defaults decimal point used in the Highcharts.numberFormat method unless otherwise specified in the function arguments. 
+	*/
 	public void setDecimalPoint(String decimalPoint) {
 		this.decimalPoint = decimalPoint;
 		this.setChanged();
@@ -315,9 +323,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public String getDecimalPoint(){ return decimalPoint; }
 
 	private HINavigation navigation;
-/**
-/** Configure the Popup strings in the chart. Requires the annotations.js or annotations-advanced.src.js module to be loaded. 
-*/
+	/**
+ Configure the Popup strings in the chart. Requires the annotations.js or annotations-advanced.src.js module to be loaded. 
+	*/
 	public void setNavigation(HINavigation navigation) {
 		this.navigation = navigation;
 		this.navigation.addObserver(updateObserver);
@@ -328,9 +336,9 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 	public HINavigation getNavigation(){ return navigation; }
 
 	private String thousandsSep;
-/**
-/** The defaults thousands separator used in the Highcharts.numberFormat method unless otherwise specified in the function arguments. Defaults to a single space character, which is recommended in [ISO 31-0](https://en.wikipedia.org/wiki/ISO_31-0#Numbers) and works across Anglo-American and continental European languages. 
- <br><br><b>defaults:</b><br><br>&ensp;\u0020*/
+	/**
+ The defaults thousands separator used in the Highcharts.numberFormat method unless otherwise specified in the function arguments. Defaults to a single space character, which is recommended in [ISO 31-0](https://en.wikipedia.org/wiki/ISO_31-0#Numbers) and works across Anglo-American and continental European languages. 
+ <br><br><b>defaults:</b><br><br>&ensp;\u0020	*/
 	public void setThousandsSep(String thousandsSep) {
 		this.thousandsSep = thousandsSep;
 		this.setChanged();
@@ -345,19 +353,11 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.downloadCSV != null) {
 			params.put("downloadCSV", this.downloadCSV);
 		}
@@ -368,18 +368,22 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 			params.put("downloadPNG", this.downloadPNG);
 		}
 		if (this.accessibility != null) {
+			params.put("accessibility", this.accessibility.getParams());
 		}
 		if (this.shortWeekdays != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.shortWeekdays) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
 				}
 				else {
 					array.add(obj);
 				}
 			}
 			params.put("shortWeekdays", array);
+		}
+		if (this.viewFullscreen != null) {
+			params.put("viewFullscreen", this.viewFullscreen);
 		}
 		if (this.noData != null) {
 			params.put("noData", this.noData);
@@ -390,8 +394,8 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 		if (this.numericSymbols != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.numericSymbols) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
 				}
 				else {
 					array.add(obj);
@@ -408,8 +412,8 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 		if (this.weekdays != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.weekdays) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
 				}
 				else {
 					array.add(obj);
@@ -447,8 +451,8 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 		if (this.months != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.months) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
 				}
 				else {
 					array.add(obj);
@@ -459,8 +463,8 @@ public class HILang extends Observable implements HIChartsJSONSerializable {
 		if (this.shortMonths != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.shortMonths) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
 				}
 				else {
 					array.add(obj);

@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -19,17 +19,17 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HIColorAxis extends HIFoundation { 
 
-	private List <HIDataClasses> dataClasses;
+	private ArrayList <HIDataClasses> dataClasses;
 	/**
  An array of data classes or ranges for the choropleth map. If none given, the color axis is scalar and values are distributed as a gradient between the minimum and maximum colors. 
 	*/
-	public void setDataClasses(List dataClasses) {
+	public void setDataClasses(ArrayList dataClasses) {
 		this.dataClasses = dataClasses;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List getDataClasses(){ return dataClasses; }
+	public ArrayList getDataClasses(){ return dataClasses; }
 
 	private Number minPadding;
 	/**
@@ -93,17 +93,17 @@ public class HIColorAxis extends HIFoundation {
 
 	public Boolean getStartOnTick(){ return startOnTick; }
 
-	private List<List> /* <Number, String> */ stops;
+	private ArrayList<ArrayList> /* <Number, String> */ stops;
 	/**
  Color stops for the gradient of a scalar color axis. Use this in cases where a linear gradient between a minColor and maxColor is not sufficient. The stops is an array of tuples, where the first item is a float between 0 and 1 assigning the relative position in the gradient, and the second item is the color. 
 	*/
-	public void setStops(List<List> /* <Number, String> */ stops) {
+	public void setStops(ArrayList<ArrayList> /* <Number, String> */ stops) {
 		this.stops = stops;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<List> /* <Number, String> */ getStops(){ return stops; }
+	public ArrayList<ArrayList> /* <Number, String> */ getStops(){ return stops; }
 
 	private String dataClassColor;
 	/**
@@ -131,7 +131,7 @@ public class HIColorAxis extends HIFoundation {
 
 	private String type;
 	/**
-/** * description: The type of interpolation to use for the color axis. Can be linear or logarithmic. * demo:  •  Linear •  Logarithmic •  Logarithmic with minor grid lines •  Logarithmic on two axes •  Logarithmic with extension to emulate negative values* accepted values: ["linear", "logarithmic"] 
+/** * description: The type of interpolation to use for the color axis. Can be linear or logarithmic. * demo:  •  Linear •  Logarithmic •  Logarithmic with minor grid lines •  Logarithmic on two axes •  Logarithmic with extension to emulate negative values
 * defaults: linear
 */
 	public void setType(String type) {
@@ -304,6 +304,18 @@ public class HIColorAxis extends HIFoundation {
 
 	public HIColor getMinorTickColor(){ return minorTickColor; }
 
+	private Number pane;
+	/**
+ Refers to the index in the panes array. Used for circular gauges and polar charts. When the option is not set then first pane will be used. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-vu-meter">Two gauges with different center</a>
+	*/
+	public void setPane(Number pane) {
+		this.pane = pane;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPane(){ return pane; }
+
 	private Number gridZIndex;
 	/**
  The Z index of the grid lines. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/gridzindex/">A Z index of 4 renders the grid above the graph</a>
@@ -315,6 +327,19 @@ public class HIColorAxis extends HIFoundation {
 	}
 
 	public Number getGridZIndex(){ return gridZIndex; }
+
+	private HIAccessibility accessibility;
+	/**
+ Accessibility options for an axis. Requires the accessibility module. 
+	*/
+	public void setAccessibility(HIAccessibility accessibility) {
+		this.accessibility = accessibility;
+		this.accessibility.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAccessibility getAccessibility(){ return accessibility; }
 
 	private Boolean visible;
 	/**
@@ -340,22 +365,10 @@ public class HIColorAxis extends HIFoundation {
 
 	public Boolean getAlignTicks(){ return alignTicks; }
 
-	private Number pane;
-	/**
- Refers to the index in the panes array. Used for circular gauges and polar charts. When the option is not set then first pane will be used. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-vu-meter">Two gauges with different center</a>
-	*/
-	public void setPane(Number pane) {
-		this.pane = pane;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getPane(){ return pane; }
-
 	private Number tickWidth;
 	/**
- The pixel width of the major tick marks. In styled mode, the stroke width is given in the .highcharts-tick class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickwidth/">10 px width</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/">Styled mode</a>
- <br><br><b>defaults:</b><br><br>&ensp;1	*/
+ The pixel width of the major tick marks. Defaults to 0 on category axes, otherwise 1. In styled mode, the stroke width is given in the .highcharts-tick class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickwidth/">10 px width</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/">Styled mode</a>
+	*/
 	public void setTickWidth(Number tickWidth) {
 		this.tickWidth = tickWidth;
 		this.setChanged();
@@ -400,17 +413,17 @@ public class HIColorAxis extends HIFoundation {
 
 	public String getId(){ return id; }
 
-	private List<Number> tickPositions;
+	private ArrayList<Number> tickPositions;
 	/**
  An array defining where the ticks are laid out on the axis. This overrides the defaults behaviour of tickPixelInterval and tickInterval. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickpositions-tickpositioner/">Demo of tickPositions and tickPositioner</a>
 	*/
-	public void setTickPositions(List<Number> tickPositions) {
+	public void setTickPositions(ArrayList<Number> tickPositions) {
 		this.tickPositions = tickPositions;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<Number> getTickPositions(){ return tickPositions; }
+	public ArrayList<Number> getTickPositions(){ return tickPositions; }
 
 	private String tickmarkPlacement;
 	/**
@@ -484,17 +497,17 @@ public class HIColorAxis extends HIFoundation {
 
 	public Number getMinorTickLength(){ return minorTickLength; }
 
-	private List<List> units;
+	private ArrayList<ArrayList> units;
 	/**
  Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the second value another array of allowed multiples. Defaults to: units: [[   'millisecond', // unit name   [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples ], [   'second',   [1, 2, 5, 10, 15, 30] ], [   'minute',   [1, 2, 5, 10, 15, 30] ], [   'hour',   [1, 2, 3, 4, 6, 8, 12] ], [   'day',   [1] ], [   'week',   [1] ], [   'month',   [1, 3, 6] ], [   'year',   null ]] 
 	*/
-	public void setUnits(List<List> units) {
+	public void setUnits(ArrayList<ArrayList> units) {
 		this.units = units;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<List> getUnits(){ return units; }
+	public ArrayList<ArrayList> getUnits(){ return units; }
 
 	private Number softMin;
 	/**
@@ -531,18 +544,6 @@ public class HIColorAxis extends HIFoundation {
 	}
 
 	public String getGridLineDashStyle(){ return gridLineDashStyle; }
-
-	private String definition;
-	/**
- _Requires Accessibility module_ Description of the axis to screen reader users. 
-	*/
-	public void setDefinition(String definition) {
-		this.definition = definition;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getDefinition(){ return definition; }
 
 	private String minorTickPosition;
 	/**
@@ -700,17 +701,17 @@ public class HIColorAxis extends HIFoundation {
 
 	public Object /* Number, String */ getMinorTickInterval(){ return minorTickInterval; }
 
-	private Number margin;
+	private Object margin;
 	/**
  If there are multiple axes on the same side of the chart, the pixel margin between the axes. Defaults to 0 on vertical axes, 15 on horizontal axes. 
 	*/
-	public void setMargin(Number margin) {
+	public void setMargin(Object margin) {
 		this.margin = margin;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getMargin(){ return margin; }
+	public Object getMargin(){ return margin; }
 
 	private Number softMax;
 	/**
@@ -731,12 +732,12 @@ public class HIColorAxis extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.dataClasses != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.dataClasses) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -763,7 +764,7 @@ public Map<String, Object> getParams() {
 			params.put("startOnTick", this.startOnTick);
 		}
 		if (this.stops != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.stops) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -822,17 +823,20 @@ public Map<String, Object> getParams() {
 		if (this.minorTickColor != null) {
 			params.put("minorTickColor", this.minorTickColor.getData());
 		}
+		if (this.pane != null) {
+			params.put("pane", this.pane);
+		}
 		if (this.gridZIndex != null) {
 			params.put("gridZIndex", this.gridZIndex);
+		}
+		if (this.accessibility != null) {
+			params.put("accessibility", this.accessibility.getParams());
 		}
 		if (this.visible != null) {
 			params.put("visible", this.visible);
 		}
 		if (this.alignTicks != null) {
 			params.put("alignTicks", this.alignTicks);
-		}
-		if (this.pane != null) {
-			params.put("pane", this.pane);
 		}
 		if (this.tickWidth != null) {
 			params.put("tickWidth", this.tickWidth);
@@ -847,7 +851,7 @@ public Map<String, Object> getParams() {
 			params.put("id", this.id);
 		}
 		if (this.tickPositions != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.tickPositions) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -877,7 +881,7 @@ public Map<String, Object> getParams() {
 			params.put("minorTickLength", this.minorTickLength);
 		}
 		if (this.units != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.units) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -896,9 +900,6 @@ public Map<String, Object> getParams() {
 		}
 		if (this.gridLineDashStyle != null) {
 			params.put("gridLineDashStyle", this.gridLineDashStyle);
-		}
-		if (this.definition != null) {
-			params.put("definition", this.definition);
 		}
 		if (this.minorTickPosition != null) {
 			params.put("minorTickPosition", this.minorTickPosition);
@@ -940,7 +941,6 @@ public Map<String, Object> getParams() {
 			params.put("minorTickInterval", this.minorTickInterval);
 		}
 		if (this.margin != null) {
-			params.put("margin", this.margin);
 		}
 		if (this.softMax != null) {
 			params.put("softMax", this.softMax);

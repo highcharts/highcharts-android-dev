@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -154,17 +154,17 @@ public class HIBoxplot extends HISeries {
 
 	public Number getMinPointLength(){ return minPointLength; }
 
-	private List<String> colors;
+	private ArrayList<String> colors;
 	/**
  A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
 	*/
-	public void setColors(List<String> colors) {
+	public void setColors(ArrayList<String> colors) {
 		this.colors = colors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<String> getColors(){ return colors; }
+	public ArrayList<String> getColors(){ return colors; }
 
 	private HIColor edgeColor;
 	/**
@@ -282,9 +282,9 @@ public class HIBoxplot extends HISeries {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
+		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
 		if (this.stemWidth != null) {
 			params.put("stemWidth", this.stemWidth);
@@ -320,7 +320,7 @@ public Map<String, Object> getParams() {
 			params.put("minPointLength", this.minPointLength);
 		}
 		if (this.colors != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.colors) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

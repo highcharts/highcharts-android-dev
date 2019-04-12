@@ -8,25 +8,19 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
-
-
-public class HICrosshair extends Observable implements HIChartsJSONSerializable { 
+public class HICrosshair extends HIFoundation { 
 
 	private Number zIndex;
-/**
-/** The Z index of the crosshair. Higher Z indices allow drawing the crosshair on top of the series or behind the grid lines. 
- <br><br><b>defaults:</b><br><br>&ensp;2*/
+	/**
+ The Z index of the crosshair. Higher Z indices allow drawing the crosshair on top of the series or behind the grid lines. 
+ <br><br><b>defaults:</b><br><br>&ensp;2	*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
 		this.setChanged();
@@ -36,9 +30,9 @@ public class HICrosshair extends Observable implements HIChartsJSONSerializable 
 	public Number getZIndex(){ return zIndex; }
 
 	private String dashStyle;
-/**
-/** The dash style for the crosshair. See series.dashStyle for possible values. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-dotted/">Dotted crosshair</a>
- <br><br><b>defaults:</b><br><br>&ensp;Solid*/
+	/**
+ The dash style for the crosshair. See series.dashStyle for possible values. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-dotted/">Dotted crosshair</a>
+ <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
 	public void setDashStyle(String dashStyle) {
 		this.dashStyle = dashStyle;
 		this.setChanged();
@@ -48,9 +42,9 @@ public class HICrosshair extends Observable implements HIChartsJSONSerializable 
 	public String getDashStyle(){ return dashStyle; }
 
 	private HIColor color;
-/**
-/** The color of the crosshair. Defaults to #cccccc for numeric and datetime axes, and rgba(204,214,235,0.25) for category axes, where the crosshair by defaults highlights the whole category. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-customized/">Customized crosshairs</a>
- <br><br><b>defaults:</b><br><br>&ensp;#cccccc*/
+	/**
+ The color of the crosshair. Defaults to #cccccc for numeric and datetime axes, and rgba(204,214,235,0.25) for category axes, where the crosshair by defaults highlights the whole category. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-customized/">Customized crosshairs</a>
+ <br><br><b>defaults:</b><br><br>&ensp;#cccccc	*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -60,9 +54,9 @@ public class HICrosshair extends Observable implements HIChartsJSONSerializable 
 	public HIColor getColor(){ return color; }
 
 	private String className;
-/**
-/** A class name for the crosshair, especially as a hook for styling. 
-*/
+	/**
+ A class name for the crosshair, especially as a hook for styling. 
+	*/
 	public void setClassName(String className) {
 		this.className = className;
 		this.setChanged();
@@ -72,9 +66,9 @@ public class HICrosshair extends Observable implements HIChartsJSONSerializable 
 	public String getClassName(){ return className; }
 
 	private Number width;
-/**
-/** The pixel width of the crosshair. Defaults to 1 for numeric or datetime axes, and for one category width for category axes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-customized/">Customized crosshairs</a>
- <br><br><b>defaults:</b><br><br>&ensp;1*/
+	/**
+ The pixel width of the crosshair. Defaults to 1 for numeric or datetime axes, and for one category width for category axes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-customized/">Customized crosshairs</a>
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setWidth(Number width) {
 		this.width = width;
 		this.setChanged();
@@ -84,9 +78,9 @@ public class HICrosshair extends Observable implements HIChartsJSONSerializable 
 	public Number getWidth(){ return width; }
 
 	private Boolean snap;
-/**
-/** Whether the crosshair should snap to the point or follow the pointer independent of points. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-snap-false/">True by defaults</a>
- <br><br><b>defaults:</b><br><br>&ensp;true*/
+	/**
+ Whether the crosshair should snap to the point or follow the pointer independent of points. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-snap-false/">True by defaults</a>
+ <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setSnap(Boolean snap) {
 		this.snap = snap;
 		this.setChanged();
@@ -101,19 +95,11 @@ public class HICrosshair extends Observable implements HIChartsJSONSerializable 
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.zIndex != null) {
 			params.put("zIndex", this.zIndex);
 		}

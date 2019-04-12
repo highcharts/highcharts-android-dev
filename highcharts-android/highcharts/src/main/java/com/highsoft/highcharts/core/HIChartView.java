@@ -175,7 +175,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus) {
-                    Log.e(TAG, "onFocusChange() called; hasFocus: " + hasFocus);
+                    Log.i(TAG, "hasFocus: " + hasFocus);
                     String strOptions = "javascript:onFocusOut()";
                     webView.evaluateJavascript(strOptions, new ValueCallback<String>() {
                         @Override
@@ -183,7 +183,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
                             Log.e("HIChartView", "Focus lost");
                         }
                     });
-                } else Log.e(TAG, "onFocusChange() called; hasFocus: " + hasFocus);
+                } else Log.i(TAG, "hasFocus: " + hasFocus);
             }
         });
         this.HTML = new HIGHTML(hiFunctionHandler);
@@ -264,6 +264,12 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
             }
 
             // Adding libraries for PDF export
+            this.HTML.prepareJavaScript("canvag", "js/lib/", suffix);
+            this.HTML.prepareJavaScript("export-csv", "js/lib/", suffix);
+            this.HTML.prepareJavaScript("jspdf", "js/lib/", suffix);
+            this.HTML.prepareJavaScript("moment", "js/lib/", suffix);
+            this.HTML.prepareJavaScript("moment-timezone-with-data", "js/lib/", suffix);
+            this.HTML.prepareJavaScript("pro4", "js/lib/", suffix);
             this.HTML.prepareJavaScript("rgbcolor", "js/lib/", suffix);
             this.HTML.prepareJavaScript("svg2pdf", "js/lib/", suffix);
 

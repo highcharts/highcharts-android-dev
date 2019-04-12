@@ -8,24 +8,19 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+
+import java.util.HashMap;
 
 
 
-
-
-public class HICondition extends Observable implements HIChartsJSONSerializable { 
+public class HICondition extends HIFoundation { 
 
 	private Number minWidth;
-/**
-/** The responsive rule applies if the chart width is greater than this. 
- <br><br><b>defaults:</b><br><br>&ensp;0*/
+	/**
+ The responsive rule applies if the chart width is greater than this. 
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setMinWidth(Number minWidth) {
 		this.minWidth = minWidth;
 		this.setChanged();
@@ -35,9 +30,9 @@ public class HICondition extends Observable implements HIChartsJSONSerializable 
 	public Number getMinWidth(){ return minWidth; }
 
 	private HIFunction callback;
-/**
-/** A callback function to gain complete control on when the responsive rule applies. Return true if it applies. This opens for checking against other metrics than the chart size, or example the document size or other elements. 
-*/
+	/**
+ A callback function to gain complete control on when the responsive rule applies. Return true if it applies. This opens for checking against other metrics than the chart size, or example the document size or other elements. 
+	*/
 	public void setCallback(HIFunction callback) {
 		this.callback = callback;
 		this.setChanged();
@@ -47,9 +42,9 @@ public class HICondition extends Observable implements HIChartsJSONSerializable 
 	public HIFunction getCallback(){ return callback; }
 
 	private Number minHeight;
-/**
-/** The responsive rule applies if the chart height is greater than this. 
- <br><br><b>defaults:</b><br><br>&ensp;0*/
+	/**
+ The responsive rule applies if the chart height is greater than this. 
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setMinHeight(Number minHeight) {
 		this.minHeight = minHeight;
 		this.setChanged();
@@ -59,9 +54,9 @@ public class HICondition extends Observable implements HIChartsJSONSerializable 
 	public Number getMinHeight(){ return minHeight; }
 
 	private Number maxWidth;
-/**
-/** The responsive rule applies if the chart width is less than this. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/">Max width is 500</a>
-*/
+	/**
+ The responsive rule applies if the chart width is less than this. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/">Max width is 500</a>
+	*/
 	public void setMaxWidth(Number maxWidth) {
 		this.maxWidth = maxWidth;
 		this.setChanged();
@@ -71,9 +66,9 @@ public class HICondition extends Observable implements HIChartsJSONSerializable 
 	public Number getMaxWidth(){ return maxWidth; }
 
 	private Number maxHeight;
-/**
-/** The responsive rule applies if the chart height is less than this. 
-*/
+	/**
+ The responsive rule applies if the chart height is less than this. 
+	*/
 	public void setMaxHeight(Number maxHeight) {
 		this.maxHeight = maxHeight;
 		this.setChanged();
@@ -88,19 +83,11 @@ public class HICondition extends Observable implements HIChartsJSONSerializable 
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.minWidth != null) {
 			params.put("minWidth", this.minWidth);
 		}

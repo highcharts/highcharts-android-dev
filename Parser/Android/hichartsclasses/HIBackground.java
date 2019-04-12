@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -69,7 +69,7 @@ public class HIBackground extends HIFoundation {
 
 	private String shape;
 	/**
- The shape of the pane background. When solid, the background is circular. When arc, the background extends only from the min to the max of the value axis. <br><br><b>accepted values:</b><br><br>&ensp;["arc", "circle", "solid"]
+ The shape of the pane background. When solid, the background is circular. When arc, the background extends only from the min to the max of the value axis. 
 	*/
 	public void setShape(String shape) {
 		this.shape = shape;
@@ -110,10 +110,10 @@ public class HIBackground extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
 		}

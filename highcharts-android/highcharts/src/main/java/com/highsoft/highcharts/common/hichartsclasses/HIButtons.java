@@ -8,24 +8,18 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import com.highsoft.highcharts.core.HIFoundation;
+
 import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 
 
-
-
-public class HIButtons extends Observable implements HIChartsJSONSerializable { 
+public class HIButtons extends HIFoundation { 
 
 	private HIContextButton contextButton;
-/**
-/** Options for the export button. In styled mode, export button styles can be applied with the .highcharts-contextbutton class. 
-*/
+	/**
+ Options for the export button. In styled mode, export button styles can be applied with the .highcharts-contextbutton class. 
+	*/
 	public void setContextButton(HIContextButton contextButton) {
 		this.contextButton = contextButton;
 		this.contextButton.addObserver(updateObserver);
@@ -41,19 +35,11 @@ public class HIButtons extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.contextButton != null) {
 			params.put("contextButton", this.contextButton.getParams());
 		}

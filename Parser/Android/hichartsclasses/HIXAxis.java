@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -30,6 +30,18 @@ public class HIXAxis extends HIFoundation {
 	}
 
 	public HIColor getMinorTickColor(){ return minorTickColor; }
+
+	private Number pane;
+	/**
+ Refers to the index in the panes array. Used for circular gauges and polar charts. When the option is not set then first pane will be used. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-vu-meter">Two gauges with different center</a>
+	*/
+	public void setPane(Number pane) {
+		this.pane = pane;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPane(){ return pane; }
 
 	private Number minPadding;
 	/**
@@ -68,18 +80,18 @@ public class HIXAxis extends HIFoundation {
 
 	public Number getGridZIndex(){ return gridZIndex; }
 
-	private HIDateTimeLabelFormats dateTimeLabelFormats;
+	private HIAccessibility accessibility;
 	/**
- For a datetime axis, the scale will automatically adjust to the appropriate unit. This member gives the defaults string representations used for each unit. For intermediate values, different units may be used, for example the day unit can be used on midnight and hour unit be used for intermediate values on the same axis. For an overview of the replacement codes, see `dateFormat`. Defaults to: {   millisecond: '%H:%M:%S.%L',   second: '%H:%M:%S',   minute: '%H:%M',   hour: '%H:%M',   day: '%e. %b',   week: '%e. %b',   month: '%b \'%y',   year: '%Y' } <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/datetimelabelformats/">Different day format on X axis</a>
+ Accessibility options for an axis. Requires the accessibility module. 
 	*/
-	public void setDateTimeLabelFormats(HIDateTimeLabelFormats dateTimeLabelFormats) {
-		this.dateTimeLabelFormats = dateTimeLabelFormats;
-		this.dateTimeLabelFormats.addObserver(updateObserver);
+	public void setAccessibility(HIAccessibility accessibility) {
+		this.accessibility = accessibility;
+		this.accessibility.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIDateTimeLabelFormats getDateTimeLabelFormats(){ return dateTimeLabelFormats; }
+	public HIAccessibility getAccessibility(){ return accessibility; }
 
 	private Boolean visible;
 	/**
@@ -105,22 +117,22 @@ public class HIXAxis extends HIFoundation {
 
 	public Boolean getAlignTicks(){ return alignTicks; }
 
-	private Number pane;
+	private Number minTickInterval;
 	/**
- Refers to the index in the panes array. Used for circular gauges and polar charts. When the option is not set then first pane will be used. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-vu-meter">Two gauges with different center</a>
+ The minimum tick interval allowed in axis values. For example on zooming in on an axis with daily data, this can be used to prevent the axis from showing hours. Defaults to the closest distance between two points on the axis. 
 	*/
-	public void setPane(Number pane) {
-		this.pane = pane;
+	public void setMinTickInterval(Number minTickInterval) {
+		this.minTickInterval = minTickInterval;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getPane(){ return pane; }
+	public Number getMinTickInterval(){ return minTickInterval; }
 
 	private Number tickWidth;
 	/**
- The pixel width of the major tick marks. In styled mode, the stroke width is given in the .highcharts-tick class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickwidth/">10 px width</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/">Styled mode</a>
- <br><br><b>defaults:</b><br><br>&ensp;1	*/
+ The pixel width of the major tick marks. Defaults to 0 on category axes, otherwise 1. In styled mode, the stroke width is given in the .highcharts-tick class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickwidth/">10 px width</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/">Styled mode</a>
+	*/
 	public void setTickWidth(Number tickWidth) {
 		this.tickWidth = tickWidth;
 		this.setChanged();
@@ -177,17 +189,17 @@ public class HIXAxis extends HIFoundation {
 
 	public String getId(){ return id; }
 
-	private List<Number> tickPositions;
+	private ArrayList<Number> tickPositions;
 	/**
  An array defining where the ticks are laid out on the axis. This overrides the defaults behaviour of tickPixelInterval and tickInterval. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickpositions-tickpositioner/">Demo of tickPositions and tickPositioner</a>
 	*/
-	public void setTickPositions(List<Number> tickPositions) {
+	public void setTickPositions(ArrayList<Number> tickPositions) {
 		this.tickPositions = tickPositions;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<Number> getTickPositions(){ return tickPositions; }
+	public ArrayList<Number> getTickPositions(){ return tickPositions; }
 
 	private Number minRange;
 	/**
@@ -297,29 +309,29 @@ public class HIXAxis extends HIFoundation {
 
 	public Boolean getEndOnTick(){ return endOnTick; }
 
-	private List <HIPlotLines> plotLines;
+	private ArrayList <HIPlotLines> plotLines;
 	/**
  An array of lines stretching across the plot area, marking a specific value on one of the axes. In styled mode, the plot lines are styled by the .highcharts-plot-line class in addition to the className option. 
 	*/
-	public void setPlotLines(List plotLines) {
+	public void setPlotLines(ArrayList plotLines) {
 		this.plotLines = plotLines;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List getPlotLines(){ return plotLines; }
+	public ArrayList getPlotLines(){ return plotLines; }
 
-	private List<List> units;
+	private ArrayList<ArrayList> units;
 	/**
  Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the second value another array of allowed multiples. Defaults to: units: [[   'millisecond', // unit name   [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples ], [   'second',   [1, 2, 5, 10, 15, 30] ], [   'minute',   [1, 2, 5, 10, 15, 30] ], [   'hour',   [1, 2, 3, 4, 6, 8, 12] ], [   'day',   [1] ], [   'week',   [1] ], [   'month',   [1, 3, 6] ], [   'year',   null ]] 
 	*/
-	public void setUnits(List<List> units) {
+	public void setUnits(ArrayList<ArrayList> units) {
 		this.units = units;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<List> getUnits(){ return units; }
+	public ArrayList<ArrayList> getUnits(){ return units; }
 
 	private Number softMin;
 	/**
@@ -335,7 +347,7 @@ public class HIXAxis extends HIFoundation {
 
 	private String type;
 	/**
- The type of axis. Can be one of linear, logarithmic, datetime or category. In a datetime axis, the numbers are given in milliseconds, and tick marks are placed on appropriate values like full hours or days. In a category axis, the point names of the chart's series are used for categories, if not a categories array is defined. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/type-linear/">Linear</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/type-log/">Logarithmic</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/type-log-minorgrid/">Logarithmic with minor grid lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/type-log-both/">Logarithmic on two axes</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/type-log-negative/">Logarithmic with extension to emulate negative values</a> <br><br><b>accepted values:</b><br><br>&ensp;["linear", "logarithmic", "datetime", "category"]
+ The type of axis. Can be one of linear, logarithmic, datetime or category. In a datetime axis, the numbers are given in milliseconds, and tick marks are placed on appropriate values like full hours or days. In a category axis, the point names of the chart's series are used for categories, if not a categories array is defined. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/type-linear/">Linear</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/type-log/">Logarithmic</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/type-log-minorgrid/">Logarithmic with minor grid lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/type-log-both/">Logarithmic on two axes</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/type-log-negative/">Logarithmic with extension to emulate negative values</a>
 	*/
 	public void setType(String type) {
 		this.type = type;
@@ -385,7 +397,7 @@ public class HIXAxis extends HIFoundation {
 	private Boolean showEmpty;
 	/**
  Whether to show the axis line and title when the axis has no data. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/showempty/">When clicking the legend to hide series, one axis preserves line and title, the other doesn't</a>
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+	*/
 	public void setShowEmpty(Boolean showEmpty) {
 		this.showEmpty = showEmpty;
 		this.setChanged();
@@ -405,18 +417,6 @@ public class HIXAxis extends HIFoundation {
 	}
 
 	public String getGridLineDashStyle(){ return gridLineDashStyle; }
-
-	private String definition;
-	/**
- _Requires Accessibility module_ Description of the axis to screen reader users. 
-	*/
-	public void setDefinition(String definition) {
-		this.definition = definition;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getDefinition(){ return definition; }
 
 	private Boolean opposite;
 	/**
@@ -454,29 +454,30 @@ public class HIXAxis extends HIFoundation {
 
 	public Number getMax(){ return max; }
 
-	private List <HIBreaks> breaks;
+	private ArrayList <HIBreaks> breaks;
 	/**
  An array defining breaks in the axis, the sections defined will be left out and all the points shifted closer to each other. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/axisbreak/break-simple/">Simple break</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/axisbreak/break-visualized/">Advanced with callback</a>
 	*/
-	public void setBreaks(List breaks) {
+	public void setBreaks(ArrayList breaks) {
 		this.breaks = breaks;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List getBreaks(){ return breaks; }
+	public ArrayList getBreaks(){ return breaks; }
 
-	private Number gridLineWidth;
+	private HIDateTimeLabelFormats dateTimeLabelFormats;
 	/**
- The width of the grid lines extending the ticks across the plot area. In styled mode, the stroke width is given in the .highcharts-grid-line class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/gridlinewidth/">2px lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/">Styled mode</a>
- <br><br><b>defaults:</b><br><br>&ensp;0	*/
-	public void setGridLineWidth(Number gridLineWidth) {
-		this.gridLineWidth = gridLineWidth;
+ For a datetime axis, the scale will automatically adjust to the appropriate unit. This member gives the defaults string representations used for each unit. For intermediate values, different units may be used, for example the day unit can be used on midnight and hour unit be used for intermediate values on the same axis. For an overview of the replacement codes, see `dateFormat`. Defaults to: {   millisecond: '%H:%M:%S.%L',   second: '%H:%M:%S',   minute: '%H:%M',   hour: '%H:%M',   day: '%e. %b',   week: '%e. %b',   month: '%b \'%y',   year: '%Y' } <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/datetimelabelformats/">Different day format on X axis</a>
+	*/
+	public void setDateTimeLabelFormats(HIDateTimeLabelFormats dateTimeLabelFormats) {
+		this.dateTimeLabelFormats = dateTimeLabelFormats;
+		this.dateTimeLabelFormats.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getGridLineWidth(){ return gridLineWidth; }
+	public HIDateTimeLabelFormats getDateTimeLabelFormats(){ return dateTimeLabelFormats; }
 
 	private Boolean minorTicks;
 	/**
@@ -538,17 +539,17 @@ public class HIXAxis extends HIFoundation {
 
 	public HIColor getTickColor(){ return tickColor; }
 
-	private Number minTickInterval;
+	private Number gridLineWidth;
 	/**
- The minimum tick interval allowed in axis values. For example on zooming in on an axis with daily data, this can be used to prevent the axis from showing hours. Defaults to the closest distance between two points on the axis. 
-	*/
-	public void setMinTickInterval(Number minTickInterval) {
-		this.minTickInterval = minTickInterval;
+ The width of the grid lines extending the ticks across the plot area. In styled mode, the stroke width is given in the .highcharts-grid-line class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/gridlinewidth/">2px lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/">Styled mode</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
+	public void setGridLineWidth(Number gridLineWidth) {
+		this.gridLineWidth = gridLineWidth;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getMinTickInterval(){ return minTickInterval; }
+	public Number getGridLineWidth(){ return gridLineWidth; }
 
 	private Number tickInterval;
 	/**
@@ -574,17 +575,17 @@ public class HIXAxis extends HIFoundation {
 
 	public String getTickPosition(){ return tickPosition; }
 
-	private List<String> categories;
+	private ArrayList<String> categories;
 	/**
  If categories are present for the xAxis, names are used instead of numbers for that axis. Since Highcharts 3.0, categories can also be extracted by giving each point a name and setting axis type to category. However, if you have multiple series, best practice remains defining the categories array. Example: categories: ['Apples', 'Bananas', 'Oranges'] <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/line-labels/">With</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/categories/">Without</a>
 	*/
-	public void setCategories(List<String> categories) {
+	public void setCategories(ArrayList<String> categories) {
 		this.categories = categories;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<String> getCategories(){ return categories; }
+	public ArrayList<String> getCategories(){ return categories; }
 
 	private Number tickPixelInterval;
 	/**
@@ -792,29 +793,29 @@ public class HIXAxis extends HIFoundation {
 
 	public Number getLineWidth(){ return lineWidth; }
 
-	private Number margin;
+	private Object margin;
 	/**
  If there are multiple axes on the same side of the chart, the pixel margin between the axes. Defaults to 0 on vertical axes, 15 on horizontal axes. 
 	*/
-	public void setMargin(Number margin) {
+	public void setMargin(Object margin) {
 		this.margin = margin;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getMargin(){ return margin; }
+	public Object getMargin(){ return margin; }
 
-	private List <HIPlotBands> plotBands;
+	private ArrayList <HIPlotBands> plotBands;
 	/**
  An array of colored bands stretching across the plot area marking an interval on the axis. In styled mode, the plot bands are styled by the .highcharts-plot-band class in addition to the className option. 
 	*/
-	public void setPlotBands(List plotBands) {
+	public void setPlotBands(ArrayList plotBands) {
 		this.plotBands = plotBands;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List getPlotBands(){ return plotBands; }
+	public ArrayList getPlotBands(){ return plotBands; }
 
 	private Number softMax;
 	/**
@@ -835,12 +836,15 @@ public class HIXAxis extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.minorTickColor != null) {
 			params.put("minorTickColor", this.minorTickColor.getData());
+		}
+		if (this.pane != null) {
+			params.put("pane", this.pane);
 		}
 		if (this.minPadding != null) {
 			params.put("minPadding", this.minPadding);
@@ -851,8 +855,8 @@ public Map<String, Object> getParams() {
 		if (this.gridZIndex != null) {
 			params.put("gridZIndex", this.gridZIndex);
 		}
-		if (this.dateTimeLabelFormats != null) {
-			params.put("dateTimeLabelFormats", this.dateTimeLabelFormats.getParams());
+		if (this.accessibility != null) {
+			params.put("accessibility", this.accessibility.getParams());
 		}
 		if (this.visible != null) {
 			params.put("visible", this.visible);
@@ -860,8 +864,8 @@ public Map<String, Object> getParams() {
 		if (this.alignTicks != null) {
 			params.put("alignTicks", this.alignTicks);
 		}
-		if (this.pane != null) {
-			params.put("pane", this.pane);
+		if (this.minTickInterval != null) {
+			params.put("minTickInterval", this.minTickInterval);
 		}
 		if (this.tickWidth != null) {
 			params.put("tickWidth", this.tickWidth);
@@ -879,7 +883,7 @@ public Map<String, Object> getParams() {
 			params.put("id", this.id);
 		}
 		if (this.tickPositions != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.tickPositions) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -918,7 +922,7 @@ public Map<String, Object> getParams() {
 			params.put("endOnTick", this.endOnTick);
 		}
 		if (this.plotLines != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.plotLines) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -930,7 +934,7 @@ public Map<String, Object> getParams() {
 			params.put("plotLines", array);
 		}
 		if (this.units != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.units) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -962,9 +966,6 @@ public Map<String, Object> getParams() {
 		if (this.gridLineDashStyle != null) {
 			params.put("gridLineDashStyle", this.gridLineDashStyle);
 		}
-		if (this.definition != null) {
-			params.put("definition", this.definition);
-		}
 		if (this.opposite != null) {
 			params.put("opposite", this.opposite);
 		}
@@ -975,7 +976,7 @@ public Map<String, Object> getParams() {
 			params.put("max", this.max);
 		}
 		if (this.breaks != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.breaks) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -986,8 +987,8 @@ public Map<String, Object> getParams() {
 			}
 			params.put("breaks", array);
 		}
-		if (this.gridLineWidth != null) {
-			params.put("gridLineWidth", this.gridLineWidth);
+		if (this.dateTimeLabelFormats != null) {
+			params.put("dateTimeLabelFormats", this.dateTimeLabelFormats.getParams());
 		}
 		if (this.minorTicks != null) {
 			params.put("minorTicks", this.minorTicks);
@@ -1004,8 +1005,8 @@ public Map<String, Object> getParams() {
 		if (this.tickColor != null) {
 			params.put("tickColor", this.tickColor.getData());
 		}
-		if (this.minTickInterval != null) {
-			params.put("minTickInterval", this.minTickInterval);
+		if (this.gridLineWidth != null) {
+			params.put("gridLineWidth", this.gridLineWidth);
 		}
 		if (this.tickInterval != null) {
 			params.put("tickInterval", this.tickInterval);
@@ -1014,7 +1015,7 @@ public Map<String, Object> getParams() {
 			params.put("tickPosition", this.tickPosition);
 		}
 		if (this.categories != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.categories) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -1077,10 +1078,9 @@ public Map<String, Object> getParams() {
 			params.put("lineWidth", this.lineWidth);
 		}
 		if (this.margin != null) {
-			params.put("margin", this.margin);
 		}
 		if (this.plotBands != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.plotBands) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

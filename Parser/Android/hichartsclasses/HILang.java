@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -54,29 +54,42 @@ public class HILang extends HIFoundation {
 
 	public String getDownloadPNG(){ return downloadPNG; }
 
-	private Object accessibility;
+	private HIAccessibility accessibility;
 	/**
- Configure the accessibility strings in the chart. Requires the [accessibility module](https://code.highcharts.com/modules/accessibility.js) to be loaded. For a description of the module and information on its features, see [Highcharts Accessibility](http://www.highcharts.com/docs/chart-concepts/accessibility). For more dynamic control over the accessibility functionality, see `accessibility.pointDescriptionFormatter`, `accessibility.seriesDescriptionFormatter`, and `accessibility.screenReaderSectionFormatter`. 
+ Configure the accessibility strings in the chart. Requires the [accessibility module](https://code.highcharts.com/modules/accessibility.js) to be loaded. For a description of the module and information on its features, see [Highcharts Accessibility](https://www.highcharts.com/docs/chart-concepts/accessibility). For more dynamic control over the accessibility functionality, see accessibility.pointDescriptionFormatter, accessibility.seriesDescriptionFormatter, and accessibility.screenReaderSectionFormatter. 
 	*/
-	public void setAccessibility(Object accessibility) {
+	public void setAccessibility(HIAccessibility accessibility) {
 		this.accessibility = accessibility;
+		this.accessibility.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getAccessibility(){ return accessibility; }
+	public HIAccessibility getAccessibility(){ return accessibility; }
 
-	private List<String> shortWeekdays;
+	private ArrayList<String> shortWeekdays;
 	/**
  Short week days, starting Sunday. If not specified, Highcharts uses the first three letters of the lang.weekdays option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/shortweekdays/">Finnish two-letter abbreviations</a>
 	*/
-	public void setShortWeekdays(List<String> shortWeekdays) {
+	public void setShortWeekdays(ArrayList<String> shortWeekdays) {
 		this.shortWeekdays = shortWeekdays;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<String> getShortWeekdays(){ return shortWeekdays; }
+	public ArrayList<String> getShortWeekdays(){ return shortWeekdays; }
+
+	private String viewFullscreen;
+	/**
+ Exporting module only. View the chart in full screen. 
+	*/
+	public void setViewFullscreen(String viewFullscreen) {
+		this.viewFullscreen = viewFullscreen;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getViewFullscreen(){ return viewFullscreen; }
 
 	private String noData;
 	/**
@@ -102,17 +115,17 @@ public class HILang extends HIFoundation {
 
 	public String getLoading(){ return loading; }
 
-	private List<String> numericSymbols;
+	private ArrayList<String> numericSymbols;
 	/**
  [Metric prefixes](http://en.wikipedia.org/wiki/Metric_prefix) used to shorten high numbers in axis labels. Replacing any of the positions with null causes the full number to be written. Setting numericSymbols to null disables shortening altogether. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbols/">Replacing the symbols with text</a>
  <br><br><b>defaults:</b><br><br>&ensp;["k", "M", "G", "T", "P", "E"]	*/
-	public void setNumericSymbols(List<String> numericSymbols) {
+	public void setNumericSymbols(ArrayList<String> numericSymbols) {
 		this.numericSymbols = numericSymbols;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<String> getNumericSymbols(){ return numericSymbols; }
+	public ArrayList<String> getNumericSymbols(){ return numericSymbols; }
 
 	private String printChart;
 	/**
@@ -138,18 +151,18 @@ public class HILang extends HIFoundation {
 
 	public Number getNumericSymbolMagnitude(){ return numericSymbolMagnitude; }
 
-	private List<String> weekdays;
+	private ArrayList<String> weekdays;
 	/**
  An array containing the weekday names. 
  <br><br><b>defaults:</b><br><br>&ensp;["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
          "Friday", "Saturday"]	*/
-	public void setWeekdays(List<String> weekdays) {
+	public void setWeekdays(ArrayList<String> weekdays) {
 		this.weekdays = weekdays;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<String> getWeekdays(){ return weekdays; }
+	public ArrayList<String> getWeekdays(){ return weekdays; }
 
 	private String downloadSVG;
 	/**
@@ -259,32 +272,32 @@ public class HILang extends HIFoundation {
 
 	public String getResetZoomTitle(){ return resetZoomTitle; }
 
-	private List<String> months;
+	private ArrayList<String> months;
 	/**
  An array containing the months names. Corresponds to the %B format in Highcharts.dateFormat(). 
  <br><br><b>defaults:</b><br><br>&ensp;["January", "February", "March", "April", "May", "June",
          "July", "August", "September", "October", "November",
          "December"]	*/
-	public void setMonths(List<String> months) {
+	public void setMonths(ArrayList<String> months) {
 		this.months = months;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<String> getMonths(){ return months; }
+	public ArrayList<String> getMonths(){ return months; }
 
-	private List<String> shortMonths;
+	private ArrayList<String> shortMonths;
 	/**
  An array containing the months names in abbreviated form. Corresponds to the %b format in Highcharts.dateFormat(). 
  <br><br><b>defaults:</b><br><br>&ensp;["Jan", "Feb", "Mar", "Apr", "May", "Jun",
          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]	*/
-	public void setShortMonths(List<String> shortMonths) {
+	public void setShortMonths(ArrayList<String> shortMonths) {
 		this.shortMonths = shortMonths;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<String> getShortMonths(){ return shortMonths; }
+	public ArrayList<String> getShortMonths(){ return shortMonths; }
 
 	private String downloadJPEG;
 	/**
@@ -342,10 +355,10 @@ public class HILang extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.downloadCSV != null) {
 			params.put("downloadCSV", this.downloadCSV);
 		}
@@ -356,9 +369,10 @@ public Map<String, Object> getParams() {
 			params.put("downloadPNG", this.downloadPNG);
 		}
 		if (this.accessibility != null) {
+			params.put("accessibility", this.accessibility.getParams());
 		}
 		if (this.shortWeekdays != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.shortWeekdays) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -369,6 +383,9 @@ public Map<String, Object> getParams() {
 			}
 			params.put("shortWeekdays", array);
 		}
+		if (this.viewFullscreen != null) {
+			params.put("viewFullscreen", this.viewFullscreen);
+		}
 		if (this.noData != null) {
 			params.put("noData", this.noData);
 		}
@@ -376,7 +393,7 @@ public Map<String, Object> getParams() {
 			params.put("loading", this.loading);
 		}
 		if (this.numericSymbols != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.numericSymbols) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -394,7 +411,7 @@ public Map<String, Object> getParams() {
 			params.put("numericSymbolMagnitude", this.numericSymbolMagnitude);
 		}
 		if (this.weekdays != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.weekdays) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -433,7 +450,7 @@ public Map<String, Object> getParams() {
 			params.put("resetZoomTitle", this.resetZoomTitle);
 		}
 		if (this.months != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.months) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -445,7 +462,7 @@ public Map<String, Object> getParams() {
 			params.put("months", array);
 		}
 		if (this.shortMonths != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.shortMonths) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

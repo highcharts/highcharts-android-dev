@@ -8,19 +8,13 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import com.highsoft.highcharts.core.HIFoundation;
+
 import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 
 
-
-
-public class HIStates extends Observable implements HIChartsJSONSerializable { 
+public class HIStates extends HIFoundation { 
 
 	private HIHover hover;
 	public void setHover(HIHover hover) {
@@ -31,6 +25,19 @@ public class HIStates extends Observable implements HIChartsJSONSerializable {
 	}
 
 	public HIHover getHover(){ return hover; }
+
+	private HIInactive inactive;
+	/**
+ The opposite state of a hover for a single point node/link. 
+	*/
+	public void setInactive(HIInactive inactive) {
+		this.inactive = inactive;
+		this.inactive.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIInactive getInactive(){ return inactive; }
 
 	private HISelect select;
 	public void setSelect(HISelect select) {
@@ -43,9 +50,9 @@ public class HIStates extends Observable implements HIChartsJSONSerializable {
 	public HISelect getSelect(){ return select; }
 
 	private HINormal normal;
-/**
-/** The normal state of a single point marker. Currently only used for setting animation when returning to normal state from hover. 
-*/
+	/**
+ The normal state of a series, or for point items in column, pie and similar series. Currently only used for setting animation when returning to normal state from hover. 
+	*/
 	public void setNormal(HINormal normal) {
 		this.normal = normal;
 		this.normal.addObserver(updateObserver);
@@ -61,21 +68,16 @@ public class HIStates extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.hover != null) {
 			params.put("hover", this.hover.getParams());
+		}
+		if (this.inactive != null) {
+			params.put("inactive", this.inactive.getParams());
 		}
 		if (this.select != null) {
 			params.put("select", this.select.getParams());

@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -18,10 +18,23 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 public class HIExporting extends HIFoundation { 
 
+	private HIAccessibility accessibility;
+	/**
+ Accessibility options for the exporting menu. Requires the Accessibility module. 
+	*/
+	public void setAccessibility(HIAccessibility accessibility) {
+		this.accessibility = accessibility;
+		this.accessibility.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAccessibility getAccessibility(){ return accessibility; }
+
 	private Object menuItemDefinitions;
 	/**
  An object consisting of definitions for the menu items in the context menu. Each key value pair has a key that is referenced in the menuItems setting, and a value, which is an object with the following properties: - **onclick:** The click handler for the menu item - **text:** The text for the menu item - **textKey:** If internationalization is required, the key to a language  string <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/menuitemdefinitions/">Menu item definitions</a>
- <br><br><b>defaults:</b><br><br>&ensp;{"printChart": {}, "separator": {}, "downloadPNG": {}, "downloadJPEG": {}, "downloadPDF": {}, "downloadSVG": {}}	*/
+ <br><br><b>defaults:</b><br><br>&ensp;{"viewFullscreen": {}, "printChart": {}, "separator": {}, "downloadPNG": {}, "downloadJPEG": {}, "downloadPDF": {}, "downloadSVG": {}}	*/
 	public void setMenuItemDefinitions(Object menuItemDefinitions) {
 		this.menuItemDefinitions = menuItemDefinitions;
 		this.setChanged();
@@ -142,7 +155,7 @@ public class HIExporting extends HIFoundation {
 
 	private String type;
 	/**
- Default MIME type for exporting if chart.exportChart() is called without specifying a type option. Possible values are image/png, image/jpeg, application/pdf and image/svg+xml. <br><br><b>accepted values:</b><br><br>&ensp;["image/png", "image/jpeg", "application/pdf", "image/svg+xml"]
+ Default MIME type for exporting if chart.exportChart() is called without specifying a type option. Possible values are image/png, image/jpeg, application/pdf and image/svg+xml. 
 	*/
 	public void setType(String type) {
 		this.type = type;
@@ -248,17 +261,17 @@ public class HIExporting extends HIFoundation {
 
 	public Boolean getAllowHTML(){ return allowHTML; }
 
-	private Map chartOptions;
+	private HashMap chartOptions;
 	/**
- Additional chart options to be merged into an exported chart. For example, a common use case is to add data labels to improve readability of the exported chart, or to add a printer-friendly color scheme. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/chartoptions-data-labels/">Added data labels</a>
+ Additional chart options to be merged into the chart before exporting to an image format. This does not apply to printing the chart via the export menu. For example, a common use case is to add data labels to improve readability of the exported chart, or to add a printer-friendly color scheme to exported PDFs. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/chartoptions-data-labels/">Added data labels</a>
 	*/
-	public void setChartOptions(Map chartOptions) {
+	public void setChartOptions(HashMap chartOptions) {
 		this.chartOptions = chartOptions;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Map getChartOptions(){ return chartOptions; }
+	public HashMap getChartOptions(){ return chartOptions; }
 
 	private HIFunction error;
 	/**
@@ -284,6 +297,33 @@ public class HIExporting extends HIFoundation {
 
 	public String getLibURL(){ return libURL; }
 
+	private String exportRegionLabel;
+	public void setExportRegionLabel(String exportRegionLabel) {
+		this.exportRegionLabel = exportRegionLabel;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getExportRegionLabel(){ return exportRegionLabel; }
+
+	private String menuButtonLabel;
+	public void setMenuButtonLabel(String menuButtonLabel) {
+		this.menuButtonLabel = menuButtonLabel;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getMenuButtonLabel(){ return menuButtonLabel; }
+
+	private String chartMenuLabel;
+	public void setChartMenuLabel(String chartMenuLabel) {
+		this.chartMenuLabel = chartMenuLabel;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getChartMenuLabel(){ return chartMenuLabel; }
+
 
 
 	public HIExporting() {
@@ -291,10 +331,13 @@ public class HIExporting extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
+		if (this.accessibility != null) {
+			params.put("accessibility", this.accessibility.getParams());
+		}
 		if (this.menuItemDefinitions != null) {
 			params.put("menuItemDefinitions", this.menuItemDefinitions);
 		}
@@ -360,6 +403,15 @@ public Map<String, Object> getParams() {
 		}
 		if (this.libURL != null) {
 			params.put("libURL", this.libURL);
+		}
+		if (this.exportRegionLabel != null) {
+			params.put("exportRegionLabel", this.exportRegionLabel);
+		}
+		if (this.menuButtonLabel != null) {
+			params.put("menuButtonLabel", this.menuButtonLabel);
+		}
+		if (this.chartMenuLabel != null) {
+			params.put("chartMenuLabel", this.chartMenuLabel);
 		}
 		return params;
 	}

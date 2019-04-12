@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -29,6 +29,18 @@ public class HIScrollablePlotArea extends HIFoundation {
 	}
 
 	public Number getMinWidth(){ return minWidth; }
+
+	private Number opacity;
+	/**
+ The opacity of mask applied on one of the sides of the plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/scrollable-plotarea-opacity">Disabled opacity for the mask</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0.85	*/
+	public void setOpacity(Number opacity) {
+		this.opacity = opacity;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getOpacity(){ return opacity; }
 
 	private Number scrollPositionX;
 	/**
@@ -49,12 +61,15 @@ public class HIScrollablePlotArea extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.minWidth != null) {
 			params.put("minWidth", this.minWidth);
+		}
+		if (this.opacity != null) {
+			params.put("opacity", this.opacity);
 		}
 		if (this.scrollPositionX != null) {
 			params.put("scrollPositionX", this.scrollPositionX);

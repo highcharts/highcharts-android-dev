@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -18,14 +18,23 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 public class HISVGAttributes extends HIFoundation { 
 
-	private List /* <Number, String> */ d;
-	public void setD(List /* <Number, String> */ d) {
+	private ArrayList /* <Number, String> */ d;
+	public void setD(ArrayList /* <Number, String> */ d) {
 		this.d = d;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List /* <Number, String> */ getD(){ return d; }
+	public ArrayList /* <Number, String> */ getD(){ return d; }
+
+	private String fill;
+	public void setFill(String fill) {
+		this.fill = fill;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getFill(){ return fill; }
 
 	private Boolean inverted;
 	public void setInverted(Boolean inverted) {
@@ -36,14 +45,14 @@ public class HISVGAttributes extends HIFoundation {
 
 	public Boolean getInverted(){ return inverted; }
 
-	private List<Number> matrix;
-	public void setMatrix(List<Number> matrix) {
+	private ArrayList<Number> matrix;
+	public void setMatrix(ArrayList<Number> matrix) {
 		this.matrix = matrix;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<Number> getMatrix(){ return matrix; }
+	public ArrayList<Number> getMatrix(){ return matrix; }
 
 	private String rotation;
 	public void setRotation(String rotation) {
@@ -142,12 +151,12 @@ public class HISVGAttributes extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.d != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.d) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -158,11 +167,14 @@ public Map<String, Object> getParams() {
 			}
 			params.put("d", array);
 		}
+		if (this.fill != null) {
+			params.put("fill", this.fill);
+		}
 		if (this.inverted != null) {
 			params.put("inverted", this.inverted);
 		}
 		if (this.matrix != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.matrix) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

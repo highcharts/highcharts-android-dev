@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -30,17 +30,17 @@ public class HIMapDataObject extends HIFoundation {
 
 	public String getName(){ return name; }
 
-	private List /* <Number, String> */ path;
+	private ArrayList /* <Number, String> */ path;
 	/**
  The SVG path. 
 	*/
-	public void setPath(List /* <Number, String> */ path) {
+	public void setPath(ArrayList /* <Number, String> */ path) {
 		this.path = path;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List /* <Number, String> */ getPath(){ return path; }
+	public ArrayList /* <Number, String> */ getPath(){ return path; }
 
 	private Object properties;
 	/**
@@ -61,15 +61,15 @@ public class HIMapDataObject extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.name != null) {
 			params.put("name", this.name);
 		}
 		if (this.path != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.path) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

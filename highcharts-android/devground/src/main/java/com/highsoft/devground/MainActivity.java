@@ -22,6 +22,7 @@ import com.highsoft.highcharts.common.hichartsclasses.HIScrollablePlotArea;
 import com.highsoft.highcharts.common.hichartsclasses.HISeries;
 import com.highsoft.highcharts.common.hichartsclasses.HISpline;
 import com.highsoft.highcharts.common.hichartsclasses.HIStates;
+import com.highsoft.highcharts.common.hichartsclasses.HIStyle;
 import com.highsoft.highcharts.common.hichartsclasses.HITitle;
 import com.highsoft.highcharts.common.hichartsclasses.HITooltip;
 import com.highsoft.highcharts.common.hichartsclasses.HIWindbarb;
@@ -270,9 +271,8 @@ public class MainActivity extends AppCompatActivity {
         HIDataLabels precipErrDataLabels = new HIDataLabels();
         precipErrDataLabels.setEnabled(hasPrecipitationError);
         precipErrDataLabels.setFormatter(new HIFunction("function() { if (this.point.maxvalue > 0) { return this.point.maxvalue; }"));
-        precipErrDataLabels.setStyle(new HICSSObject());
+        precipErrDataLabels.setStyle(new HIStyle());
         precipErrDataLabels.getStyle().setFontSize("8px");
-        precipErrDataLabels.getStyle().setColor("gray");
         options.getSeries().add(precipErrSeries);
 
         HIColumn precipSeries = new HIColumn();
@@ -286,9 +286,6 @@ public class MainActivity extends AppCompatActivity {
         HIDataLabels precipDataLabels = new HIDataLabels();
         precipDataLabels.setEnabled(!hasPrecipitationError);
         precipDataLabels.setFormatter(new HIFunction("function () { if (this.y > 0) { return this.y; }"));
-        precipDataLabels.setStyle(new HICSSObject());
-        precipDataLabels.getStyle().setFontSize("8px");
-        precipDataLabels.getStyle().setColor("gray");
         precipSeries.setTooltip(new HITooltip());
         precipSeries.getTooltip().setValueSuffix(" mm");
         options.getSeries().add(precipSeries);

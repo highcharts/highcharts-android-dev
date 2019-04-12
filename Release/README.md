@@ -263,7 +263,7 @@ Add a font file to your project. Select File -> Add Files to “Your Project Nam
 
 - Add a font file to your project.
 
-![alt text](https://github.com/highcharts/highcharts-android/blob/master/Images/3.png "Fonts in project structure")
+![Fonts location](https://github.com/highcharts/highcharts-android/blob/master/Images/3.png "Fonts in project structure")
 - Add your font to `HIChartView`. To do this, pass your font resource to your `HIChartView`:
 ```Java
 HIChartView chartView = findViewById(R.id.hc);

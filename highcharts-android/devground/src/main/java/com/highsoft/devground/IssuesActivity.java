@@ -9,19 +9,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.common.hichartsclasses.HIArea;
 import com.highsoft.highcharts.common.hichartsclasses.HICSSObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIChart;
 import com.highsoft.highcharts.common.hichartsclasses.HICredits;
 import com.highsoft.highcharts.common.hichartsclasses.HIData;
+import com.highsoft.highcharts.common.hichartsclasses.HIEvents;
+import com.highsoft.highcharts.common.hichartsclasses.HILabels;
 import com.highsoft.highcharts.common.hichartsclasses.HILine;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
+import com.highsoft.highcharts.common.hichartsclasses.HIPlotOptions;
 import com.highsoft.highcharts.common.hichartsclasses.HIPoint;
 import com.highsoft.highcharts.common.hichartsclasses.HISeries;
 import com.highsoft.highcharts.common.hichartsclasses.HISpline;
 import com.highsoft.highcharts.common.hichartsclasses.HITitle;
+import com.highsoft.highcharts.common.hichartsclasses.HITooltip;
 import com.highsoft.highcharts.common.hichartsclasses.HIXAxis;
 import com.highsoft.highcharts.common.hichartsclasses.HIYAxis;
 import com.highsoft.highcharts.core.HIChartView;
+import com.highsoft.highcharts.core.HIFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,6 +46,24 @@ public class IssuesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_issues);
 
+        HIFunction seriesFunction = new HIFunction(
+                f -> {
+                    Toast t = Toast.makeText(
+                            this,
+                            "Clicked point [ " + f.getProperty("x") + ", " + f.getProperty("y") + " ]",
+                            Toast.LENGTH_SHORT);
+                    t.show();
+                },
+                new String[] {"x", "y"});
+        HIFunction chartFunction = new HIFunction(
+                f -> {
+                    Toast t = Toast.makeText(
+                            this,
+                            "Clicked point [ " + f.getProperty("this.hoverPoint.x") + ", " + f.getProperty("this.hoverPoint.x") + " ]",
+                            Toast.LENGTH_SHORT);
+                    t.show();
+                },
+                new String[] {"this.hoverPoint.x", "this.hoverPoint.x"});
         Button btn = findViewById(R.id.btn);
         btn.setText("Series update");
         TextView txt = findViewById(R.id.txtView);
@@ -61,39 +85,51 @@ public class IssuesActivity extends AppCompatActivity {
             }
         });
         HIChartView chartView = findViewById(R.id.hc);
-        chartView.addFont(R.font.griphite);
-        chartView.plugins = new ArrayList<>();
-        chartView.plugins.add("data");
+//        chartView.addFont(R.font.griphite);
 
-        HICSSObject style = new HICSSObject();
-        style.setFontFamily("griphite");
-        HITitle title = new HITitle();
-        title.setStyle(style);
+//        HICSSObject style = new HICSSObject();
+//        style.setFontFamily("griphite");
+//        HITitle title = new HITitle();
+//        title.setStyle(style);
 
         HIOptions options = new HIOptions();
-        title.setText("EXAMPLE TITLE");
-        options.setTitle(title);
         HIChart chart = new HIChart();
-        chart.setStyle(new HICSSObject());
-        chart.getStyle().setFontFamily("griphite");
-        chart.setPanning(true);
-        chart.setZoomType("x");
+        chart.setBackgroundColor(HIColor.initWithName("transparent"));
+        chart.setEvents(new HIEvents());
+        chart.getEvents().setClick(chartFunction);
         options.setChart(chart);
+//        title.setText("EXAMPLE TITLE");
+//        options.setTitle(title);
+//        chart.setStyle(new HICSSObject());
+//        chart.getStyle().setFontFamily("griphite");
+//        chart.setZoomType("x");
         HIXAxis hixAxis = new HIXAxis();
+        hixAxis.setLabels(new HILabels());
+        hixAxis.getLabels().setStep(1);
+//        hixAxis.getLabels().setFormatter(new HIFunction("function () { var ret = this.pos % 2 && !this.isLast ? '' : this.value; return ret }"));
+//        hixAxis.setShowLastLabel(true);
         options.setXAxis(new ArrayList<>(Collections.singletonList(hixAxis)));
         HIYAxis hiyAxis1 = new HIYAxis();
-        HIYAxis hiyAxis2 = new HIYAxis();
-        hiyAxis2.setOpposite(true);
-        options.setYAxis(new ArrayList<>(Arrays.asList(hiyAxis1, hiyAxis2)));
+//        HIYAxis hiyAxis2 = new HIYAxis();
+//        hiyAxis2.setOpposite(true);
+        options.setYAxis(new ArrayList<>(Arrays.asList(hiyAxis1)));
 
-        HILine series1 = new HILine();
-        series1.setName("tam daradam");
-        series1.setData(randData(10));
-        series1.setColor(HIColor.initWithName("red"));
+        HITooltip tooltip = new HITooltip();
+        tooltip.setFollowTouchMove(true);
+        tooltip.setFollowPointer(true);
+        options.setTooltip(tooltip);
+//        HILine series1 = new HILine();
+//        series1.setName("tam daradam");
+//        series1.setData(randData(10));
+//        series1.setColor(HIColor.initWithName("red"));
         HILine series2 = new HILine();
-        series2.setYAxis(1);
         series2.setData(randData(15));
-        options.setSeries(new ArrayList<>(Arrays.asList(series1, series2)));
+        series2.setPoint(new HIPoint());
+        series2.getPoint().setEvents(new HIEvents());
+        series2.getPoint().getEvents().setClick(seriesFunction);
+        options.setSeries(new ArrayList<>(Arrays.asList(series2)));
+        HIArea area = new HIArea();
+        area.hide();
 
         chartView.setOptions(options);
 

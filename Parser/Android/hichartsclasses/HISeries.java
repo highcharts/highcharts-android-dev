@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -19,17 +19,17 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HISeries extends HIFoundation { 
 
-	private List /* <Data|Number|List> */ data;
+	private ArrayList /* <Data|Number|ArrayList> */ data;
 	/**
  An array of data points for the series. The points can be given in three ways:  An array of numerical values. In this case, the numerical values will  	be interpreted as y values, and x values will be automatically calculated, 	either starting at 0 and incrementing by 1, or from pointStart  	and pointInterval given in the plotOptions. If the axis is 	has categories, these will be used. This option is not available for range series. Example: data: [0, 5, 3, 5]  An array of arrays with two values. In this case, the first value is the 	x value and the second is the y value. If the first value is a string, it is 	applied as the name of the point, and the x value is incremented following 	the above rules. For range series, the arrays will be interpreted as [x, low, high]. In this cases, the X value can be skipped altogether to make use of pointStart and pointRange.  Example: data: [[5, 2], [6, 3], [8, 2]] An array of objects with named values. In this case the objects are 	point configuration objects as seen below. Range series values are given by low and high.  Example: data: [{ 	name: 'Point 1', 	color: '#00FF00', 	y: 0 }, { 	name: 'Point 2', 	color: '#FF00FF', 	y: 5 }]  Note that line series and derived types like spline and area, require data to be sorted by X because it interpolates mouse coordinates for the tooltip. Column and scatter series, where each point has its own mouse event, does not require sorting. 
 	*/
-	public void setData(List /* <Data|Number|List> */ data) {
+	public void setData(ArrayList /* <Data|Number|ArrayList> */ data) {
 		this.data = data;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List /* <Data|Number|List> */ getData(){ return data; }
+	public ArrayList /* <Data|Number|ArrayList> */ getData(){ return data; }
 
 	private String id;
 	/**
@@ -139,18 +139,66 @@ public class HISeries extends HIFoundation {
 
 	public Number getZIndex(){ return zIndex; }
 
-	private HIPoint point;
+	private String yAxisDescription;
 	/**
- Properties for each single point. 
+ yAxis description for series if there are multiple yAxes in the chart. 
 	*/
-	public void setPoint(HIPoint point) {
-		this.point = point;
-		this.point.addObserver(updateObserver);
+	public void setYAxisDescription(String yAxisDescription) {
+		this.yAxisDescription = yAxisDescription;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIPoint getPoint(){ return point; }
+	public String getYAxisDescription(){ return yAxisDescription; }
+
+	private String xAxisDescription;
+	/**
+ xAxis description for series if there are multiple xAxes in the chart. 
+	*/
+	public void setXAxisDescription(String xAxisDescription) {
+		this.xAxisDescription = xAxisDescription;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getXAxisDescription(){ return xAxisDescription; }
+
+	private String definition;
+	/**
+ User supplied description text. This is added after the main summary if present. 
+	*/
+	public void setDefinition(String definition) {
+		this.definition = definition;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDefinition(){ return definition; }
+
+	private HISummary summary;
+	/**
+ Lang configuration for the series main summary. Each series type has two modes: 1. This series type is the only series type used in the  chart 2. This is a combination chart with multiple series types If a definition does not exist for the specific series type and mode, the 'defaults' lang definitions are used. 
+	*/
+	public void setSummary(HISummary summary) {
+		this.summary = summary;
+		this.summary.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HISummary getSummary(){ return summary; }
+
+	private Boolean includeInDataExport;
+	/**
+ Export-data module required. When set to false will prevent the series data from being included in any form of data export. Since version 6.0.0 until 7.1.0 the option was existing undocumented as includeInCSVExport. 
+	*/
+	public void setIncludeInDataExport(Boolean includeInDataExport) {
+		this.includeInDataExport = includeInDataExport;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getIncludeInDataExport(){ return includeInDataExport; }
 
 	private Boolean selected;
 	/**
@@ -237,9 +285,6 @@ public class HISeries extends HIFoundation {
 	public Number getCropThreshold(){ return cropThreshold; }
 
 	private HIStates states;
-	/**
- A wrapper object for all the series options in specific states. 
-	*/
 	public void setStates(HIStates states) {
 		this.states = states;
 		this.states.addObserver(updateObserver);
@@ -273,6 +318,19 @@ public class HISeries extends HIFoundation {
 	}
 
 	public HIDragDrop getDragDrop(){ return dragDrop; }
+
+	private HIPoint point;
+	/**
+ Properties for each single point. 
+	*/
+	public void setPoint(HIPoint point) {
+		this.point = point;
+		this.point.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIPoint getPoint(){ return point; }
 
 	private HIMarker marker;
 	/**
@@ -470,6 +528,18 @@ public class HISeries extends HIFoundation {
 
 	public HIEvents getEvents(){ return events; }
 
+	private Number opacity;
+	/**
+ Opacity of a series parts: line, fill (e.g.area) and dataLabels. 
+	*/
+	public void setOpacity(Number opacity) {
+		this.opacity = opacity;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getOpacity(){ return opacity; }
+
 	private Number animationLimit;
 	/**
  For some series, there is a limit that shuts down initial animation by defaults when the total number of points in the chart is too high. For example, for a column chart and its derivatives, animation does not run if there is more than 250 points totally. To disable this cap, set animationLimit to Infinity. 
@@ -482,29 +552,17 @@ public class HISeries extends HIFoundation {
 
 	public Number getAnimationLimit(){ return animationLimit; }
 
-	private String definition;
-	/**
- Requires the Accessibility module. A description of the series to add to the screen reader information about the series. 
-	*/
-	public void setDefinition(String definition) {
-		this.definition = definition;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getDefinition(){ return definition; }
-
-	private List<String> keys;
+	private ArrayList<String> keys;
 	/**
  An array specifying which option maps to which key in the data point array. This makes it convenient to work with unstructured data arrays from different sources. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/data-keys/">An extended data array with keys</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/data-nested-keys/">Nested keys used to access object properties</a>
 	*/
-	public void setKeys(List<String> keys) {
+	public void setKeys(ArrayList<String> keys) {
 		this.keys = keys;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<String> getKeys(){ return keys; }
+	public ArrayList<String> getKeys(){ return keys; }
 
 	private Number turboThreshold;
 	/**
@@ -530,17 +588,18 @@ public class HISeries extends HIFoundation {
 
 	public Boolean getSkipKeyboardNavigation(){ return skipKeyboardNavigation; }
 
-	private Boolean allowPointSelect;
+	private HIAccessibility accessibility;
 	/**
- Allow this series' points to be selected by clicking on the graphic (columns, point markers, pie slices, map areas etc). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-allowpointselect-line/">Line</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-allowpointselect-column/">Column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-allowpointselect-pie/">Pie</a>
+ Accessibility options for a series. Requires the accessibility module. 
 	*/
-	public void setAllowPointSelect(Boolean allowPointSelect) {
-		this.allowPointSelect = allowPointSelect;
+	public void setAccessibility(HIAccessibility accessibility) {
+		this.accessibility = accessibility;
+		this.accessibility.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getAllowPointSelect(){ return allowPointSelect; }
+	public HIAccessibility getAccessibility(){ return accessibility; }
 
 	private String step;
 	/**
@@ -590,6 +649,18 @@ public class HISeries extends HIFoundation {
 
 	public Boolean /* boolean */ getShadow(){ return shadow; }
 
+	private Boolean allowPointSelect;
+	/**
+ Allow this series' points to be selected by clicking on the graphic (columns, point markers, pie slices, map areas etc). The selected points can be handled by point select and unselect events, or collectively by the `getSelectedPoints` function. And alternative way of selecting points is through dragging. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-allowpointselect-line/">Line</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-allowpointselect-column/">Column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-allowpointselect-pie/">Pie</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-selection-points/">Select a range of points through a drag selection</a>
+	*/
+	public void setAllowPointSelect(Boolean allowPointSelect) {
+		this.allowPointSelect = allowPointSelect;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getAllowPointSelect(){ return allowPointSelect; }
+
 	private String zoneAxis;
 	/**
  Defines the Axis on which the zones are applied. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/color-zones-zoneaxis-x/">Zones on the X-Axis</a>
@@ -602,17 +673,17 @@ public class HISeries extends HIFoundation {
 
 	public String getZoneAxis(){ return zoneAxis; }
 
-	private List <HIZones> zones;
+	private ArrayList <HIZones> zones;
 	/**
  An array defining zones within a series. Zones can be applied to the X axis, Y axis or Z axis for bubbles, according to the zoneAxis option. The zone definitions have to be in ascending order regarding to the value. In styled mode, the color zones are styled with the .highcharts-zone-{n} class, or custom classed from the className option ([view live demo](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/)). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/color-zones-simple/">Color zones</a>
 	*/
-	public void setZones(List zones) {
+	public void setZones(ArrayList zones) {
 		this.zones = zones;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List getZones(){ return zones; }
+	public ArrayList getZones(){ return zones; }
 
 	private String pointIntervalUnit;
 	/**
@@ -674,18 +745,17 @@ public class HISeries extends HIFoundation {
 
 	public Boolean getStickyTracking(){ return stickyTracking; }
 
-	private HIDataLabels dataLabels;
+	private HIDataLabelsOptionsObject dataLabels;
 	/**
- Options for the series data labels, appearing next to each data point. Since v6.2.0, multiple data labels can be applied to each single point by defining them as an array of configs. In styled mode, the data labels can be styled with the .highcharts-data-label-box and .highcharts-data-label class names ([see example](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-datalabels)). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-enabled">Data labels enabled</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-multiple">Multiple data labels on a bar series</a>
+ Options for the series data labels, appearing next to each data point. Since v6.2.0, multiple data labels can be applied to each single point by defining them as an array of configs. In styled mode, the data labels can be styled with the .highcharts-data-label-box and .highcharts-data-label class names ([see example](https://www.highcharts.com/samples/highcharts/css/series-datalabels)). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-enabled">Data labels enabled</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-multiple">Multiple data labels on a bar series</a>
 	*/
-	public void setDataLabels(HIDataLabels dataLabels) {
+	public void setDataLabels(HIDataLabelsOptionsObject dataLabels) {
 		this.dataLabels = dataLabels;
-		this.dataLabels.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIDataLabels getDataLabels(){ return dataLabels; }
+	public HIDataLabelsOptionsObject getDataLabels(){ return dataLabels; }
 
 	private String cursor;
 	/**
@@ -713,7 +783,7 @@ public class HISeries extends HIFoundation {
 
 	private String linecap;
 	/**
- The line cap used for line ends and line joins on the graph. <br><br><b>accepted values:</b><br><br>&ensp;["round", "square"]
+ The line cap used for line ends and line joins on the graph. 
  <br><br><b>defaults:</b><br><br>&ensp;round	*/
 	public void setLinecap(String linecap) {
 		this.linecap = linecap;
@@ -766,12 +836,12 @@ public class HISeries extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.data != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.data) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -809,8 +879,20 @@ public Map<String, Object> getParams() {
 		if (this.zIndex != null) {
 			params.put("zIndex", this.zIndex);
 		}
-		if (this.point != null) {
-			params.put("point", this.point.getParams());
+		if (this.yAxisDescription != null) {
+			params.put("yAxisDescription", this.yAxisDescription);
+		}
+		if (this.xAxisDescription != null) {
+			params.put("xAxisDescription", this.xAxisDescription);
+		}
+		if (this.definition != null) {
+			params.put("definition", this.definition);
+		}
+		if (this.summary != null) {
+			params.put("summary", this.summary.getParams());
+		}
+		if (this.includeInDataExport != null) {
+			params.put("includeInDataExport", this.includeInDataExport);
 		}
 		if (this.selected != null) {
 			params.put("selected", this.selected);
@@ -841,6 +923,9 @@ public Map<String, Object> getParams() {
 		}
 		if (this.dragDrop != null) {
 			params.put("dragDrop", this.dragDrop.getParams());
+		}
+		if (this.point != null) {
+			params.put("point", this.point.getParams());
 		}
 		if (this.marker != null) {
 			params.put("marker", this.marker.getParams());
@@ -890,14 +975,14 @@ public Map<String, Object> getParams() {
 		if (this.events != null) {
 			params.put("events", this.events.getParams());
 		}
+		if (this.opacity != null) {
+			params.put("opacity", this.opacity);
+		}
 		if (this.animationLimit != null) {
 			params.put("animationLimit", this.animationLimit);
 		}
-		if (this.definition != null) {
-			params.put("definition", this.definition);
-		}
 		if (this.keys != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.keys) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -914,8 +999,8 @@ public Map<String, Object> getParams() {
 		if (this.skipKeyboardNavigation != null) {
 			params.put("skipKeyboardNavigation", this.skipKeyboardNavigation);
 		}
-		if (this.allowPointSelect != null) {
-			params.put("allowPointSelect", this.allowPointSelect);
+		if (this.accessibility != null) {
+			params.put("accessibility", this.accessibility.getParams());
 		}
 		if (this.step != null) {
 			params.put("step", this.step);
@@ -929,11 +1014,14 @@ public Map<String, Object> getParams() {
 		if (this.shadow != null) {
 			params.put("shadow", this.shadow);
 		}
+		if (this.allowPointSelect != null) {
+			params.put("allowPointSelect", this.allowPointSelect);
+		}
 		if (this.zoneAxis != null) {
 			params.put("zoneAxis", this.zoneAxis);
 		}
 		if (this.zones != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.zones) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

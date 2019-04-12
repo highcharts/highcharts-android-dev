@@ -8,24 +8,19 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.highsoft.highcharts.core.HIFoundation;
+
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
+import java.util.HashMap;
 
 
 
-
-
-public class HIGradientColorObject extends Observable implements HIChartsJSONSerializable { 
+public class HIGradientColorObject extends HIFoundation { 
 
 	private Object linearGradient;
-/**
-/** Holds an object that defines the start position and the end position relative to the shape. 
-*/
+	/**
+ Holds an object that defines the start position and the end position relative to the shape. 
+	*/
 	public void setLinearGradient(Object linearGradient) {
 		this.linearGradient = linearGradient;
 		this.setChanged();
@@ -35,9 +30,9 @@ public class HIGradientColorObject extends Observable implements HIChartsJSONSer
 	public Object getLinearGradient(){ return linearGradient; }
 
 	private Object radialGradient;
-/**
-/** Holds an object that defines the center position and the radius. 
-*/
+	/**
+ Holds an object that defines the center position and the radius. 
+	*/
 	public void setRadialGradient(Object radialGradient) {
 		this.radialGradient = radialGradient;
 		this.setChanged();
@@ -47,9 +42,9 @@ public class HIGradientColorObject extends Observable implements HIChartsJSONSer
 	public Object getRadialGradient(){ return radialGradient; }
 
 	private ArrayList<ArrayList> stops;
-/**
-/** The first item in each tuple is the position in the gradient, where 0 is the start of the gradient and 1 is the end of the gradient. Multiple stops can be applied. The second item is the color for each stop. This color can also be given in the rgba format. 
-*/
+	/**
+ The first item in each tuple is the position in the gradient, where 0 is the start of the gradient and 1 is the end of the gradient. Multiple stops can be applied. The second item is the color for each stop. This color can also be given in the rgba format. 
+	*/
 	public void setStops(ArrayList<ArrayList> stops) {
 		this.stops = stops;
 		this.setChanged();
@@ -64,19 +59,11 @@ public class HIGradientColorObject extends Observable implements HIChartsJSONSer
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.linearGradient != null) {
 			params.put("linearGradient", this.linearGradient);
 		}
@@ -86,8 +73,8 @@ public class HIGradientColorObject extends Observable implements HIChartsJSONSer
 		if (this.stops != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.stops) {
-				if (obj instanceof HIChartsJSONSerializable) {
-					array.add(((HIChartsJSONSerializable) obj).getParams());
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
 				}
 				else {
 					array.add(obj);

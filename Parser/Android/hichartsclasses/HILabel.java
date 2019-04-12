@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -32,7 +32,7 @@ public class HILabel extends HIFoundation {
 
 	private String verticalAlign;
 	/**
- Vertical alignment of the label relative to the plot line. Can be one of "top", "middle" or "bottom". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-verticalalign-middle/">Vertically centered label</a> <br><br><b>accepted values:</b><br><br>&ensp;["top", "middle", "bottom"]
+ Vertical alignment of the label relative to the plot line. Can be one of "top", "middle" or "bottom". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-verticalalign-middle/">Vertically centered label</a>
  <br><br><b>defaults:</b><br><br>&ensp;top	*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
@@ -186,17 +186,17 @@ public class HILabel extends HIFoundation {
 
 	public Boolean getOnArea(){ return onArea; }
 
-	private List<HILabelIntersectBoxObject> boxesToAvoid;
+	private ArrayList<HILabelIntersectBoxObject> boxesToAvoid;
 	/**
  An array of boxes to avoid when laying out the labels. Each item has a left, right, top and bottom property. 
 	*/
-	public void setBoxesToAvoid(List<HILabelIntersectBoxObject> boxesToAvoid) {
+	public void setBoxesToAvoid(ArrayList<HILabelIntersectBoxObject> boxesToAvoid) {
 		this.boxesToAvoid = boxesToAvoid;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<HILabelIntersectBoxObject> getBoxesToAvoid(){ return boxesToAvoid; }
+	public ArrayList<HILabelIntersectBoxObject> getBoxesToAvoid(){ return boxesToAvoid; }
 
 	private Boolean connectorAllowed;
 	/**
@@ -217,10 +217,10 @@ public class HILabel extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.style != null) {
 			params.put("style", this.style.getParams());
 		}
@@ -264,7 +264,7 @@ public Map<String, Object> getParams() {
 			params.put("onArea", this.onArea);
 		}
 		if (this.boxesToAvoid != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.boxesToAvoid) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

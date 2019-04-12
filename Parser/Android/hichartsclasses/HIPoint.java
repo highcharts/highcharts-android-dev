@@ -8,25 +8,15 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
 
 
 public class HIPoint extends HIFoundation { 
-
-	private HIEvents events;
-	public void setEvents(HIEvents events) {
-		this.events = events;
-		this.events.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIEvents getEvents(){ return events; }
 
 	private Number y;
 	/**
@@ -76,6 +66,16 @@ public class HIPoint extends HIFoundation {
 
 	public Object /* Number, String */ getYAxis(){ return yAxis; }
 
+	private HIEvents events;
+	public void setEvents(HIEvents events) {
+		this.events = events;
+		this.events.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIEvents getEvents(){ return events; }
+
 
 
 	public HIPoint() {
@@ -83,13 +83,10 @@ public class HIPoint extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
-		if (this.events != null) {
-			params.put("events", this.events.getParams());
-		}
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.y != null) {
 			params.put("y", this.y);
 		}
@@ -101,6 +98,9 @@ public Map<String, Object> getParams() {
 		}
 		if (this.yAxis != null) {
 			params.put("yAxis", this.yAxis);
+		}
+		if (this.events != null) {
+			params.put("events", this.events.getParams());
 		}
 		return params;
 	}

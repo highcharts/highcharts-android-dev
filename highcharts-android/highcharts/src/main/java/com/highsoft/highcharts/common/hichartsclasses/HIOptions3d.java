@@ -8,24 +8,18 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import com.highsoft.highcharts.core.HIFoundation;
+
 import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 
 
-
-
-public class HIOptions3d extends Observable implements HIChartsJSONSerializable { 
+public class HIOptions3d extends HIFoundation { 
 
 	private Number viewDistance;
-/**
-/** Defines the distance the viewer is standing in front of the chart, this setting is important to calculate the perspective effect in column and scatter charts. It is not used for 3D pie charts. 
-*/
+	/**
+ Defines the distance the viewer is standing in front of the chart, this setting is important to calculate the perspective effect in column and scatter charts. It is not used for 3D pie charts. 
+	*/
 	public void setViewDistance(Number viewDistance) {
 		this.viewDistance = viewDistance;
 		this.setChanged();
@@ -35,9 +29,9 @@ public class HIOptions3d extends Observable implements HIChartsJSONSerializable 
 	public Number getViewDistance(){ return viewDistance; }
 
 	private HIFrame frame;
-/**
-/** Provides the option to draw a frame around the charts by defining a bottom, front and back panel. 
-*/
+	/**
+ Provides the option to draw a frame around the charts by defining a bottom, front and back panel. 
+	*/
 	public void setFrame(HIFrame frame) {
 		this.frame = frame;
 		this.frame.addObserver(updateObserver);
@@ -48,9 +42,9 @@ public class HIOptions3d extends Observable implements HIChartsJSONSerializable 
 	public HIFrame getFrame(){ return frame; }
 
 	private String axisLabelPosition;
-/**
-/** Set it to "auto" to automatically move the labels to the best edge. 
-*/
+	/**
+ Set it to "auto" to automatically move the labels to the best edge. 
+	*/
 	public void setAxisLabelPosition(String axisLabelPosition) {
 		this.axisLabelPosition = axisLabelPosition;
 		this.setChanged();
@@ -60,9 +54,9 @@ public class HIOptions3d extends Observable implements HIChartsJSONSerializable 
 	public String getAxisLabelPosition(){ return axisLabelPosition; }
 
 	private Boolean enabled;
-/**
-/** Wether to render the chart using the 3D functionality. 
-*/
+	/**
+ Wether to render the chart using the 3D functionality. 
+	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -72,9 +66,9 @@ public class HIOptions3d extends Observable implements HIChartsJSONSerializable 
 	public Boolean getEnabled(){ return enabled; }
 
 	private Number depth;
-/**
-/** The total depth of the chart. 
-*/
+	/**
+ The total depth of the chart. 
+	*/
 	public void setDepth(Number depth) {
 		this.depth = depth;
 		this.setChanged();
@@ -84,9 +78,9 @@ public class HIOptions3d extends Observable implements HIChartsJSONSerializable 
 	public Number getDepth(){ return depth; }
 
 	private Number beta;
-/**
-/** One of the two rotation angles for the chart. 
-*/
+	/**
+ One of the two rotation angles for the chart. 
+	*/
 	public void setBeta(Number beta) {
 		this.beta = beta;
 		this.setChanged();
@@ -96,9 +90,9 @@ public class HIOptions3d extends Observable implements HIChartsJSONSerializable 
 	public Number getBeta(){ return beta; }
 
 	private Boolean fitToPlot;
-/**
-/** Whether the 3d box should automatically adjust to the chart plot area. 
-*/
+	/**
+ Whether the 3d box should automatically adjust to the chart plot area. 
+	*/
 	public void setFitToPlot(Boolean fitToPlot) {
 		this.fitToPlot = fitToPlot;
 		this.setChanged();
@@ -108,9 +102,9 @@ public class HIOptions3d extends Observable implements HIChartsJSONSerializable 
 	public Boolean getFitToPlot(){ return fitToPlot; }
 
 	private Number alpha;
-/**
-/** One of the two rotation angles for the chart. 
-*/
+	/**
+ One of the two rotation angles for the chart. 
+	*/
 	public void setAlpha(Number alpha) {
 		this.alpha = alpha;
 		this.setChanged();
@@ -125,19 +119,11 @@ public class HIOptions3d extends Observable implements HIChartsJSONSerializable 
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.viewDistance != null) {
 			params.put("viewDistance", this.viewDistance);
 		}

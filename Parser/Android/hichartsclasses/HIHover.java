@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -58,8 +58,8 @@ public class HIHover extends HIFoundation {
 
 	private Boolean enabled;
 	/**
- Enable separate styles for the hovered series to visualize that the user hovers either the series itself or the legend. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-enabled/">Line</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-enabled-column/">Column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-enabled-pie/">Pie</a>
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+ Enable or disable the point marker. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-enabled/">Disabled hover state</a>
+	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -68,33 +68,9 @@ public class HIHover extends HIFoundation {
 
 	public Boolean getEnabled(){ return enabled; }
 
-	private HIAnimationOptionsObject animation;
-	/**
- Animation setting for hovering the graph in line-type series. 
-	*/
-	public void setAnimation(HIAnimationOptionsObject animation) {
-		this.animation = animation;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIAnimationOptionsObject getAnimation(){ return animation; }
-
-	private Number lineWidth;
-	/**
- Pixel width of the graph line. By defaults this property is undefined, and the lineWidthPlus property dictates how much to increase the linewidth from normal state. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-linewidth/">5px line on hover</a>
-	*/
-	public void setLineWidth(Number lineWidth) {
-		this.lineWidth = lineWidth;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getLineWidth(){ return lineWidth; }
-
 	private Number lineWidthPlus;
 	/**
- The additional line width for the graph of a hovered series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-linewidthplus/">5 pixels wider</a>
+ The additional line width for a hovered point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-linewidthplus/">2 pixels wider on hover</a>
 	*/
 	public void setLineWidthPlus(Number lineWidthPlus) {
 		this.lineWidthPlus = lineWidthPlus;
@@ -139,6 +115,30 @@ public class HIHover extends HIFoundation {
 	}
 
 	public HIColor getLineColor(){ return lineColor; }
+
+	private Number lineWidth;
+	/**
+ The width of the point marker's outline. When undefined, the series' or point's lineWidth for normal state is used. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-linewidth/">3px line width</a>
+	*/
+	public void setLineWidth(Number lineWidth) {
+		this.lineWidth = lineWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getLineWidth(){ return lineWidth; }
+
+	private HIAnimationOptionsObject animation;
+	/**
+ Animation when hovering over the marker. 
+	*/
+	public void setAnimation(HIAnimationOptionsObject animation) {
+		this.animation = animation;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAnimationOptionsObject getAnimation(){ return animation; }
 
 	private Number brightness;
 	/**
@@ -195,10 +195,10 @@ public class HIHover extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.radiusPlus != null) {
 			params.put("radiusPlus", this.radiusPlus);
 		}
@@ -214,12 +214,6 @@ public Map<String, Object> getParams() {
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);
 		}
-		if (this.animation != null) {
-			params.put("animation", this.animation.getParams());
-		}
-		if (this.lineWidth != null) {
-			params.put("lineWidth", this.lineWidth);
-		}
 		if (this.lineWidthPlus != null) {
 			params.put("lineWidthPlus", this.lineWidthPlus);
 		}
@@ -231,6 +225,12 @@ public Map<String, Object> getParams() {
 		}
 		if (this.lineColor != null) {
 			params.put("lineColor", this.lineColor.getData());
+		}
+		if (this.lineWidth != null) {
+			params.put("lineWidth", this.lineWidth);
+		}
+		if (this.animation != null) {
+			params.put("animation", this.animation.getParams());
 		}
 		if (this.brightness != null) {
 			params.put("brightness", this.brightness);

@@ -1,9 +1,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
@@ -23,14 +23,14 @@ public class HIOptions extends HIFoundation {
 
 	public HISubtitle getSubtitle(){ return subtitle; }
 
-	private List<HIYAxis> yAxis;
+	private ArrayList<HIYAxis> yAxis;
 
 	/**
  The Y axis or value axis. Normally this is the vertical axis, though if the chart is inverted this is the horizontal axis. In case of multiple axes, the yAxis node is an array of configuration objects. See `the Axis object` for programmatic access to the axis. 
 	*/
-	public void setYAxis(List<HIYAxis> yAxis) {
+	public void setYAxis(ArrayList<HIYAxis> yAxis) {
 		this.yAxis = yAxis;
-		for(Object listElement : {0}){
+		for(Object listElement : yAxis){
 			if(listElement instanceof HIFoundation)
 				((HIFoundation)listElement).addObserver(updateObserver);
 		}
@@ -38,16 +38,16 @@ public class HIOptions extends HIFoundation {
 		this.notifyObservers();
 	}
 
-	public List<HIYAxis> getYAxis(){ return yAxis; }
+	public ArrayList<HIYAxis> getYAxis(){ return yAxis; }
 
-	private List<HISeries> series;
+	private ArrayList<HISeries> series;
 
 	/**
  Series options for specific data and the data itself. In TypeScript you have to cast the series options to specific series types, to get all possible options for a series. 
 	*/
-	public void setSeries(List<HISeries> series) {
+	public void setSeries(ArrayList<HISeries> series) {
 		this.series = series;
-		for(Object listElement : {0}){
+		for(Object listElement : series){
 			if(listElement instanceof HIFoundation)
 				((HIFoundation)listElement).addObserver(updateObserver);
 		}
@@ -55,7 +55,7 @@ public class HIOptions extends HIFoundation {
 		this.notifyObservers();
 	}
 
-	public List<HISeries> getSeries(){ return series; }
+	public ArrayList<HISeries> getSeries(){ return series; }
 
 	private HILabels labels;
 
@@ -85,19 +85,19 @@ public class HIOptions extends HIFoundation {
 
 	public HIAccessibility getAccessibility(){ return accessibility; }
 
-	private List<String> colors;
+	private ArrayList<String> colors;
 
 	/**
  An array containing the default colors for the chart's series. When all colors are used, new colors are pulled from the start again. Default colors can also be set on a series or series.type basis, see column.colors, pie.colors. In styled mode, the colors option doesn't exist. Instead, colors are defined in CSS and applied either through series or point class names, or through the chart.colorCount option. ### Legacy In Highcharts 3.x, the default colors were: colors: ['#2f7ed8', '#0d233a', '#8bbc21', '#910000', '#1aadce',   '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a'] In Highcharts 2.x, the default colors were: colors: ['#4572A7', '#AA4643', '#89A54E', '#80699B', '#3D96AE',  '#DB843D', '#92A8CD', '#A47D7C', '#B5CA92'] <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/colors/">Assign a global color theme</a>
  <br><br><b>default:</b><br><br>&ensp;["#7cb5ec", "#434348", "#90ed7d", "#f7a35c", "#8085e9",
          "#f15c80", "#e4d354", "#2b908f", "#f45b5b", "#91e8e1"]	*/
-	public void setColors(List<String> colors) {
+	public void setColors(ArrayList<String> colors) {
 		this.colors = colors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<String> getColors(){ return colors; }
+	public ArrayList<String> getColors(){ return colors; }
 
 	private HIPane pane;
 
@@ -213,9 +213,6 @@ public class HIOptions extends HIFoundation {
 
 	private HIBoost boost;
 
-	/**
- Options for the Boost module. The Boost module allows certain series types to be rendered by WebGL instead of the default SVG. This allows hundreds of thousands of data points to be rendered in milliseconds. In addition to the WebGL rendering it saves time by skipping processing and inspection of the data wherever possible. This introduces some limitations to what features are available in Boost mode. See [the docs](https://www.highcharts.com/docs/advanced-chart-features/boost-module) for details. In addition to the global boost option, each series has a boostThreshold that defines when the boost should kick in. Requires the modules/boost.js module. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/line">Line chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/line-series-heavy">Line chart with hundreds of series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/scatter">Scatter chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/area">Area chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/arearange">Area range chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/column">Column chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/columnrange">Column range chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/bubble">Bubble chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/heatmap">Heat map</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/boost/treemap">Tree map</a>
-	*/
 	public void setBoost(HIBoost boost) {
 		this.boost = boost;
 		this.boost.addObserver(updateObserver);
@@ -225,14 +222,14 @@ public class HIOptions extends HIFoundation {
 
 	public HIBoost getBoost(){ return boost; }
 
-	private List<HIAnnotations> annotations;
+	private ArrayList<HIAnnotations> annotations;
 
 	/**
  Options for configuring annotations, for example labels, arrows or shapes. Annotations can be tied to points, axis coordinates or chart pixel coordinates. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/basic/">Basic annotations</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/annotations/">Advanced annotations</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/annotations">Styled mode</a>
 	*/
-	public void setAnnotations(List<HIAnnotations> annotations) {
+	public void setAnnotations(ArrayList<HIAnnotations> annotations) {
 		this.annotations = annotations;
-		for(Object listElement : {0}){
+		for(Object listElement : annotations){
 			if(listElement instanceof HIFoundation)
 				((HIFoundation)listElement).addObserver(updateObserver);
 		}
@@ -240,7 +237,7 @@ public class HIOptions extends HIFoundation {
 		this.notifyObservers();
 	}
 
-	public List<HIAnnotations> getAnnotations(){ return annotations; }
+	public ArrayList<HIAnnotations> getAnnotations(){ return annotations; }
 
 	private Object defs;
 
@@ -283,14 +280,14 @@ public class HIOptions extends HIFoundation {
 
 	public HICredits getCredits(){ return credits; }
 
-	private List<HIZAxis> zAxis;
+	private ArrayList<HIZAxis> zAxis;
 
 	/**
  The Z axis or depth axis for 3D plots. See the `Axis class` for programmatic access to the axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/scatter-zaxis-categories/">Z-Axis with Categories</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/scatter-zaxis-grid/">Z-Axis with styling</a>
 	*/
-	public void setZAxis(List<HIZAxis> zAxis) {
+	public void setZAxis(ArrayList<HIZAxis> zAxis) {
 		this.zAxis = zAxis;
-		for(Object listElement : {0}){
+		for(Object listElement : zAxis){
 			if(listElement instanceof HIFoundation)
 				((HIFoundation)listElement).addObserver(updateObserver);
 		}
@@ -298,16 +295,16 @@ public class HIOptions extends HIFoundation {
 		this.notifyObservers();
 	}
 
-	public List<HIZAxis> getZAxis(){ return zAxis; }
+	public ArrayList<HIZAxis> getZAxis(){ return zAxis; }
 
-	private List<HIXAxis> xAxis;
+	private ArrayList<HIXAxis> xAxis;
 
 	/**
  The X axis or category axis. Normally this is the horizontal axis, though if the chart is inverted this is the vertical axis. In case of multiple axes, the xAxis node is an array of configuration objects. See the `Axis class` for programmatic access to the axis. 
 	*/
-	public void setXAxis(List<HIXAxis> xAxis) {
+	public void setXAxis(ArrayList<HIXAxis> xAxis) {
 		this.xAxis = xAxis;
-		for(Object listElement : {0}){
+		for(Object listElement : xAxis){
 			if(listElement instanceof HIFoundation)
 				((HIFoundation)listElement).addObserver(updateObserver);
 		}
@@ -315,7 +312,7 @@ public class HIOptions extends HIFoundation {
 		this.notifyObservers();
 	}
 
-	public List<HIXAxis> getXAxis(){ return xAxis; }
+	public ArrayList<HIXAxis> getXAxis(){ return xAxis; }
 
 	private HIDrilldown drilldown;
 
@@ -404,17 +401,17 @@ public class HIOptions extends HIFoundation {
 /**
 * Additional options that are not listed above but are accepted by API
 */
-public Map<String, Object> additionalOptions;
+public HashMap<String, Object> additionalOptions;
 
 @Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-	Map<String, Object> params = new Map<>();
+	HashMap<String, Object> params = new HashMap<>();
 		if (this.subtitle != null) {
 			params.put("subtitle", this.subtitle.getParams());
 		}
 		if (this.yAxis != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.yAxis) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -426,7 +423,7 @@ public Map<String, Object> getParams() {
 			params.put("yAxis", array);
 		}
 		if (this.series != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.series) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -444,7 +441,7 @@ public Map<String, Object> getParams() {
 			params.put("accessibility", this.accessibility.getParams());
 		}
 		if (this.colors != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.colors) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -483,7 +480,7 @@ public Map<String, Object> getParams() {
 			params.put("boost", this.boost.getParams());
 		}
 		if (this.annotations != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.annotations) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -504,7 +501,7 @@ public Map<String, Object> getParams() {
 			params.put("credits", this.credits.getParams());
 		}
 		if (this.zAxis != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.zAxis) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -516,7 +513,7 @@ public Map<String, Object> getParams() {
 			params.put("zAxis", array);
 		}
 		if (this.xAxis != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.xAxis) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

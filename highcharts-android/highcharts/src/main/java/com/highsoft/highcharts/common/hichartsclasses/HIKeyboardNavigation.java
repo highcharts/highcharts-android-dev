@@ -8,24 +8,30 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import com.highsoft.highcharts.core.HIFoundation;
+
 import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 
 
+public class HIKeyboardNavigation extends HIFoundation { 
 
+	private Boolean skipNullPoints;
+	/**
+ Skip null points when navigating through points with the keyboard. 
+	*/
+	public void setSkipNullPoints(Boolean skipNullPoints) {
+		this.skipNullPoints = skipNullPoints;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
-public class HIKeyboardNavigation extends Observable implements HIChartsJSONSerializable { 
+	public Boolean getSkipNullPoints(){ return skipNullPoints; }
 
 	private Boolean enabled;
-/**
-/** Enable/disable keyboard navigation for the legend. Requires the Accessibility module. 
- <br><br><b>defaults:</b><br><br>&ensp;true*/
+	/**
+ Enable keyboard navigation for the chart. 
+	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -34,10 +40,22 @@ public class HIKeyboardNavigation extends Observable implements HIChartsJSONSeri
 
 	public Boolean getEnabled(){ return enabled; }
 
+	private Boolean wrapAround;
+	/**
+ Whether or not to wrap around when reaching the end of arrow-key navigation for an element in the chart. 
+	*/
+	public void setWrapAround(Boolean wrapAround) {
+		this.wrapAround = wrapAround;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getWrapAround(){ return wrapAround; }
+
 	private HIFocusBorder focusBorder;
-/**
-/** Options for the focus border drawn around elements while navigating through them. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/accessibility/custom-focus">Custom focus ring</a>
-*/
+	/**
+ Options for the focus border drawn around elements while navigating through them. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/accessibility/custom-focus">Custom focus ring</a>
+	*/
 	public void setFocusBorder(HIFocusBorder focusBorder) {
 		this.focusBorder = focusBorder;
 		this.focusBorder.addObserver(updateObserver);
@@ -47,10 +65,22 @@ public class HIKeyboardNavigation extends Observable implements HIChartsJSONSeri
 
 	public HIFocusBorder getFocusBorder(){ return focusBorder; }
 
+	private Object order;
+	/**
+ Order of tab navigation in the chart. Determines which elements are tabbed to first. Available elements are: series, zoom, rangeSelector, chartMenu, legend. In addition, any custom components can be added here. 
+	*/
+	public void setOrder(Object order) {
+		this.order = order;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getOrder(){ return order; }
+
 	private String mode;
-/**
-/** Set the keyboard navigation mode for the chart. Can be "normal" or "serialize". In normal mode, left/right arrow keys move between points in a series, while up/down arrow keys move between series. Up/down navigation acts intelligently to figure out which series makes sense to move to from any given point. In "serialize" mode, points are instead navigated as a single list. Left/right behaves as in "normal" mode. Up/down arrow keys will behave like left/right. This is useful for unifying navigation behavior with/without screen readers enabled. <br><br><b>accepted values:</b><br><br>&ensp;["normal", "serialize"]
- <br><br><b>defaults:</b><br><br>&ensp;normal*/
+	/**
+ Set the keyboard navigation mode for the chart. Can be "normal" or "serialize". In normal mode, left/right arrow keys move between points in a series, while up/down arrow keys move between series. Up/down navigation acts intelligently to figure out which series makes sense to move to from any given point. In "serialize" mode, points are instead navigated as a single list. Left/right behaves as in "normal" mode. Up/down arrow keys will behave like left/right. This can be useful for unifying navigation behavior with/without screen readers enabled. <br><br><b>accepted values:</b><br><br>&ensp;["normal", "serialize"]
+ <br><br><b>defaults:</b><br><br>&ensp;normal	*/
 	public void setMode(String mode) {
 		this.mode = mode;
 		this.setChanged();
@@ -59,48 +89,33 @@ public class HIKeyboardNavigation extends Observable implements HIChartsJSONSeri
 
 	public String getMode(){ return mode; }
 
-	private Boolean skipNullPoints;
-/**
-/** Skip null points when navigating through points with the keyboard. 
-*/
-	public void setSkipNullPoints(Boolean skipNullPoints) {
-		this.skipNullPoints = skipNullPoints;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getSkipNullPoints(){ return skipNullPoints; }
-
 
 
 	public HIKeyboardNavigation() {
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
+		if (this.skipNullPoints != null) {
+			params.put("skipNullPoints", this.skipNullPoints);
 		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);
+		}
+		if (this.wrapAround != null) {
+			params.put("wrapAround", this.wrapAround);
 		}
 		if (this.focusBorder != null) {
 			params.put("focusBorder", this.focusBorder.getParams());
 		}
+		if (this.order != null) {
+		}
 		if (this.mode != null) {
 			params.put("mode", this.mode);
-		}
-		if (this.skipNullPoints != null) {
-			params.put("skipNullPoints", this.skipNullPoints);
 		}
 		return params;
 	}

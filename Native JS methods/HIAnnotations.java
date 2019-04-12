@@ -155,8 +155,8 @@ public void redrawShapeItem(HIShapes item, boolean animation) {
 public void redrawLabelItems(List<HILabels> items) {
   List<Object> list = new ArrayList<>();
   for(Object obj : items) {
-    if(obj instanceof HIChartsJSONSerializable)
-      list.add(((HIChartsJSONSerializable) obj).getParams());
+    if(obj instanceof HIFoundation)
+      list.add(((HIFoundation) obj).getParams());
     else list.add(obj);
   }
   this.jsClassMethod = new HashMap<String, Object>() {{
@@ -172,8 +172,8 @@ public void redrawLabelItems(List<HILabels> items) {
 public void redrawLabelItems(List<HILabels> items, boolean animation) {
   List<Object> list = new ArrayList<>();
   for(Object obj : items) {
-    if(obj instanceof HIChartsJSONSerializable)
-      list.add(((HIChartsJSONSerializable) obj).getParams());
+    if(obj instanceof HIFoundation)
+      list.add(((HIFoundation) obj).getParams());
     else list.add(obj);
   }
   this.jsClassMethod = new HashMap<String, Object>() {{
@@ -189,8 +189,8 @@ public void redrawLabelItems(List<HILabels> items, boolean animation) {
 public void redrawShapeItems(List<HIShapes> items) {
   List<Object> list = new ArrayList<>();
   for(Object obj : items) {
-    if(obj instanceof HIChartsJSONSerializable)
-      list.add(((HIChartsJSONSerializable) obj).getParams());
+    if(obj instanceof HIFoundation)
+      list.add(((HIFoundation) obj).getParams());
     else list.add(obj);
   }
   this.jsClassMethod = new HashMap<String, Object>() {{
@@ -206,8 +206,8 @@ public void redrawShapeItems(List<HIShapes> items) {
 public void redrawShapeItems(List<HIShapes> items, boolean animation) {
   List<Object> list = new ArrayList<>();
   for(Object obj : items) {
-    if(obj instanceof HIChartsJSONSerializable)
-      list.add(((HIChartsJSONSerializable) obj).getParams());
+    if(obj instanceof HIFoundation)
+      list.add(((HIFoundation) obj).getParams());
     else list.add(obj);
   }
   this.jsClassMethod = new HashMap<String, Object>() {{

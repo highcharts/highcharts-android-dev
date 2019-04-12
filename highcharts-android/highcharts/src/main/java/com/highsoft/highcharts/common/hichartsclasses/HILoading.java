@@ -8,24 +8,18 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import com.highsoft.highcharts.core.HIFoundation;
+
 import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 
 
-
-
-public class HILoading extends Observable implements HIChartsJSONSerializable { 
+public class HILoading extends HIFoundation { 
 
 	private HICSSObject style;
-/**
-/** CSS styles for the loading screen that covers the plot area. In styled mode, the loading label is styled with the .highcharts-loading class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/style/">Gray plot area, white text</a>
- <br><br><b>defaults:</b><br><br>&ensp;{"position": "absolute", "backgroundColor": "#ffffff", "opacity": 0.5, "textAlign": "center"}*/
+	/**
+ CSS styles for the loading screen that covers the plot area. In styled mode, the loading label is styled with the .highcharts-loading class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/style/">Gray plot area, white text</a>
+ <br><br><b>defaults:</b><br><br>&ensp;{"position": "absolute", "backgroundColor": "#ffffff", "opacity": 0.5, "textAlign": "center"}	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
 		this.setChanged();
@@ -35,9 +29,9 @@ public class HILoading extends Observable implements HIChartsJSONSerializable {
 	public HICSSObject getStyle(){ return style; }
 
 	private HICSSObject labelStyle;
-/**
-/** CSS styles for the loading label span. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/labelstyle/">Vertically centered</a>
- <br><br><b>defaults:</b><br><br>&ensp;{"fontWeight": "bold", "position": "relative", "top": "45%"}*/
+	/**
+ CSS styles for the loading label span. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/labelstyle/">Vertically centered</a>
+ <br><br><b>defaults:</b><br><br>&ensp;{"fontWeight": "bold", "position": "relative", "top": "45%"}	*/
 	public void setLabelStyle(HICSSObject labelStyle) {
 		this.labelStyle = labelStyle;
 		this.setChanged();
@@ -47,9 +41,9 @@ public class HILoading extends Observable implements HIChartsJSONSerializable {
 	public HICSSObject getLabelStyle(){ return labelStyle; }
 
 	private Number hideDuration;
-/**
-/** The duration in milliseconds of the fade out effect. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/hideduration/">Fade in and out over a second</a>
- <br><br><b>defaults:</b><br><br>&ensp;100*/
+	/**
+ The duration in milliseconds of the fade out effect. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/hideduration/">Fade in and out over a second</a>
+ <br><br><b>defaults:</b><br><br>&ensp;100	*/
 	public void setHideDuration(Number hideDuration) {
 		this.hideDuration = hideDuration;
 		this.setChanged();
@@ -59,9 +53,9 @@ public class HILoading extends Observable implements HIChartsJSONSerializable {
 	public Number getHideDuration(){ return hideDuration; }
 
 	private Number showDuration;
-/**
-/** The duration in milliseconds of the fade in effect. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/hideduration/">Fade in and out over a second</a>
- <br><br><b>defaults:</b><br><br>&ensp;100*/
+	/**
+ The duration in milliseconds of the fade in effect. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/hideduration/">Fade in and out over a second</a>
+ <br><br><b>defaults:</b><br><br>&ensp;100	*/
 	public void setShowDuration(Number showDuration) {
 		this.showDuration = showDuration;
 		this.setChanged();
@@ -76,19 +70,11 @@ public class HILoading extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.style != null) {
 			params.put("style", this.style.getParams());
 		}

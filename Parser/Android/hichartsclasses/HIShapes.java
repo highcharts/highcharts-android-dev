@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -19,17 +19,17 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HIShapes extends HIFoundation { 
 
-	private List <HIPoints> points;
+	private ArrayList <HIPoints> points;
 	/**
  An array of points for the shape. This option is available for shapes which can use multiple points such as path. A point can be either a point object or a point's id. 
 	*/
-	public void setPoints(List points) {
+	public void setPoints(ArrayList points) {
 		this.points = points;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List getPoints(){ return points; }
+	public ArrayList getPoints(){ return points; }
 
 	private String markerEnd;
 	/**
@@ -159,12 +159,12 @@ public class HIShapes extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.points != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.points) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

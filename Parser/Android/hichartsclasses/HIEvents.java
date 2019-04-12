@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -438,6 +438,30 @@ public class HIEvents extends HIFoundation {
 
 	public HIFunction getAfterAnimate(){ return afterAnimate; }
 
+	private Object add;
+	/**
+ Event callback when annotation is added to the chart. 
+	*/
+	public void setAdd(Object add) {
+		this.add = add;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getAdd(){ return add; }
+
+	private Object afterUpdate;
+	/**
+ Event callback when annotation is updated (e.g.draganddropppedorresizedbycontrolpoints). 
+	*/
+	public void setAfterUpdate(Object afterUpdate) {
+		this.afterUpdate = afterUpdate;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getAfterUpdate(){ return afterUpdate; }
+
 
 
 	public HIEvents() {
@@ -445,10 +469,10 @@ public class HIEvents extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.checkboxClick != null) {
 			params.put("checkboxClick", this.checkboxClick);
 		}
@@ -553,6 +577,10 @@ public Map<String, Object> getParams() {
 		}
 		if (this.afterAnimate != null) {
 			params.put("afterAnimate", this.afterAnimate);
+		}
+		if (this.add != null) {
+		}
+		if (this.afterUpdate != null) {
 		}
 		return params;
 	}

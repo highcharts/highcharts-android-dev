@@ -8,11 +8,12 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -36,7 +37,7 @@ public class HISankey extends HISeries {
 
 	private Number curveFactor;
 	/**
- Higher numbers makes the links in a sankey diagram render more curved. A curveFactor of 0 makes the lines straight. 
+ Higher numbers makes the links in a sankey diagram or dependency wheelrender more curved. A curveFactor of 0 makes the lines straight. 
 	*/
 	public void setCurveFactor(Number curveFactor) {
 		this.curveFactor = curveFactor;
@@ -48,7 +49,7 @@ public class HISankey extends HISeries {
 
 	private Number nodePadding;
 	/**
- The padding between nodes in a sankey diagram, in pixels. 
+ The padding between nodes in a sankey diagram or dependency wheel, in pixels. 
 	*/
 	public void setNodePadding(Number nodePadding) {
 		this.nodePadding = nodePadding;
@@ -60,7 +61,7 @@ public class HISankey extends HISeries {
 
 	private Number nodeWidth;
 	/**
- The pixel width of each node in a sankey diagram, or the height in case the chart is inverted. 
+ The pixel width of each node in a sankey diagram or dependency wheel, or the height in case the chart is inverted. 
 	*/
 	public void setNodeWidth(Number nodeWidth) {
 		this.nodeWidth = nodeWidth;
@@ -69,6 +70,31 @@ public class HISankey extends HISeries {
 	}
 
 	public Number getNodeWidth(){ return nodeWidth; }
+
+	private ArrayList <HILevels> levels;
+	/**
+ Set options on specific levels. Takes precedence over series options, but not point options. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/sunburst">Sunburst chart</a>
+	*/
+	public void setLevels(ArrayList levels) {
+		this.levels = levels;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList getLevels(){ return levels; }
+
+	private Number borderWidth;
+	/**
+/** * description: The width of the border surrounding each column or bar. Defaults to 1 when there is room for a border, but to 0 when the columns are so dense that a border would cover the next column. In styled mode, the stroke width can be set with the .highcharts-point rule. * demo:  •  2px black border
+* defaults: undefined
+*/
+	public void setBorderWidth(Number borderWidth) {
+		this.borderWidth = borderWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getBorderWidth(){ return borderWidth; }
 
 	private Number linkOpacity;
 	/**
@@ -94,29 +120,41 @@ public class HISankey extends HISeries {
 
 	public Number getMinPointLength(){ return minPointLength; }
 
-	private List<String> colors;
+	private ArrayList<String> colors;
 	/**
  A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
 	*/
-	public void setColors(List<String> colors) {
+	public void setColors(ArrayList<String> colors) {
 		this.colors = colors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<String> getColors(){ return colors; }
+	public ArrayList<String> getColors(){ return colors; }
 
-	private List <HINodes> nodes;
+	private HIColor borderColor;
+	/**
+ The color of the border surrounding each column or bar. In styled mode, the border stroke can be set with the .highcharts-point rule. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-bordercolor/">Dark gray border</a>
+ <br><br><b>defaults:</b><br><br>&ensp;#ffffff	*/
+	public void setBorderColor(HIColor borderColor) {
+		this.borderColor = borderColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getBorderColor(){ return borderColor; }
+
+	private ArrayList <HINodes> nodes;
 	/**
  A collection of options for the individual nodes. The nodes in a sankey diagram are auto-generated instances of Highcharts.Point, but options can be applied here and linked by the id. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/sankey/">Sankey diagram with node options</a>
 	*/
-	public void setNodes(List nodes) {
+	public void setNodes(ArrayList nodes) {
 		this.nodes = nodes;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List getNodes(){ return nodes; }
+	public ArrayList getNodes(){ return nodes; }
 
 
 
@@ -126,9 +164,9 @@ public class HISankey extends HISeries {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
+		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
 		if (this.colorByPoint != null) {
 			params.put("colorByPoint", this.colorByPoint);
@@ -142,6 +180,21 @@ public Map<String, Object> getParams() {
 		if (this.nodeWidth != null) {
 			params.put("nodeWidth", this.nodeWidth);
 		}
+		if (this.levels != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.levels) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("levels", array);
+		}
+		if (this.borderWidth != null) {
+			params.put("borderWidth", this.borderWidth);
+		}
 		if (this.linkOpacity != null) {
 			params.put("linkOpacity", this.linkOpacity);
 		}
@@ -149,7 +202,7 @@ public Map<String, Object> getParams() {
 			params.put("minPointLength", this.minPointLength);
 		}
 		if (this.colors != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.colors) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -160,8 +213,11 @@ public Map<String, Object> getParams() {
 			}
 			params.put("colors", array);
 		}
+		if (this.borderColor != null) {
+			params.put("borderColor", this.borderColor.getData());
+		}
 		if (this.nodes != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.nodes) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -23,7 +23,7 @@ import com.highsoft.highcharts.core.HIFoundation;
 public class HIPackedbubble extends HISeries {
 	private Object /* Number, String */ minSize;
 	/**
-/** * description: Minimum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height. * demo:  •  Bubble size
+/** * description: Minimum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the z value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height, divided by the square root of total number of points. * demo:  •  Bubble size
 */
 	public void setMinSize(Object /* Number, String */ minSize) {
 		this.minSize = minSize;
@@ -33,21 +33,9 @@ public class HIPackedbubble extends HISeries {
 
 	public Object /* Number, String */ getMinSize(){ return minSize; }
 
-	private Object /* Number, String */ maxSize;
-	/**
-/** * description: Maximum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height. * demo:  •  Bubble size
-*/
-	public void setMaxSize(Object /* Number, String */ maxSize) {
-		this.maxSize = maxSize;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object /* Number, String */ getMaxSize(){ return maxSize; }
-
 	private String sizeBy;
 	/**
-/** * description: Whether the bubble's value should be represented by the area or the width of the bubble. The defaults, area, corresponds best to the human perception of the size of each bubble. * demo:  •  Comparison of area and size* accepted values: ["area", "width"] 
+/** * description: Whether the bubble's value should be represented by the area or the width of the bubble. The defaults, area, corresponds best to the human perception of the size of each bubble. * demo:  •  Comparison of area and size
 * defaults: area
 */
 	public void setSizeBy(String sizeBy) {
@@ -57,6 +45,55 @@ public class HIPackedbubble extends HISeries {
 	}
 
 	public String getSizeBy(){ return sizeBy; }
+
+	private HILayoutAlgorithm layoutAlgorithm;
+	/**
+ Options for layout algorithm when simulation is enabled. Inside there are options to change the speed, padding, initial bubbles positions and more. 
+	*/
+	public void setLayoutAlgorithm(HILayoutAlgorithm layoutAlgorithm) {
+		this.layoutAlgorithm = layoutAlgorithm;
+		this.layoutAlgorithm.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HILayoutAlgorithm getLayoutAlgorithm(){ return layoutAlgorithm; }
+
+	private Boolean draggable;
+	/**
+ Flag to determine if nodes are draggable or not. Available for graph with useSimulation set to true only. 
+	*/
+	public void setDraggable(Boolean draggable) {
+		this.draggable = draggable;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getDraggable(){ return draggable; }
+
+	private Object /* Number, String */ maxSize;
+	/**
+/** * description: Maximum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the z value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height, divided by the square root of total number of points. * demo:  •  Bubble size
+*/
+	public void setMaxSize(Object /* Number, String */ maxSize) {
+		this.maxSize = maxSize;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getMaxSize(){ return maxSize; }
+
+	private Boolean useSimulation;
+	/**
+ An option is giving a possibility to choose between using simulation for calculating bubble positions. These reflects in both animation and final position of bubbles. Simulation is also adding options to the series graph based on used layout. In case of big data sets, with any performance issues, it is possible to disable animation and pack bubble in a simple circular way. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-packedbubble/spiral/">useSimulation set to false</a>
+	*/
+	public void setUseSimulation(Boolean useSimulation) {
+		this.useSimulation = useSimulation;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getUseSimulation(){ return useSimulation; }
 
 	private Boolean displayNegative;
 	/**
@@ -90,18 +127,27 @@ public class HIPackedbubble extends HISeries {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
+		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
 		if (this.minSize != null) {
 			params.put("minSize", this.minSize);
 		}
+		if (this.sizeBy != null) {
+			params.put("sizeBy", this.sizeBy);
+		}
+		if (this.layoutAlgorithm != null) {
+			params.put("layoutAlgorithm", this.layoutAlgorithm.getParams());
+		}
+		if (this.draggable != null) {
+			params.put("draggable", this.draggable);
+		}
 		if (this.maxSize != null) {
 			params.put("maxSize", this.maxSize);
 		}
-		if (this.sizeBy != null) {
-			params.put("sizeBy", this.sizeBy);
+		if (this.useSimulation != null) {
+			params.put("useSimulation", this.useSimulation);
 		}
 		if (this.displayNegative != null) {
 			params.put("displayNegative", this.displayNegative);

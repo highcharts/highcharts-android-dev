@@ -8,25 +8,19 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
-
-
-public class HIRanges extends Observable implements HIChartsJSONSerializable { 
+public class HIRanges extends HIFoundation { 
 
 	private HIColor borderColor;
-/**
-/** The color of the border for individual range. 
-*/
+	/**
+ The color of the border for individual range. 
+	*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
@@ -36,9 +30,9 @@ public class HIRanges extends Observable implements HIChartsJSONSerializable {
 	public HIColor getBorderColor(){ return borderColor; }
 
 	private HIColor color;
-/**
-/** The color of the bubble for individual range. 
-*/
+	/**
+ The color of the bubble for individual range. 
+	*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -48,9 +42,9 @@ public class HIRanges extends Observable implements HIChartsJSONSerializable {
 	public HIColor getColor(){ return color; }
 
 	private HIColor connectorColor;
-/**
-/** The color of the connector for individual range. 
-*/
+	/**
+ The color of the connector for individual range. 
+	*/
 	public void setConnectorColor(HIColor connectorColor) {
 		this.connectorColor = connectorColor;
 		this.setChanged();
@@ -60,9 +54,9 @@ public class HIRanges extends Observable implements HIChartsJSONSerializable {
 	public HIColor getConnectorColor(){ return connectorColor; }
 
 	private Object value;
-/**
-/** Range size value, similar to bubble Z data. 
-*/
+	/**
+ Range size value, similar to bubble Z data. 
+	*/
 	public void setValue(Object value) {
 		this.value = value;
 		this.setChanged();
@@ -77,19 +71,11 @@ public class HIRanges extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
 		}

@@ -91,7 +91,6 @@ final class HIGHTML implements Serializable {
 
     void prepareCustomFont(Context c, int id) {
         this.enableCustomFont = this.customFont.addFont(c, id);
-        Log.e("HC", "Custom font enabled: " + this.enableCustomFont);
     }
     /**
      *  Prepare options Java object to JS representation.
@@ -99,7 +98,7 @@ final class HIGHTML implements Serializable {
      *  @param options Map object.
      */
     void prepareOptions(Map options) {
-        Log.e("HTML", "Options prepared");
+//        Log.e("HTML", "Options prepared");
         options = HIGDependency.addOptions(options);
         this.options = this.js.JSObject(options);
     }

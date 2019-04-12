@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -346,29 +346,17 @@ public class HIChart extends HIFoundation {
 
 	public Number getSpacingLeft(){ return spacingLeft; }
 
-	private String definition;
-	/**
- A text description of the chart. If the Accessibility module is loaded, this is included by defaults as a long description of the chart and its contents in the hidden screen reader information region. 
-	*/
-	public void setDefinition(String definition) {
-		this.definition = definition;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getDefinition(){ return definition; }
-
-	private List<Number> spacing;
+	private ArrayList<Number> spacing;
 	/**
  The distance between the outer edge of the chart and the content, like title or legend, or axis title and labels if present. The numbers in the array designate top, right, bottom and left respectively. Use the options spacingTop, spacingRight, spacingBottom and spacingLeft options for shorthand setting of one option. 
  <br><br><b>defaults:</b><br><br>&ensp;[10, 10, 15, 10]	*/
-	public void setSpacing(List<Number> spacing) {
+	public void setSpacing(ArrayList<Number> spacing) {
 		this.spacing = spacing;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<Number> getSpacing(){ return spacing; }
+	public ArrayList<Number> getSpacing(){ return spacing; }
 
 	private String panKey;
 	/**
@@ -576,18 +564,6 @@ public class HIChart extends HIFoundation {
 
 	public Number getBorderWidth(){ return borderWidth; }
 
-	private String typeDescription;
-	/**
- A text description of the chart type. If the Accessibility module is loaded, this will be included in the description of the chart in the screen reader information region. Highcharts will by defaults attempt to guess the chart type, but for more complex charts it is recommended to specify this property for clarity. 
-	*/
-	public void setTypeDescription(String typeDescription) {
-		this.typeDescription = typeDescription;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getTypeDescription(){ return typeDescription; }
-
 	private Number marginTop;
 	/**
  The margin between the top outer edge of the chart and the plot area. Use this to set a fixed pixel value for the margin as opposed to the defaults dynamic margin. See also spacingTop. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/margintop/">100px top margin</a>
@@ -600,17 +576,17 @@ public class HIChart extends HIFoundation {
 
 	public Number getMarginTop(){ return marginTop; }
 
-	private List<Number> margin;
+	private ArrayList<Number> margin;
 	/**
  The margin between the outer edge of the chart and the plot area. The numbers in the array designate top, right, bottom and left respectively. Use the options marginTop, marginRight, marginBottom and marginLeft for shorthand setting of one option. By defaults there is no margin. The actual space is dynamically calculated from the offset of axis labels, axis title, title, subtitle and legend in addition to the spacingTop, spacingRight, spacingBottom and spacingLeft options. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/margins-zero/">Zero margins</a>
 	*/
-	public void setMargin(List<Number> margin) {
+	public void setMargin(ArrayList<Number> margin) {
 		this.margin = margin;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<Number> getMargin(){ return margin; }
+	public ArrayList<Number> getMargin(){ return margin; }
 
 	private Boolean styledMode;
 	/**
@@ -631,10 +607,10 @@ public class HIChart extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.parallelAxes != null) {
 			params.put("parallelAxes", this.parallelAxes.getParams());
 		}
@@ -716,11 +692,8 @@ public Map<String, Object> getParams() {
 		if (this.spacingLeft != null) {
 			params.put("spacingLeft", this.spacingLeft);
 		}
-		if (this.definition != null) {
-			params.put("definition", this.definition);
-		}
 		if (this.spacing != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.spacing) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -782,14 +755,11 @@ public Map<String, Object> getParams() {
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);
 		}
-		if (this.typeDescription != null) {
-			params.put("typeDescription", this.typeDescription);
-		}
 		if (this.marginTop != null) {
 			params.put("marginTop", this.marginTop);
 		}
 		if (this.margin != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.margin) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

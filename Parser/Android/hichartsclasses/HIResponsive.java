@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -18,17 +18,17 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 public class HIResponsive extends HIFoundation { 
 
-	private List <HIRules> rules;
+	private ArrayList <HIRules> rules;
 	/**
  A set of rules for responsive settings. The rules are executed from the top down. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/">Axis changes</a>
 	*/
-	public void setRules(List rules) {
+	public void setRules(ArrayList rules) {
 		this.rules = rules;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List getRules(){ return rules; }
+	public ArrayList getRules(){ return rules; }
 
 
 
@@ -37,12 +37,12 @@ public class HIResponsive extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.rules != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.rules) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

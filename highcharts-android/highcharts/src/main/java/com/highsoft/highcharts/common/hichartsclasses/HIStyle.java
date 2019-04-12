@@ -8,28 +8,40 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import com.highsoft.highcharts.core.HIFoundation;
+
 import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 
 
 
+public class HIStyle extends HIFoundation { 
 
-
-public class HIStyle extends Observable implements HIChartsJSONSerializable { 
-
-	private String textOverflow;
-	public void setTextOverflow(String textOverflow) {
-		this.textOverflow = textOverflow;
+	private String fontWeight;
+	public void setFontWeight(String fontWeight) {
+		this.fontWeight = fontWeight;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getTextOverflow(){ return textOverflow; }
+	public String getFontWeight(){ return fontWeight; }
+
+	private String fontSize;
+	public void setFontSize(String fontSize) {
+		this.fontSize = fontSize;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getFontSize(){ return fontSize; }
+
+	private String textOutline;
+	public void setTextOutline(String textOutline) {
+		this.textOutline = textOutline;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTextOutline(){ return textOutline; }
 
 
 
@@ -37,21 +49,19 @@ public class HIStyle extends Observable implements HIChartsJSONSerializable {
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
+		if (this.fontWeight != null) {
+			params.put("fontWeight", this.fontWeight);
 		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
-		if (this.textOverflow != null) {
-			params.put("textOverflow", this.textOverflow);
+		if (this.fontSize != null) {
+			params.put("fontSize", this.fontSize);
+		}
+		if (this.textOutline != null) {
+			params.put("textOutline", this.textOutline);
 		}
 		return params;
 	}

@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -56,18 +56,18 @@ public class HISunburst extends HISeries {
 
 	public HILevelSize getLevelSize(){ return levelSize; }
 
-	private List /* <Number, String> */ center;
+	private ArrayList /* <Number, String> */ center;
 	/**
 /** * description: The center of the sunburst chart relative to the plot area. Can be percentages or pixel values. * demo:  •  Centered at 100, 100
 * defaults: ["50%", "50%"]
 */
-	public void setCenter(List /* <Number, String> */ center) {
+	public void setCenter(ArrayList /* <Number, String> */ center) {
 		this.center = center;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List /* <Number, String> */ getCenter(){ return center; }
+	public ArrayList /* <Number, String> */ getCenter(){ return center; }
 
 	private HITraverseUpButton traverseUpButton;
 	/**
@@ -94,17 +94,17 @@ public class HISunburst extends HISeries {
 
 	public Number getSlicedOffset(){ return slicedOffset; }
 
-	private List <HILevels> levels;
+	private ArrayList <HILevels> levels;
 	/**
  Set options on specific levels. Takes precedence over series options, but not point options. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/sunburst">Sunburst chart</a>
 	*/
-	public void setLevels(List levels) {
+	public void setLevels(ArrayList levels) {
 		this.levels = levels;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List getLevels(){ return levels; }
+	public ArrayList getLevels(){ return levels; }
 
 	private Boolean levelIsConstant;
 	/**
@@ -142,17 +142,17 @@ public class HISunburst extends HISeries {
 
 	public HIColor getBorderColor(){ return borderColor; }
 
-	private List<String> colors;
+	private ArrayList<String> colors;
 	/**
  A series specific or series type specific color set to use instead of the global colors. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/">Set defaults colors for all pies</a>
 	*/
-	public void setColors(List<String> colors) {
+	public void setColors(ArrayList<String> colors) {
 		this.colors = colors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<String> getColors(){ return colors; }
+	public ArrayList<String> getColors(){ return colors; }
 
 	private Number borderWidth;
 	/**
@@ -198,9 +198,9 @@ public class HISunburst extends HISeries {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
+		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
 		if (this.colorByPoint != null) {
 			params.put("colorByPoint", this.colorByPoint);
@@ -212,7 +212,7 @@ public Map<String, Object> getParams() {
 			params.put("levelSize", this.levelSize.getParams());
 		}
 		if (this.center != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.center) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -230,7 +230,7 @@ public Map<String, Object> getParams() {
 			params.put("slicedOffset", this.slicedOffset);
 		}
 		if (this.levels != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.levels) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
@@ -251,7 +251,7 @@ public Map<String, Object> getParams() {
 			params.put("borderColor", this.borderColor.getData());
 		}
 		if (this.colors != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.colors) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

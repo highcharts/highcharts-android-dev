@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -54,6 +54,19 @@ public class HILegend extends HIFoundation {
 	}
 
 	public Boolean getRtl(){ return rtl; }
+
+	private HIAccessibility accessibility;
+	/**
+ Accessibility options for the legend. Requires the Accessibility module. 
+	*/
+	public void setAccessibility(HIAccessibility accessibility) {
+		this.accessibility = accessibility;
+		this.accessibility.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAccessibility getAccessibility(){ return accessibility; }
 
 	private Boolean squareSymbol;
 	/**
@@ -358,19 +371,6 @@ public class HILegend extends HIFoundation {
 
 	public String getAlign(){ return align; }
 
-	private HIKeyboardNavigation keyboardNavigation;
-	/**
- Keyboard navigation for the legend. Requires the Accessibility module. 
-	*/
-	public void setKeyboardNavigation(HIKeyboardNavigation keyboardNavigation) {
-		this.keyboardNavigation = keyboardNavigation;
-		this.keyboardNavigation.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIKeyboardNavigation getKeyboardNavigation(){ return keyboardNavigation; }
-
 	private Boolean enabled;
 	/**
  Enable or disable the legend. There is also a series-specific option, showInLegend, that can hide the series from the legend. In some series types this is false by defaults, so it must set to true in order to show the legend for the series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/enabled-false/">Legend disabled</a>
@@ -498,10 +498,10 @@ public class HILegend extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.symbolRadius != null) {
 			params.put("symbolRadius", this.symbolRadius);
 		}
@@ -510,6 +510,9 @@ public Map<String, Object> getParams() {
 		}
 		if (this.rtl != null) {
 			params.put("rtl", this.rtl);
+		}
+		if (this.accessibility != null) {
+			params.put("accessibility", this.accessibility.getParams());
 		}
 		if (this.squareSymbol != null) {
 			params.put("squareSymbol", this.squareSymbol);
@@ -585,9 +588,6 @@ public Map<String, Object> getParams() {
 		}
 		if (this.align != null) {
 			params.put("align", this.align);
-		}
-		if (this.keyboardNavigation != null) {
-			params.put("keyboardNavigation", this.keyboardNavigation.getParams());
 		}
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);

@@ -1,6 +1,8 @@
 package com.highsoft.highcharts.common;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 /**
  * (c) 2009-2017 Highsoft AS

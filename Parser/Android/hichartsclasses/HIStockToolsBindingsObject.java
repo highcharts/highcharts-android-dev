@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -66,17 +66,17 @@ public class HIStockToolsBindingsObject extends HIFoundation {
 
 	public HIFunction getStart(){ return start; }
 
-	private List<HIFunction> steps;
+	private ArrayList<HIFunction> steps;
 	/**
  Last event to be fired after last step event. Array of step events to be called sequentially after each user click. 
 	*/
-	public void setSteps(List<HIFunction> steps) {
+	public void setSteps(ArrayList<HIFunction> steps) {
 		this.steps = steps;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List<HIFunction> getSteps(){ return steps; }
+	public ArrayList<HIFunction> getSteps(){ return steps; }
 
 
 
@@ -85,10 +85,10 @@ public class HIStockToolsBindingsObject extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.className != null) {
 			params.put("className", this.className);
 		}
@@ -102,7 +102,7 @@ public Map<String, Object> getParams() {
 			params.put("start", this.start);
 		}
 		if (this.steps != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.steps) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());

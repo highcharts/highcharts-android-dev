@@ -8,25 +8,19 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
-
-
-public class HIDataClasses extends Observable implements HIChartsJSONSerializable { 
+public class HIDataClasses extends HIFoundation { 
 
 	private HIColor color;
-/**
-/** The color of each data class. If not set, the color is pulled from the global or chart-specific colors array. In styled mode, this option is ignored. Instead, use colors defined in CSS. 
-*/
+	/**
+ The color of each data class. If not set, the color is pulled from the global or chart-specific colors array. In styled mode, this option is ignored. Instead, use colors defined in CSS. 
+	*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -36,9 +30,9 @@ public class HIDataClasses extends Observable implements HIChartsJSONSerializabl
 	public HIColor getColor(){ return color; }
 
 	private Number to;
-/**
-/** The end of the value range that the data class represents, relating to the point value. The range of each dataClass is closed in both ends, but can be overridden by the next dataClass. 
-*/
+	/**
+ The end of the value range that the data class represents, relating to the point value. The range of each dataClass is closed in both ends, but can be overridden by the next dataClass. 
+	*/
 	public void setTo(Number to) {
 		this.to = to;
 		this.setChanged();
@@ -48,9 +42,9 @@ public class HIDataClasses extends Observable implements HIChartsJSONSerializabl
 	public Number getTo(){ return to; }
 
 	private Number from;
-/**
-/** The start of the value range that the data class represents, relating to the point value. The range of each dataClass is closed in both ends, but can be overridden by the next dataClass. 
-*/
+	/**
+ The start of the value range that the data class represents, relating to the point value. The range of each dataClass is closed in both ends, but can be overridden by the next dataClass. 
+	*/
 	public void setFrom(Number from) {
 		this.from = from;
 		this.setChanged();
@@ -60,9 +54,9 @@ public class HIDataClasses extends Observable implements HIChartsJSONSerializabl
 	public Number getFrom(){ return from; }
 
 	private String name;
-/**
-/** The name of the data class as it appears in the legend. If no name is given, it is automatically created based on the from and to values. For full programmatic control, legend.labelFormatter can be used. In the formatter, this.from and this.to can be accessed. 
-*/
+	/**
+ The name of the data class as it appears in the legend. If no name is given, it is automatically created based on the from and to values. For full programmatic control, legend.labelFormatter can be used. In the formatter, this.from and this.to can be accessed. 
+	*/
 	public void setName(String name) {
 		this.name = name;
 		this.setChanged();
@@ -77,19 +71,11 @@ public class HIDataClasses extends Observable implements HIChartsJSONSerializabl
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
 
-	 private Observer updateObserver = new Observer() {
-		@Override
-		public void update(Observable observable, Object o) {
-			setChanged();
-			notifyObservers();
-		}
-	};
-
-
-	public Map<String, Object> getParams() {
-
-		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.color != null) {
 			params.put("color", this.color.getData());
 		}

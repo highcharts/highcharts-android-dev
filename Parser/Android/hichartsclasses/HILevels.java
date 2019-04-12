@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -164,6 +164,42 @@ public class HILevels extends HIFoundation {
 
 	public String getLayoutStartingDirection(){ return layoutStartingDirection; }
 
+	private Boolean colorByPoint;
+	/**
+ Can set colorByPoint on all points which lies on the same level. 
+	*/
+	public void setColorByPoint(Boolean colorByPoint) {
+		this.colorByPoint = colorByPoint;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getColorByPoint(){ return colorByPoint; }
+
+	private Object states;
+	/**
+ Can set states on all points which lies on the same level. 
+	*/
+	public void setStates(Object states) {
+		this.states = states;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getStates(){ return states; }
+
+	private Number linkOpacity;
+	/**
+ Can set linkOpacity on all points which lies on the same level. 
+	*/
+	public void setLinkOpacity(Number linkOpacity) {
+		this.linkOpacity = linkOpacity;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getLinkOpacity(){ return linkOpacity; }
+
 
 
 	public HILevels() {
@@ -171,10 +207,10 @@ public class HILevels extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
 		}
@@ -210,6 +246,15 @@ public Map<String, Object> getParams() {
 		}
 		if (this.layoutStartingDirection != null) {
 			params.put("layoutStartingDirection", this.layoutStartingDirection);
+		}
+		if (this.colorByPoint != null) {
+			params.put("colorByPoint", this.colorByPoint);
+		}
+		if (this.states != null) {
+			params.put("states", this.states);
+		}
+		if (this.linkOpacity != null) {
+			params.put("linkOpacity", this.linkOpacity);
 		}
 		return params;
 	}

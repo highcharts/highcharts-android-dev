@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -29,15 +29,6 @@ public class HIVenn extends HISeries {
 	}
 
 	public Boolean getColorByPoint(){ return colorByPoint; }
-
-	private Number opacity;
-	public void setOpacity(Number opacity) {
-		this.opacity = opacity;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getOpacity(){ return opacity; }
 
 	private String borderDashStyle;
 	public void setBorderDashStyle(String borderDashStyle) {
@@ -65,15 +56,12 @@ public class HIVenn extends HISeries {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
+		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
 		if (this.colorByPoint != null) {
 			params.put("colorByPoint", this.colorByPoint);
-		}
-		if (this.opacity != null) {
-			params.put("opacity", this.opacity);
 		}
 		if (this.borderDashStyle != null) {
 			params.put("borderDashStyle", this.borderDashStyle);

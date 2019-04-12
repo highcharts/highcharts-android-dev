@@ -8,9 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.Map;
-import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
@@ -30,17 +30,17 @@ public class HIDrilldown extends HIFoundation {
 
 	public HICSSObject getActiveDataLabelStyle(){ return activeDataLabelStyle; }
 
-	private List series;
+	private ArrayList series;
 	/**
  An array of series configurations for the drill down. Each series configuration uses the same syntax as the series option set. These drilldown series are hidden by defaults. The drilldown series is linked to the parent series' point by its id. 
 	*/
-	public void setSeries(List series) {
+	public void setSeries(ArrayList series) {
 		this.series = series;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public List getSeries(){ return series; }
+	public ArrayList getSeries(){ return series; }
 
 	private Boolean allowPointDrilldown;
 	/**
@@ -98,15 +98,15 @@ public class HIDrilldown extends HIFoundation {
 	}
 
 	@Override
-public Map<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
-		Map<String, Object> params = new Map<>();
-		params = params.put("_wrapperID", this.uuid);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
 		if (this.activeDataLabelStyle != null) {
 			params.put("activeDataLabelStyle", this.activeDataLabelStyle.getParams());
 		}
 		if (this.series != null) {
-			List<Object> array = new List<>();
+			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.series) {
 				if (obj instanceof HIFoundation) {
 					array.add(((HIFoundation) obj).getParams());
