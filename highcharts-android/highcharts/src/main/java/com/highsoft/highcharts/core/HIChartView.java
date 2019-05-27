@@ -214,16 +214,47 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
         }
 
         int height;
+        Log.e(TAG, "mode: " + heightMode);
         if (heightMode == MeasureSpec.EXACTLY) {
             height = heightSize;
+            Log.e(TAG, "mode: exactly");
         } else if (heightMode == MeasureSpec.AT_MOST) {
+            Log.e(TAG, "mode: at_most");
             height = Math.min(heightMeasureSpec, heightSize);
         } else {
+            Log.e(TAG, "rest");
             height = heightMeasureSpec;
         }
         this.height = height;
         this.width = width;
         setMeasuredDimension(width, height);
+
+//        int desiredWidth = getSuggestedMinimumWidth() + getPaddingLeft() + getPaddingRight();
+//        int desiredHeight = getSuggestedMinimumHeight() + getPaddingTop() + getPaddingBottom();
+//
+//        setMeasuredDimension(measureDimension(desiredWidth, widthMeasureSpec),
+//                measureDimension(desiredHeight, heightMeasureSpec));
+    }
+
+    private int measureDimension(int desiredSize, int measureSpec) {
+        int result;
+        int specMode = MeasureSpec.getMode(measureSpec);
+        int specSize = MeasureSpec.getSize(measureSpec);
+
+        if (specMode == MeasureSpec.EXACTLY) {
+            result = specSize;
+        } else {
+            result = desiredSize;
+            if (specMode == MeasureSpec.AT_MOST) {
+                result = Math.min(result, specSize);
+            }
+        }
+
+        if (result < desiredSize){
+            Log.e("ChartView", "The view is too small, the content might get cut");
+        }
+        Log.e(TAG, "measured dimesnion: " + result);
+        return result;
     }
 
     @Override
@@ -264,12 +295,10 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
             }
 
             // Adding libraries for PDF export
-            this.HTML.prepareJavaScript("canvag", "js/lib/", suffix);
             this.HTML.prepareJavaScript("export-csv", "js/lib/", suffix);
             this.HTML.prepareJavaScript("jspdf", "js/lib/", suffix);
             this.HTML.prepareJavaScript("moment", "js/lib/", suffix);
             this.HTML.prepareJavaScript("moment-timezone-with-data", "js/lib/", suffix);
-            this.HTML.prepareJavaScript("pro4", "js/lib/", suffix);
             this.HTML.prepareJavaScript("rgbcolor", "js/lib/", suffix);
             this.HTML.prepareJavaScript("svg2pdf", "js/lib/", suffix);
 

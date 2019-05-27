@@ -23,6 +23,8 @@
     public static **[] values(); public static ** valueOf(java.lang.String);
 }
 
+-keep class com.highsoft.highcharts.common.hichartsclasses.** {*;}
+
 -keepattributes JavascriptInterface
 
 -keepclassmembers class * {

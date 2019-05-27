@@ -14,16 +14,24 @@ import com.highsoft.highcharts.common.hichartsclasses.HICSSObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIChart;
 import com.highsoft.highcharts.common.hichartsclasses.HICredits;
 import com.highsoft.highcharts.common.hichartsclasses.HIData;
+import com.highsoft.highcharts.common.hichartsclasses.HIDataLabels;
+import com.highsoft.highcharts.common.hichartsclasses.HIDataLabelsOptionsObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIEvents;
 import com.highsoft.highcharts.common.hichartsclasses.HILabels;
+import com.highsoft.highcharts.common.hichartsclasses.HILegend;
 import com.highsoft.highcharts.common.hichartsclasses.HILine;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
 import com.highsoft.highcharts.common.hichartsclasses.HIPlotOptions;
+import com.highsoft.highcharts.common.hichartsclasses.HIPlotPieDataLabelsOptionsObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIPoint;
+import com.highsoft.highcharts.common.hichartsclasses.HIScrollablePlotArea;
 import com.highsoft.highcharts.common.hichartsclasses.HISeries;
 import com.highsoft.highcharts.common.hichartsclasses.HISpline;
+import com.highsoft.highcharts.common.hichartsclasses.HIStyle;
+import com.highsoft.highcharts.common.hichartsclasses.HISubtitle;
 import com.highsoft.highcharts.common.hichartsclasses.HITitle;
 import com.highsoft.highcharts.common.hichartsclasses.HITooltip;
+import com.highsoft.highcharts.common.hichartsclasses.HIVariwide;
 import com.highsoft.highcharts.common.hichartsclasses.HIXAxis;
 import com.highsoft.highcharts.common.hichartsclasses.HIYAxis;
 import com.highsoft.highcharts.core.HIChartView;
@@ -32,6 +40,7 @@ import com.highsoft.highcharts.core.HIFunction;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -45,125 +54,97 @@ public class IssuesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_issues);
-
-        HIFunction seriesFunction = new HIFunction(
-                f -> {
-                    Toast t = Toast.makeText(
-                            this,
-                            "Clicked point [ " + f.getProperty("x") + ", " + f.getProperty("y") + " ]",
-                            Toast.LENGTH_SHORT);
-                    t.show();
-                },
-                new String[] {"x", "y"});
-        HIFunction chartFunction = new HIFunction(
-                f -> {
-                    Toast t = Toast.makeText(
-                            this,
-                            "Clicked point [ " + f.getProperty("this.hoverPoint.x") + ", " + f.getProperty("this.hoverPoint.x") + " ]",
-                            Toast.LENGTH_SHORT);
-                    t.show();
-                },
-                new String[] {"this.hoverPoint.x", "this.hoverPoint.x"});
-        Button btn = findViewById(R.id.btn);
-        btn.setText("Series update");
-        TextView txt = findViewById(R.id.txtView);
-        txt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(IssuesActivity.this, "TEXT VIEW CLICKED", Toast.LENGTH_SHORT).show();
-            }
-        });
-        txt.setFocusableInTouchMode(true);
-        txt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus) {
-                    txt.setText("Testerino no focuso");
-                } else {
-                    txt.setText("MAMY FOCUS ELO");
-                }
-            }
-        });
+//        Button btn = findViewById(R.id.btn);
+//        btn.setText("Series update");
+//        TextView txt = findViewById(R.id.txtView);
+//        txt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(IssuesActivity.this, "TEXT VIEW CLICKED", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        txt.setFocusableInTouchMode(true);
+//        txt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if(!hasFocus) {
+//                    txt.setText("Testerino no focuso");
+//                } else {
+//
+////                    txt.setText("MAMY FOCUS ELO");
+//                }
+//            }
+//        });
         HIChartView chartView = findViewById(R.id.hc);
-//        chartView.addFont(R.font.griphite);
-
-//        HICSSObject style = new HICSSObject();
-//        style.setFontFamily("griphite");
-//        HITitle title = new HITitle();
-//        title.setStyle(style);
 
         HIOptions options = new HIOptions();
-        HIChart chart = new HIChart();
-        chart.setBackgroundColor(HIColor.initWithName("transparent"));
-        chart.setEvents(new HIEvents());
-        chart.getEvents().setClick(chartFunction);
-        options.setChart(chart);
-//        title.setText("EXAMPLE TITLE");
-//        options.setTitle(title);
-//        chart.setStyle(new HICSSObject());
-//        chart.getStyle().setFontFamily("griphite");
-//        chart.setZoomType("x");
-        HIXAxis hixAxis = new HIXAxis();
-        hixAxis.setLabels(new HILabels());
-        hixAxis.getLabels().setStep(1);
-//        hixAxis.getLabels().setFormatter(new HIFunction("function () { var ret = this.pos % 2 && !this.isLast ? '' : this.value; return ret }"));
-//        hixAxis.setShowLastLabel(true);
-        options.setXAxis(new ArrayList<>(Collections.singletonList(hixAxis)));
-        HIYAxis hiyAxis1 = new HIYAxis();
-//        HIYAxis hiyAxis2 = new HIYAxis();
-//        hiyAxis2.setOpposite(true);
-        options.setYAxis(new ArrayList<>(Arrays.asList(hiyAxis1)));
 
-        HITooltip tooltip = new HITooltip();
-        tooltip.setFollowTouchMove(true);
-        tooltip.setFollowPointer(true);
-        options.setTooltip(tooltip);
-//        HILine series1 = new HILine();
-//        series1.setName("tam daradam");
-//        series1.setData(randData(10));
-//        series1.setColor(HIColor.initWithName("red"));
-        HILine series2 = new HILine();
-        series2.setData(randData(15));
-        series2.setPoint(new HIPoint());
-        series2.getPoint().setEvents(new HIEvents());
-        series2.getPoint().getEvents().setClick(seriesFunction);
-        options.setSeries(new ArrayList<>(Arrays.asList(series2)));
-        HIArea area = new HIArea();
-        area.hide();
+        HIChart chart = new HIChart();
+        chart.setType("bar");
+        options.setChart(chart);
+
+
+        ArrayList<String> categories = new ArrayList<>(Arrays.asList(
+                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ));
+
+        HIXAxis axis = new HIXAxis();
+        axis.setCategories(categories);
+        options.setXAxis(new ArrayList<>(Collections.singletonList(axis)));
+
+        HISeries series = new HISeries();
+        series.setName("brands");
+        ArrayList<HashMap<String, Object>> dataList = new ArrayList<>();
+        Random r = new Random();
+        for(int i = 0; i < categories.size(); i++){
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("name", "yolo" + i);
+            map.put("y", r.nextInt(80) + 20);
+            dataList.add(map);
+        }
+
+        HIStyle dataLableStyle = new HIStyle();
+        dataLableStyle.setFontSize("10px");
+        HIDataLabelsOptionsObject dataLabels = new HIDataLabelsOptionsObject();
+        dataLabels.setEnabled(true);
+        dataLabels.setCrop(false);
+        dataLabels.setAllowOverlap(false);
+        dataLabels.setUseHTML(true);
+        String jsfunction = "function() { var percentile = Number(((this.y - this.point.prior) / this.point.prior * 100).toFixed(0)); var yData = this.y; if (yData > 100) { yData = Highcharts.numberFormat(yData, 0, ',', ','); } var labelValue; var percent = percentile; labelValue = '<span style = ' + 'color:#000' + '>'+yData+'</span>'; if (yData == 0) { labelValue += ''; } else { labelValue += '<span style =' + 'color:#e28507' + ';font-weight:bold' + '>' + ' : ' + percent + '</span>'; } return labelValue; }";
+        HIFunction labelFormatter = new HIFunction(jsfunction);
+        dataLabels.setFormatter(labelFormatter);
+        dataLabels.setStyle(dataLableStyle);
+
+        series.setDataLabels(dataLabels);
+        series.setData(dataList);
+
+        options.setSeries(new ArrayList<>(Collections.singletonList(series)));
+
+//        options.getChart().setScrollablePlotArea(new HIScrollablePlotArea());
+//        options.getChart().getScrollablePlotArea().setMinWidth(1000);
+//        options.getChart().getScrollablePlotArea().setScrollPositionX(0);
+
 
         chartView.setOptions(options);
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                HIData data = new HIData();
-                data.setY(6);
-//                series1.addPoint( data);
-                HICredits credits = new HICredits();
-                credits.setEnabled(true);
-                credits.setText("CREDITSY PRO");
-                credits.setStyle(new HICSSObject());
-                credits.getStyle().setFontSize("20sp");
-                HIYAxis axisnew = new HIYAxis();
-                axisnew.setOpposite(true);
-                axisnew.setLineColor(HIColor.initWithName("blue"));
-//                chartView.addYAxis(axisnew);
-//                chartView.addCredits(credits);
-//                chartView.redraw();
-//                data.setY(8);
-//                series1.addPoint( data);
-//                series1.hide();
-//                series1.hide();
-//                options.getSeries().get(0).setColor(HIColor.initWithName("pink"));
-//                series1.setSeriesData(new ArrayList<>(Arrays.asList(5,12,5,7,8,2,4)));
-//                HISpline spline = new HISpline();
-//                spline.setData(new ArrayList<>(Arrays.asList(5,6,1,6,7,8,12,3,4)));
-//                spline.setColor(HIColor.initWithName("pink"));
-//                spline.setName("RAMBO");
-////                series1.update(spline);
-//                series1.getSeriesName();
-            }
-        });
+
+
+
+//        btn.setOnClickListener(v -> {
+//            HIData data = new HIData();
+//            data.setY(6);
+//            HICredits credits = new HICredits();
+//            credits.setEnabled(true);
+//            credits.setText("CREDITSY PRO");
+//            credits.setStyle(new HICSSObject());
+//            credits.getStyle().setFontSize("20sp");
+//            HIYAxis axisnew = new HIYAxis();
+//            axisnew.setOpposite(true);
+//            axisnew.setLineColor(HIColor.initWithName("blue"));
+//        });
     }
 
     private ArrayList randData(int bound){
