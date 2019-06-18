@@ -109,7 +109,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
      */
     public HIChartView(Context c, AttributeSet attrs){
         super(c, attrs);
-        Log.e(TAG, "XML constructor called.");
+//        Log.e(TAG, "XML constructor called.");
         jsHandlersMap = new HashMap<>();
         this.setWillNotDraw(false);
         this.activity = (Activity) c;
@@ -123,7 +123,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
 
     @Override
     public void setOnFocusChangeListener(OnFocusChangeListener l) {
-        Log.e(TAG, "setOnFocusChangeListener @Override successfully");
+//        Log.e(TAG, "setOnFocusChangeListener @Override successfully");
         super.setOnFocusChangeListener(l);
     }
 
@@ -214,15 +214,11 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
         }
 
         int height;
-        Log.e(TAG, "mode: " + heightMode);
         if (heightMode == MeasureSpec.EXACTLY) {
             height = heightSize;
-            Log.e(TAG, "mode: exactly");
         } else if (heightMode == MeasureSpec.AT_MOST) {
-            Log.e(TAG, "mode: at_most");
             height = Math.min(heightMeasureSpec, heightSize);
         } else {
-            Log.e(TAG, "rest");
             height = heightMeasureSpec;
         }
         this.height = height;
@@ -374,12 +370,11 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
     private void makeNativeCall(Map arg){
         HashMap<String, Object> params = (HashMap<String, Object>) arg;
         String strJsMethod = String.format("javascript:%s", HINativeController.getMethodString(params));
-        Log.e(TAG, "JS METHOD: " + strJsMethod);
         webView.evaluateJavascript(strJsMethod, new ValueCallback<String>() {
             @Override
             public void onReceiveValue(String value) {
-                Log.e(TAG, "Native method called.");
-                if(value != null) Log.e(TAG, "Val returned: " + String.valueOf(value).toString());
+//                Log.e(TAG, "Native method called.");
+//                if(value != null) Log.e(TAG, "Val returned: " + String.valueOf(value).toString());
             }
         });
     }
