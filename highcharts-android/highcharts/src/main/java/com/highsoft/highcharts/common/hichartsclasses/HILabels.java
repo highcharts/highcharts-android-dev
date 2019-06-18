@@ -19,46 +19,22 @@ import java.util.HashMap;
 
 public class HILabels extends HIFoundation { 
 
-	private ArrayList <HIItems> items;
+	private Object /* Number, String */ distance;
 	/**
- An HTML label that can be positioned anywhere in the chart area. 
-	*/
-	public void setItems(ArrayList items) {
-		this.items = items;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public ArrayList getItems(){ return items; }
-
-	private HICSSObject style;
-	/**
- Shared CSS styles for all labels. 
- <br><br><b>defaults:</b><br><br>&ensp;{"color": "#333333", "position": "absolute"}	*/
-	public void setStyle(HICSSObject style) {
-		this.style = style;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HICSSObject getStyle(){ return style; }
-
-	private Number distance;
-	/**
-/** * description: Angular gauges and solid gauges only. The label's pixel distance from the perimeter of the plot area. 
+/** * description: Angular gauges and solid gauges only. The label's pixel distance from the perimeter of the plot area. Since v7.1.2: If it's a percentage string, it is interpreted the same as series.radius, so label can be aligned under the gauge's shape. * demo:  •  Labels centered under the arc
 * defaults: -25
 */
-	public void setDistance(Number distance) {
+	public void setDistance(Object /* Number, String */ distance) {
 		this.distance = distance;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getDistance(){ return distance; }
+	public Object /* Number, String */ getDistance(){ return distance; }
 
 	private String align;
 	/**
-/** * description: What part of the string the given position is anchored to. Can be one of "left", "center" or "right". The exact position also depends on the labels.x setting. Angular gauges and solid gauges defaultss to "center". * demo:  •  Left
+/** * description: What part of the string the given position is anchored to. Can be one of "left", "center" or "right". The exact position also depends on the labels.x setting. Angular gauges and solid gauges defaultss to "center". Solid gauges with two labels have additional option "auto" for automatic horizontal and vertical alignment. * demo:  •  Left •  Solid gauge labels auto aligned
 * defaults: right
 */
 	public void setAlign(String align) {
@@ -141,6 +117,18 @@ public class HILabels extends HIFoundation {
 	}
 
 	public Number getRotation(){ return rotation; }
+
+	private HICSSObject style;
+	/**
+ CSS styles for the label. Use whiteSpace: 'nowrap' to prevent wrapping of category labels. Use textOverflow: 'none' to prevent ellipsis (dots). In styled mode, the labels are styled with the .highcharts-axis-labels class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-style/">Red X axis labels</a>
+ <br><br><b>defaults:</b><br><br>&ensp;{"color": "#666666", "cursor": "default", "fontSize": "11px"}	*/
+	public void setStyle(HICSSObject style) {
+		this.style = style;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HICSSObject getStyle(){ return style; }
 
 	private Boolean reserveSpace;
 	/**
@@ -276,7 +264,7 @@ public class HILabels extends HIFoundation {
 
 	private HIPoint point;
 	/**
- This option defines the point to which the label will be connected. It can be either the point which exists in the series - it is referenced by the point's id - or a new point with defined x, y properies and optionally axes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/mock-point/">Attach annotation to a mock point</a>
+ This option defines the point to which the label will be connected. It can be either the point which exists in the series - it is referenced by the point's id - or a new point with defined x, y properties and optionally axes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/mock-point/">Attach annotation to a mock point</a>
 	*/
 	public void setPoint(HIPoint point) {
 		this.point = point;
@@ -430,21 +418,6 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.items != null) {
-			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.items) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
-			}
-			params.put("items", array);
-		}
-		if (this.style != null) {
-			params.put("style", this.style.getParams());
-		}
 		if (this.distance != null) {
 			params.put("distance", this.distance);
 		}
@@ -468,6 +441,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.rotation != null) {
 			params.put("rotation", this.rotation);
+		}
+		if (this.style != null) {
+			params.put("style", this.style.getParams());
 		}
 		if (this.reserveSpace != null) {
 			params.put("reserveSpace", this.reserveSpace);

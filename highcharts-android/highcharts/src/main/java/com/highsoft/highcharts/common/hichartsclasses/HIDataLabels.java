@@ -168,62 +168,14 @@ public class HIDataLabels extends HIFoundation {
 
 	public Number getDistance(){ return distance; }
 
-	private Object nodeFormatter;
-	/**
- A callback for defining the format for _nodes_ in the organization chart. The nodeFormat option takes precedence over nodeFormatter. In an organization chart, the nodeFormatter is a quite complex function of the available options, striving for a good defaults layout of cards with or without images. In organization chart, the data labels come with useHTML set to true, meaning they will be rendered as true HTML above the SVG. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-organization/datalabels-nodeformatter">Modify the defaults label format output</a>
-	*/
-	public void setNodeFormatter(Object nodeFormatter) {
-		this.nodeFormatter = nodeFormatter;
+	private Number y;
+	public void setY(Number y) {
+		this.y = y;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getNodeFormatter(){ return nodeFormatter; }
-
-	private Boolean useHTML;
-	public void setUseHTML(Boolean useHTML) {
-		this.useHTML = useHTML;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getUseHTML(){ return useHTML; }
-
-	private String align;
-	public void setAlign(String align) {
-		this.align = align;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getAlign(){ return align; }
-
-	private String overflow;
-	public void setOverflow(String overflow) {
-		this.overflow = overflow;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getOverflow(){ return overflow; }
-
-	private Boolean inside;
-	public void setInside(Boolean inside) {
-		this.inside = inside;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getInside(){ return inside; }
-
-	private Boolean crop;
-	public void setCrop(Boolean crop) {
-		this.crop = crop;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getCrop(){ return crop; }
+	public Number getY(){ return y; }
 
 
 
@@ -281,22 +233,8 @@ public HashMap<String, Object> getParams() {
 		if (this.distance != null) {
 			params.put("distance", this.distance);
 		}
-		if (this.nodeFormatter != null) {
-		}
-		if (this.useHTML != null) {
-			params.put("useHTML", this.useHTML);
-		}
-		if (this.align != null) {
-			params.put("align", this.align);
-		}
-		if (this.overflow != null) {
-			params.put("overflow", this.overflow);
-		}
-		if (this.inside != null) {
-			params.put("inside", this.inside);
-		}
-		if (this.crop != null) {
-			params.put("crop", this.crop);
+		if (this.y != null) {
+			params.put("y", this.y);
 		}
 		return params;
 	}

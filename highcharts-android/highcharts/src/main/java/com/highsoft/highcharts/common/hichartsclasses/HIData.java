@@ -473,17 +473,17 @@ public class HIData extends HIFoundation {
 
 	public HIAccessibility getAccessibility(){ return accessibility; }
 
-	private HIDataLabelsOptionsObject dataLabels;
+	private ArrayList<HIDataLabelsOptionsObject> dataLabels;
 	/**
  Individual data label for each point. The options are the same as the ones for plotOptions.series.dataLabels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/datalabels/">Show a label for the last value</a>
 	*/
-	public void setDataLabels(HIDataLabelsOptionsObject dataLabels) {
+	public void setDataLabels(ArrayList<HIDataLabelsOptionsObject> dataLabels) {
 		this.dataLabels = dataLabels;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIDataLabelsOptionsObject getDataLabels(){ return dataLabels; }
+	public ArrayList<HIDataLabelsOptionsObject> getDataLabels(){ return dataLabels; }
 
 	private String className;
 	/**
@@ -786,6 +786,18 @@ public class HIData extends HIFoundation {
 
 	public Number getWeight(){ return weight; }
 
+	private Boolean gradientForSides;
+	/**
+ By deafult sides fill is set to a gradient through this option being set to true. Set to false to get solid color for the sides. 
+	*/
+	public void setGradientForSides(Boolean gradientForSides) {
+		this.gradientForSides = gradientForSides;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getGradientForSides(){ return gradientForSides; }
+
 	private Object /* Number, String */ innerRadius;
 	/**
  The inner radius of an individual point in a solid gauge. Can be given as a number (pixels) or percentage string. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/solidgauge-radius/">Individual radius and innerRadius</a>
@@ -894,18 +906,6 @@ public class HIData extends HIFoundation {
 	}
 
 	public ArrayList<String> getSets(){ return sets; }
-
-	private Boolean gradientForSides;
-	/**
- By deafult sides fill is set to a gradient through this option being set to true. Set to false to get solid color for the sides. 
-	*/
-	public void setGradientForSides(Boolean gradientForSides) {
-		this.gradientForSides = gradientForSides;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getGradientForSides(){ return gradientForSides; }
 
 
 
@@ -1060,7 +1060,16 @@ public HashMap<String, Object> getParams() {
 			params.put("accessibility", this.accessibility.getParams());
 		}
 		if (this.dataLabels != null) {
-			params.put("dataLabels", this.dataLabels.getParams());
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.dataLabels) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("dataLabels", array);
 		}
 		if (this.className != null) {
 			params.put("className", this.className);
@@ -1137,6 +1146,9 @@ public HashMap<String, Object> getParams() {
 		if (this.weight != null) {
 			params.put("weight", this.weight);
 		}
+		if (this.gradientForSides != null) {
+			params.put("gradientForSides", this.gradientForSides);
+		}
 		if (this.innerRadius != null) {
 			params.put("innerRadius", this.innerRadius);
 		}
@@ -1172,9 +1184,6 @@ public HashMap<String, Object> getParams() {
 				}
 			}
 			params.put("sets", array);
-		}
-		if (this.gradientForSides != null) {
-			params.put("gradientForSides", this.gradientForSides);
 		}
 		return params;
 	}

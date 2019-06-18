@@ -16,29 +16,29 @@ import java.util.HashMap;
 
 public class HIPatternObject extends HIFoundation { 
 
-	private Boolean animation;
+	private HIAnimationOptionsObject animation;
 	/**
  Animation options for the image pattern loading. 
 	*/
-	public void setAnimation(Boolean animation) {
+	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getAnimation(){ return animation; }
+	public HIAnimationOptionsObject getAnimation(){ return animation; }
 
-	private Object pattern;
+	private HIPatternOptionsObject pattern;
 	/**
  Pattern options 
 	*/
-	public void setPattern(Object pattern) {
+	public void setPattern(HIPatternOptionsObject pattern) {
 		this.pattern = pattern;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getPattern(){ return pattern; }
+	public HIPatternOptionsObject getPattern(){ return pattern; }
 
 
 
@@ -52,10 +52,10 @@ public HashMap<String, Object> getParams() {
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
 		if (this.animation != null) {
-			params.put("animation", this.animation);
+			params.put("animation", this.animation.getParams());
 		}
 		if (this.pattern != null) {
-			params.put("pattern", this.pattern);
+			params.put("pattern", this.pattern.getParams());
 		}
 		return params;
 	}

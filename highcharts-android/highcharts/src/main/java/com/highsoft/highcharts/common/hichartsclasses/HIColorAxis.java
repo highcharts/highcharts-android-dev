@@ -367,7 +367,7 @@ public class HIColorAxis extends HIFoundation {
 
 	private Number tickWidth;
 	/**
- The pixel width of the major tick marks. Defaults to 0 on category axes, otherwise 1. In styled mode, the stroke width is given in the .highcharts-tick class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickwidth/">10 px width</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/">Styled mode</a>
+ The pixel width of the major tick marks. Defaults to 0 on category axes, otherwise 1. In styled mode, the stroke width is given in the .highcharts-tick class, but in order for the element to be generated on category axes, the option must be explicitly set to 1. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickwidth/">10 px width</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/">Styled mode</a>
 	*/
 	public void setTickWidth(Number tickWidth) {
 		this.tickWidth = tickWidth;
@@ -701,17 +701,17 @@ public class HIColorAxis extends HIFoundation {
 
 	public Object /* Number, String */ getMinorTickInterval(){ return minorTickInterval; }
 
-	private Object margin;
+	private Number margin;
 	/**
  If there are multiple axes on the same side of the chart, the pixel margin between the axes. Defaults to 0 on vertical axes, 15 on horizontal axes. 
 	*/
-	public void setMargin(Object margin) {
+	public void setMargin(Number margin) {
 		this.margin = margin;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getMargin(){ return margin; }
+	public Number getMargin(){ return margin; }
 
 	private Number softMax;
 	/**
@@ -941,6 +941,7 @@ public HashMap<String, Object> getParams() {
 			params.put("minorTickInterval", this.minorTickInterval);
 		}
 		if (this.margin != null) {
+			params.put("margin", this.margin);
 		}
 		if (this.softMax != null) {
 			params.put("softMax", this.softMax);

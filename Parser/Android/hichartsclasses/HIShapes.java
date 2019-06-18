@@ -128,6 +128,18 @@ public class HIShapes extends HIFoundation {
 
 	public Number getR(){ return r; }
 
+	private Number snap;
+	/**
+ Defines additional snapping area around an annotation making this annotation to focus. Defined in pixels. 
+	*/
+	public void setSnap(Number snap) {
+		this.snap = snap;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getSnap(){ return snap; }
+
 	private String type;
 	/**
  The type of the shape, e.g. circle or rectangle. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
@@ -198,6 +210,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.r != null) {
 			params.put("r", this.r);
+		}
+		if (this.snap != null) {
+			params.put("snap", this.snap);
 		}
 		if (this.type != null) {
 			params.put("type", this.type);

@@ -3,6 +3,7 @@ package com.highsoft.devground;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import com.highsoft.highcharts.common.hichartsclasses.HIData;
 import com.highsoft.highcharts.common.hichartsclasses.HIDataLabels;
 import com.highsoft.highcharts.common.hichartsclasses.HIDataLabelsOptionsObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIEvents;
+import com.highsoft.highcharts.common.hichartsclasses.HIExporting;
 import com.highsoft.highcharts.common.hichartsclasses.HILabels;
 import com.highsoft.highcharts.common.hichartsclasses.HILegend;
 import com.highsoft.highcharts.common.hichartsclasses.HILine;
@@ -75,60 +77,99 @@ public class IssuesActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
-        HIChartView chartView = findViewById(R.id.hc);
 
+        HIChartView chartView = (HIChartView) findViewById(R.id.hc);
         HIOptions options = new HIOptions();
-
         HIChart chart = new HIChart();
-        chart.setType("bar");
+        chart.setType("line");
+        chart.setZoomType("x");
+        chart.setEvents(new HIEvents());
+//        chart.getEvents().setSelection(new HIFunction(
+//                f -> {
+//                    String xMin = (String) f.getProperty("min");
+//                    String xMax = (String) f.getProperty("max");
+//                    System.out.println("min and max : = " + xMin + "" + xMax);
+//                    Log.e("log", "min and max : = " + xMin + " " + xMax);
+//                    //     Log.d("log", "min and max : = " + f.getProperty("min") + "" + f.getProperty("max"));
+//
+//                },
+//                new String[]{"xAxis[0].min", "xAxis[0].max"}
+//        ));
+        chart.getEvents().setSelection(new HIFunction("function(events) { console.log('value: ' +events.xAxis[0].max);}"));
+        chart.getEvents().setClick(new HIFunction(() -> Log.e("TAG", "CLICKED!")));
         options.setChart(chart);
 
+        HILegend legend = new HILegend();
+        legend.setLabelFormatter(new HIFunction(("function() { return this.name + ' test'; }")));
+        options.setLegend(legend);
 
-        ArrayList<String> categories = new ArrayList<>(Arrays.asList(
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-        ));
+        HITitle title = new HITitle();
+        title.setText("Demo chart");
+        options.setTitle(title);
 
-        HIXAxis axis = new HIXAxis();
-        axis.setCategories(categories);
-        options.setXAxis(new ArrayList<>(Collections.singletonList(axis)));
+        HIExporting exporting = new HIExporting();
+        exporting.setEnabled(false);
+        options.setExporting(exporting);
 
-        HISeries series = new HISeries();
-        series.setName("brands");
-        ArrayList<HashMap<String, Object>> dataList = new ArrayList<>();
-        Random r = new Random();
-        for(int i = 0; i < categories.size(); i++){
-            HashMap<String, Object> map = new HashMap<>();
-            map.put("name", "yolo" + i);
-            map.put("y", r.nextInt(80) + 20);
-            dataList.add(map);
-        }
-
-        HIStyle dataLableStyle = new HIStyle();
-        dataLableStyle.setFontSize("10px");
-        HIDataLabelsOptionsObject dataLabels = new HIDataLabelsOptionsObject();
-        dataLabels.setEnabled(true);
-        dataLabels.setCrop(false);
-        dataLabels.setAllowOverlap(false);
-        dataLabels.setUseHTML(true);
-        String jsfunction = "function() { var percentile = Number(((this.y - this.point.prior) / this.point.prior * 100).toFixed(0)); var yData = this.y; if (yData > 100) { yData = Highcharts.numberFormat(yData, 0, ',', ','); } var labelValue; var percent = percentile; labelValue = '<span style = ' + 'color:#000' + '>'+yData+'</span>'; if (yData == 0) { labelValue += ''; } else { labelValue += '<span style =' + 'color:#e28507' + ';font-weight:bold' + '>' + ' : ' + percent + '</span>'; } return labelValue; }";
-        HIFunction labelFormatter = new HIFunction(jsfunction);
-        dataLabels.setFormatter(labelFormatter);
-        dataLabels.setStyle(dataLableStyle);
-
-        series.setDataLabels(dataLabels);
-        series.setData(dataList);
-
-        options.setSeries(new ArrayList<>(Collections.singletonList(series)));
-
-//        options.getChart().setScrollablePlotArea(new HIScrollablePlotArea());
-//        options.getChart().getScrollablePlotArea().setMinWidth(1000);
-//        options.getChart().getScrollablePlotArea().setScrollPositionX(0);
-
-
+        HILine series = new HILine();
+        series.setData(new ArrayList<>(Arrays.asList(49.9, 71.5, 106.4, 129.2, 144, 176, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4)));
+        options.setSeries(new ArrayList<HISeries>(Collections.singletonList(series)));
         chartView.setOptions(options);
+
+//        HIChartView chartView = findViewById(R.id.hc);
+//
+//        HIOptions options = new HIOptions();
+//
+//        HIChart chart = new HIChart();
+//        chart.setType("bar");
+//        options.setChart(chart);
+//
+//
+//        ArrayList<String> categories = new ArrayList<>(Arrays.asList(
+//                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+//                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+//                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+//                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+//        ));
+//
+//        HIXAxis axis = new HIXAxis();
+//        axis.setCategories(categories);
+//        options.setXAxis(new ArrayList<>(Collections.singletonList(axis)));
+//
+//        HISeries series = new HISeries();
+//        series.setName("brands");
+//        ArrayList<HashMap<String, Object>> dataList = new ArrayList<>();
+//        Random r = new Random();
+//        for(int i = 0; i < categories.size(); i++){
+//            HashMap<String, Object> map = new HashMap<>();
+//            map.put("name", "yolo" + i);
+//            map.put("y", r.nextInt(80) + 20);
+//            dataList.add(map);
+//        }
+//
+//        HIStyle dataLableStyle = new HIStyle();
+//        dataLableStyle.setFontSize("10px");
+//        HIDataLabelsOptionsObject dataLabels = new HIDataLabelsOptionsObject();
+//        dataLabels.setEnabled(true);
+//        dataLabels.setCrop(false);
+//        dataLabels.setAllowOverlap(false);
+//        dataLabels.setUseHTML(true);
+//        String jsfunction = "function() { var percentile = Number(((this.y - this.point.prior) / this.point.prior * 100).toFixed(0)); var yData = this.y; if (yData > 100) { yData = Highcharts.numberFormat(yData, 0, ',', ','); } var labelValue; var percent = percentile; labelValue = '<span style = ' + 'color:#000' + '>'+yData+'</span>'; if (yData == 0) { labelValue += ''; } else { labelValue += '<span style =' + 'color:#e28507' + ';font-weight:bold' + '>' + ' : ' + percent + '</span>'; } return labelValue; }";
+//        HIFunction labelFormatter = new HIFunction(jsfunction);
+//        dataLabels.setFormatter(labelFormatter);
+//        dataLabels.setStyle(dataLableStyle);
+//
+//        series.setDataLabels(dataLabels);
+//        series.setData(dataList);
+//
+//        options.setSeries(new ArrayList<>(Collections.singletonList(series)));
+//
+////        options.getChart().setScrollablePlotArea(new HIScrollablePlotArea());
+////        options.getChart().getScrollablePlotArea().setMinWidth(1000);
+////        options.getChart().getScrollablePlotArea().setScrollPositionX(0);
+//
+//
+//        chartView.setOptions(options);
 
 
 

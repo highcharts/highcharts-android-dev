@@ -21,17 +21,17 @@ import java.util.HashMap;
 	*/
 
 public class HIHistogram extends HISeries {
-	private Object /* Number|String */ baseSeries;
+	private Object /* Number, String */ baseSeries;
 	/**
  An integer identifying the index to use for the base series, or a string representing the id of the series. 
- <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
-	public void setBaseSeries(Object /* Number|String */ baseSeries) {
+	*/
+	public void setBaseSeries(Object /* Number, String */ baseSeries) {
 		this.baseSeries = baseSeries;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number|String */ getBaseSeries(){ return baseSeries; }
+	public Object /* Number, String */ getBaseSeries(){ return baseSeries; }
 
 	private Number pointPadding;
 	/**
@@ -59,7 +59,7 @@ public class HIHistogram extends HISeries {
 
 	private Object binsNumber;
 	/**
- A preferable number of bins. It is a suggestion, so a histogram may have a different number of bins. By defaults it is set to the square root of the base series' data length. Available options are: square-root, sturges, rice. You can also define a function which takes a baseSeries as a parameter and should return a positive integer. <br><br><b>accepted values:</b><br><br>&ensp;["square-root", "sturges", "rice"]
+ A preferable number of bins. It is a suggestion, so a histogram may have a different number of bins. By defaults it is set to the square root of the base series' data length. Available options are: square-root, sturges, rice. You can also define a function which takes a baseSeries as a parameter and should return a positive integer. 
 	*/
 	public void setBinsNumber(Object binsNumber) {
 		this.binsNumber = binsNumber;

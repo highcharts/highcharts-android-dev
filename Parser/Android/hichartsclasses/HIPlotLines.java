@@ -55,18 +55,6 @@ public class HIPlotLines extends HIFoundation {
 
 	public HIColor getColor(){ return color; }
 
-	private Number value;
-	/**
- The position of the line in axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">Between two categories on X axis</a>
-	*/
-	public void setValue(Number value) {
-		this.value = value;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getValue(){ return value; }
-
 	private HILabel label;
 	/**
  Text labels for the plot bands 
@@ -79,6 +67,30 @@ public class HIPlotLines extends HIFoundation {
 	}
 
 	public HILabel getLabel(){ return label; }
+
+	private Number value;
+	/**
+ The position of the line in axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">Between two categories on X axis</a>
+	*/
+	public void setValue(Number value) {
+		this.value = value;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getValue(){ return value; }
+
+	private Object events;
+	/**
+ An object defining mouse events for the plot line. Supported properties are click, mouseover, mouseout, mousemove. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-events/">Mouse events demonstrated</a>
+	*/
+	public void setEvents(Object events) {
+		this.events = events;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getEvents(){ return events; }
 
 	private String className;
 	/**
@@ -116,18 +128,6 @@ public class HIPlotLines extends HIFoundation {
 
 	public String getId(){ return id; }
 
-	private Object events;
-	/**
- An object defining mouse events for the plot line. Supported properties are click, mouseover, mouseout, mousemove. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-events/">Mouse events demonstrated</a>
-	*/
-	public void setEvents(Object events) {
-		this.events = events;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object getEvents(){ return events; }
-
 
 
 	public HIPlotLines() {
@@ -148,11 +148,14 @@ public HashMap<String, Object> getParams() {
 		if (this.color != null) {
 			params.put("color", this.color.getData());
 		}
+		if (this.label != null) {
+			params.put("label", this.label.getParams());
+		}
 		if (this.value != null) {
 			params.put("value", this.value);
 		}
-		if (this.label != null) {
-			params.put("label", this.label.getParams());
+		if (this.events != null) {
+			params.put("events", this.events);
 		}
 		if (this.className != null) {
 			params.put("className", this.className);
@@ -162,9 +165,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.id != null) {
 			params.put("id", this.id);
-		}
-		if (this.events != null) {
-			params.put("events", this.events);
 		}
 		return params;
 	}

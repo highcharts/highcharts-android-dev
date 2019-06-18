@@ -57,20 +57,6 @@ public class HIOptions extends HIFoundation {
 
 	public ArrayList<HISeries> getSeries(){ return series; }
 
-	private HILabels labels;
-
-	/**
- HTML labels that can be positioned anywhere in the chart area. 
-	*/
-	public void setLabels(HILabels labels) {
-		this.labels = labels;
-		this.labels.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HILabels getLabels(){ return labels; }
-
 	private HIAccessibility accessibility;
 
 	/**
@@ -225,7 +211,7 @@ public class HIOptions extends HIFoundation {
 	private ArrayList<HIAnnotations> annotations;
 
 	/**
- Options for configuring annotations, for example labels, arrows or shapes. Annotations can be tied to points, axis coordinates or chart pixel coordinates. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/basic/">Basic annotations</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/annotations/">Advanced annotations</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/annotations">Styled mode</a>
+ A basic type of an annotation. It allows to add custom labels or shapes. The items can be tied to points, axis coordinates or chart pixel coordinates. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/basic/">Basic annotations</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/annotations/">Advanced annotations</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/annotations">Styled mode</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations-advanced/controllable">Controllable items</a>
 	*/
 	public void setAnnotations(ArrayList<HIAnnotations> annotations) {
 		this.annotations = annotations;
@@ -331,7 +317,7 @@ public class HIOptions extends HIFoundation {
 	private HIData data;
 
 	/**
- The Data module provides a simplified interface for adding data to a chart from sources like CVS, HTML tables or grid views. See also the [tutorial article on the Data module](https://www.highcharts.com/docs/working-with-data/data-module). It requires the modules/data.js file to be loaded. Please note that the default way of adding data in Highcharts, without the need of a module, is through the series.data option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/column-parsed/">HTML table</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/csv/">CSV</a>
+ The Data module provides a simplified interface for adding data to a chart from sources like CVS, HTML tables or grid views. See also the [tutorial article on the Data module](https://www.highcharts.com/docs/working-with-data/data-module). It requires the modules/data.js file to be loaded. Please note that the default way of adding data in Highcharts, without the need of a module, is through the series._type_.data option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/column-parsed/">HTML table</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/csv/">CSV</a>
 	*/
 	public void setData(HIData data) {
 		this.data = data;
@@ -433,9 +419,6 @@ public HashMap<String, Object> getParams() {
 				}
 			}
 			params.put("series", array);
-		}
-		if (this.labels != null) {
-			params.put("labels", this.labels.getParams());
 		}
 		if (this.accessibility != null) {
 			params.put("accessibility", this.accessibility.getParams());

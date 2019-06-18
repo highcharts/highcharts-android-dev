@@ -67,17 +67,17 @@ public class HIKeyboardNavigation extends HIFoundation {
 
 	public HIFocusBorder getFocusBorder(){ return focusBorder; }
 
-	private Object order;
+	private ArrayList<String> order;
 	/**
  Order of tab navigation in the chart. Determines which elements are tabbed to first. Available elements are: series, zoom, rangeSelector, chartMenu, legend. In addition, any custom components can be added here. 
 	*/
-	public void setOrder(Object order) {
+	public void setOrder(ArrayList<String> order) {
 		this.order = order;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getOrder(){ return order; }
+	public ArrayList<String> getOrder(){ return order; }
 
 	private String mode;
 	/**
@@ -115,6 +115,16 @@ public HashMap<String, Object> getParams() {
 			params.put("focusBorder", this.focusBorder.getParams());
 		}
 		if (this.order != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.order) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("order", array);
 		}
 		if (this.mode != null) {
 			params.put("mode", this.mode);

@@ -80,7 +80,7 @@ public class HIStackLabels extends HIFoundation {
 
 	private Boolean enabled;
 	/**
- Enable or disable the stack total labels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-enabled/">Enabled stack total labels</a>
+ Enable or disable the stack total labels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-enabled/">Enabled stack total labels</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-enabled-waterfall/">Enabled stack labels in waterfall chart</a>
 	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;

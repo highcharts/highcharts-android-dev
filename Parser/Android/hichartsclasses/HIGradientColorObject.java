@@ -18,29 +18,29 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 public class HIGradientColorObject extends HIFoundation { 
 
-	private Object linearGradient;
+	private HILinearGradientColorObject linearGradient;
 	/**
  Holds an object that defines the start position and the end position relative to the shape. 
 	*/
-	public void setLinearGradient(Object linearGradient) {
+	public void setLinearGradient(HILinearGradientColorObject linearGradient) {
 		this.linearGradient = linearGradient;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getLinearGradient(){ return linearGradient; }
+	public HILinearGradientColorObject getLinearGradient(){ return linearGradient; }
 
-	private Object radialGradient;
+	private HIRadialGradientColorObject radialGradient;
 	/**
  Holds an object that defines the center position and the radius. 
 	*/
-	public void setRadialGradient(Object radialGradient) {
+	public void setRadialGradient(HIRadialGradientColorObject radialGradient) {
 		this.radialGradient = radialGradient;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getRadialGradient(){ return radialGradient; }
+	public HIRadialGradientColorObject getRadialGradient(){ return radialGradient; }
 
 	private ArrayList<ArrayList> stops;
 	/**
@@ -66,10 +66,10 @@ public HashMap<String, Object> getParams() {
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
 		if (this.linearGradient != null) {
-			params.put("linearGradient", this.linearGradient);
+			params.put("linearGradient", this.linearGradient.getParams());
 		}
 		if (this.radialGradient != null) {
-			params.put("radialGradient", this.radialGradient);
+			params.put("radialGradient", this.radialGradient.getParams());
 		}
 		if (this.stops != null) {
 			ArrayList<Object> array = new ArrayList<>();

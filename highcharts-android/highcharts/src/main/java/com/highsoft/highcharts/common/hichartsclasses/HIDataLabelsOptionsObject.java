@@ -8,6 +8,7 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.core.HIFunction;
 
@@ -41,17 +42,17 @@ public class HIDataLabelsOptionsObject extends HIFoundation {
 
 	public Boolean getAllowOverlap(){ return allowOverlap; }
 
-	private Object backgroundColor;
+	private HIColor backgroundColor;
 	/**
  The background color or gradient for the data label. 
 	*/
-	public void setBackgroundColor(Object backgroundColor) {
+	public void setBackgroundColor(HIColor backgroundColor) {
 		this.backgroundColor = backgroundColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getBackgroundColor(){ return backgroundColor; }
+	public HIColor getBackgroundColor(){ return backgroundColor; }
 
 	private String borderColor;
 	/**
@@ -149,17 +150,17 @@ public class HIDataLabelsOptionsObject extends HIFoundation {
 
 	public Boolean getEnabled(){ return enabled; }
 
-	private Object filter;
+	private HIDataLabelsFilterOptionsObject filter;
 	/**
  A declarative filter to control of which data labels to display. The declarative filter is designed for use when callback functions are not available, like when the chart options require a pure JSON structure or for use with graphical editors. For programmatic control, use the `formatter` instead, and return `undefined` to disable a single data label. 
 	*/
-	public void setFilter(Object filter) {
+	public void setFilter(HIDataLabelsFilterOptionsObject filter) {
 		this.filter = filter;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getFilter(){ return filter; }
+	public HIDataLabelsFilterOptionsObject getFilter(){ return filter; }
 
 	private String format;
 	/**
@@ -197,17 +198,17 @@ public class HIDataLabelsOptionsObject extends HIFoundation {
 
 	public Boolean getInside(){ return inside; }
 
-	private Object nullFormat;
+	private String nullFormat;
 	/**
  Format for points with the value of null. Works analogously to `format`. `nullFormat` can be applied only to series which support displaying null points. 
 	*/
-	public void setNullFormat(Object nullFormat) {
+	public void setNullFormat(String nullFormat) {
 		this.nullFormat = nullFormat;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getNullFormat(){ return nullFormat; }
+	public String getNullFormat(){ return nullFormat; }
 
 	private HIFunction nullFormatter;
 	/**
@@ -257,17 +258,17 @@ public class HIDataLabelsOptionsObject extends HIFoundation {
 
 	public Number getRotation(){ return rotation; }
 
-	private Boolean shadow;
+	private HIShadowOptionsObject shadow;
 	/**
  The shadow of the box. Works best with `borderWidth` or `backgroundColor`. Since 2.3 the shadow can be an object configuration containing `color`, `offsetX`, `offsetY`, `opacity` and `width`. 
 	*/
-	public void setShadow(Boolean shadow) {
+	public void setShadow(HIShadowOptionsObject shadow) {
 		this.shadow = shadow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getShadow(){ return shadow; }
+	public HIShadowOptionsObject getShadow(){ return shadow; }
 
 	private String shape;
 	/**
@@ -281,17 +282,29 @@ public class HIDataLabelsOptionsObject extends HIFoundation {
 
 	public String getShape(){ return shape; }
 
-	private Object style;
+	private HICSSObject style;
 	/**
  Styles for the label. The defaults `color` setting is `"contrast"`, which is a pseudo color that Highcharts picks up and applies the maximum contrast to the underlying point item, for example the bar in a bar chart. The `textOutline` is a pseudo property that applies an outline of the given width with the given color, which by defaults is the maximum contrast to the text. So a bright text color will result in a black text outline for maximum readability on a mixed background. In some cases, especially with grayscale text, the text outline doesn't work well, in which cases it can be disabled by setting it to `"none"`. When `useHTML` is true, the `textOutline` will not be picked up. In this, case, the same effect can be acheived through the `text-shadow` CSS property. For some series types, where each point has an extent, like for example tree maps, the data label may overflow the point. There are two strategies for handling overflow. By defaults, the text will wrap to multiple lines. The other strategy is to set `style.textOverflow` to `ellipsis`, which will keep the text on one line plus it will break inside long words. 
 	*/
-	public void setStyle(Object style) {
+	public void setStyle(HICSSObject style) {
 		this.style = style;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getStyle(){ return style; }
+	public HICSSObject getStyle(){ return style; }
+
+	private HIDataLabelsTextPath textPath;
+	/**
+ Options for a label text which should follow marker's shape. Border and background are disabled for a label that follows a path. **Note:** Only SVG-based renderer supports this option. Setting `useHTML` to true will disable this option. 
+	*/
+	public void setTextPath(HIDataLabelsTextPath textPath) {
+		this.textPath = textPath;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIDataLabelsTextPath getTextPath(){ return textPath; }
 
 	private Boolean useHTML;
 	/**
@@ -371,7 +384,7 @@ public HashMap<String, Object> getParams() {
 			params.put("allowOverlap", this.allowOverlap);
 		}
 		if (this.backgroundColor != null) {
-			params.put("backgroundColor", this.backgroundColor);
+			params.put("backgroundColor", this.backgroundColor.getData());
 		}
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor);
@@ -398,7 +411,7 @@ public HashMap<String, Object> getParams() {
 			params.put("enabled", this.enabled);
 		}
 		if (this.filter != null) {
-			params.put("filter", this.filter);
+			params.put("filter", this.filter.getParams());
 		}
 		if (this.format != null) {
 			params.put("format", this.format);
@@ -425,13 +438,16 @@ public HashMap<String, Object> getParams() {
 			params.put("rotation", this.rotation);
 		}
 		if (this.shadow != null) {
-			params.put("shadow", this.shadow);
+			params.put("shadow", this.shadow.getParams());
 		}
 		if (this.shape != null) {
 			params.put("shape", this.shape);
 		}
 		if (this.style != null) {
-			params.put("style", this.style);
+			params.put("style", this.style.getParams());
+		}
+		if (this.textPath != null) {
+			params.put("textPath", this.textPath.getParams());
 		}
 		if (this.useHTML != null) {
 			params.put("useHTML", this.useHTML);

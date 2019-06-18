@@ -29,6 +29,30 @@ public class HISolidgauge extends HISeries {
 
 	public Boolean getColorByPoint(){ return colorByPoint; }
 
+	private Boolean rounded;
+	/**
+ Wether to draw rounded edges on the gauge. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-activity/">Activity Gauge</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setRounded(Boolean rounded) {
+		this.rounded = rounded;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getRounded(){ return rounded; }
+
+	private Object /* Number, String */ innerRadius;
+	/**
+ The inner radius for points in a solid gauge. Can be given as a number (pixels) or percentage string. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/solidgauge-radius/">Individual radius and innerRadius</a>
+ <br><br><b>defaults:</b><br><br>&ensp;60	*/
+	public void setInnerRadius(Object /* Number, String */ innerRadius) {
+		this.innerRadius = innerRadius;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getInnerRadius(){ return innerRadius; }
+
 	private Number overshoot;
 	/**
 /** * description: Allow the gauge to overshoot the end of the perimeter axis by this many degrees. Say if the gauge axis goes from 0 to 60, a value of 100, or 1000, will show 5 degrees beyond the end of the axis when this option is set to 5. * demo:  •  Allow 5 degrees overshoot
@@ -42,17 +66,17 @@ public class HISolidgauge extends HISeries {
 
 	public Number getOvershoot(){ return overshoot; }
 
-	private Boolean rounded;
+	private Object /* Number, String */ radius;
 	/**
- Wether to draw rounded edges on the gauge. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-activity/">Activity Gauge</a>
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setRounded(Boolean rounded) {
-		this.rounded = rounded;
+ The outer radius for points in a solid gauge. Can be given as a number (pixels) or percentage string. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/solidgauge-radius/">Individual radius and innerRadius</a>
+ <br><br><b>defaults:</b><br><br>&ensp;100	*/
+	public void setRadius(Object /* Number, String */ radius) {
+		this.radius = radius;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getRounded(){ return rounded; }
+	public Object /* Number, String */ getRadius(){ return radius; }
 
 
 
@@ -69,11 +93,17 @@ public HashMap<String, Object> getParams() {
 		if (this.colorByPoint != null) {
 			params.put("colorByPoint", this.colorByPoint);
 		}
+		if (this.rounded != null) {
+			params.put("rounded", this.rounded);
+		}
+		if (this.innerRadius != null) {
+			params.put("innerRadius", this.innerRadius);
+		}
 		if (this.overshoot != null) {
 			params.put("overshoot", this.overshoot);
 		}
-		if (this.rounded != null) {
-			params.put("rounded", this.rounded);
+		if (this.radius != null) {
+			params.put("radius", this.radius);
 		}
 		return params;
 	}

@@ -21,7 +21,7 @@ import java.util.Map;
 
 
 
-public class HIYAxis extends HIFoundation { 
+public class HIYAxis extends HIFoundation {
 
 	private Number minPadding;
 	/**
@@ -38,7 +38,7 @@ public class HIYAxis extends HIFoundation {
 
 	private HILabels labels;
 	/**
-/** * description: The axis labels show the number or category for each tick. 
+/** * description: The axis labels show the number or category for each tick.
 */
 	public void setLabels(HILabels labels) {
 		this.labels = labels;
@@ -99,7 +99,7 @@ public class HIYAxis extends HIFoundation {
 
 	private ArrayList <HIPlotBands> plotBands;
 	/**
-/** * description: An array of objects defining plot bands on the Y axis. 
+/** * description: An array of objects defining plot bands on the Y axis.
 */
 	public void setPlotBands(ArrayList plotBands) {
 		this.plotBands = plotBands;
@@ -235,7 +235,7 @@ public class HIYAxis extends HIFoundation {
 
 	private ArrayList <HIPlotLines> plotLines;
 	/**
-/** * description: An array of objects representing plot lines on the X axis 
+/** * description: An array of objects representing plot lines on the X axis
 */
 	public void setPlotLines(ArrayList plotLines) {
 		this.plotLines = plotLines;
@@ -322,7 +322,7 @@ public class HIYAxis extends HIFoundation {
 
 	private HIStackLabels stackLabels;
 	/**
- The stack labels show the total value for each bar in a stacked column or bar chart. The label will be placed on top of positive columns and below negative columns. In case of an inverted column chart or a bar chart the label is placed to the right of positive bars and to the left of negative bars. 
+ The stack labels show the total value for each bar in a stacked column or bar chart. The label will be placed on top of positive columns and below negative columns. In case of an inverted column chart or a bar chart the label is placed to the right of positive bars and to the left of negative bars.
 	*/
 	public void setStackLabels(HIStackLabels stackLabels) {
 		this.stackLabels = stackLabels;
@@ -361,7 +361,7 @@ public class HIYAxis extends HIFoundation {
 
 	private HITitle title;
 	/**
-/** * description: The axis title, showing next to the axis line. 
+/** * description: The axis title, showing next to the axis line.
 */
 	public void setTitle(HITitle title) {
 		this.title = title;
@@ -423,7 +423,7 @@ public class HIYAxis extends HIFoundation {
 
 	private HIAccessibility accessibility;
 	/**
- Accessibility options for an axis. Requires the accessibility module. 
+ Accessibility options for an axis. Requires the accessibility module.
 	*/
 	public void setAccessibility(HIAccessibility accessibility) {
 		this.accessibility = accessibility;
@@ -436,7 +436,7 @@ public class HIYAxis extends HIFoundation {
 
 	private Boolean visible;
 	/**
- Whether axis, including axis title, line, ticks and labels, should be visible. 
+ Whether axis, including axis title, line, ticks and labels, should be visible.
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
@@ -448,7 +448,7 @@ public class HIYAxis extends HIFoundation {
 
 	private Boolean alignTicks;
 	/**
- When using multiple axis, the ticks of two or more opposite axes will automatically be aligned by adding ticks to the axis or axes with the least ticks, as if tickAmount were specified. This can be prevented by setting alignTicks to false. If the grid lines look messy, it's a good idea to hide them for the secondary axis by setting gridLineWidth to 0. If startOnTick or endOnTick in an Axis options are set to false, then the alignTicks will be disabled for the Axis. Disabled for logarithmic axes. 
+ When using multiple axis, the ticks of two or more opposite axes will automatically be aligned by adding ticks to the axis or axes with the least ticks, as if tickAmount were specified. This can be prevented by setting alignTicks to false. If the grid lines look messy, it's a good idea to hide them for the secondary axis by setting gridLineWidth to 0. If startOnTick or endOnTick in an Axis options are set to false, then the alignTicks will be disabled for the Axis. Disabled for logarithmic axes.
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setAlignTicks(Boolean alignTicks) {
 		this.alignTicks = alignTicks;
@@ -460,7 +460,7 @@ public class HIYAxis extends HIFoundation {
 
 	private Number minTickInterval;
 	/**
- The minimum tick interval allowed in axis values. For example on zooming in on an axis with daily data, this can be used to prevent the axis from showing hours. Defaults to the closest distance between two points on the axis. 
+ The minimum tick interval allowed in axis values. For example on zooming in on an axis with daily data, this can be used to prevent the axis from showing hours. Defaults to the closest distance between two points on the axis.
 	*/
 	public void setMinTickInterval(Number minTickInterval) {
 		this.minTickInterval = minTickInterval;
@@ -616,7 +616,7 @@ public class HIYAxis extends HIFoundation {
 
 	private ArrayList<ArrayList> units;
 	/**
- Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the second value another array of allowed multiples. Defaults to: units: [[   'millisecond', // unit name   [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples ], [   'second',   [1, 2, 5, 10, 15, 30] ], [   'minute',   [1, 2, 5, 10, 15, 30] ], [   'hour',   [1, 2, 3, 4, 6, 8, 12] ], [   'day',   [1] ], [   'week',   [1] ], [   'month',   [1, 3, 6] ], [   'year',   null ]] 
+ Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the second value another array of allowed multiples. Defaults to: units: [[   'millisecond', // unit name   [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples ], [   'second',   [1, 2, 5, 10, 15, 30] ], [   'minute',   [1, 2, 5, 10, 15, 30] ], [   'hour',   [1, 2, 3, 4, 6, 8, 12] ], [   'day',   [1] ], [   'week',   [1] ], [   'month',   [1, 3, 6] ], [   'year',   null ]]
 	*/
 	public void setUnits(ArrayList<ArrayList> units) {
 		this.units = units;
@@ -628,7 +628,7 @@ public class HIYAxis extends HIFoundation {
 
 	private HIEvents events;
 	/**
- Event handlers for the axis. 
+ Event handlers for the axis.
 	*/
 	public void setEvents(HIEvents events) {
 		this.events = events;
@@ -917,410 +917,411 @@ public class HIYAxis extends HIFoundation {
 
 	public Object /* Number, String */ getMinorTickInterval(){ return minorTickInterval; }
 
-	private Object margin;
+	private Number margin;
 	/**
- If there are multiple axes on the same side of the chart, the pixel margin between the axes. Defaults to 0 on vertical axes, 15 on horizontal axes. 
+ If there are multiple axes on the same side of the chart, the pixel margin between the axes. Defaults to 0 on vertical axes, 15 on horizontal axes.
 	*/
-	public void setMargin(Object margin) {
+	public void setMargin(Number margin) {
 		this.margin = margin;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getMargin(){ return margin; }
+	public Number getMargin(){ return margin; }
 
-	/**
-	 * Add a plot band after render time.
-	 * @param options A configuration object for the plot band, as defined in xAxis.plotBands.
-	 */
-	public void addPlotBand(HIPlotBands options) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("method", "addPlotBand");
-			put("axis", "y");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(options.getParams())));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-
-	/**
-	 * Add a plot line after render time.
-	 * @param options A configuration object for the plot line, as defined in xAxis.plotLines.
-	 */
-	public void addPlotLine(HIPlotLines options) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "addPlotLine");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(options.getParams())));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Adds the title defined in axis.options.title.
-	 * @param display Whether or not to display the title.
-	 */
-	public void addTitle(Boolean display) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "addTitle");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(display)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Internal function to draw a crosshair.
-	 */
-	public void drawCrosshair() {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "drawCrosshair");
-			put("id", uuid);
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Hide the crosshair if visible.
-	 */
-	public void hideCrosshair() {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "hideCrosshair");
-			put("id", uuid);
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Remove the axis from the chart.
-	 */
-	public void remove() {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "remove0");
-			put("id", uuid);
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Remove the axis from the chart.
-	 * @param redraw Whether to redraw the chart following the remove.
-	 */
-	public void remove(Boolean redraw) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "remove1");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(redraw)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Remove a plot band by its id.
-	 * @param id The plot band's id as given in the original configuration object or in the addPlotBand option.
-	 */
-	public void removePlotBand(String id) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "removePlotBand");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(id)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Remove a plot line by its id.
-	 * @param id The plot line's id as given in the original configuration object or in the addPlotLine option.
-	 */
-	public void removePlotLine(String id) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "removePlotLine");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(id)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Render the axis line. Called internally when rendering and redrawing the axis.
-	 */
-	public void renderLine() {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "renderLine");
-			put("id", uuid);
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Render a minor tick into the given position. If a minor tick already exists in this position, move it.
-	 * @param pos The position in axis values.
-	 */
-	public void renderMinorTick(Number pos) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "renderMinorTick");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(pos)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Render a major tick into the given position. If a tick already exists in this position, move it.
-	 * @param pos The position in axis values.
-	 * @param i The tick index.
-	 */
-	public void renderTick(Number pos, Number i) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "renderTick");
-			put("id", uuid);
-			put("params", new ArrayList<>(Arrays.asList(pos, i)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Set new axis categories and optionally redraw.
-	 * @param categories The new categories.
-	 */
-	public void setCategories(List<String> categories) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "setCategories0");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(categories)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Set new axis categories and optionally redraw.
-	 * @param categories The new categories.
-	 * @param redraw Whether to redraw the chart.
-	 */
-	public void setCategories(List<String> categories, boolean redraw) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "setCategories1");
-			put("id", uuid);
-			put("params", new ArrayList<>(Arrays.asList(categories, redraw)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Set the minimum and maximum of the axes after render time. If the startOnTick and endOnTick options are true, the minimum and maximum values are rounded off to the nearest tick. To prevent this, these options can be set to false before calling setExtremes. Also, setExtremes will not allow a range lower than the minRange option, which by default is the range of five points.
-	 */
-	public void setExtremes() {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "setExtremes0");
-			put("id", uuid);
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Set the minimum and maximum of the axes after render time. If the startOnTick and endOnTick options are true, the minimum and maximum values are rounded off to the nearest tick. To prevent this, these options can be set to false before calling setExtremes. Also, setExtremes will not allow a range lower than the minRange option, which by default is the range of five points.
-	 * @param newMin The new minimum value.
-	 */
-	public void setExtremes(Number newMin) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "setExtremes1");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(newMin)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Set the minimum and maximum of the axes after render time. If the startOnTick and endOnTick options are true, the minimum and maximum values are rounded off to the nearest tick. To prevent this, these options can be set to false before calling setExtremes. Also, setExtremes will not allow a range lower than the minRange option, which by default is the range of five points.
-	 * @param newMin The new minimum value.
-	 * @param newMax The new maximum value.
-	 */
-	public void setExtremes(Number newMin, Number newMax) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "setExtremes2");
-			put("id", uuid);
-			put("params", new ArrayList<>(Arrays.asList(newMin, newMax)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Set the minimum and maximum of the axes after render time. If the startOnTick and endOnTick options are true, the minimum and maximum values are rounded off to the nearest tick. To prevent this, these options can be set to false before calling setExtremes. Also, setExtremes will not allow a range lower than the minRange option, which by default is the range of five points.
-	 * @param newMin The new minimum value.
-	 * @param newMax The new maximum value.
-	 * @param redraw Whether to redraw the chart or wait for an explicit call to HIChartView redraw()
-	 */
-	public void setExtremes(Number newMin, Number newMax, boolean redraw) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "setExtremes3");
-			put("id", uuid);
-			put("params", new ArrayList<>(Arrays.asList(newMin, newMax, redraw)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-
-	/**
-	 * Set the minimum and maximum of the axes after render time. If the startOnTick and endOnTick options are true, the minimum and maximum values are rounded off to the nearest tick. To prevent this, these options can be set to false before calling setExtremes. Also, setExtremes will not allow a range lower than the minRange option, which by default is the range of five points.
-	 * @param newMin The new minimum value.
-	 * @param newMax The new maximum value.
-	 * @param redraw Whether to redraw the chart or wait for an explicit call to HIChartView redraw()
-	 * @param animation Enable or modify animations.
-	 */
-	public void setExtremes(Number newMin, Number newMax, boolean redraw, HIAnimationOptionsObject animation) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "setExtremes4");
-			put("id", uuid);
-			put("params", new ArrayList<>(Arrays.asList(newMin, newMax, redraw, animation.getParams())));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Now we have computed the normalized tickInterval, get the tick positions
-	 */
-	public void setTickPositions() {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "setTickPositions");
-			put("id", uuid);
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Update the axis title by options after render time.
-	 * @param title The additional title options.
-	 */
-	public void setAxisTitle(HITitle title) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "setTitle0");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(title)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Update the axis title by options after render time.
-	 * @param title The additional title options.
-	 * @param redraw Whether to redraw the chart after setting the title.
-	 */
-	public void setAxisTitle(HITitle title, boolean redraw) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "setTitle1");
-			put("id", uuid);
-			put("params", new ArrayList<>(Arrays.asList(title, redraw)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Translate a pixel position along the axis to a value in terms of axis units.
-	 * @param options The new options that will be merged in with existing options on the axis.
-	 */
-	public void update(HIXAxis options) {
-		Map<String, Object> params = options.getParams();
-		params.remove("_wrapperID");
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "setTitle0");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(params)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Translate a pixel position along the axis to a value in terms of axis units.
-	 * @param options The new options that will be merged in with existing options on the axis.
-	 * @param redraw Whether to redraw the chart after the axis is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call redraw() on HIChartView after.
-	 */
-	public void update(HIXAxis options, boolean redraw) {
-		Map<String, Object> params = options.getParams();
-		params.remove("_wrapperID");
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "y");
-			put("method", "setTitle1");
-			put("id", uuid);
-			put("params", new ArrayList<>(Arrays.asList(params, redraw)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
 
 
 	public HIYAxis() {
 
 	}
+
+/**
+ * Add a plot band after render time.
+ * @param options A configuration object for the plot band, as defined in xAxis.plotBands.
+ */
+public void addPlotBand(HIPlotBands options) {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("method", "addPlotBand");
+    put("axis", "y");
+    put("id", uuid);
+    put("params", new ArrayList<>(Collections.singletonList(options.getParams())));
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+
+/**
+ * Add a plot line after render time.
+ * @param options A configuration object for the plot line, as defined in xAxis.plotLines.
+ */
+public void addPlotLine(HIPlotLines options) {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "addPlotLine");
+    put("id", uuid);
+    put("params", new ArrayList<>(Collections.singletonList(options.getParams())));
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Adds the title defined in axis.options.title.
+ * @param display Whether or not to display the title.
+ */
+public void addTitle(Boolean display) {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "addTitle");
+    put("id", uuid);
+    put("params", new ArrayList<>(Collections.singletonList(display)));
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Internal function to draw a crosshair.
+ */
+public void drawCrosshair() {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "drawCrosshair");
+    put("id", uuid);
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Hide the crosshair if visible.
+ */
+public void hideCrosshair() {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "hideCrosshair");
+    put("id", uuid);
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Remove the axis from the chart.
+ */
+public void remove() {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "remove0");
+    put("id", uuid);
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Remove the axis from the chart.
+ * @param redraw Whether to redraw the chart following the remove.
+ */
+public void remove(Boolean redraw) {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "remove1");
+    put("id", uuid);
+    put("params", new ArrayList<>(Collections.singletonList(redraw)));
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Remove a plot band by its id.
+ * @param id The plot band's id as given in the original configuration object or in the addPlotBand option.
+ */
+public void removePlotBand(String id) {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "removePlotBand");
+    put("id", uuid);
+    put("params", new ArrayList<>(Collections.singletonList(id)));
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Remove a plot line by its id.
+ * @param id The plot line's id as given in the original configuration object or in the addPlotLine option.
+ */
+public void removePlotLine(String id) {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "removePlotLine");
+    put("id", uuid);
+    put("params", new ArrayList<>(Collections.singletonList(id)));
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Render the axis line. Called internally when rendering and redrawing the axis.
+ */
+public void renderLine() {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "renderLine");
+    put("id", uuid);
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Render a minor tick into the given position. If a minor tick already exists in this position, move it.
+ * @param pos The position in axis values.
+ */
+public void renderMinorTick(Number pos) {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "renderMinorTick");
+    put("id", uuid);
+    put("params", new ArrayList<>(Collections.singletonList(pos)));
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Render a major tick into the given position. If a tick already exists in this position, move it.
+ * @param pos The position in axis values.
+ * @param i The tick index.
+ */
+public void renderTick(Number pos, Number i) {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "renderTick");
+    put("id", uuid);
+    put("params", new ArrayList<>(Arrays.asList(pos, i)));
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Set new axis categories and optionally redraw.
+ * @param categories The new categories.
+ */
+public void setCategories(List<String> categories) {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "setCategories0");
+    put("id", uuid);
+    put("params", new ArrayList<>(Collections.singletonList(categories)));
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Set new axis categories and optionally redraw.
+ * @param categories The new categories.
+ * @param redraw Whether to redraw the chart.
+ */
+public void setCategories(List<String> categories, boolean redraw) {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "setCategories1");
+    put("id", uuid);
+    put("params", new ArrayList<>(Arrays.asList(categories, redraw)));
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Set the minimum and maximum of the axes after render time. If the startOnTick and endOnTick options are true, the minimum and maximum values are rounded off to the nearest tick. To prevent this, these options can be set to false before calling setExtremes. Also, setExtremes will not allow a range lower than the minRange option, which by default is the range of five points.
+ */
+public void setExtremes() {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "setExtremes0");
+    put("id", uuid);
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Set the minimum and maximum of the axes after render time. If the startOnTick and endOnTick options are true, the minimum and maximum values are rounded off to the nearest tick. To prevent this, these options can be set to false before calling setExtremes. Also, setExtremes will not allow a range lower than the minRange option, which by default is the range of five points.
+ * @param newMin The new minimum value.
+ */
+public void setExtremes(Number newMin) {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "setExtremes1");
+    put("id", uuid);
+    put("params", new ArrayList<>(Collections.singletonList(newMin)));
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Set the minimum and maximum of the axes after render time. If the startOnTick and endOnTick options are true, the minimum and maximum values are rounded off to the nearest tick. To prevent this, these options can be set to false before calling setExtremes. Also, setExtremes will not allow a range lower than the minRange option, which by default is the range of five points.
+ * @param newMin The new minimum value.
+ * @param newMax The new maximum value.
+ */
+public void setExtremes(Number newMin, Number newMax) {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "setExtremes2");
+    put("id", uuid);
+    put("params", new ArrayList<>(Arrays.asList(newMin, newMax)));
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Set the minimum and maximum of the axes after render time. If the startOnTick and endOnTick options are true, the minimum and maximum values are rounded off to the nearest tick. To prevent this, these options can be set to false before calling setExtremes. Also, setExtremes will not allow a range lower than the minRange option, which by default is the range of five points.
+ * @param newMin The new minimum value.
+ * @param newMax The new maximum value.
+ * @param redraw Whether to redraw the chart or wait for an explicit call to HIChartView redraw()
+ */
+public void setExtremes(Number newMin, Number newMax, boolean redraw) {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "setExtremes3");
+    put("id", uuid);
+    put("params", new ArrayList<>(Arrays.asList(newMin, newMax, redraw)));
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+
+/**
+ * Set the minimum and maximum of the axes after render time. If the startOnTick and endOnTick options are true, the minimum and maximum values are rounded off to the nearest tick. To prevent this, these options can be set to false before calling setExtremes. Also, setExtremes will not allow a range lower than the minRange option, which by default is the range of five points.
+ * @param newMin The new minimum value.
+ * @param newMax The new maximum value.
+ * @param redraw Whether to redraw the chart or wait for an explicit call to HIChartView redraw()
+ * @param animation Enable or modify animations.
+ */
+public void setExtremes(Number newMin, Number newMax, boolean redraw, HIAnimationOptionsObject animation) {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "setExtremes4");
+    put("id", uuid);
+    put("params", new ArrayList<>(Arrays.asList(newMin, newMax, redraw, animation.getParams())));
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Now we have computed the normalized tickInterval, get the tick positions
+ */
+public void setTickPositions() {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "setTickPositions");
+    put("id", uuid);
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Update the axis title by options after render time.
+ * @param title The additional title options.
+ */
+public void setAxisTitle(HITitle title) {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "setTitle0");
+    put("id", uuid);
+    put("params", new ArrayList<>(Collections.singletonList(title)));
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Update the axis title by options after render time.
+ * @param title The additional title options.
+ * @param redraw Whether to redraw the chart after setting the title.
+ */
+public void setAxisTitle(HITitle title, boolean redraw) {
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "setTitle1");
+    put("id", uuid);
+    put("params", new ArrayList<>(Arrays.asList(title, redraw)));
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Translate a pixel position along the axis to a value in terms of axis units.
+ * @param options The new options that will be merged in with existing options on the axis.
+ */
+public void update(HIXAxis options) {
+  Map<String, Object> params = options.getParams();
+  params.remove("_wrapperID");
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "setTitle0");
+    put("id", uuid);
+    put("params", new ArrayList<>(Collections.singletonList(params)));
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
+
+/**
+ * Translate a pixel position along the axis to a value in terms of axis units.
+ * @param options The new options that will be merged in with existing options on the axis.
+ * @param redraw Whether to redraw the chart after the axis is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call redraw() on HIChartView after.
+ */
+public void update(HIXAxis options, boolean redraw) {
+  Map<String, Object> params = options.getParams();
+  params.remove("_wrapperID");
+  this.jsClassMethod = new HashMap<String, Object>() {{
+    put("class", "Axis");
+    put("axis", "y");
+    put("method", "setTitle1");
+    put("id", uuid);
+    put("params", new ArrayList<>(Arrays.asList(params, redraw)));
+  }};
+  this.setChanged();
+  this.notifyObservers(jsClassMethod);
+}
 
 	@Override
 public HashMap<String, Object> getParams() {

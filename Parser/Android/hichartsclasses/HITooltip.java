@@ -165,8 +165,8 @@ public class HITooltip extends HIFoundation {
 
 	private Boolean outside;
 	/**
- Whether to allow the tooltip to render outside the chart's SVG element box. By defaults (false), the tooltip is rendered within the chart's SVG element, which results in the tooltip being aligned inside the chart area. For small charts, this may result in clipping or overlapping. When true, a separate SVG element is created and overlaid on the page, allowing the tooltip to be aligned inside the page itself. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/outside">Small charts with tooltips outside</a>
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
+ Whether to allow the tooltip to render outside the chart's SVG element box. By defaults (false), the tooltip is rendered within the chart's SVG element, which results in the tooltip being aligned inside the chart area. For small charts, this may result in clipping or overlapping. When true, a separate SVG element is created and overlaid on the page, allowing the tooltip to be aligned inside the page itself. Defaults to true if chart.scrollablePlotArea is activated, otherwise false. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/outside">Small charts with tooltips outside</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setOutside(Boolean outside) {
 		this.outside = outside;
 		this.setChanged();

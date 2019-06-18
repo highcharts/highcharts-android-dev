@@ -17,6 +17,19 @@ import java.util.HashMap;
 
 public class HIAnnotationsOptions extends HIFoundation { 
 
+	private HIControlPointOptions controlPointOptions;
+	/**
+ Options for annotation's control points. Each control point inherits options from controlPointOptions object. Options from the controlPointOptions can be overwritten by options in a specific control point. 
+	*/
+	public void setControlPointOptions(HIControlPointOptions controlPointOptions) {
+		this.controlPointOptions = controlPointOptions;
+		this.controlPointOptions.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIControlPointOptions getControlPointOptions(){ return controlPointOptions; }
+
 	private ArrayList <HIShapes> shapes;
 	/**
  An array of shapes for the annotation. For options that apply to multiple shapes, then can be added to the `shapeOptions`. 
@@ -91,28 +104,6 @@ public class HIAnnotationsOptions extends HIFoundation {
 
 	public HILabelOptions getLabelOptions(){ return labelOptions; }
 
-	private HIEvents events;
-	public void setEvents(HIEvents events) {
-		this.events = events;
-		this.events.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIEvents getEvents(){ return events; }
-
-	private String draggable;
-	/**
- Allow an annotation to be draggable by a user. Possible values are "x", "xy", "y" and "" (disabled). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/draggable/">Annotations draggable: 'xy'</a>
-	*/
-	public void setDraggable(String draggable) {
-		this.draggable = draggable;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getDraggable(){ return draggable; }
-
 	private String id;
 	/**
  Sets an ID for an annotation. Can be user later when removing an annotation in `Chart#removeAnnotation(id)` method. 
@@ -125,6 +116,31 @@ public class HIAnnotationsOptions extends HIFoundation {
 
 	public String getId(){ return id; }
 
+	private String draggable;
+	/**
+ Allow an annotation to be draggable by a user. Possible values are "x", "xy", "y" and "" (disabled). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/draggable/">Annotations draggable: 'xy'</a> <br><br><b>accepted values:</b><br><br>&ensp;["x", "xy", "y", ""]
+	*/
+	public void setDraggable(String draggable) {
+		this.draggable = draggable;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDraggable(){ return draggable; }
+
+	private HIEvents events;
+	/**
+ Events available in annotations. 
+	*/
+	public void setEvents(HIEvents events) {
+		this.events = events;
+		this.events.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIEvents getEvents(){ return events; }
+
 
 
 	public HIAnnotationsOptions() {
@@ -136,6 +152,9 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.controlPointOptions != null) {
+			params.put("controlPointOptions", this.controlPointOptions.getParams());
+		}
 		if (this.shapes != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.shapes) {
@@ -172,14 +191,14 @@ public HashMap<String, Object> getParams() {
 		if (this.labelOptions != null) {
 			params.put("labelOptions", this.labelOptions.getParams());
 		}
-		if (this.events != null) {
-			params.put("events", this.events.getParams());
+		if (this.id != null) {
+			params.put("id", this.id);
 		}
 		if (this.draggable != null) {
 			params.put("draggable", this.draggable);
 		}
-		if (this.id != null) {
-			params.put("id", this.id);
+		if (this.events != null) {
+			params.put("events", this.events.getParams());
 		}
 		return params;
 	}

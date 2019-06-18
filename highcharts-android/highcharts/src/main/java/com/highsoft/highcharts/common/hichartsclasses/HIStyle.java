@@ -25,6 +25,15 @@ public class HIStyle extends HIFoundation {
 
 	public String getFontWeight(){ return fontWeight; }
 
+	private String textOutline;
+	public void setTextOutline(String textOutline) {
+		this.textOutline = textOutline;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTextOutline(){ return textOutline; }
+
 	private String fontSize;
 	public void setFontSize(String fontSize) {
 		this.fontSize = fontSize;
@@ -34,14 +43,32 @@ public class HIStyle extends HIFoundation {
 
 	public String getFontSize(){ return fontSize; }
 
-	private String textOutline;
-	public void setTextOutline(String textOutline) {
-		this.textOutline = textOutline;
+	private String stroke;
+	public void setStroke(String stroke) {
+		this.stroke = stroke;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getTextOutline(){ return textOutline; }
+	public String getStroke(){ return stroke; }
+
+	private Number strokeWidth;
+	public void setStrokeWidth(Number strokeWidth) {
+		this.strokeWidth = strokeWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getStrokeWidth(){ return strokeWidth; }
+
+	private String fill;
+	public void setFill(String fill) {
+		this.fill = fill;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getFill(){ return fill; }
 
 
 
@@ -57,11 +84,20 @@ public HashMap<String, Object> getParams() {
 		if (this.fontWeight != null) {
 			params.put("fontWeight", this.fontWeight);
 		}
+		if (this.textOutline != null) {
+			params.put("textOutline", this.textOutline);
+		}
 		if (this.fontSize != null) {
 			params.put("fontSize", this.fontSize);
 		}
-		if (this.textOutline != null) {
-			params.put("textOutline", this.textOutline);
+		if (this.stroke != null) {
+			params.put("stroke", this.stroke);
+		}
+		if (this.strokeWidth != null) {
+			params.put("stroke-width", this.strokeWidth);
+		}
+		if (this.fill != null) {
+			params.put("fill", this.fill);
 		}
 		return params;
 	}

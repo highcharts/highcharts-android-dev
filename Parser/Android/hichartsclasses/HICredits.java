@@ -69,7 +69,7 @@ public class HICredits extends HIFoundation {
 	private HIAlignObject position;
 	/**
  Position configuration for the credits label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/position-left/">Left aligned</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/position-left/">Left aligned</a>
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;{"align": "right", "verticalAlign": "bottom", "x": -10, "y": -5}	*/
 	public void setPosition(HIAlignObject position) {
 		this.position = position;
 		this.setChanged();

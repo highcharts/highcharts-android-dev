@@ -42,6 +42,30 @@ public class HIScrollablePlotArea extends HIFoundation {
 
 	public Number getOpacity(){ return opacity; }
 
+	private Number minHeight;
+	/**
+ The minimum height for the plot area. If it gets smaller than this, the plot area will become scrollable. 
+	*/
+	public void setMinHeight(Number minHeight) {
+		this.minHeight = minHeight;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getMinHeight(){ return minHeight; }
+
+	private Number scrollPositionY;
+	/**
+ The initial scrolling position of the scrollable plot area. Ranges from 0 to 1, where 0 aligns the plot area to the top and 1 aligns it to the bottom. 
+	*/
+	public void setScrollPositionY(Number scrollPositionY) {
+		this.scrollPositionY = scrollPositionY;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getScrollPositionY(){ return scrollPositionY; }
+
 	private Number scrollPositionX;
 	/**
  The initial scrolling position of the scrollable plot area. Ranges from 0 to 1, where 0 aligns the plot area to the left and 1 aligns it to the right. Typically we would use 1 if the chart has right aligned Y axes. 
@@ -70,6 +94,12 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.opacity != null) {
 			params.put("opacity", this.opacity);
+		}
+		if (this.minHeight != null) {
+			params.put("minHeight", this.minHeight);
+		}
+		if (this.scrollPositionY != null) {
+			params.put("scrollPositionY", this.scrollPositionY);
 		}
 		if (this.scrollPositionX != null) {
 			params.put("scrollPositionX", this.scrollPositionX);

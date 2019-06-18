@@ -125,6 +125,18 @@ public class HIParentNodeOptions extends HIFoundation {
 
 	public String getIntegration(){ return integration; }
 
+	private Number linkLength;
+	/**
+ Ideal length (px) of the link between two nodes. When not defined, length is calculated as: Math.pow(availableWidth * availableHeight / nodesLength, 0.4); Note: Because of the algorithm specification, length of each link might be not exactly as specified. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-networkgraph/styled-links/">Numerical values</a>
+	*/
+	public void setLinkLength(Number linkLength) {
+		this.linkLength = linkLength;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getLinkLength(){ return linkLength; }
+
 	private String type;
 	/**
  Type of the algorithm used when positioning nodes. <br><br><b>accepted values:</b><br><br>&ensp;["reingold-fruchterman"]
@@ -174,6 +186,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.integration != null) {
 			params.put("integration", this.integration);
+		}
+		if (this.linkLength != null) {
+			params.put("linkLength", this.linkLength);
 		}
 		if (this.type != null) {
 			params.put("type", this.type);

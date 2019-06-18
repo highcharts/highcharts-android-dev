@@ -333,8 +333,20 @@ hc_types = {
     "Highcharts.AnnotationsOptions": 'Object',
     "Highcharts.FormatterCallbackFunction.<Highcharts.SankeyNodeObject>": 'HIFunction',
     "Highcharts.FormatterCallbackFunction.<Highcharts.StackItemObject>": 'HIFunction',
-    "null|*": 'Object'
-
+    "null|*": 'Object',
+        #7.1.2
+        "string|number|function": 'Object',
+        "Highcharts.EventCallbackFunction.<Highcharts.Annotation>": 'HIFunction',
+        "Highcharts.FormatterCallbackFunction.<Highcharts.BubbleLegendFormatterContextObject>": 'HIFunction',
+        #namespace
+        "string|function|undefined": 'String',
+        "Highcharts.FormatterCallbackFunction.<Highcharts.SankeyNodeObject>|undefined": 'HIFunction',
+        "string|boolean|undefined": 'NSString',
+        "string|Highcharts.CSSObject|undefined": 'HICSSObject',
+        "string|Highcharts.GradientColorObject|Highcharts.PatternObject|undefined": 'HIColor',
+        "boolean|Highcharts.ShadowOptionsObject|undefined": 'HIShadowOptionsObject',
+        "boolean|Highcharts.AnimationOptionsObject|undefined": 'HIAnimationOptionsObject',
+        "string|Highcharts.SVGAttributes": 'HISVGAttributes'
 }
 
 
@@ -346,7 +358,6 @@ hc_types = {
 
 def get_java_type(x):
     return hc_types[str(x)]
-
 
 def upper_first(x):
     r = x[0].upper() + x[1:]
@@ -1243,9 +1254,15 @@ def create_class(node):
 
                     data_type = '|'.join(types)
 
-                    if 'Highcharts.' in data_type and data_type not in hc_types:
-                        new_types_from_namespace.add(data_type)
-                        data_type = type_from_namespace(data_type)
+                    if len(types) == 2 and types[1] == 'Array.<' + types[0] + '>':
+                        data_type = types[1]
+
+                    if 'Highcharts.' in data_type:
+                        if data_type not in hc_types:
+                            new_types_from_namespace.add(data_type)
+                            data_type = type_from_namespace(data_type)
+                        else:
+                            find_namespace_type(data_type)
 
             if "products" in doclet:
                 products = doclet["products"]
@@ -1430,7 +1447,7 @@ def create_namespace_class(node):
                 types = doclet["types"]
 
                 for ind, type in enumerate(types):
-                    if '\"' in type:
+                    if '\"' in type or '\'' in type:
                         types[ind] = 'string'
                     elif 'Highcharts.Dictionary.<Highcharts.' in type:
                         types[ind] = "Object"
@@ -1438,6 +1455,9 @@ def create_namespace_class(node):
                 types = removeDuplicates(types)
 
                 data_type = '|'.join(types)
+
+                if len(types) == 2 and types[1] == 'Array.<' + types[0] + '>':
+                    data_type = types[1]
 
                 namespace_types[node.name] = data_type
             else:
@@ -1558,6 +1578,8 @@ def get_namespace_type(name):
         for index, type in enumerate(types):
             type = get_namespace_array_type(type)
 
+	    ori_type = type
+
             while type in namespace_types:
                 type = namespace_types[type]
 
@@ -1571,6 +1593,13 @@ def get_namespace_type(name):
                         sp = new
                     splitted[ind] = sp
                 type = '|'.join(splitted)
+            elif type == default_type and 'Highcharts.' in ori_type:
+                if ori_type in namespace_structure and \
+                    (namespace_structure[ori_type].kind == 'class' or namespace_structure[ori_type].kind == 'interface'):
+                    type = ori_type
+                    hc_types[type] = ori_type.replace('Highcharts.', 'HI')
+                else:
+                    unknown_type_namespace.add(type)
             elif type in namespace_structure:
                 if namespace_structure[type].kind == "class":
                     type = 'Object'
@@ -1587,9 +1616,8 @@ def get_namespace_type(name):
 
         new_type = '|'.join(types)
 
-        if not new_type in hc_types:
-            unknown_type_namespace.add(new_type)
-            new_type = default_type
+        if new_type.startswith('Highcharts.') and new_type.endswith('|undefined'):
+            new_type = types[0]
 
         return new_type
     else:

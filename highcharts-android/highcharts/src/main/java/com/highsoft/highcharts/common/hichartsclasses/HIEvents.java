@@ -437,29 +437,29 @@ public class HIEvents extends HIFoundation {
 
 	public HIFunction getAfterAnimate(){ return afterAnimate; }
 
-	private Object add;
+	private HIFunction add;
 	/**
  Event callback when annotation is added to the chart. 
 	*/
-	public void setAdd(Object add) {
+	public void setAdd(HIFunction add) {
 		this.add = add;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getAdd(){ return add; }
+	public HIFunction getAdd(){ return add; }
 
-	private Object afterUpdate;
+	private HIFunction afterUpdate;
 	/**
  Event callback when annotation is updated (e.g.draganddropppedorresizedbycontrolpoints). 
 	*/
-	public void setAfterUpdate(Object afterUpdate) {
+	public void setAfterUpdate(HIFunction afterUpdate) {
 		this.afterUpdate = afterUpdate;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getAfterUpdate(){ return afterUpdate; }
+	public HIFunction getAfterUpdate(){ return afterUpdate; }
 
 
 
@@ -578,8 +578,10 @@ public HashMap<String, Object> getParams() {
 			params.put("afterAnimate", this.afterAnimate);
 		}
 		if (this.add != null) {
+			params.put("add", this.add);
 		}
 		if (this.afterUpdate != null) {
+			params.put("afterUpdate", this.afterUpdate);
 		}
 		return params;
 	}

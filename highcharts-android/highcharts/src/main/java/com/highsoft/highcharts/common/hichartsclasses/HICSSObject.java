@@ -66,7 +66,7 @@ public class HICSSObject extends HIFoundation {
 
 	private String color;
 	/**
- Color used in the element. The "contrast" option is a Highcharts custom property that results in black or white, depending on the background of the element. 
+ Color used in the element. The 'contrast' option is a Highcharts custom property that results in black or white, depending on the background of the element. 
 	*/
 	public void setColor(String color) {
 		this.color = color;

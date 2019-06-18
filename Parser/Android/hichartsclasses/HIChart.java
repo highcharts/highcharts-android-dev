@@ -236,17 +236,17 @@ public class HIChart extends HIFoundation {
 
 	public Number getMarginBottom(){ return marginBottom; }
 
-	private Number width;
+	private Object /* Number, String */ width;
 	/**
  An explicit width for the chart. By defaults (when null) the width is calculated from the offset width of the containing element. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/width/">800px wide</a>
 	*/
-	public void setWidth(Number width) {
+	public void setWidth(Object /* Number, String */ width) {
 		this.width = width;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getWidth(){ return width; }
+	public Object /* Number, String */ getWidth(){ return width; }
 
 	private Number marginLeft;
 	/**
@@ -384,7 +384,7 @@ public class HIChart extends HIFoundation {
 
 	private HIScrollablePlotArea scrollablePlotArea;
 	/**
- Options for a scrollable plot area. This feature provides a minimum width for the plot area of the chart. If the width gets smaller than this, typically on mobile devices, a native browser scrollbar is presented below the chart. This scrollbar provides smooth scrolling for the contents of the plot area, whereas the title, legend and axes are fixed. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/scrollable-plotarea">Scrollable plot area</a>
+ Options for a scrollable plot area. This feature provides a minimum size for the plot area of the chart. If the size gets smaller than this, typically on mobile devices, a native browser scrollbar is presented. This scrollbar provides smooth scrolling for the contents of the plot area, whereas the title, legend and unaffected axes are fixed. Since v7.1.2, a scrollable plot area can be defined for either horizontal or vertical scrolling, depending on whether the minWidth or minHeight option is set. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/scrollable-plotarea">Scrollable plot area</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/scrollable-plotarea-vertical">Vertically scrollable plot area</a>
 	*/
 	public void setScrollablePlotArea(HIScrollablePlotArea scrollablePlotArea) {
 		this.scrollablePlotArea = scrollablePlotArea;

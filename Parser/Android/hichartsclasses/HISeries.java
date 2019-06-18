@@ -745,17 +745,17 @@ public class HISeries extends HIFoundation {
 
 	public Boolean getStickyTracking(){ return stickyTracking; }
 
-	private HIDataLabelsOptionsObject dataLabels;
+	private ArrayList<HIDataLabelsOptionsObject> dataLabels;
 	/**
  Options for the series data labels, appearing next to each data point. Since v6.2.0, multiple data labels can be applied to each single point by defining them as an array of configs. In styled mode, the data labels can be styled with the .highcharts-data-label-box and .highcharts-data-label class names ([see example](https://www.highcharts.com/samples/highcharts/css/series-datalabels)). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-enabled">Data labels enabled</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-multiple">Multiple data labels on a bar series</a>
-	*/
-	public void setDataLabels(HIDataLabelsOptionsObject dataLabels) {
+ <br><br><b>defaults:</b><br><br>&ensp;{"align": "center", "formatter": function () { return H.numberFormat(this.y, -1); }, "padding": 5, "style": {"fontSize": "11px", "fontWeight": "bold", "color": "contrast", "textOutline": "1px contrast"}, "verticalAlign": "bottom", "x":0, "y": 0}	*/
+	public void setDataLabels(ArrayList<HIDataLabelsOptionsObject> dataLabels) {
 		this.dataLabels = dataLabels;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIDataLabelsOptionsObject getDataLabels(){ return dataLabels; }
+	public ArrayList<HIDataLabelsOptionsObject> getDataLabels(){ return dataLabels; }
 
 	private String cursor;
 	/**
@@ -1048,7 +1048,16 @@ public HashMap<String, Object> getParams() {
 			params.put("stickyTracking", this.stickyTracking);
 		}
 		if (this.dataLabels != null) {
-			params.put("dataLabels", this.dataLabels.getParams());
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.dataLabels) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("dataLabels", array);
 		}
 		if (this.cursor != null) {
 			params.put("cursor", this.cursor);

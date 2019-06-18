@@ -913,17 +913,17 @@ public class HIYAxis extends HIFoundation {
 
 	public Object /* Number, String */ getMinorTickInterval(){ return minorTickInterval; }
 
-	private Object margin;
+	private Number margin;
 	/**
  If there are multiple axes on the same side of the chart, the pixel margin between the axes. Defaults to 0 on vertical axes, 15 on horizontal axes. 
 	*/
-	public void setMargin(Object margin) {
+	public void setMargin(Number margin) {
 		this.margin = margin;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getMargin(){ return margin; }
+	public Number getMargin(){ return margin; }
 
 
 
@@ -1219,6 +1219,7 @@ public HashMap<String, Object> getParams() {
 			params.put("minorTickInterval", this.minorTickInterval);
 		}
 		if (this.margin != null) {
+			params.put("margin", this.margin);
 		}
 		return params;
 	}

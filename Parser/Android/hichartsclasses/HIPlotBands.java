@@ -103,18 +103,6 @@ public class HIPlotBands extends HIFoundation {
 
 	public HIColor getColor(){ return color; }
 
-	private String id;
-	/**
- An id used for identifying the plot band in Axis.removePlotBand. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-id/">Remove plot band by id</a>
-	*/
-	public void setId(String id) {
-		this.id = id;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getId(){ return id; }
-
 	private String className;
 	/**
  A custom class name, in addition to the defaults highcharts-plot-band, to apply to each individual band. 
@@ -150,6 +138,18 @@ public class HIPlotBands extends HIFoundation {
 	}
 
 	public Number getBorderWidth(){ return borderWidth; }
+
+	private String id;
+	/**
+ An id used for identifying the plot band in Axis.removePlotBand. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-id/">Remove plot band by id</a>
+	*/
+	public void setId(String id) {
+		this.id = id;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getId(){ return id; }
 
 	private HILabel label;
 	/**
@@ -208,9 +208,6 @@ public HashMap<String, Object> getParams() {
 		if (this.color != null) {
 			params.put("color", this.color.getData());
 		}
-		if (this.id != null) {
-			params.put("id", this.id);
-		}
 		if (this.className != null) {
 			params.put("className", this.className);
 		}
@@ -219,6 +216,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);
+		}
+		if (this.id != null) {
+			params.put("id", this.id);
 		}
 		if (this.label != null) {
 			params.put("label", this.label.getParams());

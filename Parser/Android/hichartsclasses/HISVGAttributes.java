@@ -54,14 +54,14 @@ public class HISVGAttributes extends HIFoundation {
 
 	public ArrayList<Number> getMatrix(){ return matrix; }
 
-	private String rotation;
-	public void setRotation(String rotation) {
+	private Number rotation;
+	public void setRotation(Number rotation) {
 		this.rotation = rotation;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getRotation(){ return rotation; }
+	public Number getRotation(){ return rotation; }
 
 	private Number rotationOriginX;
 	public void setRotationOriginX(Number rotationOriginX) {
@@ -108,14 +108,14 @@ public class HISVGAttributes extends HIFoundation {
 
 	public String getStroke(){ return stroke; }
 
-	private Object style;
-	public void setStyle(Object style) {
+	private HICSSObject style;
+	public void setStyle(HICSSObject style) {
 		this.style = style;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getStyle(){ return style; }
+	public HICSSObject getStyle(){ return style; }
 
 	private Number translateX;
 	public void setTranslateX(Number translateX) {
@@ -204,7 +204,7 @@ public HashMap<String, Object> getParams() {
 			params.put("stroke", this.stroke);
 		}
 		if (this.style != null) {
-			params.put("style", this.style);
+			params.put("style", this.style.getParams());
 		}
 		if (this.translateX != null) {
 			params.put("translateX", this.translateX);

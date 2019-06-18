@@ -493,6 +493,12 @@ public class HILegend extends HIFoundation {
 	public Number getMargin(){ return margin; }
 
 
+
+	public HILegend() {
+
+	}
+
+
 	/**
 	 * Set the legend item text.
 	 * @param item The item for which to update the text in the legend.
@@ -556,10 +562,6 @@ public class HILegend extends HIFoundation {
 		}};
 		this.setChanged();
 		this.notifyObservers(jsClassMethod);
-	}
-
-	public HILegend() {
-
 	}
 
 	@Override

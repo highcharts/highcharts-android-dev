@@ -3,7 +3,6 @@ package com.highsoft.highcharts.core;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.File;

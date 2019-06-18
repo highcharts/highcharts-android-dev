@@ -19,9 +19,6 @@ import com.highsoft.highcharts.core.HIFoundation;
 public class HIInactive extends HIFoundation { 
 
 	private Number opacity;
-	/**
- Opacity of series elements (dataLabels, line, area). 
-	*/
 	public void setOpacity(Number opacity) {
 		this.opacity = opacity;
 		this.setChanged();
@@ -30,15 +27,17 @@ public class HIInactive extends HIFoundation {
 
 	public Number getOpacity(){ return opacity; }
 
-	private HIAnimation animation;
-	public void setAnimation(HIAnimation animation) {
+	private HIAnimationOptionsObject animation;
+	/**
+ Animation when not hovering over the node. 
+	*/
+	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
-		this.animation.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIAnimation getAnimation(){ return animation; }
+	public HIAnimationOptionsObject getAnimation(){ return animation; }
 
 	private Number linkOpacity;
 	/**
