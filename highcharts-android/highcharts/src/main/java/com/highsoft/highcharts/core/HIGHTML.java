@@ -3,6 +3,7 @@ package com.highsoft.highcharts.core;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -109,8 +110,13 @@ final class HIGHTML implements Serializable {
      *  @param height for view.
      */
     void prepareViewWidth(Integer width, Integer height) {
-        if(html_tmp.contains("{{height}}")) // added later
-        this.html = this.html_tmp.replace("{{height}}", String.valueOf(height)).replace("{{width}}", String.valueOf(width));
+        if(html_tmp.contains("{{height}}")) // added later{
+        {
+            Log.e("HIHTML", "Sets up the dimensions");
+            this.html = this.html_tmp.replace("{{height}}", String.valueOf(height)).replace("{{width}}", String.valueOf(width));
+        } else {
+            Log.e("HIHTML", "Didn't reset dimensions");
+        }
     }
 
     /**

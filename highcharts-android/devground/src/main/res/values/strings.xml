@@ -2,4 +2,11 @@
     <string name="app_name">Example</string>
     <string name="title_activity_issues">IssuesActivity</string>
     <string name="button">Reload</string>
+    <string name="category_size">Category Size：</string>
+    <string name="issues">When I set the number of Category to 1, there will be a lot of blank space below. If I set the number of Category to 9, it will show incomplete. How to set the height of the chart to wrap_content&#063;
+        Can I do this by modifying Layoutparams, but I can\'t get the current height&#063; Thanks a lot
+    </string>
+    <dimen name="normal_text_size">16sp</dimen>
+    <color name="red">#ffcc0000</color>
+    <color name="green">#ff669900</color>
 </resources>

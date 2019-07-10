@@ -196,9 +196,12 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
         this.addView(webView);
     }
 
+
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec){
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        Log.d(TAG, "onMeasure()");
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
@@ -206,6 +209,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
 
         int width;
         if (widthMode == MeasureSpec.EXACTLY) {
+
             width = widthSize;
         } else if (widthMode == MeasureSpec.AT_MOST) {
             width = Math.min(widthMeasureSpec, widthSize);
@@ -216,9 +220,12 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
         int height;
         if (heightMode == MeasureSpec.EXACTLY) {
             height = heightSize;
+            Log.d(TAG, "mode: EXACTLY");
         } else if (heightMode == MeasureSpec.AT_MOST) {
+            Log.d(TAG, "mode: AT_MOST");
             height = Math.min(heightMeasureSpec, heightSize);
         } else {
+            Log.d(TAG, "mode: UNSPECIFIED");
             height = heightMeasureSpec;
         }
         this.height = height;
@@ -254,8 +261,15 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
     }
 
     @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        Log.e(TAG, "onLayout()");
+    }
+
+    @Override
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
+        Log.e(TAG, "onDraw()");
         if(!loaded) loadChartHtml(); //loading html only if it was not loaded before
 //        loadChartHtml(); //loading html only if it was not loaded before
     }
@@ -387,6 +401,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
         this.options = options;
         this.options.addObserver(basicObserver);
         this.options.notifyObservers();
+//        postInvalidate();
     }
 
     public HIOptions getOptions() {

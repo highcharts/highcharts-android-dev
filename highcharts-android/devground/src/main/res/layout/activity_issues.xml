@@ -1,35 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/colorAccent"
-    tools:context="com.highsoft.devground.MainActivity">
+    tools:context=".MainActivity">
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+            <LinearLayout
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/category_size"/>
+                <Spinner
+                    android:id="@+id/spinner1"
+                    android:layout_width="100dp"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    />
+
+                <TextView android:layout_width="wrap_content"
+                    android:text="\u2190 click to change category size"
+                    android:gravity="center"
+                    android:textColor="@color/red"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <TextView
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:text="@string/issues"
+                android:layout_height="wrap_content"/>
+
+            <com.highsoft.highcharts.core.HIChartView
+                android:layout_width="match_parent"
+                android:id="@+id/chartview1"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/category_size"/>
+                <Spinner
+                    android:id="@+id/spinner2"
+                    android:layout_width="100dp"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    />
+
+                <TextView android:layout_width="wrap_content"
+                    android:text="\u2190 click to change category size"
+                    android:gravity="center"
+                    android:textColor="@color/red"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+            <com.highsoft.highcharts.core.HIChartView
+                android:layout_width="match_parent"
+                android:id="@+id/chartview2"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
 
 
-    <com.highsoft.highcharts.core.HIChartView
-        android:background="@color/colorPrimaryDark"
-        android:id="@+id/hc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </com.highsoft.highcharts.core.HIChartView>
-    <TextView
-        android:id="@+id/txtView"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:text="TEST TESTT TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST KURWA RAREST TEST RAREST TEST RAREST TEST RARESKURWAXDXDXDXDXDX WKUWRWA T TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAREST TEST RAR"
-        android:textSize="50sp"
-        android:visibility="visible" />
-    <!--<Button-->
-        <!--android:visibility="gone"-->
-        <!--android:text="@string/button"-->
-        <!--android:id="@+id/btn"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
-    <!--<ImageView-->
-        <!--android:src="@android:drawable/btn_star"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent" />-->
-</LinearLayout>
+</FrameLayout>
