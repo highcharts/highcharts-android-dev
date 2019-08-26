@@ -18,6 +18,54 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 public class HIAccessibility extends HIFoundation { 
 
+	private String axisRangeDateFormat;
+	/**
+ Date format to use to describe range of datetime axes. For an overview of the replacement codes, see `dateFormat`. 
+	*/
+	public void setAxisRangeDateFormat(String axisRangeDateFormat) {
+		this.axisRangeDateFormat = axisRangeDateFormat;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getAxisRangeDateFormat(){ return axisRangeDateFormat; }
+
+	private String pointDateFormat;
+	/**
+ Date format to use for points on datetime axes when describing them to screen reader users. Defaults to the same format as in tooltip. For an overview of the replacement codes, see `dateFormat`. 
+	*/
+	public void setPointDateFormat(String pointDateFormat) {
+		this.pointDateFormat = pointDateFormat;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getPointDateFormat(){ return pointDateFormat; }
+
+	private Object highContrastTheme;
+	/**
+ Theme to apply to the chart when Windows High Contrast Mode is detected. 
+	*/
+	public void setHighContrastTheme(Object highContrastTheme) {
+		this.highContrastTheme = highContrastTheme;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getHighContrastTheme(){ return highContrastTheme; }
+
+	private String definition;
+	/**
+ A text description of the chart. If the Accessibility module is loaded, this is included by defaults as a long description of the chart in the hidden screen reader information region. Note: It is considered a best practice to make the description of the chart visible to all users, so consider if this can be placed in text around the chart instead. 
+	*/
+	public void setDefinition(String definition) {
+		this.definition = definition;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDefinition(){ return definition; }
+
 	private Boolean addTableShortcut;
 	/**
  Whether or not to add a shortcut button in the screen reader information region to show the data table. 
@@ -42,6 +90,79 @@ public class HIAccessibility extends HIFoundation {
 
 	public String getLandmarkVerbosity(){ return landmarkVerbosity; }
 
+	private HIFunction seriesDescriptionFormatter;
+	/**
+ Formatter function to use instead of the defaults for series descriptions. Receives one argument, series, referring to the series to describe. Should return a string with the description of the series for a screen reader user. If false is returned, the defaults formatter will be used for that series. 
+	*/
+	public void setSeriesDescriptionFormatter(HIFunction seriesDescriptionFormatter) {
+		this.seriesDescriptionFormatter = seriesDescriptionFormatter;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getSeriesDescriptionFormatter(){ return seriesDescriptionFormatter; }
+
+	private Number pointDescriptionThreshold;
+	/**
+ When a series contains more points than this, we no longer expose information about individual points to screen readers. Set to false to disable. 
+	*/
+	public void setPointDescriptionThreshold(Number pointDescriptionThreshold) {
+		this.pointDescriptionThreshold = pointDescriptionThreshold;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPointDescriptionThreshold(){ return pointDescriptionThreshold; }
+
+	private HIFunction pointDescriptionFormatter;
+	/**
+ Formatter function to use instead of the defaults for point descriptions. Receives one argument, point, referring to the point to describe. Should return a string with the description of the point for a screen reader user. If false is returned, the defaults formatter will be used for that point. 
+	*/
+	public void setPointDescriptionFormatter(HIFunction pointDescriptionFormatter) {
+		this.pointDescriptionFormatter = pointDescriptionFormatter;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getPointDescriptionFormatter(){ return pointDescriptionFormatter; }
+
+	private HIAnnounceNewData announceNewData;
+	/**
+ Options for announcing new data to screen reader users. Useful for dynamic data applications and drilldown. Keep in mind that frequent announcements will not be useful to users, as they won't have time to explore the new data. For these applications, consider making snapshots of the data accessible, and do the announcements in batches. 
+	*/
+	public void setAnnounceNewData(HIAnnounceNewData announceNewData) {
+		this.announceNewData = announceNewData;
+		this.announceNewData.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAnnounceNewData getAnnounceNewData(){ return announceNewData; }
+
+	private Boolean describeSingleSeries;
+	/**
+ Whether or not to add series descriptions to charts with a single series. 
+	*/
+	public void setDescribeSingleSeries(Boolean describeSingleSeries) {
+		this.describeSingleSeries = describeSingleSeries;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getDescribeSingleSeries(){ return describeSingleSeries; }
+
+	private Number pointNavigationThreshold;
+	/**
+ When a series contains more points than this, we no longer allow keyboard navigation for it. Set to false to disable. 
+	*/
+	public void setPointNavigationThreshold(Number pointNavigationThreshold) {
+		this.pointNavigationThreshold = pointNavigationThreshold;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPointNavigationThreshold(){ return pointNavigationThreshold; }
+
 	private Object customComponents;
 	/**
  A hook for adding custom components to the accessibility module. Should be an object mapping component names to instances of classes inheriting from the Highcharts.AccessibilityComponent base class. Remember to add the component to the keyboardNavigation.order for the keyboard navigation to be usable. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/accessibility/custom-component">Custom accessibility component</a>
@@ -53,18 +174,6 @@ public class HIAccessibility extends HIFoundation {
 	}
 
 	public Object getCustomComponents(){ return customComponents; }
-
-	private String pointValueDecimals;
-	/**
- Decimals to use for the values in the point descriptions. Uses tooltip.valueDecimals if not defined. 
-	*/
-	public void setPointValueDecimals(String pointValueDecimals) {
-		this.pointValueDecimals = pointValueDecimals;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getPointValueDecimals(){ return pointValueDecimals; }
 
 	private HIFunction screenReaderSectionFormatter;
 	/**
@@ -78,29 +187,29 @@ public class HIAccessibility extends HIFoundation {
 
 	public HIFunction getScreenReaderSectionFormatter(){ return screenReaderSectionFormatter; }
 
-	private HIFunction onTableAnchorClick;
+	private String pointValueSuffix;
 	/**
- Function to run upon clicking the "View as Data Table" link in the screen reader region. By defaults Highcharts will insert and set focus to a data table representation of the chart. 
+ Suffix to add to the values in the point descriptions. Uses tooltip.valueSuffix if not defined. 
 	*/
-	public void setOnTableAnchorClick(HIFunction onTableAnchorClick) {
-		this.onTableAnchorClick = onTableAnchorClick;
+	public void setPointValueSuffix(String pointValueSuffix) {
+		this.pointValueSuffix = pointValueSuffix;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIFunction getOnTableAnchorClick(){ return onTableAnchorClick; }
+	public String getPointValueSuffix(){ return pointValueSuffix; }
 
-	private HIFunction seriesDescriptionFormatter;
+	private String pointValueDecimals;
 	/**
- Formatter function to use instead of the defaults for series descriptions. Receives one argument, series, referring to the series to describe. Should return a string with the description of the series for a screen reader user. If false is returned, the defaults formatter will be used for that series. 
+ Decimals to use for the values in the point descriptions. Uses tooltip.valueDecimals if not defined. 
 	*/
-	public void setSeriesDescriptionFormatter(HIFunction seriesDescriptionFormatter) {
-		this.seriesDescriptionFormatter = seriesDescriptionFormatter;
+	public void setPointValueDecimals(String pointValueDecimals) {
+		this.pointValueDecimals = pointValueDecimals;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIFunction getSeriesDescriptionFormatter(){ return seriesDescriptionFormatter; }
+	public String getPointValueDecimals(){ return pointValueDecimals; }
 
 	private HIKeyboardNavigation keyboardNavigation;
 	/**
@@ -127,30 +236,6 @@ public class HIAccessibility extends HIFoundation {
 
 	public Boolean getEnabled(){ return enabled; }
 
-	private String pointValueSuffix;
-	/**
- Suffix to add to the values in the point descriptions. Uses tooltip.valueSuffix if not defined. 
-	*/
-	public void setPointValueSuffix(String pointValueSuffix) {
-		this.pointValueSuffix = pointValueSuffix;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getPointValueSuffix(){ return pointValueSuffix; }
-
-	private String axisRangeDateFormat;
-	/**
- Date format to use to describe range of datetime axes. For an overview of the replacement codes, see `dateFormat`. 
-	*/
-	public void setAxisRangeDateFormat(String axisRangeDateFormat) {
-		this.axisRangeDateFormat = axisRangeDateFormat;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getAxisRangeDateFormat(){ return axisRangeDateFormat; }
-
 	private String pointValuePrefix;
 	/**
  Prefix to add to the values in the point descriptions. Uses tooltip.valuePrefix if not defined. 
@@ -162,55 +247,6 @@ public class HIAccessibility extends HIFoundation {
 	}
 
 	public String getPointValuePrefix(){ return pointValuePrefix; }
-
-	private HIFunction pointDescriptionFormatter;
-	/**
- Formatter function to use instead of the defaults for point descriptions. Receives one argument, point, referring to the point to describe. Should return a string with the description of the point for a screen reader user. If false is returned, the defaults formatter will be used for that point. 
-	*/
-	public void setPointDescriptionFormatter(HIFunction pointDescriptionFormatter) {
-		this.pointDescriptionFormatter = pointDescriptionFormatter;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getPointDescriptionFormatter(){ return pointDescriptionFormatter; }
-
-	private String pointDateFormat;
-	/**
- Date format to use for points on datetime axes when describing them to screen reader users. Defaults to the same format as in tooltip. For an overview of the replacement codes, see `dateFormat`. 
-	*/
-	public void setPointDateFormat(String pointDateFormat) {
-		this.pointDateFormat = pointDateFormat;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getPointDateFormat(){ return pointDateFormat; }
-
-	private HIAnnounceNewData announceNewData;
-	/**
- Options for announcing new data to screen reader users. Useful for dynamic data applications and drilldown. Keep in mind that frequent announcements will not be useful to users, as they won't have time to explore the new data. For these applications, consider making snapshots of the data accessible, and do the announcements in batches. 
-	*/
-	public void setAnnounceNewData(HIAnnounceNewData announceNewData) {
-		this.announceNewData = announceNewData;
-		this.announceNewData.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIAnnounceNewData getAnnounceNewData(){ return announceNewData; }
-
-	private Number pointDescriptionThreshold;
-	/**
- When a series contains more points than this, we no longer expose information about individual points to screen readers. Set to false to disable. 
-	*/
-	public void setPointDescriptionThreshold(Number pointDescriptionThreshold) {
-		this.pointDescriptionThreshold = pointDescriptionThreshold;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getPointDescriptionThreshold(){ return pointDescriptionThreshold; }
 
 	private String typeDescription;
 	/**
@@ -224,17 +260,17 @@ public class HIAccessibility extends HIFoundation {
 
 	public String getTypeDescription(){ return typeDescription; }
 
-	private Boolean describeSingleSeries;
+	private HIFunction onTableAnchorClick;
 	/**
- Whether or not to add series descriptions to charts with a single series. 
+ Function to run upon clicking the "View as Data Table" link in the screen reader region. By defaults Highcharts will insert and set focus to a data table representation of the chart. 
 	*/
-	public void setDescribeSingleSeries(Boolean describeSingleSeries) {
-		this.describeSingleSeries = describeSingleSeries;
+	public void setOnTableAnchorClick(HIFunction onTableAnchorClick) {
+		this.onTableAnchorClick = onTableAnchorClick;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getDescribeSingleSeries(){ return describeSingleSeries; }
+	public HIFunction getOnTableAnchorClick(){ return onTableAnchorClick; }
 
 	private HIFunction pointDateFormatter;
 	/**
@@ -247,18 +283,6 @@ public class HIAccessibility extends HIFoundation {
 	}
 
 	public HIFunction getPointDateFormatter(){ return pointDateFormatter; }
-
-	private String definition;
-	/**
- A text description of the chart. If the Accessibility module is loaded, this is included by defaults as a long description of the chart in the hidden screen reader information region. Note: It is considered a best practice to make the description of the chart visible to all users, so consider if this can be placed in text around the chart instead. 
-	*/
-	public void setDefinition(String definition) {
-		this.definition = definition;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getDefinition(){ return definition; }
 
 	private Boolean exposeAsGroupOnly;
 	/**
@@ -408,6 +432,15 @@ public class HIAccessibility extends HIFoundation {
 
 	public HIExporting getExporting(){ return exporting; }
 
+	private String credits;
+	public void setCredits(String credits) {
+		this.credits = credits;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getCredits(){ return credits; }
+
 	private String legendItem;
 	public void setLegendItem(String legendItem) {
 		this.legendItem = legendItem;
@@ -540,26 +573,53 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.axisRangeDateFormat != null) {
+			params.put("axisRangeDateFormat", this.axisRangeDateFormat);
+		}
+		if (this.pointDateFormat != null) {
+			params.put("pointDateFormat", this.pointDateFormat);
+		}
+		if (this.highContrastTheme != null) {
+			params.put("highContrastTheme", this.highContrastTheme);
+		}
+		if (this.definition != null) {
+			params.put("definition", this.definition);
+		}
 		if (this.addTableShortcut != null) {
 			params.put("addTableShortcut", this.addTableShortcut);
 		}
 		if (this.landmarkVerbosity != null) {
 			params.put("landmarkVerbosity", this.landmarkVerbosity);
 		}
+		if (this.seriesDescriptionFormatter != null) {
+			params.put("seriesDescriptionFormatter", this.seriesDescriptionFormatter);
+		}
+		if (this.pointDescriptionThreshold != null) {
+			params.put("pointDescriptionThreshold", this.pointDescriptionThreshold);
+		}
+		if (this.pointDescriptionFormatter != null) {
+			params.put("pointDescriptionFormatter", this.pointDescriptionFormatter);
+		}
+		if (this.announceNewData != null) {
+			params.put("announceNewData", this.announceNewData.getParams());
+		}
+		if (this.describeSingleSeries != null) {
+			params.put("describeSingleSeries", this.describeSingleSeries);
+		}
+		if (this.pointNavigationThreshold != null) {
+			params.put("pointNavigationThreshold", this.pointNavigationThreshold);
+		}
 		if (this.customComponents != null) {
 			params.put("customComponents", this.customComponents);
-		}
-		if (this.pointValueDecimals != null) {
-			params.put("pointValueDecimals", this.pointValueDecimals);
 		}
 		if (this.screenReaderSectionFormatter != null) {
 			params.put("screenReaderSectionFormatter", this.screenReaderSectionFormatter);
 		}
-		if (this.onTableAnchorClick != null) {
-			params.put("onTableAnchorClick", this.onTableAnchorClick);
+		if (this.pointValueSuffix != null) {
+			params.put("pointValueSuffix", this.pointValueSuffix);
 		}
-		if (this.seriesDescriptionFormatter != null) {
-			params.put("seriesDescriptionFormatter", this.seriesDescriptionFormatter);
+		if (this.pointValueDecimals != null) {
+			params.put("pointValueDecimals", this.pointValueDecimals);
 		}
 		if (this.keyboardNavigation != null) {
 			params.put("keyboardNavigation", this.keyboardNavigation.getParams());
@@ -567,38 +627,17 @@ public HashMap<String, Object> getParams() {
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);
 		}
-		if (this.pointValueSuffix != null) {
-			params.put("pointValueSuffix", this.pointValueSuffix);
-		}
-		if (this.axisRangeDateFormat != null) {
-			params.put("axisRangeDateFormat", this.axisRangeDateFormat);
-		}
 		if (this.pointValuePrefix != null) {
 			params.put("pointValuePrefix", this.pointValuePrefix);
-		}
-		if (this.pointDescriptionFormatter != null) {
-			params.put("pointDescriptionFormatter", this.pointDescriptionFormatter);
-		}
-		if (this.pointDateFormat != null) {
-			params.put("pointDateFormat", this.pointDateFormat);
-		}
-		if (this.announceNewData != null) {
-			params.put("announceNewData", this.announceNewData.getParams());
-		}
-		if (this.pointDescriptionThreshold != null) {
-			params.put("pointDescriptionThreshold", this.pointDescriptionThreshold);
 		}
 		if (this.typeDescription != null) {
 			params.put("typeDescription", this.typeDescription);
 		}
-		if (this.describeSingleSeries != null) {
-			params.put("describeSingleSeries", this.describeSingleSeries);
+		if (this.onTableAnchorClick != null) {
+			params.put("onTableAnchorClick", this.onTableAnchorClick);
 		}
 		if (this.pointDateFormatter != null) {
 			params.put("pointDateFormatter", this.pointDateFormatter);
-		}
-		if (this.definition != null) {
-			params.put("definition", this.definition);
 		}
 		if (this.exposeAsGroupOnly != null) {
 			params.put("exposeAsGroupOnly", this.exposeAsGroupOnly);
@@ -641,6 +680,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.exporting != null) {
 			params.put("exporting", this.exporting.getParams());
+		}
+		if (this.credits != null) {
+			params.put("credits", this.credits);
 		}
 		if (this.legendItem != null) {
 			params.put("legendItem", this.legendItem);

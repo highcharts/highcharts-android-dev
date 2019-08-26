@@ -32,7 +32,7 @@ public class HIStackLabels extends HIFoundation {
 	private HICSSObject style;
 	/**
  CSS styles for the label. In styled mode, the styles are set in the .highcharts-stack-label class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-style/">Red stack total labels</a>
- <br><br><b>defaults:</b><br><br>&ensp;{"color": "#666666", "fontSize": "11px", "fontWeight": "bold", "textOutline": "1px contrast"}	*/
+	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
 		this.setChanged();
@@ -89,17 +89,29 @@ public class HIStackLabels extends HIFoundation {
 
 	public Boolean getEnabled(){ return enabled; }
 
-	private Boolean useHTML;
+	private Boolean crop;
 	/**
- Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the labels. 
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setUseHTML(Boolean useHTML) {
-		this.useHTML = useHTML;
+ Whether to hide stack labels that are outside the plot area. By defaults, the stack label is moved inside the plot area according to the `overflow` option. 
+	*/
+	public void setCrop(Boolean crop) {
+		this.crop = crop;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getUseHTML(){ return useHTML; }
+	public Boolean getCrop(){ return crop; }
+
+	private String textAlign;
+	/**
+ The text alignment for the label. While align determines where the texts anchor point is placed with regards to the stack, textAlign determines how the text is aligned against its anchor point. Possible values are "left", "center" and "right". The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-textalign-left/">Label in center position but text-aligned left</a>
+	*/
+	public void setTextAlign(String textAlign) {
+		this.textAlign = textAlign;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTextAlign(){ return textAlign; }
 
 	private Number y;
 	/**
@@ -125,17 +137,17 @@ public class HIStackLabels extends HIFoundation {
 
 	public Number getX(){ return x; }
 
-	private Number rotation;
+	private String overflow;
 	/**
- Rotation of the labels in degrees. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-rotation/">Labels rotated 45ĂÂ°</a>
- <br><br><b>defaults:</b><br><br>&ensp;0	*/
-	public void setRotation(Number rotation) {
-		this.rotation = rotation;
+ How to handle stack total labels that flow outside the plot area. The defaults is set to "justify", which aligns them inside the plot area. For columns and bars, this means it will be moved inside the bar. To display stack labels outside the plot area, set crop to false and overflow to "allow". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-overflow/">Stack labels flows outside the plot area.</a>
+	*/
+	public void setOverflow(String overflow) {
+		this.overflow = overflow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getRotation(){ return rotation; }
+	public String getOverflow(){ return overflow; }
 
 	private HIFunction formatter;
 	/**
@@ -149,17 +161,29 @@ public class HIStackLabels extends HIFoundation {
 
 	public HIFunction getFormatter(){ return formatter; }
 
-	private String textAlign;
+	private Number rotation;
 	/**
- The text alignment for the label. While align determines where the texts anchor point is placed with regards to the stack, textAlign determines how the text is aligned against its anchor point. Possible values are "left", "center" and "right". The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-textalign-left/">Label in center position but text-aligned left</a>
-	*/
-	public void setTextAlign(String textAlign) {
-		this.textAlign = textAlign;
+ Rotation of the labels in degrees. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-rotation/">Labels rotated 45ĂÂ°</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
+	public void setRotation(Number rotation) {
+		this.rotation = rotation;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getTextAlign(){ return textAlign; }
+	public Number getRotation(){ return rotation; }
+
+	private Boolean useHTML;
+	/**
+ Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the labels. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setUseHTML(Boolean useHTML) {
+		this.useHTML = useHTML;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getUseHTML(){ return useHTML; }
 
 
 
@@ -190,8 +214,11 @@ public HashMap<String, Object> getParams() {
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);
 		}
-		if (this.useHTML != null) {
-			params.put("useHTML", this.useHTML);
+		if (this.crop != null) {
+			params.put("crop", this.crop);
+		}
+		if (this.textAlign != null) {
+			params.put("textAlign", this.textAlign);
 		}
 		if (this.y != null) {
 			params.put("y", this.y);
@@ -199,14 +226,17 @@ public HashMap<String, Object> getParams() {
 		if (this.x != null) {
 			params.put("x", this.x);
 		}
-		if (this.rotation != null) {
-			params.put("rotation", this.rotation);
+		if (this.overflow != null) {
+			params.put("overflow", this.overflow);
 		}
 		if (this.formatter != null) {
 			params.put("formatter", this.formatter);
 		}
-		if (this.textAlign != null) {
-			params.put("textAlign", this.textAlign);
+		if (this.rotation != null) {
+			params.put("rotation", this.rotation);
+		}
+		if (this.useHTML != null) {
+			params.put("useHTML", this.useHTML);
 		}
 		return params;
 	}

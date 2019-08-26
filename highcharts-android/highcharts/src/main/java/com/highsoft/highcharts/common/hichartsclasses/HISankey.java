@@ -34,6 +34,18 @@ public class HISankey extends HISeries {
 
 	public Boolean getColorByPoint(){ return colorByPoint; }
 
+	private Number minLinkWidth;
+	/**
+ The minimal width for a line of a sankey. By defaults, 0 values are not shown. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-minlinkwidth">Sankey diagram with minimal link height</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
+	public void setMinLinkWidth(Number minLinkWidth) {
+		this.minLinkWidth = minLinkWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getMinLinkWidth(){ return minLinkWidth; }
+
 	private Number curveFactor;
 	/**
  Higher numbers makes the links in a sankey diagram or dependency wheelrender more curved. A curveFactor of 0 makes the lines straight. 
@@ -72,7 +84,7 @@ public class HISankey extends HISeries {
 
 	private ArrayList <HILevels> levels;
 	/**
- Set options on specific levels. Takes precedence over series options, but not point options. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/sunburst">Sunburst chart</a>
+ Set options on specific levels. Takes precedence over series options, but not node and link options. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/sunburst">Sunburst chart</a>
 	*/
 	public void setLevels(ArrayList levels) {
 		this.levels = levels;
@@ -106,18 +118,6 @@ public class HISankey extends HISeries {
 	}
 
 	public Number getLinkOpacity(){ return linkOpacity; }
-
-	private Number minPointLength;
-	/**
- The minimal height for a column or width for a bar. By defaults, 0 values are not shown. To visualize a 0 (or close to zero) point, set the minimal point length to a pixel value like 3\. In stacked column charts, minPointLength might not be respected for tightly packed values. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-minpointlength/">Zero base value</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-minpointlength-pos-and-neg/">Positive and negative close to zero values</a>
-	*/
-	public void setMinPointLength(Number minPointLength) {
-		this.minPointLength = minPointLength;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getMinPointLength(){ return minPointLength; }
 
 	private ArrayList<String> colors;
 	/**
@@ -170,6 +170,9 @@ public HashMap<String, Object> getParams() {
 		if (this.colorByPoint != null) {
 			params.put("colorByPoint", this.colorByPoint);
 		}
+		if (this.minLinkWidth != null) {
+			params.put("minLinkWidth", this.minLinkWidth);
+		}
 		if (this.curveFactor != null) {
 			params.put("curveFactor", this.curveFactor);
 		}
@@ -196,9 +199,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.linkOpacity != null) {
 			params.put("linkOpacity", this.linkOpacity);
-		}
-		if (this.minPointLength != null) {
-			params.put("minPointLength", this.minPointLength);
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();

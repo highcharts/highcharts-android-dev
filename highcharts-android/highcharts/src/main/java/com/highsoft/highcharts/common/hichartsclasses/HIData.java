@@ -666,6 +666,18 @@ public class HIData extends HIFoundation {
 
 	public HIColor getBorderColor(){ return borderColor; }
 
+	private String dashStyle;
+	/**
+ A name for the dash style to use for the column or bar. Overrides dashStyle on the series. In styled mode, the stroke dash-array can be set with the same classes as listed under data.color. 
+	*/
+	public void setDashStyle(String dashStyle) {
+		this.dashStyle = dashStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDashStyle(){ return dashStyle; }
+
 	private Number pointWidth;
 	/**
  A pixel value specifying a fixed width for the column or bar. Overrides pointWidth on the series. 
@@ -774,18 +786,6 @@ public class HIData extends HIFoundation {
 
 	public String getFrom(){ return from; }
 
-	private Number weight;
-	/**
- The weight of the link. 
-	*/
-	public void setWeight(Number weight) {
-		this.weight = weight;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getWeight(){ return weight; }
-
 	private Boolean gradientForSides;
 	/**
  By deafult sides fill is set to a gradient through this option being set to true. Set to false to get solid color for the sides. 
@@ -797,6 +797,18 @@ public class HIData extends HIFoundation {
 	}
 
 	public Boolean getGradientForSides(){ return gradientForSides; }
+
+	private Number weight;
+	/**
+ The weight of the link. 
+	*/
+	public void setWeight(Number weight) {
+		this.weight = weight;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getWeight(){ return weight; }
 
 	private Object /* Number, String */ innerRadius;
 	/**
@@ -1116,6 +1128,9 @@ public HashMap<String, Object> getParams() {
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
 		}
+		if (this.dashStyle != null) {
+			params.put("dashStyle", this.dashStyle);
+		}
 		if (this.pointWidth != null) {
 			params.put("pointWidth", this.pointWidth);
 		}
@@ -1143,11 +1158,11 @@ public HashMap<String, Object> getParams() {
 		if (this.from != null) {
 			params.put("from", this.from);
 		}
-		if (this.weight != null) {
-			params.put("weight", this.weight);
-		}
 		if (this.gradientForSides != null) {
 			params.put("gradientForSides", this.gradientForSides);
+		}
+		if (this.weight != null) {
+			params.put("weight", this.weight);
 		}
 		if (this.innerRadius != null) {
 			params.put("innerRadius", this.innerRadius);

@@ -17,14 +17,32 @@ import java.util.HashMap;
 
 public class HIDataLabels extends HIFoundation { 
 
-	private String verticalAlign;
-	public void setVerticalAlign(String verticalAlign) {
+	private Object y;
+	public void setY(Object y) {
+		this.y = y;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getY(){ return y; }
+
+	private Object align;
+	public void setAlign(Object align) {
+		this.align = align;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getAlign(){ return align; }
+
+	private Object verticalAlign;
+	public void setVerticalAlign(Object verticalAlign) {
 		this.verticalAlign = verticalAlign;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getVerticalAlign(){ return verticalAlign; }
+	public Object getVerticalAlign(){ return verticalAlign; }
 
 	private Boolean allowOverlap;
 	public void setAllowOverlap(Boolean allowOverlap) {
@@ -168,14 +186,23 @@ public class HIDataLabels extends HIFoundation {
 
 	public Number getDistance(){ return distance; }
 
-	private Number y;
-	public void setY(Number y) {
-		this.y = y;
+	private Number padding;
+	public void setPadding(Number padding) {
+		this.padding = padding;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getY(){ return y; }
+	public Number getPadding(){ return padding; }
+
+	private Number x;
+	public void setX(Number x) {
+		this.x = x;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getX(){ return x; }
 
 
 
@@ -188,6 +215,12 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.y != null) {
+			params.put("y", this.y);
+		}
+		if (this.align != null) {
+			params.put("align", this.align);
+		}
 		if (this.verticalAlign != null) {
 			params.put("verticalAlign", this.verticalAlign);
 		}
@@ -233,8 +266,11 @@ public HashMap<String, Object> getParams() {
 		if (this.distance != null) {
 			params.put("distance", this.distance);
 		}
-		if (this.y != null) {
-			params.put("y", this.y);
+		if (this.padding != null) {
+			params.put("padding", this.padding);
+		}
+		if (this.x != null) {
+			params.put("x", this.x);
 		}
 		return params;
 	}

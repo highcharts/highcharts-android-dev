@@ -16,7 +16,7 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-public class HISeriesPackedBubbleDataLabelsTextPath extends HIFoundation { 
+public class HISeriesPackedBubbleDataLabelsTextPathOptionsObject extends HIFoundation { 
 
 	private HISVGAttributes attributes;
 	/**
@@ -44,7 +44,7 @@ public class HISeriesPackedBubbleDataLabelsTextPath extends HIFoundation {
 
 
 
-	public HISeriesPackedBubbleDataLabelsTextPath() {
+	public HISeriesPackedBubbleDataLabelsTextPathOptionsObject() {
 
 	}
 

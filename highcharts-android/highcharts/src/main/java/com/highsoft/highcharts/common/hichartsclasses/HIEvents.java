@@ -89,6 +89,54 @@ public class HIEvents extends HIFoundation {
 
 	public HIFunction getAfterSetExtremes(){ return afterSetExtremes; }
 
+	private HIFunction mouseover;
+	/**
+ Mouse over event on a plot band. 
+	*/
+	public void setMouseover(HIFunction mouseover) {
+		this.mouseover = mouseover;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getMouseover(){ return mouseover; }
+
+	private HIFunction mouseout;
+	/**
+ Mouse out event on the corner of a plot band. 
+	*/
+	public void setMouseout(HIFunction mouseout) {
+		this.mouseout = mouseout;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getMouseout(){ return mouseout; }
+
+	private HIFunction click;
+	/**
+ Click event on a plot band. 
+	*/
+	public void setClick(HIFunction click) {
+		this.click = click;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getClick(){ return click; }
+
+	private HIFunction mousemove;
+	/**
+ Mouse move event on a plot band. 
+	*/
+	public void setMousemove(HIFunction mousemove) {
+		this.mousemove = mousemove;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getMousemove(){ return mousemove; }
+
 	private HIFunction load;
 	/**
  Fires when the chart is finished loading. Since v4.2.2, it also waits for images to be loaded, for example from point markers. One parameter, event, is passed to the function, containing common event information. There is also a second parameter to the chart constructor where a callback function can be passed to be executed on chart.load. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-load/">Alert on chart load</a>
@@ -196,18 +244,6 @@ public class HIEvents extends HIFoundation {
 	}
 
 	public HIFunction getRedraw(){ return redraw; }
-
-	private HIFunction click;
-	/**
- Fires when clicking on the plot background. One parameter, event, is passed to the function, containing common event information. Information on the clicked spot can be found through event.xAxis and event.yAxis, which are arrays containing the axes of each dimension and each axis' value at the clicked spot. The primary axes are event.xAxis[0] and event.yAxis[0]. Remember the unit of a datetime axis is milliseconds since 1970-01-01 00:00:00. click: function(e) {   console.log(     Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', e.xAxis[0].value),     e.yAxis[0].value   ) } <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-click/">Alert coordinates on click</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-container/">Alternatively, attach event to container</a>
-	*/
-	public void setClick(HIFunction click) {
-		this.click = click;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getClick(){ return click; }
 
 	private HIFunction afterPrint;
 	/**
@@ -490,6 +526,18 @@ public HashMap<String, Object> getParams() {
 		if (this.afterSetExtremes != null) {
 			params.put("afterSetExtremes", this.afterSetExtremes);
 		}
+		if (this.mouseover != null) {
+			params.put("mouseover", this.mouseover);
+		}
+		if (this.mouseout != null) {
+			params.put("mouseout", this.mouseout);
+		}
+		if (this.click != null) {
+			params.put("click", this.click);
+		}
+		if (this.mousemove != null) {
+			params.put("mousemove", this.mousemove);
+		}
 		if (this.load != null) {
 			params.put("load", this.load);
 		}
@@ -516,9 +564,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.redraw != null) {
 			params.put("redraw", this.redraw);
-		}
-		if (this.click != null) {
-			params.put("click", this.click);
 		}
 		if (this.afterPrint != null) {
 			params.put("afterPrint", this.afterPrint);

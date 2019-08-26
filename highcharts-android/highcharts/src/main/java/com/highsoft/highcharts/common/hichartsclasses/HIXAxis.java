@@ -23,6 +23,18 @@ import java.util.Map;
 
 public class HIXAxis extends HIFoundation { 
 
+	private Boolean zoomEnabled;
+	/**
+ Whether to zoom axis. If chart.zoomType is set, the option allows to disable zooming on an individual axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/zoomenabled/">Zoom enabled is false</a>
+ <br><br><b>defaults:</b><br><br>&ensp;enabled	*/
+	public void setZoomEnabled(Boolean zoomEnabled) {
+		this.zoomEnabled = zoomEnabled;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getZoomEnabled(){ return zoomEnabled; }
+
 	private HIColor minorTickColor;
 	/**
  Color for the minor tick marks. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minortickcolor/">Black tick marks on Y axis</a>
@@ -834,11 +846,6 @@ public class HIXAxis extends HIFoundation {
 	public Number getSoftMax(){ return softMax; }
 
 
-
-	public HIXAxis() {
-
-	}
-
 /**
  * Add a plot band after render time.
  * @param options A configuration object for the plot band, as defined in xAxis.plotBands.
@@ -1227,11 +1234,18 @@ public void update(HIXAxis options, boolean redraw) {
   this.notifyObservers(jsClassMethod);
 }
 
+	public HIXAxis() {
+
+	}
+
 	@Override
 public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.zoomEnabled != null) {
+			params.put("zoomEnabled", this.zoomEnabled);
+		}
 		if (this.minorTickColor != null) {
 			params.put("minorTickColor", this.minorTickColor.getData());
 		}

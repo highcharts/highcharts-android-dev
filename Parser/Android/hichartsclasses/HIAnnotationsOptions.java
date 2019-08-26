@@ -105,17 +105,17 @@ public class HIAnnotationsOptions extends HIFoundation {
 
 	public HILabelOptions getLabelOptions(){ return labelOptions; }
 
-	private String id;
+	private Object /* String, Number */ id;
 	/**
  Sets an ID for an annotation. Can be user later when removing an annotation in `Chart#removeAnnotation(id)` method. 
 	*/
-	public void setId(String id) {
+	public void setId(Object /* String, Number */ id) {
 		this.id = id;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getId(){ return id; }
+	public Object /* String, Number */ getId(){ return id; }
 
 	private String draggable;
 	/**

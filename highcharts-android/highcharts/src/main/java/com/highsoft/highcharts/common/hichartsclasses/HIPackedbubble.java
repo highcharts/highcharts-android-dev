@@ -19,7 +19,7 @@ import java.util.HashMap;
 public class HIPackedbubble extends HISeries {
 	private Object /* Number, String */ minSize;
 	/**
-/** * description: Minimum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the z value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height, divided by the square root of total number of points. * demo:  •  Bubble size
+/** * description: Minimum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height, divided by the square root of total number of points. * demo:  •  Bubble size
 */
 	public void setMinSize(Object /* Number, String */ minSize) {
 		this.minSize = minSize;
@@ -69,7 +69,7 @@ public class HIPackedbubble extends HISeries {
 
 	private Object /* Number, String */ maxSize;
 	/**
-/** * description: Maximum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the z value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height, divided by the square root of total number of points. * demo:  •  Bubble size
+/** * description: Maximum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height, divided by the square root of total number of points. * demo:  •  Bubble size
 */
 	public void setMaxSize(Object /* Number, String */ maxSize) {
 		this.maxSize = maxSize;

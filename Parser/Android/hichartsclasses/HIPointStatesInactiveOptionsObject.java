@@ -16,20 +16,23 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-public class HIItemCheckboxStyle extends HIFoundation { 
+public class HIPointStatesInactiveOptionsObject extends HIFoundation { 
 
-	private String height;
-	public void setHeight(String height) {
-		this.height = height;
+	private Number opacity;
+	/**
+ Opacity of inactive markers. 
+	*/
+	public void setOpacity(Number opacity) {
+		this.opacity = opacity;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getHeight(){ return height; }
+	public Number getOpacity(){ return opacity; }
 
 
 
-	public HIItemCheckboxStyle() {
+	public HIPointStatesInactiveOptionsObject() {
 
 	}
 
@@ -38,8 +41,8 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.height != null) {
-			params.put("height", this.height);
+		if (this.opacity != null) {
+			params.put("opacity", this.opacity);
 		}
 		return params;
 	}

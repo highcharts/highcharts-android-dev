@@ -16,35 +16,23 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-public class HIItems extends HIFoundation { 
+public class HIPointStatesNormalOptionsObject extends HIFoundation { 
 
-	private HICSSObject style;
+	private HIAnimationOptionsObject animation;
 	/**
- CSS styles for each label. To position the label, use left and top like this: style: {   left: '100px',   top: '100px' } 
+ Animation when returning to normal state after hovering. 
 	*/
-	public void setStyle(HICSSObject style) {
-		this.style = style;
+	public void setAnimation(HIAnimationOptionsObject animation) {
+		this.animation = animation;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HICSSObject getStyle(){ return style; }
-
-	private String html;
-	/**
- Inner HTML or text for the label. 
-	*/
-	public void setHtml(String html) {
-		this.html = html;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getHtml(){ return html; }
+	public HIAnimationOptionsObject getAnimation(){ return animation; }
 
 
 
-	public HIItems() {
+	public HIPointStatesNormalOptionsObject() {
 
 	}
 
@@ -53,11 +41,8 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.style != null) {
-			params.put("style", this.style.getParams());
-		}
-		if (this.html != null) {
-			params.put("html", this.html);
+		if (this.animation != null) {
+			params.put("animation", this.animation.getParams());
 		}
 		return params;
 	}

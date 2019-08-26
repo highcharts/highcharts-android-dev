@@ -166,8 +166,8 @@ public class HILevels extends HIFoundation {
 
 	private Boolean colorByPoint;
 	/**
- Can set colorByPoint on all points which lies on the same level. 
-	*/
+ Can set colorByPoint on all nodes which lay on the same level. 
+ <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setColorByPoint(Boolean colorByPoint) {
 		this.colorByPoint = colorByPoint;
 		this.setChanged();
@@ -176,22 +176,22 @@ public class HILevels extends HIFoundation {
 
 	public Boolean getColorByPoint(){ return colorByPoint; }
 
-	private Object states;
+	private HIPointStatesOptionsObject states;
 	/**
- Can set states on all points which lies on the same level. 
+ Can set states on all nodes and points which lay on the same level. 
 	*/
-	public void setStates(Object states) {
+	public void setStates(HIPointStatesOptionsObject states) {
 		this.states = states;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getStates(){ return states; }
+	public HIPointStatesOptionsObject getStates(){ return states; }
 
 	private Number linkOpacity;
 	/**
- Can set linkOpacity on all points which lies on the same level. 
-	*/
+ Can set linkOpacity on all points which lay on the same level. 
+ <br><br><b>defaults:</b><br><br>&ensp;0.5	*/
 	public void setLinkOpacity(Number linkOpacity) {
 		this.linkOpacity = linkOpacity;
 		this.setChanged();
@@ -251,7 +251,7 @@ public HashMap<String, Object> getParams() {
 			params.put("colorByPoint", this.colorByPoint);
 		}
 		if (this.states != null) {
-			params.put("states", this.states);
+			params.put("states", this.states.getParams());
 		}
 		if (this.linkOpacity != null) {
 			params.put("linkOpacity", this.linkOpacity);

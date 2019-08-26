@@ -94,17 +94,17 @@ public class HIItem extends HISeries {
 
 	public Number getStartAngle(){ return startAngle; }
 
-	private Number minSize;
+	private Object /* Number, String */ minSize;
 	/**
  The minimum size for a pie in response to auto margins. The pie will try to shrink to make room for data labels in side the plot area, but only to this size. 
  <br><br><b>defaults:</b><br><br>&ensp;80	*/
-	public void setMinSize(Number minSize) {
+	public void setMinSize(Object /* Number, String */ minSize) {
 		this.minSize = minSize;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getMinSize(){ return minSize; }
+	public Object /* Number, String */ getMinSize(){ return minSize; }
 
 	private ArrayList /* <Number, String> */ center;
 	/**

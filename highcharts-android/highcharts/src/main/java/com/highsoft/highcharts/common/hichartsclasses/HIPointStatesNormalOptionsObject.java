@@ -14,20 +14,23 @@ import java.util.HashMap;
 
 
 
-public class HIItemCheckboxStyle extends HIFoundation { 
+public class HIPointStatesNormalOptionsObject extends HIFoundation { 
 
-	private String height;
-	public void setHeight(String height) {
-		this.height = height;
+	private HIAnimationOptionsObject animation;
+	/**
+ Animation when returning to normal state after hovering. 
+	*/
+	public void setAnimation(HIAnimationOptionsObject animation) {
+		this.animation = animation;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getHeight(){ return height; }
+	public HIAnimationOptionsObject getAnimation(){ return animation; }
 
 
 
-	public HIItemCheckboxStyle() {
+	public HIPointStatesNormalOptionsObject() {
 
 	}
 
@@ -36,8 +39,8 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.height != null) {
-			params.put("height", this.height);
+		if (this.animation != null) {
+			params.put("animation", this.animation.getParams());
 		}
 		return params;
 	}

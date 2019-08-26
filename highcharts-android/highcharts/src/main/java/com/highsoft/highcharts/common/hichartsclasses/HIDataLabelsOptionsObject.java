@@ -54,17 +54,17 @@ public class HIDataLabelsOptionsObject extends HIFoundation {
 
 	public HIColor getBackgroundColor(){ return backgroundColor; }
 
-	private String borderColor;
+	private HIColor borderColor;
 	/**
  The border color for the data label. Defaults to `undefined`. 
 	*/
-	public void setBorderColor(String borderColor) {
+	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getBorderColor(){ return borderColor; }
+	public HIColor getBorderColor(){ return borderColor; }
 
 	private Number borderRadius;
 	/**
@@ -102,17 +102,17 @@ public class HIDataLabelsOptionsObject extends HIFoundation {
 
 	public String getClassName(){ return className; }
 
-	private String color;
+	private HIColor color;
 	/**
  The text color for the data labels. Defaults to `undefined`. For certain series types, like column or map, the data labels can be drawn inside the points. In this case the data label will be drawn with maximum contrast by defaults. Additionally, it will be given a `text-outline` style with the opposite color, to further increase the contrast. This can be overridden by setting the `text-outline` style to `none` in the `dataLabels.style` option. 
 	*/
-	public void setColor(String color) {
+	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getColor(){ return color; }
+	public HIColor getColor(){ return color; }
 
 	private Boolean crop;
 	/**
@@ -294,17 +294,17 @@ public class HIDataLabelsOptionsObject extends HIFoundation {
 
 	public HICSSObject getStyle(){ return style; }
 
-	private HIDataLabelsTextPath textPath;
+	private HIDataLabelsTextPathOptionsObject textPath;
 	/**
  Options for a label text which should follow marker's shape. Border and background are disabled for a label that follows a path. **Note:** Only SVG-based renderer supports this option. Setting `useHTML` to true will disable this option. 
 	*/
-	public void setTextPath(HIDataLabelsTextPath textPath) {
+	public void setTextPath(HIDataLabelsTextPathOptionsObject textPath) {
 		this.textPath = textPath;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIDataLabelsTextPath getTextPath(){ return textPath; }
+	public HIDataLabelsTextPathOptionsObject getTextPath(){ return textPath; }
 
 	private Boolean useHTML;
 	/**
@@ -387,7 +387,7 @@ public HashMap<String, Object> getParams() {
 			params.put("backgroundColor", this.backgroundColor.getData());
 		}
 		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor);
+			params.put("borderColor", this.borderColor.getData());
 		}
 		if (this.borderRadius != null) {
 			params.put("borderRadius", this.borderRadius);
@@ -399,7 +399,7 @@ public HashMap<String, Object> getParams() {
 			params.put("className", this.className);
 		}
 		if (this.color != null) {
-			params.put("color", this.color);
+			params.put("color", this.color.getData());
 		}
 		if (this.crop != null) {
 			params.put("crop", this.crop);

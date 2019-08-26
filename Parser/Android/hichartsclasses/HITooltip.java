@@ -308,17 +308,17 @@ public class HITooltip extends HIFoundation {
 
 	public Number getPadding(){ return padding; }
 
-	private Boolean shadow;
+	private Boolean /* boolean */ shadow;
 	/**
  Whether to apply a drop shadow to the tooltip. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/bordercolor-defaults/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/shadow/">False</a>
 	*/
-	public void setShadow(Boolean shadow) {
+	public void setShadow(Boolean /* boolean */ shadow) {
 		this.shadow = shadow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getShadow(){ return shadow; }
+	public Boolean /* boolean */ getShadow(){ return shadow; }
 
 	private Boolean enabled;
 	/**
@@ -355,6 +355,18 @@ public class HITooltip extends HIFoundation {
 	}
 
 	public HIFunction getPointFormatter(){ return pointFormatter; }
+
+	private String className;
+	/**
+ A CSS class name to apply to the tooltip's container div, allowing unique CSS styling for each chart. 
+	*/
+	public void setClassName(String className) {
+		this.className = className;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getClassName(){ return className; }
 
 	private Number borderWidth;
 	/**
@@ -528,6 +540,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.pointFormatter != null) {
 			params.put("pointFormatter", this.pointFormatter);
+		}
+		if (this.className != null) {
+			params.put("className", this.className);
 		}
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);

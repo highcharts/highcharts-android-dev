@@ -16,7 +16,7 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-public class HIDataLabelsTextPath extends HIFoundation { 
+public class HIDataLabelsTextPathOptionsObject extends HIFoundation { 
 
 	private HISVGAttributes attributes;
 	/**
@@ -44,7 +44,7 @@ public class HIDataLabelsTextPath extends HIFoundation {
 
 
 
-	public HIDataLabelsTextPath() {
+	public HIDataLabelsTextPathOptionsObject() {
 
 	}
 

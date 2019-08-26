@@ -43,6 +43,24 @@ public class HIStyle extends HIFoundation {
 
 	public String getFontSize(){ return fontSize; }
 
+	private String color;
+	public void setColor(String color) {
+		this.color = color;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getColor(){ return color; }
+
+	private String cursor;
+	public void setCursor(String cursor) {
+		this.cursor = cursor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getCursor(){ return cursor; }
+
 	private String stroke;
 	public void setStroke(String stroke) {
 		this.stroke = stroke;
@@ -89,6 +107,12 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.fontSize != null) {
 			params.put("fontSize", this.fontSize);
+		}
+		if (this.color != null) {
+			params.put("color", this.color);
+		}
+		if (this.cursor != null) {
+			params.put("cursor", this.cursor);
 		}
 		if (this.stroke != null) {
 			params.put("stroke", this.stroke);

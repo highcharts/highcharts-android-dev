@@ -21,11 +21,11 @@ import java.util.Map;
 
 
 
-public class HIYAxis extends HIFoundation {
+public class HIYAxis extends HIFoundation { 
 
 	private Number minPadding;
 	/**
-/** * description: Padding of the min value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the lowest data value to appear on the edge of the plot area. When the axis' min option is set or a max extreme is set using axis.setExtremes(), the maxPadding will be ignored. * demo:  •  Min padding of 0.2
+/** * description: Padding of the min value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the lowest data value to appear on the edge of the plot area. When the axis' min option is set or a max extreme is set using axis.setExtremes(), the maxPadding will be ignored. Also the softThreshold option takes precedence over minPadding, so if the data is tangent to the threshold, minPadding may not apply unless softThreshold is set to false. * demo:  •  Min padding of 0.2
 * defaults: 0.01
 */
 	public void setMinPadding(Number minPadding) {
@@ -38,7 +38,7 @@ public class HIYAxis extends HIFoundation {
 
 	private HILabels labels;
 	/**
-/** * description: The axis labels show the number or category for each tick.
+/** * description: The axis labels show the number or category for each tick. 
 */
 	public void setLabels(HILabels labels) {
 		this.labels = labels;
@@ -99,7 +99,7 @@ public class HIYAxis extends HIFoundation {
 
 	private ArrayList <HIPlotBands> plotBands;
 	/**
-/** * description: An array of objects defining plot bands on the Y axis.
+/** * description: An array of objects defining plot bands on the Y axis. 
 */
 	public void setPlotBands(ArrayList plotBands) {
 		this.plotBands = plotBands;
@@ -235,7 +235,7 @@ public class HIYAxis extends HIFoundation {
 
 	private ArrayList <HIPlotLines> plotLines;
 	/**
-/** * description: An array of objects representing plot lines on the X axis
+/** * description: An array of objects representing plot lines on the X axis 
 */
 	public void setPlotLines(ArrayList plotLines) {
 		this.plotLines = plotLines;
@@ -322,7 +322,7 @@ public class HIYAxis extends HIFoundation {
 
 	private HIStackLabels stackLabels;
 	/**
- The stack labels show the total value for each bar in a stacked column or bar chart. The label will be placed on top of positive columns and below negative columns. In case of an inverted column chart or a bar chart the label is placed to the right of positive bars and to the left of negative bars.
+ The stack labels show the total value for each bar in a stacked column or bar chart. The label will be placed on top of positive columns and below negative columns. In case of an inverted column chart or a bar chart the label is placed to the right of positive bars and to the left of negative bars. 
 	*/
 	public void setStackLabels(HIStackLabels stackLabels) {
 		this.stackLabels = stackLabels;
@@ -335,7 +335,7 @@ public class HIYAxis extends HIFoundation {
 
 	private Number maxPadding;
 	/**
-/** * description: Padding of the max value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the highest data value to appear on the edge of the plot area. When the axis' max option is set or a max extreme is set using axis.setExtremes(), the maxPadding will be ignored. * demo:  •  Max padding of 0.2
+/** * description: Padding of the max value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the highest data value to appear on the edge of the plot area. When the axis' max option is set or a max extreme is set using axis.setExtremes(), the maxPadding will be ignored. Also the softThreshold option takes precedence over maxPadding, so if the data is tangent to the threshold, maxPadding may not apply unless softThreshold is set to false. * demo:  •  Max padding of 0.2
 * defaults: 0.01
 */
 	public void setMaxPadding(Number maxPadding) {
@@ -361,7 +361,7 @@ public class HIYAxis extends HIFoundation {
 
 	private HITitle title;
 	/**
-/** * description: The axis title, showing next to the axis line.
+/** * description: The axis title, showing next to the axis line. 
 */
 	public void setTitle(HITitle title) {
 		this.title = title;
@@ -384,6 +384,18 @@ public class HIYAxis extends HIFoundation {
 	}
 
 	public Number getLineWidth(){ return lineWidth; }
+
+	private Boolean zoomEnabled;
+	/**
+ Whether to zoom axis. If chart.zoomType is set, the option allows to disable zooming on an individual axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/zoomenabled/">Zoom enabled is false</a>
+ <br><br><b>defaults:</b><br><br>&ensp;enabled	*/
+	public void setZoomEnabled(Boolean zoomEnabled) {
+		this.zoomEnabled = zoomEnabled;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getZoomEnabled(){ return zoomEnabled; }
 
 	private HIColor minorTickColor;
 	/**
@@ -423,7 +435,7 @@ public class HIYAxis extends HIFoundation {
 
 	private HIAccessibility accessibility;
 	/**
- Accessibility options for an axis. Requires the accessibility module.
+ Accessibility options for an axis. Requires the accessibility module. 
 	*/
 	public void setAccessibility(HIAccessibility accessibility) {
 		this.accessibility = accessibility;
@@ -436,7 +448,7 @@ public class HIYAxis extends HIFoundation {
 
 	private Boolean visible;
 	/**
- Whether axis, including axis title, line, ticks and labels, should be visible.
+ Whether axis, including axis title, line, ticks and labels, should be visible. 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
@@ -448,7 +460,7 @@ public class HIYAxis extends HIFoundation {
 
 	private Boolean alignTicks;
 	/**
- When using multiple axis, the ticks of two or more opposite axes will automatically be aligned by adding ticks to the axis or axes with the least ticks, as if tickAmount were specified. This can be prevented by setting alignTicks to false. If the grid lines look messy, it's a good idea to hide them for the secondary axis by setting gridLineWidth to 0. If startOnTick or endOnTick in an Axis options are set to false, then the alignTicks will be disabled for the Axis. Disabled for logarithmic axes.
+ When using multiple axis, the ticks of two or more opposite axes will automatically be aligned by adding ticks to the axis or axes with the least ticks, as if tickAmount were specified. This can be prevented by setting alignTicks to false. If the grid lines look messy, it's a good idea to hide them for the secondary axis by setting gridLineWidth to 0. If startOnTick or endOnTick in an Axis options are set to false, then the alignTicks will be disabled for the Axis. Disabled for logarithmic axes. 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setAlignTicks(Boolean alignTicks) {
 		this.alignTicks = alignTicks;
@@ -460,7 +472,7 @@ public class HIYAxis extends HIFoundation {
 
 	private Number minTickInterval;
 	/**
- The minimum tick interval allowed in axis values. For example on zooming in on an axis with daily data, this can be used to prevent the axis from showing hours. Defaults to the closest distance between two points on the axis.
+ The minimum tick interval allowed in axis values. For example on zooming in on an axis with daily data, this can be used to prevent the axis from showing hours. Defaults to the closest distance between two points on the axis. 
 	*/
 	public void setMinTickInterval(Number minTickInterval) {
 		this.minTickInterval = minTickInterval;
@@ -616,7 +628,7 @@ public class HIYAxis extends HIFoundation {
 
 	private ArrayList<ArrayList> units;
 	/**
- Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the second value another array of allowed multiples. Defaults to: units: [[   'millisecond', // unit name   [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples ], [   'second',   [1, 2, 5, 10, 15, 30] ], [   'minute',   [1, 2, 5, 10, 15, 30] ], [   'hour',   [1, 2, 3, 4, 6, 8, 12] ], [   'day',   [1] ], [   'week',   [1] ], [   'month',   [1, 3, 6] ], [   'year',   null ]]
+ Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the second value another array of allowed multiples. Defaults to: units: [[   'millisecond', // unit name   [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples ], [   'second',   [1, 2, 5, 10, 15, 30] ], [   'minute',   [1, 2, 5, 10, 15, 30] ], [   'hour',   [1, 2, 3, 4, 6, 8, 12] ], [   'day',   [1] ], [   'week',   [1] ], [   'month',   [1, 3, 6] ], [   'year',   null ]] 
 	*/
 	public void setUnits(ArrayList<ArrayList> units) {
 		this.units = units;
@@ -628,7 +640,7 @@ public class HIYAxis extends HIFoundation {
 
 	private HIEvents events;
 	/**
- Event handlers for the axis.
+ Event handlers for the axis. 
 	*/
 	public void setEvents(HIEvents events) {
 		this.events = events;
@@ -919,7 +931,7 @@ public class HIYAxis extends HIFoundation {
 
 	private Number margin;
 	/**
- If there are multiple axes on the same side of the chart, the pixel margin between the axes. Defaults to 0 on vertical axes, 15 on horizontal axes.
+ If there are multiple axes on the same side of the chart, the pixel margin between the axes. Defaults to 0 on vertical axes, 15 on horizontal axes. 
 	*/
 	public void setMargin(Number margin) {
 		this.margin = margin;
@@ -928,12 +940,6 @@ public class HIYAxis extends HIFoundation {
 	}
 
 	public Number getMargin(){ return margin; }
-
-
-
-	public HIYAxis() {
-
-	}
 
 /**
  * Add a plot band after render time.
@@ -1290,7 +1296,7 @@ public void setAxisTitle(HITitle title, boolean redraw) {
  * Translate a pixel position along the axis to a value in terms of axis units.
  * @param options The new options that will be merged in with existing options on the axis.
  */
-public void update(HIXAxis options) {
+public void update(HIYAxis options) {
   Map<String, Object> params = options.getParams();
   params.remove("_wrapperID");
   this.jsClassMethod = new HashMap<String, Object>() {{
@@ -1309,7 +1315,7 @@ public void update(HIXAxis options) {
  * @param options The new options that will be merged in with existing options on the axis.
  * @param redraw Whether to redraw the chart after the axis is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call redraw() on HIChartView after.
  */
-public void update(HIXAxis options, boolean redraw) {
+public void update(HIYAxis options, boolean redraw) {
   Map<String, Object> params = options.getParams();
   params.remove("_wrapperID");
   this.jsClassMethod = new HashMap<String, Object>() {{
@@ -1322,6 +1328,11 @@ public void update(HIXAxis options, boolean redraw) {
   this.setChanged();
   this.notifyObservers(jsClassMethod);
 }
+
+
+	public HIYAxis() {
+
+	}
 
 	@Override
 public HashMap<String, Object> getParams() {
@@ -1441,6 +1452,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.lineWidth != null) {
 			params.put("lineWidth", this.lineWidth);
+		}
+		if (this.zoomEnabled != null) {
+			params.put("zoomEnabled", this.zoomEnabled);
 		}
 		if (this.minorTickColor != null) {
 			params.put("minorTickColor", this.minorTickColor.getData());

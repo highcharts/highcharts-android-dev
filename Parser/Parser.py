@@ -346,7 +346,14 @@ hc_types = {
         "string|Highcharts.GradientColorObject|Highcharts.PatternObject|undefined": 'HIColor',
         "boolean|Highcharts.ShadowOptionsObject|undefined": 'HIShadowOptionsObject',
         "boolean|Highcharts.AnimationOptionsObject|undefined": 'HIAnimationOptionsObject',
-        "string|Highcharts.SVGAttributes": 'HISVGAttributes'
+        "string|Highcharts.SVGAttributes": 'HISVGAttributes',
+        #7.1.3
+        "Array.<Array.<number|string|null>>": 'ArrayList<ArrayList>',
+        "Highcharts.FormatterCallbackFunction.<(Point|Series)>": 'HIFunction',
+        "Array.<(number|string|null), (number|string|null)>": 'ArrayList /* <Number, String> */',
+        "Highcharts.EventCallbackFunction.<Highcharts.PlotLineOrBand>": 'HIFunction',
+        "Highcharts.FormatterCallbackFunction.<Highcharts.PlotLineOrBand>": 'HIFunction',
+        "string|null|undefined": 'String'
 }
 
 

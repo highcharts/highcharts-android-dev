@@ -42,18 +42,17 @@ public class HINavigation extends HIFoundation {
 
 	public HIButtonOptions getButtonOptions(){ return buttonOptions; }
 
-	private HIAnnotationsOptions annotationsOptions;
+	private Object iconsURL;
 	/**
- Additional options to be merged into all annotations. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/stock/stocktools/navigation-annotation-options">Set red color of all line annotations</a>
+ Path where Highcharts will look for icons. Change this to use icons from a different server. 
 	*/
-	public void setAnnotationsOptions(HIAnnotationsOptions annotationsOptions) {
-		this.annotationsOptions = annotationsOptions;
-		this.annotationsOptions.addObserver(updateObserver);
+	public void setIconsURL(Object iconsURL) {
+		this.iconsURL = iconsURL;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIAnnotationsOptions getAnnotationsOptions(){ return annotationsOptions; }
+	public Object getIconsURL(){ return iconsURL; }
 
 	private String bindingsClassName;
 	/**
@@ -67,17 +66,18 @@ public class HINavigation extends HIFoundation {
 
 	public String getBindingsClassName(){ return bindingsClassName; }
 
-	private HICSSObject menuItemHoverStyle;
+	private HIAnnotationsOptions annotationsOptions;
 	/**
- CSS styles for the hover state of the individual items within the popup menu appearing by defaults when the export icon is clicked. The menu items are rendered in HTML. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/menuitemhoverstyle/">Bold text on hover</a>
- <br><br><b>defaults:</b><br><br>&ensp;{"background": "#335cad", "color": "#ffffff"}	*/
-	public void setMenuItemHoverStyle(HICSSObject menuItemHoverStyle) {
-		this.menuItemHoverStyle = menuItemHoverStyle;
+ Additional options to be merged into all annotations. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/stock/stocktools/navigation-annotation-options">Set red color of all line annotations</a>
+	*/
+	public void setAnnotationsOptions(HIAnnotationsOptions annotationsOptions) {
+		this.annotationsOptions = annotationsOptions;
+		this.annotationsOptions.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HICSSObject getMenuItemHoverStyle(){ return menuItemHoverStyle; }
+	public HIAnnotationsOptions getAnnotationsOptions(){ return annotationsOptions; }
 
 	private HICSSObject menuItemStyle;
 	/**
@@ -103,6 +103,18 @@ public class HINavigation extends HIFoundation {
 	}
 
 	public HIBindings getBindings(){ return bindings; }
+
+	private HICSSObject menuItemHoverStyle;
+	/**
+ CSS styles for the hover state of the individual items within the popup menu appearing by defaults when the export icon is clicked. The menu items are rendered in HTML. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/menuitemhoverstyle/">Bold text on hover</a>
+ <br><br><b>defaults:</b><br><br>&ensp;{"background": "#335cad", "color": "#ffffff"}	*/
+	public void setMenuItemHoverStyle(HICSSObject menuItemHoverStyle) {
+		this.menuItemHoverStyle = menuItemHoverStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HICSSObject getMenuItemHoverStyle(){ return menuItemHoverStyle; }
 
 	private HIEvents events;
 	/**
@@ -219,20 +231,22 @@ public HashMap<String, Object> getParams() {
 		if (this.buttonOptions != null) {
 			params.put("buttonOptions", this.buttonOptions.getParams());
 		}
-		if (this.annotationsOptions != null) {
-			params.put("annotationsOptions", this.annotationsOptions.getParams());
+		if (this.iconsURL != null) {
 		}
 		if (this.bindingsClassName != null) {
 			params.put("bindingsClassName", this.bindingsClassName);
 		}
-		if (this.menuItemHoverStyle != null) {
-			params.put("menuItemHoverStyle", this.menuItemHoverStyle.getParams());
+		if (this.annotationsOptions != null) {
+			params.put("annotationsOptions", this.annotationsOptions.getParams());
 		}
 		if (this.menuItemStyle != null) {
 			params.put("menuItemStyle", this.menuItemStyle.getParams());
 		}
 		if (this.bindings != null) {
 			params.put("bindings", this.bindings.getParams());
+		}
+		if (this.menuItemHoverStyle != null) {
+			params.put("menuItemHoverStyle", this.menuItemHoverStyle.getParams());
 		}
 		if (this.events != null) {
 			params.put("events", this.events.getParams());

@@ -42,7 +42,7 @@ public class HIRotation extends HIFoundation {
 
 	private Number orientations;
 	/**
- The number of possible orientations for a word, within the range of rotation.from and rotation.to. 
+ The number of possible orientations for a word, within the range of rotation.from and rotation.to. Must be a number larger than 0. 
 	*/
 	public void setOrientations(Number orientations) {
 		this.orientations = orientations;

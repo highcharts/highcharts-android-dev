@@ -8,6 +8,7 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.core.HIFoundation;
 
 import java.util.HashMap;
@@ -28,17 +29,17 @@ public class HISeriesPieDataLabelsOptionsObject extends HIFoundation {
 
 	public String getAlignTo(){ return alignTo; }
 
-	private String connectorColor;
+	private HIColor connectorColor;
 	/**
  The color of the line connecting the data label to the pie slice. The defaults color is the same as the point's color. In styled mode, the connector stroke is given in the `.highcharts-data-label-connector` class. 
 	*/
-	public void setConnectorColor(String connectorColor) {
+	public void setConnectorColor(HIColor connectorColor) {
 		this.connectorColor = connectorColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getConnectorColor(){ return connectorColor; }
+	public HIColor getConnectorColor(){ return connectorColor; }
 
 	private Number connectorPadding;
 	/**
@@ -100,17 +101,17 @@ public class HISeriesPieDataLabelsOptionsObject extends HIFoundation {
 
 	public Number getDistance(){ return distance; }
 
-	private Number softConnector;
+	private Boolean softConnector;
 	/**
  Whether to render the connector as a soft arc or a line with sharp break. Works only if `connectorShape` equals to `fixedOffset`. 
 	*/
-	public void setSoftConnector(Number softConnector) {
+	public void setSoftConnector(Boolean softConnector) {
 		this.softConnector = softConnector;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getSoftConnector(){ return softConnector; }
+	public Boolean getSoftConnector(){ return softConnector; }
 
 
 
@@ -127,7 +128,7 @@ public HashMap<String, Object> getParams() {
 			params.put("alignTo", this.alignTo);
 		}
 		if (this.connectorColor != null) {
-			params.put("connectorColor", this.connectorColor);
+			params.put("connectorColor", this.connectorColor.getData());
 		}
 		if (this.connectorPadding != null) {
 			params.put("connectorPadding", this.connectorPadding);

@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 
 
-public class HISeriesPackedBubbleDataLabelsTextPath extends HIFoundation { 
+public class HIDataLabelsTextPathOptionsObject extends HIFoundation { 
 
 	private HISVGAttributes attributes;
 	/**
@@ -42,7 +42,7 @@ public class HISeriesPackedBubbleDataLabelsTextPath extends HIFoundation {
 
 
 
-	public HISeriesPackedBubbleDataLabelsTextPath() {
+	public HIDataLabelsTextPathOptionsObject() {
 
 	}
 

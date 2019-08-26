@@ -9,6 +9,7 @@
 package com.highsoft.highcharts.common.hichartsclasses;
 
 import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.core.HIFunction;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,17 +66,17 @@ public class HILabel extends HIFoundation {
 
 	public String getAlign(){ return align; }
 
-	private String textAlign;
+	private Boolean useHTML;
 	/**
- The text alignment for the label. While align determines where the texts anchor point is placed within the plot band, textAlign determines how the text is aligned against its anchor point. Possible values are "left", "center" and "right". Defaults to the same as the align option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-textalign/">Text label in bottom position</a>
-	*/
-	public void setTextAlign(String textAlign) {
-		this.textAlign = textAlign;
+ Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the labels. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setUseHTML(Boolean useHTML) {
+		this.useHTML = useHTML;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getTextAlign(){ return textAlign; }
+	public Boolean getUseHTML(){ return useHTML; }
 
 	private Number y;
 	/**
@@ -113,17 +114,29 @@ public class HILabel extends HIFoundation {
 
 	public Number getRotation(){ return rotation; }
 
-	private Boolean useHTML;
+	private HIFunction formatter;
 	/**
- Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the labels. 
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setUseHTML(Boolean useHTML) {
-		this.useHTML = useHTML;
+ Callback JavaScript function to format the label. Useful properties like the value of plot line or the range of plot band (from & to properties) can be found in this.options object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-plotbands-label-formatter">Label formatters for plot line and plot band.</a>
+	*/
+	public void setFormatter(HIFunction formatter) {
+		this.formatter = formatter;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getUseHTML(){ return useHTML; }
+	public HIFunction getFormatter(){ return formatter; }
+
+	private String textAlign;
+	/**
+ The text alignment for the label. While align determines where the texts anchor point is placed within the plot band, textAlign determines how the text is aligned against its anchor point. Possible values are "left", "center" and "right". Defaults to the same as the align option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-textalign/">Text label in bottom position</a>
+	*/
+	public void setTextAlign(String textAlign) {
+		this.textAlign = textAlign;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTextAlign(){ return textAlign; }
 
 	private Number minFontSize;
 	/**
@@ -232,8 +245,8 @@ public HashMap<String, Object> getParams() {
 		if (this.align != null) {
 			params.put("align", this.align);
 		}
-		if (this.textAlign != null) {
-			params.put("textAlign", this.textAlign);
+		if (this.useHTML != null) {
+			params.put("useHTML", this.useHTML);
 		}
 		if (this.y != null) {
 			params.put("y", this.y);
@@ -244,8 +257,11 @@ public HashMap<String, Object> getParams() {
 		if (this.rotation != null) {
 			params.put("rotation", this.rotation);
 		}
-		if (this.useHTML != null) {
-			params.put("useHTML", this.useHTML);
+		if (this.formatter != null) {
+			params.put("formatter", this.formatter);
+		}
+		if (this.textAlign != null) {
+			params.put("textAlign", this.textAlign);
 		}
 		if (this.minFontSize != null) {
 			params.put("minFontSize", this.minFontSize);

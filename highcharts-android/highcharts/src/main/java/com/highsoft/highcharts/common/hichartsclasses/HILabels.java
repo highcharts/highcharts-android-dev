@@ -121,7 +121,7 @@ public class HILabels extends HIFoundation {
 	private HICSSObject style;
 	/**
  CSS styles for the label. Use whiteSpace: 'nowrap' to prevent wrapping of category labels. Use textOverflow: 'none' to prevent ellipsis (dots). In styled mode, the labels are styled with the .highcharts-axis-labels class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-style/">Red X axis labels</a>
- <br><br><b>defaults:</b><br><br>&ensp;{"color": "#666666", "cursor": "default", "fontSize": "11px"}	*/
+	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
 		this.setChanged();

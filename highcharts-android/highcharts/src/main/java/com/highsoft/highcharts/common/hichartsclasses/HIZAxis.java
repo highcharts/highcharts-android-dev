@@ -21,7 +21,19 @@ import java.util.Map;
 
 
 
-public class HIZAxis extends HIFoundation {
+public class HIZAxis extends HIFoundation { 
+
+	private Boolean zoomEnabled;
+	/**
+ Whether to zoom axis. If chart.zoomType is set, the option allows to disable zooming on an individual axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/zoomenabled/">Zoom enabled is false</a>
+ <br><br><b>defaults:</b><br><br>&ensp;enabled	*/
+	public void setZoomEnabled(Boolean zoomEnabled) {
+		this.zoomEnabled = zoomEnabled;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getZoomEnabled(){ return zoomEnabled; }
 
 	private HIColor minorTickColor;
 	/**
@@ -61,7 +73,7 @@ public class HIZAxis extends HIFoundation {
 
 	private HILabels labels;
 	/**
- The axis labels show the number or category for each tick.
+ The axis labels show the number or category for each tick. 
 	*/
 	public void setLabels(HILabels labels) {
 		this.labels = labels;
@@ -86,7 +98,7 @@ public class HIZAxis extends HIFoundation {
 
 	private HIAccessibility accessibility;
 	/**
- Accessibility options for an axis. Requires the accessibility module.
+ Accessibility options for an axis. Requires the accessibility module. 
 	*/
 	public void setAccessibility(HIAccessibility accessibility) {
 		this.accessibility = accessibility;
@@ -99,7 +111,7 @@ public class HIZAxis extends HIFoundation {
 
 	private Boolean visible;
 	/**
- Whether axis, including axis title, line, ticks and labels, should be visible.
+ Whether axis, including axis title, line, ticks and labels, should be visible. 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
@@ -111,7 +123,7 @@ public class HIZAxis extends HIFoundation {
 
 	private Boolean alignTicks;
 	/**
- When using multiple axis, the ticks of two or more opposite axes will automatically be aligned by adding ticks to the axis or axes with the least ticks, as if tickAmount were specified. This can be prevented by setting alignTicks to false. If the grid lines look messy, it's a good idea to hide them for the secondary axis by setting gridLineWidth to 0. If startOnTick or endOnTick in an Axis options are set to false, then the alignTicks will be disabled for the Axis. Disabled for logarithmic axes.
+ When using multiple axis, the ticks of two or more opposite axes will automatically be aligned by adding ticks to the axis or axes with the least ticks, as if tickAmount were specified. This can be prevented by setting alignTicks to false. If the grid lines look messy, it's a good idea to hide them for the secondary axis by setting gridLineWidth to 0. If startOnTick or endOnTick in an Axis options are set to false, then the alignTicks will be disabled for the Axis. Disabled for logarithmic axes. 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setAlignTicks(Boolean alignTicks) {
 		this.alignTicks = alignTicks;
@@ -123,7 +135,7 @@ public class HIZAxis extends HIFoundation {
 
 	private Number minTickInterval;
 	/**
- The minimum tick interval allowed in axis values. For example on zooming in on an axis with daily data, this can be used to prevent the axis from showing hours. Defaults to the closest distance between two points on the axis.
+ The minimum tick interval allowed in axis values. For example on zooming in on an axis with daily data, this can be used to prevent the axis from showing hours. Defaults to the closest distance between two points on the axis. 
 	*/
 	public void setMinTickInterval(Number minTickInterval) {
 		this.minTickInterval = minTickInterval;
@@ -315,7 +327,7 @@ public class HIZAxis extends HIFoundation {
 
 	private ArrayList <HIPlotLines> plotLines;
 	/**
- An array of lines stretching across the plot area, marking a specific value on one of the axes. In styled mode, the plot lines are styled by the .highcharts-plot-line class in addition to the className option.
+ An array of lines stretching across the plot area, marking a specific value on one of the axes. In styled mode, the plot lines are styled by the .highcharts-plot-line class in addition to the className option. 
 	*/
 	public void setPlotLines(ArrayList plotLines) {
 		this.plotLines = plotLines;
@@ -327,7 +339,7 @@ public class HIZAxis extends HIFoundation {
 
 	private ArrayList<ArrayList> units;
 	/**
- Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the second value another array of allowed multiples. Defaults to: units: [[   'millisecond', // unit name   [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples ], [   'second',   [1, 2, 5, 10, 15, 30] ], [   'minute',   [1, 2, 5, 10, 15, 30] ], [   'hour',   [1, 2, 3, 4, 6, 8, 12] ], [   'day',   [1] ], [   'week',   [1] ], [   'month',   [1, 3, 6] ], [   'year',   null ]]
+ Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the second value another array of allowed multiples. Defaults to: units: [[   'millisecond', // unit name   [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples ], [   'second',   [1, 2, 5, 10, 15, 30] ], [   'minute',   [1, 2, 5, 10, 15, 30] ], [   'hour',   [1, 2, 3, 4, 6, 8, 12] ], [   'day',   [1] ], [   'week',   [1] ], [   'month',   [1, 3, 6] ], [   'year',   null ]] 
 	*/
 	public void setUnits(ArrayList<ArrayList> units) {
 		this.units = units;
@@ -363,7 +375,7 @@ public class HIZAxis extends HIFoundation {
 
 	private HIEvents events;
 	/**
- Event handlers for the axis.
+ Event handlers for the axis. 
 	*/
 	public void setEvents(HIEvents events) {
 		this.events = events;
@@ -713,7 +725,7 @@ public class HIZAxis extends HIFoundation {
 
 	private HITitle title;
 	/**
- The axis title, showing next to the axis line.
+ The axis title, showing next to the axis line. 
 	*/
 	public void setTitle(HITitle title) {
 		this.title = title;
@@ -738,7 +750,7 @@ public class HIZAxis extends HIFoundation {
 
 	private Number margin;
 	/**
- If there are multiple axes on the same side of the chart, the pixel margin between the axes. Defaults to 0 on vertical axes, 15 on horizontal axes.
+ If there are multiple axes on the same side of the chart, the pixel margin between the axes. Defaults to 0 on vertical axes, 15 on horizontal axes. 
 	*/
 	public void setMargin(Number margin) {
 		this.margin = margin;
@@ -750,7 +762,7 @@ public class HIZAxis extends HIFoundation {
 
 	private ArrayList <HIPlotBands> plotBands;
 	/**
- An array of colored bands stretching across the plot area marking an interval on the axis. In styled mode, the plot bands are styled by the .highcharts-plot-band class in addition to the className option.
+ An array of colored bands stretching across the plot area marking an interval on the axis. In styled mode, the plot bands are styled by the .highcharts-plot-band class in addition to the className option. 
 	*/
 	public void setPlotBands(ArrayList plotBands) {
 		this.plotBands = plotBands;
@@ -772,13 +784,7 @@ public class HIZAxis extends HIFoundation {
 
 	public Number getSoftMax(){ return softMax; }
 
-
-
-	public HIZAxis() {
-
-	}
-
-	/**
+/**
  * Add a plot band after render time.
  * @param options A configuration object for the plot band, as defined in xAxis.plotBands.
  */
@@ -786,7 +792,7 @@ public void addPlotBand(HIPlotBands options) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
     put("method", "addPlotBand");
-    put("axis", "z");
+    put("axis", "y");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(options.getParams())));
   }};
@@ -802,7 +808,7 @@ public void addPlotBand(HIPlotBands options) {
 public void addPlotLine(HIPlotLines options) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "addPlotLine");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(options.getParams())));
@@ -818,7 +824,7 @@ public void addPlotLine(HIPlotLines options) {
 public void addTitle(Boolean display) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "addTitle");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(display)));
@@ -833,7 +839,7 @@ public void addTitle(Boolean display) {
 public void drawCrosshair() {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "drawCrosshair");
     put("id", uuid);
   }};
@@ -847,7 +853,7 @@ public void drawCrosshair() {
 public void hideCrosshair() {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "hideCrosshair");
     put("id", uuid);
   }};
@@ -861,7 +867,7 @@ public void hideCrosshair() {
 public void remove() {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "remove0");
     put("id", uuid);
   }};
@@ -876,7 +882,7 @@ public void remove() {
 public void remove(Boolean redraw) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "remove1");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(redraw)));
@@ -892,7 +898,7 @@ public void remove(Boolean redraw) {
 public void removePlotBand(String id) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "removePlotBand");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(id)));
@@ -908,7 +914,7 @@ public void removePlotBand(String id) {
 public void removePlotLine(String id) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "removePlotLine");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(id)));
@@ -923,7 +929,7 @@ public void removePlotLine(String id) {
 public void renderLine() {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "renderLine");
     put("id", uuid);
   }};
@@ -938,7 +944,7 @@ public void renderLine() {
 public void renderMinorTick(Number pos) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "renderMinorTick");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(pos)));
@@ -955,7 +961,7 @@ public void renderMinorTick(Number pos) {
 public void renderTick(Number pos, Number i) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "renderTick");
     put("id", uuid);
     put("params", new ArrayList<>(Arrays.asList(pos, i)));
@@ -971,7 +977,7 @@ public void renderTick(Number pos, Number i) {
 public void setCategories(List<String> categories) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "setCategories0");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(categories)));
@@ -988,7 +994,7 @@ public void setCategories(List<String> categories) {
 public void setCategories(List<String> categories, boolean redraw) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "setCategories1");
     put("id", uuid);
     put("params", new ArrayList<>(Arrays.asList(categories, redraw)));
@@ -1003,7 +1009,7 @@ public void setCategories(List<String> categories, boolean redraw) {
 public void setExtremes() {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "setExtremes0");
     put("id", uuid);
   }};
@@ -1018,7 +1024,7 @@ public void setExtremes() {
 public void setExtremes(Number newMin) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "setExtremes1");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(newMin)));
@@ -1035,7 +1041,7 @@ public void setExtremes(Number newMin) {
 public void setExtremes(Number newMin, Number newMax) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "setExtremes2");
     put("id", uuid);
     put("params", new ArrayList<>(Arrays.asList(newMin, newMax)));
@@ -1053,7 +1059,7 @@ public void setExtremes(Number newMin, Number newMax) {
 public void setExtremes(Number newMin, Number newMax, boolean redraw) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "setExtremes3");
     put("id", uuid);
     put("params", new ArrayList<>(Arrays.asList(newMin, newMax, redraw)));
@@ -1073,7 +1079,7 @@ public void setExtremes(Number newMin, Number newMax, boolean redraw) {
 public void setExtremes(Number newMin, Number newMax, boolean redraw, HIAnimationOptionsObject animation) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "setExtremes4");
     put("id", uuid);
     put("params", new ArrayList<>(Arrays.asList(newMin, newMax, redraw, animation.getParams())));
@@ -1088,7 +1094,7 @@ public void setExtremes(Number newMin, Number newMax, boolean redraw, HIAnimatio
 public void setTickPositions() {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "setTickPositions");
     put("id", uuid);
   }};
@@ -1103,7 +1109,7 @@ public void setTickPositions() {
 public void setAxisTitle(HITitle title) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "setTitle0");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(title)));
@@ -1120,7 +1126,7 @@ public void setAxisTitle(HITitle title) {
 public void setAxisTitle(HITitle title, boolean redraw) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "setTitle1");
     put("id", uuid);
     put("params", new ArrayList<>(Arrays.asList(title, redraw)));
@@ -1133,12 +1139,12 @@ public void setAxisTitle(HITitle title, boolean redraw) {
  * Translate a pixel position along the axis to a value in terms of axis units.
  * @param options The new options that will be merged in with existing options on the axis.
  */
-public void update(HIXAxis options) {
+public void update(HIZAxis options) {
   Map<String, Object> params = options.getParams();
   params.remove("_wrapperID");
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "setTitle0");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(params)));
@@ -1152,12 +1158,12 @@ public void update(HIXAxis options) {
  * @param options The new options that will be merged in with existing options on the axis.
  * @param redraw Whether to redraw the chart after the axis is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call redraw() on HIChartView after.
  */
-public void update(HIXAxis options, boolean redraw) {
+public void update(HIZAxis options, boolean redraw) {
   Map<String, Object> params = options.getParams();
   params.remove("_wrapperID");
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "z");
+    put("axis", "y");
     put("method", "setTitle1");
     put("id", uuid);
     put("params", new ArrayList<>(Arrays.asList(params, redraw)));
@@ -1166,11 +1172,18 @@ public void update(HIXAxis options, boolean redraw) {
   this.notifyObservers(jsClassMethod);
 }
 
+	public HIZAxis() {
+
+	}
+
 	@Override
 public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.zoomEnabled != null) {
+			params.put("zoomEnabled", this.zoomEnabled);
+		}
 		if (this.minorTickColor != null) {
 			params.put("minorTickColor", this.minorTickColor.getData());
 		}

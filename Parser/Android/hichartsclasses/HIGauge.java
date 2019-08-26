@@ -21,18 +21,17 @@ import com.highsoft.highcharts.core.HIFoundation;
 	*/
 
 public class HIGauge extends HISeries {
-	private HIDial dial;
+	private HICSSObject dial;
 	/**
  Options for the dial or arrow pointer of the gauge. In styled mode, the dial is styled with the .highcharts-gauge-series .highcharts-dial rule. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/gauge/">Styled mode</a>
 	*/
-	public void setDial(HIDial dial) {
+	public void setDial(HICSSObject dial) {
 		this.dial = dial;
-		this.dial.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIDial getDial(){ return dial; }
+	public HICSSObject getDial(){ return dial; }
 
 	private Number overshoot;
 	/**
@@ -58,18 +57,17 @@ public class HIGauge extends HISeries {
 
 	public Boolean getWrap(){ return wrap; }
 
-	private HIPivot pivot;
+	private HICSSObject pivot;
 	/**
  Options for the pivot or the center point of the gauge. In styled mode, the pivot is styled with the .highcharts-gauge-series .highcharts-pivot rule. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/gauge/">Styled mode</a>
 	*/
-	public void setPivot(HIPivot pivot) {
+	public void setPivot(HICSSObject pivot) {
 		this.pivot = pivot;
-		this.pivot.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIPivot getPivot(){ return pivot; }
+	public HICSSObject getPivot(){ return pivot; }
 
 
 

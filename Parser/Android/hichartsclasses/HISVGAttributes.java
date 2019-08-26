@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -27,14 +28,14 @@ public class HISVGAttributes extends HIFoundation {
 
 	public ArrayList /* <Number, String> */ getD(){ return d; }
 
-	private String fill;
-	public void setFill(String fill) {
+	private HIColor fill;
+	public void setFill(HIColor fill) {
 		this.fill = fill;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getFill(){ return fill; }
+	public HIColor getFill(){ return fill; }
 
 	private Boolean inverted;
 	public void setInverted(Boolean inverted) {
@@ -99,14 +100,14 @@ public class HISVGAttributes extends HIFoundation {
 
 	public Number getScaleY(){ return scaleY; }
 
-	private String stroke;
-	public void setStroke(String stroke) {
+	private HIColor stroke;
+	public void setStroke(HIColor stroke) {
 		this.stroke = stroke;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getStroke(){ return stroke; }
+	public HIColor getStroke(){ return stroke; }
 
 	private HICSSObject style;
 	public void setStyle(HICSSObject style) {
@@ -168,7 +169,7 @@ public HashMap<String, Object> getParams() {
 			params.put("d", array);
 		}
 		if (this.fill != null) {
-			params.put("fill", this.fill);
+			params.put("fill", this.fill.getData());
 		}
 		if (this.inverted != null) {
 			params.put("inverted", this.inverted);
@@ -201,7 +202,7 @@ public HashMap<String, Object> getParams() {
 			params.put("scaleY", this.scaleY);
 		}
 		if (this.stroke != null) {
-			params.put("stroke", this.stroke);
+			params.put("stroke", this.stroke.getData());
 		}
 		if (this.style != null) {
 			params.put("style", this.style.getParams());

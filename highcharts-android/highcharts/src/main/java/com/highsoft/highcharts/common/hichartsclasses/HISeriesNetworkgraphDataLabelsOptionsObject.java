@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 
 
-public class HIPlotNetworkDataLabelsOptionsObject extends HIFoundation { 
+public class HISeriesNetworkgraphDataLabelsOptionsObject extends HIFoundation { 
 
 	private String format;
 	/**
@@ -65,33 +65,21 @@ public class HIPlotNetworkDataLabelsOptionsObject extends HIFoundation {
 
 	public HIFunction getLinkFormatter(){ return linkFormatter; }
 
-	private Object linkTextPath;
+	private HIDataLabelsTextPathOptionsObject linkTextPath;
 	/**
- Options for a _link_ label text which should follow link connection. **Note:** Only SVG-based renderer supports this option. 
+ Options for a _link_ label text which should follow link connection. Border and background are disabled for a label that follows a path. **Note:** Only SVG-based renderer supports this option. Setting `useHTML` to true will disable this option. 
 	*/
-	public void setLinkTextPath(Object linkTextPath) {
+	public void setLinkTextPath(HIDataLabelsTextPathOptionsObject linkTextPath) {
 		this.linkTextPath = linkTextPath;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getLinkTextPath(){ return linkTextPath; }
-
-	private Object textPath;
-	/**
- Options for a _node_ label text which should follow marker's shape. **Note:** Only SVG-based renderer supports this option. 
-	*/
-	public void setTextPath(Object textPath) {
-		this.textPath = textPath;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object getTextPath(){ return textPath; }
+	public HIDataLabelsTextPathOptionsObject getLinkTextPath(){ return linkTextPath; }
 
 
 
-	public HIPlotNetworkDataLabelsOptionsObject() {
+	public HISeriesNetworkgraphDataLabelsOptionsObject() {
 
 	}
 
@@ -113,10 +101,7 @@ public HashMap<String, Object> getParams() {
 			params.put("linkFormatter", this.linkFormatter);
 		}
 		if (this.linkTextPath != null) {
-			params.put("linkTextPath", this.linkTextPath);
-		}
-		if (this.textPath != null) {
-			params.put("textPath", this.textPath);
+			params.put("linkTextPath", this.linkTextPath.getParams());
 		}
 		return params;
 	}

@@ -443,17 +443,17 @@ public class HILegend extends HIFoundation {
 
 	public Number getBorderWidth(){ return borderWidth; }
 
-	private Object labelFormatter;
+	private HIFunction labelFormatter;
 	/**
  Callback function to format each of the series' labels. The this keyword refers to the series object, or the point object in case of pie charts. By defaults the series or point name is printed. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/labelformatter/">Add text</a>
 	*/
-	public void setLabelFormatter(Object labelFormatter) {
+	public void setLabelFormatter(HIFunction labelFormatter) {
 		this.labelFormatter = labelFormatter;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getLabelFormatter(){ return labelFormatter; }
+	public HIFunction getLabelFormatter(){ return labelFormatter; }
 
 	private Number y;
 	/**
@@ -608,6 +608,7 @@ public HashMap<String, Object> getParams() {
 			params.put("borderWidth", this.borderWidth);
 		}
 		if (this.labelFormatter != null) {
+			params.put("labelFormatter", this.labelFormatter);
 		}
 		if (this.y != null) {
 			params.put("y", this.y);

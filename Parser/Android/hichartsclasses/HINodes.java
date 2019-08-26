@@ -55,6 +55,18 @@ public class HINodes extends HIFoundation {
 
 	public HIColor getColor(){ return color; }
 
+	private ArrayList<HIDataLabelsOptionsObject> dataLabels;
+	/**
+ Individual data label for each node. The options are the same as the ones for series.sankey.dataLabels. 
+	*/
+	public void setDataLabels(ArrayList<HIDataLabelsOptionsObject> dataLabels) {
+		this.dataLabels = dataLabels;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList<HIDataLabelsOptionsObject> getDataLabels(){ return dataLabels; }
+
 	private Number column;
 	/**
  An optional column index of where to place the node. The defaults behaviour is to place it next to the preceding node. Note that this option name is counter intuitive in inverted charts, like for example an organization chart rendered top down. In this case the "columns" are horizontal. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-node-column/">Specified node column</a>
@@ -115,6 +127,18 @@ public class HINodes extends HIFoundation {
 
 	public String getImage(){ return image; }
 
+	private String title;
+	/**
+ The job title for the node card, will be inserted by the defaults dataLabel.nodeFormatter. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/organization-chart">Org chart with job titles</a>
+	*/
+	public void setTitle(String title) {
+		this.title = title;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTitle(){ return title; }
+
 	private String layout;
 	/**
  Layout for the node's children. If hanging, this node's children will hang below their parent, allowing a tighter packing of nodes in the diagram. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/organization-chart">Hanging layout</a>
@@ -138,18 +162,6 @@ public class HINodes extends HIFoundation {
 	}
 
 	public String getDefinition(){ return definition; }
-
-	private String title;
-	/**
- The job title for the node card, will be inserted by the defaults dataLabel.nodeFormatter. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/organization-chart">Org chart with job titles</a>
-	*/
-	public void setTitle(String title) {
-		this.title = title;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getTitle(){ return title; }
 
 	private Number mass;
 	/**
@@ -183,6 +195,18 @@ public HashMap<String, Object> getParams() {
 		if (this.color != null) {
 			params.put("color", this.color.getData());
 		}
+		if (this.dataLabels != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.dataLabels) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("dataLabels", array);
+		}
 		if (this.column != null) {
 			params.put("column", this.column);
 		}
@@ -198,14 +222,14 @@ public HashMap<String, Object> getParams() {
 		if (this.image != null) {
 			params.put("image", this.image);
 		}
+		if (this.title != null) {
+			params.put("title", this.title);
+		}
 		if (this.layout != null) {
 			params.put("layout", this.layout);
 		}
 		if (this.definition != null) {
 			params.put("definition", this.definition);
-		}
-		if (this.title != null) {
-			params.put("title", this.title);
 		}
 		if (this.mass != null) {
 			params.put("mass", this.mass);

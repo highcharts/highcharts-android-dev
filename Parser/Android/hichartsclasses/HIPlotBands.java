@@ -94,7 +94,7 @@ public class HIPlotBands extends HIFoundation {
 	private HIColor color;
 	/**
  The color of the plot band. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-color/">Color band</a>
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;#e6ebf5	*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -164,17 +164,18 @@ public class HIPlotBands extends HIFoundation {
 
 	public HILabel getLabel(){ return label; }
 
-	private Object events;
+	private HIEvents events;
 	/**
  An object defining mouse events for the plot band. Supported properties are click, mouseover, mouseout, mousemove. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotbands-events/">Mouse events demonstrated</a>
 	*/
-	public void setEvents(Object events) {
+	public void setEvents(HIEvents events) {
 		this.events = events;
+		this.events.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getEvents(){ return events; }
+	public HIEvents getEvents(){ return events; }
 
 
 
@@ -224,6 +225,7 @@ public HashMap<String, Object> getParams() {
 			params.put("label", this.label.getParams());
 		}
 		if (this.events != null) {
+			params.put("events", this.events.getParams());
 		}
 		return params;
 	}

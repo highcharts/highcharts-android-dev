@@ -21,7 +21,7 @@ public class HIYAxis extends HIFoundation {
 
 	private Number minPadding;
 	/**
-/** * description: Padding of the min value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the lowest data value to appear on the edge of the plot area. When the axis' min option is set or a max extreme is set using axis.setExtremes(), the maxPadding will be ignored. * demo:  •  Min padding of 0.2
+/** * description: Padding of the min value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the lowest data value to appear on the edge of the plot area. When the axis' min option is set or a max extreme is set using axis.setExtremes(), the maxPadding will be ignored. Also the softThreshold option takes precedence over minPadding, so if the data is tangent to the threshold, minPadding may not apply unless softThreshold is set to false. * demo:  •  Min padding of 0.2
 * defaults: 0.01
 */
 	public void setMinPadding(Number minPadding) {
@@ -331,7 +331,7 @@ public class HIYAxis extends HIFoundation {
 
 	private Number maxPadding;
 	/**
-/** * description: Padding of the max value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the highest data value to appear on the edge of the plot area. When the axis' max option is set or a max extreme is set using axis.setExtremes(), the maxPadding will be ignored. * demo:  •  Max padding of 0.2
+/** * description: Padding of the max value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the highest data value to appear on the edge of the plot area. When the axis' max option is set or a max extreme is set using axis.setExtremes(), the maxPadding will be ignored. Also the softThreshold option takes precedence over maxPadding, so if the data is tangent to the threshold, maxPadding may not apply unless softThreshold is set to false. * demo:  •  Max padding of 0.2
 * defaults: 0.01
 */
 	public void setMaxPadding(Number maxPadding) {
@@ -380,6 +380,18 @@ public class HIYAxis extends HIFoundation {
 	}
 
 	public Number getLineWidth(){ return lineWidth; }
+
+	private Boolean zoomEnabled;
+	/**
+ Whether to zoom axis. If chart.zoomType is set, the option allows to disable zooming on an individual axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/zoomenabled/">Zoom enabled is false</a>
+ <br><br><b>defaults:</b><br><br>&ensp;enabled	*/
+	public void setZoomEnabled(Boolean zoomEnabled) {
+		this.zoomEnabled = zoomEnabled;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getZoomEnabled(){ return zoomEnabled; }
 
 	private HIColor minorTickColor;
 	/**
@@ -1049,6 +1061,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.lineWidth != null) {
 			params.put("lineWidth", this.lineWidth);
+		}
+		if (this.zoomEnabled != null) {
+			params.put("zoomEnabled", this.zoomEnabled);
 		}
 		if (this.minorTickColor != null) {
 			params.put("minorTickColor", this.minorTickColor.getData());

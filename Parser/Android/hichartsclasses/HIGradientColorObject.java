@@ -42,17 +42,17 @@ public class HIGradientColorObject extends HIFoundation {
 
 	public HIRadialGradientColorObject getRadialGradient(){ return radialGradient; }
 
-	private ArrayList<ArrayList> stops;
+	private ArrayList stops;
 	/**
  The first item in each tuple is the position in the gradient, where 0 is the start of the gradient and 1 is the end of the gradient. Multiple stops can be applied. The second item is the color for each stop. This color can also be given in the rgba format. 
 	*/
-	public void setStops(ArrayList<ArrayList> stops) {
+	public void setStops(ArrayList stops) {
 		this.stops = stops;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<ArrayList> getStops(){ return stops; }
+	public ArrayList getStops(){ return stops; }
 
 
 

@@ -107,29 +107,17 @@ public class HIPyramid extends HISeries {
 
 	public HIColor getBorderColor(){ return borderColor; }
 
-	private Number minSize;
+	private Object /* Number, String */ minSize;
 	/**
  The minimum size for a pie in response to auto margins. The pie will try to shrink to make room for data labels in side the plot area, but only to this size. 
  <br><br><b>defaults:</b><br><br>&ensp;80	*/
-	public void setMinSize(Number minSize) {
+	public void setMinSize(Object /* Number, String */ minSize) {
 		this.minSize = minSize;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getMinSize(){ return minSize; }
-
-	private Object /* Number, String */ innerSize;
-	/**
- The size of the inner diameter for the pie. A size greater than 0 renders a donut chart. Can be a percentage or pixel value. Percentages are relative to the pie size. Pixel values are given as integers. Note: in Highcharts < 4.1.2, the percentage was relative to the plot area, not the pie size. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-innersize-80px/">80px inner size</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-innersize-50percent/">50% of the plot area</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/3d-pie-donut/">3D donut</a>
- <br><br><b>defaults:</b><br><br>&ensp;0	*/
-	public void setInnerSize(Object /* Number, String */ innerSize) {
-		this.innerSize = innerSize;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object /* Number, String */ getInnerSize(){ return innerSize; }
+	public Object /* Number, String */ getMinSize(){ return minSize; }
 
 	private Number slicedOffset;
 	/**
@@ -259,9 +247,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.minSize != null) {
 			params.put("minSize", this.minSize);
-		}
-		if (this.innerSize != null) {
-			params.put("innerSize", this.innerSize);
 		}
 		if (this.slicedOffset != null) {
 			params.put("slicedOffset", this.slicedOffset);

@@ -19,6 +19,15 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HITheme extends HIFoundation { 
 
+	private Number zIndex;
+	public void setZIndex(Number zIndex) {
+		this.zIndex = zIndex;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getZIndex(){ return zIndex; }
+
 	private Number padding;
 	/**
  Padding for the button. 
@@ -66,6 +75,9 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.zIndex != null) {
+			params.put("zIndex", this.zIndex);
+		}
 		if (this.padding != null) {
 			params.put("padding", this.padding);
 		}

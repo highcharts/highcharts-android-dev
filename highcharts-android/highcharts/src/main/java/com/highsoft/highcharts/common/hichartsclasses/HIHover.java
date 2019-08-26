@@ -44,16 +44,6 @@ public class HIHover extends HIFoundation {
 
 	public Number getOpacity(){ return opacity; }
 
-	private HIHalo halo;
-	public void setHalo(HIHalo halo) {
-		this.halo = halo;
-		this.halo.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIHalo getHalo(){ return halo; }
-
 	private Boolean enabled;
 	/**
  Enable or disable the point marker. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-enabled/">Disabled hover state</a>
@@ -129,7 +119,7 @@ public class HIHover extends HIFoundation {
 	private HIAnimationOptionsObject animation;
 	/**
  Animation when hovering over the marker. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;{"duration": 50}	*/
 	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
 		this.setChanged();
@@ -137,6 +127,16 @@ public class HIHover extends HIFoundation {
 	}
 
 	public HIAnimationOptionsObject getAnimation(){ return animation; }
+
+	private HIHalo halo;
+	public void setHalo(HIHalo halo) {
+		this.halo = halo;
+		this.halo.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIHalo getHalo(){ return halo; }
 
 	private Number brightness;
 	/**
@@ -206,9 +206,6 @@ public HashMap<String, Object> getParams() {
 		if (this.opacity != null) {
 			params.put("opacity", this.opacity);
 		}
-		if (this.halo != null) {
-			params.put("halo", this.halo.getParams());
-		}
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);
 		}
@@ -229,6 +226,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.animation != null) {
 			params.put("animation", this.animation.getParams());
+		}
+		if (this.halo != null) {
+			params.put("halo", this.halo.getParams());
 		}
 		if (this.brightness != null) {
 			params.put("brightness", this.brightness);

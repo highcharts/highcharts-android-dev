@@ -44,7 +44,7 @@ public class HIPlotLines extends HIFoundation {
 	private HIColor color;
 	/**
  The color of the line. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">A red line from X axis</a>
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;#999999	*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -78,17 +78,18 @@ public class HIPlotLines extends HIFoundation {
 
 	public Number getValue(){ return value; }
 
-	private Object events;
+	private HIEvents events;
 	/**
  An object defining mouse events for the plot line. Supported properties are click, mouseover, mouseout, mousemove. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-events/">Mouse events demonstrated</a>
 	*/
-	public void setEvents(Object events) {
+	public void setEvents(HIEvents events) {
 		this.events = events;
+		this.events.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getEvents(){ return events; }
+	public HIEvents getEvents(){ return events; }
 
 	private String className;
 	/**
@@ -105,7 +106,7 @@ public class HIPlotLines extends HIFoundation {
 	private Number width;
 	/**
  The width or thickness of the plot line. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">2px wide line from X axis</a>
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;2	*/
 	public void setWidth(Number width) {
 		this.width = width;
 		this.setChanged();
@@ -126,12 +127,6 @@ public class HIPlotLines extends HIFoundation {
 
 	public String getId(){ return id; }
 
-
-
-	public HIPlotLines() {
-
-	}
-
 /**
  * Remove the plot line.
  */
@@ -144,6 +139,10 @@ public void destroy() {
   this.setChanged();
   this.notifyObservers(jsClassMethod);
 }
+
+	public HIPlotLines() {
+
+	}
 
 	@Override
 public HashMap<String, Object> getParams() {
@@ -166,7 +165,7 @@ public HashMap<String, Object> getParams() {
 			params.put("value", this.value);
 		}
 		if (this.events != null) {
-			params.put("events", this.events);
+			params.put("events", this.events.getParams());
 		}
 		if (this.className != null) {
 			params.put("className", this.className);

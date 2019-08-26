@@ -16,7 +16,7 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-public class HISeriesNetworkDataLabelsOptionsObject extends HIFoundation { 
+public class HISeriesNetworkgraphDataLabelsOptionsObject extends HIFoundation { 
 
 	private String format;
 	/**
@@ -66,21 +66,21 @@ public class HISeriesNetworkDataLabelsOptionsObject extends HIFoundation {
 
 	public HIFunction getLinkFormatter(){ return linkFormatter; }
 
-	private HIDataLabelsTextPath linkTextPath;
+	private HIDataLabelsTextPathOptionsObject linkTextPath;
 	/**
  Options for a _link_ label text which should follow link connection. Border and background are disabled for a label that follows a path. **Note:** Only SVG-based renderer supports this option. Setting `useHTML` to true will disable this option. 
 	*/
-	public void setLinkTextPath(HIDataLabelsTextPath linkTextPath) {
+	public void setLinkTextPath(HIDataLabelsTextPathOptionsObject linkTextPath) {
 		this.linkTextPath = linkTextPath;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIDataLabelsTextPath getLinkTextPath(){ return linkTextPath; }
+	public HIDataLabelsTextPathOptionsObject getLinkTextPath(){ return linkTextPath; }
 
 
 
-	public HISeriesNetworkDataLabelsOptionsObject() {
+	public HISeriesNetworkgraphDataLabelsOptionsObject() {
 
 	}
 
