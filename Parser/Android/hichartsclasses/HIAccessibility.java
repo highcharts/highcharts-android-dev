@@ -56,7 +56,7 @@ public class HIAccessibility extends HIFoundation {
 
 	private String definition;
 	/**
- A text description of the chart. If the Accessibility module is loaded, this is included by defaults as a long description of the chart in the hidden screen reader information region. Note: It is considered a best practice to make the description of the chart visible to all users, so consider if this can be placed in text around the chart instead. 
+ A text description of the chart. **Note: Prefer using caption instead.** If the Accessibility module is loaded, this option is included by defaults as a long description of the chart in the hidden screen reader information region. Note: Since Highcharts now supports captions, it is preferred to define the description there, as the caption benefits all users. The caption will be available to screen reader users. If this option is defined instead, the caption is hidden from screen reader users. 
 	*/
 	public void setDefinition(String definition) {
 		this.definition = definition;

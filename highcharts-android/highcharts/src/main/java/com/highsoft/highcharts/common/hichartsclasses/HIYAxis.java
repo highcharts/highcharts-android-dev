@@ -20,8 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 
-
-public class HIYAxis extends HIFoundation { 
+public class HIYAxis extends HIFoundation {
 
 	private Number minPadding;
 	/**
@@ -1296,7 +1295,7 @@ public void setAxisTitle(HITitle title, boolean redraw) {
  * Translate a pixel position along the axis to a value in terms of axis units.
  * @param options The new options that will be merged in with existing options on the axis.
  */
-public void update(HIYAxis options) {
+public void update(HIXAxis options) {
   Map<String, Object> params = options.getParams();
   params.remove("_wrapperID");
   this.jsClassMethod = new HashMap<String, Object>() {{
@@ -1315,7 +1314,7 @@ public void update(HIYAxis options) {
  * @param options The new options that will be merged in with existing options on the axis.
  * @param redraw Whether to redraw the chart after the axis is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call redraw() on HIChartView after.
  */
-public void update(HIYAxis options, boolean redraw) {
+public void update(HIXAxis options, boolean redraw) {
   Map<String, Object> params = options.getParams();
   params.remove("_wrapperID");
   this.jsClassMethod = new HashMap<String, Object>() {{
@@ -1328,7 +1327,6 @@ public void update(HIYAxis options, boolean redraw) {
   this.setChanged();
   this.notifyObservers(jsClassMethod);
 }
-
 
 	public HIYAxis() {
 

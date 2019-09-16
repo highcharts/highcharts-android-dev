@@ -341,19 +341,36 @@ public class HIOptions extends HIFoundation {
 
 	public HILegend getLegend(){ return legend; }
 
-	private HIColorAxis colorAxis;
+	private ArrayList<HIColorAxis> colorAxis;
 
 	/**
- A color axis for choropleth maps and heat maps. Visually, the color axis will appear as a gradient or as separate items inside the legend, depending on whether the axis is scalar or based on data classes. For supported color formats, see the [docs article about colors](https://www.highcharts.com/docs/chart-design-and-style/colors). A scalar color axis is represented by a gradient. The colors either range between the minColor and the maxColor, or for more fine grained control the colors can be defined in stops. Often times, the color axis needs to be adjusted to get the right color spread for the data. In addition to stops, consider using a logarithmic axis type, or setting min and max to avoid the colors being determined by outliers. When dataClasses are used, the ranges are subdivided into separate classes like categories based on their values. This can be used for ranges between two values, but also for a true category. However, when your data is categorized, it may be as convenient to add each category to a separate series. See `the Axis object` for programmatic access to the axis. 
+ A color axis for series. Visually, the color axis will appear as a gradient or as separate items inside the legend, depending on whether the axis is scalar or based on data classes. For supported color formats, see the [docs article about colors](https://www.highcharts.com/docs/chart-design-and-style/colors). A scalar color axis is represented by a gradient. The colors either range between the minColor and the maxColor, or for more fine grained control the colors can be defined in stops. Often times, the color axis needs to be adjusted to get the right color spread for the data. In addition to stops, consider using a logarithmic axis type, or setting min and max to avoid the colors being determined by outliers. When dataClasses are used, the ranges are subdivided into separate classes like categories based on their values. This can be used for ranges between two values, but also for a true category. However, when your data is categorized, it may be as convenient to add each category to a separate series. Color axis does not work with: sankey, sunburst, dependencywheel, networkgraph, wordcloud, venn, gauge and solidgauge series types. Since v7.2.0 colorAxis can also be an array of options objects. See `the Axis object` for programmatic access to the axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/custom-color-key">Column chart with color axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/horizontal-layout">Horizontal layout</a>
 	*/
-	public void setColorAxis(HIColorAxis colorAxis) {
+	public void setColorAxis(ArrayList<HIColorAxis> colorAxis) {
 		this.colorAxis = colorAxis;
-		this.colorAxis.addObserver(updateObserver);
+		for(Object listElement : colorAxis){
+			if(listElement instanceof HIFoundation)
+				((HIFoundation)listElement).addObserver(updateObserver);
+		}
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColorAxis getColorAxis(){ return colorAxis; }
+	public ArrayList<HIColorAxis> getColorAxis(){ return colorAxis; }
+
+	private HICaption caption;
+
+	/**
+ The chart's caption, which will render below the chart and will be part of exported charts. The caption can be updated after chart initialization through the Chart.update or Chart.caption.update methods. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/caption/text/">A chart with a caption</a>
+	*/
+	public void setCaption(HICaption caption) {
+		this.caption = caption;
+		this.caption.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HICaption getCaption(){ return caption; }
 
 	private HITime time;
 
@@ -516,7 +533,19 @@ public HashMap<String, Object> getParams() {
 			params.put("legend", this.legend.getParams());
 		}
 		if (this.colorAxis != null) {
-			params.put("colorAxis", this.colorAxis.getParams());
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.colorAxis) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+				array.add(obj);
+				}
+			}
+			params.put("colorAxis", array);
+		}
+		if (this.caption != null) {
+			params.put("caption", this.caption.getParams());
 		}
 		if (this.time != null) {
 			params.put("time", this.time.getParams());

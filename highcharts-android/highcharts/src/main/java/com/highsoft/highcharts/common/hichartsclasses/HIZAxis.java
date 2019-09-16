@@ -20,8 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 
-
-public class HIZAxis extends HIFoundation { 
+public class HIZAxis extends HIFoundation {
 
 	private Boolean zoomEnabled;
 	/**
@@ -792,7 +791,7 @@ public void addPlotBand(HIPlotBands options) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
     put("method", "addPlotBand");
-    put("axis", "y");
+    put("axis", "z");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(options.getParams())));
   }};
@@ -808,7 +807,7 @@ public void addPlotBand(HIPlotBands options) {
 public void addPlotLine(HIPlotLines options) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "addPlotLine");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(options.getParams())));
@@ -824,7 +823,7 @@ public void addPlotLine(HIPlotLines options) {
 public void addTitle(Boolean display) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "addTitle");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(display)));
@@ -839,7 +838,7 @@ public void addTitle(Boolean display) {
 public void drawCrosshair() {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "drawCrosshair");
     put("id", uuid);
   }};
@@ -853,7 +852,7 @@ public void drawCrosshair() {
 public void hideCrosshair() {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "hideCrosshair");
     put("id", uuid);
   }};
@@ -867,7 +866,7 @@ public void hideCrosshair() {
 public void remove() {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "remove0");
     put("id", uuid);
   }};
@@ -882,7 +881,7 @@ public void remove() {
 public void remove(Boolean redraw) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "remove1");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(redraw)));
@@ -898,7 +897,7 @@ public void remove(Boolean redraw) {
 public void removePlotBand(String id) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "removePlotBand");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(id)));
@@ -914,7 +913,7 @@ public void removePlotBand(String id) {
 public void removePlotLine(String id) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "removePlotLine");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(id)));
@@ -929,7 +928,7 @@ public void removePlotLine(String id) {
 public void renderLine() {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "renderLine");
     put("id", uuid);
   }};
@@ -944,7 +943,7 @@ public void renderLine() {
 public void renderMinorTick(Number pos) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "renderMinorTick");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(pos)));
@@ -961,7 +960,7 @@ public void renderMinorTick(Number pos) {
 public void renderTick(Number pos, Number i) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "renderTick");
     put("id", uuid);
     put("params", new ArrayList<>(Arrays.asList(pos, i)));
@@ -977,7 +976,7 @@ public void renderTick(Number pos, Number i) {
 public void setCategories(List<String> categories) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "setCategories0");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(categories)));
@@ -994,7 +993,7 @@ public void setCategories(List<String> categories) {
 public void setCategories(List<String> categories, boolean redraw) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "setCategories1");
     put("id", uuid);
     put("params", new ArrayList<>(Arrays.asList(categories, redraw)));
@@ -1009,7 +1008,7 @@ public void setCategories(List<String> categories, boolean redraw) {
 public void setExtremes() {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "setExtremes0");
     put("id", uuid);
   }};
@@ -1024,7 +1023,7 @@ public void setExtremes() {
 public void setExtremes(Number newMin) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "setExtremes1");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(newMin)));
@@ -1041,7 +1040,7 @@ public void setExtremes(Number newMin) {
 public void setExtremes(Number newMin, Number newMax) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "setExtremes2");
     put("id", uuid);
     put("params", new ArrayList<>(Arrays.asList(newMin, newMax)));
@@ -1059,7 +1058,7 @@ public void setExtremes(Number newMin, Number newMax) {
 public void setExtremes(Number newMin, Number newMax, boolean redraw) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "setExtremes3");
     put("id", uuid);
     put("params", new ArrayList<>(Arrays.asList(newMin, newMax, redraw)));
@@ -1079,7 +1078,7 @@ public void setExtremes(Number newMin, Number newMax, boolean redraw) {
 public void setExtremes(Number newMin, Number newMax, boolean redraw, HIAnimationOptionsObject animation) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "setExtremes4");
     put("id", uuid);
     put("params", new ArrayList<>(Arrays.asList(newMin, newMax, redraw, animation.getParams())));
@@ -1094,7 +1093,7 @@ public void setExtremes(Number newMin, Number newMax, boolean redraw, HIAnimatio
 public void setTickPositions() {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "setTickPositions");
     put("id", uuid);
   }};
@@ -1109,7 +1108,7 @@ public void setTickPositions() {
 public void setAxisTitle(HITitle title) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "setTitle0");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(title)));
@@ -1126,7 +1125,7 @@ public void setAxisTitle(HITitle title) {
 public void setAxisTitle(HITitle title, boolean redraw) {
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "setTitle1");
     put("id", uuid);
     put("params", new ArrayList<>(Arrays.asList(title, redraw)));
@@ -1139,12 +1138,12 @@ public void setAxisTitle(HITitle title, boolean redraw) {
  * Translate a pixel position along the axis to a value in terms of axis units.
  * @param options The new options that will be merged in with existing options on the axis.
  */
-public void update(HIZAxis options) {
+public void update(HIXAxis options) {
   Map<String, Object> params = options.getParams();
   params.remove("_wrapperID");
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "setTitle0");
     put("id", uuid);
     put("params", new ArrayList<>(Collections.singletonList(params)));
@@ -1158,12 +1157,12 @@ public void update(HIZAxis options) {
  * @param options The new options that will be merged in with existing options on the axis.
  * @param redraw Whether to redraw the chart after the axis is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call redraw() on HIChartView after.
  */
-public void update(HIZAxis options, boolean redraw) {
+public void update(HIXAxis options, boolean redraw) {
   Map<String, Object> params = options.getParams();
   params.remove("_wrapperID");
   this.jsClassMethod = new HashMap<String, Object>() {{
     put("class", "Axis");
-    put("axis", "y");
+    put("axis", "z");
     put("method", "setTitle1");
     put("id", uuid);
     put("params", new ArrayList<>(Arrays.asList(params, redraw)));

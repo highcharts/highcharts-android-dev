@@ -44,17 +44,18 @@ public class HIColorAxis extends HIFoundation {
 
 	public Number getMinPadding(){ return minPadding; }
 
-	private Number tickPixelInterval;
+	private HILabels labels;
 	/**
-/** * description: If tickInterval is null this option sets the approximate pixel interval of the tick marks. * demo:  •  50 px on X axis
+/** * description: The axis labels show the number for each tick. For more live examples on label options, see `xAxis.labels in the Highcharts API.` 
 */
-	public void setTickPixelInterval(Number tickPixelInterval) {
-		this.tickPixelInterval = tickPixelInterval;
+	public void setLabels(HILabels labels) {
+		this.labels = labels;
+		this.labels.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getTickPixelInterval(){ return tickPixelInterval; }
+	public HILabels getLabels(){ return labels; }
 
 	private HIColor maxColor;
 	/**
@@ -80,6 +81,18 @@ public class HIColorAxis extends HIFoundation {
 	}
 
 	public HIMarker getMarker(){ return marker; }
+
+	private String layout;
+	/**
+ The layout of the color axis. Can be 'horizontal' or 'vertical'. If none given, the color axis has the same layout as the legend. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/horizontal-layout/">Horizontal color axis layout with vertical legend</a>
+	*/
+	public void setLayout(String layout) {
+		this.layout = layout;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getLayout(){ return layout; }
 
 	private Boolean startOnTick;
 	/**
@@ -131,7 +144,7 @@ public class HIColorAxis extends HIFoundation {
 
 	private String type;
 	/**
-/** * description: The type of interpolation to use for the color axis. Can be linear or logarithmic. * demo:  •  Linear •  Logarithmic •  Logarithmic with minor grid lines •  Logarithmic on two axes •  Logarithmic with extension to emulate negative values
+/** * description: The type of interpolation to use for the color axis. Can be linear or logarithmic. * demo:  •  Logarithmic color axis with extension to emulate negative values
 * defaults: linear
 */
 	public void setType(String type) {
@@ -155,18 +168,17 @@ public class HIColorAxis extends HIFoundation {
 
 	public HIEvents getEvents(){ return events; }
 
-	private HILabels labels;
+	private Number tickPixelInterval;
 	/**
-/** * description: The axis labels show the number for each tick. For more live examples on label options, see `xAxis.labels in the Highcharts API.` 
+/** * description: If tickInterval is null this option sets the approximate pixel interval of the tick marks. * demo:  •  50 px on X axis
 */
-	public void setLabels(HILabels labels) {
-		this.labels = labels;
-		this.labels.addObserver(updateObserver);
+	public void setTickPixelInterval(Number tickPixelInterval) {
+		this.tickPixelInterval = tickPixelInterval;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HILabels getLabels(){ return labels; }
+	public Number getTickPixelInterval(){ return tickPixelInterval; }
 
 	private Number max;
 	/**
@@ -282,7 +294,7 @@ public class HIColorAxis extends HIFoundation {
 
 	private Boolean showInLegend;
 	/**
- Whether to display the colorAxis in the legend. 
+ Whether to display the colorAxis in the legend. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/hidden-coloraxis-with-3d-chart/">Hidden color axis with 3d chart</a>
 	*/
 	public void setShowInLegend(Boolean showInLegend) {
 		this.showInLegend = showInLegend;
@@ -291,18 +303,6 @@ public class HIColorAxis extends HIFoundation {
 	}
 
 	public Boolean getShowInLegend(){ return showInLegend; }
-
-	private Boolean zoomEnabled;
-	/**
- Whether to zoom axis. If chart.zoomType is set, the option allows to disable zooming on an individual axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/zoomenabled/">Zoom enabled is false</a>
- <br><br><b>defaults:</b><br><br>&ensp;enabled	*/
-	public void setZoomEnabled(Boolean zoomEnabled) {
-		this.zoomEnabled = zoomEnabled;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getZoomEnabled(){ return zoomEnabled; }
 
 	private HIColor minorTickColor;
 	/**
@@ -315,18 +315,6 @@ public class HIColorAxis extends HIFoundation {
 	}
 
 	public HIColor getMinorTickColor(){ return minorTickColor; }
-
-	private Number pane;
-	/**
- Refers to the index in the panes array. Used for circular gauges and polar charts. When the option is not set then first pane will be used. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-vu-meter">Two gauges with different center</a>
-	*/
-	public void setPane(Number pane) {
-		this.pane = pane;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getPane(){ return pane; }
 
 	private Number gridZIndex;
 	/**
@@ -364,18 +352,6 @@ public class HIColorAxis extends HIFoundation {
 	}
 
 	public Boolean getVisible(){ return visible; }
-
-	private Boolean alignTicks;
-	/**
- When using multiple axis, the ticks of two or more opposite axes will automatically be aligned by adding ticks to the axis or axes with the least ticks, as if tickAmount were specified. This can be prevented by setting alignTicks to false. If the grid lines look messy, it's a good idea to hide them for the secondary axis by setting gridLineWidth to 0. If startOnTick or endOnTick in an Axis options are set to false, then the alignTicks will be disabled for the Axis. Disabled for logarithmic axes. 
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
-	public void setAlignTicks(Boolean alignTicks) {
-		this.alignTicks = alignTicks;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getAlignTicks(){ return alignTicks; }
 
 	private Number tickWidth;
 	/**
@@ -617,18 +593,6 @@ public class HIColorAxis extends HIFoundation {
 
 	public String getTickPosition(){ return tickPosition; }
 
-	private Boolean reversedStacks;
-	/**
- This option determines how stacks should be ordered within a group. For example reversed xAxis also reverses stacks, so first series comes last in a group. To keep order like for non-reversed xAxis enable this option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/reversedstacks/">Reversed stacks comparison</a>
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setReversedStacks(Boolean reversedStacks) {
-		this.reversedStacks = reversedStacks;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getReversedStacks(){ return reversedStacks; }
-
 	private Boolean showLastLabel;
 	/**
  Whether to show the last tick label. Defaults to true on cartesian charts, and false on polar charts. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/showlastlabel-true/">Set to true on X axis</a>
@@ -763,14 +727,17 @@ public HashMap<String, Object> getParams() {
 		if (this.minPadding != null) {
 			params.put("minPadding", this.minPadding);
 		}
-		if (this.tickPixelInterval != null) {
-			params.put("tickPixelInterval", this.tickPixelInterval);
+		if (this.labels != null) {
+			params.put("labels", this.labels.getParams());
 		}
 		if (this.maxColor != null) {
 			params.put("maxColor", this.maxColor.getData());
 		}
 		if (this.marker != null) {
 			params.put("marker", this.marker.getParams());
+		}
+		if (this.layout != null) {
+			params.put("layout", this.layout);
 		}
 		if (this.startOnTick != null) {
 			params.put("startOnTick", this.startOnTick);
@@ -799,8 +766,8 @@ public HashMap<String, Object> getParams() {
 		if (this.events != null) {
 			params.put("events", this.events.getParams());
 		}
-		if (this.labels != null) {
-			params.put("labels", this.labels.getParams());
+		if (this.tickPixelInterval != null) {
+			params.put("tickPixelInterval", this.tickPixelInterval);
 		}
 		if (this.max != null) {
 			params.put("max", this.max);
@@ -832,14 +799,8 @@ public HashMap<String, Object> getParams() {
 		if (this.showInLegend != null) {
 			params.put("showInLegend", this.showInLegend);
 		}
-		if (this.zoomEnabled != null) {
-			params.put("zoomEnabled", this.zoomEnabled);
-		}
 		if (this.minorTickColor != null) {
 			params.put("minorTickColor", this.minorTickColor.getData());
-		}
-		if (this.pane != null) {
-			params.put("pane", this.pane);
 		}
 		if (this.gridZIndex != null) {
 			params.put("gridZIndex", this.gridZIndex);
@@ -849,9 +810,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.visible != null) {
 			params.put("visible", this.visible);
-		}
-		if (this.alignTicks != null) {
-			params.put("alignTicks", this.alignTicks);
 		}
 		if (this.tickWidth != null) {
 			params.put("tickWidth", this.tickWidth);
@@ -930,9 +888,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.tickPosition != null) {
 			params.put("tickPosition", this.tickPosition);
-		}
-		if (this.reversedStacks != null) {
-			params.put("reversedStacks", this.reversedStacks);
 		}
 		if (this.showLastLabel != null) {
 			params.put("showLastLabel", this.showLastLabel);

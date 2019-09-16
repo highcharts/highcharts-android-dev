@@ -8,6 +8,7 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.core.HIFoundation;
 
 import java.util.ArrayList;
@@ -94,29 +95,17 @@ public class HIItem extends HISeries {
 
 	public Number getStartAngle(){ return startAngle; }
 
-	private Object /* Number, String */ minSize;
+	private Boolean ignoreHiddenPoint;
 	/**
- The minimum size for a pie in response to auto margins. The pie will try to shrink to make room for data labels in side the plot area, but only to this size. 
- <br><br><b>defaults:</b><br><br>&ensp;80	*/
-	public void setMinSize(Object /* Number, String */ minSize) {
-		this.minSize = minSize;
+ Equivalent to chart.ignoreHiddenSeries, this option tells whether the series shall be redrawn as if the hidden point were null. The defaults value changed from false to true with Highcharts 3.0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-ignorehiddenpoint/">True, the hiddden point is ignored</a>
+	*/
+	public void setIgnoreHiddenPoint(Boolean ignoreHiddenPoint) {
+		this.ignoreHiddenPoint = ignoreHiddenPoint;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number, String */ getMinSize(){ return minSize; }
-
-	private ArrayList /* <Number, String> */ center;
-	/**
- The center of the pie chart relative to the plot area. Can be percentages or pixel values. The defaults behaviour (as of 3.0) is to center the pie so that all slices and data labels are within the plot area. As a consequence, the pie may actually jump around in a chart with dynamic values, as the data labels move. In that case, the center should be explicitly set, for example to ["50%", "50%"]. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-center/">Centered at 100, 100</a>
- <br><br><b>defaults:</b><br><br>&ensp;[null, null]	*/
-	public void setCenter(ArrayList /* <Number, String> */ center) {
-		this.center = center;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public ArrayList /* <Number, String> */ getCenter(){ return center; }
+	public Boolean getIgnoreHiddenPoint(){ return ignoreHiddenPoint; }
 
 	private ArrayList<String> colors;
 	/**
@@ -142,17 +131,41 @@ public class HIItem extends HISeries {
 
 	public Object /* Number, String */ getSize(){ return size; }
 
-	private Boolean ignoreHiddenPoint;
+	private Object /* Number, String */ minSize;
 	/**
- Equivalent to chart.ignoreHiddenSeries, this option tells whether the series shall be redrawn as if the hidden point were null. The defaults value changed from false to true with Highcharts 3.0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-ignorehiddenpoint/">True, the hiddden point is ignored</a>
-	*/
-	public void setIgnoreHiddenPoint(Boolean ignoreHiddenPoint) {
-		this.ignoreHiddenPoint = ignoreHiddenPoint;
+ The minimum size for a pie in response to auto margins. The pie will try to shrink to make room for data labels in side the plot area, but only to this size. 
+ <br><br><b>defaults:</b><br><br>&ensp;80	*/
+	public void setMinSize(Object /* Number, String */ minSize) {
+		this.minSize = minSize;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getIgnoreHiddenPoint(){ return ignoreHiddenPoint; }
+	public Object /* Number, String */ getMinSize(){ return minSize; }
+
+	private HIColor fillColor;
+	/**
+ If the total sum of the pie's values is 0, the series is represented as an empty circle . The fillColor option defines the color of that circle. Use pie.borderWidth to set the border thickness. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-emptyseries/">Empty pie series</a>
+	*/
+	public void setFillColor(HIColor fillColor) {
+		this.fillColor = fillColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getFillColor(){ return fillColor; }
+
+	private ArrayList /* <Number, String> */ center;
+	/**
+ The center of the pie chart relative to the plot area. Can be percentages or pixel values. The defaults behaviour (as of 3.0) is to center the pie so that all slices and data labels are within the plot area. As a consequence, the pie may actually jump around in a chart with dynamic values, as the data labels move. In that case, the center should be explicitly set, for example to ["50%", "50%"]. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-center/">Centered at 100, 100</a>
+ <br><br><b>defaults:</b><br><br>&ensp;[null, null]	*/
+	public void setCenter(ArrayList /* <Number, String> */ center) {
+		this.center = center;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList /* <Number, String> */ getCenter(){ return center; }
 
 
 
@@ -184,20 +197,8 @@ public HashMap<String, Object> getParams() {
 		if (this.startAngle != null) {
 			params.put("startAngle", this.startAngle);
 		}
-		if (this.minSize != null) {
-			params.put("minSize", this.minSize);
-		}
-		if (this.center != null) {
-			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.center) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
-			}
-			params.put("center", array);
+		if (this.ignoreHiddenPoint != null) {
+			params.put("ignoreHiddenPoint", this.ignoreHiddenPoint);
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();
@@ -214,8 +215,23 @@ public HashMap<String, Object> getParams() {
 		if (this.size != null) {
 			params.put("size", this.size);
 		}
-		if (this.ignoreHiddenPoint != null) {
-			params.put("ignoreHiddenPoint", this.ignoreHiddenPoint);
+		if (this.minSize != null) {
+			params.put("minSize", this.minSize);
+		}
+		if (this.fillColor != null) {
+			params.put("fillColor", this.fillColor.getData());
+		}
+		if (this.center != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.center) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("center", array);
 		}
 		return params;
 	}

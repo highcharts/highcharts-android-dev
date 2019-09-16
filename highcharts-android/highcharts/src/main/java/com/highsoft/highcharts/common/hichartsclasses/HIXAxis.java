@@ -20,8 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 
-
-public class HIXAxis extends HIFoundation { 
+public class HIXAxis extends HIFoundation {
 
 	private Boolean zoomEnabled;
 	/**
@@ -844,7 +843,6 @@ public class HIXAxis extends HIFoundation {
 	}
 
 	public Number getSoftMax(){ return softMax; }
-
 
 /**
  * Add a plot band after render time.

@@ -130,18 +130,6 @@ public class HISunburst extends HISeries {
 
 	public Boolean getAllowTraversingTree(){ return allowTraversingTree; }
 
-	private HIColor borderColor;
-	/**
- The color of the border surrounding each slice. When null, the border takes the same color as the slice fill. This can be used together with a borderWidth to fill drawing gaps created by antialiazing artefacts in borderless pies. In styled mode, the border stroke is given in the .highcharts-point class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-bordercolor-black/">Black border</a>
- <br><br><b>defaults:</b><br><br>&ensp;#ffffff	*/
-	public void setBorderColor(HIColor borderColor) {
-		this.borderColor = borderColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getBorderColor(){ return borderColor; }
-
 	private ArrayList<String> colors;
 	/**
  A series specific or series type specific color set to use instead of the global colors. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/">Set defaults colors for all pies</a>
@@ -154,17 +142,41 @@ public class HISunburst extends HISeries {
 
 	public ArrayList<String> getColors(){ return colors; }
 
-	private Number borderWidth;
+	private Object /* Number, String */ size;
 	/**
- The width of the border surrounding each slice. When setting the border width to 0, there may be small gaps between the slices due to SVG antialiasing artefacts. To work around this, keep the border width at 0.5 or 1, but set the borderColor to null instead. In styled mode, the border stroke width is given in the .highcharts-point class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-borderwidth/">3px border</a>
+ The diameter of the pie relative to the plot area. Can be a percentage or pixel value. Pixel values are given as integers. The defaults behaviour (as of 3.0) is to scale to the plot area and give room for data labels within the plot area. slicedOffset is also included in the defaults size calculation. As a consequence, the size of the pie may vary when points are updated and data labels more around. In that case it is best to set a fixed value, for example "75%". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-size/">Smaller pie</a>
 	*/
-	public void setBorderWidth(Number borderWidth) {
-		this.borderWidth = borderWidth;
+	public void setSize(Object /* Number, String */ size) {
+		this.size = size;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getBorderWidth(){ return borderWidth; }
+	public Object /* Number, String */ getSize(){ return size; }
+
+	private HIColor borderColor;
+	/**
+ The color of the border surrounding each slice. When null, the border takes the same color as the slice fill. This can be used together with a borderWidth to fill drawing gaps created by antialiazing artefacts in borderless pies. In styled mode, the border stroke is given in the .highcharts-point class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-bordercolor-black/">Black border</a>
+ <br><br><b>defaults:</b><br><br>&ensp;#ffffff	*/
+	public void setBorderColor(HIColor borderColor) {
+		this.borderColor = borderColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getBorderColor(){ return borderColor; }
+
+	private HIColor fillColor;
+	/**
+ If the total sum of the pie's values is 0, the series is represented as an empty circle . The fillColor option defines the color of that circle. Use pie.borderWidth to set the border thickness. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-emptyseries/">Empty pie series</a>
+	*/
+	public void setFillColor(HIColor fillColor) {
+		this.fillColor = fillColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getFillColor(){ return fillColor; }
 
 	private Number startAngle;
 	/**
@@ -178,17 +190,17 @@ public class HISunburst extends HISeries {
 
 	public Number getStartAngle(){ return startAngle; }
 
-	private Object /* Number, String */ size;
+	private Number borderWidth;
 	/**
- The diameter of the pie relative to the plot area. Can be a percentage or pixel value. Pixel values are given as integers. The defaults behaviour (as of 3.0) is to scale to the plot area and give room for data labels within the plot area. slicedOffset is also included in the defaults size calculation. As a consequence, the size of the pie may vary when points are updated and data labels more around. In that case it is best to set a fixed value, for example "75%". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-size/">Smaller pie</a>
+ The width of the border surrounding each slice. When setting the border width to 0, there may be small gaps between the slices due to SVG antialiasing artefacts. To work around this, keep the border width at 0.5 or 1, but set the borderColor to null instead. In styled mode, the border stroke width is given in the .highcharts-point class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-borderwidth/">3px border</a>
 	*/
-	public void setSize(Object /* Number, String */ size) {
-		this.size = size;
+	public void setBorderWidth(Number borderWidth) {
+		this.borderWidth = borderWidth;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number, String */ getSize(){ return size; }
+	public Number getBorderWidth(){ return borderWidth; }
 
 
 
@@ -247,9 +259,6 @@ public HashMap<String, Object> getParams() {
 		if (this.allowTraversingTree != null) {
 			params.put("allowTraversingTree", this.allowTraversingTree);
 		}
-		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor.getData());
-		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.colors) {
@@ -262,14 +271,20 @@ public HashMap<String, Object> getParams() {
 			}
 			params.put("colors", array);
 		}
-		if (this.borderWidth != null) {
-			params.put("borderWidth", this.borderWidth);
+		if (this.size != null) {
+			params.put("size", this.size);
+		}
+		if (this.borderColor != null) {
+			params.put("borderColor", this.borderColor.getData());
+		}
+		if (this.fillColor != null) {
+			params.put("fillColor", this.fillColor.getData());
 		}
 		if (this.startAngle != null) {
 			params.put("startAngle", this.startAngle);
 		}
-		if (this.size != null) {
-			params.put("size", this.size);
+		if (this.borderWidth != null) {
+			params.put("borderWidth", this.borderWidth);
 		}
 		return params;
 	}

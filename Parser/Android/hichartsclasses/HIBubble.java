@@ -57,18 +57,6 @@ public class HIBubble extends HISeries {
 
 	public Number getZMin(){ return zMin; }
 
-	private Object /* Number, String */ minSize;
-	/**
- Minimum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the z value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-size/">Bubble size</a>
-	*/
-	public void setMinSize(Object /* Number, String */ minSize) {
-		this.minSize = minSize;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object /* Number, String */ getMinSize(){ return minSize; }
-
 	private Object /* Number, String */ maxSize;
 	/**
  Maximum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the z value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-size/">Bubble size</a>
@@ -80,6 +68,18 @@ public class HIBubble extends HISeries {
 	}
 
 	public Object /* Number, String */ getMaxSize(){ return maxSize; }
+
+	private Object /* Number, String */ minSize;
+	/**
+ Minimum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the z value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bubble-size/">Bubble size</a>
+	*/
+	public void setMinSize(Object /* Number, String */ minSize) {
+		this.minSize = minSize;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getMinSize(){ return minSize; }
 
 	private Boolean displayNegative;
 	/**
@@ -151,11 +151,11 @@ public HashMap<String, Object> getParams() {
 		if (this.zMin != null) {
 			params.put("zMin", this.zMin);
 		}
-		if (this.minSize != null) {
-			params.put("minSize", this.minSize);
-		}
 		if (this.maxSize != null) {
 			params.put("maxSize", this.maxSize);
+		}
+		if (this.minSize != null) {
+			params.put("minSize", this.minSize);
 		}
 		if (this.displayNegative != null) {
 			params.put("displayNegative", this.displayNegative);

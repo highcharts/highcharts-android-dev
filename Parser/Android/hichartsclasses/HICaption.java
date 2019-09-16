@@ -16,11 +16,11 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-public class HISubtitle extends HIFoundation { 
+public class HICaption extends HIFoundation { 
 
 	private HICSSObject style;
 	/**
- CSS styles for the title. In styled mode, the subtitle style is given in the .highcharts-subtitle class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/style/">Custom color and weight</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/titles/">Styled mode</a>
+ CSS styles for the caption. In styled mode, the caption style is given in the .highcharts-caption class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/titles/">Styled mode</a>
  <br><br><b>defaults:</b><br><br>&ensp;{"color": "#666666"}	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
@@ -32,7 +32,7 @@ public class HISubtitle extends HIFoundation {
 
 	private String verticalAlign;
 	/**
- The vertical alignment of the title. Can be one of "top", "middle" and "bottom". When middle, the subtitle behaves as floating. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/verticalalign/">Footnote at the bottom right of plot area</a>
+ The vertical alignment of the caption. Can be one of "top", "middle" and "bottom". When middle, the caption behaves as floating. 
 	*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
@@ -44,7 +44,7 @@ public class HISubtitle extends HIFoundation {
 
 	private String text;
 	/**
- The subtitle of the chart. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/text/">Custom subtitle</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/text-formatted/">Formatted and linked text.</a>
+ The caption text of the chart. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/caption/text/">Custom caption</a>
 	*/
 	public void setText(String text) {
 		this.text = text;
@@ -56,7 +56,7 @@ public class HISubtitle extends HIFoundation {
 
 	private String align;
 	/**
- The horizontal alignment of the subtitle. Can be one of "left", "center" and "right". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/align/">Footnote at right of plot area</a>
+ The horizontal alignment of the caption. Can be one of "left", "center" and "right". 
 	*/
 	public void setAlign(String align) {
 		this.align = align;
@@ -68,7 +68,7 @@ public class HISubtitle extends HIFoundation {
 
 	private Number y;
 	/**
- The y position of the subtitle relative to the alignment within chart.spacingTop and chart.spacingBottom. By defaults the subtitle is laid out below the title unless the title is floating. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/verticalalign/">Footnote at the bottom right of plot area</a>
+ The y position of the caption relative to the alignment within chart.spacingTop and chart.spacingBottom. 
 	*/
 	public void setY(Number y) {
 		this.y = y;
@@ -80,7 +80,7 @@ public class HISubtitle extends HIFoundation {
 
 	private Number x;
 	/**
- The x position of the subtitle relative to the alignment within chart.spacingLeft and chart.spacingRight. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/align/">Footnote at right of plot area</a>
+ The x position of the caption relative to the alignment within chart.spacingLeft and chart.spacingRight. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setX(Number x) {
 		this.x = x;
@@ -92,7 +92,7 @@ public class HISubtitle extends HIFoundation {
 
 	private Boolean floating;
 	/**
- When the subtitle is floating, the plot area will not move to make space for it. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/floating/">Floating title and subtitle</a>
+ When the caption is floating, the plot area will not move to make space for it. 
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setFloating(Boolean floating) {
 		this.floating = floating;
@@ -102,17 +102,17 @@ public class HISubtitle extends HIFoundation {
 
 	public Boolean getFloating(){ return floating; }
 
-	private Number widthAdjust;
+	private Number margin;
 	/**
- Adjustment made to the subtitle width, normally to reserve space for the exporting burger menu. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/widthadjust/">Wider menu, greater padding</a>
+ The margin between the caption and the plot area. 
 	*/
-	public void setWidthAdjust(Number widthAdjust) {
-		this.widthAdjust = widthAdjust;
+	public void setMargin(Number margin) {
+		this.margin = margin;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getWidthAdjust(){ return widthAdjust; }
+	public Number getMargin(){ return margin; }
 
 	private Boolean useHTML;
 	/**
@@ -128,7 +128,7 @@ public class HISubtitle extends HIFoundation {
 
 
 
-	public HISubtitle() {
+	public HICaption() {
 
 	}
 
@@ -158,8 +158,8 @@ public HashMap<String, Object> getParams() {
 		if (this.floating != null) {
 			params.put("floating", this.floating);
 		}
-		if (this.widthAdjust != null) {
-			params.put("widthAdjust", this.widthAdjust);
+		if (this.margin != null) {
+			params.put("margin", this.margin);
 		}
 		if (this.useHTML != null) {
 			params.put("useHTML", this.useHTML);

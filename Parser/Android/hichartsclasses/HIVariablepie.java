@@ -82,6 +82,42 @@ public class HIVariablepie extends HISeries {
 
 	public Object /* Number, String */ getMaxPointSize(){ return maxPointSize; }
 
+	private Boolean ignoreHiddenPoint;
+	/**
+ Equivalent to chart.ignoreHiddenSeries, this option tells whether the series shall be redrawn as if the hidden point were null. The defaults value changed from false to true with Highcharts 3.0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-ignorehiddenpoint/">True, the hiddden point is ignored</a>
+	*/
+	public void setIgnoreHiddenPoint(Boolean ignoreHiddenPoint) {
+		this.ignoreHiddenPoint = ignoreHiddenPoint;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getIgnoreHiddenPoint(){ return ignoreHiddenPoint; }
+
+	private ArrayList<String> colors;
+	/**
+ A series specific or series type specific color set to use instead of the global colors. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/">Set defaults colors for all pies</a>
+	*/
+	public void setColors(ArrayList<String> colors) {
+		this.colors = colors;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList<String> getColors(){ return colors; }
+
+	private Object /* Number, String */ size;
+	/**
+ The diameter of the pie relative to the plot area. Can be a percentage or pixel value. Pixel values are given as integers. The defaults behaviour (as of 3.0) is to scale to the plot area and give room for data labels within the plot area. slicedOffset is also included in the defaults size calculation. As a consequence, the size of the pie may vary when points are updated and data labels more around. In that case it is best to set a fixed value, for example "75%". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-size/">Smaller pie</a>
+	*/
+	public void setSize(Object /* Number, String */ size) {
+		this.size = size;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getSize(){ return size; }
+
 	private HIColor borderColor;
 	/**
  The color of the border surrounding each slice. When null, the border takes the same color as the slice fill. This can be used together with a borderWidth to fill drawing gaps created by antialiazing artefacts in borderless pies. In styled mode, the border stroke is given in the .highcharts-point class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-bordercolor-black/">Black border</a>
@@ -105,6 +141,42 @@ public class HIVariablepie extends HISeries {
 	}
 
 	public Object /* Number, String */ getMinSize(){ return minSize; }
+
+	private HIColor fillColor;
+	/**
+ If the total sum of the pie's values is 0, the series is represented as an empty circle . The fillColor option defines the color of that circle. Use pie.borderWidth to set the border thickness. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-emptyseries/">Empty pie series</a>
+	*/
+	public void setFillColor(HIColor fillColor) {
+		this.fillColor = fillColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getFillColor(){ return fillColor; }
+
+	private Number startAngle;
+	/**
+ The start angle of the pie slices in degrees where 0 is top and 90 right. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-startangle-90/">Start from right</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
+	public void setStartAngle(Number startAngle) {
+		this.startAngle = startAngle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getStartAngle(){ return startAngle; }
+
+	private Number endAngle;
+	/**
+ The end angle of the pie in degrees where 0 is top and 90 is right. Defaults to startAngle plus 360. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-semi-circle/">Semi-circle donut</a>
+	*/
+	public void setEndAngle(Number endAngle) {
+		this.endAngle = endAngle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getEndAngle(){ return endAngle; }
 
 	private Object /* Number, String */ innerSize;
 	/**
@@ -154,30 +226,6 @@ public class HIVariablepie extends HISeries {
 
 	public Number getDepth(){ return depth; }
 
-	private Number endAngle;
-	/**
- The end angle of the pie in degrees where 0 is top and 90 is right. Defaults to startAngle plus 360. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-semi-circle/">Semi-circle donut</a>
-	*/
-	public void setEndAngle(Number endAngle) {
-		this.endAngle = endAngle;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getEndAngle(){ return endAngle; }
-
-	private ArrayList<String> colors;
-	/**
- A series specific or series type specific color set to use instead of the global colors. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/">Set defaults colors for all pies</a>
-	*/
-	public void setColors(ArrayList<String> colors) {
-		this.colors = colors;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public ArrayList<String> getColors(){ return colors; }
-
 	private Number borderWidth;
 	/**
  The width of the border surrounding each slice. When setting the border width to 0, there may be small gaps between the slices due to SVG antialiasing artefacts. To work around this, keep the border width at 0.5 or 1, but set the borderColor to null instead. In styled mode, the border stroke width is given in the .highcharts-point class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-borderwidth/">3px border</a>
@@ -189,42 +237,6 @@ public class HIVariablepie extends HISeries {
 	}
 
 	public Number getBorderWidth(){ return borderWidth; }
-
-	private Number startAngle;
-	/**
- The start angle of the pie slices in degrees where 0 is top and 90 right. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-startangle-90/">Start from right</a>
- <br><br><b>defaults:</b><br><br>&ensp;0	*/
-	public void setStartAngle(Number startAngle) {
-		this.startAngle = startAngle;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getStartAngle(){ return startAngle; }
-
-	private Object /* Number, String */ size;
-	/**
- The diameter of the pie relative to the plot area. Can be a percentage or pixel value. Pixel values are given as integers. The defaults behaviour (as of 3.0) is to scale to the plot area and give room for data labels within the plot area. slicedOffset is also included in the defaults size calculation. As a consequence, the size of the pie may vary when points are updated and data labels more around. In that case it is best to set a fixed value, for example "75%". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-size/">Smaller pie</a>
-	*/
-	public void setSize(Object /* Number, String */ size) {
-		this.size = size;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object /* Number, String */ getSize(){ return size; }
-
-	private Boolean ignoreHiddenPoint;
-	/**
- Equivalent to chart.ignoreHiddenSeries, this option tells whether the series shall be redrawn as if the hidden point were null. The defaults value changed from false to true with Highcharts 3.0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-ignorehiddenpoint/">True, the hiddden point is ignored</a>
-	*/
-	public void setIgnoreHiddenPoint(Boolean ignoreHiddenPoint) {
-		this.ignoreHiddenPoint = ignoreHiddenPoint;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getIgnoreHiddenPoint(){ return ignoreHiddenPoint; }
 
 
 
@@ -253,11 +265,38 @@ public HashMap<String, Object> getParams() {
 		if (this.maxPointSize != null) {
 			params.put("maxPointSize", this.maxPointSize);
 		}
+		if (this.ignoreHiddenPoint != null) {
+			params.put("ignoreHiddenPoint", this.ignoreHiddenPoint);
+		}
+		if (this.colors != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.colors) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("colors", array);
+		}
+		if (this.size != null) {
+			params.put("size", this.size);
+		}
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
 		}
 		if (this.minSize != null) {
 			params.put("minSize", this.minSize);
+		}
+		if (this.fillColor != null) {
+			params.put("fillColor", this.fillColor.getData());
+		}
+		if (this.startAngle != null) {
+			params.put("startAngle", this.startAngle);
+		}
+		if (this.endAngle != null) {
+			params.put("endAngle", this.endAngle);
 		}
 		if (this.innerSize != null) {
 			params.put("innerSize", this.innerSize);
@@ -280,32 +319,8 @@ public HashMap<String, Object> getParams() {
 		if (this.depth != null) {
 			params.put("depth", this.depth);
 		}
-		if (this.endAngle != null) {
-			params.put("endAngle", this.endAngle);
-		}
-		if (this.colors != null) {
-			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.colors) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
-			}
-			params.put("colors", array);
-		}
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);
-		}
-		if (this.startAngle != null) {
-			params.put("startAngle", this.startAngle);
-		}
-		if (this.size != null) {
-			params.put("size", this.size);
-		}
-		if (this.ignoreHiddenPoint != null) {
-			params.put("ignoreHiddenPoint", this.ignoreHiddenPoint);
 		}
 		return params;
 	}

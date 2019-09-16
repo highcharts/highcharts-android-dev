@@ -30,7 +30,7 @@ public class HISubtitle extends HIFoundation {
 
 	private String verticalAlign;
 	/**
- The vertical alignment of the title. Can be one of "top", "middle" and "bottom". When a value is given, the title behaves as floating. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/verticalalign/">Footnote at the bottom right of plot area</a>
+ The vertical alignment of the title. Can be one of "top", "middle" and "bottom". When middle, the subtitle behaves as floating. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/subtitle/verticalalign/">Footnote at the bottom right of plot area</a>
 	*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;

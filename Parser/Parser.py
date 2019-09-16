@@ -353,7 +353,9 @@ hc_types = {
         "Array.<(number|string|null), (number|string|null)>": 'ArrayList /* <Number, String> */',
         "Highcharts.EventCallbackFunction.<Highcharts.PlotLineOrBand>": 'HIFunction',
         "Highcharts.FormatterCallbackFunction.<Highcharts.PlotLineOrBand>": 'HIFunction',
-        "string|null|undefined": 'String'
+        "string|null|undefined": 'String',
+        #7.2.0
+        "number|string|boolean": 'Object /* Number, String */'
 }
 
 

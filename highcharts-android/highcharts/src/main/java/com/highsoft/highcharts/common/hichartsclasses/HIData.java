@@ -14,10 +14,17 @@ import com.highsoft.highcharts.core.HIFunction;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 
+public class HIData extends HIFoundation {
 
-public class HIData extends HIFoundation { 
+	private HashMap<String, Object> jsProperties;
+
+	public void setProperty(String name, Object value) {
+		if(jsProperties == null) jsProperties = new HashMap<>();
+		jsProperties.put(name, value);
+	}
 
 	private Boolean enablePolling;
 	/**
@@ -1199,6 +1206,11 @@ public HashMap<String, Object> getParams() {
 				}
 			}
 			params.put("sets", array);
+		}
+		if(this.jsProperties != null){
+			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
+				params.put(entry.getKey(), entry.getValue());
+			}
 		}
 		return params;
 	}

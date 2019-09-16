@@ -44,17 +44,17 @@ public class HINavigation extends HIFoundation {
 
 	public HIButtonOptions getButtonOptions(){ return buttonOptions; }
 
-	private Object iconsURL;
+	private String iconsURL;
 	/**
  Path where Highcharts will look for icons. Change this to use icons from a different server. 
 	*/
-	public void setIconsURL(Object iconsURL) {
+	public void setIconsURL(String iconsURL) {
 		this.iconsURL = iconsURL;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getIconsURL(){ return iconsURL; }
+	public String getIconsURL(){ return iconsURL; }
 
 	private String bindingsClassName;
 	/**
@@ -234,6 +234,7 @@ public HashMap<String, Object> getParams() {
 			params.put("buttonOptions", this.buttonOptions.getParams());
 		}
 		if (this.iconsURL != null) {
+			params.put("iconsURL", this.iconsURL);
 		}
 		if (this.bindingsClassName != null) {
 			params.put("bindingsClassName", this.bindingsClassName);

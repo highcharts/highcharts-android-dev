@@ -221,6 +221,18 @@ public class HIEvents extends HIFoundation {
 
 	public HIFunction getDrillupall(){ return drillupall; }
 
+	private HIFunction exportData;
+	/**
+ Callback that fires while exporting data. This allows the modification of data rows before processed into the final format. Requires the export-data module. 
+	*/
+	public void setExportData(HIFunction exportData) {
+		this.exportData = exportData;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getExportData(){ return exportData; }
+
 	private HIFunction drilldown;
 	/**
  Fires when a drilldown point is clicked, before the new series is added. This event is also utilized for async drilldown, where the seriesOptions are not added by option, but rather loaded async. Note that when clicking a category label to trigger multiple series drilldown, one drilldown event is triggered per point in the category. Event arguments: - category: If a category label was clicked, which index. - originalEvent: The original browser event (usually click) that triggered  the drilldown. - point: The originating point. - points: If a category label was clicked, this array holds all points  corresponing to the category. - seriesOptions: Options for the new series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/async/">Async drilldown</a>
@@ -558,6 +570,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.drillupall != null) {
 			params.put("drillupall", this.drillupall);
+		}
+		if (this.exportData != null) {
+			params.put("exportData", this.exportData);
 		}
 		if (this.drilldown != null) {
 			params.put("drilldown", this.drilldown);

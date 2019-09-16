@@ -46,29 +46,29 @@ public class HIPyramid3d extends HISeries {
 
 	public Boolean getColorByPoint(){ return colorByPoint; }
 
-	private Object /* Number|String */ height;
+	private Object /* Number, String */ height;
 	/**
  The height of the series. If it is a number it defines the pixel height, if it is a percentage string it is the percentage of the plot area height. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/funnel3d/">Funnel3d demo</a>
 	*/
-	public void setHeight(Object /* Number|String */ height) {
+	public void setHeight(Object /* Number, String */ height) {
 		this.height = height;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number|String */ getHeight(){ return height; }
+	public Object /* Number, String */ getHeight(){ return height; }
 
-	private Object /* Number|String */ width;
+	private Object /* Number, String */ width;
 	/**
  The max width of the series compared to the width of the plot area, or the pixel width if it is a number. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/funnel3d/">Funnel3d demo</a>
 	*/
-	public void setWidth(Object /* Number|String */ width) {
+	public void setWidth(Object /* Number, String */ width) {
 		this.width = width;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number|String */ getWidth(){ return width; }
+	public Object /* Number, String */ getWidth(){ return width; }
 
 	private Boolean gradientForSides;
 	/**

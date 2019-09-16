@@ -294,6 +294,18 @@ public class HISeries extends HIFoundation {
 
 	public HIStates getStates(){ return states; }
 
+	private String colorKey;
+	/**
+ Determines what data value should be used to calculate point color if colorAxis is used. Requires to set min and max if some custom point property is used or if approximation for data grouping is set to 'sum'. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/custom-color-key/">Custom color key</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/changed-defaults-color-key/">Changed defaults color key</a>
+ <br><br><b>defaults:</b><br><br>&ensp;y	*/
+	public void setColorKey(String colorKey) {
+		this.colorKey = colorKey;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getColorKey(){ return colorKey; }
+
 	private Boolean softThreshold;
 	/**
  When this is true, the series will not cause the Y axis to cross the zero plane (or threshold option) unless the data actually crosses the plane. For example, if softThreshold is false, a series of 0, 1, 2, 3 will make the Y axis show negative values according to the minPadding option. If softThreshold is true, the Y axis starts at 0. 
@@ -370,17 +382,17 @@ public class HISeries extends HIFoundation {
 
 	public HIFunction getPointDescriptionFormatter(){ return pointDescriptionFormatter; }
 
-	private String className;
+	private String cursor;
 	/**
- An additional class name to apply to the series' graphical elements. This option does not replace defaults class names of the graphical element. 
+ You can set the cursor to "pointer" if you have click events attached to the series, to signal to the user that the points and lines can be clicked. In styled mode, the series cursor can be set with the same classes as listed under series.color. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-cursor-line/">On line graph</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-cursor-column/">On columns</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-cursor-scatter/">On scatter markers</a>
 	*/
-	public void setClassName(String className) {
-		this.className = className;
+	public void setCursor(String cursor) {
+		this.cursor = cursor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getClassName(){ return className; }
+	public String getCursor(){ return cursor; }
 
 	private String dashStyle;
 	/**
@@ -649,6 +661,18 @@ public class HISeries extends HIFoundation {
 
 	public Boolean getAllowPointSelect(){ return allowPointSelect; }
 
+	private Object /* Number, String */ colorAxis;
+	/**
+ When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the {@link #colorAxis.id|axis id} or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/coloraxis-with-pie/">Color axis with pie series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/multiple-coloraxis/">Multiple color axis</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
+	public void setColorAxis(Object /* Number, String */ colorAxis) {
+		this.colorAxis = colorAxis;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getColorAxis(){ return colorAxis; }
+
 	private String zoneAxis;
 	/**
  Defines the Axis on which the zones are applied. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/color-zones-zoneaxis-x/">Zones on the X-Axis</a>
@@ -745,17 +769,17 @@ public class HISeries extends HIFoundation {
 
 	public ArrayList<HIDataLabelsOptionsObject> getDataLabels(){ return dataLabels; }
 
-	private String cursor;
+	private String className;
 	/**
- You can set the cursor to "pointer" if you have click events attached to the series, to signal to the user that the points and lines can be clicked. In styled mode, the series cursor can be set with the same classes as listed under series.color. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-cursor-line/">On line graph</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-cursor-column/">On columns</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-cursor-scatter/">On scatter markers</a>
+ An additional class name to apply to the series' graphical elements. This option does not replace defaults class names of the graphical element. 
 	*/
-	public void setCursor(String cursor) {
-		this.cursor = cursor;
+	public void setClassName(String className) {
+		this.className = className;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getCursor(){ return cursor; }
+	public String getClassName(){ return className; }
 
 	private Number pointStart;
 	/**
@@ -807,8 +831,8 @@ public class HISeries extends HIFoundation {
 
 	private Boolean showInLegend;
 	/**
- Whether to display this particular series or series type in the legend. The defaults value is true for standalone series, false for linked series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-showinlegend/">One series in the legend, one hidden</a>
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+ Whether to display this particular series or series type in the legend. Standalone series are shown in legend by defaults, and linked series are not. Since v7.2.0 it is possible to show series that use colorAxis by setting this option to true. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-showinlegend/">One series in the legend, one hidden</a>
+	*/
 	public void setShowInLegend(Boolean showInLegend) {
 		this.showInLegend = showInLegend;
 		this.setChanged();
@@ -906,6 +930,9 @@ public HashMap<String, Object> getParams() {
 		if (this.states != null) {
 			params.put("states", this.states.getParams());
 		}
+		if (this.colorKey != null) {
+			params.put("colorKey", this.colorKey);
+		}
 		if (this.softThreshold != null) {
 			params.put("softThreshold", this.softThreshold);
 		}
@@ -924,8 +951,8 @@ public HashMap<String, Object> getParams() {
 		if (this.pointDescriptionFormatter != null) {
 			params.put("pointDescriptionFormatter", this.pointDescriptionFormatter);
 		}
-		if (this.className != null) {
-			params.put("className", this.className);
+		if (this.cursor != null) {
+			params.put("cursor", this.cursor);
 		}
 		if (this.dashStyle != null) {
 			params.put("dashStyle", this.dashStyle);
@@ -1002,6 +1029,9 @@ public HashMap<String, Object> getParams() {
 		if (this.allowPointSelect != null) {
 			params.put("allowPointSelect", this.allowPointSelect);
 		}
+		if (this.colorAxis != null) {
+			params.put("colorAxis", this.colorAxis);
+		}
 		if (this.zoneAxis != null) {
 			params.put("zoneAxis", this.zoneAxis);
 		}
@@ -1044,8 +1074,8 @@ public HashMap<String, Object> getParams() {
 			}
 			params.put("dataLabels", array);
 		}
-		if (this.cursor != null) {
-			params.put("cursor", this.cursor);
+		if (this.className != null) {
+			params.put("className", this.className);
 		}
 		if (this.pointStart != null) {
 			params.put("pointStart", this.pointStart);
