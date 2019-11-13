@@ -193,7 +193,7 @@ public class HIPyramid extends HISeries {
 
 	private Number depth;
 	/**
- The thickness of a 3D pie. Requires highcharts-3d.js 
+ The thickness of a 3D pie. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setDepth(Number depth) {
 		this.depth = depth;

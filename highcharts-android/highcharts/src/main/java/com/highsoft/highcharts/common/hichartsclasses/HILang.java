@@ -19,7 +19,7 @@ public class HILang extends HIFoundation {
 
 	private String downloadCSV;
 	/**
- Export-data module only. The text for the menu item. 
+ The text for the menu item. 
 	*/
 	public void setDownloadCSV(String downloadCSV) {
 		this.downloadCSV = downloadCSV;
@@ -31,7 +31,7 @@ public class HILang extends HIFoundation {
 
 	private String downloadXLS;
 	/**
- Export-data module only. The text for the menu item. 
+ The text for the menu item. 
 	*/
 	public void setDownloadXLS(String downloadXLS) {
 		this.downloadXLS = downloadXLS;
@@ -92,7 +92,7 @@ public class HILang extends HIFoundation {
 
 	private String noData;
 	/**
- The text to display when the chart contains no data. Requires the no-data module, see noData. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line">No-data text</a>
+ The text to display when the chart contains no data. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line">No-data text</a>
 	*/
 	public void setNoData(String noData) {
 		this.noData = noData;
@@ -189,7 +189,7 @@ public class HILang extends HIFoundation {
 
 	private String viewData;
 	/**
- Export-data module only. The text for the menu item. 
+ The text for the menu item. 
 	*/
 	public void setViewData(String viewData) {
 		this.viewData = viewData;
@@ -249,7 +249,7 @@ public class HILang extends HIFoundation {
 
 	private String openInCloud;
 	/**
- Export-data module only. The text for the menu item. 
+ The text for the menu item. 
 	*/
 	public void setOpenInCloud(String openInCloud) {
 		this.openInCloud = openInCloud;

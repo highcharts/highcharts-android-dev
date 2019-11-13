@@ -170,7 +170,7 @@ public class HIFunnel3d extends HISeries {
 
 	private Number groupZPadding;
 	/**
- The spacing between columns on the Z Axis in a 3D chart. Requires highcharts-3d.js. 
+ The spacing between columns on the Z Axis in a 3D chart. 
  <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setGroupZPadding(Number groupZPadding) {
 		this.groupZPadding = groupZPadding;
@@ -266,7 +266,7 @@ public class HIFunnel3d extends HISeries {
 
 	private Number depth;
 	/**
- Depth of the columns in a 3D column chart. Requires highcharts-3d.js. 
+ Depth of the columns in a 3D column chart. 
  <br><br><b>defaults:</b><br><br>&ensp;25	*/
 	public void setDepth(Number depth) {
 		this.depth = depth;

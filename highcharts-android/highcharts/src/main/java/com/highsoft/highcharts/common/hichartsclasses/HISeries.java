@@ -8,7 +8,6 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIChartsJSONSerializable;
 import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.core.HIFunction;
@@ -19,6 +18,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 
 public class HISeries extends HIFoundation {
@@ -233,7 +233,7 @@ public class HISeries extends HIFoundation {
 
 	private Boolean includeInDataExport;
 	/**
- Export-data module required. When set to false will prevent the series data from being included in any form of data export. Since version 6.0.0 until 7.1.0 the option was existing undocumented as includeInCSVExport. 
+ When set to false will prevent the series data from being included in any form of data export. Since version 6.0.0 until 7.1.0 the option was existing undocumented as includeInCSVExport. 
 	*/
 	public void setIncludeInDataExport(Boolean includeInDataExport) {
 		this.includeInDataExport = includeInDataExport;
@@ -363,7 +363,7 @@ public class HISeries extends HIFoundation {
 
 	private HIDragDrop dragDrop;
 	/**
- The draggable-points module allows points to be moved around or modified in the chart. In addition to the options mentioned under the dragDrop API structure, the module fires three events, `point.dragStart`, `point.drag` and `point.drop`. It requires the modules/draggable-points.js file to be loaded. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/resize-column">Draggable column and line series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/bar-series">Draggable bar</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-bubble">Draggable bubbles</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-xrange">Draggable X range series</a>
+ The draggable-points module allows points to be moved around or modified in the chart. In addition to the options mentioned under the dragDrop API structure, the module fires three events, `point.dragStart`, `point.drag` and `point.drop`. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/resize-column">Draggable column and line series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/bar-series">Draggable bar</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-bubble">Draggable bubbles</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-xrange">Draggable X range series</a>
 	*/
 	public void setDragDrop(HIDragDrop dragDrop) {
 		this.dragDrop = dragDrop;
@@ -487,7 +487,7 @@ public class HISeries extends HIFoundation {
 
 	private HILabel label;
 	/**
- Series labels are placed as close to the series as possible in a natural way, seeking to avoid other series. The goal of this feature is to make the chart more easily readable, like if a human designer placed the labels in the optimal position. The series labels currently work with series types having a graph or an area. Requires the series-label.js module. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-label/line-chart">Line chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/streamgraph">Stream graph</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-label/stock-chart">Stock chart</a>
+ Series labels are placed as close to the series as possible in a natural way, seeking to avoid other series. The goal of this feature is to make the chart more easily readable, like if a human designer placed the labels in the optimal position. The series labels currently work with series types having a graph or an area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-label/line-chart">Line chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/streamgraph">Stream graph</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-label/stock-chart">Stock chart</a>
 	*/
 	public void setLabel(HILabel label) {
 		this.label = label;
@@ -621,7 +621,7 @@ public class HISeries extends HIFoundation {
 
 	private Number turboThreshold;
 	/**
- When a series contains a data array that is longer than this, only one dimensional arrays of numbers, or two dimensional arrays with x and y values are allowed. Also, only the first point is tested, and the rest are assumed to be the same format. This saves expensive data checking and indexing in long series. Set it to 0 disable. 
+ When a series contains a data array that is longer than this, only one dimensional arrays of numbers, or two dimensional arrays with x and y values are allowed. Also, only the first point is tested, and the rest are assumed to be the same format. This saves expensive data checking and indexing in long series. Set it to 0 disable. Note: In boost mode turbo threshold is forced. Only array of numbers or two dimensional arrays are allowed. 
 	*/
 	public void setTurboThreshold(Number turboThreshold) {
 		this.turboThreshold = turboThreshold;
@@ -706,7 +706,7 @@ public class HISeries extends HIFoundation {
 
 	private Object /* Number, String */ colorAxis;
 	/**
- When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the {@link #colorAxis |axis id} or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/coloraxis-with-pie/">Color axis with pie series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/multiple-coloraxis/">Multiple color axis</a>
+ When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the {@link #colorAxis} or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/coloraxis-with-pie/">Color axis with pie series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/multiple-coloraxis/">Multiple color axis</a>
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setColorAxis(Object /* Number, String */ colorAxis) {
 		this.colorAxis = colorAxis;
@@ -790,7 +790,7 @@ public class HISeries extends HIFoundation {
 
 	private Boolean stickyTracking;
 	/**
- Sticky tracking of mouse events. When true, the mouseOut event on a series isn't triggered until the mouse moves over another series, or out of the plot area. When false, the mouseOut event on a series is triggered when the mouse leaves the area around the series' graph or markers. This also implies the tooltip when not shared. When stickyTracking is false and tooltip.shared is false, the tooltip will be hidden when moving the mouse between series. Defaults to true for line and area type series, but to false for columns, pies etc. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stickytracking-true/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stickytracking-false/">False</a>
+ Sticky tracking of mouse events. When true, the mouseOut event on a series isn't triggered until the mouse moves over another series, or out of the plot area. When false, the mouseOut event on a series is triggered when the mouse leaves the area around the series' graph or markers. This also implies the tooltip when not shared. When stickyTracking is false and tooltip.shared is false, the tooltip will be hidden when moving the mouse between series. Defaults to true for line and area type series, but to false for columns, pies etc. **Note:** The boost module will force this option because of technical limitations. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stickytracking-true/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stickytracking-false/">False</a>
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setStickyTracking(Boolean stickyTracking) {
 		this.stickyTracking = stickyTracking;
@@ -862,7 +862,7 @@ public class HISeries extends HIFoundation {
 
 	private Number boostThreshold;
 	/**
- Set the point threshold for when a series should enter boost mode. Setting it to e.g. 2000 will cause the series to enter boost mode when there are 2000 or more points in the series. To disable boosting on the series, set the boostThreshold to 0. Setting it to 1 will force boosting. Note that the `cropThreshold` also affects this setting. When zooming in on a series that has fewer points than the cropThreshold, all points are rendered although outside the visible plot area, and the boostThreshold won't take effect. Requires modules/boost.js. 
+ Set the point threshold for when a series should enter boost mode. Setting it to e.g. 2000 will cause the series to enter boost mode when there are 2000 or more points in the series. To disable boosting on the series, set the boostThreshold to 0. Setting it to 1 will force boosting. Note that the `cropThreshold` also affects this setting. When zooming in on a series that has fewer points than the cropThreshold, all points are rendered although outside the visible plot area, and the boostThreshold won't take effect. 
  <br><br><b>defaults:</b><br><br>&ensp;5000	*/
 	public void setBoostThreshold(Number boostThreshold) {
 		this.boostThreshold = boostThreshold;
@@ -884,544 +884,546 @@ public class HISeries extends HIFoundation {
 
 	public Boolean getShowInLegend(){ return showInLegend; }
 
-/**
- * Add a point to the series after render time. The point can be added at the end, or by giving it an X value, to the start or in the middle of the series.
- * @param options The point options. If options is a single number, a point with that y value is appended to the series. If it is an array, it will be interpreted as x and y values respectively. If it is an object, advanced options as outlined under series.data are applied.
- */
-public void addPoint(HIData options){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "addPoint0");
-    put("id", uuid);
-    put("params", Collections.singletonList(options.getParams()));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
 
-/**
- Add a point to the series after render time. The point can be added at the end, or by giving it an X value, to the start or in the middle of the series.
- * @param options The point options. If options is a single number, a point with that y value is appended to the series. If it is an array, it will be interpreted as x and y values respectively. If it is an object, advanced options as outlined under series.data are applied.
- * @param redraw Whether to redraw the chart after the point is added. When adding more than one point, it is highly recommended that the redraw option be set to false, and instead Highcharts.Chart#redraw is explicitly called after the adding of points is finished. Otherwise, the chart will redraw after adding each point.
- */
-public void addPoint(HIData options, boolean redraw){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "addPoint1");
-    put("id", uuid);
-    put("params", new ArrayList<>(Arrays.asList(options.getParams(), redraw)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- Add a point to the series after render time. The point can be added at the end, or by giving it an X value, to the start or in the middle of the series.
- * @param options The point options. If options is a single number, a point with that y value is appended to the series. If it is an array, it will be interpreted as x and y values respectively. If it is an object, advanced options as outlined under series.data are applied.
- * @param redraw Whether to redraw the chart after the point is added. When adding more than one point, it is highly recommended that the redraw option be set to false, and instead Highcharts.Chart#redraw is explicitly called after the adding of points is finished. Otherwise, the chart will redraw after adding each point.
- * @param shift If true, a point is shifted off the start of the series as one is appended to the end.
- */
-public void addPoint(HIData options, boolean redraw, boolean shift){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "addPoint2");
-    put("id", uuid);
-    put("params", new ArrayList<>(Arrays.asList(options.getParams(), redraw, shift)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- Add a point to the series after render time. The point can be added at the end, or by giving it an X value, to the start or in the middle of the series.
- * @param options The point options. If options is a single number, a point with that y value is appended to the series. If it is an array, it will be interpreted as x and y values respectively. If it is an object, advanced options as outlined under series.data are applied.
- * @param redraw Whether to redraw the chart after the point is added. When adding more than one point, it is highly recommended that the redraw option be set to false, and instead Highcharts.Chart#redraw is explicitly called after the adding of points is finished. Otherwise, the chart will redraw after adding each point.
- * @param shift If true, a point is shifted off the start of the series as one is appended to the end.
- * @param animation Whether to apply animation, and optionally animation configuration.
- */
-public void addPoint(HIData options, boolean redraw, boolean shift, HIAnimationOptionsObject animation){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "addPoint3");
-    put("id", uuid);
-    put("params", new ArrayList<>(Arrays.asList(options.getParams(), redraw, shift, animation)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Animate in the series. Called internally twice. First with the init parameter set to true, which sets up the initial state of the animation. Then when ready, it is called with the init parameter undefined, in order to perform the actual animation. After the second run, the function is removed.
- * @param init Initialize the animation.
- */
-public void animate(boolean init){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "animate");
-    put("id", uuid);
-    put("params", new ArrayList<>(Collections.singletonList(init)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Draw the graph. Called internally when rendering line-like series types. The first time it generates the series.graph item and optionally other series-wide items like series.area for area charts. On subsequent calls these items are updated with new positions and attributes.
- */
-public void drawGraph(){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "drawGraph");
-    put("id", uuid);
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Draw the markers for line-like series types, and columns or other graphical representation for Highcharts.Point objects for other series types. The resulting element is typically stored as Highcharts.Point.graphic, and is created on the first call and updated and moved on subsequent calls.
- */
-public void drawPoints(){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "drawPoints");
-    put("id", uuid);
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Hide the series if visible. If the chart.ignoreHiddenSeries option is true, the chart is redrawn without this series.
- */
-public void hide(){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "hide");
-    put("id", uuid);
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Runs on mouse over the series graphical items.
- */
-public void onMouseOver(){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "onMouseOver");
-    put("id", uuid);
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Runs on mouse out of the series graphical items.
- */
-public void onMouseOut() {
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "onMouseOut");
-    put("id", uuid);
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Remove a series and optionally redraw the chart.
- */
-public void remove(){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "remove0");
-    put("id", uuid);
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Remove a series and optionally redraw the chart.
- * @param redraw Whether to redraw the chart or wait for an explicit call to HIChartView redraw()
- */
-public void remove(boolean redraw){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "remove1");
-    put("id", uuid);
-    put("params", new ArrayList<>(Collections.singletonList(redraw)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Remove a series and optionally redraw the chart.
- * @param redraw Whether to redraw the chart or wait for an explicit call to HIChartView redraw()
- * @param animation Whether to apply animation, and optionally animation configuration.
- */
-public void remove(boolean redraw, HIAnimationOptionsObject animation){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "remove2");
-    put("id", uuid);
-    put("params", new ArrayList<>(Arrays.asList(redraw, animation)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Remove a series and optionally redraw the chart.
- * @param redraw Whether to redraw the chart or wait for an explicit call to HIChartView redraw()
- * @param animation Whether to apply animation, and optionally animation configuration.
- * @param withEvents Used internally, whether to fire the series remove event.
- */
-public void remove(boolean redraw, HIAnimationOptionsObject animation, boolean withEvents){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "remove3");
-    put("id", uuid);
-    put("params", new ArrayList<>(Arrays.asList(redraw, animation, withEvents)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Remove a point from the series. Unlike the HIPoint remove() method, this can also be done on a point that is not instanciated because it is outside the view
- * @param i The index of the point in the data array.
- */
-public void removePoint(Number i){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "removePoint0");
-    put("id", uuid);
-    put("params", new ArrayList<>(Collections.singletonList(i)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Remove a point from the series. Unlike the HIPoint remove() method, this can also be done on a point that is not instanciated because it is outside the view
- * @param i The index of the point in the data array.
- * @param redraw Whether to redraw the chart after the point is added. When removing more than one point, it is highly recommended that the redraw option be set to false, and instead HIChartView redraw() is explicitly called after the adding of points is finished.
- */
-public void removePoint(Number i, boolean redraw){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "removePoint1");
-    put("id", uuid);
-    put("params", new ArrayList<>(Arrays.asList(i, redraw)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-
-/**
- * Remove a point from the series. Unlike the HIPoint remove() method, this can also be done on a point that is not instanciated because it is outside the view
- * @param i The index of the point in the data array.
- * @param redraw Whether to redraw the chart after the point is added. When removing more than one point, it is highly recommended that the redraw option be set to false, and instead HIChartView redraw() is explicitly called after the adding of points is finished.
- * @param animation Whether and optionally how the series should be animated.
- */
-public void removePoint(Number i, boolean redraw, HIAnimationOptionsObject animation){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "removePoint2");
-    put("id", uuid);
-    put("params", new ArrayList<>(Arrays.asList(i, redraw, animation)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Render the graph and markers. Called internally when first rendering and later when redrawing the chart. This function can be extended in plugins, but normally shouldn't be called directly.
- */
-public void render(){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "render");
-    put("id", uuid);
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Select or unselect the series. This means its selected property is set, the checkbox in the legend is toggled.
- */
-public void select(){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "select0");
-    put("id", uuid);
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Select or unselect the series. This means its selected property is set, the checkbox in the legend is toggled.
- * @param selected True to select the series, false to unselect.
- */
-public void select(boolean selected){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "select1");
-    put("id", uuid);
-    put("params", new ArrayList<>(Collections.singletonList(selected)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Apply a new set of data to the series and optionally redraw it. The new data array is passed by reference (except in case of updatePoints), and may later be mutated when updating the chart data.
- *
- * Note the difference in behaviour when setting the same amount of points, or a different amount of points, as handled by the updatePoints parameter.
- * @param data Takes an array of data in the same format as described under HISeries data for the given series type, for example a line series would take data in the form described under series.line.data.
- */
-public void setSeriesData(List data){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "setData0");
-    put("id", uuid);
-    put("params", new ArrayList<>(Collections.singletonList(data)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Apply a new set of data to the series and optionally redraw it. The new data array is passed by reference (except in case of updatePoints), and may later be mutated when updating the chart data.
- *
- * Note the difference in behaviour when setting the same amount of points, or a different amount of points, as handled by the updatePoints parameter.
- * @param data Takes an array of data in the same format as described under HISeries data for the given series type, for example a line series would take data in the form described under series.line.data.
- * @param redraw  Whether to redraw the chart after the series is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call HIChartView redraw() after.
- */
-public void setSeriesData(List data, boolean redraw){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "setData1");
-    put("id", uuid);
-    put("params", new ArrayList<>(Arrays.asList(data, redraw)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Apply a new set of data to the series and optionally redraw it. The new data array is passed by reference (except in case of updatePoints), and may later be mutated when updating the chart data.
- *
- * Note the difference in behaviour when setting the same amount of points, or a different amount of points, as handled by the updatePoints parameter.
- * @param data Takes an array of data in the same format as described under HISeries data for the given series type, for example a line series would take data in the form described under series.line.data.
- * @param redraw  Whether to redraw the chart after the series is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call HIChartView redraw() after.
- * @param animation When the updated data is the same length as the existing data, points will be updated by default, and animation visualizes how the points are changed. Set false to disable animation, or a configuration object to set duration or easing.
- */
-public void setSeriesData(List data, boolean redraw, HIAnimationOptionsObject animation){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "setData2");
-    put("id", uuid);
-    put("params", new ArrayList<>(Arrays.asList(data, redraw, animation)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Apply a new set of data to the series and optionally redraw it. The new data array is passed by reference (except in case of updatePoints), and may later be mutated when updating the chart data.
- *
- * Note the difference in behaviour when setting the same amount of points, or a different amount of points, as handled by the updatePoints parameter.
- * @param data Takes an array of data in the same format as described under HISeries data for the given series type, for example a line series would take data in the form described under series.line.data.
- * @param redraw  Whether to redraw the chart after the series is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call HIChartView redraw() after.
- * @param animation When the updated data is the same length as the existing data, points will be updated by default, and animation visualizes how the points are changed. Set false to disable animation, or a configuration object to set duration or easing.
- * @param updatePoints When this is true, points will be updated instead of replaced whenever possible. This occurs a) when the updated data is the same length as the existing data, b) when points are matched by their id's, or c) when points can be matched by X values. This allows updating with animation and performs better. In this case, the original array is not passed by reference. Set false to prevent.
- */
-public void setSeriesData(List data, boolean redraw, HIAnimationOptionsObject animation, boolean updatePoints){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "setData3");
-    put("id", uuid);
-    put("params", new ArrayList<>(Arrays.asList(data, redraw, animation, updatePoints)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Set the series options by merging from the options tree. Called internally on initializing and updating series. This function will not redraw the series. For API usage, use HISeries update().
- * @param itemOptions The series options.
- */
-public void setOptions(HISeries itemOptions){
-  Map itemOtionsCopy = itemOptions.getParams();
-  itemOtionsCopy.remove("_wrapperID");
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "setOptions");
-    put("id", uuid);
-    put("params", new ArrayList<>(Collections.singletonList(itemOtionsCopy)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Set the state of the series. Called internally on mouse interaction operations, but it can also be called directly to visually highlight a series.
- */
-public void setState(){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "setState1");
-    put("id", uuid);
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Set the state of the series. Called internally on mouse interaction operations, but it can also be called directly to visually highlight a series.
- * @param state Can be either hover or undefined to set to normal state.
- */
-public void setState(String state){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "setState1");
-    put("id", uuid);
-    put("params", new ArrayList<>(Collections.singletonList(state)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Show or hide the series.
- */
-public void setSeriesVisible(){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "setVisible0");
-    put("id", uuid);
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Show or hide the series.
- * @param visible True to show the series, false to hide. If undefined, the visibility is toggled.
- */
-public void setSeriesVisible(boolean visible){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "setVisible1");
-    put("id", uuid);
-    put("params", new ArrayList<>(Collections.singletonList(visible)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Show or hide the series.
- * @param visible True to show the series, false to hide. If undefined, the visibility is toggled.
- * @param redraw Whether to redraw the chart after the series is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call HIChartView redraw() after.
- */
-public void setSeriesVisible(boolean visible, boolean redraw){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "setVisible2");
-    put("id", uuid);
-    put("params", new ArrayList<>(Arrays.asList(visible, redraw)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Show the series if hidden.
- */
-public void show(){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "show");
-    put("id", uuid);
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Sonify a series.
- * @param options The options for sonifying this series.
- */
-public void sonify(Map options){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "sonify");
-    put("id", uuid);
-    put("params", options);
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Translate data points from raw data values to chart specific positioning data needed later in the drawPoints and drawGraph functions. This function can be overridden in plugins and custom series type implementations.
- */
-public void translate(){
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "sonify");
-    put("id", uuid);
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Update the series with a new set of options. For a clean and precise handling of new options, all methods and elements from the series are removed, and it is initialized from scratch. Therefore, this method is more performance expensive than some other utility methods like HISeries setData() or HISeries setSeriesVisible().
- * @param options New options that will be merged with the series' existing options.
- */
-public void update(HISeries options){
-  Map optionsCopy = options.getParams();
-  optionsCopy.remove("_wrapperID");
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "update0");
-    put("id", uuid);
-    put("params", new ArrayList<>(Collections.singletonList(optionsCopy)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
-/**
- * Update the series with a new set of options. For a clean and precise handling of new options, all methods and elements from the series are removed, and it is initialized from scratch. Therefore, this method is more performance expensive than some other utility methods like HISeries setData() or HISeries setSeriesVisible().
- * @param options New options that will be merged with the series' existing options.
- * @param redraw Whether to redraw the chart after the series is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call HIChartView redraw() after.
- */
-public void update(HISeries options, boolean redraw){
-  Map optionsCopy = options.getParams();
-  optionsCopy.remove("_wrapperID");
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Series");
-    put("method", "update1");
-    put("id", uuid);
-    put("params", new ArrayList<>(Arrays.asList(optionsCopy, redraw)));
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
 
 	public HISeries() {
 
+	}
+
+	/**
+	 * Add a point to the series after render time. The point can be added at the end, or by giving it an X value, to the start or in the middle of the series.
+	 * @param options The point options. If options is a single number, a point with that y value is appended to the series. If it is an array, it will be interpreted as x and y values respectively. If it is an object, advanced options as outlined under series.data are applied.
+	 */
+	public void addPoint(HIData options){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "addPoint0");
+			put("id", uuid);
+			put("params", Collections.singletonList(options.getParams()));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 Add a point to the series after render time. The point can be added at the end, or by giving it an X value, to the start or in the middle of the series.
+	 * @param options The point options. If options is a single number, a point with that y value is appended to the series. If it is an array, it will be interpreted as x and y values respectively. If it is an object, advanced options as outlined under series.data are applied.
+	 * @param redraw Whether to redraw the chart after the point is added. When adding more than one point, it is highly recommended that the redraw option be set to false, and instead Highcharts.Chart#redraw is explicitly called after the adding of points is finished. Otherwise, the chart will redraw after adding each point.
+	 */
+	public void addPoint(HIData options, boolean redraw){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "addPoint1");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(options.getParams(), redraw)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 Add a point to the series after render time. The point can be added at the end, or by giving it an X value, to the start or in the middle of the series.
+	 * @param options The point options. If options is a single number, a point with that y value is appended to the series. If it is an array, it will be interpreted as x and y values respectively. If it is an object, advanced options as outlined under series.data are applied.
+	 * @param redraw Whether to redraw the chart after the point is added. When adding more than one point, it is highly recommended that the redraw option be set to false, and instead Highcharts.Chart#redraw is explicitly called after the adding of points is finished. Otherwise, the chart will redraw after adding each point.
+	 * @param shift If true, a point is shifted off the start of the series as one is appended to the end.
+	 */
+	public void addPoint(HIData options, boolean redraw, boolean shift){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "addPoint2");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(options.getParams(), redraw, shift)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 Add a point to the series after render time. The point can be added at the end, or by giving it an X value, to the start or in the middle of the series.
+	 * @param options The point options. If options is a single number, a point with that y value is appended to the series. If it is an array, it will be interpreted as x and y values respectively. If it is an object, advanced options as outlined under series.data are applied.
+	 * @param redraw Whether to redraw the chart after the point is added. When adding more than one point, it is highly recommended that the redraw option be set to false, and instead Highcharts.Chart#redraw is explicitly called after the adding of points is finished. Otherwise, the chart will redraw after adding each point.
+	 * @param shift If true, a point is shifted off the start of the series as one is appended to the end.
+	 * @param animation Whether to apply animation, and optionally animation configuration.
+	 */
+	public void addPoint(HIData options, boolean redraw, boolean shift, HIAnimationOptionsObject animation){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "addPoint3");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(options.getParams(), redraw, shift, animation)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Animate in the series. Called internally twice. First with the init parameter set to true, which sets up the initial state of the animation. Then when ready, it is called with the init parameter undefined, in order to perform the actual animation. After the second run, the function is removed.
+	 * @param init Initialize the animation.
+	 */
+	public void animate(boolean init){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "animate");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(init)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Draw the graph. Called internally when rendering line-like series types. The first time it generates the series.graph item and optionally other series-wide items like series.area for area charts. On subsequent calls these items are updated with new positions and attributes.
+	 */
+	public void drawGraph(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "drawGraph");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Draw the markers for line-like series types, and columns or other graphical representation for Highcharts.Point objects for other series types. The resulting element is typically stored as Highcharts.Point.graphic, and is created on the first call and updated and moved on subsequent calls.
+	 */
+	public void drawPoints(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "drawPoints");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Hide the series if visible. If the chart.ignoreHiddenSeries option is true, the chart is redrawn without this series.
+	 */
+	public void hide(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "hide");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Runs on mouse over the series graphical items.
+	 */
+	public void onMouseOver(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "onMouseOver");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Runs on mouse out of the series graphical items.
+	 */
+	public void onMouseOut() {
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "onMouseOut");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Remove a series and optionally redraw the chart.
+	 */
+	public void remove(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "remove0");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Remove a series and optionally redraw the chart.
+	 * @param redraw Whether to redraw the chart or wait for an explicit call to HIChartView redraw()
+	 */
+	public void remove(boolean redraw){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "remove1");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(redraw)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Remove a series and optionally redraw the chart.
+	 * @param redraw Whether to redraw the chart or wait for an explicit call to HIChartView redraw()
+	 * @param animation Whether to apply animation, and optionally animation configuration.
+	 */
+	public void remove(boolean redraw, HIAnimationOptionsObject animation){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "remove2");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(redraw, animation)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Remove a series and optionally redraw the chart.
+	 * @param redraw Whether to redraw the chart or wait for an explicit call to HIChartView redraw()
+	 * @param animation Whether to apply animation, and optionally animation configuration.
+	 * @param withEvents Used internally, whether to fire the series remove event.
+	 */
+	public void remove(boolean redraw, HIAnimationOptionsObject animation, boolean withEvents){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "remove3");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(redraw, animation, withEvents)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Remove a point from the series. Unlike the HIPoint remove() method, this can also be done on a point that is not instanciated because it is outside the view
+	 * @param i The index of the point in the data array.
+	 */
+	public void removePoint(Number i){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "removePoint0");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(i)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Remove a point from the series. Unlike the HIPoint remove() method, this can also be done on a point that is not instanciated because it is outside the view
+	 * @param i The index of the point in the data array.
+	 * @param redraw Whether to redraw the chart after the point is added. When removing more than one point, it is highly recommended that the redraw option be set to false, and instead HIChartView redraw() is explicitly called after the adding of points is finished.
+	 */
+	public void removePoint(Number i, boolean redraw){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "removePoint1");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(i, redraw)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+
+	/**
+	 * Remove a point from the series. Unlike the HIPoint remove() method, this can also be done on a point that is not instanciated because it is outside the view
+	 * @param i The index of the point in the data array.
+	 * @param redraw Whether to redraw the chart after the point is added. When removing more than one point, it is highly recommended that the redraw option be set to false, and instead HIChartView redraw() is explicitly called after the adding of points is finished.
+	 * @param animation Whether and optionally how the series should be animated.
+	 */
+	public void removePoint(Number i, boolean redraw, HIAnimationOptionsObject animation){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "removePoint2");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(i, redraw, animation)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Render the graph and markers. Called internally when first rendering and later when redrawing the chart. This function can be extended in plugins, but normally shouldn't be called directly.
+	 */
+	public void render(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "render");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Select or unselect the series. This means its selected property is set, the checkbox in the legend is toggled.
+	 */
+	public void select(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "select0");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Select or unselect the series. This means its selected property is set, the checkbox in the legend is toggled.
+	 * @param selected True to select the series, false to unselect.
+	 */
+	public void select(boolean selected){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "select1");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(selected)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Apply a new set of data to the series and optionally redraw it. The new data array is passed by reference (except in case of updatePoints), and may later be mutated when updating the chart data.
+	 *
+	 * Note the difference in behaviour when setting the same amount of points, or a different amount of points, as handled by the updatePoints parameter.
+	 * @param data Takes an array of data in the same format as described under HISeries data for the given series type, for example a line series would take data in the form described under series.line.data.
+	 */
+	public void setSeriesData(List data){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setData0");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(data)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Apply a new set of data to the series and optionally redraw it. The new data array is passed by reference (except in case of updatePoints), and may later be mutated when updating the chart data.
+	 *
+	 * Note the difference in behaviour when setting the same amount of points, or a different amount of points, as handled by the updatePoints parameter.
+	 * @param data Takes an array of data in the same format as described under HISeries data for the given series type, for example a line series would take data in the form described under series.line.data.
+	 * @param redraw  Whether to redraw the chart after the series is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call HIChartView redraw() after.
+	 */
+	public void setSeriesData(List data, boolean redraw){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setData1");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(data, redraw)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Apply a new set of data to the series and optionally redraw it. The new data array is passed by reference (except in case of updatePoints), and may later be mutated when updating the chart data.
+	 *
+	 * Note the difference in behaviour when setting the same amount of points, or a different amount of points, as handled by the updatePoints parameter.
+	 * @param data Takes an array of data in the same format as described under HISeries data for the given series type, for example a line series would take data in the form described under series.line.data.
+	 * @param redraw  Whether to redraw the chart after the series is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call HIChartView redraw() after.
+	 * @param animation When the updated data is the same length as the existing data, points will be updated by default, and animation visualizes how the points are changed. Set false to disable animation, or a configuration object to set duration or easing.
+	 */
+	public void setSeriesData(List data, boolean redraw, HIAnimationOptionsObject animation){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setData2");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(data, redraw, animation)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Apply a new set of data to the series and optionally redraw it. The new data array is passed by reference (except in case of updatePoints), and may later be mutated when updating the chart data.
+	 *
+	 * Note the difference in behaviour when setting the same amount of points, or a different amount of points, as handled by the updatePoints parameter.
+	 * @param data Takes an array of data in the same format as described under HISeries data for the given series type, for example a line series would take data in the form described under series.line.data.
+	 * @param redraw  Whether to redraw the chart after the series is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call HIChartView redraw() after.
+	 * @param animation When the updated data is the same length as the existing data, points will be updated by default, and animation visualizes how the points are changed. Set false to disable animation, or a configuration object to set duration or easing.
+	 * @param updatePoints When this is true, points will be updated instead of replaced whenever possible. This occurs a) when the updated data is the same length as the existing data, b) when points are matched by their id's, or c) when points can be matched by X values. This allows updating with animation and performs better. In this case, the original array is not passed by reference. Set false to prevent.
+	 */
+	public void setSeriesData(List data, boolean redraw, HIAnimationOptionsObject animation, boolean updatePoints){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setData3");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(data, redraw, animation, updatePoints)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Set the series options by merging from the options tree. Called internally on initializing and updating series. This function will not redraw the series. For API usage, use HISeries update().
+	 * @param itemOptions The series options.
+	 */
+	public void setOptions(HISeries itemOptions){
+		Map itemOtionsCopy = itemOptions.getParams();
+		itemOtionsCopy.remove("_wrapperID");
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setOptions");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(itemOtionsCopy)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Set the state of the series. Called internally on mouse interaction operations, but it can also be called directly to visually highlight a series.
+	 */
+	public void setState(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setState1");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Set the state of the series. Called internally on mouse interaction operations, but it can also be called directly to visually highlight a series.
+	 * @param state Can be either hover or undefined to set to normal state.
+	 */
+	public void setState(String state){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setState1");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(state)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Show or hide the series.
+	 */
+	public void setSeriesVisible(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setVisible0");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Show or hide the series.
+	 * @param visible True to show the series, false to hide. If undefined, the visibility is toggled.
+	 */
+	public void setSeriesVisible(boolean visible){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setVisible1");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(visible)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Show or hide the series.
+	 * @param visible True to show the series, false to hide. If undefined, the visibility is toggled.
+	 * @param redraw Whether to redraw the chart after the series is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call HIChartView redraw() after.
+	 */
+	public void setSeriesVisible(boolean visible, boolean redraw){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "setVisible2");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(visible, redraw)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Show the series if hidden.
+	 */
+	public void show(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "show");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Sonify a series.
+	 * @param options The options for sonifying this series.
+	 */
+	public void sonify(Map options){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "sonify");
+			put("id", uuid);
+			put("params", options);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Translate data points from raw data values to chart specific positioning data needed later in the drawPoints and drawGraph functions. This function can be overridden in plugins and custom series type implementations.
+	 */
+	public void translate(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "sonify");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Update the series with a new set of options. For a clean and precise handling of new options, all methods and elements from the series are removed, and it is initialized from scratch. Therefore, this method is more performance expensive than some other utility methods like HISeries setData() or HISeries setSeriesVisible().
+	 * @param options New options that will be merged with the series' existing options.
+	 */
+	public void update(HISeries options){
+		Map optionsCopy = options.getParams();
+		optionsCopy.remove("_wrapperID");
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "update0");
+			put("id", uuid);
+			put("params", new ArrayList<>(Collections.singletonList(optionsCopy)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Update the series with a new set of options. For a clean and precise handling of new options, all methods and elements from the series are removed, and it is initialized from scratch. Therefore, this method is more performance expensive than some other utility methods like HISeries setData() or HISeries setSeriesVisible().
+	 * @param options New options that will be merged with the series' existing options.
+	 * @param redraw Whether to redraw the chart after the series is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call HIChartView redraw() after.
+	 */
+	public void update(HISeries options, boolean redraw){
+		Map optionsCopy = options.getParams();
+		optionsCopy.remove("_wrapperID");
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Series");
+			put("method", "update1");
+			put("id", uuid);
+			put("params", new ArrayList<>(Arrays.asList(optionsCopy, redraw)));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
 	}
 
 	@Override

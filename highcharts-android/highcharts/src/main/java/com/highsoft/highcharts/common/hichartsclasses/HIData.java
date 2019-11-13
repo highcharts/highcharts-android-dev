@@ -17,10 +17,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+
 public class HIData extends HIFoundation {
 
 	private HashMap<String, Object> jsProperties;
 
+	/**
+	 * Add a custom property to your chart. Those can be accessible later by HIFunction callbacks.
+	 * @param name the name by which you can access property
+	 * @param value the actual value which can be accessed
+	 */
 	public void setProperty(String name, Object value) {
 		if(jsProperties == null) jsProperties = new HashMap<>();
 		jsProperties.put(name, value);
@@ -424,7 +430,7 @@ public class HIData extends HIFoundation {
 
 	private String definition;
 	/**
- A description of the point to add to the screen reader information about the point. Requires the Accessibility module. 
+ A description of the point to add to the screen reader information about the point. 
 	*/
 	public void setDefinition(String definition) {
 		this.definition = definition;
@@ -506,7 +512,7 @@ public class HIData extends HIFoundation {
 
 	private HIDragDrop dragDrop;
 	/**
- Point specific options for the draggable-points module. Overrides options on series.dragDrop. Requires the draggable-points module. 
+ Point specific options for the draggable-points module. Overrides options on series.dragDrop. 
 	*/
 	public void setDragDrop(HIDragDrop dragDrop) {
 		this.dragDrop = dragDrop;
@@ -892,7 +898,7 @@ public class HIData extends HIFoundation {
 
 	private String parent;
 	/**
- Only for treemap. Use this option to build a tree structure. The value should be the id of the point which is the parent. If no points has a matching id, or this option is undefined, then the parent will be set to the root. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/parent/">Point parent</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/treemap-with-levels/">Example where parent id is not matching</a>
+ Use this option to build a tree structure. The value should be the id of the point which is the parent. If no points has a matching id, or this option is undefined, then the parent will be set to the root. 
 	*/
 	public void setParent(String parent) {
 		this.parent = parent;
@@ -901,18 +907,6 @@ public class HIData extends HIFoundation {
 	}
 
 	public String getParent(){ return parent; }
-
-	private Number colorValue;
-	/**
- Serves a purpose only if a colorAxis object is defined in the chart options. This value will decide which color the point gets from the scale of the colorAxis. 
-	*/
-	public void setColorValue(Number colorValue) {
-		this.colorValue = colorValue;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getColorValue(){ return colorValue; }
 
 	private ArrayList<String> sets;
 	/**
@@ -1191,9 +1185,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.parent != null) {
 			params.put("parent", this.parent);
-		}
-		if (this.colorValue != null) {
-			params.put("colorValue", this.colorValue);
 		}
 		if (this.sets != null) {
 			ArrayList<Object> array = new ArrayList<>();

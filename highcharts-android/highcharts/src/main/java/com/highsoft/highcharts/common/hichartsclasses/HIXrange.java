@@ -85,7 +85,7 @@ public class HIXrange extends HISeries {
 
 	private Number groupZPadding;
 	/**
- The spacing between columns on the Z Axis in a 3D chart. Requires highcharts-3d.js. 
+ The spacing between columns on the Z Axis in a 3D chart. 
  <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setGroupZPadding(Number groupZPadding) {
 		this.groupZPadding = groupZPadding;

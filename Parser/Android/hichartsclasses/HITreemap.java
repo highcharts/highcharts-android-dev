@@ -17,7 +17,7 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 
 	/**
- A treemap series. If the type option is not specified, it is inherited from chart.type. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all treemap series are defined in  `plotOptions.treemap`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     treemap: {       // shared options for all treemap series     }   },   series: [{     // specific options for this series instance     type: 'treemap'   }] }); `       
+ A treemap displays hierarchical data using nested rectangles. The data can be laid out in varying ways depending on options. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all treemap series are defined in  `plotOptions.treemap`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     treemap: {       // shared options for all treemap series     }   },   series: [{     // specific options for this series instance     type: 'treemap'   }] }); `        <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/treemap-large-dataset/">Treemap</a>
 	*/
 
 public class HITreemap extends HISeries {
@@ -60,7 +60,7 @@ public class HITreemap extends HISeries {
 	private Boolean colorByPoint;
 	/**
  When using automatic point colors pulled from the options.colors collection, this option determines whether the chart should receive one color per series or one color per point. 
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	*/
 	public void setColorByPoint(Boolean colorByPoint) {
 		this.colorByPoint = colorByPoint;
 		this.setChanged();

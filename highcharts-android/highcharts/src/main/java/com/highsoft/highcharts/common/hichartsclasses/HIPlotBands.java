@@ -175,21 +175,23 @@ public class HIPlotBands extends HIFoundation {
 
 	public HIEvents getEvents(){ return events; }
 
-/**
- * Remove the plot band.
- */
-public void destroy() {
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "PlotLineOrBand");
-    put("method", "destroy");
-    put("id", uuid);
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
+
 
 	public HIPlotBands() {
 
+	}
+
+	/**
+	 * Remove the plot band.
+	 */
+	public void destroy() {
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "PlotLineOrBand");
+			put("method", "destroy");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
 	}
 
 	@Override

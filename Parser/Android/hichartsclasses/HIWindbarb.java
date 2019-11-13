@@ -18,7 +18,7 @@ import com.highsoft.highcharts.common.HIColor;
 
 
 	/**
- A windbarb series. If the type option is not specified, it is inherited from chart.type. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all windbarb series are defined in  `plotOptions.windbarb`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     windbarb: {       // shared options for all windbarb series     }   },   series: [{     // specific options for this series instance     type: 'windbarb'   }] }); `       
+ Wind barbs are a convenient way to represent wind speed and direction in one graphical form. Wind direction is given by the stem direction, and wind speed by the number and shape of barbs. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all windbarb series are defined in  `plotOptions.windbarb`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     windbarb: {       // shared options for all windbarb series     }   },   series: [{     // specific options for this series instance     type: 'windbarb'   }] }); `        <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/windbarb-series/">Wind barb series</a>
 	*/
 
 public class HIWindbarb extends HISeries {
@@ -133,7 +133,7 @@ public class HIWindbarb extends HISeries {
 
 	private Number groupZPadding;
 	/**
- The spacing between columns on the Z Axis in a 3D chart. Requires highcharts-3d.js. 
+ The spacing between columns on the Z Axis in a 3D chart. 
  <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setGroupZPadding(Number groupZPadding) {
 		this.groupZPadding = groupZPadding;
@@ -253,7 +253,7 @@ public class HIWindbarb extends HISeries {
 
 	private Number depth;
 	/**
- Depth of the columns in a 3D column chart. Requires highcharts-3d.js. 
+ Depth of the columns in a 3D column chart. 
  <br><br><b>defaults:</b><br><br>&ensp;25	*/
 	public void setDepth(Number depth) {
 		this.depth = depth;

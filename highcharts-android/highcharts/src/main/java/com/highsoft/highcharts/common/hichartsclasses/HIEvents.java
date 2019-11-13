@@ -199,7 +199,7 @@ public class HIEvents extends HIFoundation {
 
 	private HIFunction beforePrint;
 	/**
- Fires before a chart is printed through the context menu item or the Chart.print method. Requires the exporting module. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-beforeprint-afterprint/">Rescale the chart to print</a>
+ Fires before a chart is printed through the context menu item or the Chart.print method. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-beforeprint-afterprint/">Rescale the chart to print</a>
 	*/
 	public void setBeforePrint(HIFunction beforePrint) {
 		this.beforePrint = beforePrint;
@@ -223,7 +223,7 @@ public class HIEvents extends HIFoundation {
 
 	private HIFunction exportData;
 	/**
- Callback that fires while exporting data. This allows the modification of data rows before processed into the final format. Requires the export-data module. 
+ Callback that fires while exporting data. This allows the modification of data rows before processed into the final format. 
 	*/
 	public void setExportData(HIFunction exportData) {
 		this.exportData = exportData;
@@ -259,7 +259,7 @@ public class HIEvents extends HIFoundation {
 
 	private HIFunction afterPrint;
 	/**
- Fires after a chart is printed through the context menu item or the Chart.print method. Requires the exporting module. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-beforeprint-afterprint/">Rescale the chart to print</a>
+ Fires after a chart is printed through the context menu item or the Chart.print method. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-beforeprint-afterprint/">Rescale the chart to print</a>
 	*/
 	public void setAfterPrint(HIFunction afterPrint) {
 		this.afterPrint = afterPrint;
@@ -283,7 +283,7 @@ public class HIEvents extends HIFoundation {
 
 	private HIFunction drop;
 	/**
- Callback that fires when the point is dropped. The parameters passed are the same as for drag. To stop the defaults drop action, return false. See `drag and drop options`. Requires the draggable-points module. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-xrange">Drag events</a>
+ Callback that fires when the point is dropped. The parameters passed are the same as for drag. To stop the defaults drop action, return false. See `drag and drop options`. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-xrange">Drag events</a>
 	*/
 	public void setDrop(HIFunction drop) {
 		this.drop = drop;
@@ -319,7 +319,7 @@ public class HIEvents extends HIFoundation {
 
 	private HIFunction drag;
 	/**
- Callback that fires while dragging a point. The mouse event is passed in as parameter. The original data can be accessed from e.origin, and the new point values can be accessed from e.newPoints. If there is only a single point being updated, it can be accessed from e.newPoint for simplicity, and its ID can be accessed from e.newPointId. The this context is the point being dragged. To stop the defaults drag action, return false. See `drag and drop options`. Requires the draggable-points module. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-xrange">Drag events</a>
+ Callback that fires while dragging a point. The mouse event is passed in as parameter. The original data can be accessed from e.origin, and the new point values can be accessed from e.newPoints. If there is only a single point being updated, it can be accessed from e.newPoint for simplicity, and its ID can be accessed from e.newPointId. The this context is the point being dragged. To stop the defaults drag action, return false. See `drag and drop options`. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-xrange">Drag events</a>
 	*/
 	public void setDrag(HIFunction drag) {
 		this.drag = drag;
@@ -367,7 +367,7 @@ public class HIEvents extends HIFoundation {
 
 	private HIFunction dragStart;
 	/**
- Callback that fires when starting to drag a point. The mouse event object is passed in as an argument. If a drag handle is used, e.updateProp is set to the data property being dragged. The this context is the point. See `drag and drop options`. Requires the draggable-points module. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-xrange">Drag events</a>
+ Callback that fires when starting to drag a point. The mouse event object is passed in as an argument. If a drag handle is used, e.updateProp is set to the data property being dragged. The this context is the point. See `drag and drop options`. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-xrange">Drag events</a>
 	*/
 	public void setDragStart(HIFunction dragStart) {
 		this.dragStart = dragStart;

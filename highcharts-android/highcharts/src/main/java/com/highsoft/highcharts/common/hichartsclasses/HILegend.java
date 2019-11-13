@@ -18,7 +18,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class HILegend extends HIFoundation {
+
+public class HILegend extends HIFoundation { 
 
 	private Number symbolRadius;
 	/**
@@ -228,7 +229,7 @@ public class HILegend extends HIFoundation {
 
 	private HIBubbleLegend bubbleLegend;
 	/**
- The bubble legend is an additional element in legend which presents the scale of the bubble series. Individual bubble ranges can be defined by user or calculated from series. In the case of automatically calculated ranges, a 1px margin of error is permitted. Requires highcharts-more.js. 
+ The bubble legend is an additional element in legend which presents the scale of the bubble series. Individual bubble ranges can be defined by user or calculated from series. In the case of automatically calculated ranges, a 1px margin of error is permitted. 
 	*/
 	public void setBubbleLegend(HIBubbleLegend bubbleLegend) {
 		this.bubbleLegend = bubbleLegend;
@@ -493,6 +494,12 @@ public class HILegend extends HIFoundation {
 	public Number getMargin(){ return margin; }
 
 
+
+	public HILegend() {
+
+	}
+
+
 	/**
 	 * Set the legend item text.
 	 * @param item The item for which to update the text in the legend.
@@ -556,10 +563,6 @@ public class HILegend extends HIFoundation {
 		}};
 		this.setChanged();
 		this.notifyObservers(jsClassMethod);
-	}
-
-	public HILegend() {
-
 	}
 
 	@Override

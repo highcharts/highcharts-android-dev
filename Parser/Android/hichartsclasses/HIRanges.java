@@ -55,17 +55,17 @@ public class HIRanges extends HIFoundation {
 
 	public HIColor getConnectorColor(){ return connectorColor; }
 
-	private Object value;
+	private Number value;
 	/**
  Range size value, similar to bubble Z data. 
 	*/
-	public void setValue(Object value) {
+	public void setValue(Number value) {
 		this.value = value;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getValue(){ return value; }
+	public Number getValue(){ return value; }
 
 
 
@@ -88,6 +88,7 @@ public HashMap<String, Object> getParams() {
 			params.put("connectorColor", this.connectorColor.getData());
 		}
 		if (this.value != null) {
+			params.put("value", this.value);
 		}
 		return params;
 	}

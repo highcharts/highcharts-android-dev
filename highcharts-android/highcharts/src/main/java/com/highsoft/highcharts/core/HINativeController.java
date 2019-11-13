@@ -29,7 +29,9 @@ class HINativeController {
                     Log.e(TAG, "" + args[i]);
                 }
             }
-        } else Log.e(TAG, "No params!");
+        } else {
+//            Log.e(TAG, "No params!");
+        }
 
         HashMap<String, HashMap<String, String>> functions = new HashMap<String, HashMap<String, String>>(){{
             put("Annotation", new HashMap<String, String>(){{
@@ -174,6 +176,16 @@ class HINativeController {
                 put("update0", String.format("(function update(wrapperID, options) { chart.series.forEach(function(serie) { if (serie.options._wrapperID === wrapperID) { serie.update(options); return; } }); })(\"%s\", %s);", map.get("id"), args[0]));
                 put("update1", String.format("(function update(wrapperID, options, redraw) { chart.series.forEach(function(serie) { if (serie.options._wrapperID === wrapperID) { serie.update(options, redraw); return; } }); })(\"%s\", %s, %s);", map.get("id"), args[0], args[1]));
                 put("getName", String.format("(function getName(wrapperID) { chart.series.forEach(function(serie) { if (serie.options._wrapperID === wrapperID) { return serie.getName(); } }); })(\"%s\");", map.get("id")));
+            }});
+            put("Tooltip", new HashMap<String, String>(){{
+                put("defaultFormatter", String.format("(function defaultFormatter(wrapperID, tooltip) { if (chart.tooltip.options._wrapperID === wrapperID) { chart.tooltip.defaultFormatter(tooltip); return; } })(\"%s\", %s);", map.get("id"), args[0]));
+                put("destroy", String.format("(function destroy(wrapperID) { if (chart.tooltip.options._wrapperID === wrapperID) { chart.tooltip.destroy(); return; } })(\"%s\");", map.get("id")));
+                put("getLabel", String.format("(function getLabel(wrapperID) { if (chart.tooltip.options._wrapperID === wrapperID) { chart.tooltip.getLabel(); return; } })(\"%s\");", map.get("id")));
+                put("hide0", String.format("(function hide(wrapperID) { if (chart.tooltip.options._wrapperID === wrapperID) { chart.tooltip.hide(); return; } })(\"%s\");", map.get("id")));
+                put("hide1", String.format("(function hide(wrapperID, delay) { if (chart.tooltip.options._wrapperID === wrapperID) { chart.tooltip.hide(delay); return; } })(\"%s\", %s);", map.get("id"), args[0]));
+                put("refresh0", String.format("(function refresh(tooltipID, pointID) { chart.series.forEach(function(serie) { serie.data.forEach(function(point) { if (point.options._wrapperID === pointID) { if (chart.tooltip.options._wrapperID === tooltipID) { chart.tooltip.refresh(point); return; } } }); }); })(\"%s\", \"%s\");", map.get("id"), map.get("pointID")));
+                put("refresh1", String.format("(function refresh(tooltipID, pointIDs) { if (chart.tooltip.options._wrapperID !== tooltipID) { return; } var points = []; chart.series.forEach(function(serie) { var points = serie.data.forEach(function(point) { if (pointIDs.indexOf(point.options._wrapperID) > -1) { points.push(point); } }); }); if (points.length) { chart.tooltip.refresh(points); } })(\"%s\", %s);", map.get("id"), map.get("pointIDs")));
+                put("update", String.format("(function update(wrapperID, options) { if (chart.tooltip.options._wrapperID === wrapperID) { chart.tooltip.update(options); return; } })(\"%s\", %s);", map.get("id"), args[0]));
             }});
         }};
 

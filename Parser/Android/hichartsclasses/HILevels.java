@@ -80,17 +80,17 @@ public class HILevels extends HIFoundation {
 
 	public HIColor getColor(){ return color; }
 
-	private Object dataLabels;
+	private HIDataLabelsOptionsObject dataLabels;
 	/**
  Can set dataLabels on all points which lies on the same level. 
 	*/
-	public void setDataLabels(Object dataLabels) {
+	public void setDataLabels(HIDataLabelsOptionsObject dataLabels) {
 		this.dataLabels = dataLabels;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getDataLabels(){ return dataLabels; }
+	public HIDataLabelsOptionsObject getDataLabels(){ return dataLabels; }
 
 	private String rotationMode;
 	/**
@@ -227,7 +227,7 @@ public HashMap<String, Object> getParams() {
 			params.put("color", this.color.getData());
 		}
 		if (this.dataLabels != null) {
-			params.put("dataLabels", this.dataLabels);
+			params.put("dataLabels", this.dataLabels.getParams());
 		}
 		if (this.rotationMode != null) {
 			params.put("rotationMode", this.rotationMode);

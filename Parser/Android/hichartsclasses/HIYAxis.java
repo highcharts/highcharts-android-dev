@@ -105,17 +105,17 @@ public class HIYAxis extends HIFoundation {
 
 	public ArrayList getPlotBands(){ return plotBands; }
 
-	private ArrayList<ArrayList> /* <Number, String> */ stops;
+	private ArrayList<HIGradientColorStopObject> stops;
 	/**
  Solid gauge series only. Color stops for the solid gauge. Use this in cases where a linear gradient between a minColor and maxColor is not sufficient. The stops is an array of tuples, where the first item is a float between 0 and 1 assigning the relative position in the gradient, and the second item is the color. For solid gauges, the Y axis also inherits the concept of [data classes](http://api.highcharts.com/highmaps#colorAxis.dataClasses) from the Highmaps color axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-solid/">True by defaults</a>
 	*/
-	public void setStops(ArrayList<ArrayList> /* <Number, String> */ stops) {
+	public void setStops(ArrayList<HIGradientColorStopObject> stops) {
 		this.stops = stops;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<ArrayList> /* <Number, String> */ getStops(){ return stops; }
+	public ArrayList<HIGradientColorStopObject> getStops(){ return stops; }
 
 	private Boolean endOnTick;
 	/**
@@ -231,7 +231,7 @@ public class HIYAxis extends HIFoundation {
 
 	private ArrayList <HIPlotLines> plotLines;
 	/**
-/** * description: An array of objects representing plot lines on the X axis 
+/** * description: An array of objects representing plot lines on the X axis * demo:  •  Basic plot line •  Solid gauge plot line
 */
 	public void setPlotLines(ArrayList plotLines) {
 		this.plotLines = plotLines;

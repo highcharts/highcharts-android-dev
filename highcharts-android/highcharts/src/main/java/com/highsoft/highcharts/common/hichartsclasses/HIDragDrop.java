@@ -18,7 +18,7 @@ public class HIDragDrop extends HIFoundation {
 
 	private Boolean draggableHigh;
 	/**
- Allow high value to be dragged individually. Requires draggable-points module. 
+ Allow high value to be dragged individually. 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setDraggableHigh(Boolean draggableHigh) {
 		this.draggableHigh = draggableHigh;
@@ -30,7 +30,7 @@ public class HIDragDrop extends HIFoundation {
 
 	private Boolean draggableLow;
 	/**
- Allow low value to be dragged individually. Requires draggable-points module. 
+ Allow low value to be dragged individually. 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setDraggableLow(Boolean draggableLow) {
 		this.draggableLow = draggableLow;
@@ -42,7 +42,7 @@ public class HIDragDrop extends HIFoundation {
 
 	private Boolean draggableX2;
 	/**
- Allow x2 value to be dragged individually. Requires draggable-points module. 
+ Allow x2 value to be dragged individually. 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setDraggableX2(Boolean draggableX2) {
 		this.draggableX2 = draggableX2;
@@ -54,7 +54,7 @@ public class HIDragDrop extends HIFoundation {
 
 	private Boolean draggableX1;
 	/**
- Allow x value to be dragged individually. Requires draggable-points module. 
+ Allow x value to be dragged individually. 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setDraggableX1(Boolean draggableX1) {
 		this.draggableX1 = draggableX1;
@@ -66,7 +66,7 @@ public class HIDragDrop extends HIFoundation {
 
 	private Boolean draggableQ1;
 	/**
- Allow Q1 value to be dragged individually. Requires draggable-points module. 
+ Allow Q1 value to be dragged individually. 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setDraggableQ1(Boolean draggableQ1) {
 		this.draggableQ1 = draggableQ1;
@@ -78,7 +78,7 @@ public class HIDragDrop extends HIFoundation {
 
 	private Boolean draggableQ3;
 	/**
- Allow Q3 value to be dragged individually. Requires draggable-points module. 
+ Allow Q3 value to be dragged individually. 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setDraggableQ3(Boolean draggableQ3) {
 		this.draggableQ3 = draggableQ3;
@@ -90,7 +90,7 @@ public class HIDragDrop extends HIFoundation {
 
 	private Boolean draggableTarget;
 	/**
- Allow target value to be dragged individually. Requires draggable-points module. 
+ Allow target value to be dragged individually. 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setDraggableTarget(Boolean draggableTarget) {
 		this.draggableTarget = draggableTarget;

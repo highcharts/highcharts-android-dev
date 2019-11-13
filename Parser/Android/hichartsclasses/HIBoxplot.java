@@ -252,7 +252,7 @@ public class HIBoxplot extends HISeries {
 
 	private Number depth;
 	/**
- Depth of the columns in a 3D column chart. Requires highcharts-3d.js. 
+ Depth of the columns in a 3D column chart. 
  <br><br><b>defaults:</b><br><br>&ensp;25	*/
 	public void setDepth(Number depth) {
 		this.depth = depth;

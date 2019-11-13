@@ -12,7 +12,11 @@ import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.core.HIFunction;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -319,6 +323,18 @@ public class HITooltip extends HIFoundation {
 
 	public Boolean /* boolean */ getShadow(){ return shadow; }
 
+	private Number distance;
+	/**
+ Distance from point to tooltip in pixels. 
+ <br><br><b>defaults:</b><br><br>&ensp;16	*/
+	public void setDistance(Number distance) {
+		this.distance = distance;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getDistance(){ return distance; }
+
 	private Boolean enabled;
 	/**
  Enable or disable the tooltip. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/enabled/">Disabled</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-point-events-mouseover/">Disable tooltip and show values on chart instead</a>
@@ -436,19 +452,134 @@ public class HITooltip extends HIFoundation {
 
 	public HIFunction getNodeFormatter(){ return nodeFormatter; }
 
-	private Number distance;
-	public void setDistance(Number distance) {
-		this.distance = distance;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getDistance(){ return distance; }
-
 
 
 	public HITooltip() {
 
+	}
+
+	/**
+	 In case no user defined formatter is given, this will be used. Note that the context here is an object holding point, series, x, y etc.
+	 @param tooltip Tooltip
+	 */
+	public void defaultFormatter(HITooltip tooltip){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Tooltip");
+			put("method", "defaultFormatter");
+			put("id", uuid);
+			put("params", Collections.singletonList(tooltip.getParams()));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 Removes and destroys the tooltip and its elements.
+	 */
+	public void destroy(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Tooltip");
+			put("method", "destroy");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+
+	/**
+	 Creates the Tooltip label element if it does not exist.
+	 */
+	public void getLabel(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Tooltip");
+			put("method", "getLabel");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 Hides the tooltip with a fade out animation.
+	 */
+	public void hide(){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Tooltip");
+			put("method", "hide0");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 Hides the tooltip with a fade out animation.
+	 @param delay The fade out in milliseconds. If no value is provided the value of the tooltip.hideDelay option is used. A value of 0 disables the fade out animation.
+	 */
+	public void hide(Number delay){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Tooltip");
+			put("method", "hide1");
+			put("id", uuid);
+			put("params", Collections.singletonList(delay));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 Refresh the tooltip's text and position.
+	 @param point A point.
+	 */
+	public void refreshByPoint(HIPoint point){
+		Map<String, Object> params = point.getParams();
+		String pointID = params.get("_wrapperID").toString();
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Tooltip");
+			put("method", "refreshByPoint");
+			put("id", uuid);
+			put("pointID", pointID);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 Refresh the tooltip's text and position.
+	 @param points An array of points.
+	 */
+	public void refreshByPoints(List<HIPoint> points){
+		List<String> pointIDs = new ArrayList<>();
+		for(HIPoint point : points){
+			Map<String, Object> params = point.getParams();
+			pointIDs.add(params.get("_wrapperID").toString());
+		}
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Tooltip");
+			put("method", "refreshByPoints");
+			put("id", uuid);
+			put("pointIDs", pointIDs.toString());
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 Updates the tooltip with the provided tooltip options.
+	 @param options The tooltip options to update.
+	 */
+	public void update(HITooltip options){
+		Map<String, Object> params = options.getParams();
+		params.remove("_wrapperID");
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Tooltip");
+			put("method", "update");
+			put("id", uuid);
+			put("params", Collections.singletonList(params));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
 	}
 
 	@Override
@@ -531,6 +662,9 @@ public HashMap<String, Object> getParams() {
 		if (this.shadow != null) {
 			params.put("shadow", this.shadow);
 		}
+		if (this.distance != null) {
+			params.put("distance", this.distance);
+		}
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);
 		}
@@ -560,9 +694,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.nodeFormatter != null) {
 			params.put("nodeFormatter", this.nodeFormatter);
-		}
-		if (this.distance != null) {
-			params.put("distance", this.distance);
 		}
 		return params;
 	}

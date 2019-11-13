@@ -9,7 +9,6 @@
 package com.highsoft.highcharts.common.hichartsclasses;
 
 import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
 
 import java.util.HashMap;
 
@@ -41,22 +40,22 @@ public class HITime extends HIFoundation {
 
 	public String getTimezone(){ return timezone; }
 
-	private HIFunction getTimezoneOffset;
+	private Object getTimezoneOffset;
 	/**
  A callback to return the time zone offset for a given datetime. It takes the timestamp in terms of milliseconds since January 1 1970, and returns the timezone offset in minutes. This provides a hook for drawing time based charts in specific time zones using their local DST crossover dates, with the help of external libraries. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/time/gettimezoneoffset/">Use moment.js to draw Oslo time regardless of browser locale</a>
 	*/
-	public void setGetTimezoneOffset(HIFunction getTimezoneOffset) {
+	public void setGetTimezoneOffset(Object getTimezoneOffset) {
 		this.getTimezoneOffset = getTimezoneOffset;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIFunction getGetTimezoneOffset(){ return getTimezoneOffset; }
+	public Object getGetTimezoneOffset(){ return getTimezoneOffset; }
 
 	private Number timezoneOffset;
 	/**
  The timezone offset in minutes. Positive values are west, negative values are east of UTC, as in the ECMAScript [getTimezoneOffset](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset) method. Use this to display UTC based data in a predefined time zone. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/time/timezoneoffset/">Timezone offset</a>
- <br><br><b>defaults:</b><br><br>&ensp;0	*/
+	*/
 	public void setTimezoneOffset(Number timezoneOffset) {
 		this.timezoneOffset = timezoneOffset;
 		this.setChanged();
@@ -68,7 +67,7 @@ public class HITime extends HIFoundation {
 	private Boolean useUTC;
 	/**
  Whether to use UTC time for axis scaling, tickmark placement and time display in Highcharts.dateFormat. Advantages of using UTC is that the time displays equally regardless of the user agent's time zone settings. Local time can be used when the data is loaded in real time or when correct Daylight Saving Time transitions are required. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/time/useutc-true/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/time/useutc-false/">False</a>
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+	*/
 	public void setUseUTC(Boolean useUTC) {
 		this.useUTC = useUTC;
 		this.setChanged();
@@ -95,7 +94,6 @@ public HashMap<String, Object> getParams() {
 			params.put("timezone", this.timezone);
 		}
 		if (this.getTimezoneOffset != null) {
-			params.put("getTimezoneOffset", this.getTimezoneOffset);
 		}
 		if (this.timezoneOffset != null) {
 			params.put("timezoneOffset", this.timezoneOffset);

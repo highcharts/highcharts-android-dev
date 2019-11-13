@@ -28,6 +28,18 @@ public class HIPatternOptionsObject extends HIFoundation {
 
 	public Number getAspectRatio(){ return aspectRatio; }
 
+	private String backgroundColor;
+	/**
+ Background color for the pattern if a `path` is set (not images). 
+	*/
+	public void setBackgroundColor(String backgroundColor) {
+		this.backgroundColor = backgroundColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getBackgroundColor(){ return backgroundColor; }
+
 	private String color;
 	/**
  Pattern color, used as defaults path stroke. 
@@ -149,6 +161,9 @@ public HashMap<String, Object> getParams() {
 		params.put("_wrapperID", this.uuid);
 		if (this.aspectRatio != null) {
 			params.put("aspectRatio", this.aspectRatio);
+		}
+		if (this.backgroundColor != null) {
+			params.put("backgroundColor", this.backgroundColor);
 		}
 		if (this.color != null) {
 			params.put("color", this.color);

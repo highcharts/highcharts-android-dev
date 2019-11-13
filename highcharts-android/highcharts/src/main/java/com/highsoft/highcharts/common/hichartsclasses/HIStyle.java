@@ -71,13 +71,13 @@ public class HIStyle extends HIFoundation {
 	public String getStroke(){ return stroke; }
 
 	private Number strokeWidth;
-	public void setstrokeWidth(Number strokeWidth) {
+	public void setStrokeWidth(Number strokeWidth) {
 		this.strokeWidth = strokeWidth;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getstrokeWidth(){ return strokeWidth; }
+	public Number getStrokWidth(){ return strokeWidth; }
 
 	private String fill;
 	public void setFill(String fill) {
@@ -118,7 +118,7 @@ public HashMap<String, Object> getParams() {
 			params.put("stroke", this.stroke);
 		}
 		if (this.strokeWidth != null) {
-			params.put("strokeWidth", this.strokeWidth);
+			params.put("stroke-width", this.strokeWidth);
 		}
 		if (this.fill != null) {
 			params.put("fill", this.fill);

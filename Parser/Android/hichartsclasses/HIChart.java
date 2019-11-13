@@ -94,7 +94,7 @@ public class HIChart extends HIFoundation {
 
 	private Boolean displayErrors;
 	/**
- Whether to display errors on the chart. When false, the errors will be shown only in the console. Requires debugger.js module. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/display-errors/">Show errors on chart</a>
+ Whether to display errors on the chart. When false, the errors will be shown only in the console. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/display-errors/">Show errors on chart</a>
 	*/
 	public void setDisplayErrors(Boolean displayErrors) {
 		this.displayErrors = displayErrors;
@@ -166,7 +166,7 @@ public class HIChart extends HIFoundation {
 
 	private Boolean polar;
 	/**
- When true, cartesian charts like line, spline, area and column are transformed into the polar coordinate system. This produces _polar charts_, also known as _radar charts_. Requires highcharts-more.js. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar/">Polar chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar-wind-rose/">Wind rose, stacked polar column chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar-spider/">Spider web chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/parallel-coordinates/polar/">Star plot, multivariate data in a polar chart</a>
+ When true, cartesian charts like line, spline, area and column are transformed into the polar coordinate system. This produces _polar charts_, also known as _radar charts_. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar/">Polar chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar-wind-rose/">Wind rose, stacked polar column chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar-spider/">Spider web chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/parallel-coordinates/polar/">Star plot, multivariate data in a polar chart</a>
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setPolar(Boolean polar) {
 		this.polar = polar;
@@ -445,7 +445,7 @@ public class HIChart extends HIFoundation {
 
 	private String zoomKey;
 	/**
- Set a key to hold when dragging to zoom the chart. Requires the draggable-points module. This is useful to avoid zooming while moving points. Should be set different than chart.panKey. <br><br><b>accepted values:</b><br><br>&ensp;["alt", "ctrl", "meta", "shift"]
+ Set a key to hold when dragging to zoom the chart. This is useful to avoid zooming while moving points. Should be set different than chart.panKey. <br><br><b>accepted values:</b><br><br>&ensp;["alt", "ctrl", "meta", "shift"]
 	*/
 	public void setZoomKey(String zoomKey) {
 		this.zoomKey = zoomKey;

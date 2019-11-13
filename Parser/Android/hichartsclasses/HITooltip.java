@@ -320,6 +320,18 @@ public class HITooltip extends HIFoundation {
 
 	public Boolean /* boolean */ getShadow(){ return shadow; }
 
+	private Number distance;
+	/**
+ Distance from point to tooltip in pixels. 
+ <br><br><b>defaults:</b><br><br>&ensp;16	*/
+	public void setDistance(Number distance) {
+		this.distance = distance;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getDistance(){ return distance; }
+
 	private Boolean enabled;
 	/**
  Enable or disable the tooltip. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/enabled/">Disabled</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-point-events-mouseover/">Disable tooltip and show values on chart instead</a>
@@ -437,15 +449,6 @@ public class HITooltip extends HIFoundation {
 
 	public HIFunction getNodeFormatter(){ return nodeFormatter; }
 
-	private Number distance;
-	public void setDistance(Number distance) {
-		this.distance = distance;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getDistance(){ return distance; }
-
 
 
 	public HITooltip() {
@@ -532,6 +535,9 @@ public HashMap<String, Object> getParams() {
 		if (this.shadow != null) {
 			params.put("shadow", this.shadow);
 		}
+		if (this.distance != null) {
+			params.put("distance", this.distance);
+		}
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);
 		}
@@ -561,9 +567,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.nodeFormatter != null) {
 			params.put("nodeFormatter", this.nodeFormatter);
-		}
-		if (this.distance != null) {
-			params.put("distance", this.distance);
 		}
 		return params;
 	}

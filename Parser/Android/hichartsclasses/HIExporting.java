@@ -81,7 +81,7 @@ public class HIExporting extends HIFoundation {
 
 	private Boolean showTable;
 	/**
- Export-data module required. Show a HTML table below the chart with the chart's current data. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/showtable/">Show the table</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/studies/exporting-table-html">Experiment with putting the table inside the subtitle to allow exporting it.</a>
+ Show a HTML table below the chart with the chart's current data. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/showtable/">Show the table</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/studies/exporting-table-html">Experiment with putting the table inside the subtitle to allow exporting it.</a>
 	*/
 	public void setShowTable(Boolean showTable) {
 		this.showTable = showTable;
@@ -142,7 +142,7 @@ public class HIExporting extends HIFoundation {
 
 	private HICsv csv;
 	/**
- Options for exporting data to CSV or ExCel, or displaying the data in a HTML table or a JavaScript structure. Requires the export-data.js module. This module adds data export options to the export menu and provides functions like Chart.getCSV, Chart.getTable, Chart.getDataRows and Chart.viewData. The XLS converter is limited and only creates a HTML string that is passed for download, which works but creates a warning before opening. The workaround for this is to use a third party XLSX converter, as demonstrated in the sample below. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/categorized/">Categorized data</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/stock-timeaxis/">Highstock time axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/xlsx/">Using a third party XLSX converter</a>
+ Options for exporting data to CSV or ExCel, or displaying the data in a HTML table or a JavaScript structure. This module adds data export options to the export menu and provides functions like Chart.getCSV, Chart.getTable, Chart.getDataRows and Chart.viewData. The XLS converter is limited and only creates a HTML string that is passed for download, which works but creates a warning before opening. The workaround for this is to use a third party XLSX converter, as demonstrated in the sample below. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/categorized/">Categorized data</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/stock-timeaxis/">Highstock time axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/xlsx/">Using a third party XLSX converter</a>
 	*/
 	public void setCsv(HICsv csv) {
 		this.csv = csv;
@@ -167,7 +167,7 @@ public class HIExporting extends HIFoundation {
 
 	private Object /* boolean, String */ tableCaption;
 	/**
- Export-data module required. Caption for the data table. Same as chart title by defaults. Set to false to disable. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table">Multiple table headers</a>
+ Caption for the data table. Same as chart title by defaults. Set to false to disable. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table">Multiple table headers</a>
 	*/
 	public void setTableCaption(Object /* boolean, String */ tableCaption) {
 		this.tableCaption = tableCaption;
@@ -191,7 +191,7 @@ public class HIExporting extends HIFoundation {
 
 	private Boolean useMultiLevelHeaders;
 	/**
- Export-data module required. Use multi level headers in data table. If csv.columnHeaderFormatter is defined, it has to return objects in order for multi level headers to work. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table">Multiple table headers</a>
+ Use multi level headers in data table. If csv.columnHeaderFormatter is defined, it has to return objects in order for multi level headers to work. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table">Multiple table headers</a>
 	*/
 	public void setUseMultiLevelHeaders(Boolean useMultiLevelHeaders) {
 		this.useMultiLevelHeaders = useMultiLevelHeaders;
@@ -203,7 +203,7 @@ public class HIExporting extends HIFoundation {
 
 	private Boolean useRowspanHeaders;
 	/**
- Export-data module required. If using multi level table headers, use rowspans for headers that have only one level. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table">Multiple table headers</a>
+ If using multi level table headers, use rowspans for headers that have only one level. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/multilevel-table">Multiple table headers</a>
 	*/
 	public void setUseRowspanHeaders(Boolean useRowspanHeaders) {
 		this.useRowspanHeaders = useRowspanHeaders;
