@@ -151,7 +151,7 @@ public class HIEvents extends HIFoundation {
 
 	private HIFunction selection;
 	/**
- Fires when an area of the chart has been selected. Selection is enabled by setting the chart's zoomType. One parameter, event, is passed to the function, containing common event information. The defaults action for the selection event is to zoom the chart to the selected area. It can be prevented by calling event.preventDefault() or return false. Information on the selected area can be found through event.xAxis and event.yAxis, which are arrays containing the axes of each dimension and each axis' min and max values. The primary axes are event.xAxis[0] and event.yAxis[0]. Remember the unit of a datetime axis is milliseconds since 1970-01-01 00:00:00. selection: function(event) {   // log the min and max of the primary, datetime x-axis   console.log(     Highcharts.dateFormat(       '%Y-%m-%d %H:%M:%S',       event.xAxis[0].min     ),     Highcharts.dateFormat(       '%Y-%m-%d %H:%M:%S',       event.xAxis[0].max     )   );   // log the min and max of the y axis   console.log(event.yAxis[0].min, event.yAxis[0].max); } <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-selection/">Report on selection and reset</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-selection-points/">Select a range of points through a drag selection</a>
+ Fires when an area of the chart has been selected. Selection is enabled by setting the chart's zoomType. One parameter, event, is passed to the function, containing common event information. The defaults action for the selection event is to zoom the chart to the selected area. It can be prevented by calling event.preventDefault() or return false. Information on the selected area can be found through event.xAxis and event.yAxis, which are arrays containing the axes of each dimension and each axis' min and max values. The primary axes are event.xAxis[0] and event.yAxis[0]. Remember the unit of a datetime axis is milliseconds since 1970-01-01 00:00:00. `js selection: function(event) {   // log the min and max of the primary, datetime x-axis   console.log(     Highcharts.dateFormat(       '%Y-%m-%d %H:%M:%S',       event.xAxis[0].min     ),     Highcharts.dateFormat(       '%Y-%m-%d %H:%M:%S',       event.xAxis[0].max     )   );   // log the min and max of the y axis   console.log(event.yAxis[0].min, event.yAxis[0].max); } ` <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-selection/">Report on selection and reset</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-selection-points/">Select a range of points through a drag selection</a>
 	*/
 	public void setSelection(HIFunction selection) {
 		this.selection = selection;
@@ -268,6 +268,18 @@ public class HIEvents extends HIFoundation {
 	}
 
 	public HIFunction getAfterPrint(){ return afterPrint; }
+
+	private HIFunction drillToCluster;
+	/**
+ Fires when the cluster point is clicked and drillToCluster is enabled. One parameter, event, is passed to the function. The defaults action is to zoom to the cluster points range. This can be prevented by calling event.preventDefault(). 
+	*/
+	public void setDrillToCluster(HIFunction drillToCluster) {
+		this.drillToCluster = drillToCluster;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getDrillToCluster(){ return drillToCluster; }
 
 	private HIFunction unselect;
 	/**
@@ -389,6 +401,18 @@ public class HIEvents extends HIFoundation {
 
 	public HIFunction getSetRootNode(){ return setRootNode; }
 
+	private HIFunction closePopup;
+	/**
+ A closePopup event. Fired when Popup should be hidden, for example when clicking on an annotation again. 
+	*/
+	public void setClosePopup(HIFunction closePopup) {
+		this.closePopup = closePopup;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getClosePopup(){ return closePopup; }
+
 	private HIFunction selectButton;
 	/**
  Event fired on a button click. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/gui/">Change icon in a dropddown on event</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/gui-buttons/">Change button class on event</a>
@@ -412,18 +436,6 @@ public class HIEvents extends HIFoundation {
 	}
 
 	public HIFunction getShowPopup(){ return showPopup; }
-
-	private HIFunction hidePopup;
-	/**
- A hidePopop event. Fired when Popup should be hidden, for exampole when clicking on an annotation again. 
-	*/
-	public void setHidePopup(HIFunction hidePopup) {
-		this.hidePopup = hidePopup;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getHidePopup(){ return hidePopup; }
 
 	private HIFunction deselectButton;
 	/**
@@ -583,6 +595,9 @@ public HashMap<String, Object> getParams() {
 		if (this.afterPrint != null) {
 			params.put("afterPrint", this.afterPrint);
 		}
+		if (this.drillToCluster != null) {
+			params.put("drillToCluster", this.drillToCluster);
+		}
 		if (this.unselect != null) {
 			params.put("unselect", this.unselect);
 		}
@@ -613,14 +628,14 @@ public HashMap<String, Object> getParams() {
 		if (this.setRootNode != null) {
 			params.put("setRootNode", this.setRootNode);
 		}
+		if (this.closePopup != null) {
+			params.put("closePopup", this.closePopup);
+		}
 		if (this.selectButton != null) {
 			params.put("selectButton", this.selectButton);
 		}
 		if (this.showPopup != null) {
 			params.put("showPopup", this.showPopup);
-		}
-		if (this.hidePopup != null) {
-			params.put("hidePopup", this.hidePopup);
 		}
 		if (this.deselectButton != null) {
 			params.put("deselectButton", this.deselectButton);

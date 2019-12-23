@@ -24,7 +24,6 @@ import java.util.Map;
 public class HISeries extends HIFoundation {
 
 	private HashMap<String, Object> jsProperties;
-
 	/**
 	 * Add a custom property to your chart. Those can be accessible later by HIFunction callbacks.
 	 * @param name the name by which you can access property
@@ -182,6 +181,42 @@ public class HISeries extends HIFoundation {
 
 	public Number getZIndex(){ return zIndex; }
 
+	private HIFunction descriptionFormatter;
+	/**
+ Formatter function to use instead of the defaults for series descriptions. Receives one argument, series, referring to the series to describe. Should return a string with the description of the series for a screen reader user. If false is returned, the defaults formatter will be used for that series. 
+	*/
+	public void setDescriptionFormatter(HIFunction descriptionFormatter) {
+		this.descriptionFormatter = descriptionFormatter;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getDescriptionFormatter(){ return descriptionFormatter; }
+
+	private Number pointDescriptionEnabledThreshold;
+	/**
+ When a series contains more points than this, we no longer expose information about individual points to screen readers. Set to false to disable. 
+	*/
+	public void setPointDescriptionEnabledThreshold(Number pointDescriptionEnabledThreshold) {
+		this.pointDescriptionEnabledThreshold = pointDescriptionEnabledThreshold;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPointDescriptionEnabledThreshold(){ return pointDescriptionEnabledThreshold; }
+
+	private Boolean describeSingleSeries;
+	/**
+ Whether or not to add series descriptions to charts with a single series. 
+	*/
+	public void setDescribeSingleSeries(Boolean describeSingleSeries) {
+		this.describeSingleSeries = describeSingleSeries;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getDescribeSingleSeries(){ return describeSingleSeries; }
+
 	private String yAxisDescription;
 	/**
  yAxis description for series if there are multiple yAxes in the chart. 
@@ -205,6 +240,18 @@ public class HISeries extends HIFoundation {
 	}
 
 	public String getXAxisDescription(){ return xAxisDescription; }
+
+	private String nullPointValue;
+	/**
+ Description for the value of null points. 
+	*/
+	public void setNullPointValue(String nullPointValue) {
+		this.nullPointValue = nullPointValue;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getNullPointValue(){ return nullPointValue; }
 
 	private String definition;
 	/**
@@ -281,7 +328,7 @@ public class HISeries extends HIFoundation {
 
 	private HIColor negativeColor;
 	/**
- The color for the parts of the graph or points that are below the threshold. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-negative-color/">Spline, area and column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-negativecolor/">Arearange</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-negative-color/">Styled mode</a>
+ The color for the parts of the graph or points that are below the threshold. Note that zones takes precedence over the negative color. Using negativeColor is equivalent to applying a zone with value of 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-negative-color/">Spline, area and column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-negativecolor/">Arearange</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-negative-color/">Styled mode</a>
 	*/
 	public void setNegativeColor(HIColor negativeColor) {
 		this.negativeColor = negativeColor;
@@ -386,6 +433,18 @@ public class HISeries extends HIFoundation {
 	}
 
 	public HIPoint getPoint(){ return point; }
+
+	private HIDataSortingOptionsObject dataSorting;
+	/**
+ Options for the series data sorting. 
+	*/
+	public void setDataSorting(HIDataSortingOptionsObject dataSorting) {
+		this.dataSorting = dataSorting;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIDataSortingOptionsObject getDataSorting(){ return dataSorting; }
 
 	private HIMarker marker;
 	/**
@@ -645,7 +704,7 @@ public class HISeries extends HIFoundation {
 
 	private HIAccessibility accessibility;
 	/**
- Accessibility options for a series. Requires the accessibility module. 
+ Accessibility options for a series. 
 	*/
 	public void setAccessibility(HIAccessibility accessibility) {
 		this.accessibility = accessibility;
@@ -706,7 +765,7 @@ public class HISeries extends HIFoundation {
 
 	private Object /* Number, String */ colorAxis;
 	/**
- When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the {@link #colorAxis} or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/coloraxis-with-pie/">Color axis with pie series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/multiple-coloraxis/">Multiple color axis</a>
+ When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the {@link #colorAxis|axis id} or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/coloraxis-with-pie/">Color axis with pie series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/multiple-coloraxis/">Multiple color axis</a>
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setColorAxis(Object /* Number, String */ colorAxis) {
 		this.colorAxis = colorAxis;
@@ -778,7 +837,7 @@ public class HISeries extends HIFoundation {
 
 	private String linkedTo;
 	/**
- The id of another series to link to. Additionally, the value can be ":previous" to link to the previous series. When two series are linked, only the first one appears in the legend. Toggling the visibility of this also toggles the linked series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/arearange-line/">Linked series</a>
+ The id of another series to link to. Additionally, the value can be ":previous" to link to the previous series. When two series are linked, only the first one appears in the legend. Toggling the visibility of this also toggles the linked series. If master series uses data sorting and linked series does not have its own sorting definition, the linked series will be sorted in the same order as the master one. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/arearange-line/">Linked series</a>
 	*/
 	public void setLinkedTo(String linkedTo) {
 		this.linkedTo = linkedTo;
@@ -800,17 +859,17 @@ public class HISeries extends HIFoundation {
 
 	public Boolean getStickyTracking(){ return stickyTracking; }
 
-	private ArrayList<HIDataLabelsOptionsObject> dataLabels;
+	private ArrayList <HIDataLabels> dataLabels;
 	/**
- Options for the series data labels, appearing next to each data point. Since v6.2.0, multiple data labels can be applied to each single point by defining them as an array of configs. In styled mode, the data labels can be styled with the .highcharts-data-label-box and .highcharts-data-label class names ([see example](https://www.highcharts.com/samples/highcharts/css/series-datalabels)). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-enabled">Data labels enabled</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-multiple">Multiple data labels on a bar series</a>
+ Options for the series data labels, appearing next to each data point. Since v6.2.0, multiple data labels can be applied to each single point by defining them as an array of configs. In styled mode, the data labels can be styled with the .highcharts-data-label-box and .highcharts-data-label class names ([see example](https://www.highcharts.com/samples/highcharts/css/series-datalabels)). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-enabled">Data labels enabled</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-multiple">Multiple data labels on a bar series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-datalabels">Style mode example</a>
 	*/
-	public void setDataLabels(ArrayList<HIDataLabelsOptionsObject> dataLabels) {
+	public void setDataLabels(ArrayList dataLabels) {
 		this.dataLabels = dataLabels;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<HIDataLabelsOptionsObject> getDataLabels(){ return dataLabels; }
+	public ArrayList getDataLabels(){ return dataLabels; }
 
 	private String className;
 	/**
@@ -883,12 +942,6 @@ public class HISeries extends HIFoundation {
 	}
 
 	public Boolean getShowInLegend(){ return showInLegend; }
-
-
-
-	public HISeries() {
-
-	}
 
 	/**
 	 * Add a point to the series after render time. The point can be added at the end, or by giving it an X value, to the start or in the middle of the series.
@@ -1426,6 +1479,11 @@ public class HISeries extends HIFoundation {
 		this.notifyObservers(jsClassMethod);
 	}
 
+
+	public HISeries() {
+
+	}
+
 	@Override
 public HashMap<String, Object> getParams() {
 
@@ -1470,11 +1528,23 @@ public HashMap<String, Object> getParams() {
 		if (this.zIndex != null) {
 			params.put("zIndex", this.zIndex);
 		}
+		if (this.descriptionFormatter != null) {
+			params.put("descriptionFormatter", this.descriptionFormatter);
+		}
+		if (this.pointDescriptionEnabledThreshold != null) {
+			params.put("pointDescriptionEnabledThreshold", this.pointDescriptionEnabledThreshold);
+		}
+		if (this.describeSingleSeries != null) {
+			params.put("describeSingleSeries", this.describeSingleSeries);
+		}
 		if (this.yAxisDescription != null) {
 			params.put("yAxisDescription", this.yAxisDescription);
 		}
 		if (this.xAxisDescription != null) {
 			params.put("xAxisDescription", this.xAxisDescription);
+		}
+		if (this.nullPointValue != null) {
+			params.put("nullPointValue", this.nullPointValue);
 		}
 		if (this.definition != null) {
 			params.put("definition", this.definition);
@@ -1520,6 +1590,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.point != null) {
 			params.put("point", this.point.getParams());
+		}
+		if (this.dataSorting != null) {
+			params.put("dataSorting", this.dataSorting.getParams());
 		}
 		if (this.marker != null) {
 			params.put("marker", this.marker.getParams());
@@ -1643,7 +1716,7 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.dataLabels != null) {
 			if(this instanceof  HIPie){
-				HIFoundation obj = this.getDataLabels().get(0);
+				HIFoundation obj = (HIFoundation) this.getDataLabels().get(0);
 				if(obj != null) {
 					params.put("dataLabels", obj.getParams());
 				}

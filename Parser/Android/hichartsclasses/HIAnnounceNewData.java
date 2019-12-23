@@ -78,7 +78,7 @@ public class HIAnnounceNewData extends HIFoundation {
 	private HIFunction announcementFormatter;
 	/**
  Optional formatter callback for the announcement. Receives up to three arguments. The first argument is always an array of all series that received updates. If an announcement is already queued, the series that received updates for that announcement are also included in this array. The second argument is provided if chart.addSeries was called, and there is a new series. In that case, this argument is a reference to the new series. The third argument, similarly, is provided if series.addPoint was called, and there is a new point. In that case, this argument is a reference to the new point. The function should return a string with the text to announce to the user. Return empty string to not announce anything. Return false to use the defaults announcement format. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/accessibility/custom-dynamic">High priority live alerts</a>
- <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	*/
 	public void setAnnouncementFormatter(HIFunction announcementFormatter) {
 		this.announcementFormatter = announcementFormatter;
 		this.setChanged();

@@ -30,6 +30,19 @@ public class HIScatter extends HISeries {
 
 	public HIJitter getJitter(){ return jitter; }
 
+	private HICluster cluster;
+	/**
+ Options for marker clusters, the concept of sampling the data values into larger blocks in order to ease readability and increase performance of the JavaScript charts. Note: marker clusters module is not working with boost and draggable-points modules. The marker clusters feature requires the marker-clusters.js file to be loaded, found in the modules directory of the download package, or online at `https://code.highcharts.com/modules/marker-clusters.js`. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/marker-clusters/europe">Maps marker clusters</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/marker-clusters/basic">Scatter marker clusters</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/marker-clusters/optimized-kmeans">Marker clusters with colorAxis</a>
+	*/
+	public void setCluster(HICluster cluster) {
+		this.cluster = cluster;
+		this.cluster.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HICluster getCluster(){ return cluster; }
+
 
 
 	public HIScatter() {
@@ -44,6 +57,9 @@ public HashMap<String, Object> getParams() {
 		params = super.getParams();
 		if (this.jitter != null) {
 			params.put("jitter", this.jitter.getParams());
+		}
+		if (this.cluster != null) {
+			params.put("cluster", this.cluster.getParams());
 		}
 		return params;
 	}

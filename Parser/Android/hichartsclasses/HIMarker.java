@@ -19,52 +19,9 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HIMarker extends HIFoundation { 
 
-	private HIStates states;
-	public void setStates(HIStates states) {
-		this.states = states;
-		this.states.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIStates getStates(){ return states; }
-
-	private Boolean enabled;
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getEnabled(){ return enabled; }
-
-	private HIColor color;
-	/**
- The color of the marker. 
-	*/
-	public void setColor(HIColor color) {
-		this.color = color;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getColor(){ return color; }
-
-	private HIAnimationOptionsObject animation;
-	/**
- Animation for the marker as it moves between values. Set to false to disable animation. Defaults to { duration: 50 }. 
- <br><br><b>defaults:</b><br><br>&ensp;{"duration": 50}	*/
-	public void setAnimation(HIAnimationOptionsObject animation) {
-		this.animation = animation;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIAnimationOptionsObject getAnimation(){ return animation; }
-
 	private String symbol;
 	/**
-/** * description: A predefined shape or symbol for the marker. When undefined, the symbol is pulled from options.symbols. Other possible values are "circle", "square", "diamond", "triangle" and "triangle-down". Additionally, the URL to a graphic can be given on this form: "url(graphic.png)". Note that for the image to be applied to exported charts, its URL needs to be accessible by the export server. Custom callbacks for symbol path generation can also be added to Highcharts.SVGRenderer.prototype.symbols. The callback is then used by its method name, as shown in the demo. * demo:  •  Predefined, graphic and custom markers
+/** * description: A predefined shape or symbol for the marker. When undefined, the symbol is pulled from options.symbols. Other possible values are 'circle', 'square','diamond', 'triangle' and 'triangle-down'. Additionally, the URL to a graphic can be given on this form: 'url(graphic.png)'. Note that for the image to be applied to exported charts, its URL needs to be accessible by the export server. Custom callbacks for symbol path generation can also be added to Highcharts.SVGRenderer.prototype.symbols. The callback is then used by its method name, as shown in the demo. * demo:  •  Predefined, graphic and custom markers
 */
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
@@ -86,38 +43,41 @@ public class HIMarker extends HIFoundation {
 
 	public Number getLineWidth(){ return lineWidth; }
 
-	private Object fillColor;
+	private Number radius;
 	/**
-/** * description: The fill color of the point marker. When undefined, the series' or point's color is used. * demo:  •  White fill
+/** * description: The radius of the point marker. * demo:  •  Bigger markers
 */
-	public void setFillColor(Object fillColor) {
-		this.fillColor = fillColor;
+	public void setRadius(Number radius) {
+		this.radius = radius;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getFillColor(){ return fillColor; }
+	public Number getRadius(){ return radius; }
 
-	private Object lineColor;
+	private String lineColor;
 	/**
 /** * description: The color of the point marker's outline. When undefined, the series' or point's color is used. * demo:  •  Inherit from series color (undefined)
 */
-	public void setLineColor(Object lineColor) {
+	public void setLineColor(String lineColor) {
 		this.lineColor = lineColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getLineColor(){ return lineColor; }
+	public String getLineColor(){ return lineColor; }
 
-	private Number fillOpacity;
-	public void setFillOpacity(Number fillOpacity) {
-		this.fillOpacity = fillOpacity;
+	private Boolean enabled;
+	/**
+ Enable or disable the point marker. If undefined, the markers are hidden when the data is dense, and shown for more widespread data points. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-enabled/">Disabled markers</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-enabled-false/">Disabled in normal state but enabled on hover</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getFillOpacity(){ return fillOpacity; }
+	public Boolean getEnabled(){ return enabled; }
 
 	private Number height;
 	/**
@@ -143,17 +103,60 @@ public class HIMarker extends HIFoundation {
 
 	public Number getWidth(){ return width; }
 
-	private Number radius;
+	private HIColor fillColor;
 	/**
- The radius of the point marker. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-radius/">Bigger markers</a>
+ The fill color of the point marker. When undefined, the series' or point's color is used. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-fillcolor/">White fill</a>
 	*/
-	public void setRadius(Number radius) {
-		this.radius = radius;
+	public void setFillColor(HIColor fillColor) {
+		this.fillColor = fillColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getRadius(){ return radius; }
+	public HIColor getFillColor(){ return fillColor; }
+
+	private HIStates states;
+	public void setStates(HIStates states) {
+		this.states = states;
+		this.states.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIStates getStates(){ return states; }
+
+	private HIColor color;
+	/**
+ The color of the marker. 
+	*/
+	public void setColor(HIColor color) {
+		this.color = color;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getColor(){ return color; }
+
+	private HIAnimationOptionsObject animation;
+	/**
+ Animation for the marker as it moves between values. Set to false to disable animation. Defaults to { duration: 50 }. 
+	*/
+	public void setAnimation(HIAnimationOptionsObject animation) {
+		this.animation = animation;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAnimationOptionsObject getAnimation(){ return animation; }
+
+	private Number fillOpacity;
+	public void setFillOpacity(Number fillOpacity) {
+		this.fillOpacity = fillOpacity;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getFillOpacity(){ return fillOpacity; }
 
 	private Number enabledThreshold;
 	/**
@@ -178,32 +181,20 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.states != null) {
-			params.put("states", this.states.getParams());
-		}
-		if (this.enabled != null) {
-			params.put("enabled", this.enabled);
-		}
-		if (this.color != null) {
-			params.put("color", this.color.getData());
-		}
-		if (this.animation != null) {
-			params.put("animation", this.animation.getParams());
-		}
 		if (this.symbol != null) {
 			params.put("symbol", this.symbol);
 		}
 		if (this.lineWidth != null) {
 			params.put("lineWidth", this.lineWidth);
 		}
-		if (this.fillColor != null) {
-			params.put("fillColor", this.fillColor);
+		if (this.radius != null) {
+			params.put("radius", this.radius);
 		}
 		if (this.lineColor != null) {
 			params.put("lineColor", this.lineColor);
 		}
-		if (this.fillOpacity != null) {
-			params.put("fillOpacity", this.fillOpacity);
+		if (this.enabled != null) {
+			params.put("enabled", this.enabled);
 		}
 		if (this.height != null) {
 			params.put("height", this.height);
@@ -211,8 +202,20 @@ public HashMap<String, Object> getParams() {
 		if (this.width != null) {
 			params.put("width", this.width);
 		}
-		if (this.radius != null) {
-			params.put("radius", this.radius);
+		if (this.fillColor != null) {
+			params.put("fillColor", this.fillColor.getData());
+		}
+		if (this.states != null) {
+			params.put("states", this.states.getParams());
+		}
+		if (this.color != null) {
+			params.put("color", this.color.getData());
+		}
+		if (this.animation != null) {
+			params.put("animation", this.animation.getParams());
+		}
+		if (this.fillOpacity != null) {
+			params.put("fillOpacity", this.fillOpacity);
 		}
 		if (this.enabledThreshold != null) {
 			params.put("enabledThreshold", this.enabledThreshold);

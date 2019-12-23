@@ -42,6 +42,18 @@ public class HIPatternObject extends HIFoundation {
 
 	public HIPatternOptionsObject getPattern(){ return pattern; }
 
+	private Number patternIndex;
+	/**
+ Optionally an index referencing which pattern to use. Highcharts adds 10 defaults patterns to the `Highcharts.patterns` array. Additional pattern definitions can be pushed to this array if desired. This option is an index into this array. 
+	*/
+	public void setPatternIndex(Number patternIndex) {
+		this.patternIndex = patternIndex;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPatternIndex(){ return patternIndex; }
+
 
 
 	public HIPatternObject() {
@@ -58,6 +70,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.pattern != null) {
 			params.put("pattern", this.pattern.getParams());
+		}
+		if (this.patternIndex != null) {
+			params.put("patternIndex", this.patternIndex);
 		}
 		return params;
 	}

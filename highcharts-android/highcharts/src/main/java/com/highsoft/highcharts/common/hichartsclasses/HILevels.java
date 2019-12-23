@@ -78,17 +78,18 @@ public class HILevels extends HIFoundation {
 
 	public HIColor getColor(){ return color; }
 
-	private HIDataLabelsOptionsObject dataLabels;
+	private HIDataLabels dataLabels;
 	/**
  Can set dataLabels on all points which lies on the same level. 
 	*/
-	public void setDataLabels(HIDataLabelsOptionsObject dataLabels) {
+	public void setDataLabels(HIDataLabels dataLabels) {
 		this.dataLabels = dataLabels;
+		this.dataLabels.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIDataLabelsOptionsObject getDataLabels(){ return dataLabels; }
+	public HIDataLabels getDataLabels(){ return dataLabels; }
 
 	private String rotationMode;
 	/**
@@ -174,17 +175,18 @@ public class HILevels extends HIFoundation {
 
 	public Boolean getColorByPoint(){ return colorByPoint; }
 
-	private HIPointStatesOptionsObject states;
+	private HIStates states;
 	/**
  Can set states on all nodes and points which lay on the same level. 
 	*/
-	public void setStates(HIPointStatesOptionsObject states) {
+	public void setStates(HIStates states) {
 		this.states = states;
+		this.states.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIPointStatesOptionsObject getStates(){ return states; }
+	public HIStates getStates(){ return states; }
 
 	private Number linkOpacity;
 	/**

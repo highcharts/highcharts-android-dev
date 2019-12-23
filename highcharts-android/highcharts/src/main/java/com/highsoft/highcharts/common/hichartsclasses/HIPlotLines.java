@@ -127,12 +127,6 @@ public class HIPlotLines extends HIFoundation {
 
 	public String getId(){ return id; }
 
-
-
-	public HIPlotLines() {
-
-	}
-
 	/**
 	 * Remove the plot line.
 	 */
@@ -144,6 +138,10 @@ public class HIPlotLines extends HIFoundation {
 		}};
 		this.setChanged();
 		this.notifyObservers(jsClassMethod);
+	}
+
+	public HIPlotLines() {
+
 	}
 
 	@Override

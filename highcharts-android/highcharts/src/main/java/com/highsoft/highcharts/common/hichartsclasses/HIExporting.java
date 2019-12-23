@@ -15,7 +15,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class HIExporting extends HIFoundation {
+
+public class HIExporting extends HIFoundation { 
 
 	private HIAccessibility accessibility;
 	/**
@@ -176,17 +177,17 @@ public class HIExporting extends HIFoundation {
 
 	public Object /* boolean, String */ getTableCaption(){ return tableCaption; }
 
-	private Map formAttributes;
+	private Map<String, String> formAttributes;
 	/**
  An object containing additional key value data for the POST form that sends the SVG to the export server. For example, a target can be set to make sure the generated image is received in another frame, or a custom enctype or encoding can be set. 
 	*/
-	public void setFormAttributes(Map formAttributes) {
+	public void setFormAttributes(Map<String, String> formAttributes) {
 		this.formAttributes = formAttributes;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Map getFormAttributes(){ return formAttributes; }
+	public Map<String, String> getFormAttributes(){ return formAttributes; }
 
 	private Boolean useMultiLevelHeaders;
 	/**

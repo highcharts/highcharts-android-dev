@@ -33,7 +33,7 @@ public class HIParallelAxes extends HIFoundation {
 
 	private HILabels labels;
 	/**
-/** * description: The axis labels show the number or category for each tick. 
+/** * description: The axis labels show the number or category for each tick. Since v8.0.0: Labels are animated in categorized x-axis with updating data if tickInterval and step is set to 1. 
 */
 	public void setLabels(HILabels labels) {
 		this.labels = labels;
@@ -82,6 +82,18 @@ public class HIParallelAxes extends HIFoundation {
 	}
 
 	public Number getMinPadding(){ return minPadding; }
+
+	private Object /* Number, String */ height;
+	/**
+/** * description: The height of the Y axis. If it's a number, it is interpreted as pixels. Since Highcharts 2: If it's a percentage string, it is interpreted as percentages of the total plot height. 
+*/
+	public void setHeight(Object /* Number, String */ height) {
+		this.height = height;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getHeight(){ return height; }
 
 	private Number softMax;
 	/**
@@ -219,19 +231,6 @@ public class HIParallelAxes extends HIFoundation {
 
 	public String getTooltipValueFormat(){ return tooltipValueFormat; }
 
-	private Boolean reversedStacks;
-	/**
-/** * description: If true, the first series in a stack will be drawn on top in a positive, non-reversed Y axis. If false, the first series is in the base of the stack. * demo:  •  Non-reversed stacks
-* defaults: true
-*/
-	public void setReversedStacks(Boolean reversedStacks) {
-		this.reversedStacks = reversedStacks;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getReversedStacks(){ return reversedStacks; }
-
 	private Boolean showLastLabel;
 	/**
 /** * description: Whether to show the last tick label. Defaults to true on cartesian charts, and false on polar charts. * demo:  •  Set to true on X axis
@@ -283,17 +282,30 @@ public class HIParallelAxes extends HIFoundation {
 
 	public HIColor getLineColor(){ return lineColor; }
 
-	private Boolean zoomEnabled;
+	private Boolean reversedStacks;
 	/**
- Whether to zoom axis. If chart.zoomType is set, the option allows to disable zooming on an individual axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/zoomenabled/">Zoom enabled is false</a>
- <br><br><b>defaults:</b><br><br>&ensp;enabled	*/
-	public void setZoomEnabled(Boolean zoomEnabled) {
-		this.zoomEnabled = zoomEnabled;
+/** * description: If true, the first series in a stack will be drawn on top in a positive, non-reversed Y axis. If false, the first series is in the base of the stack. * demo:  •  Non-reversed stacks
+* defaults: true
+*/
+	public void setReversedStacks(Boolean reversedStacks) {
+		this.reversedStacks = reversedStacks;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getZoomEnabled(){ return zoomEnabled; }
+	public Boolean getReversedStacks(){ return reversedStacks; }
+
+	private Object /* Number, String */ top;
+	/**
+/** * description: The top position of the Y axis. If it's a number, it is interpreted as pixel position relative to the chart. Since Highcharts 2: If it's a percentage string, it is interpreted as percentages of the plot height, offset from plot area top. 
+*/
+	public void setTop(Object /* Number, String */ top) {
+		this.top = top;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getTop(){ return top; }
 
 	private HIColor minorTickColor;
 	/**
@@ -318,6 +330,18 @@ public class HIParallelAxes extends HIFoundation {
 	}
 
 	public Number getPane(){ return pane; }
+
+	private String tickmarkPlacement;
+	/**
+ For categorized axes only. If on the tick mark is placed in the center of the category, if between the tick mark is placed between categories. The defaults is between if the tickInterval is 1, else on. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickmarkplacement-between/">"between" by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickmarkplacement-on/">"on"</a> <br><br><b>accepted values:</b><br><br>&ensp;["on", "between"]
+	*/
+	public void setTickmarkPlacement(String tickmarkPlacement) {
+		this.tickmarkPlacement = tickmarkPlacement;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTickmarkPlacement(){ return tickmarkPlacement; }
 
 	private Number gridZIndex;
 	/**
@@ -428,18 +452,6 @@ public class HIParallelAxes extends HIFoundation {
 
 	public Number getMinRange(){ return minRange; }
 
-	private String tickmarkPlacement;
-	/**
- For categorized axes only. If on the tick mark is placed in the center of the category, if between the tick mark is placed between categories. The defaults is between if the tickInterval is 1, else on. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickmarkplacement-between/">"between" by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickmarkplacement-on/">"on"</a> <br><br><b>accepted values:</b><br><br>&ensp;["on", "between"]
-	*/
-	public void setTickmarkPlacement(String tickmarkPlacement) {
-		this.tickmarkPlacement = tickmarkPlacement;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getTickmarkPlacement(){ return tickmarkPlacement; }
-
 	private Boolean allowDecimals;
 	/**
  Whether to allow decimals in this axis' ticks. When counting integers, like persons or hits on a web page, decimals should be avoided in the labels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/allowdecimals-true/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/allowdecimals-false/">False</a>
@@ -476,6 +488,18 @@ public class HIParallelAxes extends HIFoundation {
 
 	public HIFunction getTickPositioner(){ return tickPositioner; }
 
+	private Object /* Number, String */ width;
+	/**
+ The width as the horizontal axis. If it's a number, it is interpreted as pixels. Since Highcharts v5.0.13: If it's a percentage string, it is interpreted as percentages of the total plot width. 
+	*/
+	public void setWidth(Object /* Number, String */ width) {
+		this.width = width;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getWidth(){ return width; }
+
 	private Number minorTickLength;
 	/**
  The pixel length of the minor tick marks. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minorticklength/">10px on Y axis</a>
@@ -490,7 +514,7 @@ public class HIParallelAxes extends HIFoundation {
 
 	private ArrayList<ArrayList> units;
 	/**
- Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the second value another array of allowed multiples. Defaults to: units: [[   'millisecond', // unit name   [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples ], [   'second',   [1, 2, 5, 10, 15, 30] ], [   'minute',   [1, 2, 5, 10, 15, 30] ], [   'hour',   [1, 2, 3, 4, 6, 8, 12] ], [   'day',   [1] ], [   'week',   [1] ], [   'month',   [1, 3, 6] ], [   'year',   null ]] 
+ Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the second value another array of allowed multiples. Defaults to: `js units: [[   'millisecond', // unit name   [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples ], [   'second',   [1, 2, 5, 10, 15, 30] ], [   'minute',   [1, 2, 5, 10, 15, 30] ], [   'hour',   [1, 2, 3, 4, 6, 8, 12] ], [   'day',   [1] ], [   'week',   [1] ], [   'month',   [1, 3, 6] ], [   'year',   null ]] ` 
 	*/
 	public void setUnits(ArrayList<ArrayList> units) {
 		this.units = units;
@@ -499,19 +523,6 @@ public class HIParallelAxes extends HIFoundation {
 	}
 
 	public ArrayList<ArrayList> getUnits(){ return units; }
-
-	private HIEvents events;
-	/**
- Event handlers for the axis. 
-	*/
-	public void setEvents(HIEvents events) {
-		this.events = events;
-		this.events.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIEvents getEvents(){ return events; }
 
 	private Number tickLength;
 	/**
@@ -524,6 +535,18 @@ public class HIParallelAxes extends HIFoundation {
 	}
 
 	public Number getTickLength(){ return tickLength; }
+
+	private Boolean zoomEnabled;
+	/**
+ Whether to zoom axis. If chart.zoomType is set, the option allows to disable zooming on an individual axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/zoomenabled/">Zoom enabled is false</a>
+ <br><br><b>defaults:</b><br><br>&ensp;enabled	*/
+	public void setZoomEnabled(Boolean zoomEnabled) {
+		this.zoomEnabled = zoomEnabled;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getZoomEnabled(){ return zoomEnabled; }
 
 	private Number ceiling;
 	/**
@@ -563,7 +586,7 @@ public class HIParallelAxes extends HIFoundation {
 
 	private HIDateTimeLabelFormats dateTimeLabelFormats;
 	/**
- For a datetime axis, the scale will automatically adjust to the appropriate unit. This member gives the defaults string representations used for each unit. For intermediate values, different units may be used, for example the day unit can be used on midnight and hour unit be used for intermediate values on the same axis. For an overview of the replacement codes, see `dateFormat`. Defaults to: {   millisecond: '%H:%M:%S.%L',   second: '%H:%M:%S',   minute: '%H:%M',   hour: '%H:%M',   day: '%e. %b',   week: '%e. %b',   month: '%b \'%y',   year: '%Y' } <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/datetimelabelformats/">Different day format on X axis</a>
+ For a datetime axis, the scale will automatically adjust to the appropriate unit. This member gives the defaults string representations used for each unit. For intermediate values, different units may be used, for example the day unit can be used on midnight and hour unit be used for intermediate values on the same axis. For an overview of the replacement codes, see `dateFormat`. Defaults to: `js {   millisecond: '%H:%M:%S.%L',   second: '%H:%M:%S',   minute: '%H:%M',   hour: '%H:%M',   day: '%e. %b',   week: '%e. %b',   month: '%b \'%y',   year: '%Y' } ` <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/datetimelabelformats/">Different day format on X axis</a>
 	*/
 	public void setDateTimeLabelFormats(HIDateTimeLabelFormats dateTimeLabelFormats) {
 		this.dateTimeLabelFormats = dateTimeLabelFormats;
@@ -670,6 +693,19 @@ public class HIParallelAxes extends HIFoundation {
 
 	public Boolean getUniqueNames(){ return uniqueNames; }
 
+	private HIEvents events;
+	/**
+ Event handlers for the axis. 
+	*/
+	public void setEvents(HIEvents events) {
+		this.events = events;
+		this.events.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIEvents getEvents(){ return events; }
+
 	private String className;
 	/**
  A class name that opens for styling the axis by CSS, especially in Highcharts styled mode. The class name is applied to group elements for the grid, axis elements and labels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis/">Multiple axes with separate styling</a>
@@ -731,6 +767,18 @@ public class HIParallelAxes extends HIFoundation {
 
 	public Number getMargin(){ return margin; }
 
+	private Object /* Number, String */ left;
+	/**
+ The left position as the horizontal axis. If it's a number, it is interpreted as pixel position relative to the chart. Since Highcharts v5.0.13: If it's a percentage string, it is interpreted as percentages of the plot width, offset from plot area left. 
+	*/
+	public void setLeft(Object /* Number, String */ left) {
+		this.left = left;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getLeft(){ return left; }
+
 
 
 	public HIParallelAxes() {
@@ -756,6 +804,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.minPadding != null) {
 			params.put("minPadding", this.minPadding);
+		}
+		if (this.height != null) {
+			params.put("height", this.height);
 		}
 		if (this.softMax != null) {
 			params.put("softMax", this.softMax);
@@ -790,9 +841,6 @@ public HashMap<String, Object> getParams() {
 		if (this.tooltipValueFormat != null) {
 			params.put("tooltipValueFormat", this.tooltipValueFormat);
 		}
-		if (this.reversedStacks != null) {
-			params.put("reversedStacks", this.reversedStacks);
-		}
 		if (this.showLastLabel != null) {
 			params.put("showLastLabel", this.showLastLabel);
 		}
@@ -805,14 +853,20 @@ public HashMap<String, Object> getParams() {
 		if (this.lineColor != null) {
 			params.put("lineColor", this.lineColor.getData());
 		}
-		if (this.zoomEnabled != null) {
-			params.put("zoomEnabled", this.zoomEnabled);
+		if (this.reversedStacks != null) {
+			params.put("reversedStacks", this.reversedStacks);
+		}
+		if (this.top != null) {
+			params.put("top", this.top);
 		}
 		if (this.minorTickColor != null) {
 			params.put("minorTickColor", this.minorTickColor.getData());
 		}
 		if (this.pane != null) {
 			params.put("pane", this.pane);
+		}
+		if (this.tickmarkPlacement != null) {
+			params.put("tickmarkPlacement", this.tickmarkPlacement);
 		}
 		if (this.gridZIndex != null) {
 			params.put("gridZIndex", this.gridZIndex);
@@ -850,9 +904,6 @@ public HashMap<String, Object> getParams() {
 		if (this.minRange != null) {
 			params.put("minRange", this.minRange);
 		}
-		if (this.tickmarkPlacement != null) {
-			params.put("tickmarkPlacement", this.tickmarkPlacement);
-		}
 		if (this.allowDecimals != null) {
 			params.put("allowDecimals", this.allowDecimals);
 		}
@@ -861,6 +912,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.tickPositioner != null) {
 			params.put("tickPositioner", this.tickPositioner);
+		}
+		if (this.width != null) {
+			params.put("width", this.width);
 		}
 		if (this.minorTickLength != null) {
 			params.put("minorTickLength", this.minorTickLength);
@@ -877,11 +931,11 @@ public HashMap<String, Object> getParams() {
 			}
 			params.put("units", array);
 		}
-		if (this.events != null) {
-			params.put("events", this.events.getParams());
-		}
 		if (this.tickLength != null) {
 			params.put("tickLength", this.tickLength);
+		}
+		if (this.zoomEnabled != null) {
+			params.put("zoomEnabled", this.zoomEnabled);
 		}
 		if (this.ceiling != null) {
 			params.put("ceiling", this.ceiling);
@@ -928,6 +982,9 @@ public HashMap<String, Object> getParams() {
 		if (this.uniqueNames != null) {
 			params.put("uniqueNames", this.uniqueNames);
 		}
+		if (this.events != null) {
+			params.put("events", this.events.getParams());
+		}
 		if (this.className != null) {
 			params.put("className", this.className);
 		}
@@ -942,6 +999,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.margin != null) {
 			params.put("margin", this.margin);
+		}
+		if (this.left != null) {
+			params.put("left", this.left);
 		}
 		return params;
 	}

@@ -44,6 +44,19 @@ public class HIPlotOptions extends HIFoundation {
 
 	public HIVariablepie getVariablepie(){ return variablepie; }
 
+	private HIDumbbell dumbbell;
+	/**
+ The dumbbell series is a cartesian series with higher and lower values for each point along an X axis, connected with a line between the values. Requires highcharts-more.js and modules/dumbbell.js. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all dumbbell series are defined in  `plotOptions.dumbbell`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     dumbbell: {       // shared options for all dumbbell series     }   },   series: [{     // specific options for this series instance     type: 'dumbbell'   }] }); `        <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/dumbbell/">Dumbbell chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-dumbbell/styled-mode-dumbbell/">Styled mode</a>
+	*/
+	public void setDumbbell(HIDumbbell dumbbell) {
+		this.dumbbell = dumbbell;
+		this.dumbbell.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIDumbbell getDumbbell(){ return dumbbell; }
+
 	private HIStreamgraph streamgraph;
 	/**
  A streamgraph is a type of stacked area graph which is displaced around a central axis, resulting in a flowing, organic shape. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all streamgraph series are defined in  `plotOptions.streamgraph`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     streamgraph: {       // shared options for all streamgraph series     }   },   series: [{     // specific options for this series instance     type: 'streamgraph'   }] }); `        <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/streamgraph/">Streamgraph</a>
@@ -200,19 +213,6 @@ public class HIPlotOptions extends HIFoundation {
 
 	public HIPyramid3d getPyramid3d(){ return pyramid3d; }
 
-	private HISankey sankey;
-	/**
- A sankey diagram is a type of flow diagram, in which the width of the link between two nodes is shown proportionally to the flow quantity. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all sankey series are defined in  `plotOptions.sankey`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     sankey: {       // shared options for all sankey series     }   },   series: [{     // specific options for this series instance     type: 'sankey'   }] }); `        <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/sankey-diagram/">Sankey diagram</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-inverted/">Inverted sankey diagram</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-outgoing">Sankey diagram with outgoing links</a>
-	*/
-	public void setSankey(HISankey sankey) {
-		this.sankey = sankey;
-		this.sankey.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HISankey getSankey(){ return sankey; }
-
 	private HIPareto pareto;
 	/**
  A pareto diagram is a type of chart that contains both bars and a line graph, where individual values are represented in descending order by bars, and the cumulative total is represented by the line. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all pareto series are defined in  `plotOptions.pareto`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     pareto: {       // shared options for all pareto series     }   },   series: [{     // specific options for this series instance     type: 'pareto'   }] }); `        <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pareto/">Pareto diagram</a>
@@ -291,6 +291,19 @@ public class HIPlotOptions extends HIFoundation {
 
 	public HIFunnel3d getFunnel3d(){ return funnel3d; }
 
+	private HILollipop lollipop;
+	/**
+ The lollipop series is a carteseian series with a line anchored from the x axis and a dot at the end to mark the value. Requires highcharts-more.js, modules/dumbbell.js and modules/lollipop.js. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all lollipop series are defined in  `plotOptions.lollipop`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     lollipop: {       // shared options for all lollipop series     }   },   series: [{     // specific options for this series instance     type: 'lollipop'   }] }); `        <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/lollipop/">Lollipop chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-dumbbell/styled-mode-dumbbell/">Styled mode</a>
+	*/
+	public void setLollipop(HILollipop lollipop) {
+		this.lollipop = lollipop;
+		this.lollipop.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HILollipop getLollipop(){ return lollipop; }
+
 	private HIColumn column;
 	/**
  Column series display one column per value along an X axis. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all column series are defined in  `plotOptions.column`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     column: {       // shared options for all column series     }   },   series: [{     // specific options for this series instance     type: 'column'   }] }); `        <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/column-basic/">Column chart</a>
@@ -342,6 +355,16 @@ public class HIPlotOptions extends HIFoundation {
 	}
 
 	public HIColumnrange getColumnrange(){ return columnrange; }
+
+	private HIPackedBubble packedBubble;
+	public void setPackedBubble(HIPackedBubble packedBubble) {
+		this.packedBubble = packedBubble;
+		this.packedBubble.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIPackedBubble getPackedBubble(){ return packedBubble; }
 
 	private HIVenn venn;
 	/**
@@ -485,6 +508,19 @@ public class HIPlotOptions extends HIFoundation {
 	}
 
 	public HIScatter getScatter(){ return scatter; }
+
+	private HISankey sankey;
+	/**
+ A sankey diagram is a type of flow diagram, in which the width of the link between two nodes is shown proportionally to the flow quantity. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all sankey series are defined in  `plotOptions.sankey`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     sankey: {       // shared options for all sankey series     }   },   series: [{     // specific options for this series instance     type: 'sankey'   }] }); `        <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/sankey-diagram/">Sankey diagram</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-inverted/">Inverted sankey diagram</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-outgoing">Sankey diagram with outgoing links</a>
+	*/
+	public void setSankey(HISankey sankey) {
+		this.sankey = sankey;
+		this.sankey.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HISankey getSankey(){ return sankey; }
 
 	private HICylinder cylinder;
 	/**
@@ -672,6 +708,9 @@ public HashMap<String, Object> getParams() {
 		if (this.variablepie != null) {
 			params.put("variablepie", this.variablepie.getParams());
 		}
+		if (this.dumbbell != null) {
+			params.put("dumbbell", this.dumbbell.getParams());
+		}
 		if (this.streamgraph != null) {
 			params.put("streamgraph", this.streamgraph.getParams());
 		}
@@ -708,9 +747,6 @@ public HashMap<String, Object> getParams() {
 		if (this.pyramid3d != null) {
 			params.put("pyramid3d", this.pyramid3d.getParams());
 		}
-		if (this.sankey != null) {
-			params.put("sankey", this.sankey.getParams());
-		}
 		if (this.pareto != null) {
 			params.put("pareto", this.pareto.getParams());
 		}
@@ -729,6 +765,9 @@ public HashMap<String, Object> getParams() {
 		if (this.funnel3d != null) {
 			params.put("funnel3d", this.funnel3d.getParams());
 		}
+		if (this.lollipop != null) {
+			params.put("lollipop", this.lollipop.getParams());
+		}
 		if (this.column != null) {
 			params.put("column", this.column.getParams());
 		}
@@ -740,6 +779,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.columnrange != null) {
 			params.put("columnrange", this.columnrange.getParams());
+		}
+		if (this.packedBubble != null) {
+			params.put("packedBubble", this.packedBubble.getParams());
 		}
 		if (this.venn != null) {
 			params.put("venn", this.venn.getParams());
@@ -773,6 +815,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.scatter != null) {
 			params.put("scatter", this.scatter.getParams());
+		}
+		if (this.sankey != null) {
+			params.put("sankey", this.sankey.getParams());
 		}
 		if (this.cylinder != null) {
 			params.put("cylinder", this.cylinder.getParams());

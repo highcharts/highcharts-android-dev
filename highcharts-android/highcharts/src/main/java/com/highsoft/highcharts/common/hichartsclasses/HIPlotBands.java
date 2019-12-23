@@ -175,12 +175,6 @@ public class HIPlotBands extends HIFoundation {
 
 	public HIEvents getEvents(){ return events; }
 
-
-
-	public HIPlotBands() {
-
-	}
-
 	/**
 	 * Remove the plot band.
 	 */
@@ -192,6 +186,10 @@ public class HIPlotBands extends HIFoundation {
 		}};
 		this.setChanged();
 		this.notifyObservers(jsClassMethod);
+	}
+
+	public HIPlotBands() {
+
 	}
 
 	@Override

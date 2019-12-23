@@ -212,6 +212,54 @@ public class HILayoutAlgorithm extends HIFoundation {
 
 	public String getType(){ return type; }
 
+	private Object /* Number, String */ distance;
+	/**
+ When type is set to kmeans, distance is a maximum distance between point and cluster center so that this point will be inside the cluster. The distance is either a number defining pixels or a percentage defining a percentage of the plot area width. 
+	*/
+	public void setDistance(Object /* Number, String */ distance) {
+		this.distance = distance;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getDistance(){ return distance; }
+
+	private Object /* Number, String */ gridSize;
+	/**
+ When type is set to the grid, gridSize is a size of a grid square element either as a number defining pixels, or a percentage defining a percentage of the plot area width. 
+	*/
+	public void setGridSize(Object /* Number, String */ gridSize) {
+		this.gridSize = gridSize;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getGridSize(){ return gridSize; }
+
+	private Number kmeansThreshold;
+	/**
+ When type is set to undefined and there are more visible points than the kmeansThreshold the grid algorithm is used to find clusters, otherwise kmeans. It ensures good performance on large datasets and better clusters arrangement after the zoom. 
+	*/
+	public void setKmeansThreshold(Number kmeansThreshold) {
+		this.kmeansThreshold = kmeansThreshold;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getKmeansThreshold(){ return kmeansThreshold; }
+
+	private Number iterations;
+	/**
+ When type is set to kmeans, iterations are the number of iterations that this algorithm will be repeated to find clusters positions. 
+	*/
+	public void setIterations(Number iterations) {
+		this.iterations = iterations;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getIterations(){ return iterations; }
+
 	private String approximation;
 	/**
  Approximation used to calculate repulsive forces affecting nodes. By defaults, when calculateing net force, nodes are compared against each other, which gives O(N^2) complexity. Using Barnes-Hut approximation, we decrease this to O(N log N), but the resulting graph will have different layout. Barnes-Hut approximation divides space into rectangles via quad tree, where forces exerted on nodes are calculated directly for nearby cells, and for all others, cells are treated as a separate node with center of mass. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-networkgraph/barnes-hut-approximation/">A graph with Barnes-Hut approximation</a> <br><br><b>accepted values:</b><br><br>&ensp;["barnes-hut", "none"]
@@ -318,6 +366,18 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.type != null) {
 			params.put("type", this.type);
+		}
+		if (this.distance != null) {
+			params.put("distance", this.distance);
+		}
+		if (this.gridSize != null) {
+			params.put("gridSize", this.gridSize);
+		}
+		if (this.kmeansThreshold != null) {
+			params.put("kmeansThreshold", this.kmeansThreshold);
+		}
+		if (this.iterations != null) {
+			params.put("iterations", this.iterations);
 		}
 		if (this.approximation != null) {
 			params.put("approximation", this.approximation);

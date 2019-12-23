@@ -17,8 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-
-public class HIAnnotations extends HIFoundation { 
+public class HIAnnotations extends HIFoundation {
 
 	private HIControlPointOptions controlPointOptions;
 	/**
@@ -143,12 +142,6 @@ public class HIAnnotations extends HIFoundation {
 	}
 
 	public HIEvents getEvents(){ return events; }
-
-
-
-	public HIAnnotations() {
-
-	}
 
 	/**
 	 * Hide or show annotaiton attached to points.
@@ -424,6 +417,12 @@ public class HIAnnotations extends HIFoundation {
 		}};
 		this.setChanged();
 		this.notifyObservers(jsClassMethod);
+	}
+
+
+
+	public HIAnnotations() {
+
 	}
 
 	@Override

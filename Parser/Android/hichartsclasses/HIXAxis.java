@@ -19,18 +19,6 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HIXAxis extends HIFoundation { 
 
-	private Boolean zoomEnabled;
-	/**
- Whether to zoom axis. If chart.zoomType is set, the option allows to disable zooming on an individual axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/zoomenabled/">Zoom enabled is false</a>
- <br><br><b>defaults:</b><br><br>&ensp;enabled	*/
-	public void setZoomEnabled(Boolean zoomEnabled) {
-		this.zoomEnabled = zoomEnabled;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getZoomEnabled(){ return zoomEnabled; }
-
 	private HIColor minorTickColor;
 	/**
  Color for the minor tick marks. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minortickcolor/">Black tick marks on Y axis</a>
@@ -55,6 +43,18 @@ public class HIXAxis extends HIFoundation {
 
 	public Number getPane(){ return pane; }
 
+	private String tickmarkPlacement;
+	/**
+ For categorized axes only. If on the tick mark is placed in the center of the category, if between the tick mark is placed between categories. The defaults is between if the tickInterval is 1, else on. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickmarkplacement-between/">"between" by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickmarkplacement-on/">"on"</a> <br><br><b>accepted values:</b><br><br>&ensp;["on", "between"]
+	*/
+	public void setTickmarkPlacement(String tickmarkPlacement) {
+		this.tickmarkPlacement = tickmarkPlacement;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTickmarkPlacement(){ return tickmarkPlacement; }
+
 	private Number minPadding;
 	/**
  Padding of the min value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the lowest data value to appear on the edge of the plot area. When the axis' min option is set or a min extreme is set using axis.setExtremes(), the minPadding will be ignored. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minpadding/">Min padding of 0.2</a>
@@ -69,7 +69,7 @@ public class HIXAxis extends HIFoundation {
 
 	private HILabels labels;
 	/**
- The axis labels show the number or category for each tick. 
+ The axis labels show the number or category for each tick. Since v8.0.0: Labels are animated in categorized x-axis with updating data if tickInterval and step is set to 1. 
 	*/
 	public void setLabels(HILabels labels) {
 		this.labels = labels;
@@ -104,6 +104,30 @@ public class HIXAxis extends HIFoundation {
 	}
 
 	public HIAccessibility getAccessibility(){ return accessibility; }
+
+	private Object /* Number, String */ height;
+	/**
+ The height as the vertical axis. If it's a number, it is interpreted as pixels. Since Highcharts 2: If it's a percentage string, it is interpreted as percentages of the total plot height. 
+	*/
+	public void setHeight(Object /* Number, String */ height) {
+		this.height = height;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getHeight(){ return height; }
+
+	private Object /* Number, String */ top;
+	/**
+ The top position as the vertical axis. If it's a number, it is interpreted as pixel position relative to the chart. Since Highcharts 2: If it's a percentage string, it is interpreted as percentages of the plot height, offset from plot area top. 
+	*/
+	public void setTop(Object /* Number, String */ top) {
+		this.top = top;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getTop(){ return top; }
 
 	private Boolean visible;
 	/**
@@ -165,17 +189,17 @@ public class HIXAxis extends HIFoundation {
 
 	public Boolean getShowFirstLabel(){ return showFirstLabel; }
 
-	private Boolean reversed;
+	private Number maxPadding;
 	/**
- Whether to reverse the axis so that the highest number is closest to the origin. If the chart is inverted, the x axis is reversed by defaults. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/reversed/">Reversed Y axis</a>
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setReversed(Boolean reversed) {
-		this.reversed = reversed;
+ Padding of the max value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the highest data value to appear on the edge of the plot area. When the axis' max option is set or a max extreme is set using axis.setExtremes(), the maxPadding will be ignored. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/maxpadding/">Max padding of 0.25 on y axis</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0.01	*/
+	public void setMaxPadding(Number maxPadding) {
+		this.maxPadding = maxPadding;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getReversed(){ return reversed; }
+	public Number getMaxPadding(){ return maxPadding; }
 
 	private Number startOfWeek;
 	/**
@@ -225,17 +249,17 @@ public class HIXAxis extends HIFoundation {
 
 	public Number getMinRange(){ return minRange; }
 
-	private String tickmarkPlacement;
+	private Number angle;
 	/**
- For categorized axes only. If on the tick mark is placed in the center of the category, if between the tick mark is placed between categories. The defaults is between if the tickInterval is 1, else on. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickmarkplacement-between/">"between" by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickmarkplacement-on/">"on"</a> <br><br><b>accepted values:</b><br><br>&ensp;["on", "between"]
-	*/
-	public void setTickmarkPlacement(String tickmarkPlacement) {
-		this.tickmarkPlacement = tickmarkPlacement;
+ In a polar chart, this is the angle of the Y axis in degrees, where 0 is up and 90 is right. The angle determines the position of the axis line and the labels, though the coordinate system is unaffected. Since v8.0.0 this option is also applicable for X axis (inverted polar). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/angle/">Custom X axis' angle on inverted polar chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/angle/">Dual axis polar chart</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
+	public void setAngle(Number angle) {
+		this.angle = angle;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getTickmarkPlacement(){ return tickmarkPlacement; }
+	public Number getAngle(){ return angle; }
 
 	private Boolean allowDecimals;
 	/**
@@ -285,6 +309,18 @@ public class HIXAxis extends HIFoundation {
 
 	public HIFunction getTickPositioner(){ return tickPositioner; }
 
+	private Boolean reversed;
+	/**
+ Whether to reverse the axis so that the highest number is closest to the origin. If the chart is inverted, the x axis is reversed by defaults. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/reversed/">Reversed Y axis</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setReversed(Boolean reversed) {
+		this.reversed = reversed;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getReversed(){ return reversed; }
+
 	private String minorGridLineDashStyle;
 	/**
  The dash or dot style of the minor grid lines. For possible values, see [this demonstration](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minorgridlinedashstyle/">Long dashes on minor grid lines</a>
@@ -296,6 +332,18 @@ public class HIXAxis extends HIFoundation {
 	}
 
 	public String getMinorGridLineDashStyle(){ return minorGridLineDashStyle; }
+
+	private Object /* Number, String */ width;
+	/**
+ The width as the horizontal axis. If it's a number, it is interpreted as pixels. Since Highcharts v5.0.13: If it's a percentage string, it is interpreted as percentages of the total plot width. 
+	*/
+	public void setWidth(Object /* Number, String */ width) {
+		this.width = width;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getWidth(){ return width; }
 
 	private Number minorTickLength;
 	/**
@@ -335,7 +383,7 @@ public class HIXAxis extends HIFoundation {
 
 	private ArrayList<ArrayList> units;
 	/**
- Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the second value another array of allowed multiples. Defaults to: units: [[   'millisecond', // unit name   [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples ], [   'second',   [1, 2, 5, 10, 15, 30] ], [   'minute',   [1, 2, 5, 10, 15, 30] ], [   'hour',   [1, 2, 3, 4, 6, 8, 12] ], [   'day',   [1] ], [   'week',   [1] ], [   'month',   [1, 3, 6] ], [   'year',   null ]] 
+ Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the second value another array of allowed multiples. Defaults to: `js units: [[   'millisecond', // unit name   [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples ], [   'second',   [1, 2, 5, 10, 15, 30] ], [   'minute',   [1, 2, 5, 10, 15, 30] ], [   'hour',   [1, 2, 3, 4, 6, 8, 12] ], [   'day',   [1] ], [   'week',   [1] ], [   'month',   [1, 3, 6] ], [   'year',   null ]] ` 
 	*/
 	public void setUnits(ArrayList<ArrayList> units) {
 		this.units = units;
@@ -369,18 +417,17 @@ public class HIXAxis extends HIFoundation {
 
 	public String getType(){ return type; }
 
-	private HIEvents events;
+	private String gridLineInterpolation;
 	/**
- Event handlers for the axis. 
+ Polar charts only. Whether the grid lines should draw as a polygon with straight lines between categories, or as circles. Can be either circle or polygon. Since v8.0.0 this option is also applicable for X axis (inverted polar). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar-spider/">Polygon grid lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/gridlineinterpolation/">Circle and polygon on inverted polar</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/gridlineinterpolation/">Circle and polygon</a> <br><br><b>accepted values:</b><br><br>&ensp;["circle", "polygon"]
 	*/
-	public void setEvents(HIEvents events) {
-		this.events = events;
-		this.events.addObserver(updateObserver);
+	public void setGridLineInterpolation(String gridLineInterpolation) {
+		this.gridLineInterpolation = gridLineInterpolation;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIEvents getEvents(){ return events; }
+	public String getGridLineInterpolation(){ return gridLineInterpolation; }
 
 	private Number tickLength;
 	/**
@@ -393,6 +440,18 @@ public class HIXAxis extends HIFoundation {
 	}
 
 	public Number getTickLength(){ return tickLength; }
+
+	private Boolean zoomEnabled;
+	/**
+ Whether to zoom axis. If chart.zoomType is set, the option allows to disable zooming on an individual axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/zoomenabled/">Zoom enabled is false</a>
+ <br><br><b>defaults:</b><br><br>&ensp;enabled	*/
+	public void setZoomEnabled(Boolean zoomEnabled) {
+		this.zoomEnabled = zoomEnabled;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getZoomEnabled(){ return zoomEnabled; }
 
 	private Number ceiling;
 	/**
@@ -480,7 +539,7 @@ public class HIXAxis extends HIFoundation {
 
 	private HIDateTimeLabelFormats dateTimeLabelFormats;
 	/**
- For a datetime axis, the scale will automatically adjust to the appropriate unit. This member gives the defaults string representations used for each unit. For intermediate values, different units may be used, for example the day unit can be used on midnight and hour unit be used for intermediate values on the same axis. For an overview of the replacement codes, see `dateFormat`. Defaults to: {   millisecond: '%H:%M:%S.%L',   second: '%H:%M:%S',   minute: '%H:%M',   hour: '%H:%M',   day: '%e. %b',   week: '%e. %b',   month: '%b \'%y',   year: '%Y' } <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/datetimelabelformats/">Different day format on X axis</a>
+ For a datetime axis, the scale will automatically adjust to the appropriate unit. This member gives the defaults string representations used for each unit. For intermediate values, different units may be used, for example the day unit can be used on midnight and hour unit be used for intermediate values on the same axis. For an overview of the replacement codes, see `dateFormat`. Defaults to: `js {   millisecond: '%H:%M:%S.%L',   second: '%H:%M:%S',   minute: '%H:%M',   hour: '%H:%M',   day: '%e. %b',   week: '%e. %b',   month: '%b \'%y',   year: '%Y' } ` <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/datetimelabelformats/">Different day format on X axis</a>
 	*/
 	public void setDateTimeLabelFormats(HIDateTimeLabelFormats dateTimeLabelFormats) {
 		this.dateTimeLabelFormats = dateTimeLabelFormats;
@@ -538,6 +597,18 @@ public class HIXAxis extends HIFoundation {
 	}
 
 	public Number getOffset(){ return offset; }
+
+	private Number softMax;
+	/**
+ A soft maximum for the axis. If the series data maximum is less than this, the axis will stay at this maximum, but if the series data maximum is higher, the axis will flex to show all data. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/softmin-softmax/">Soft min and max</a>
+	*/
+	public void setSoftMax(Number softMax) {
+		this.softMax = softMax;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getSoftMax(){ return softMax; }
 
 	private HIColor tickColor;
 	/**
@@ -695,17 +766,18 @@ public class HIXAxis extends HIFoundation {
 
 	public Boolean getUniqueNames(){ return uniqueNames; }
 
-	private Number maxPadding;
+	private HIEvents events;
 	/**
- Padding of the max value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the highest data value to appear on the edge of the plot area. When the axis' max option is set or a max extreme is set using axis.setExtremes(), the maxPadding will be ignored. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/maxpadding/">Max padding of 0.25 on y axis</a>
- <br><br><b>defaults:</b><br><br>&ensp;0.01	*/
-	public void setMaxPadding(Number maxPadding) {
-		this.maxPadding = maxPadding;
+ Event handlers for the axis. 
+	*/
+	public void setEvents(HIEvents events) {
+		this.events = events;
+		this.events.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getMaxPadding(){ return maxPadding; }
+	public HIEvents getEvents(){ return events; }
 
 	private String className;
 	/**
@@ -829,17 +901,17 @@ public class HIXAxis extends HIFoundation {
 
 	public ArrayList getPlotBands(){ return plotBands; }
 
-	private Number softMax;
+	private Object /* Number, String */ left;
 	/**
- A soft maximum for the axis. If the series data maximum is less than this, the axis will stay at this maximum, but if the series data maximum is higher, the axis will flex to show all data. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/softmin-softmax/">Soft min and max</a>
+ The left position as the horizontal axis. If it's a number, it is interpreted as pixel position relative to the chart. Since Highcharts v5.0.13: If it's a percentage string, it is interpreted as percentages of the plot width, offset from plot area left. 
 	*/
-	public void setSoftMax(Number softMax) {
-		this.softMax = softMax;
+	public void setLeft(Object /* Number, String */ left) {
+		this.left = left;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getSoftMax(){ return softMax; }
+	public Object /* Number, String */ getLeft(){ return left; }
 
 
 
@@ -852,14 +924,14 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.zoomEnabled != null) {
-			params.put("zoomEnabled", this.zoomEnabled);
-		}
 		if (this.minorTickColor != null) {
 			params.put("minorTickColor", this.minorTickColor.getData());
 		}
 		if (this.pane != null) {
 			params.put("pane", this.pane);
+		}
+		if (this.tickmarkPlacement != null) {
+			params.put("tickmarkPlacement", this.tickmarkPlacement);
 		}
 		if (this.minPadding != null) {
 			params.put("minPadding", this.minPadding);
@@ -872,6 +944,12 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.accessibility != null) {
 			params.put("accessibility", this.accessibility.getParams());
+		}
+		if (this.height != null) {
+			params.put("height", this.height);
+		}
+		if (this.top != null) {
+			params.put("top", this.top);
 		}
 		if (this.visible != null) {
 			params.put("visible", this.visible);
@@ -888,8 +966,8 @@ public HashMap<String, Object> getParams() {
 		if (this.showFirstLabel != null) {
 			params.put("showFirstLabel", this.showFirstLabel);
 		}
-		if (this.reversed != null) {
-			params.put("reversed", this.reversed);
+		if (this.maxPadding != null) {
+			params.put("maxPadding", this.maxPadding);
 		}
 		if (this.startOfWeek != null) {
 			params.put("startOfWeek", this.startOfWeek);
@@ -912,8 +990,8 @@ public HashMap<String, Object> getParams() {
 		if (this.minRange != null) {
 			params.put("minRange", this.minRange);
 		}
-		if (this.tickmarkPlacement != null) {
-			params.put("tickmarkPlacement", this.tickmarkPlacement);
+		if (this.angle != null) {
+			params.put("angle", this.angle);
 		}
 		if (this.allowDecimals != null) {
 			params.put("allowDecimals", this.allowDecimals);
@@ -927,8 +1005,14 @@ public HashMap<String, Object> getParams() {
 		if (this.tickPositioner != null) {
 			params.put("tickPositioner", this.tickPositioner);
 		}
+		if (this.reversed != null) {
+			params.put("reversed", this.reversed);
+		}
 		if (this.minorGridLineDashStyle != null) {
 			params.put("minorGridLineDashStyle", this.minorGridLineDashStyle);
+		}
+		if (this.width != null) {
+			params.put("width", this.width);
 		}
 		if (this.minorTickLength != null) {
 			params.put("minorTickLength", this.minorTickLength);
@@ -966,11 +1050,14 @@ public HashMap<String, Object> getParams() {
 		if (this.type != null) {
 			params.put("type", this.type);
 		}
-		if (this.events != null) {
-			params.put("events", this.events.getParams());
+		if (this.gridLineInterpolation != null) {
+			params.put("gridLineInterpolation", this.gridLineInterpolation);
 		}
 		if (this.tickLength != null) {
 			params.put("tickLength", this.tickLength);
+		}
+		if (this.zoomEnabled != null) {
+			params.put("zoomEnabled", this.zoomEnabled);
 		}
 		if (this.ceiling != null) {
 			params.put("ceiling", this.ceiling);
@@ -1016,6 +1103,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.offset != null) {
 			params.put("offset", this.offset);
+		}
+		if (this.softMax != null) {
+			params.put("softMax", this.softMax);
 		}
 		if (this.tickColor != null) {
 			params.put("tickColor", this.tickColor.getData());
@@ -1065,8 +1155,8 @@ public HashMap<String, Object> getParams() {
 		if (this.uniqueNames != null) {
 			params.put("uniqueNames", this.uniqueNames);
 		}
-		if (this.maxPadding != null) {
-			params.put("maxPadding", this.maxPadding);
+		if (this.events != null) {
+			params.put("events", this.events.getParams());
 		}
 		if (this.className != null) {
 			params.put("className", this.className);
@@ -1107,8 +1197,8 @@ public HashMap<String, Object> getParams() {
 			}
 			params.put("plotBands", array);
 		}
-		if (this.softMax != null) {
-			params.put("softMax", this.softMax);
+		if (this.left != null) {
+			params.put("left", this.left);
 		}
 		return params;
 	}

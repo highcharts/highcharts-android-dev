@@ -355,7 +355,9 @@ hc_types = {
         "Highcharts.FormatterCallbackFunction.<Highcharts.PlotLineOrBand>": 'HIFunction',
         "string|null|undefined": 'String',
         #7.2.0
-        "number|string|boolean": 'Object /* Number, String */'
+        "number|string|boolean": 'Object /* Number, String */',
+        #8.0
+        "Array.<(*)>": 'ArrayList'
 }
 
 

@@ -89,17 +89,17 @@ public class HIBackground extends HIFoundation {
 
 	public Number getBorderWidth(){ return borderWidth; }
 
-	private HIGradientColorObject backgroundColor;
+	private HIColor backgroundColor;
 	/**
  The background color or gradient for the pane. 
  <br><br><b>defaults:</b><br><br>&ensp;{ linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 }, stops: [[0, #ffffff], [1, #e6e6e6]] }	*/
-	public void setBackgroundColor(HIGradientColorObject backgroundColor) {
+	public void setBackgroundColor(HIColor backgroundColor) {
 		this.backgroundColor = backgroundColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIGradientColorObject getBackgroundColor(){ return backgroundColor; }
+	public HIColor getBackgroundColor(){ return backgroundColor; }
 
 
 
@@ -131,7 +131,7 @@ public HashMap<String, Object> getParams() {
 			params.put("borderWidth", this.borderWidth);
 		}
 		if (this.backgroundColor != null) {
-			params.put("backgroundColor", this.backgroundColor.getParams());
+			params.put("backgroundColor", this.backgroundColor.getData());
 		}
 		return params;
 	}

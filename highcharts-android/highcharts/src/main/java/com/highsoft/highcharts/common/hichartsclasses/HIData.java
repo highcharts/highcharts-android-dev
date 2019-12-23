@@ -21,7 +21,6 @@ import java.util.Map;
 public class HIData extends HIFoundation {
 
 	private HashMap<String, Object> jsProperties;
-
 	/**
 	 * Add a custom property to your chart. Those can be accessible later by HIFunction callbacks.
 	 * @param name the name by which you can access property
@@ -442,7 +441,7 @@ public class HIData extends HIFoundation {
 
 	private String name;
 	/**
- The name of the point as shown in the legend, tooltip, dataLabels etc. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-objects/">Point names</a>
+ The name of the point as shown in the legend, tooltip, dataLabels, etc. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/data-array-of-objects/">Point names</a>
 	*/
 	public void setName(String name) {
 		this.name = name;
@@ -477,6 +476,9 @@ public class HIData extends HIFoundation {
 	public Boolean getSelected(){ return selected; }
 
 	private HIAccessibility accessibility;
+	/**
+ Accessibility options for a data point. 
+	*/
 	public void setAccessibility(HIAccessibility accessibility) {
 		this.accessibility = accessibility;
 		this.accessibility.addObserver(updateObserver);
@@ -486,17 +488,18 @@ public class HIData extends HIFoundation {
 
 	public HIAccessibility getAccessibility(){ return accessibility; }
 
-	private ArrayList<HIDataLabelsOptionsObject> dataLabels;
+	private HIDataLabels dataLabels;
 	/**
  Individual data label for each point. The options are the same as the ones for plotOptions.series.dataLabels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/datalabels/">Show a label for the last value</a>
 	*/
-	public void setDataLabels(ArrayList<HIDataLabelsOptionsObject> dataLabels) {
+	public void setDataLabels(HIDataLabels dataLabels) {
 		this.dataLabels = dataLabels;
+		this.dataLabels.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<HIDataLabelsOptionsObject> getDataLabels(){ return dataLabels; }
+	public HIDataLabels getDataLabels(){ return dataLabels; }
 
 	private String className;
 	/**
@@ -561,7 +564,7 @@ public class HIData extends HIFoundation {
 
 	private HIEvents events;
 	/**
- Individual point events 
+ The individual point events. 
 	*/
 	public void setEvents(HIEvents events) {
 		this.events = events;
@@ -597,6 +600,9 @@ public class HIData extends HIFoundation {
 	public Number getLegendIndex(){ return legendIndex; }
 
 	private HIMarker marker;
+	/**
+ Options for the point markers of line-like series. 
+	*/
 	public void setMarker(HIMarker marker) {
 		this.marker = marker;
 		this.marker.addObserver(updateObserver);
@@ -898,7 +904,7 @@ public class HIData extends HIFoundation {
 
 	private String parent;
 	/**
- Use this option to build a tree structure. The value should be the id of the point which is the parent. If no points has a matching id, or this option is undefined, then the parent will be set to the root. 
+ Only for treemap. Use this option to build a tree structure. The value should be the id of the point which is the parent. If no points has a matching id, or this option is undefined, then the parent will be set to the root. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/parent/">Point parent</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/treemap-with-levels/">Example where parent id is not matching</a>
 	*/
 	public void setParent(String parent) {
 		this.parent = parent;
@@ -907,6 +913,18 @@ public class HIData extends HIFoundation {
 	}
 
 	public String getParent(){ return parent; }
+
+	private Number colorValue;
+	/**
+ Serves a purpose only if a colorAxis object is defined in the chart options. This value will decide which color the point gets from the scale of the colorAxis. 
+	*/
+	public void setColorValue(Number colorValue) {
+		this.colorValue = colorValue;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getColorValue(){ return colorValue; }
 
 	private ArrayList<String> sets;
 	/**
@@ -1073,16 +1091,7 @@ public HashMap<String, Object> getParams() {
 			params.put("accessibility", this.accessibility.getParams());
 		}
 		if (this.dataLabels != null) {
-			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.dataLabels) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
-			}
-			params.put("dataLabels", array);
+			params.put("dataLabels", this.dataLabels.getParams());
 		}
 		if (this.className != null) {
 			params.put("className", this.className);
@@ -1185,6 +1194,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.parent != null) {
 			params.put("parent", this.parent);
+		}
+		if (this.colorValue != null) {
+			params.put("colorValue", this.colorValue);
 		}
 		if (this.sets != null) {
 			ArrayList<Object> array = new ArrayList<>();

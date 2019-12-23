@@ -54,17 +54,17 @@ public class HINodes extends HIFoundation {
 
 	public HIColor getColor(){ return color; }
 
-	private ArrayList<HIDataLabelsOptionsObject> dataLabels;
+	private ArrayList <HIDataLabels> dataLabels;
 	/**
  Individual data label for each node. The options are the same as the ones for series.sankey.dataLabels. 
 	*/
-	public void setDataLabels(ArrayList<HIDataLabelsOptionsObject> dataLabels) {
+	public void setDataLabels(ArrayList dataLabels) {
 		this.dataLabels = dataLabels;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<HIDataLabelsOptionsObject> getDataLabels(){ return dataLabels; }
+	public ArrayList getDataLabels(){ return dataLabels; }
 
 	private Number column;
 	/**

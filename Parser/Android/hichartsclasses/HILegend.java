@@ -491,6 +491,24 @@ public class HILegend extends HIFoundation {
 
 	public Number getMargin(){ return margin; }
 
+	private String legendLabel;
+	public void setLegendLabel(String legendLabel) {
+		this.legendLabel = legendLabel;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getLegendLabel(){ return legendLabel; }
+
+	private String legendItem;
+	public void setLegendItem(String legendItem) {
+		this.legendItem = legendItem;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getLegendItem(){ return legendItem; }
+
 
 
 	public HILegend() {
@@ -618,6 +636,12 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.margin != null) {
 			params.put("margin", this.margin);
+		}
+		if (this.legendLabel != null) {
+			params.put("legendLabel", this.legendLabel);
+		}
+		if (this.legendItem != null) {
+			params.put("legendItem", this.legendItem);
 		}
 		return params;
 	}

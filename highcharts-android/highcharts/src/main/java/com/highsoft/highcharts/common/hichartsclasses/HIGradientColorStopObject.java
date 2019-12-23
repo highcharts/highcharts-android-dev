@@ -1,5 +1,5 @@
 /**
-* (c) 2009-2018 Highsoft AS
+* (c) 2009-20one8 Highsoft AS
 *
 * License: www.highcharts.com/license
 * For commercial usage, a valid license is required. To purchase a license for Highcharts Android, please see our website: https://shop.highsoft.com/
@@ -16,23 +16,23 @@ import java.util.HashMap;
 
 public class HIGradientColorStopObject extends HIFoundation { 
 
-	private Number stop0;
-	public void setStop0(Number stop0) {
-		this.stop0 = stop0;
+	private Number zero;
+	public void setZero(Number zero) {
+		this.zero = zero;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number get0(){ return stop0; }
+	public Number getZero(){ return zero; }
 
-	private String stop1;
-	public void setStop1(String stop1) {
-		this.stop1 = stop1;
+	private String one;
+	public void setOne(String one) {
+		this.one = one;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String get1(){ return stop1; }
+	public String getOne(){ return one; }
 
 
 
@@ -41,15 +41,15 @@ public class HIGradientColorStopObject extends HIFoundation {
 	}
 
 	@Override
-	public HashMap<String, Object> getParams() {
+public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.stop0 != null) {
-			params.put("0", this.stop0);
+		if (this.zero != null) {
+			params.put("0", this.zero);
 		}
-		if (this.stop1 != null) {
-			params.put("1", this.stop1);
+		if (this.one != null) {
+			params.put("1", this.one);
 		}
 		return params;
 	}

@@ -29,6 +29,43 @@ public class HIZones extends HIFoundation {
 
 	public String getClassName(){ return className; }
 
+	private HIMarker marker;
+	/**
+ Settings for the cluster marker belonging to the zone. 
+	*/
+	public void setMarker(HIMarker marker) {
+		this.marker = marker;
+		this.marker.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIMarker getMarker(){ return marker; }
+
+	private Number from;
+	/**
+ The value where the zone starts. 
+	*/
+	public void setFrom(Number from) {
+		this.from = from;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getFrom(){ return from; }
+
+	private Number to;
+	/**
+ The value where the zone ends. 
+	*/
+	public void setTo(Number to) {
+		this.to = to;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getTo(){ return to; }
+
 	private HIColor color;
 	/**
  Defines the color of the series. 
@@ -90,6 +127,15 @@ public HashMap<String, Object> getParams() {
 		params.put("_wrapperID", this.uuid);
 		if (this.className != null) {
 			params.put("className", this.className);
+		}
+		if (this.marker != null) {
+			params.put("marker", this.marker.getParams());
+		}
+		if (this.from != null) {
+			params.put("from", this.from);
+		}
+		if (this.to != null) {
+			params.put("to", this.to);
 		}
 		if (this.color != null) {
 			params.put("color", this.color.getData());

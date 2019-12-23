@@ -21,7 +21,7 @@ public class HIChart extends HIFoundation {
 
 	private HIParallelAxes parallelAxes;
 	/**
- Common options for all yAxes rendered in a parallel coordinates plot. This feature requires modules/parallel-coordinates.js. The defaults options are:  parallelAxes: {  lineWidth: 1,    // classic mode only  gridlinesWidth: 0, // classic mode only  title: {    text: '',    reserveSpace: false  },  labels: {    x: 0,    y: 0,    align: 'center',    reserveSpace: false  },  offset: 0 } <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/parallel-coordinates/parallelaxes/">Set the same tickAmount for all yAxes</a>
+ Common options for all yAxes rendered in a parallel coordinates plot. This feature requires modules/parallel-coordinates.js. The defaults options are: `js parallelAxes: {  lineWidth: 1,    // classic mode only  gridlinesWidth: 0, // classic mode only  title: {    text: '',    reserveSpace: false  },  labels: {    x: 0,    y: 0,    align: 'center',    reserveSpace: false  },  offset: 0 } ` <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/parallel-coordinates/parallelaxes/">Set the same tickAmount for all yAxes</a>
 	*/
 	public void setParallelAxes(HIParallelAxes parallelAxes) {
 		this.parallelAxes = parallelAxes;
@@ -55,18 +55,6 @@ public class HIChart extends HIFoundation {
 	}
 
 	public Number getSpacingBottom(){ return spacingBottom; }
-
-	private Boolean /* boolean */ plotShadow;
-	/**
- Whether to apply a drop shadow to the plot area. Requires that plotBackgroundColor be set. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/plotshadow/">Plot shadow</a>
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setPlotShadow(Boolean /* boolean */ plotShadow) {
-		this.plotShadow = plotShadow;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean /* boolean */ getPlotShadow(){ return plotShadow; }
 
 	private Object /* Number, String */ height;
 	/**
@@ -200,6 +188,18 @@ public class HIChart extends HIFoundation {
 
 	public Boolean getReflow(){ return reflow; }
 
+	private Boolean /* boolean */ plotShadow;
+	/**
+ Whether to apply a drop shadow to the plot area. Requires that plotBackgroundColor be set. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/plotshadow/">Plot shadow</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setPlotShadow(Boolean /* boolean */ plotShadow) {
+		this.plotShadow = plotShadow;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean /* boolean */ getPlotShadow(){ return plotShadow; }
+
 	private String zoomType;
 	/**
  Decides in what dimensions the user can zoom by dragging the mouse. Can be one of x, y or xy. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/zoomtype-none/">None by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/zoomtype-x/">X</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/zoomtype-y/">Y</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/zoomtype-xy/">Xy</a> <br><br><b>accepted values:</b><br><br>&ensp;["x", "y", "xy"]
@@ -284,17 +284,18 @@ public class HIChart extends HIFoundation {
 
 	public HIColor getBackgroundColor(){ return backgroundColor; }
 
-	private Boolean panning;
+	private HIPanning panning;
 	/**
  Allow panning in a chart. Best used with panKey to combine zooming and panning. On touch devices, when the tooltip.followTouchMove option is true (defaults), panning requires two fingers. To allow panning with one finger, set followTouchMove to false. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/pankey/">Zooming and panning</a>
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setPanning(Boolean panning) {
+	*/
+	public void setPanning(HIPanning panning) {
 		this.panning = panning;
+		this.panning.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getPanning(){ return panning; }
+	public HIPanning getPanning(){ return panning; }
 
 	private HIOptions3d options3d;
 	/**
@@ -421,7 +422,7 @@ public class HIChart extends HIFoundation {
 
 	private HIAnimationOptionsObject animation;
 	/**
- Set the overall animation for all chart updating. Animation can be disabled throughout the chart by setting it to false here. It can be overridden for each individual API method as a function parameter. The only animation not affected by this option is the initial series animation, see plotOptions.series.animation. The animation can either be set as a boolean or a configuration object. If true, it will use the 'swing' jQuery easing and a duration of 500 ms. If used as a configuration object, the following properties are supported:  duration The duration of the animation in milliseconds. easing A string reference to an easing function set on the Math object. See [the easing demo](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/).   <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-none/">Updating with no animation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-duration/">With a longer duration</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-easing/">With a jQuery UI easing</a>
+ Set the overall animation for all chart updating. Animation can be disabled throughout the chart by setting it to false here. It can be overridden for each individual API method as a function parameter. The only animation not affected by this option is the initial series animation, see plotOptions.series.animation. The animation can either be set as a boolean or a configuration object. If true, it will use the 'swing' jQuery easing and a duration of 500 ms. If used as a configuration object, the following properties are supported: - **duration**: The duration of the animation in milliseconds. - **easing**: A string reference to an easing function set on the  Math object. See  [the easing demo](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-none/">Updating with no animation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-duration/">With a longer duration</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-easing/">With a jQuery UI easing</a>
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
@@ -490,6 +491,18 @@ public class HIChart extends HIFoundation {
 	}
 
 	public String getPlotBackgroundImage(){ return plotBackgroundImage; }
+
+	private HIFunction numberFormatter;
+	/**
+ Callback function to override the defaults function that formats all the numbers in the chart. Returns a string with the formatted number. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/members/highcharts-numberformat">Arabic digits in Highcharts</a>
+	*/
+	public void setNumberFormatter(HIFunction numberFormatter) {
+		this.numberFormatter = numberFormatter;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getNumberFormatter(){ return numberFormatter; }
 
 	private String pinchType;
 	/**
@@ -620,9 +633,6 @@ public HashMap<String, Object> getParams() {
 		if (this.spacingBottom != null) {
 			params.put("spacingBottom", this.spacingBottom);
 		}
-		if (this.plotShadow != null) {
-			params.put("plotShadow", this.plotShadow);
-		}
 		if (this.height != null) {
 			params.put("height", this.height);
 		}
@@ -656,6 +666,9 @@ public HashMap<String, Object> getParams() {
 		if (this.reflow != null) {
 			params.put("reflow", this.reflow);
 		}
+		if (this.plotShadow != null) {
+			params.put("plotShadow", this.plotShadow);
+		}
 		if (this.zoomType != null) {
 			params.put("zoomType", this.zoomType);
 		}
@@ -678,7 +691,7 @@ public HashMap<String, Object> getParams() {
 			params.put("backgroundColor", this.backgroundColor.getData());
 		}
 		if (this.panning != null) {
-			params.put("panning", this.panning);
+			params.put("panning", this.panning.getParams());
 		}
 		if (this.options3d != null) {
 			params.put("options3d", this.options3d.getParams());
@@ -736,6 +749,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.plotBackgroundImage != null) {
 			params.put("plotBackgroundImage", this.plotBackgroundImage);
+		}
+		if (this.numberFormatter != null) {
+			params.put("numberFormatter", this.numberFormatter);
 		}
 		if (this.pinchType != null) {
 			params.put("pinchType", this.pinchType);

@@ -18,21 +18,9 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 public class HIKeyboardNavigation extends HIFoundation { 
 
-	private Boolean skipNullPoints;
-	/**
- Skip null points when navigating through points with the keyboard. 
-	*/
-	public void setSkipNullPoints(Boolean skipNullPoints) {
-		this.skipNullPoints = skipNullPoints;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getSkipNullPoints(){ return skipNullPoints; }
-
 	private Boolean enabled;
 	/**
- Enable keyboard navigation for the chart. 
+ Enable keyboard navigation for the legend. 
 	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -79,17 +67,18 @@ public class HIKeyboardNavigation extends HIFoundation {
 
 	public ArrayList<String> getOrder(){ return order; }
 
-	private String mode;
+	private HISeriesNavigation seriesNavigation;
 	/**
- Set the keyboard navigation mode for the chart. Can be "normal" or "serialize". In normal mode, left/right arrow keys move between points in a series, while up/down arrow keys move between series. Up/down navigation acts intelligently to figure out which series makes sense to move to from any given point. In "serialize" mode, points are instead navigated as a single list. Left/right behaves as in "normal" mode. Up/down arrow keys will behave like left/right. This can be useful for unifying navigation behavior with/without screen readers enabled. <br><br><b>accepted values:</b><br><br>&ensp;["normal", "serialize"]
- <br><br><b>defaults:</b><br><br>&ensp;normal	*/
-	public void setMode(String mode) {
-		this.mode = mode;
+ Options for the keyboard navigation of data points and series. 
+	*/
+	public void setSeriesNavigation(HISeriesNavigation seriesNavigation) {
+		this.seriesNavigation = seriesNavigation;
+		this.seriesNavigation.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getMode(){ return mode; }
+	public HISeriesNavigation getSeriesNavigation(){ return seriesNavigation; }
 
 
 
@@ -102,9 +91,6 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.skipNullPoints != null) {
-			params.put("skipNullPoints", this.skipNullPoints);
-		}
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);
 		}
@@ -126,8 +112,8 @@ public HashMap<String, Object> getParams() {
 			}
 			params.put("order", array);
 		}
-		if (this.mode != null) {
-			params.put("mode", this.mode);
+		if (this.seriesNavigation != null) {
+			params.put("seriesNavigation", this.seriesNavigation.getParams());
 		}
 		return params;
 	}

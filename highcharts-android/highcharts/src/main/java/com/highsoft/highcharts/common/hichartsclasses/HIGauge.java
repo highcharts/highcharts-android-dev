@@ -33,7 +33,7 @@ public class HIGauge extends HISeries {
 	private Number overshoot;
 	/**
  Allow the dial to overshoot the end of the perimeter axis by this many degrees. Say if the gauge axis goes from 0 to 60, a value of 100, or 1000, will show 5 degrees beyond the end of the axis when this option is set to 5. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-overshoot/">Allow 5 degrees overshoot</a>
- <br><br><b>defaults:</b><br><br>&ensp;0	*/
+	*/
 	public void setOvershoot(Number overshoot) {
 		this.overshoot = overshoot;
 		this.setChanged();

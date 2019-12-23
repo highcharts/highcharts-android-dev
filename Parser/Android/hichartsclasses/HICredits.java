@@ -21,7 +21,7 @@ public class HICredits extends HIFoundation {
 	private HICSSObject style;
 	/**
  CSS styles for the credits label. 
- <br><br><b>defaults:</b><br><br>&ensp;{"cursor": "pointer", "color": "#999999", "fontSize": "10px"}	*/
+	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
 		this.setChanged();

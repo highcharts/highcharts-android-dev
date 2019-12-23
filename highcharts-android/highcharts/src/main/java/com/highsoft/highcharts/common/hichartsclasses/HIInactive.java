@@ -17,6 +17,9 @@ import java.util.HashMap;
 public class HIInactive extends HIFoundation { 
 
 	private Number opacity;
+	/**
+ Opacity of series elements (dataLabels, line, area). Set to 1 to disable inactive state. 
+	*/
 	public void setOpacity(Number opacity) {
 		this.opacity = opacity;
 		this.setChanged();
@@ -27,7 +30,7 @@ public class HIInactive extends HIFoundation {
 
 	private HIAnimationOptionsObject animation;
 	/**
- Animation when not hovering over the node. 
+ The animation for entering the inactive state. 
 	*/
 	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;

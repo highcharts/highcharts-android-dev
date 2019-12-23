@@ -18,7 +18,7 @@ public class HIPosition extends HIFoundation {
 
 	private Number y;
 	/**
- Vertical offset of the label, in pixels. 
+ The vertical offset of the button. 
 	*/
 	public void setY(Number y) {
 		this.y = y;
@@ -30,7 +30,7 @@ public class HIPosition extends HIFoundation {
 
 	private Number x;
 	/**
- Horizontal offset of the label, in pixels. 
+ The horizontal offset of the button. 
 	*/
 	public void setX(Number x) {
 		this.x = x;
@@ -42,7 +42,7 @@ public class HIPosition extends HIFoundation {
 
 	private String align;
 	/**
- Horizontal alignment of the label. 
+ The horizontal alignment of the button. 
 	*/
 	public void setAlign(String align) {
 		this.align = align;
@@ -54,8 +54,8 @@ public class HIPosition extends HIFoundation {
 
 	private String verticalAlign;
 	/**
- Vertical alignment of the label. 
-	*/
+ The vertical alignment of the button. 
+ <br><br><b>defaults:</b><br><br>&ensp;top	*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
 		this.setChanged();

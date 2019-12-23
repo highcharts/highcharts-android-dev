@@ -20,8 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 
-
-public class HIYAxis extends HIFoundation { 
+public class HIYAxis extends HIFoundation {
 
 	private Number minPadding;
 	/**
@@ -38,7 +37,7 @@ public class HIYAxis extends HIFoundation {
 
 	private HILabels labels;
 	/**
-/** * description: The axis labels show the number or category for each tick. 
+/** * description: The axis labels show the number or category for each tick. Since v8.0.0: Labels are animated in categorized x-axis with updating data if tickInterval and step is set to 1. 
 */
 	public void setLabels(HILabels labels) {
 		this.labels = labels;
@@ -48,6 +47,18 @@ public class HIYAxis extends HIFoundation {
 	}
 
 	public HILabels getLabels(){ return labels; }
+
+	private Object /* Number, String */ height;
+	/**
+/** * description: The height of the Y axis. If it's a number, it is interpreted as pixels. Since Highcharts 2: If it's a percentage string, it is interpreted as percentages of the total plot height. 
+*/
+	public void setHeight(Object /* Number, String */ height) {
+		this.height = height;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getHeight(){ return height; }
 
 	private HIColor maxColor;
 	/**
@@ -72,18 +83,6 @@ public class HIYAxis extends HIFoundation {
 	}
 
 	public Number getSoftMax(){ return softMax; }
-
-	private Number angle;
-	/**
- In a polar chart, this is the angle of the Y axis in degrees, where 0 is up and 90 is right. The angle determines the position of the axis line and the labels, though the coordinate system is unaffected. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/angle/">Dual axis polar chart</a>
- <br><br><b>defaults:</b><br><br>&ensp;0	*/
-	public void setAngle(Number angle) {
-		this.angle = angle;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getAngle(){ return angle; }
 
 	private Number min;
 	/**
@@ -169,18 +168,6 @@ public class HIYAxis extends HIFoundation {
 	}
 
 	public String getType(){ return type; }
-
-	private String gridLineInterpolation;
-	/**
- Polar charts only. Whether the grid lines should draw as a polygon with straight lines between categories, or as circles. Can be either circle or polygon. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar-spider/">Polygon grid lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/gridlineinterpolation/">Circle and polygon</a> <br><br><b>accepted values:</b><br><br>&ensp;["circle", "polygon"]
-	*/
-	public void setGridLineInterpolation(String gridLineInterpolation) {
-		this.gridLineInterpolation = gridLineInterpolation;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getGridLineInterpolation(){ return gridLineInterpolation; }
 
 	private Number tickPixelInterval;
 	/**
@@ -270,18 +257,18 @@ public class HIYAxis extends HIFoundation {
 
 	public String getTooltipValueFormat(){ return tooltipValueFormat; }
 
-	private Boolean reversedStacks;
+	private Number lineWidth;
 	/**
-/** * description: If true, the first series in a stack will be drawn on top in a positive, non-reversed Y axis. If false, the first series is in the base of the stack. * demo:  •  Non-reversed stacks
-* defaults: true
+/** * description: The width of the line marking the axis itself. In styled mode, the stroke width is given in the .highcharts-axis-line or .highcharts-xaxis-line class. * demo:  •  A 1px line on Y axis •  Axes in styled mode
+* defaults: 1
 */
-	public void setReversedStacks(Boolean reversedStacks) {
-		this.reversedStacks = reversedStacks;
+	public void setLineWidth(Number lineWidth) {
+		this.lineWidth = lineWidth;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getReversedStacks(){ return reversedStacks; }
+	public Number getLineWidth(){ return lineWidth; }
 
 	private HIColor minColor;
 	/**
@@ -372,30 +359,30 @@ public class HIYAxis extends HIFoundation {
 
 	public HITitle getTitle(){ return title; }
 
-	private Number lineWidth;
+	private Boolean reversedStacks;
 	/**
-/** * description: The width of the line marking the axis itself. In styled mode, the stroke width is given in the .highcharts-axis-line or .highcharts-xaxis-line class. * demo:  •  A 1px line on Y axis •  Axes in styled mode
-* defaults: 1
+/** * description: If true, the first series in a stack will be drawn on top in a positive, non-reversed Y axis. If false, the first series is in the base of the stack. * demo:  •  Non-reversed stacks
+* defaults: true
 */
-	public void setLineWidth(Number lineWidth) {
-		this.lineWidth = lineWidth;
+	public void setReversedStacks(Boolean reversedStacks) {
+		this.reversedStacks = reversedStacks;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getLineWidth(){ return lineWidth; }
+	public Boolean getReversedStacks(){ return reversedStacks; }
 
-	private Boolean zoomEnabled;
+	private Object /* Number, String */ top;
 	/**
- Whether to zoom axis. If chart.zoomType is set, the option allows to disable zooming on an individual axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/zoomenabled/">Zoom enabled is false</a>
- <br><br><b>defaults:</b><br><br>&ensp;enabled	*/
-	public void setZoomEnabled(Boolean zoomEnabled) {
-		this.zoomEnabled = zoomEnabled;
+/** * description: The top position of the Y axis. If it's a number, it is interpreted as pixel position relative to the chart. Since Highcharts 2: If it's a percentage string, it is interpreted as percentages of the plot height, offset from plot area top. 
+*/
+	public void setTop(Object /* Number, String */ top) {
+		this.top = top;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getZoomEnabled(){ return zoomEnabled; }
+	public Object /* Number, String */ getTop(){ return top; }
 
 	private HIColor minorTickColor;
 	/**
@@ -420,6 +407,18 @@ public class HIYAxis extends HIFoundation {
 	}
 
 	public Number getPane(){ return pane; }
+
+	private String tickmarkPlacement;
+	/**
+ For categorized axes only. If on the tick mark is placed in the center of the category, if between the tick mark is placed between categories. The defaults is between if the tickInterval is 1, else on. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickmarkplacement-between/">"between" by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickmarkplacement-on/">"on"</a> <br><br><b>accepted values:</b><br><br>&ensp;["on", "between"]
+	*/
+	public void setTickmarkPlacement(String tickmarkPlacement) {
+		this.tickmarkPlacement = tickmarkPlacement;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTickmarkPlacement(){ return tickmarkPlacement; }
 
 	private Number gridZIndex;
 	/**
@@ -542,17 +541,17 @@ public class HIYAxis extends HIFoundation {
 
 	public Number getMinRange(){ return minRange; }
 
-	private String tickmarkPlacement;
+	private Number angle;
 	/**
- For categorized axes only. If on the tick mark is placed in the center of the category, if between the tick mark is placed between categories. The defaults is between if the tickInterval is 1, else on. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickmarkplacement-between/">"between" by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickmarkplacement-on/">"on"</a> <br><br><b>accepted values:</b><br><br>&ensp;["on", "between"]
-	*/
-	public void setTickmarkPlacement(String tickmarkPlacement) {
-		this.tickmarkPlacement = tickmarkPlacement;
+ In a polar chart, this is the angle of the Y axis in degrees, where 0 is up and 90 is right. The angle determines the position of the axis line and the labels, though the coordinate system is unaffected. Since v8.0.0 this option is also applicable for X axis (inverted polar). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/angle/">Custom X axis' angle on inverted polar chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/angle/">Dual axis polar chart</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
+	public void setAngle(Number angle) {
+		this.angle = angle;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getTickmarkPlacement(){ return tickmarkPlacement; }
+	public Number getAngle(){ return angle; }
 
 	private Boolean allowDecimals;
 	/**
@@ -614,6 +613,18 @@ public class HIYAxis extends HIFoundation {
 
 	public String getMinorGridLineDashStyle(){ return minorGridLineDashStyle; }
 
+	private Object /* Number, String */ width;
+	/**
+ The width as the horizontal axis. If it's a number, it is interpreted as pixels. Since Highcharts v5.0.13: If it's a percentage string, it is interpreted as percentages of the total plot width. 
+	*/
+	public void setWidth(Object /* Number, String */ width) {
+		this.width = width;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getWidth(){ return width; }
+
 	private Number minorTickLength;
 	/**
  The pixel length of the minor tick marks. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minorticklength/">10px on Y axis</a>
@@ -628,7 +639,7 @@ public class HIYAxis extends HIFoundation {
 
 	private ArrayList<ArrayList> units;
 	/**
- Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the second value another array of allowed multiples. Defaults to: units: [[   'millisecond', // unit name   [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples ], [   'second',   [1, 2, 5, 10, 15, 30] ], [   'minute',   [1, 2, 5, 10, 15, 30] ], [   'hour',   [1, 2, 3, 4, 6, 8, 12] ], [   'day',   [1] ], [   'week',   [1] ], [   'month',   [1, 3, 6] ], [   'year',   null ]] 
+ Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the second value another array of allowed multiples. Defaults to: `js units: [[   'millisecond', // unit name   [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples ], [   'second',   [1, 2, 5, 10, 15, 30] ], [   'minute',   [1, 2, 5, 10, 15, 30] ], [   'hour',   [1, 2, 3, 4, 6, 8, 12] ], [   'day',   [1] ], [   'week',   [1] ], [   'month',   [1, 3, 6] ], [   'year',   null ]] ` 
 	*/
 	public void setUnits(ArrayList<ArrayList> units) {
 		this.units = units;
@@ -638,18 +649,17 @@ public class HIYAxis extends HIFoundation {
 
 	public ArrayList<ArrayList> getUnits(){ return units; }
 
-	private HIEvents events;
+	private String gridLineInterpolation;
 	/**
- Event handlers for the axis. 
+ Polar charts only. Whether the grid lines should draw as a polygon with straight lines between categories, or as circles. Can be either circle or polygon. Since v8.0.0 this option is also applicable for X axis (inverted polar). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar-spider/">Polygon grid lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/gridlineinterpolation/">Circle and polygon on inverted polar</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/gridlineinterpolation/">Circle and polygon</a> <br><br><b>accepted values:</b><br><br>&ensp;["circle", "polygon"]
 	*/
-	public void setEvents(HIEvents events) {
-		this.events = events;
-		this.events.addObserver(updateObserver);
+	public void setGridLineInterpolation(String gridLineInterpolation) {
+		this.gridLineInterpolation = gridLineInterpolation;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIEvents getEvents(){ return events; }
+	public String getGridLineInterpolation(){ return gridLineInterpolation; }
 
 	private Number tickLength;
 	/**
@@ -662,6 +672,18 @@ public class HIYAxis extends HIFoundation {
 	}
 
 	public Number getTickLength(){ return tickLength; }
+
+	private Boolean zoomEnabled;
+	/**
+ Whether to zoom axis. If chart.zoomType is set, the option allows to disable zooming on an individual axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/zoomenabled/">Zoom enabled is false</a>
+ <br><br><b>defaults:</b><br><br>&ensp;enabled	*/
+	public void setZoomEnabled(Boolean zoomEnabled) {
+		this.zoomEnabled = zoomEnabled;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getZoomEnabled(){ return zoomEnabled; }
 
 	private Number ceiling;
 	/**
@@ -725,7 +747,7 @@ public class HIYAxis extends HIFoundation {
 
 	private HIDateTimeLabelFormats dateTimeLabelFormats;
 	/**
- For a datetime axis, the scale will automatically adjust to the appropriate unit. This member gives the defaults string representations used for each unit. For intermediate values, different units may be used, for example the day unit can be used on midnight and hour unit be used for intermediate values on the same axis. For an overview of the replacement codes, see `dateFormat`. Defaults to: {   millisecond: '%H:%M:%S.%L',   second: '%H:%M:%S',   minute: '%H:%M',   hour: '%H:%M',   day: '%e. %b',   week: '%e. %b',   month: '%b \'%y',   year: '%Y' } <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/datetimelabelformats/">Different day format on X axis</a>
+ For a datetime axis, the scale will automatically adjust to the appropriate unit. This member gives the defaults string representations used for each unit. For intermediate values, different units may be used, for example the day unit can be used on midnight and hour unit be used for intermediate values on the same axis. For an overview of the replacement codes, see `dateFormat`. Defaults to: `js {   millisecond: '%H:%M:%S.%L',   second: '%H:%M:%S',   minute: '%H:%M',   hour: '%H:%M',   day: '%e. %b',   week: '%e. %b',   month: '%b \'%y',   year: '%Y' } ` <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/datetimelabelformats/">Different day format on X axis</a>
 	*/
 	public void setDateTimeLabelFormats(HIDateTimeLabelFormats dateTimeLabelFormats) {
 		this.dateTimeLabelFormats = dateTimeLabelFormats;
@@ -868,6 +890,19 @@ public class HIYAxis extends HIFoundation {
 
 	public Boolean getUniqueNames(){ return uniqueNames; }
 
+	private HIEvents events;
+	/**
+ Event handlers for the axis. 
+	*/
+	public void setEvents(HIEvents events) {
+		this.events = events;
+		this.events.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIEvents getEvents(){ return events; }
+
 	private String className;
 	/**
  A class name that opens for styling the axis by CSS, especially in Highcharts styled mode. The class name is applied to group elements for the grid, axis elements and labels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis/">Multiple axes with separate styling</a>
@@ -941,11 +976,17 @@ public class HIYAxis extends HIFoundation {
 
 	public Number getMargin(){ return margin; }
 
-
-
-	public HIYAxis() {
-
+	private Object /* Number, String */ left;
+	/**
+ The left position as the horizontal axis. If it's a number, it is interpreted as pixel position relative to the chart. Since Highcharts v5.0.13: If it's a percentage string, it is interpreted as percentages of the plot width, offset from plot area left. 
+	*/
+	public void setLeft(Object /* Number, String */ left) {
+		this.left = left;
+		this.setChanged();
+		this.notifyObservers();
 	}
+
+	public Object /* Number, String */ getLeft(){ return left; }
 
 	/**
 	 * Add a plot band after render time.
@@ -1335,6 +1376,11 @@ public class HIYAxis extends HIFoundation {
 		this.notifyObservers(jsClassMethod);
 	}
 
+
+	public HIYAxis() {
+
+	}
+
 	@Override
 public HashMap<String, Object> getParams() {
 
@@ -1346,14 +1392,14 @@ public HashMap<String, Object> getParams() {
 		if (this.labels != null) {
 			params.put("labels", this.labels.getParams());
 		}
+		if (this.height != null) {
+			params.put("height", this.height);
+		}
 		if (this.maxColor != null) {
 			params.put("maxColor", this.maxColor.getData());
 		}
 		if (this.softMax != null) {
 			params.put("softMax", this.softMax);
-		}
-		if (this.angle != null) {
-			params.put("angle", this.angle);
 		}
 		if (this.min != null) {
 			params.put("min", this.min);
@@ -1394,9 +1440,6 @@ public HashMap<String, Object> getParams() {
 		if (this.type != null) {
 			params.put("type", this.type);
 		}
-		if (this.gridLineInterpolation != null) {
-			params.put("gridLineInterpolation", this.gridLineInterpolation);
-		}
 		if (this.tickPixelInterval != null) {
 			params.put("tickPixelInterval", this.tickPixelInterval);
 		}
@@ -1427,8 +1470,8 @@ public HashMap<String, Object> getParams() {
 		if (this.tooltipValueFormat != null) {
 			params.put("tooltipValueFormat", this.tooltipValueFormat);
 		}
-		if (this.reversedStacks != null) {
-			params.put("reversedStacks", this.reversedStacks);
+		if (this.lineWidth != null) {
+			params.put("lineWidth", this.lineWidth);
 		}
 		if (this.minColor != null) {
 			params.put("minColor", this.minColor.getData());
@@ -1451,17 +1494,20 @@ public HashMap<String, Object> getParams() {
 		if (this.title != null) {
 			params.put("title", this.title.getParams());
 		}
-		if (this.lineWidth != null) {
-			params.put("lineWidth", this.lineWidth);
+		if (this.reversedStacks != null) {
+			params.put("reversedStacks", this.reversedStacks);
 		}
-		if (this.zoomEnabled != null) {
-			params.put("zoomEnabled", this.zoomEnabled);
+		if (this.top != null) {
+			params.put("top", this.top);
 		}
 		if (this.minorTickColor != null) {
 			params.put("minorTickColor", this.minorTickColor.getData());
 		}
 		if (this.pane != null) {
 			params.put("pane", this.pane);
+		}
+		if (this.tickmarkPlacement != null) {
+			params.put("tickmarkPlacement", this.tickmarkPlacement);
 		}
 		if (this.gridZIndex != null) {
 			params.put("gridZIndex", this.gridZIndex);
@@ -1502,8 +1548,8 @@ public HashMap<String, Object> getParams() {
 		if (this.minRange != null) {
 			params.put("minRange", this.minRange);
 		}
-		if (this.tickmarkPlacement != null) {
-			params.put("tickmarkPlacement", this.tickmarkPlacement);
+		if (this.angle != null) {
+			params.put("angle", this.angle);
 		}
 		if (this.allowDecimals != null) {
 			params.put("allowDecimals", this.allowDecimals);
@@ -1520,6 +1566,9 @@ public HashMap<String, Object> getParams() {
 		if (this.minorGridLineDashStyle != null) {
 			params.put("minorGridLineDashStyle", this.minorGridLineDashStyle);
 		}
+		if (this.width != null) {
+			params.put("width", this.width);
+		}
 		if (this.minorTickLength != null) {
 			params.put("minorTickLength", this.minorTickLength);
 		}
@@ -1535,11 +1584,14 @@ public HashMap<String, Object> getParams() {
 			}
 			params.put("units", array);
 		}
-		if (this.events != null) {
-			params.put("events", this.events.getParams());
+		if (this.gridLineInterpolation != null) {
+			params.put("gridLineInterpolation", this.gridLineInterpolation);
 		}
 		if (this.tickLength != null) {
 			params.put("tickLength", this.tickLength);
+		}
+		if (this.zoomEnabled != null) {
+			params.put("zoomEnabled", this.zoomEnabled);
 		}
 		if (this.ceiling != null) {
 			params.put("ceiling", this.ceiling);
@@ -1610,6 +1662,9 @@ public HashMap<String, Object> getParams() {
 		if (this.uniqueNames != null) {
 			params.put("uniqueNames", this.uniqueNames);
 		}
+		if (this.events != null) {
+			params.put("events", this.events.getParams());
+		}
 		if (this.className != null) {
 			params.put("className", this.className);
 		}
@@ -1627,6 +1682,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.margin != null) {
 			params.put("margin", this.margin);
+		}
+		if (this.left != null) {
+			params.put("left", this.left);
 		}
 		return params;
 	}

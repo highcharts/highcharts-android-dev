@@ -40,17 +40,17 @@ public class HITime extends HIFoundation {
 
 	public String getTimezone(){ return timezone; }
 
-	private Object getTimezoneOffset;
+	private String getTimezoneOffset;
 	/**
  A callback to return the time zone offset for a given datetime. It takes the timestamp in terms of milliseconds since January 1 1970, and returns the timezone offset in minutes. This provides a hook for drawing time based charts in specific time zones using their local DST crossover dates, with the help of external libraries. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/time/gettimezoneoffset/">Use moment.js to draw Oslo time regardless of browser locale</a>
 	*/
-	public void setGetTimezoneOffset(Object getTimezoneOffset) {
+	public void setGetTimezoneOffset(String getTimezoneOffset) {
 		this.getTimezoneOffset = getTimezoneOffset;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getGetTimezoneOffset(){ return getTimezoneOffset; }
+	public String getGetTimezoneOffset(){ return getTimezoneOffset; }
 
 	private Number timezoneOffset;
 	/**
@@ -94,6 +94,7 @@ public HashMap<String, Object> getParams() {
 			params.put("timezone", this.timezone);
 		}
 		if (this.getTimezoneOffset != null) {
+			params.put("getTimezoneOffset", this.getTimezoneOffset);
 		}
 		if (this.timezoneOffset != null) {
 			params.put("timezoneOffset", this.timezoneOffset);
