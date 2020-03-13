@@ -37,6 +37,7 @@ import com.highsoft.highcharts.core.HIFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -176,6 +177,8 @@ public class IssuesActivity extends AppCompatActivity {
         options.setTitle(hiTitle);
 
         final HIYAxis hiyAxis = new HIYAxis();
+        hiyAxis.setEvents(new HIEvents());
+        hiyAxis.getEvents().setClick(new HIFunction(() -> Toast.makeText(this, "Clicked!", Toast.LENGTH_SHORT).show()));
         hiyAxis.setTitle(new HITitle());
         hiyAxis.getTitle().setText("");
         HIStackLabels hiStackLabels = new HIStackLabels();
@@ -183,6 +186,8 @@ public class IssuesActivity extends AppCompatActivity {
         hiStackLabels.setAlign("right");
         hiyAxis.setStackLabels(hiStackLabels);
         hiyAxis.setAllowDecimals(false);
+
+
         options.setYAxis(new ArrayList<HIYAxis>() {
             {
                 add(hiyAxis);

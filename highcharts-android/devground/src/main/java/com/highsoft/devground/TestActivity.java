@@ -35,8 +35,11 @@ public class TestActivity extends AppCompatActivity {
         HIOptions options = new HIOptions();
         HILine series = new HILine();
         series.setData(new ArrayList<>(Arrays.asList(1,6,4,7,12,6,3)));
+        HILine series2 = new HILine();
+        series2.setData(new ArrayList<>(Arrays.asList(1,5,5,6,7,8,8)));
         ArrayList<HISeries> seriesArray = new ArrayList<>();
         seriesArray.add(series);
+        seriesArray.add(series2);
         options.setSeries(seriesArray);
 
         HITooltip tooltip = new HITooltip();
@@ -66,10 +69,12 @@ public class TestActivity extends AppCompatActivity {
             newSeries.setData(new ArrayList<>(Arrays.asList(15,5,3,1,5,6,1,2)));
             HIOptions options1 = options;
             options1.setSeries(new ArrayList<>(Collections.singletonList(newSeries)));
-            chartView.update(options1, true, true);
+            chartView.update(options1, false, true);
+//            options.setSeries(new ArrayList<>(Collections.singletonList(newSeries)));
+//            chartView.update(options1, true, true);
         });
 
-        chart.setBackgroundColor(HIColor.initWithRGBA(70, 130, 180, 0.6));
+//        chart.setBackgroundColor(HIColor.initWithRGBA(70, 130, 180, 0.6));
         chartView.setOptions(options);
     }
 }

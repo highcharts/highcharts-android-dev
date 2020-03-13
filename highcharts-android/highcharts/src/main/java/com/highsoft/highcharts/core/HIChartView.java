@@ -881,7 +881,8 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
         Map<String, Object> jsClassMethod = new HashMap<String, Object>() {{
             put("class", "Chart");
             put("method", "update0");
-            put("params", Collections.singletonList(options));
+//            put("params", Collections.singletonList(options));
+            put("params", Collections.singletonList(options.getParams()));
         }};
         makeNativeCall(jsClassMethod);
     }
@@ -900,7 +901,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
         Map<String, Object> jsClassMethod = new HashMap<String, Object>() {{
             put("class", "Chart");
             put("method", "update1");
-            put("params", Arrays.asList(options, redraw));
+            put("params", Arrays.asList(options.getParams(), redraw));
         }};
         makeNativeCall(jsClassMethod);
     }
@@ -920,7 +921,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
         Map<String, Object> jsClassMethod = new HashMap<String, Object>() {{
             put("class", "Chart");
             put("method", "update2");
-            put("params", Arrays.asList(options, redraw, oneToOne));
+            put("params", Arrays.asList(options.getParams(), redraw, oneToOne));
         }};
         makeNativeCall(jsClassMethod);
     }
@@ -941,7 +942,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
         Map<String, Object> jsClassMethod = new HashMap<String, Object>() {{
             put("class", "Chart");
             put("method", "update3");
-            put("params", Arrays.asList(options, redraw, oneToOne, animation));
+            put("params", Arrays.asList(options.getParams(), redraw, oneToOne, animation));
         }};
         makeNativeCall(jsClassMethod);
     }

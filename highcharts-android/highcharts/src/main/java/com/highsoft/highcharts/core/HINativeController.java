@@ -16,7 +16,7 @@ class HINativeController {
 
         String[] args = new String[] {null, null, null, null, null};
         List<Object> params;
-        HISerializer serializer = new HISerializer();
+        HISerializer serializer = new HISerializer(new HIFunctionHandler());
 
         if(map.get("params") != null && map.get("params") instanceof List) {
             params = new ArrayList<>((Collection<?>) map.get("params"));
