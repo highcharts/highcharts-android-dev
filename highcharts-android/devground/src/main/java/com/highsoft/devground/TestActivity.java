@@ -10,11 +10,14 @@ import android.widget.Button;
 import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.common.hichartsclasses.HICSSObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIChart;
+import com.highsoft.highcharts.common.hichartsclasses.HIColumn;
+import com.highsoft.highcharts.common.hichartsclasses.HIDataLabels;
 import com.highsoft.highcharts.common.hichartsclasses.HIEvents;
 import com.highsoft.highcharts.common.hichartsclasses.HILine;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
 import com.highsoft.highcharts.common.hichartsclasses.HIPie;
 import com.highsoft.highcharts.common.hichartsclasses.HISeries;
+import com.highsoft.highcharts.common.hichartsclasses.HISpline;
 import com.highsoft.highcharts.common.hichartsclasses.HITooltip;
 import com.highsoft.highcharts.core.HIChartView;
 import com.highsoft.highcharts.core.HIFunction;
@@ -33,14 +36,20 @@ public class TestActivity extends AppCompatActivity {
         HIChartView chartView = findViewById(R.id.hc);
 
         HIOptions options = new HIOptions();
-        HILine series = new HILine();
+        HIColumn series = new HIColumn();
         series.setData(new ArrayList<>(Arrays.asList(1,6,4,7,12,6,3)));
-        HILine series2 = new HILine();
+        HISpline series2 = new HISpline();
         series2.setData(new ArrayList<>(Arrays.asList(1,5,5,6,7,8,8)));
         ArrayList<HISeries> seriesArray = new ArrayList<>();
         seriesArray.add(series);
         seriesArray.add(series2);
         options.setSeries(seriesArray);
+
+        HIDataLabels hiDataLabels = new HIDataLabels();
+        hiDataLabels.setEnabled(true);
+//        hiDataLabels.setFormatter(lebelFormatter);
+        hiDataLabels.setColor(HIColor.initWithName("red"));
+        series.setDataLabels(new ArrayList<>(Collections.singletonList(hiDataLabels)));
 
         HITooltip tooltip = new HITooltip();
         tooltip.setPointFormat("This is very long tooltip which we need to wrap on your chart for the pretty look");
