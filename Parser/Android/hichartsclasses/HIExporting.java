@@ -33,7 +33,7 @@ public class HIExporting extends HIFoundation {
 
 	private Object menuItemDefinitions;
 	/**
- An object consisting of definitions for the menu items in the context menu. Each key value pair has a key that is referenced in the menuItems setting, and a value, which is an object with the following properties: - **onclick:** The click handler for the menu item - **text:** The text for the menu item - **textKey:** If internationalization is required, the key to a language  string <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/menuitemdefinitions/">Menu item definitions</a>
+ An object consisting of definitions for the menu items in the context menu. Each key value pair has a key that is referenced in the menuItems setting, and a value, which is an object with the following properties: - **onclick:** The click handler for the menu item - **text:** The text for the menu item - **textKey:** If internationalization is required, the key to a language  string Custom text for the "exitFullScreen" can be set only in lang options (it is not a separate button). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/menuitemdefinitions/">Menu item definitions</a>
  <br><br><b>defaults:</b><br><br>&ensp;{"viewFullscreen": {}, "printChart": {}, "separator": {}, "downloadPNG": {}, "downloadJPEG": {}, "downloadPDF": {}, "downloadSVG": {}}	*/
 	public void setMenuItemDefinitions(Object menuItemDefinitions) {
 		this.menuItemDefinitions = menuItemDefinitions;

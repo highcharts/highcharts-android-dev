@@ -60,7 +60,7 @@ public class HIDataLabels extends HIFoundation {
 
 	private String rotationMode;
 	/**
- Decides how the data label will be rotated relative to the perimeter of the sunburst. Valid values are auto, parallel and perpendicular. When auto, the best fit will be computed for the point. The series.rotation option takes precedence over rotationMode. <br><br><b>accepted values:</b><br><br>&ensp;["auto", "perpendicular", "parallel"]
+ Decides how the data label will be rotated relative to the perimeter of the sunburst. Valid values are auto, circular, parallel and perpendicular. When auto, the best fit will be computed for the point. The circular option works similiar to auto, but uses the textPath feature - labels are curved, resulting in a better layout, however multiple lines and textOutline are not supported. The series.rotation option takes precedence over rotationMode. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-datalabels-rotationmode-circular/">Circular rotation mode</a> <br><br><b>accepted values:</b><br><br>&ensp;["auto", "perpendicular", "parallel", "circular"]
 	*/
 	public void setRotationMode(String rotationMode) {
 		this.rotationMode = rotationMode;
@@ -441,17 +441,14 @@ public class HIDataLabels extends HIFoundation {
 
 	public Number getYLow(){ return yLow; }
 
-	private HIFunction parentNodeFormatter;
-	/**
- Callback to format data labels for _parentNodes_. The parentNodeFormat option takes precedence over the parentNodeFormatter. 
-	*/
-	public void setParentNodeFormatter(HIFunction parentNodeFormatter) {
-		this.parentNodeFormatter = parentNodeFormatter;
+	private String parentNodeFormat;
+	public void setParentNodeFormat(String parentNodeFormat) {
+		this.parentNodeFormat = parentNodeFormat;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIFunction getParentNodeFormatter(){ return parentNodeFormatter; }
+	public String getParentNodeFormat(){ return parentNodeFormat; }
 
 	private HIParentNodeTextPath parentNodeTextPath;
 	/**
@@ -465,6 +462,30 @@ public class HIDataLabels extends HIFoundation {
 	}
 
 	public HIParentNodeTextPath getParentNodeTextPath(){ return parentNodeTextPath; }
+
+	private HIFunction parentNodeFormatter;
+	/**
+ Callback to format data labels for _parentNodes_. The parentNodeFormat option takes precedence over the parentNodeFormatter. 
+	*/
+	public void setParentNodeFormatter(HIFunction parentNodeFormatter) {
+		this.parentNodeFormatter = parentNodeFormatter;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getParentNodeFormatter(){ return parentNodeFormatter; }
+
+	private HISVGAttributes attributes;
+	/**
+ Presentation attributes for the text path. 
+	*/
+	public void setAttributes(HISVGAttributes attributes) {
+		this.attributes = attributes;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HISVGAttributes getAttributes(){ return attributes; }
 
 	private Number connectorWidth;
 	/**
@@ -629,27 +650,6 @@ public class HIDataLabels extends HIFoundation {
 
 	public String getCrookDistance(){ return crookDistance; }
 
-	private HISVGAttributes attributes;
-	/**
- Presentation attributes for the text path. 
-	*/
-	public void setAttributes(HISVGAttributes attributes) {
-		this.attributes = attributes;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HISVGAttributes getAttributes(){ return attributes; }
-
-	private String parentNodeFormat;
-	public void setParentNodeFormat(String parentNodeFormat) {
-		this.parentNodeFormat = parentNodeFormat;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getParentNodeFormat(){ return parentNodeFormat; }
-
 
 
 	public HIDataLabels() {
@@ -772,11 +772,17 @@ public HashMap<String, Object> getParams() {
 		if (this.yLow != null) {
 			params.put("yLow", this.yLow);
 		}
-		if (this.parentNodeFormatter != null) {
-			params.put("parentNodeFormatter", this.parentNodeFormatter);
+		if (this.parentNodeFormat != null) {
+			params.put("parentNodeFormat", this.parentNodeFormat);
 		}
 		if (this.parentNodeTextPath != null) {
 			params.put("parentNodeTextPath", this.parentNodeTextPath.getParams());
+		}
+		if (this.parentNodeFormatter != null) {
+			params.put("parentNodeFormatter", this.parentNodeFormatter);
+		}
+		if (this.attributes != null) {
+			params.put("attributes", this.attributes.getParams());
 		}
 		if (this.connectorWidth != null) {
 			params.put("connectorWidth", this.connectorWidth);
@@ -819,12 +825,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.crookDistance != null) {
 			params.put("crookDistance", this.crookDistance);
-		}
-		if (this.attributes != null) {
-			params.put("attributes", this.attributes.getParams());
-		}
-		if (this.parentNodeFormat != null) {
-			params.put("parentNodeFormat", this.parentNodeFormat);
 		}
 		return params;
 	}

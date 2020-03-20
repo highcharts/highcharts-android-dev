@@ -18,7 +18,7 @@ import com.highsoft.highcharts.common.HIColor;
 
 
 	/**
- The lollipop series is a carteseian series with a line anchored from the x axis and a dot at the end to mark the value. Requires highcharts-more.js, modules/dumbbell.js and modules/lollipop.js. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all lollipop series are defined in  `plotOptions.lollipop`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     lollipop: {       // shared options for all lollipop series     }   },   series: [{     // specific options for this series instance     type: 'lollipop'   }] }); `        <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/lollipop/">Lollipop chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-dumbbell/styled-mode-dumbbell/">Styled mode</a>
+ The lollipop series. If the type option is not specified, it is inherited from chart.type. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all lollipop series are defined in  `plotOptions.lollipop`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     lollipop: {       // shared options for all lollipop series     }   },   series: [{     // specific options for this series instance     type: 'lollipop'   }] }); `       
 	*/
 
 public class HILollipop extends HISeries {
@@ -54,6 +54,15 @@ public class HILollipop extends HISeries {
 	}
 
 	public Number getPointPadding(){ return pointPadding; }
+
+	private Number pointRange;
+	public void setPointRange(Number pointRange) {
+		this.pointRange = pointRange;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPointRange(){ return pointRange; }
 
 	private Number groupPadding;
 	public void setGroupPadding(Number groupPadding) {
@@ -108,6 +117,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.pointPadding != null) {
 			params.put("pointPadding", this.pointPadding);
+		}
+		if (this.pointRange != null) {
+			params.put("pointRange", this.pointRange);
 		}
 		if (this.groupPadding != null) {
 			params.put("groupPadding", this.groupPadding);

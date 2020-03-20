@@ -22,7 +22,7 @@ public class HITooltip extends HIFoundation {
 	private Boolean followTouchMove;
 	/**
  Whether the tooltip should update as the finger moves on a touch device. If this is true and chart.panning is set,followTouchMove will take over one-finger touches, so the user needs to use two fingers for zooming and panning. Note the difference to followPointer that only defines the _position_ of the tooltip. If followPointer is false in for example a column series, the tooltip will show above or below the column, but as followTouchMove is true, the tooltip will jump from column to column as the user swipes across the plot area. 
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setFollowTouchMove(Boolean followTouchMove) {
 		this.followTouchMove = followTouchMove;
 		this.setChanged();
@@ -115,6 +115,18 @@ public class HITooltip extends HIFoundation {
 
 	public HIFunction getPositioner(){ return positioner; }
 
+	private Boolean stickOnContact;
+	/**
+ Prevents the tooltip from switching or closing, when touched or pointed. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/stickoncontact/">Tooltip sticks on pointer contact</a>
+	*/
+	public void setStickOnContact(Boolean stickOnContact) {
+		this.stickOnContact = stickOnContact;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getStickOnContact(){ return stickOnContact; }
+
 	private Boolean useHTML;
 	/**
  Use HTML to render the contents of the tooltip instead of SVG. Using HTML allows advanced formatting like tables and images in the tooltip. It is also recommended for rtl languages as it works around rtl bugs in early Firefox. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/footerformat/">A table for value alignment</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/fullhtml/">Full HTML tooltip</a>
@@ -202,7 +214,7 @@ public class HITooltip extends HIFoundation {
 	private Boolean split;
 	/**
  Split the tooltip into one label per series, with the header close to the axis. This is recommended over shared tooltips for charts with multiple line series, generally making them easier to read. This option takes precedence over tooltip.shared. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/split/">Split tooltip</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/formatter-split/">Split tooltip and custom formatter callback</a>
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	*/
 	public void setSplit(Boolean split) {
 		this.split = split;
 		this.setChanged();
@@ -407,7 +419,7 @@ public class HITooltip extends HIFoundation {
 	private Boolean followPointer;
 	/**
  Whether the tooltip should follow the mouse as it moves across columns, pie slices and other point types with an extent. By defaults it behaves this way for pie, polygon, map, sankey and wordcloud series by override in the plotOptions for those series types. For touch moves to behave the same way, followTouchMove must be true also. 
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	*/
 	public void setFollowPointer(Boolean followPointer) {
 		this.followPointer = followPointer;
 		this.setChanged();
@@ -494,6 +506,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.positioner != null) {
 			params.put("positioner", this.positioner);
+		}
+		if (this.stickOnContact != null) {
+			params.put("stickOnContact", this.stickOnContact);
 		}
 		if (this.useHTML != null) {
 			params.put("useHTML", this.useHTML);

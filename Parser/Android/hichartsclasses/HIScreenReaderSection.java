@@ -42,6 +42,18 @@ public class HIScreenReaderSection extends HIFoundation {
 
 	public HIFunction getOnViewDataTableClick(){ return onViewDataTableClick; }
 
+	private HIFunction onPlayAsSoundClick;
+	/**
+ Function to run upon clicking the "Play as sound" button in the screen reader region. By defaults Highcharts will call the chart.sonify function. 
+	*/
+	public void setOnPlayAsSoundClick(HIFunction onPlayAsSoundClick) {
+		this.onPlayAsSoundClick = onPlayAsSoundClick;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getOnPlayAsSoundClick(){ return onPlayAsSoundClick; }
+
 	private String afterChartFormat;
 	/**
  Format for the screen reader information region after the chart. Analogous to beforeChartFormat. 
@@ -68,7 +80,7 @@ public class HIScreenReaderSection extends HIFoundation {
 
 	private String beforeChartFormat;
 	/**
- Format for the screen reader information region before the chart. Supported HTML tags are , , , , and . Attributes are not supported, except for id on , , and . Id is required on  and  in the format . Numbers, lower- and uppercase letters, "-" and "#" are valid characters in IDs. 
+ Format for the screen reader information region before the chart. Supported HTML tags are , , , , , , , and . Attributes are not supported, except for id on , , and . Id is required on  and  in the format . Numbers, lower- and uppercase letters, "-" and "#" are valid characters in IDs. 
 	*/
 	public void setBeforeChartFormat(String beforeChartFormat) {
 		this.beforeChartFormat = beforeChartFormat;
@@ -108,6 +120,19 @@ public class HIScreenReaderSection extends HIFoundation {
 
 	public String getAfterRegionLabel(){ return afterRegionLabel; }
 
+	private HIAnnotations annotations;
+	/**
+ Language options for annotation descriptions. 
+	*/
+	public void setAnnotations(HIAnnotations annotations) {
+		this.annotations = annotations;
+		this.annotations.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAnnotations getAnnotations(){ return annotations; }
+
 	private String endOfChartMarker;
 	/**
  Label for the end of the chart. Announced by screen readers. 
@@ -137,6 +162,9 @@ public HashMap<String, Object> getParams() {
 		if (this.onViewDataTableClick != null) {
 			params.put("onViewDataTableClick", this.onViewDataTableClick);
 		}
+		if (this.onPlayAsSoundClick != null) {
+			params.put("onPlayAsSoundClick", this.onPlayAsSoundClick);
+		}
 		if (this.afterChartFormat != null) {
 			params.put("afterChartFormat", this.afterChartFormat);
 		}
@@ -154,6 +182,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.afterRegionLabel != null) {
 			params.put("afterRegionLabel", this.afterRegionLabel);
+		}
+		if (this.annotations != null) {
+			params.put("annotations", this.annotations.getParams());
 		}
 		if (this.endOfChartMarker != null) {
 			params.put("endOfChartMarker", this.endOfChartMarker);

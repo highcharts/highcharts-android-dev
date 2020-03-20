@@ -357,7 +357,9 @@ hc_types = {
         #7.2.0
         "number|string|boolean": 'Object /* Number, String */',
         #8.0
-        "Array.<(*)>": 'ArrayList'
+        "Array.<(*)>": 'ArrayList',
+        # 8.0.4
+        "Array.<(string|*)>": 'NSArray'
 }
 
 

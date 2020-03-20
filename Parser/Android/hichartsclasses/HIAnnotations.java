@@ -105,21 +105,21 @@ public class HIAnnotations extends HIFoundation {
 
 	public HILabelOptions getLabelOptions(){ return labelOptions; }
 
-	private Object /* String, Number */ id;
+	private Object /* Number, String */ id;
 	/**
  Sets an ID for an annotation. Can be user later when removing an annotation in `Chart#removeAnnotation(id)` method. 
 	*/
-	public void setId(Object /* String, Number */ id) {
+	public void setId(Object /* Number, String */ id) {
 		this.id = id;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* String, Number */ getId(){ return id; }
+	public Object /* Number, String */ getId(){ return id; }
 
 	private String draggable;
 	/**
- Allow an annotation to be draggable by a user. Possible values are "x", "xy", "y" and "" (disabled). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/draggable/">Annotations draggable: 'xy'</a> <br><br><b>accepted values:</b><br><br>&ensp;["x", "xy", "y", ""]
+ Allow an annotation to be draggable by a user. Possible values are 'x', 'xy', 'y' and '' (disabled). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/draggable/">Annotations draggable: 'xy'</a>
 	*/
 	public void setDraggable(String draggable) {
 		this.draggable = draggable;
@@ -141,6 +141,42 @@ public class HIAnnotations extends HIFoundation {
 	}
 
 	public HIEvents getEvents(){ return events; }
+
+	private String descriptionMultiplePoints;
+	public void setDescriptionMultiplePoints(String descriptionMultiplePoints) {
+		this.descriptionMultiplePoints = descriptionMultiplePoints;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDescriptionMultiplePoints(){ return descriptionMultiplePoints; }
+
+	private String descriptionSinglePoint;
+	public void setDescriptionSinglePoint(String descriptionSinglePoint) {
+		this.descriptionSinglePoint = descriptionSinglePoint;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDescriptionSinglePoint(){ return descriptionSinglePoint; }
+
+	private String descriptionNoPoints;
+	public void setDescriptionNoPoints(String descriptionNoPoints) {
+		this.descriptionNoPoints = descriptionNoPoints;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDescriptionNoPoints(){ return descriptionNoPoints; }
+
+	private String heading;
+	public void setHeading(String heading) {
+		this.heading = heading;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getHeading(){ return heading; }
 
 
 
@@ -200,6 +236,18 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.events != null) {
 			params.put("events", this.events.getParams());
+		}
+		if (this.descriptionMultiplePoints != null) {
+			params.put("descriptionMultiplePoints", this.descriptionMultiplePoints);
+		}
+		if (this.descriptionSinglePoint != null) {
+			params.put("descriptionSinglePoint", this.descriptionSinglePoint);
+		}
+		if (this.descriptionNoPoints != null) {
+			params.put("descriptionNoPoints", this.descriptionNoPoints);
+		}
+		if (this.heading != null) {
+			params.put("heading", this.heading);
 		}
 		return params;
 	}

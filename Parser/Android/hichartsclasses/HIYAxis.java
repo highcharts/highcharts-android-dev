@@ -95,7 +95,7 @@ public class HIYAxis extends HIFoundation {
 
 	private ArrayList <HIPlotBands> plotBands;
 	/**
-/** * description: An array of objects defining plot bands on the Y axis. 
+/** * description: An array of colored bands stretching across the plot area marking an interval on the axis. In styled mode, the plot bands are styled by the .highcharts-plot-band class in addition to the className option. 
 */
 	public void setPlotBands(ArrayList plotBands) {
 		this.plotBands = plotBands;
@@ -107,7 +107,7 @@ public class HIYAxis extends HIFoundation {
 
 	private ArrayList<HIGradientColorStopObject> stops;
 	/**
- Solid gauge series only. Color stops for the solid gauge. Use this in cases where a linear gradient between a minColor and maxColor is not sufficient. The stops is an array of tuples, where the first item is a float between 0 and 1 assigning the relative position in the gradient, and the second item is the color. For solid gauges, the Y axis also inherits the concept of [data classes](http://api.highcharts.com/highmaps#colorAxis.dataClasses) from the Highmaps color axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-solid/">True by defaults</a>
+ Solid gauge series only. Color stops for the solid gauge. Use this in cases where a linear gradient between a minColor and maxColor is not sufficient. The stops is an array of tuples, where the first item is a float between 0 and 1 assigning the relative position in the gradient, and the second item is the color. For solid gauges, the Y axis also inherits the concept of [data classes](https://api.highcharts.com/highmaps#colorAxis.dataClasses) from the Highmaps color axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-solid/">True by defaults</a>
 	*/
 	public void setStops(ArrayList<HIGradientColorStopObject> stops) {
 		this.stops = stops;
@@ -194,7 +194,6 @@ public class HIYAxis extends HIFoundation {
 	private Boolean opposite;
 	/**
 /** * description: Whether to display the axis on the opposite side of the normal. The normal is on the left side for vertical axes and bottom for horizontal, so the opposite sides will be right and top respectively. This is typically used with dual or multiple axes. * demo:  •  Secondary Y axis opposite
-* defaults: false
 */
 	public void setOpposite(Boolean opposite) {
 		this.opposite = opposite;
@@ -207,7 +206,6 @@ public class HIYAxis extends HIFoundation {
 	private Boolean reversed;
 	/**
 /** * description: Whether to reverse the axis so that the highest number is closest to the origin. * demo:  •  Reversed Y axis
-* defaults: false
 */
 	public void setReversed(Boolean reversed) {
 		this.reversed = reversed;
@@ -219,7 +217,7 @@ public class HIYAxis extends HIFoundation {
 
 	private ArrayList <HIPlotLines> plotLines;
 	/**
-/** * description: An array of objects representing plot lines on the X axis * demo:  •  Basic plot line •  Solid gauge plot line
+/** * description: An array of lines stretching across the plot area, marking a specific value on one of the axes. In styled mode, the plot lines are styled by the .highcharts-plot-line class in addition to the className option. * demo:  •  Basic plot line •  Solid gauge plot line
 */
 	public void setPlotLines(ArrayList plotLines) {
 		this.plotLines = plotLines;
@@ -282,7 +280,7 @@ public class HIYAxis extends HIFoundation {
 	private Boolean showLastLabel;
 	/**
 /** * description: Whether to show the last tick label. Defaults to true on cartesian charts, and false on polar charts. * demo:  •  Set to true on X axis
-* defaults: true
+* defaults: True
 */
 	public void setShowLastLabel(Boolean showLastLabel) {
 		this.showLastLabel = showLastLabel;

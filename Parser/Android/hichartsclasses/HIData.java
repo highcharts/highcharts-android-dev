@@ -415,17 +415,17 @@ public class HIData extends HIFoundation {
 
 	public Number getY(){ return y; }
 
-	private String definition;
+	private Number colorIndex;
 	/**
- A description of the point to add to the screen reader information about the point. 
+ A specific color index to use for the point, so its graphic representations are given the class name highcharts-color-{n}. In styled mode this will change the color of the graphic. In non-styled mode, the color by is set by the fill attribute, so the change in class name won't have a visual effect by defaults. 
 	*/
-	public void setDefinition(String definition) {
-		this.definition = definition;
+	public void setColorIndex(Number colorIndex) {
+		this.colorIndex = colorIndex;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getDefinition(){ return definition; }
+	public Number getColorIndex(){ return colorIndex; }
 
 	private String name;
 	/**
@@ -476,18 +476,17 @@ public class HIData extends HIFoundation {
 
 	public HIAccessibility getAccessibility(){ return accessibility; }
 
-	private HIDataLabels dataLabels;
+	private HashMap custom;
 	/**
- Individual data label for each point. The options are the same as the ones for plotOptions.series.dataLabels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/datalabels/">Show a label for the last value</a>
+ A reserved subspace to store options and values for customized functionality. Here you can add additional data for your own event callbacks and formatter callbacks. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/custom/">Point and series with custom data</a>
 	*/
-	public void setDataLabels(HIDataLabels dataLabels) {
-		this.dataLabels = dataLabels;
-		this.dataLabels.addObserver(updateObserver);
+	public void setCustom(HashMap custom) {
+		this.custom = custom;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIDataLabels getDataLabels(){ return dataLabels; }
+	public HashMap getCustom(){ return custom; }
 
 	private String className;
 	/**
@@ -550,6 +549,19 @@ public class HIData extends HIFoundation {
 
 	public String getDrilldown(){ return drilldown; }
 
+	private HIDataLabels dataLabels;
+	/**
+ Individual data label for each point. The options are the same as the ones for plotOptions.series.dataLabels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/datalabels/">Show a label for the last value</a>
+	*/
+	public void setDataLabels(HIDataLabels dataLabels) {
+		this.dataLabels = dataLabels;
+		this.dataLabels.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIDataLabels getDataLabels(){ return dataLabels; }
+
 	private HIEvents events;
 	/**
  The individual point events. 
@@ -563,17 +575,17 @@ public class HIData extends HIFoundation {
 
 	public HIEvents getEvents(){ return events; }
 
-	private Number colorIndex;
+	private String definition;
 	/**
- A specific color index to use for the point, so its graphic representations are given the class name highcharts-color-{n}. In styled mode this will change the color of the graphic. In non-styled mode, the color by is set by the fill attribute, so the change in class name won't have a visual effect by defaults. 
+ A description of the point to add to the screen reader information about the point. 
 	*/
-	public void setColorIndex(Number colorIndex) {
-		this.colorIndex = colorIndex;
+	public void setDefinition(String definition) {
+		this.definition = definition;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getColorIndex(){ return colorIndex; }
+	public String getDefinition(){ return definition; }
 
 	private Number legendIndex;
 	/**
@@ -708,6 +720,30 @@ public class HIData extends HIFoundation {
 	}
 
 	public Number getBorderWidth(){ return borderWidth; }
+
+	private String connectorColor;
+	/**
+ Color of the line that connects the dumbbell point's values. By defaults it is the series' color. 
+	*/
+	public void setConnectorColor(String connectorColor) {
+		this.connectorColor = connectorColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getConnectorColor(){ return connectorColor; }
+
+	private Number connectorWidth;
+	/**
+ Pixel width of the line that connects the dumbbell point's values. 
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
+	public void setConnectorWidth(Number connectorWidth) {
+		this.connectorWidth = connectorWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getConnectorWidth(){ return connectorWidth; }
 
 	private Boolean sliced;
 	/**
@@ -864,6 +900,18 @@ public class HIData extends HIFoundation {
 	}
 
 	public Number getZ(){ return z; }
+
+	private HIColor lowColor;
+	/**
+ Color of the start markers in a dumbbell graph. 
+ <br><br><b>defaults:</b><br><br>&ensp;#333333	*/
+	public void setLowColor(HIColor lowColor) {
+		this.lowColor = lowColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getLowColor(){ return lowColor; }
 
 	private Number x2;
 	/**
@@ -1063,8 +1111,8 @@ public HashMap<String, Object> getParams() {
 		if (this.y != null) {
 			params.put("y", this.y);
 		}
-		if (this.definition != null) {
-			params.put("definition", this.definition);
+		if (this.colorIndex != null) {
+			params.put("colorIndex", this.colorIndex);
 		}
 		if (this.name != null) {
 			params.put("name", this.name);
@@ -1078,8 +1126,8 @@ public HashMap<String, Object> getParams() {
 		if (this.accessibility != null) {
 			params.put("accessibility", this.accessibility.getParams());
 		}
-		if (this.dataLabels != null) {
-			params.put("dataLabels", this.dataLabels.getParams());
+		if (this.custom != null) {
+			params.put("custom", this.custom);
 		}
 		if (this.className != null) {
 			params.put("className", this.className);
@@ -1096,11 +1144,14 @@ public HashMap<String, Object> getParams() {
 		if (this.drilldown != null) {
 			params.put("drilldown", this.drilldown);
 		}
+		if (this.dataLabels != null) {
+			params.put("dataLabels", this.dataLabels.getParams());
+		}
 		if (this.events != null) {
 			params.put("events", this.events.getParams());
 		}
-		if (this.colorIndex != null) {
-			params.put("colorIndex", this.colorIndex);
+		if (this.definition != null) {
+			params.put("definition", this.definition);
 		}
 		if (this.legendIndex != null) {
 			params.put("legendIndex", this.legendIndex);
@@ -1134,6 +1185,12 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);
+		}
+		if (this.connectorColor != null) {
+			params.put("connectorColor", this.connectorColor);
+		}
+		if (this.connectorWidth != null) {
+			params.put("connectorWidth", this.connectorWidth);
 		}
 		if (this.sliced != null) {
 			params.put("sliced", this.sliced);
@@ -1173,6 +1230,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.z != null) {
 			params.put("z", this.z);
+		}
+		if (this.lowColor != null) {
+			params.put("lowColor", this.lowColor.getData());
 		}
 		if (this.x2 != null) {
 			params.put("x2", this.x2);

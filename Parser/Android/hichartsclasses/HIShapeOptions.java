@@ -19,6 +19,30 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HIShapeOptions extends HIFoundation { 
 
+	private String src;
+	/**
+ The URL for an image to use as the annotation shape. Note, type has to be set to 'image'. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape-src/">Define a marker image url for annotations</a>
+	*/
+	public void setSrc(String src) {
+		this.src = src;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getSrc(){ return src; }
+
+	private String dashStyle;
+	/**
+ Name of the dash style to use for the shape's stroke. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/">Possible values demonstrated</a>
+	*/
+	public void setDashStyle(String dashStyle) {
+		this.dashStyle = dashStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDashStyle(){ return dashStyle; }
+
 	private Number strokeWidth;
 	/**
  The pixel stroke width of the shape. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
@@ -126,6 +150,12 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.src != null) {
+			params.put("src", this.src);
+		}
+		if (this.dashStyle != null) {
+			params.put("dashStyle", this.dashStyle);
+		}
 		if (this.strokeWidth != null) {
 			params.put("strokeWidth", this.strokeWidth);
 		}

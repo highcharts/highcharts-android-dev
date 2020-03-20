@@ -253,7 +253,7 @@ public class HILabels extends HIFoundation {
 	private Boolean enabled;
 	/**
  Enable or disable the axis labels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-enabled/">X axis labels disabled</a>
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -274,42 +274,6 @@ public class HILabels extends HIFoundation {
 	}
 
 	public HIPoint getPoint(){ return point; }
-
-	private Boolean allowOverlap;
-	/**
- Whether to allow the annotation's labels to overlap. To make the labels less sensitive for overlapping, the can be set to 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/tooltip-like/">Hide overlapping labels</a>
-	*/
-	public void setAllowOverlap(Boolean allowOverlap) {
-		this.allowOverlap = allowOverlap;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getAllowOverlap(){ return allowOverlap; }
-
-	private HIColor borderColor;
-	/**
- The border color for the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
-	*/
-	public void setBorderColor(HIColor borderColor) {
-		this.borderColor = borderColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getBorderColor(){ return borderColor; }
-
-	private String verticalAlign;
-	/**
- The vertical alignment of the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a>
-	*/
-	public void setVerticalAlign(String verticalAlign) {
-		this.verticalAlign = verticalAlign;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getVerticalAlign(){ return verticalAlign; }
 
 	private Number borderRadius;
 	/**
@@ -335,6 +299,19 @@ public class HILabels extends HIFoundation {
 
 	public String getText(){ return text; }
 
+	private HIAccessibility accessibility;
+	/**
+ Accessibility options for an annotation label. 
+	*/
+	public void setAccessibility(HIAccessibility accessibility) {
+		this.accessibility = accessibility;
+		this.accessibility.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAccessibility getAccessibility(){ return accessibility; }
+
 	private Boolean crop;
 	/**
  Whether to hide the annotation's label that is outside the plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-crop-overflow/">Crop or justify labels</a>
@@ -346,18 +323,6 @@ public class HILabels extends HIFoundation {
 	}
 
 	public Boolean getCrop(){ return crop; }
-
-	private String className;
-	/**
- A class name for styling by CSS. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/annotations">Styled mode annotations</a>
-	*/
-	public void setClassName(String className) {
-		this.className = className;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getClassName(){ return className; }
 
 	private String shape;
 	/**
@@ -371,17 +336,17 @@ public class HILabels extends HIFoundation {
 
 	public String getShape(){ return shape; }
 
-	private Number borderWidth;
+	private HIColor borderColor;
 	/**
- The border width in pixels for the annotation's label <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
+ The border color for the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
 	*/
-	public void setBorderWidth(Number borderWidth) {
-		this.borderWidth = borderWidth;
+	public void setBorderColor(HIColor borderColor) {
+		this.borderColor = borderColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getBorderWidth(){ return borderWidth; }
+	public HIColor getBorderColor(){ return borderColor; }
 
 	private HIColor backgroundColor;
 	/**
@@ -395,6 +360,18 @@ public class HILabels extends HIFoundation {
 
 	public HIColor getBackgroundColor(){ return backgroundColor; }
 
+	private Boolean allowOverlap;
+	/**
+ Whether to allow the annotation's labels to overlap. To make the labels less sensitive for overlapping, the can be set to 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/tooltip-like/">Hide overlapping labels</a>
+	*/
+	public void setAllowOverlap(Boolean allowOverlap) {
+		this.allowOverlap = allowOverlap;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getAllowOverlap(){ return allowOverlap; }
+
 	private Boolean /* boolean */ shadow;
 	/**
  The shadow of the box. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
@@ -406,6 +383,42 @@ public class HILabels extends HIFoundation {
 	}
 
 	public Boolean /* boolean */ getShadow(){ return shadow; }
+
+	private String verticalAlign;
+	/**
+ The vertical alignment of the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a>
+	*/
+	public void setVerticalAlign(String verticalAlign) {
+		this.verticalAlign = verticalAlign;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getVerticalAlign(){ return verticalAlign; }
+
+	private String className;
+	/**
+ A class name for styling by CSS. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/annotations">Styled mode annotations</a>
+	*/
+	public void setClassName(String className) {
+		this.className = className;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getClassName(){ return className; }
+
+	private Number borderWidth;
+	/**
+ The border width in pixels for the annotation's label <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
+	*/
+	public void setBorderWidth(Number borderWidth) {
+		this.borderWidth = borderWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getBorderWidth(){ return borderWidth; }
 
 
 
@@ -490,38 +503,41 @@ public HashMap<String, Object> getParams() {
 		if (this.point != null) {
 			params.put("point", this.point.getParams());
 		}
-		if (this.allowOverlap != null) {
-			params.put("allowOverlap", this.allowOverlap);
-		}
-		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor.getData());
-		}
-		if (this.verticalAlign != null) {
-			params.put("verticalAlign", this.verticalAlign);
-		}
 		if (this.borderRadius != null) {
 			params.put("borderRadius", this.borderRadius);
 		}
 		if (this.text != null) {
 			params.put("text", this.text);
 		}
+		if (this.accessibility != null) {
+			params.put("accessibility", this.accessibility.getParams());
+		}
 		if (this.crop != null) {
 			params.put("crop", this.crop);
-		}
-		if (this.className != null) {
-			params.put("className", this.className);
 		}
 		if (this.shape != null) {
 			params.put("shape", this.shape);
 		}
-		if (this.borderWidth != null) {
-			params.put("borderWidth", this.borderWidth);
+		if (this.borderColor != null) {
+			params.put("borderColor", this.borderColor.getData());
 		}
 		if (this.backgroundColor != null) {
 			params.put("backgroundColor", this.backgroundColor.getData());
 		}
+		if (this.allowOverlap != null) {
+			params.put("allowOverlap", this.allowOverlap);
+		}
 		if (this.shadow != null) {
 			params.put("shadow", this.shadow);
+		}
+		if (this.verticalAlign != null) {
+			params.put("verticalAlign", this.verticalAlign);
+		}
+		if (this.className != null) {
+			params.put("className", this.className);
+		}
+		if (this.borderWidth != null) {
+			params.put("borderWidth", this.borderWidth);
 		}
 		return params;
 	}

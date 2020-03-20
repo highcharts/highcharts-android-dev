@@ -90,15 +90,6 @@ public class HIStyle extends HIFoundation {
 
 	public String getTextOverflow(){ return textOverflow; }
 
-	private String pointerEvents;
-	public void setPointerEvents(String pointerEvents) {
-		this.pointerEvents = pointerEvents;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getPointerEvents(){ return pointerEvents; }
-
 	private String whiteSpace;
 	public void setWhiteSpace(String whiteSpace) {
 		this.whiteSpace = whiteSpace;
@@ -169,9 +160,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.textOverflow != null) {
 			params.put("textOverflow", this.textOverflow);
-		}
-		if (this.pointerEvents != null) {
-			params.put("pointerEvents", this.pointerEvents);
 		}
 		if (this.whiteSpace != null) {
 			params.put("whiteSpace", this.whiteSpace);

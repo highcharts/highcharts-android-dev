@@ -114,6 +114,18 @@ public class HIPatternOptionsObject extends HIFoundation {
 
 	public HISVGAttributes getPath(){ return path; }
 
+	private String patternTransform;
+	/**
+ SVG `patternTransform` to apply to the entire pattern. 
+	*/
+	public void setPatternTransform(String patternTransform) {
+		this.patternTransform = patternTransform;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getPatternTransform(){ return patternTransform; }
+
 	private Number width;
 	/**
  Width of the pattern. For images this is automatically set to the width of the element bounding box if not supplied. For non-image patterns the defaults is 32px. Note that automatic resizing of image patterns to fill a bounding box dynamically is only supported for patterns with an automatically calculated ID. 
@@ -184,6 +196,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.path != null) {
 			params.put("path", this.path.getParams());
+		}
+		if (this.patternTransform != null) {
+			params.put("patternTransform", this.patternTransform);
 		}
 		if (this.width != null) {
 			params.put("width", this.width);

@@ -32,7 +32,7 @@ public class HITime extends HIFoundation {
 
 	private String timezone;
 	/**
- Requires [moment.js](http://momentjs.com/). If the timezone option is specified, it creates a defaults getTimezoneOffset function that looks up the specified timezone in moment.js. If moment.js is not included, this throws a Highcharts error in the console, but does not crash the chart. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/time/timezone/">Europe/Oslo</a>
+ Requires [moment.js](https://momentjs.com/). If the timezone option is specified, it creates a defaults getTimezoneOffset function that looks up the specified timezone in moment.js. If moment.js is not included, this throws a Highcharts error in the console, but does not crash the chart. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/time/timezone/">Europe/Oslo</a>
 	*/
 	public void setTimezone(String timezone) {
 		this.timezone = timezone;
@@ -42,17 +42,17 @@ public class HITime extends HIFoundation {
 
 	public String getTimezone(){ return timezone; }
 
-	private String getTimezoneOffset;
+	private HIFunction getTimezoneOffset;
 	/**
  A callback to return the time zone offset for a given datetime. It takes the timestamp in terms of milliseconds since January 1 1970, and returns the timezone offset in minutes. This provides a hook for drawing time based charts in specific time zones using their local DST crossover dates, with the help of external libraries. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/time/gettimezoneoffset/">Use moment.js to draw Oslo time regardless of browser locale</a>
 	*/
-	public void setGetTimezoneOffset(String getTimezoneOffset) {
+	public void setGetTimezoneOffset(HIFunction getTimezoneOffset) {
 		this.getTimezoneOffset = getTimezoneOffset;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getGetTimezoneOffset(){ return getTimezoneOffset; }
+	public HIFunction getGetTimezoneOffset(){ return getTimezoneOffset; }
 
 	private Number timezoneOffset;
 	/**

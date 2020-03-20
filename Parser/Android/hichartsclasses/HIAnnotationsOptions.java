@@ -105,21 +105,21 @@ public class HIAnnotationsOptions extends HIFoundation {
 
 	public HILabelOptions getLabelOptions(){ return labelOptions; }
 
-	private Object /* String, Number */ id;
+	private Object /* Number, String */ id;
 	/**
  Sets an ID for an annotation. Can be user later when removing an annotation in `Chart#removeAnnotation(id)` method. 
 	*/
-	public void setId(Object /* String, Number */ id) {
+	public void setId(Object /* Number, String */ id) {
 		this.id = id;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* String, Number */ getId(){ return id; }
+	public Object /* Number, String */ getId(){ return id; }
 
 	private String draggable;
 	/**
- Allow an annotation to be draggable by a user. Possible values are "x", "xy", "y" and "" (disabled). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/draggable/">Annotations draggable: 'xy'</a> <br><br><b>accepted values:</b><br><br>&ensp;["x", "xy", "y", ""]
+ Allow an annotation to be draggable by a user. Possible values are 'x', 'xy', 'y' and '' (disabled). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/draggable/">Annotations draggable: 'xy'</a>
 	*/
 	public void setDraggable(String draggable) {
 		this.draggable = draggable;

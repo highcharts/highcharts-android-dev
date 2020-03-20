@@ -60,7 +60,7 @@ public class HIOptions extends HIFoundation {
 	private HIAccessibility accessibility;
 
 	/**
- Options for configuring accessibility for the chart. Requires the [accessibility module](https://code.highcharts.com/modules/accessibility.js) to be loaded. For a description of the module and information on its features, see [Highcharts Accessibility](http://www.highcharts.com/docs/chart-concepts/accessibility). 
+ Options for configuring accessibility for the chart. Requires the [accessibility module](https://code.highcharts.com/modules/accessibility.js) to be loaded. For a description of the module and information on its features, see [Highcharts Accessibility](https://www.highcharts.com/docs/chart-concepts/accessibility). 
 	*/
 	public void setAccessibility(HIAccessibility accessibility) {
 		this.accessibility = accessibility;
@@ -225,18 +225,19 @@ public class HIOptions extends HIFoundation {
 
 	public ArrayList<HIAnnotations> getAnnotations(){ return annotations; }
 
-	private Object defs;
+	private HIDefs defs;
 
 	/**
  Styled mode only. Configuration object for adding SVG definitions for reusable elements. See [gradients, shadows and patterns](https://www.highcharts.com/docs/chart-design-and-style/gradients-shadows-and-patterns) for more information and code examples. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/custom-markers/">Define a custom marker for annotations</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/annotations-markers/">Define markers in a styled mode</a>
 	*/
-	public void setDefs(Object defs) {
+	public void setDefs(HIDefs defs) {
 		this.defs = defs;
+		this.defs.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getDefs(){ return defs; }
+	public HIDefs getDefs(){ return defs; }
 
 	private HIChart chart;
 
@@ -492,7 +493,7 @@ public HashMap<String, Object> getParams() {
 			params.put("annotations", array);
 		}
 		if (this.defs != null) {
-			params.put("defs", this.defs);
+			params.put("defs", this.defs.getParams());
 		}
 		if (this.chart != null) {
 			params.put("chart", this.chart.getParams());

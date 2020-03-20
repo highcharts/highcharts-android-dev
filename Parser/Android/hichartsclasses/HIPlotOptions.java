@@ -356,16 +356,6 @@ public class HIPlotOptions extends HIFoundation {
 
 	public HIColumnrange getColumnrange(){ return columnrange; }
 
-	private HIPackedBubble packedBubble;
-	public void setPackedBubble(HIPackedBubble packedBubble) {
-		this.packedBubble = packedBubble;
-		this.packedBubble.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIPackedBubble getPackedBubble(){ return packedBubble; }
-
 	private HIVenn venn;
 	/**
  A Venn diagram displays all possible logical relations between a collection of different sets. The sets are represented by circles, and the relation between the sets are displayed by the overlap or lack of overlap between them. The venn diagram is a special case of Euler diagrams, which can also be displayed by this series type. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all venn series are defined in  `plotOptions.venn`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     venn: {       // shared options for all venn series     }   },   series: [{     // specific options for this series instance     type: 'venn'   }] }); `        <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/venn-diagram/">Venn diagram</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/euler-diagram/">Euler diagram</a>
@@ -779,9 +769,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.columnrange != null) {
 			params.put("columnrange", this.columnrange.getParams());
-		}
-		if (this.packedBubble != null) {
-			params.put("packedBubble", this.packedBubble.getParams());
 		}
 		if (this.venn != null) {
 			params.put("venn", this.venn.getParams());

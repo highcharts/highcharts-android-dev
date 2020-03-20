@@ -221,6 +221,18 @@ public class HIAccessibility extends HIFoundation {
 
 	public String getSvgContainerLabel(){ return svgContainerLabel; }
 
+	private String thousandsSep;
+	/**
+ Thousands separator to use when formatting numbers for screen readers. Note that many screen readers will not handle space as a thousands separator, and will consider "11 700" as two numbers. Set to null to use the separator defined in `lang.thousandsSep`. 
+	*/
+	public void setThousandsSep(String thousandsSep) {
+		this.thousandsSep = thousandsSep;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getThousandsSep(){ return thousandsSep; }
+
 	private HIChartTypes chartTypes;
 	/**
  Chart type description strings. This is added to the chart information region. If there is only a single series type used in the chart, we use the format string for the series type, or defaults if missing. There is one format string for cases where there is only a single series in the chart, and one for multiple series of the same type. 
@@ -329,17 +341,18 @@ public class HIAccessibility extends HIFoundation {
 
 	public String getSvgContainerTitle(){ return svgContainerTitle; }
 
-	private String thousandsSep;
+	private HISonification sonification;
 	/**
- Thousands separator to use when formatting numbers for screen readers. Note that many screen readers will not handle space as a thousands separator, and will consider "11 700" as two numbers. Set to null to use the separator defined in `lang.thousandsSep`. 
+ Language options for sonification. 
 	*/
-	public void setThousandsSep(String thousandsSep) {
-		this.thousandsSep = thousandsSep;
+	public void setSonification(HISonification sonification) {
+		this.sonification = sonification;
+		this.sonification.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getThousandsSep(){ return thousandsSep; }
+	public HISonification getSonification(){ return sonification; }
 
 	private String graphicContainerLabel;
 	/**
@@ -450,6 +463,9 @@ public HashMap<String, Object> getParams() {
 		if (this.svgContainerLabel != null) {
 			params.put("svgContainerLabel", this.svgContainerLabel);
 		}
+		if (this.thousandsSep != null) {
+			params.put("thousandsSep", this.thousandsSep);
+		}
 		if (this.chartTypes != null) {
 			params.put("chartTypes", this.chartTypes.getParams());
 		}
@@ -477,8 +493,8 @@ public HashMap<String, Object> getParams() {
 		if (this.svgContainerTitle != null) {
 			params.put("svgContainerTitle", this.svgContainerTitle);
 		}
-		if (this.thousandsSep != null) {
-			params.put("thousandsSep", this.thousandsSep);
+		if (this.sonification != null) {
+			params.put("sonification", this.sonification.getParams());
 		}
 		if (this.graphicContainerLabel != null) {
 			params.put("graphicContainerLabel", this.graphicContainerLabel);

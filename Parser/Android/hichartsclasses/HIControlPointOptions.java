@@ -64,14 +64,14 @@ public class HIControlPointOptions extends HIFoundation {
 
 	public Boolean getVisible(){ return visible; }
 
-	private Object positioner;
-	public void setPositioner(Object positioner) {
+	private HIFunction positioner;
+	public void setPositioner(HIFunction positioner) {
 		this.positioner = positioner;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getPositioner(){ return positioner; }
+	public HIFunction getPositioner(){ return positioner; }
 
 
 
@@ -100,6 +100,7 @@ public HashMap<String, Object> getParams() {
 			params.put("visible", this.visible);
 		}
 		if (this.positioner != null) {
+			params.put("positioner", this.positioner);
 		}
 		return params;
 	}

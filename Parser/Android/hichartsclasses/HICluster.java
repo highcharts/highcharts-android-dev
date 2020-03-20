@@ -77,17 +77,18 @@ public class HICluster extends HIFoundation {
 
 	public HILayoutAlgorithm getLayoutAlgorithm(){ return layoutAlgorithm; }
 
-	private HIDataLabelsOptionsObject dataLabels;
+	private HIDataLabels dataLabels;
 	/**
  Options for the cluster data labels. 
 	*/
-	public void setDataLabels(HIDataLabelsOptionsObject dataLabels) {
+	public void setDataLabels(HIDataLabels dataLabels) {
 		this.dataLabels = dataLabels;
+		this.dataLabels.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIDataLabelsOptionsObject getDataLabels(){ return dataLabels; }
+	public HIDataLabels getDataLabels(){ return dataLabels; }
 
 	private Boolean drillToCluster;
 	/**

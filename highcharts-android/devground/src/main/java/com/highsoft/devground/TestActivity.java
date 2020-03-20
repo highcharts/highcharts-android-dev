@@ -16,6 +16,7 @@ import com.highsoft.highcharts.common.hichartsclasses.HIDataLabels;
 import com.highsoft.highcharts.common.hichartsclasses.HIEvents;
 import com.highsoft.highcharts.common.hichartsclasses.HILabels;
 import com.highsoft.highcharts.common.hichartsclasses.HILine;
+import com.highsoft.highcharts.common.hichartsclasses.HINetworkgraph;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
 import com.highsoft.highcharts.common.hichartsclasses.HIPie;
 import com.highsoft.highcharts.common.hichartsclasses.HISeries;
@@ -40,6 +41,14 @@ public class TestActivity extends AppCompatActivity {
         HIChartView chartView = findViewById(R.id.hc);
 
         HIOptions options = new HIOptions();
+
+        HINetworkgraph networkgraph = new HINetworkgraph();
+        ArrayList<HIDataLabels> dataLabelsList = new ArrayList<>();
+        HIDataLabels dataLabels = new HIDataLabels();
+        dataLabels.setEnabled(true);
+        networkgraph.setDataLabels(dataLabelsList);
+        options.setSeries(new ArrayList<>(Collections.singletonList(networkgraph)));
+
         HIColumn series = new HIColumn();
         series.setData(new ArrayList<>(Arrays.asList(100000312,6,4,7,12,6,3)));
         HISpline series2 = new HISpline();
