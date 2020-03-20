@@ -16,41 +16,41 @@ import java.util.HashMap;
 
 public class HIBindings extends HIFoundation { 
 
-	private HIStockToolsBindingsObject rectangleAnnotation;
+	private HINavigationBindingsOptionsObject rectangleAnnotation;
 	/**
  A rectangle annotation bindings. Includes start and one event in steps array. 
 	*/
-	public void setRectangleAnnotation(HIStockToolsBindingsObject rectangleAnnotation) {
+	public void setRectangleAnnotation(HINavigationBindingsOptionsObject rectangleAnnotation) {
 		this.rectangleAnnotation = rectangleAnnotation;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIStockToolsBindingsObject getRectangleAnnotation(){ return rectangleAnnotation; }
+	public HINavigationBindingsOptionsObject getRectangleAnnotation(){ return rectangleAnnotation; }
 
-	private HIStockToolsBindingsObject labelAnnotation;
+	private HINavigationBindingsOptionsObject labelAnnotation;
 	/**
  A label annotation bindings. Includes start event only. 
 	*/
-	public void setLabelAnnotation(HIStockToolsBindingsObject labelAnnotation) {
+	public void setLabelAnnotation(HINavigationBindingsOptionsObject labelAnnotation) {
 		this.labelAnnotation = labelAnnotation;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIStockToolsBindingsObject getLabelAnnotation(){ return labelAnnotation; }
+	public HINavigationBindingsOptionsObject getLabelAnnotation(){ return labelAnnotation; }
 
-	private HIStockToolsBindingsObject circleAnnotation;
+	private HINavigationBindingsOptionsObject circleAnnotation;
 	/**
  A circle annotation bindings. Includes start and one event in steps array. 
 	*/
-	public void setCircleAnnotation(HIStockToolsBindingsObject circleAnnotation) {
+	public void setCircleAnnotation(HINavigationBindingsOptionsObject circleAnnotation) {
 		this.circleAnnotation = circleAnnotation;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIStockToolsBindingsObject getCircleAnnotation(){ return circleAnnotation; }
+	public HINavigationBindingsOptionsObject getCircleAnnotation(){ return circleAnnotation; }
 
 
 

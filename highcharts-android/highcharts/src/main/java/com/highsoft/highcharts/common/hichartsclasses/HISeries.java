@@ -20,19 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 
-
 public class HISeries extends HIFoundation {
-
-	private HashMap<String, Object> jsProperties;
-	/**
-	 * Add a custom property to your chart. Those can be accessible later by HIFunction callbacks.
-	 * @param name the name by which you can access property
-	 * @param value the actual value which can be accessed
-	 */
-	public void setProperty(String name, Object value) {
-		if(jsProperties == null) jsProperties = new HashMap<>();
-		jsProperties.put(name, value);
-	}
 
 	private ArrayList /* <Data|Number|ArrayList> */ data;
 	/**
@@ -217,17 +205,17 @@ public class HISeries extends HIFoundation {
 
 	public Boolean getDescribeSingleSeries(){ return describeSingleSeries; }
 
-	private String yAxisDescription;
+	private String definition;
 	/**
- yAxis description for series if there are multiple yAxes in the chart. 
+ User supplied description text. This is added in the point comment description by defaults if present. 
 	*/
-	public void setYAxisDescription(String yAxisDescription) {
-		this.yAxisDescription = yAxisDescription;
+	public void setDefinition(String definition) {
+		this.definition = definition;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getYAxisDescription(){ return yAxisDescription; }
+	public String getDefinition(){ return definition; }
 
 	private String xAxisDescription;
 	/**
@@ -241,29 +229,29 @@ public class HISeries extends HIFoundation {
 
 	public String getXAxisDescription(){ return xAxisDescription; }
 
-	private String nullPointValue;
+	private String yAxisDescription;
 	/**
- Description for the value of null points. 
+ yAxis description for series if there are multiple yAxes in the chart. 
 	*/
-	public void setNullPointValue(String nullPointValue) {
-		this.nullPointValue = nullPointValue;
+	public void setYAxisDescription(String yAxisDescription) {
+		this.yAxisDescription = yAxisDescription;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getNullPointValue(){ return nullPointValue; }
+	public String getYAxisDescription(){ return yAxisDescription; }
 
-	private String definition;
+	private String pointAnnotationsDescription;
 	/**
- User supplied description text. This is added after the main summary if present. 
+ Description for annotations on a point, as it is made available to assistive technology. 
 	*/
-	public void setDefinition(String definition) {
-		this.definition = definition;
+	public void setPointAnnotationsDescription(String pointAnnotationsDescription) {
+		this.pointAnnotationsDescription = pointAnnotationsDescription;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getDefinition(){ return definition; }
+	public String getPointAnnotationsDescription(){ return pointAnnotationsDescription; }
 
 	private HISummary summary;
 	/**
@@ -277,6 +265,18 @@ public class HISeries extends HIFoundation {
 	}
 
 	public HISummary getSummary(){ return summary; }
+
+	private String nullPointValue;
+	/**
+ Description for the value of null points. 
+	*/
+	public void setNullPointValue(String nullPointValue) {
+		this.nullPointValue = nullPointValue;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getNullPointValue(){ return nullPointValue; }
 
 	private Boolean includeInDataExport;
 	/**
@@ -472,6 +472,19 @@ public class HISeries extends HIFoundation {
 
 	public HITooltip getTooltip(){ return tooltip; }
 
+	private HILabel label;
+	/**
+ Series labels are placed as close to the series as possible in a natural way, seeking to avoid other series. The goal of this feature is to make the chart more easily readable, like if a human designer placed the labels in the optimal position. The series labels currently work with series types having a graph or an area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-label/line-chart">Line chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/streamgraph">Stream graph</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-label/stock-chart">Stock chart</a>
+	*/
+	public void setLabel(HILabel label) {
+		this.label = label;
+		this.label.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HILabel getLabel(){ return label; }
+
 	private HIFunction pointDescriptionFormatter;
 	/**
  Same as accessibility.pointDescriptionFormatter, but for an individual series. Overrides the chart wide configuration. 
@@ -498,7 +511,7 @@ public class HISeries extends HIFoundation {
 
 	private String dashStyle;
 	/**
- A name for the dash style to use for the graph, or for some series types the outline of each shape. In styled mode, the [stroke dash-array](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-dashstyle/) can be set with the same classes as listed under series.color. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/">Possible values demonstrated</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle/">Chart suitable for printing in black and white</a>
+ Name of the dash style to use for the graph, or for some series types the outline of each shape. In styled mode, the [stroke dash-array](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-dashstyle/) can be set with the same classes as listed under series.color. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/">Possible values demonstrated</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle/">Chart suitable for printing in black and white</a>
  <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
 	public void setDashStyle(String dashStyle) {
 		this.dashStyle = dashStyle;
@@ -544,18 +557,17 @@ public class HISeries extends HIFoundation {
 
 	public Boolean getEnableMouseTracking(){ return enableMouseTracking; }
 
-	private HILabel label;
+	private HashMap custom;
 	/**
- Series labels are placed as close to the series as possible in a natural way, seeking to avoid other series. The goal of this feature is to make the chart more easily readable, like if a human designer placed the labels in the optimal position. The series labels currently work with series types having a graph or an area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-label/line-chart">Line chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/streamgraph">Stream graph</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-label/stock-chart">Stock chart</a>
+ A reserved subspace to store options and values for customized functionality. Here you can add additional data for your own event callbacks and formatter callbacks. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/custom/">Point and series with custom data</a>
 	*/
-	public void setLabel(HILabel label) {
-		this.label = label;
-		this.label.addObserver(updateObserver);
+	public void setCustom(HashMap custom) {
+		this.custom = custom;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HILabel getLabel(){ return label; }
+	public HashMap getCustom(){ return custom; }
 
 	private String stacking;
 	/**
@@ -572,7 +584,7 @@ public class HISeries extends HIFoundation {
 	private HIAnimationOptionsObject animation;
 	/**
  Enable or disable the initial animation when a series is displayed. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation of the series itself. For other animations, see chart.animation and the animation parameter under the API methods. The following properties are supported: - duration: The duration of the animation in milliseconds. - easing: Can be a string reference to an easing function set on  the Math object or a function. See the _Custom easing function_  demo below. Due to poor performance, animation is disabled in old IE browsers for several chart types. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-disabled/">Animation disabled</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-slower/">Slower animation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/">Custom easing function</a>
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
 		this.setChanged();
@@ -765,7 +777,7 @@ public class HISeries extends HIFoundation {
 
 	private Object /* Number, String */ colorAxis;
 	/**
- When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the {@link #colorAxis|axis id} or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/coloraxis-with-pie/">Color axis with pie series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/multiple-coloraxis/">Multiple color axis</a>
+ When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the {@link #colorAxis.id|axis id} or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/coloraxis-with-pie/">Color axis with pie series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/multiple-coloraxis/">Multiple color axis</a>
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setColorAxis(Object /* Number, String */ colorAxis) {
 		this.colorAxis = colorAxis;
@@ -850,7 +862,7 @@ public class HISeries extends HIFoundation {
 	private Boolean stickyTracking;
 	/**
  Sticky tracking of mouse events. When true, the mouseOut event on a series isn't triggered until the mouse moves over another series, or out of the plot area. When false, the mouseOut event on a series is triggered when the mouse leaves the area around the series' graph or markers. This also implies the tooltip when not shared. When stickyTracking is false and tooltip.shared is false, the tooltip will be hidden when moving the mouse between series. Defaults to true for line and area type series, but to false for columns, pies etc. **Note:** The boost module will force this option because of technical limitations. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stickytracking-true/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stickytracking-false/">False</a>
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setStickyTracking(Boolean stickyTracking) {
 		this.stickyTracking = stickyTracking;
 		this.setChanged();
@@ -1479,6 +1491,17 @@ public class HISeries extends HIFoundation {
 		this.notifyObservers(jsClassMethod);
 	}
 
+	private HashMap<String, Object> jsProperties;
+
+	/**
+	 * Add a custom property to your chart. Those can be accessible later by HIFunction callbacks.
+	 * @param name the name by which you can access property
+	 * @param value the actual value which can be accessed
+	 */
+	public void setProperty(String name, Object value) {
+		if(jsProperties == null) jsProperties = new HashMap<>();
+		jsProperties.put(name, value);
+	}
 
 	public HISeries() {
 
@@ -1500,6 +1523,11 @@ public HashMap<String, Object> getParams() {
 				}
 			}
 			params.put("data", array);
+		}
+		if(this.jsProperties != null){
+			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
+				params.put(entry.getKey(), entry.getValue());
+			}
 		}
 		if (this.id != null) {
 			params.put("id", this.id);
@@ -1537,20 +1565,23 @@ public HashMap<String, Object> getParams() {
 		if (this.describeSingleSeries != null) {
 			params.put("describeSingleSeries", this.describeSingleSeries);
 		}
-		if (this.yAxisDescription != null) {
-			params.put("yAxisDescription", this.yAxisDescription);
+		if (this.definition != null) {
+			params.put("definition", this.definition);
 		}
 		if (this.xAxisDescription != null) {
 			params.put("xAxisDescription", this.xAxisDescription);
 		}
-		if (this.nullPointValue != null) {
-			params.put("nullPointValue", this.nullPointValue);
+		if (this.yAxisDescription != null) {
+			params.put("yAxisDescription", this.yAxisDescription);
 		}
-		if (this.definition != null) {
-			params.put("definition", this.definition);
+		if (this.pointAnnotationsDescription != null) {
+			params.put("pointAnnotationsDescription", this.pointAnnotationsDescription);
 		}
 		if (this.summary != null) {
 			params.put("summary", this.summary.getParams());
+		}
+		if (this.nullPointValue != null) {
+			params.put("nullPointValue", this.nullPointValue);
 		}
 		if (this.includeInDataExport != null) {
 			params.put("includeInDataExport", this.includeInDataExport);
@@ -1600,6 +1631,9 @@ public HashMap<String, Object> getParams() {
 		if (this.tooltip != null) {
 			params.put("tooltip", this.tooltip.getParams());
 		}
+		if (this.label != null) {
+			params.put("label", this.label.getParams());
+		}
 		if (this.pointDescriptionFormatter != null) {
 			params.put("pointDescriptionFormatter", this.pointDescriptionFormatter);
 		}
@@ -1618,8 +1652,8 @@ public HashMap<String, Object> getParams() {
 		if (this.enableMouseTracking != null) {
 			params.put("enableMouseTracking", this.enableMouseTracking);
 		}
-		if (this.label != null) {
-			params.put("label", this.label.getParams());
+		if (this.custom != null) {
+			params.put("custom", this.custom);
 		}
 		if (this.stacking != null) {
 			params.put("stacking", this.stacking);
@@ -1715,7 +1749,8 @@ public HashMap<String, Object> getParams() {
 			params.put("stickyTracking", this.stickyTracking);
 		}
 		if (this.dataLabels != null) {
-			if(this instanceof  HIPie){
+
+			if(this instanceof HIPie){
 				HIFoundation obj = (HIFoundation) this.getDataLabels().get(0);
 				if(obj != null) {
 					params.put("dataLabels", obj.getParams());
@@ -1750,11 +1785,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.showInLegend != null) {
 			params.put("showInLegend", this.showInLegend);
-		}
-		if(this.jsProperties != null){
-			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
-				params.put(entry.getKey(), entry.getValue());
-			}
 		}
 		return params;
 	}

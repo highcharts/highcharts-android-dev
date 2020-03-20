@@ -11,24 +11,36 @@ package com.highsoft.highcharts.common.hichartsclasses;
 import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.core.HIFoundation;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 
 
 public class HIShapes extends HIFoundation { 
 
-	private ArrayList <HIPoints> points;
+	private String src;
 	/**
- An array of points for the shape. This option is available for shapes which can use multiple points such as path. A point can be either a point object or a point's id. 
-	*/
-	public void setPoints(ArrayList points) {
-		this.points = points;
+/** * description: The URL for an image to use as the annotation shape. Note, type has to be set to 'image'. * demo:  •  Define a marker image url for annotations
+*/
+	public void setSrc(String src) {
+		this.src = src;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList getPoints(){ return points; }
+	public String getSrc(){ return src; }
+
+	private HIPoints points;
+	/**
+ An array of points for the shape. This option is available for shapes which can use multiple points such as path. A point can be either a point object or a point's id. 
+	*/
+	public void setPoints(HIPoints points) {
+		this.points = points;
+		this.points.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIPoints getPoints(){ return points; }
 
 	private String markerEnd;
 	/**
@@ -66,6 +78,18 @@ public class HIShapes extends HIFoundation {
 	}
 
 	public HIPoint getPoint(){ return point; }
+
+	private String dashStyle;
+	/**
+ Name of the dash style to use for the shape's stroke. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/">Possible values demonstrated</a>
+	*/
+	public void setDashStyle(String dashStyle) {
+		this.dashStyle = dashStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDashStyle(){ return dashStyle; }
 
 	private Number strokeWidth;
 	/**
@@ -174,17 +198,11 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.src != null) {
+			params.put("src", this.src);
+		}
 		if (this.points != null) {
-			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.points) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
-			}
-			params.put("points", array);
+			params.put("points", this.points.getParams());
 		}
 		if (this.markerEnd != null) {
 			params.put("markerEnd", this.markerEnd);
@@ -194,6 +212,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.point != null) {
 			params.put("point", this.point.getParams());
+		}
+		if (this.dashStyle != null) {
+			params.put("dashStyle", this.dashStyle);
 		}
 		if (this.strokeWidth != null) {
 			params.put("strokeWidth", this.strokeWidth);

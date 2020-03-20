@@ -338,7 +338,7 @@ public class HIZAxis extends HIFoundation {
 
 	private ArrayList <HIPlotLines> plotLines;
 	/**
- An array of lines stretching across the plot area, marking a specific value on one of the axes. In styled mode, the plot lines are styled by the .highcharts-plot-line class in addition to the className option. 
+ An array of lines stretching across the plot area, marking a specific value on one of the axes. In styled mode, the plot lines are styled by the .highcharts-plot-line class in addition to the className option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">Basic plot line</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-solidgauge/labels-auto-aligned/">Solid gauge plot line</a>
 	*/
 	public void setPlotLines(ArrayList plotLines) {
 		this.plotLines = plotLines;

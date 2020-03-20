@@ -55,7 +55,7 @@ public class HIStackLabels extends HIFoundation {
 
 	private String format;
 	/**
- A [format string](http://docs.highcharts.com/#formatting) for the data label. Available variables are the same as for formatter. 
+ A format string for the data label. Available variables are the same as for formatter. 
  <br><br><b>defaults:</b><br><br>&ensp;{total}	*/
 	public void setFormat(String format) {
 		this.format = format;

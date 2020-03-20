@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 
 	/**
- The dumbbell series is a cartesian series with higher and lower values for each point along an X axis, connected with a line between the values. Requires highcharts-more.js and modules/dumbbell.js. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all dumbbell series are defined in  `plotOptions.dumbbell`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     dumbbell: {       // shared options for all dumbbell series     }   },   series: [{     // specific options for this series instance     type: 'dumbbell'   }] }); `        <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/dumbbell/">Dumbbell chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-dumbbell/styled-mode-dumbbell/">Styled mode</a>
+ The dumbbell series. If the type option is not specified, it is inherited from chart.type. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all dumbbell series are defined in  `plotOptions.dumbbell`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     dumbbell: {       // shared options for all dumbbell series     }   },   series: [{     // specific options for this series instance     type: 'dumbbell'   }] }); `       
 	*/
 
 public class HIDumbbell extends HISeries {
@@ -51,6 +51,15 @@ public class HIDumbbell extends HISeries {
 	}
 
 	public Number getPointPadding(){ return pointPadding; }
+
+	private Number pointRange;
+	public void setPointRange(Number pointRange) {
+		this.pointRange = pointRange;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPointRange(){ return pointRange; }
 
 	private Number groupPadding;
 	public void setGroupPadding(Number groupPadding) {
@@ -117,6 +126,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.pointPadding != null) {
 			params.put("pointPadding", this.pointPadding);
+		}
+		if (this.pointRange != null) {
+			params.put("pointRange", this.pointRange);
 		}
 		if (this.groupPadding != null) {
 			params.put("groupPadding", this.groupPadding);

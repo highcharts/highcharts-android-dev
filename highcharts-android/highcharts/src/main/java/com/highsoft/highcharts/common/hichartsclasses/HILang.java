@@ -80,7 +80,7 @@ public class HILang extends HIFoundation {
 
 	private String viewFullscreen;
 	/**
- Exporting module only. View the chart in full screen. 
+ Exporting module only. The text for the menu item to view the chart in full screen. 
 	*/
 	public void setViewFullscreen(String viewFullscreen) {
 		this.viewFullscreen = viewFullscreen;
@@ -116,7 +116,7 @@ public class HILang extends HIFoundation {
 
 	private ArrayList<String> numericSymbols;
 	/**
- [Metric prefixes](http://en.wikipedia.org/wiki/Metric_prefix) used to shorten high numbers in axis labels. Replacing any of the positions with null causes the full number to be written. Setting numericSymbols to null disables shortening altogether. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbols/">Replacing the symbols with text</a>
+ [Metric prefixes](https://en.wikipedia.org/wiki/Metric_prefix) used to shorten high numbers in axis labels. Replacing any of the positions with null causes the full number to be written. Setting numericSymbols to null disables shortening altogether. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbols/">Replacing the symbols with text</a>
  <br><br><b>defaults:</b><br><br>&ensp;["k", "M", "G", "T", "P", "E"]	*/
 	public void setNumericSymbols(ArrayList<String> numericSymbols) {
 		this.numericSymbols = numericSymbols;
@@ -223,6 +223,18 @@ public class HILang extends HIFoundation {
 
 	public String getInvalidDate(){ return invalidDate; }
 
+	private String exitFullscreen;
+	/**
+ Exporting module only. The text for the menu item to exit the chart from full screen. 
+	*/
+	public void setExitFullscreen(String exitFullscreen) {
+		this.exitFullscreen = exitFullscreen;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getExitFullscreen(){ return exitFullscreen; }
+
 	private String resetZoom;
 	/**
  The text for the label appearing when a chart is zoomed. 
@@ -246,18 +258,6 @@ public class HILang extends HIFoundation {
 	}
 
 	public String getDownloadPDF(){ return downloadPDF; }
-
-	private String openInCloud;
-	/**
- The text for the menu item. 
-	*/
-	public void setOpenInCloud(String openInCloud) {
-		this.openInCloud = openInCloud;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getOpenInCloud(){ return openInCloud; }
 
 	private String resetZoomTitle;
 	/**
@@ -436,14 +436,14 @@ public HashMap<String, Object> getParams() {
 		if (this.invalidDate != null) {
 			params.put("invalidDate", this.invalidDate);
 		}
+		if (this.exitFullscreen != null) {
+			params.put("exitFullscreen", this.exitFullscreen);
+		}
 		if (this.resetZoom != null) {
 			params.put("resetZoom", this.resetZoom);
 		}
 		if (this.downloadPDF != null) {
 			params.put("downloadPDF", this.downloadPDF);
-		}
-		if (this.openInCloud != null) {
-			params.put("openInCloud", this.openInCloud);
 		}
 		if (this.resetZoomTitle != null) {
 			params.put("resetZoomTitle", this.resetZoomTitle);

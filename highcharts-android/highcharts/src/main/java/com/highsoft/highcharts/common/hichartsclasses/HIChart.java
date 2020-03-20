@@ -299,7 +299,7 @@ public class HIChart extends HIFoundation {
 
 	private HIOptions3d options3d;
 	/**
- Options to render charts in 3 dimensions. This feature requires highcharts-3d.js, found in the download package or online at [https://code.highcharts.com/highcharts-3d.js](http://code.highcharts.com/highcharts-3d.js). 
+ Options to render charts in 3 dimensions. This feature requires highcharts-3d.js, found in the download package or online at [https://code.highcharts.com/highcharts-3d.js](https://code.highcharts.com/highcharts-3d.js). 
 	*/
 	public void setOptions3d(HIOptions3d options3d) {
 		this.options3d = options3d;
@@ -422,8 +422,8 @@ public class HIChart extends HIFoundation {
 
 	private HIAnimationOptionsObject animation;
 	/**
- Set the overall animation for all chart updating. Animation can be disabled throughout the chart by setting it to false here. It can be overridden for each individual API method as a function parameter. The only animation not affected by this option is the initial series animation, see plotOptions.series.animation. The animation can either be set as a boolean or a configuration object. If true, it will use the 'swing' jQuery easing and a duration of 500 ms. If used as a configuration object, the following properties are supported: - **duration**: The duration of the animation in milliseconds. - **easing**: A string reference to an easing function set on the  Math object. See  [the easing demo](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-none/">Updating with no animation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-duration/">With a longer duration</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-easing/">With a jQuery UI easing</a>
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+ Set the overall animation for all chart updating. Animation can be disabled throughout the chart by setting it to false here. It can be overridden for each individual API method as a function parameter. The only animation not affected by this option is the initial series animation, see plotOptions.series.animation. The animation can either be set as a boolean or a configuration object. If true, it will use the 'swing' jQuery easing and a duration of 500 ms. If used as a configuration object, the following properties are supported: - **duration**: The duration of the animation in milliseconds. - **easing**: A string reference to an easing function set on the  Math object. See  [the easing demo](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/). When zooming on a series with less than 100 points, the chart redraw will be done with animation, but in case of more data points, it is necessary to set this option to ensure animation on zoom. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-none/">Updating with no animation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-duration/">With a longer duration</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-easing/">With a jQuery UI easing</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
 		this.setChanged();

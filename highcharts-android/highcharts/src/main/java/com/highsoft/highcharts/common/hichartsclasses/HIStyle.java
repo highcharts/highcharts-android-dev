@@ -88,15 +88,6 @@ public class HIStyle extends HIFoundation {
 
 	public String getTextOverflow(){ return textOverflow; }
 
-	private String pointerEvents;
-	public void setPointerEvents(String pointerEvents) {
-		this.pointerEvents = pointerEvents;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getPointerEvents(){ return pointerEvents; }
-
 	private String whiteSpace;
 	public void setWhiteSpace(String whiteSpace) {
 		this.whiteSpace = whiteSpace;
@@ -116,13 +107,13 @@ public class HIStyle extends HIFoundation {
 	public String getStroke(){ return stroke; }
 
 	private Number strokeWidth;
-	public void setstrokeWidth(Number strokeWidth) {
+	public void setStrokeWidth(Number strokeWidth) {
 		this.strokeWidth = strokeWidth;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getstrokeWidth(){ return strokeWidth; }
+	public Number getStrokeWidth(){ return strokeWidth; }
 
 	private String fill;
 	public void setFill(String fill) {
@@ -168,9 +159,6 @@ public HashMap<String, Object> getParams() {
 		if (this.textOverflow != null) {
 			params.put("textOverflow", this.textOverflow);
 		}
-		if (this.pointerEvents != null) {
-			params.put("pointerEvents", this.pointerEvents);
-		}
 		if (this.whiteSpace != null) {
 			params.put("whiteSpace", this.whiteSpace);
 		}
@@ -178,7 +166,7 @@ public HashMap<String, Object> getParams() {
 			params.put("stroke", this.stroke);
 		}
 		if (this.strokeWidth != null) {
-			params.put("strokeWidth", this.strokeWidth);
+			params.put("stroke-width", this.strokeWidth);
 		}
 		if (this.fill != null) {
 			params.put("fill", this.fill);

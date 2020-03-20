@@ -92,7 +92,7 @@ public class TestActivity extends AppCompatActivity {
             newSeries.setData(new ArrayList<>(Arrays.asList(15,5,3,1,5,6,1,2)));
             HIOptions options1 = options;
             options1.setSeries(new ArrayList<>(Collections.singletonList(newSeries)));
-            chartView.update(options1, false, true);
+            chartView.update(options1, true, true);
 //            options.setSeries(new ArrayList<>(Collections.singletonList(newSeries)));
 //            chartView.update(options1, true, true);
         });

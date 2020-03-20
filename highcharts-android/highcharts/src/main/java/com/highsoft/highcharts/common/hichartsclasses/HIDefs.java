@@ -14,35 +14,29 @@ import java.util.HashMap;
 
 
 
-public class HIPanning extends HIFoundation { 
+public class HIDefs extends HIFoundation { 
 
-	private String type;
-	/**
- Decides in what dimensions the user can pan the chart. Can be one of x, y, or xy. <br><br><b>accepted values:</b><br><br>&ensp;["x", "y", "xy"]
- <br><br><b>defaults:</b><br><br>&ensp;x	*/
-	public void setType(String type) {
-		this.type = type;
+	private HISVGDefinitionObject reverseArrow;
+	public void setReverseArrow(HISVGDefinitionObject reverseArrow) {
+		this.reverseArrow = reverseArrow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getType(){ return type; }
+	public HISVGDefinitionObject getReverseArrow(){ return reverseArrow; }
 
-	private Boolean enabled;
-	/**
- Enable or disable chart panning. 
-	*/
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
+	private HISVGDefinitionObject arrow;
+	public void setArrow(HISVGDefinitionObject arrow) {
+		this.arrow = arrow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getEnabled(){ return enabled; }
+	public HISVGDefinitionObject getArrow(){ return arrow; }
 
 
 
-	public HIPanning() {
+	public HIDefs() {
 
 	}
 
@@ -51,11 +45,11 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.type != null) {
-			params.put("type", this.type);
+		if (this.reverseArrow != null) {
+			params.put("reverse-arrow", this.reverseArrow.getParams());
 		}
-		if (this.enabled != null) {
-			params.put("enabled", this.enabled);
+		if (this.arrow != null) {
+			params.put("arrow", this.arrow.getParams());
 		}
 		return params;
 	}

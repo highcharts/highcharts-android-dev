@@ -140,6 +140,7 @@ public class HIPlotLines extends HIFoundation {
 		this.notifyObservers(jsClassMethod);
 	}
 
+
 	public HIPlotLines() {
 
 	}

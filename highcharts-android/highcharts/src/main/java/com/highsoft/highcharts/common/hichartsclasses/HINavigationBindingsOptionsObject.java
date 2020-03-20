@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 
 
-public class HIStockToolsBindingsObject extends HIFoundation { 
+public class HINavigationBindingsOptionsObject extends HIFoundation { 
 
 	private String className;
 	/**
@@ -80,7 +80,7 @@ public class HIStockToolsBindingsObject extends HIFoundation {
 
 
 
-	public HIStockToolsBindingsObject() {
+	public HINavigationBindingsOptionsObject() {
 
 	}
 

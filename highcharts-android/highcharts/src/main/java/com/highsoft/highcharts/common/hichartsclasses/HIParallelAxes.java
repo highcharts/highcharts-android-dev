@@ -196,7 +196,6 @@ public class HIParallelAxes extends HIFoundation {
 	private Boolean opposite;
 	/**
 /** * description: Whether to display the axis on the opposite side of the normal. The normal is on the left side for vertical axes and bottom for horizontal, so the opposite sides will be right and top respectively. This is typically used with dual or multiple axes. * demo:  •  Secondary Y axis opposite
-* defaults: false
 */
 	public void setOpposite(Boolean opposite) {
 		this.opposite = opposite;
@@ -209,7 +208,6 @@ public class HIParallelAxes extends HIFoundation {
 	private Boolean reversed;
 	/**
 /** * description: Whether to reverse the axis so that the highest number is closest to the origin. * demo:  •  Reversed Y axis
-* defaults: false
 */
 	public void setReversed(Boolean reversed) {
 		this.reversed = reversed;
@@ -234,7 +232,7 @@ public class HIParallelAxes extends HIFoundation {
 	private Boolean showLastLabel;
 	/**
 /** * description: Whether to show the last tick label. Defaults to true on cartesian charts, and false on polar charts. * demo:  •  Set to true on X axis
-* defaults: true
+* defaults: True
 */
 	public void setShowLastLabel(Boolean showLastLabel) {
 		this.showLastLabel = showLastLabel;

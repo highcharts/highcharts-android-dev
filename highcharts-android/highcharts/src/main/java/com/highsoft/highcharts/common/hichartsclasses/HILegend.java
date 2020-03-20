@@ -511,7 +511,6 @@ public class HILegend extends HIFoundation {
 	public String getLegendItem(){ return legendItem; }
 
 
-
 	/**
 	 * Set the legend item text.
 	 * @param item The item for which to update the text in the legend.

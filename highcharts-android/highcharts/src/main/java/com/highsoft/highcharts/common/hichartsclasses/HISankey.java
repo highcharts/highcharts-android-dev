@@ -60,7 +60,7 @@ public class HISankey extends HISeries {
 
 	private Number nodePadding;
 	/**
- The padding between nodes in a sankey diagram or dependency wheel, in pixels. 
+ The padding between nodes in a sankey diagram or dependency wheel, in pixels. If the number of nodes is so great that it is possible to lay them out within the plot area with the given nodePadding, they will be rendered with a smaller padding as a strategy to avoid overflow. 
 	*/
 	public void setNodePadding(Number nodePadding) {
 		this.nodePadding = nodePadding;

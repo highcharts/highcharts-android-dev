@@ -12,7 +12,6 @@ import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.core.HIFunction;
 
 import java.util.HashMap;
-import java.util.Map;
 
 
 
@@ -33,7 +32,7 @@ public class HIExporting extends HIFoundation {
 
 	private Object menuItemDefinitions;
 	/**
- An object consisting of definitions for the menu items in the context menu. Each key value pair has a key that is referenced in the menuItems setting, and a value, which is an object with the following properties: - **onclick:** The click handler for the menu item - **text:** The text for the menu item - **textKey:** If internationalization is required, the key to a language  string <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/menuitemdefinitions/">Menu item definitions</a>
+ An object consisting of definitions for the menu items in the context menu. Each key value pair has a key that is referenced in the menuItems setting, and a value, which is an object with the following properties: - **onclick:** The click handler for the menu item - **text:** The text for the menu item - **textKey:** If internationalization is required, the key to a language  string Custom text for the "exitFullScreen" can be set only in lang options (it is not a separate button). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/menuitemdefinitions/">Menu item definitions</a>
  <br><br><b>defaults:</b><br><br>&ensp;{"viewFullscreen": {}, "printChart": {}, "separator": {}, "downloadPNG": {}, "downloadJPEG": {}, "downloadPDF": {}, "downloadSVG": {}}	*/
 	public void setMenuItemDefinitions(Object menuItemDefinitions) {
 		this.menuItemDefinitions = menuItemDefinitions;
@@ -177,17 +176,17 @@ public class HIExporting extends HIFoundation {
 
 	public Object /* boolean, String */ getTableCaption(){ return tableCaption; }
 
-	private Map<String, String> formAttributes;
+	private HIAttributes formAttributes;
 	/**
  An object containing additional key value data for the POST form that sends the SVG to the export server. For example, a target can be set to make sure the generated image is received in another frame, or a custom enctype or encoding can be set. 
 	*/
-	public void setFormAttributes(Map<String, String> formAttributes) {
+	public void setFormAttributes(HIAttributes formAttributes) {
 		this.formAttributes = formAttributes;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Map<String, String> getFormAttributes(){ return formAttributes; }
+	public HIAttributes getFormAttributes(){ return formAttributes; }
 
 	private Boolean useMultiLevelHeaders;
 	/**
@@ -375,7 +374,7 @@ public HashMap<String, Object> getParams() {
 			params.put("tableCaption", this.tableCaption);
 		}
 		if (this.formAttributes != null) {
-			params.put("formAttributes", this.formAttributes);
+			params.put("formAttributes", this.formAttributes.getParams());
 		}
 		if (this.useMultiLevelHeaders != null) {
 			params.put("useMultiLevelHeaders", this.useMultiLevelHeaders);

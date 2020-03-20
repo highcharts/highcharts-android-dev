@@ -18,7 +18,7 @@ public class HIInactive extends HIFoundation {
 
 	private Number opacity;
 	/**
- Opacity of series elements (dataLabels, line, area). Set to 1 to disable inactive state. 
+ Opacity of series elements (dataLabels, line, area). 
 	*/
 	public void setOpacity(Number opacity) {
 		this.opacity = opacity;
@@ -39,6 +39,18 @@ public class HIInactive extends HIFoundation {
 	}
 
 	public HIAnimationOptionsObject getAnimation(){ return animation; }
+
+	private Boolean enabled;
+	/**
+ Enable or disable the inactive state for a series <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-inactive-disabled">Disabled inactive state</a>
+ <br><br><b>defaults:</b><br><br>&ensp;true	*/
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getEnabled(){ return enabled; }
 
 	private Number linkOpacity;
 	/**
@@ -68,6 +80,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.animation != null) {
 			params.put("animation", this.animation.getParams());
+		}
+		if (this.enabled != null) {
+			params.put("enabled", this.enabled);
 		}
 		if (this.linkOpacity != null) {
 			params.put("linkOpacity", this.linkOpacity);

@@ -82,6 +82,7 @@ public class HICluster extends HIFoundation {
 	*/
 	public void setDataLabels(HIDataLabels dataLabels) {
 		this.dataLabels = dataLabels;
+		this.dataLabels.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
