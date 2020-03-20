@@ -21,6 +21,7 @@ import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
 import com.highsoft.highcharts.common.hichartsclasses.HIPie;
 import com.highsoft.highcharts.common.hichartsclasses.HISeries;
 import com.highsoft.highcharts.common.hichartsclasses.HISpline;
+import com.highsoft.highcharts.common.hichartsclasses.HIStyle;
 import com.highsoft.highcharts.common.hichartsclasses.HITooltip;
 import com.highsoft.highcharts.common.hichartsclasses.HIXAxis;
 import com.highsoft.highcharts.common.hichartsclasses.HIYAxis;
@@ -42,10 +43,20 @@ public class TestActivity extends AppCompatActivity {
 
         HIOptions options = new HIOptions();
 
+        HIDataLabels hiColumnDataLabels = new HIDataLabels();
+        hiColumnDataLabels.setEnabled(true);
+        hiColumnDataLabels.setStyle(new HIStyle());
+//        hiColumnDataLabels.setFormatter(new HIFunction(dataLabelFunction(columnSuffix)));
+        hiColumnDataLabels.getStyle().setColor("red");
+        hiColumnDataLabels.setRotationMode("horizontal");
+        hiColumnDataLabels.setRotation(90);
+        hiColumnDataLabels.getStyle().setFontSize("10px");
+
         HINetworkgraph networkgraph = new HINetworkgraph();
         ArrayList<HIDataLabels> dataLabelsList = new ArrayList<>();
         HIDataLabels dataLabels = new HIDataLabels();
         dataLabels.setEnabled(true);
+        dataLabelsList.add(hiColumnDataLabels);
         networkgraph.setDataLabels(dataLabelsList);
         options.setSeries(new ArrayList<>(Collections.singletonList(networkgraph)));
 
