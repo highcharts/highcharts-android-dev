@@ -83,6 +83,19 @@ public class HIPackedbubble extends HISeries {
 
 	public Object /* Number, String */ getMaxSize(){ return maxSize; }
 
+	private HIParentNode parentNode;
+	/**
+ Series options for parent nodes. 
+	*/
+	public void setParentNode(HIParentNode parentNode) {
+		this.parentNode = parentNode;
+		this.parentNode.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIParentNode getParentNode(){ return parentNode; }
+
 	private Boolean useSimulation;
 	/**
  An option is giving a possibility to choose between using simulation for calculating bubble positions. These reflects in both animation and final position of bubbles. Simulation is also adding options to the series graph based on used layout. In case of big data sets, with any performance issues, it is possible to disable animation and pack bubble in a simple circular way. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-packedbubble/spiral/">useSimulation set to false</a>
@@ -145,6 +158,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.maxSize != null) {
 			params.put("maxSize", this.maxSize);
+		}
+		if (this.parentNode != null) {
+			params.put("parentNode", this.parentNode.getParams());
 		}
 		if (this.useSimulation != null) {
 			params.put("useSimulation", this.useSimulation);

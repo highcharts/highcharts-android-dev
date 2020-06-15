@@ -17,7 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class HIData extends HIFoundation {
+
+public class HIData extends HIFoundation { 
 
 	private Boolean enablePolling;
 	/**
@@ -331,18 +332,6 @@ public class HIData extends HIFoundation {
 
 	public String getColumnsURL(){ return columnsURL; }
 
-	private Number high;
-	/**
- The high value for each data point, signifying the highest value in the sample set. The top whisker is drawn here. 
-	*/
-	public void setHigh(Number high) {
-		this.high = high;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getHigh(){ return high; }
-
 	private Number q1;
 	/**
  The lower quartile for each data point. This is the bottom of the box. 
@@ -379,6 +368,42 @@ public class HIData extends HIFoundation {
 
 	public Number getMedian(){ return median; }
 
+	private Number high;
+	/**
+ The high value for each data point, signifying the highest value in the sample set. The top whisker is drawn here. 
+	*/
+	public void setHigh(Number high) {
+		this.high = high;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getHigh(){ return high; }
+
+	private String stemDashStyle;
+	/**
+ The dash style of the stem. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>
+ <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
+	public void setStemDashStyle(String stemDashStyle) {
+		this.stemDashStyle = stemDashStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getStemDashStyle(){ return stemDashStyle; }
+
+	private String whiskerDashStyle;
+	/**
+ The dash style of the whiskers. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>
+ <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
+	public void setWhiskerDashStyle(String whiskerDashStyle) {
+		this.whiskerDashStyle = whiskerDashStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getWhiskerDashStyle(){ return whiskerDashStyle; }
+
 	private Number low;
 	/**
  The low value for each data point, signifying the lowest value in the sample set. The bottom whisker is drawn here. 
@@ -390,6 +415,30 @@ public class HIData extends HIFoundation {
 	}
 
 	public Number getLow(){ return low; }
+
+	private String medianDashStyle;
+	/**
+ The dash style of the median. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>
+ <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
+	public void setMedianDashStyle(String medianDashStyle) {
+		this.medianDashStyle = medianDashStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getMedianDashStyle(){ return medianDashStyle; }
+
+	private String boxDashStyle;
+	/**
+ The dash style of the box. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>
+ <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
+	public void setBoxDashStyle(String boxDashStyle) {
+		this.boxDashStyle = boxDashStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getBoxDashStyle(){ return boxDashStyle; }
 
 	private Number labelrank;
 	/**
@@ -975,7 +1024,6 @@ public class HIData extends HIFoundation {
 	public ArrayList<String> getSets(){ return sets; }
 
 	private HashMap<String, Object> jsProperties;
-
 	/**
 	 * Add a custom property to your chart. Those can be accessible later by HIFunction callbacks.
 	 * @param name the name by which you can access property
@@ -1100,9 +1148,6 @@ public HashMap<String, Object> getParams() {
 		if (this.columnsURL != null) {
 			params.put("columnsURL", this.columnsURL);
 		}
-		if (this.high != null) {
-			params.put("high", this.high);
-		}
 		if (this.q1 != null) {
 			params.put("q1", this.q1);
 		}
@@ -1112,8 +1157,23 @@ public HashMap<String, Object> getParams() {
 		if (this.median != null) {
 			params.put("median", this.median);
 		}
+		if (this.high != null) {
+			params.put("high", this.high);
+		}
+		if (this.stemDashStyle != null) {
+			params.put("stemDashStyle", this.stemDashStyle);
+		}
+		if (this.whiskerDashStyle != null) {
+			params.put("whiskerDashStyle", this.whiskerDashStyle);
+		}
 		if (this.low != null) {
 			params.put("low", this.low);
+		}
+		if (this.medianDashStyle != null) {
+			params.put("medianDashStyle", this.medianDashStyle);
+		}
+		if (this.boxDashStyle != null) {
+			params.put("boxDashStyle", this.boxDashStyle);
 		}
 		if (this.labelrank != null) {
 			params.put("labelrank", this.labelrank);

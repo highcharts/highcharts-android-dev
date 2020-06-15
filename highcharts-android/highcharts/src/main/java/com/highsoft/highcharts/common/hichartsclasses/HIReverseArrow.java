@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 
 
-public class HIReverseArrow extends HIFoundation {
+public class HIReverseArrow extends HIFoundation { 
 
 	private Number refY;
 	public void setRefY(Number refY) {

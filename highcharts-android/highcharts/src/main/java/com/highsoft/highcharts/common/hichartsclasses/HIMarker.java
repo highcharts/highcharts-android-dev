@@ -17,6 +17,16 @@ import java.util.HashMap;
 
 public class HIMarker extends HIFoundation { 
 
+	private HIStates states;
+	public void setStates(HIStates states) {
+		this.states = states;
+		this.states.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIStates getStates(){ return states; }
+
 	private String symbol;
 	/**
 /** * description: A predefined shape or symbol for the marker. When undefined, the symbol is pulled from options.symbols. Other possible values are 'circle', 'square','diamond', 'triangle' and 'triangle-down'. Additionally, the URL to a graphic can be given on this form: 'url(graphic.png)'. Note that for the image to be applied to exported charts, its URL needs to be accessible by the export server. Custom callbacks for symbol path generation can also be added to Highcharts.SVGRenderer.prototype.symbols. The callback is then used by its method name, as shown in the demo. * demo:  •  Predefined, graphic and custom markers
@@ -113,16 +123,6 @@ public class HIMarker extends HIFoundation {
 
 	public HIColor getFillColor(){ return fillColor; }
 
-	private HIStates states;
-	public void setStates(HIStates states) {
-		this.states = states;
-		this.states.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIStates getStates(){ return states; }
-
 	private HIColor color;
 	/**
  The color of the marker. 
@@ -179,6 +179,9 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.states != null) {
+			params.put("states", this.states.getParams());
+		}
 		if (this.symbol != null) {
 			params.put("symbol", this.symbol);
 		}
@@ -202,9 +205,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.fillColor != null) {
 			params.put("fillColor", this.fillColor.getData());
-		}
-		if (this.states != null) {
-			params.put("states", this.states.getParams());
 		}
 		if (this.color != null) {
 			params.put("color", this.color.getData());

@@ -46,7 +46,7 @@ public HashMap<String, Object> getParams() {
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
 		if (this.reverseArrow != null) {
-			params.put("reverse-arrow", this.reverseArrow.getParams());
+			params.put("reverseArrow", this.reverseArrow.getParams());
 		}
 		if (this.arrow != null) {
 			params.put("arrow", this.arrow.getParams());

@@ -205,6 +205,18 @@ public class HIOrganization extends HISeries {
 
 	public ArrayList<String> getColors(){ return colors; }
 
+	private Boolean centerInCategory;
+	/**
+ When true, the columns will center in the category, ignoring null or missing points. When false, space will be reserved for null or missing points. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-column/centerincategory/">Center in category</a>
+	*/
+	public void setCenterInCategory(Boolean centerInCategory) {
+		this.centerInCategory = centerInCategory;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getCenterInCategory(){ return centerInCategory; }
+
 
 
 	public HIOrganization() {
@@ -288,6 +300,9 @@ public HashMap<String, Object> getParams() {
 				}
 			}
 			params.put("colors", array);
+		}
+		if (this.centerInCategory != null) {
+			params.put("centerInCategory", this.centerInCategory);
 		}
 		return params;
 	}

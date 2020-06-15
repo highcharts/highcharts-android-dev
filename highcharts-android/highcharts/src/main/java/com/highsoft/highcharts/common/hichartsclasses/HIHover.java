@@ -44,6 +44,66 @@ public class HIHover extends HIFoundation {
 
 	public Number getOpacity(){ return opacity; }
 
+	private Number width;
+	/**
+ Set the marker's fixed width on hover state. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-marker-states-hover-width">70px fixed marker's width and height on hover</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setWidth(Number width) {
+		this.width = width;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getWidth(){ return width; }
+
+	private Number heightPlus;
+	/**
+ The number of pixels to increase the height of the selected point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-marker-states-hover-widthplus">20px greater width and height on hover</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setHeightPlus(Number heightPlus) {
+		this.heightPlus = heightPlus;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getHeightPlus(){ return heightPlus; }
+
+	private Number lineWidthPlus;
+	/**
+ The additional line width for a hovered point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-marker-states-hover-linewidthplus">5 pixels wider lineWidth on hover</a>
+	*/
+	public void setLineWidthPlus(Number lineWidthPlus) {
+		this.lineWidthPlus = lineWidthPlus;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getLineWidthPlus(){ return lineWidthPlus; }
+
+	private Number widthPlus;
+	/**
+ The number of pixels to increase the width of the selected point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-marker-states-hover-widthplus">20px greater width and height on hover</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setWidthPlus(Number widthPlus) {
+		this.widthPlus = widthPlus;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getWidthPlus(){ return widthPlus; }
+
+	private Number height;
+	/**
+ Set the marker's fixed height on hover state. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-marker-states-hover-width">70px fixed marker's width and height on hover</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setHeight(Number height) {
+		this.height = height;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getHeight(){ return height; }
+
 	private Boolean enabled;
 	/**
  Enable or disable the point marker. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-enabled/">Disabled hover state</a>
@@ -55,18 +115,6 @@ public class HIHover extends HIFoundation {
 	}
 
 	public Boolean getEnabled(){ return enabled; }
-
-	private Number lineWidthPlus;
-	/**
- The additional line width for a hovered point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-linewidthplus/">2 pixels wider on hover</a>
-	*/
-	public void setLineWidthPlus(Number lineWidthPlus) {
-		this.lineWidthPlus = lineWidthPlus;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getLineWidthPlus(){ return lineWidthPlus; }
 
 	private Number radius;
 	/**
@@ -218,11 +266,23 @@ public HashMap<String, Object> getParams() {
 		if (this.opacity != null) {
 			params.put("opacity", this.opacity);
 		}
-		if (this.enabled != null) {
-			params.put("enabled", this.enabled);
+		if (this.width != null) {
+			params.put("width", this.width);
+		}
+		if (this.heightPlus != null) {
+			params.put("heightPlus", this.heightPlus);
 		}
 		if (this.lineWidthPlus != null) {
 			params.put("lineWidthPlus", this.lineWidthPlus);
+		}
+		if (this.widthPlus != null) {
+			params.put("widthPlus", this.widthPlus);
+		}
+		if (this.height != null) {
+			params.put("height", this.height);
+		}
+		if (this.enabled != null) {
+			params.put("enabled", this.enabled);
 		}
 		if (this.radius != null) {
 			params.put("radius", this.radius);

@@ -66,6 +66,19 @@ public class HILang extends HIFoundation {
 
 	public HIAccessibility getAccessibility(){ return accessibility; }
 
+	private HIExportData exportData;
+	/**
+ The text for exported table. 
+	*/
+	public void setExportData(HIExportData exportData) {
+		this.exportData = exportData;
+		this.exportData.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIExportData getExportData(){ return exportData; }
+
 	private ArrayList<String> shortWeekdays;
 	/**
  Short week days, starting Sunday. If not specified, Highcharts uses the first three letters of the lang.weekdays option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/shortweekdays/">Finnish two-letter abbreviations</a>
@@ -369,6 +382,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.accessibility != null) {
 			params.put("accessibility", this.accessibility.getParams());
+		}
+		if (this.exportData != null) {
+			params.put("exportData", this.exportData.getParams());
 		}
 		if (this.shortWeekdays != null) {
 			ArrayList<Object> array = new ArrayList<>();

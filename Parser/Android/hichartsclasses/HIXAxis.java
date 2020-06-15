@@ -19,6 +19,18 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HIXAxis extends HIFoundation { 
 
+	private Boolean zoomEnabled;
+	/**
+ Whether to zoom axis. If chart.zoomType is set, the option allows to disable zooming on an individual axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/zoomenabled/">Zoom enabled is false</a>
+ <br><br><b>defaults:</b><br><br>&ensp;enabled	*/
+	public void setZoomEnabled(Boolean zoomEnabled) {
+		this.zoomEnabled = zoomEnabled;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getZoomEnabled(){ return zoomEnabled; }
+
 	private HIColor minorTickColor;
 	/**
  Color for the minor tick marks. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minortickcolor/">Black tick marks on Y axis</a>
@@ -239,7 +251,7 @@ public class HIXAxis extends HIFoundation {
 
 	private Number minRange;
 	/**
- The minimum range to display on this axis. The entire axis will not be allowed to span over a smaller interval than this. For example, for a datetime axis the main unit is milliseconds. If minRange is set to 3600000, you can't zoom in more than to one hour. The defaults minRange for the x axis is five times the smallest interval between any of the data points. On a logarithmic axis, the unit for the minimum range is the power. So a minRange of 1 means that the axis can be zoomed to 10-100, 100-1000, 1000-10000 etc. Note that the minPadding, maxPadding, startOnTick and endOnTick settings also affect how the extremes of the axis are computed. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/minrange/">Minimum range of 5</a>
+ The minimum range to display on this axis. The entire axis will not be allowed to span over a smaller interval than this. For example, for a datetime axis the main unit is milliseconds. If minRange is set to 3600000, you can't zoom in more than to one hour. The defaults minRange for the x axis is five times the smallest interval between any of the data points. On a logarithmic axis, the unit for the minimum range is the power. So a minRange of 1 means that the axis can be zoomed to 10-100, 100-1000, 1000-10000 etc. **Note**: The minPadding, maxPadding, startOnTick and endOnTick settings also affect how the extremes of the axis are computed. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/minrange/">Minimum range of 5</a>
 	*/
 	public void setMinRange(Number minRange) {
 		this.minRange = minRange;
@@ -440,18 +452,6 @@ public class HIXAxis extends HIFoundation {
 	}
 
 	public Number getTickLength(){ return tickLength; }
-
-	private Boolean zoomEnabled;
-	/**
- Whether to zoom axis. If chart.zoomType is set, the option allows to disable zooming on an individual axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/zoomenabled/">Zoom enabled is false</a>
- <br><br><b>defaults:</b><br><br>&ensp;enabled	*/
-	public void setZoomEnabled(Boolean zoomEnabled) {
-		this.zoomEnabled = zoomEnabled;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getZoomEnabled(){ return zoomEnabled; }
 
 	private Number ceiling;
 	/**
@@ -924,6 +924,9 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.zoomEnabled != null) {
+			params.put("zoomEnabled", this.zoomEnabled);
+		}
 		if (this.minorTickColor != null) {
 			params.put("minorTickColor", this.minorTickColor.getData());
 		}
@@ -1055,9 +1058,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.tickLength != null) {
 			params.put("tickLength", this.tickLength);
-		}
-		if (this.zoomEnabled != null) {
-			params.put("zoomEnabled", this.zoomEnabled);
 		}
 		if (this.ceiling != null) {
 			params.put("ceiling", this.ceiling);

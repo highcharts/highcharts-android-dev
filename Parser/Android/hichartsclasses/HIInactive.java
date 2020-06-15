@@ -20,7 +20,7 @@ public class HIInactive extends HIFoundation {
 
 	private Number opacity;
 	/**
- Opacity of series elements (dataLabels, line, area). 
+ Opacity of inactive markers. 
 	*/
 	public void setOpacity(Number opacity) {
 		this.opacity = opacity;
@@ -32,7 +32,7 @@ public class HIInactive extends HIFoundation {
 
 	private HIAnimationOptionsObject animation;
 	/**
- The animation for entering the inactive state. 
+ Animation when not hovering over the node. 
 	*/
 	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;

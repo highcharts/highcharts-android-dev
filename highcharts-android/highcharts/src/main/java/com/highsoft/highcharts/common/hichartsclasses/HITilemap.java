@@ -19,19 +19,6 @@ import java.util.HashMap;
 	*/
 
 public class HITilemap extends HISeries {
-	private Number rowsize;
-	/**
-/** * description: The row size - how many Y axis units each tilemap row should span. Analogous to colsize. * demo:  •  1 by defaults
-* defaults: 1
-*/
-	public void setRowsize(Number rowsize) {
-		this.rowsize = rowsize;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getRowsize(){ return rowsize; }
-
 	private Number pointPadding;
 	/**
 /** * description: The padding between points in the tilemap. * demo:  •  Point padding on tiles
@@ -45,18 +32,6 @@ public class HITilemap extends HISeries {
 
 	public Number getPointPadding(){ return pointPadding; }
 
-	private String tileShape;
-	/**
- The shape of the tiles in the tilemap. Possible values are hexagon, circle, diamond, and square. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/circlemap-africa">Circular tile shapes</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/diamondmap">Diamond tile shapes</a>
-	*/
-	public void setTileShape(String tileShape) {
-		this.tileShape = tileShape;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getTileShape(){ return tileShape; }
-
 	private Number colsize;
 	/**
 /** * description: The column size - how many X axis units each column in the tilemap should span. Works as in Heatmaps. * demo:  •  One day
@@ -69,6 +44,31 @@ public class HITilemap extends HISeries {
 	}
 
 	public Number getColsize(){ return colsize; }
+
+	private Number rowsize;
+	/**
+/** * description: The row size - how many Y axis units each tilemap row should span. Analogous to colsize. * demo:  •  1 by defaults
+* defaults: 1
+*/
+	public void setRowsize(Number rowsize) {
+		this.rowsize = rowsize;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getRowsize(){ return rowsize; }
+
+	private String tileShape;
+	/**
+ The shape of the tiles in the tilemap. Possible values are hexagon, circle, diamond, and square. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/circlemap-africa">Circular tile shapes</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/diamondmap">Diamond tile shapes</a>
+	*/
+	public void setTileShape(String tileShape) {
+		this.tileShape = tileShape;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTileShape(){ return tileShape; }
 
 	private HIColor nullColor;
 	/**
@@ -94,17 +94,17 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
-		if (this.rowsize != null) {
-			params.put("rowsize", this.rowsize);
-		}
 		if (this.pointPadding != null) {
 			params.put("pointPadding", this.pointPadding);
 		}
-		if (this.tileShape != null) {
-			params.put("tileShape", this.tileShape);
-		}
 		if (this.colsize != null) {
 			params.put("colsize", this.colsize);
+		}
+		if (this.rowsize != null) {
+			params.put("rowsize", this.rowsize);
+		}
+		if (this.tileShape != null) {
+			params.put("tileShape", this.tileShape);
 		}
 		if (this.nullColor != null) {
 			params.put("nullColor", this.nullColor.getData());

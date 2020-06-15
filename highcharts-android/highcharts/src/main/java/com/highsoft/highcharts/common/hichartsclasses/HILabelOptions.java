@@ -177,7 +177,7 @@ public class HILabelOptions extends HIFoundation {
 
 	private Number padding;
 	/**
- When either the borderWidth or the backgroundColor is set, this  is the padding within the box. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
+ When either the borderWidth or the backgroundColor is set, this is the padding within the box. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
 	*/
 	public void setPadding(Number padding) {
 		this.padding = padding;

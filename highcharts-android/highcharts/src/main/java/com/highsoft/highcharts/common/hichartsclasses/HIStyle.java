@@ -16,6 +16,15 @@ import java.util.HashMap;
 
 public class HIStyle extends HIFoundation { 
 
+	private String transition;
+	public void setTransition(String transition) {
+		this.transition = transition;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTransition(){ return transition; }
+
 	private String fontWeight;
 	public void setFontWeight(String fontWeight) {
 		this.fontWeight = fontWeight;
@@ -135,6 +144,9 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.transition != null) {
+			params.put("transition", this.transition);
+		}
 		if (this.fontWeight != null) {
 			params.put("fontWeight", this.fontWeight);
 		}
@@ -166,7 +178,7 @@ public HashMap<String, Object> getParams() {
 			params.put("stroke", this.stroke);
 		}
 		if (this.strokeWidth != null) {
-			params.put("stroke-width", this.strokeWidth);
+			params.put("strokeWidth", this.strokeWidth);
 		}
 		if (this.fill != null) {
 			params.put("fill", this.fill);

@@ -77,6 +77,54 @@ public class HISelect extends HIFoundation {
 
 	public HIColor getLineColor(){ return lineColor; }
 
+	private Number width;
+	/**
+ Set the marker's fixed width on select state. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-marker-states-hover-width">70px fixed marker's width and height on hover</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setWidth(Number width) {
+		this.width = width;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getWidth(){ return width; }
+
+	private Number heightPlus;
+	/**
+ The number of pixels to increase the height of the hovered point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-marker-states-hover-widthplus">One day</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setHeightPlus(Number heightPlus) {
+		this.heightPlus = heightPlus;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getHeightPlus(){ return heightPlus; }
+
+	private Number widthPlus;
+	/**
+ The number of pixels to increase the width of the hovered point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-marker-states-hover-widthplus">One day</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setWidthPlus(Number widthPlus) {
+		this.widthPlus = widthPlus;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getWidthPlus(){ return widthPlus; }
+
+	private Number height;
+	/**
+ Set the marker's fixed height on select state. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-marker-states-hover-width">70px fixed marker's width and height on hover</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setHeight(Number height) {
+		this.height = height;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getHeight(){ return height; }
+
 	private HIColor borderColor;
 	/**
  A specific border color for the selected point. 
@@ -164,6 +212,18 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.lineColor != null) {
 			params.put("lineColor", this.lineColor.getData());
+		}
+		if (this.width != null) {
+			params.put("width", this.width);
+		}
+		if (this.heightPlus != null) {
+			params.put("heightPlus", this.heightPlus);
+		}
+		if (this.widthPlus != null) {
+			params.put("widthPlus", this.widthPlus);
+		}
+		if (this.height != null) {
+			params.put("height", this.height);
 		}
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());

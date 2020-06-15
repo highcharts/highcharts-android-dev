@@ -176,17 +176,17 @@ public class HIExporting extends HIFoundation {
 
 	public Object /* boolean, String */ getTableCaption(){ return tableCaption; }
 
-	private HIAttributes formAttributes;
+	private HISVGAttributes formAttributes;
 	/**
  An object containing additional key value data for the POST form that sends the SVG to the export server. For example, a target can be set to make sure the generated image is received in another frame, or a custom enctype or encoding can be set. 
 	*/
-	public void setFormAttributes(HIAttributes formAttributes) {
+	public void setFormAttributes(HISVGAttributes formAttributes) {
 		this.formAttributes = formAttributes;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIAttributes getFormAttributes(){ return formAttributes; }
+	public HISVGAttributes getFormAttributes(){ return formAttributes; }
 
 	private Boolean useMultiLevelHeaders;
 	/**

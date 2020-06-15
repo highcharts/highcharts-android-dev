@@ -96,7 +96,7 @@ public class HILabels extends HIFoundation {
 
 	private String position3d;
 	/**
- Defines how the labels are be repositioned according to the 3D chart orientation. - 'offset': Maintain a fixed horizontal/vertical distance from the  tick marks, despite the chart orientation. This is the backwards  compatible behavior, and causes skewing of X and Z axes. - 'chart': Preserve 3D position relative to the chart. This looks nice, but hard to read if the text isn't  forward-facing. - 'flap': Rotated text along the axis to compensate for the chart  orientation. This tries to maintain text as legible as possible  on all orientations. - 'ortho': Rotated text along the axis direction so that the labels  are orthogonal to the axis. This is very similar to 'flap',  but prevents skewing the labels (X and Y scaling are still  present). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/">Skewed labels</a> <br><br><b>accepted values:</b><br><br>&ensp;['offset', 'chart', 'flap', 'ortho']
+ Defines how the labels are be repositioned according to the 3D chart orientation. - 'offset': Maintain a fixed horizontal/vertical distance from  the tick marks, despite the chart orientation. This is the  backwards compatible behavior, and causes skewing of X and Z  axes. - 'chart': Preserve 3D position relative to the chart. This  looks nice, but hard to read if the text isn't forward-facing. - 'flap': Rotated text along the axis to compensate for the  chart orientation. This tries to maintain text as legible as  possible on all orientations. - 'ortho': Rotated text along the axis direction so that the  labels are orthogonal to the axis. This is very similar to  'flap', but prevents skewing the labels (X and Y scaling are  still present). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/">Skewed labels</a> <br><br><b>accepted values:</b><br><br>&ensp;['offset', 'chart', 'flap', 'ortho']
 	*/
 	public void setPosition3d(String position3d) {
 		this.position3d = position3d;
@@ -108,7 +108,7 @@ public class HILabels extends HIFoundation {
 
 	private Number rotation;
 	/**
- Rotation of the labels in degrees. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-rotation/">X axis labels rotated 90Â°</a>
+ Rotation of the labels in degrees. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-rotation/">X axis labels rotated 90ĂÂ°</a>
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;

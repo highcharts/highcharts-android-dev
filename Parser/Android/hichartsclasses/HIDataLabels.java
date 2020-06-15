@@ -70,41 +70,32 @@ public class HIDataLabels extends HIFoundation {
 
 	public String getRotationMode(){ return rotationMode; }
 
-	private Object y;
-	public void setY(Object y) {
-		this.y = y;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object getY(){ return y; }
-
-	private Object align;
-	public void setAlign(Object align) {
-		this.align = align;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object getAlign(){ return align; }
-
-	private Object verticalAlign;
-	public void setVerticalAlign(Object verticalAlign) {
+	private String verticalAlign;
+	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getVerticalAlign(){ return verticalAlign; }
+	public String getVerticalAlign(){ return verticalAlign; }
 
-	private Boolean inside;
-	public void setInside(Boolean inside) {
-		this.inside = inside;
+	private String format;
+	public void setFormat(String format) {
+		this.format = format;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getInside(){ return inside; }
+	public String getFormat(){ return format; }
+
+	private String align;
+	public void setAlign(String align) {
+		this.align = align;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getAlign(){ return align; }
 
 	private Boolean enabled;
 	public void setEnabled(Boolean enabled) {
@@ -115,14 +106,23 @@ public class HIDataLabels extends HIFoundation {
 
 	public Boolean getEnabled(){ return enabled; }
 
-	private String format;
-	public void setFormat(String format) {
-		this.format = format;
+	private Boolean inside;
+	public void setInside(Boolean inside) {
+		this.inside = inside;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getFormat(){ return format; }
+	public Boolean getInside(){ return inside; }
+
+	private String y;
+	public void setY(String y) {
+		this.y = y;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getY(){ return y; }
 
 	private Boolean crop;
 	public void setCrop(Boolean crop) {
@@ -451,9 +451,6 @@ public class HIDataLabels extends HIFoundation {
 	public String getParentNodeFormat(){ return parentNodeFormat; }
 
 	private HIParentNodeTextPath parentNodeTextPath;
-	/**
- Options for a _parentNode_ label text. **Note:** Only SVG-based renderer supports this option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-packedbubble/packed-dashboard">Dashboard with dataLabels on parentNodes</a>
-	*/
 	public void setParentNodeTextPath(HIParentNodeTextPath parentNodeTextPath) {
 		this.parentNodeTextPath = parentNodeTextPath;
 		this.parentNodeTextPath.addObserver(updateObserver);
@@ -464,9 +461,6 @@ public class HIDataLabels extends HIFoundation {
 	public HIParentNodeTextPath getParentNodeTextPath(){ return parentNodeTextPath; }
 
 	private HIFunction parentNodeFormatter;
-	/**
- Callback to format data labels for _parentNodes_. The parentNodeFormat option takes precedence over the parentNodeFormatter. 
-	*/
 	public void setParentNodeFormatter(HIFunction parentNodeFormatter) {
 		this.parentNodeFormatter = parentNodeFormatter;
 		this.setChanged();
@@ -673,23 +667,23 @@ public HashMap<String, Object> getParams() {
 		if (this.rotationMode != null) {
 			params.put("rotationMode", this.rotationMode);
 		}
-		if (this.y != null) {
-			params.put("y", this.y);
+		if (this.verticalAlign != null) {
+			params.put("verticalAlign", this.verticalAlign);
+		}
+		if (this.format != null) {
+			params.put("format", this.format);
 		}
 		if (this.align != null) {
 			params.put("align", this.align);
 		}
-		if (this.verticalAlign != null) {
-			params.put("verticalAlign", this.verticalAlign);
+		if (this.enabled != null) {
+			params.put("enabled", this.enabled);
 		}
 		if (this.inside != null) {
 			params.put("inside", this.inside);
 		}
-		if (this.enabled != null) {
-			params.put("enabled", this.enabled);
-		}
-		if (this.format != null) {
-			params.put("format", this.format);
+		if (this.y != null) {
+			params.put("y", this.y);
 		}
 		if (this.crop != null) {
 			params.put("crop", this.crop);

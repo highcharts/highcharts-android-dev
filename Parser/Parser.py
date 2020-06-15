@@ -359,7 +359,11 @@ hc_types = {
         #8.0
         "Array.<(*)>": 'ArrayList',
         # 8.0.4
-        "Array.<(string|*)>": 'NSArray'
+        "Array.<(string|*)>": 'ArrayList',
+        #8.1.1
+        "Array.<Array.<Highcharts.SVGPathCommand, number?, number?, number?, number?, number?, number?, number?>>": 'ArrayList',
+        "string|Array.<Array.<string, number?, number?, number?, number?, number?, number?, number?>>|undefined": 'ArrayList',
+        "Highcharts.FormatterCallbackFunction.<Series>": 'HIFunction'
 }
 
 

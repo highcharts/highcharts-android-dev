@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -29,6 +30,18 @@ public class HIStackLabels extends HIFoundation {
 	}
 
 	public Boolean getAllowOverlap(){ return allowOverlap; }
+
+	private HIColor borderColor;
+	/**
+ The border color for the stack label. Defaults to undefined. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-box/">Stack labels box options</a>
+	*/
+	public void setBorderColor(HIColor borderColor) {
+		this.borderColor = borderColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getBorderColor(){ return borderColor; }
 
 	private HICSSObject style;
 	/**
@@ -65,6 +78,18 @@ public class HIStackLabels extends HIFoundation {
 	}
 
 	public String getFormat(){ return format; }
+
+	private Number borderRadius;
+	/**
+ The border radius in pixels for the stack label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-box/">Stack labels box options</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
+	public void setBorderRadius(Number borderRadius) {
+		this.borderRadius = borderRadius;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getBorderRadius(){ return borderRadius; }
 
 	private String align;
 	/**
@@ -113,6 +138,30 @@ public class HIStackLabels extends HIFoundation {
 	}
 
 	public String getTextAlign(){ return textAlign; }
+
+	private Number borderWidth;
+	/**
+ The border width in pixels for the stack label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-box/">Stack labels box options</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
+	public void setBorderWidth(Number borderWidth) {
+		this.borderWidth = borderWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getBorderWidth(){ return borderWidth; }
+
+	private HIColor backgroundColor;
+	/**
+ The background color or gradient for the stack label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-box/">Stack labels box options</a>
+	*/
+	public void setBackgroundColor(HIColor backgroundColor) {
+		this.backgroundColor = backgroundColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getBackgroundColor(){ return backgroundColor; }
 
 	private Number y;
 	/**
@@ -164,7 +213,7 @@ public class HIStackLabels extends HIFoundation {
 
 	private Number rotation;
 	/**
- Rotation of the labels in degrees. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-rotation/">Labels rotated 45Â°</a>
+ Rotation of the labels in degrees. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-rotation/">Labels rotated 45ĂÂ°</a>
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;
@@ -200,6 +249,9 @@ public HashMap<String, Object> getParams() {
 		if (this.allowOverlap != null) {
 			params.put("allowOverlap", this.allowOverlap);
 		}
+		if (this.borderColor != null) {
+			params.put("borderColor", this.borderColor.getData());
+		}
 		if (this.style != null) {
 			params.put("style", this.style.getParams());
 		}
@@ -208,6 +260,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.format != null) {
 			params.put("format", this.format);
+		}
+		if (this.borderRadius != null) {
+			params.put("borderRadius", this.borderRadius);
 		}
 		if (this.align != null) {
 			params.put("align", this.align);
@@ -220,6 +275,12 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.textAlign != null) {
 			params.put("textAlign", this.textAlign);
+		}
+		if (this.borderWidth != null) {
+			params.put("borderWidth", this.borderWidth);
+		}
+		if (this.backgroundColor != null) {
+			params.put("backgroundColor", this.backgroundColor.getData());
 		}
 		if (this.y != null) {
 			params.put("y", this.y);

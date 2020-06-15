@@ -81,6 +81,18 @@ public class HIColumnpyramid extends HISeries {
 
 	public HIColor getBorderColor(){ return borderColor; }
 
+	private Boolean centerInCategory;
+	/**
+ When true, the columns will center in the category, ignoring null or missing points. When false, space will be reserved for null or missing points. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-column/centerincategory/">Center in category</a>
+	*/
+	public void setCenterInCategory(Boolean centerInCategory) {
+		this.centerInCategory = centerInCategory;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getCenterInCategory(){ return centerInCategory; }
+
 	private Number maxPointWidth;
 	/**
  The maximum allowed pixel width for a column, translated to the height of a bar in a bar chart. This prevents the columns from becoming too wide when there is a small number of points in the chart. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-maxpointwidth-20/">Limited to 50</a>
@@ -188,6 +200,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
+		}
+		if (this.centerInCategory != null) {
+			params.put("centerInCategory", this.centerInCategory);
 		}
 		if (this.maxPointWidth != null) {
 			params.put("maxPointWidth", this.maxPointWidth);

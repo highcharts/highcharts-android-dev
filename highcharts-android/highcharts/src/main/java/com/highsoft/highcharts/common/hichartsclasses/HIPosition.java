@@ -18,7 +18,7 @@ public class HIPosition extends HIFoundation {
 
 	private Number y;
 	/**
- The vertical offset of the button. 
+ Vertical offset of the button. 
 	*/
 	public void setY(Number y) {
 		this.y = y;
@@ -30,7 +30,7 @@ public class HIPosition extends HIFoundation {
 
 	private Number x;
 	/**
- The horizontal offset of the button. 
+ Horizontal offset of the button. 
 	*/
 	public void setX(Number x) {
 		this.x = x;
@@ -42,7 +42,7 @@ public class HIPosition extends HIFoundation {
 
 	private String align;
 	/**
- The horizontal alignment of the button. 
+ Horizontal alignment of the button. 
 	*/
 	public void setAlign(String align) {
 		this.align = align;
@@ -54,7 +54,7 @@ public class HIPosition extends HIFoundation {
 
 	private String verticalAlign;
 	/**
- The vertical alignment of the button. 
+ Vertical alignment of the button. 
  <br><br><b>defaults:</b><br><br>&ensp;top	*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;

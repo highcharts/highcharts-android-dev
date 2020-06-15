@@ -58,6 +58,18 @@ public class HIErrorbar extends HISeries {
 
 	public Number getStemWidth(){ return stemWidth; }
 
+	private Object /* Number, String */ whiskerLength;
+	/**
+ The length of the whiskers, the horizontal lines marking low and high values. It can be a numerical pixel value, or a percentage value of the box width. Set 0 to disable whiskers. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">True by defaults</a>
+	*/
+	public void setWhiskerLength(Object /* Number, String */ whiskerLength) {
+		this.whiskerLength = whiskerLength;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getWhiskerLength(){ return whiskerLength; }
+
 	private Number medianWidth;
 	/**
  The pixel width of the median line. If null, the lineWidth is used. In styled mode, the median stroke width can be set with the .highcharts-boxplot-median class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>
@@ -106,17 +118,17 @@ public class HIErrorbar extends HISeries {
 
 	public String getStemDashStyle(){ return stemDashStyle; }
 
-	private Object /* Number, String */ whiskerLength;
+	private String whiskerDashStyle;
 	/**
- The length of the whiskers, the horizontal lines marking low and high values. It can be a numerical pixel value, or a percentage value of the box width. Set 0 to disable whiskers. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">True by defaults</a>
-	*/
-	public void setWhiskerLength(Object /* Number, String */ whiskerLength) {
-		this.whiskerLength = whiskerLength;
+ The dash style of the whiskers. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>
+ <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
+	public void setWhiskerDashStyle(String whiskerDashStyle) {
+		this.whiskerDashStyle = whiskerDashStyle;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number, String */ getWhiskerLength(){ return whiskerLength; }
+	public String getWhiskerDashStyle(){ return whiskerDashStyle; }
 
 	private HIColor fillColor;
 	/**
@@ -129,6 +141,30 @@ public class HIErrorbar extends HISeries {
 	}
 
 	public HIColor getFillColor(){ return fillColor; }
+
+	private String medianDashStyle;
+	/**
+ The dash style of the median. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>
+ <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
+	public void setMedianDashStyle(String medianDashStyle) {
+		this.medianDashStyle = medianDashStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getMedianDashStyle(){ return medianDashStyle; }
+
+	private String boxDashStyle;
+	/**
+ The dash style of the box. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>
+ <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
+	public void setBoxDashStyle(String boxDashStyle) {
+		this.boxDashStyle = boxDashStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getBoxDashStyle(){ return boxDashStyle; }
 
 	private Number pointPadding;
 	/**
@@ -190,6 +226,18 @@ public class HIErrorbar extends HISeries {
 
 	public HIColor getEdgeColor(){ return edgeColor; }
 
+	private Boolean centerInCategory;
+	/**
+ When true, the columns will center in the category, ignoring null or missing points. When false, space will be reserved for null or missing points. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-column/centerincategory/">Center in category</a>
+	*/
+	public void setCenterInCategory(Boolean centerInCategory) {
+		this.centerInCategory = centerInCategory;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getCenterInCategory(){ return centerInCategory; }
+
 	private Number maxPointWidth;
 	/**
  The maximum allowed pixel width for a column, translated to the height of a bar in a bar chart. This prevents the columns from becoming too wide when there is a small number of points in the chart. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-maxpointwidth-20/">Limited to 50</a>
@@ -250,18 +298,6 @@ public class HIErrorbar extends HISeries {
 
 	public Number getEdgeWidth(){ return edgeWidth; }
 
-	private Boolean crisp;
-	/**
- When true, each column edge is rounded to its nearest pixel in order to render sharp on screen. In some cases, when there are a lot of densely packed columns, this leads to visible difference in column widths or distance between columns. In these cases, setting crisp to false may look better, even though each column is rendered blurry. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-crisp-false/">Crisp is false</a>
-	*/
-	public void setCrisp(Boolean crisp) {
-		this.crisp = crisp;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getCrisp(){ return crisp; }
-
 	private Number depth;
 	/**
  Depth of the columns in a 3D column chart. 
@@ -295,6 +331,9 @@ public HashMap<String, Object> getParams() {
 		if (this.stemWidth != null) {
 			params.put("stemWidth", this.stemWidth);
 		}
+		if (this.whiskerLength != null) {
+			params.put("whiskerLength", this.whiskerLength);
+		}
 		if (this.medianWidth != null) {
 			params.put("medianWidth", this.medianWidth);
 		}
@@ -307,11 +346,17 @@ public HashMap<String, Object> getParams() {
 		if (this.stemDashStyle != null) {
 			params.put("stemDashStyle", this.stemDashStyle);
 		}
-		if (this.whiskerLength != null) {
-			params.put("whiskerLength", this.whiskerLength);
+		if (this.whiskerDashStyle != null) {
+			params.put("whiskerDashStyle", this.whiskerDashStyle);
 		}
 		if (this.fillColor != null) {
 			params.put("fillColor", this.fillColor.getData());
+		}
+		if (this.medianDashStyle != null) {
+			params.put("medianDashStyle", this.medianDashStyle);
+		}
+		if (this.boxDashStyle != null) {
+			params.put("boxDashStyle", this.boxDashStyle);
 		}
 		if (this.pointPadding != null) {
 			params.put("pointPadding", this.pointPadding);
@@ -337,6 +382,9 @@ public HashMap<String, Object> getParams() {
 		if (this.edgeColor != null) {
 			params.put("edgeColor", this.edgeColor.getData());
 		}
+		if (this.centerInCategory != null) {
+			params.put("centerInCategory", this.centerInCategory);
+		}
 		if (this.maxPointWidth != null) {
 			params.put("maxPointWidth", this.maxPointWidth);
 		}
@@ -351,9 +399,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.edgeWidth != null) {
 			params.put("edgeWidth", this.edgeWidth);
-		}
-		if (this.crisp != null) {
-			params.put("crisp", this.crisp);
 		}
 		if (this.depth != null) {
 			params.put("depth", this.depth);

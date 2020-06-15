@@ -216,6 +216,18 @@ public class HIFunnel3d extends HISeries {
 
 	public HIColor getEdgeColor(){ return edgeColor; }
 
+	private Boolean centerInCategory;
+	/**
+ When true, the columns will center in the category, ignoring null or missing points. When false, space will be reserved for null or missing points. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-column/centerincategory/">Center in category</a>
+	*/
+	public void setCenterInCategory(Boolean centerInCategory) {
+		this.centerInCategory = centerInCategory;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getCenterInCategory(){ return centerInCategory; }
+
 	private Number maxPointWidth;
 	/**
  The maximum allowed pixel width for a column, translated to the height of a bar in a bar chart. This prevents the columns from becoming too wide when there is a small number of points in the chart. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-maxpointwidth-20/">Limited to 50</a>
@@ -251,18 +263,6 @@ public class HIFunnel3d extends HISeries {
 	}
 
 	public Number getGroupPadding(){ return groupPadding; }
-
-	private Boolean crisp;
-	/**
- When true, each column edge is rounded to its nearest pixel in order to render sharp on screen. In some cases, when there are a lot of densely packed columns, this leads to visible difference in column widths or distance between columns. In these cases, setting crisp to false may look better, even though each column is rendered blurry. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-crisp-false/">Crisp is false</a>
-	*/
-	public void setCrisp(Boolean crisp) {
-		this.crisp = crisp;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getCrisp(){ return crisp; }
 
 	private Number depth;
 	/**
@@ -369,6 +369,9 @@ public HashMap<String, Object> getParams() {
 		if (this.edgeColor != null) {
 			params.put("edgeColor", this.edgeColor.getData());
 		}
+		if (this.centerInCategory != null) {
+			params.put("centerInCategory", this.centerInCategory);
+		}
 		if (this.maxPointWidth != null) {
 			params.put("maxPointWidth", this.maxPointWidth);
 		}
@@ -377,9 +380,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.groupPadding != null) {
 			params.put("groupPadding", this.groupPadding);
-		}
-		if (this.crisp != null) {
-			params.put("crisp", this.crisp);
 		}
 		if (this.depth != null) {
 			params.put("depth", this.depth);

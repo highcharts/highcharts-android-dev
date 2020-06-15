@@ -18,14 +18,14 @@ import java.util.HashMap;
 
 public class HISVGAttributes extends HIFoundation { 
 
-	private ArrayList /* <Number, String> */ d;
-	public void setD(ArrayList /* <Number, String> */ d) {
+	private ArrayList d;
+	public void setD(ArrayList d) {
 		this.d = d;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList /* <Number, String> */ getD(){ return d; }
+	public ArrayList getD(){ return d; }
 
 	private HIColor fill;
 	public void setFill(HIColor fill) {
@@ -156,16 +156,7 @@ public HashMap<String, Object> getParams() {
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
 		if (this.d != null) {
-			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.d) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
-			}
-			params.put("d", array);
+			params.put("d", this.d);
 		}
 		if (this.fill != null) {
 			params.put("fill", this.fill.getData());

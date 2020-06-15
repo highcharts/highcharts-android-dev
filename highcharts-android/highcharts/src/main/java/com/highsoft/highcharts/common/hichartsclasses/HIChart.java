@@ -56,6 +56,18 @@ public class HIChart extends HIFoundation {
 
 	public Number getSpacingBottom(){ return spacingBottom; }
 
+	private Boolean /* boolean */ plotShadow;
+	/**
+ Whether to apply a drop shadow to the plot area. Requires that plotBackgroundColor be set. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/plotshadow/">Plot shadow</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setPlotShadow(Boolean /* boolean */ plotShadow) {
+		this.plotShadow = plotShadow;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean /* boolean */ getPlotShadow(){ return plotShadow; }
+
 	private Object /* Number, String */ height;
 	/**
  An explicit height for the chart. If a _number_, the height is given in pixels. If given a _percentage string_ (for example '56%'), the height is given as the percentage of the actual chart width. This allows for preserving the aspect ratio across responsive sizes. By defaults (when null) the height is calculated from the offset height of the containing element, or 400 pixels if the containing element's height is 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/height/">500px height</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/height-percent/">Highcharts with percentage height</a>
@@ -187,18 +199,6 @@ public class HIChart extends HIFoundation {
 	}
 
 	public Boolean getReflow(){ return reflow; }
-
-	private Boolean /* boolean */ plotShadow;
-	/**
- Whether to apply a drop shadow to the plot area. Requires that plotBackgroundColor be set. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/plotshadow/">Plot shadow</a>
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setPlotShadow(Boolean /* boolean */ plotShadow) {
-		this.plotShadow = plotShadow;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean /* boolean */ getPlotShadow(){ return plotShadow; }
 
 	private String zoomType;
 	/**
@@ -633,6 +633,9 @@ public HashMap<String, Object> getParams() {
 		if (this.spacingBottom != null) {
 			params.put("spacingBottom", this.spacingBottom);
 		}
+		if (this.plotShadow != null) {
+			params.put("plotShadow", this.plotShadow);
+		}
 		if (this.height != null) {
 			params.put("height", this.height);
 		}
@@ -665,9 +668,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.reflow != null) {
 			params.put("reflow", this.reflow);
-		}
-		if (this.plotShadow != null) {
-			params.put("plotShadow", this.plotShadow);
 		}
 		if (this.zoomType != null) {
 			params.put("zoomType", this.zoomType);
