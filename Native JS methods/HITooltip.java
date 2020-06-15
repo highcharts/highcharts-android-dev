@@ -68,44 +68,42 @@ public void hide(Number delay){
   this.notifyObservers(jsClassMethod);
 }
 
-/**
- Refresh the tooltip's text and position.
- @param point A point.
- */
-public void refreshByPoint(HIPoint point){
-  Map<String, Object> params = point.getParams();
-  String pointID = params.getObject("_wrapperID");
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Tooltip");
-    put("method", "refreshByPoint");
-    put("id", uuid);
-    put("pointID", pointID);
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
+	/**
+	 Refresh the tooltip's text and position.
+	 @param point A point.
+	 */
+	public void refreshByPoint(HIPoint point){
+		Map<String, Object> params = point.getParams();
+		String pointID = (String) params.get("_wrapperID");
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Tooltip");
+			put("method", "refreshByPoint");
+			put("id", uuid);
+			put("pointID", pointID);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
 
-/**
-Refresh the tooltip's text and position.
-@param points An array of points.
-*/
-public void refreshByPoints(ArrayList<HIPoint> points){
-  ArrayList<String> pointIDs = new ArrayList<>();
-  for(HIPoint point in points){
-  	Map<String, Object> params = point.getParams();
-	pointIDs.add(params.getObject("_wrapperID"));
-  }
-  this.jsClassMethod = new HashMap<String, Object>() {{
-    put("class", "Tooltip");
-    put("method", "refreshByPoints");
-    put("id", uuid);
-    put("params", Collections.singletonList(options.getParams()));
-    pit("pointIDs", pointIDs.toString());
-  }};
-  this.setChanged();
-  this.notifyObservers(jsClassMethod);
-}
-
+	/**
+	 Refresh the tooltip's text and position.
+	 @param points An array of points.
+	 */
+	public void refreshByPoints(ArrayList<HIPoint> points){
+		ArrayList<String> pointIDs = new ArrayList<>();
+		for(HIPoint point : points){
+			Map<String, Object> params = point.getParams();
+			pointIDs.add((String) params.get("_wrapperID"));
+		}
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Tooltip");
+			put("method", "refreshByPoints");
+			put("id", uuid);
+			put("pointIDs", pointIDs.toString());
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
 /**
  Updates the tooltip with the provided tooltip options.
  @param options The tooltip options to update.

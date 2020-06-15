@@ -13,7 +13,7 @@ ext{
     siteUrl = 'https://www.highcharts.com/'
     gitUrl = 'https://github.com/highcharts/highcharts-android'
 
-    libraryVersion = '8.0.4'
+    libraryVersion = '8.1.1'
 
     developerId = 'bgn'
     developerName = 'Bartosz Gnacek'
