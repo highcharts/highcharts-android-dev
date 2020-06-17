@@ -275,6 +275,7 @@ public class MainActivity extends AppCompatActivity {
         precipErrDataLabels.getStyle().setFontSize("8px");
         options.getSeries().add(precipErrSeries);
 
+
         HIColumn precipSeries = new HIColumn();
         precipSeries.setName("Precipitation");
         precipSeries.setData(precipitations);

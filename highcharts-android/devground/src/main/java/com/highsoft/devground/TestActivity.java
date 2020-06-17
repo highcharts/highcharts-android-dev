@@ -19,9 +19,11 @@ import com.highsoft.highcharts.common.hichartsclasses.HILine;
 import com.highsoft.highcharts.common.hichartsclasses.HINetworkgraph;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
 import com.highsoft.highcharts.common.hichartsclasses.HIPie;
+import com.highsoft.highcharts.common.hichartsclasses.HIPlotOptions;
 import com.highsoft.highcharts.common.hichartsclasses.HISeries;
 import com.highsoft.highcharts.common.hichartsclasses.HISpline;
 import com.highsoft.highcharts.common.hichartsclasses.HIStyle;
+import com.highsoft.highcharts.common.hichartsclasses.HITitle;
 import com.highsoft.highcharts.common.hichartsclasses.HITooltip;
 import com.highsoft.highcharts.common.hichartsclasses.HIXAxis;
 import com.highsoft.highcharts.common.hichartsclasses.HIYAxis;
@@ -31,6 +33,7 @@ import com.highsoft.highcharts.core.HIFunction;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
@@ -43,72 +46,69 @@ public class TestActivity extends AppCompatActivity {
 
         HIOptions options = new HIOptions();
 
-        HIDataLabels hiColumnDataLabels = new HIDataLabels();
-        hiColumnDataLabels.setEnabled(true);
-        hiColumnDataLabels.setStyle(new HIStyle());
-//        hiColumnDataLabels.setFormatter(new HIFunction(dataLabelFunction(columnSuffix)));
-        hiColumnDataLabels.getStyle().setColor("red");
-        hiColumnDataLabels.setRotationMode("horizontal");
-        hiColumnDataLabels.setRotation(90);
-        hiColumnDataLabels.getStyle().setFontSize("10px");
-
-        HINetworkgraph networkgraph = new HINetworkgraph();
-        ArrayList<HIDataLabels> dataLabelsList = new ArrayList<>();
-        HIDataLabels dataLabels = new HIDataLabels();
-        dataLabels.setEnabled(true);
-        dataLabelsList.add(hiColumnDataLabels);
-        networkgraph.setDataLabels(dataLabelsList);
-        options.setSeries(new ArrayList<>(Collections.singletonList(networkgraph)));
-
-        HIColumn series = new HIColumn();
-        series.setData(new ArrayList<>(Arrays.asList(100000312,6,4,7,12,6,3)));
-        HISpline series2 = new HISpline();
-        series2.setData(new ArrayList<>(Arrays.asList(1,5,5,6,7,8,8)));
-        ArrayList<HISeries> seriesArray = new ArrayList<>();
-        seriesArray.add(series);
-        seriesArray.add(series2);
-        options.setSeries(seriesArray);
-
-        HIDataLabels hiDataLabels = new HIDataLabels();
-        hiDataLabels.setEnabled(true);
-        HIFunction lebelFormatter = new HIFunction("function() { if ( this.point.y >= 10000000 ){ return Highcharts.numberFormat( this.point.y/10000000, 0) + 'C';}else if ( this.point.y >= 100000 ){ return Highcharts.numberFormat( this.point.y/100000, 0) + 'L';}else if ( this.point.y >= 1000 ){ return Highcharts.numberFormat( this.point.y/1000, 0) + 'K';}else if ( this.point.y < 1 && this.point.y > 0){return Highcharts.numberFormat(this.point.y,2);}return Highcharts.numberFormat(this.point.y,0);}");
-        hiDataLabels.setFormatter(lebelFormatter);
-        hiDataLabels.setColor(HIColor.initWithName("red"));
-        series.setDataLabels(new ArrayList<>(Collections.singletonList(hiDataLabels)));
-
-        HITooltip tooltip = new HITooltip();
-        tooltip.setPointFormat("This is very long tooltip which we need to wrap on your chart for the pretty look");
-        HICSSObject style = new HICSSObject();
-        style.setWidth(50);
-        tooltip.setStyle(style);
-        options.setTooltip(tooltip);
-//        series.setTooltip(tooltip);
-
-        final double[] plotDim = {0.0, 0.0};
         HIChart chart = new HIChart();
-        chart.setEvents(new HIEvents());
-        chart.getEvents().setRender(new HIFunction(
-                f -> {
-                    plotDim[0] = (double) f.getProperty("plotHeight");
-                    plotDim[1] = (double) f.getProperty("plotWidth");
-                    System.out.println("plotHeight: " + plotDim[0] + " plotWidth: " + plotDim[1]);
-                },
-                new String[] { "plotWidth", "plotHeight"}
-        ));
+        chart.setType("pie");
+        chart.setPlotShadow(false);
         options.setChart(chart);
 
-        Button btn = findViewById(R.id.btn);
-        btn.setOnClickListener(v -> {
-            HISeries newSeries = new HISeries();
-            newSeries.setData(new ArrayList<>(Arrays.asList(15,5,3,1,5,6,1,2)));
-            HIOptions options1 = options;
-            options1.setSeries(new ArrayList<>(Collections.singletonList(newSeries)));
-            chartView.update(options1, true, true);
-//            options.setSeries(new ArrayList<>(Collections.singletonList(newSeries)));
-//            chartView.update(options1, true, true);
-        });
+        HITitle title = new HITitle();
+        title.setText("Browser market shares January, 2015 to May, 2015");
+        options.setTitle(title);
 
-//        chart.setBackgroundColor(HIColor.initWithRGBA(70, 130, 180, 0.6));
+        HITooltip tooltip = new HITooltip();
+        tooltip.setPointFormat("{series.name}: <b>{point.percentage:.1f}%</b>");
+        options.setTooltip(tooltip);
+
+        HIPlotOptions plotOptions = new HIPlotOptions();
+        plotOptions.setPie(new HIPie());
+        plotOptions.getPie().setAllowPointSelect(true);
+        plotOptions.getPie().setCursor("pointer");
+
+//        HIDataLabels dataLabels = new HIDataLabels();
+//        dataLabels.setEnabled(true);
+//        dataLabels.setFormat("<b>{point.name}</b>: {point.percentage:.1f} %");
+
+        HIDataLabels dataLabels = new HIDataLabels();
+        dataLabels.setAllowOverlap(true);
+        dataLabels.setEnabled(true);
+        dataLabels.setShadow(true);
+        dataLabels.setFormat("{point.name}");
+        dataLabels.setDistance(10);
+        dataLabels.setColor(HIColor.initWithHexValue("#FFFFFF"));
+
+
+//        plotOptions.getPie().setDataLabels(new ArrayList<>(Collections.singletonList(dataLabels)));
+
+        options.setPlotOptions(plotOptions);
+
+        HIPie pie = new HIPie();
+        pie.setName("Brands");
+        HashMap<String, Object> map1 = new HashMap<>();
+        map1.put("name", "Microsoft Internet Explorer");
+        map1.put("y", 56.33);
+        HashMap<String, Object> map2 = new HashMap<>();
+        map2.put("name", "Chrome");
+        map2.put("y", 24.03);
+        map2.put("sliced", true);
+        map2.put("selected", true);
+        HashMap<String, Object> map3 = new HashMap<>();
+        map3.put("name", "Firefox");
+        map3.put("y", 10.38);
+        HashMap<String, Object> map4 = new HashMap<>();
+        map4.put("name", "Safari");
+        map4.put("y", 4.77);
+        HashMap<String, Object> map5 = new HashMap<>();
+        map5.put("name", "Opera");
+        map5.put("y", 0.91);
+        HashMap<String, Object> map6 = new HashMap<>();
+        map6.put("name", "Others");
+        map6.put("y", 0.2);
+        pie.setData(new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6)));
+
+        pie.setDataLabels(new ArrayList<>(Collections.singletonList(dataLabels)));
+
+        options.setSeries(new ArrayList<>(Collections.singletonList(pie)));
+
         chartView.setOptions(options);
     }
 }

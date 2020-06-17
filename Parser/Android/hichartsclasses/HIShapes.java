@@ -31,18 +31,17 @@ public class HIShapes extends HIFoundation {
 
 	public String getSrc(){ return src; }
 
-	private HIPoints points;
+	private ArrayList <HIPoints> points;
 	/**
  An array of points for the shape. This option is available for shapes which can use multiple points such as path. A point can be either a point object or a point's id. 
 	*/
-	public void setPoints(HIPoints points) {
+	public void setPoints(ArrayList points) {
 		this.points = points;
-		this.points.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIPoints getPoints(){ return points; }
+	public ArrayList getPoints(){ return points; }
 
 	private String markerEnd;
 	/**
@@ -204,7 +203,16 @@ public HashMap<String, Object> getParams() {
 			params.put("src", this.src);
 		}
 		if (this.points != null) {
-			params.put("points", this.points.getParams());
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.points) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("points", array);
 		}
 		if (this.markerEnd != null) {
 			params.put("markerEnd", this.markerEnd);

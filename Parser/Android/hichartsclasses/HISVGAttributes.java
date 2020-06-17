@@ -19,14 +19,14 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HISVGAttributes extends HIFoundation { 
 
-	private NSArray d;
-	public void setD(NSArray d) {
+	private ArrayList d;
+	public void setD(ArrayList d) {
 		this.d = d;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public NSArray getD(){ return d; }
+	public ArrayList getD(){ return d; }
 
 	private HIColor fill;
 	public void setFill(HIColor fill) {
@@ -157,7 +157,16 @@ public HashMap<String, Object> getParams() {
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
 		if (this.d != null) {
-			params.put("d", this.d);
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.d) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("d", array);
 		}
 		if (this.fill != null) {
 			params.put("fill", this.fill.getData());
