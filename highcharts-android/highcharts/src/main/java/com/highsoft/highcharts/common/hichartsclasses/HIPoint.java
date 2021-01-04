@@ -17,7 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class HIPoint extends HIFoundation {
+
+public class HIPoint extends HIFoundation { 
 
 	private HIEvents events;
 	public void setEvents(HIEvents events) {
@@ -421,6 +422,7 @@ public class HIPoint extends HIFoundation {
 		this.setChanged();
 		this.notifyObservers(jsClassMethod);
 	}
+
 
 	public HIPoint() {
 

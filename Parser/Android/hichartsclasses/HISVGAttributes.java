@@ -19,14 +19,14 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HISVGAttributes extends HIFoundation { 
 
-	private ArrayList d;
-	public void setD(ArrayList d) {
+	private ArrayList /* <String, Number> */ d;
+	public void setD(ArrayList /* <String, Number> */ d) {
 		this.d = d;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList getD(){ return d; }
+	public ArrayList /* <String, Number> */ getD(){ return d; }
 
 	private HIColor fill;
 	public void setFill(HIColor fill) {

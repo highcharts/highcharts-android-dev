@@ -56,17 +56,17 @@ public class HITreemap extends HISeries {
 
 	public Number getSortIndex(){ return sortIndex; }
 
-	private Boolean colorByPoint;
+	private Object colorByPoint;
 	/**
  When using automatic point colors pulled from the options.colors collection, this option determines whether the chart should receive one color per series or one color per point. 
 	*/
-	public void setColorByPoint(Boolean colorByPoint) {
+	public void setColorByPoint(Object colorByPoint) {
 		this.colorByPoint = colorByPoint;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getColorByPoint(){ return colorByPoint; }
+	public Object getColorByPoint(){ return colorByPoint; }
 
 	private Boolean allowTraversingTree;
 	/**
@@ -209,7 +209,6 @@ public HashMap<String, Object> getParams() {
 			params.put("sortIndex", this.sortIndex);
 		}
 		if (this.colorByPoint != null) {
-			params.put("colorByPoint", this.colorByPoint);
 		}
 		if (this.allowTraversingTree != null) {
 			params.put("allowTraversingTree", this.allowTraversingTree);

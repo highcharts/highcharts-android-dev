@@ -19,10 +19,22 @@ import java.util.HashMap;
 	*/
 
 public class HIStreamgraph extends HISeries {
+	private HIColor fillColor;
+	/**
+/** * description: Fill color or gradient for the area. When null, the series' color is used with the series' fillOpacity. In styled mode, the fill color can be set with the .highcharts-area class name. * demo:  •  Null by defaults •  Gradient
+*/
+	public void setFillColor(HIColor fillColor) {
+		this.fillColor = fillColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getFillColor(){ return fillColor; }
+
 	private Number fillOpacity;
 	/**
 /** * description: Fill opacity for the area. When you set an explicit fillColor, the fillOpacity is not applied. Instead, you should define the opacity in the fillColor with an rgba color definition. The fillOpacity setting, also the defaults setting, overrides the alpha component of the color setting. In styled mode, the fill opacity can be set with the .highcharts-area class name. * demo:  •  Automatic fill color and fill opacity of 0.1
-* defaults: 0.75
+* defaults: 1
 */
 	public void setFillOpacity(Number fillOpacity) {
 		this.fillOpacity = fillOpacity;
@@ -56,18 +68,6 @@ public class HIStreamgraph extends HISeries {
 
 	public Boolean getTrackByArea(){ return trackByArea; }
 
-	private HIColor fillColor;
-	/**
- Fill color or gradient for the area. When null, the series' color is used with the series' fillOpacity. In styled mode, the fill color can be set with the .highcharts-area class name. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-fillcolor-defaults/">Null by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-fillcolor-gradient/">Gradient</a>
-	*/
-	public void setFillColor(HIColor fillColor) {
-		this.fillColor = fillColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getFillColor(){ return fillColor; }
-
 	private HIColor lineColor;
 	/**
  A separate color for the graph line. By defaults the line takes the color of the series, but the lineColor setting allows setting a separate color for the line without altering the fillColor. In styled mode, the line stroke can be set with the .highcharts-graph class name. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-linecolor/">Dark gray line</a>
@@ -92,6 +92,9 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
+		if (this.fillColor != null) {
+			params.put("fillColor", this.fillColor.getData());
+		}
 		if (this.fillOpacity != null) {
 			params.put("fillOpacity", this.fillOpacity);
 		}
@@ -100,9 +103,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.trackByArea != null) {
 			params.put("trackByArea", this.trackByArea);
-		}
-		if (this.fillColor != null) {
-			params.put("fillColor", this.fillColor.getData());
 		}
 		if (this.lineColor != null) {
 			params.put("lineColor", this.lineColor.getData());

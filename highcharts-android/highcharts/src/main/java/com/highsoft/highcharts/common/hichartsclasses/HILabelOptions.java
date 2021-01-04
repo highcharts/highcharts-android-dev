@@ -18,6 +18,18 @@ import java.util.HashMap;
 
 public class HILabelOptions extends HIFoundation { 
 
+	private Boolean includeInDataExport;
+	/**
+ Whether the annotation is visible in the exported data table. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/include-in-data-export/">Do not include in the data export</a>
+	*/
+	public void setIncludeInDataExport(Boolean includeInDataExport) {
+		this.includeInDataExport = includeInDataExport;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getIncludeInDataExport(){ return includeInDataExport; }
+
 	private Number borderRadius;
 	/**
  The border radius in pixels for the annotaiton's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
@@ -294,6 +306,9 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.includeInDataExport != null) {
+			params.put("includeInDataExport", this.includeInDataExport);
+		}
 		if (this.borderRadius != null) {
 			params.put("borderRadius", this.borderRadius);
 		}

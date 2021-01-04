@@ -18,6 +18,18 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 public class HIExportData extends HIFoundation { 
 
+	private String annotationHeader;
+	/**
+ The annotation column title. 
+	*/
+	public void setAnnotationHeader(String annotationHeader) {
+		this.annotationHeader = annotationHeader;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getAnnotationHeader(){ return annotationHeader; }
+
 	private String categoryHeader;
 	/**
  The category column title. 
@@ -53,6 +65,9 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.annotationHeader != null) {
+			params.put("annotationHeader", this.annotationHeader);
+		}
 		if (this.categoryHeader != null) {
 			params.put("categoryHeader", this.categoryHeader);
 		}

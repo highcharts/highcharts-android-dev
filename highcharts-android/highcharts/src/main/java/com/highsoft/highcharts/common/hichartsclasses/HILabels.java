@@ -47,7 +47,7 @@ public class HILabels extends HIFoundation {
 
 	private Number y;
 	/**
-/** * description: The y position offset of the label relative to the tick position on the axis. * demo:  •  Y axis labels placed on grid lines
+/** * description: The y position offset of all labels relative to the tick positions on the axis. For polar and radial axis consider the use of the distance option. * demo:  •  Y axis labels placed on grid lines
 * defaults: 3
 */
 	public void setY(Number y) {
@@ -60,7 +60,7 @@ public class HILabels extends HIFoundation {
 
 	private Number x;
 	/**
-/** * description: The x position offset of the label relative to the tick position on the axis. Defaults to -15 for left axis, 15 for right axis. * demo:  •  Y axis labels placed on grid lines
+/** * description: The x position offset of all labels relative to the tick positions on the axis. Defaults to -15 for left axis, 15 for right axis. * demo:  •  Y axis labels placed on grid lines
 */
 	public void setX(Number x) {
 		this.x = x;
@@ -108,7 +108,7 @@ public class HILabels extends HIFoundation {
 
 	private Number rotation;
 	/**
- Rotation of the labels in degrees. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-rotation/">X axis labels rotated 90ĂÂ°</a>
+ Rotation of the labels in degrees. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-rotation/">X axis labels rotated 90Â°</a>
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;
@@ -274,6 +274,18 @@ public class HILabels extends HIFoundation {
 	}
 
 	public HIPoint getPoint(){ return point; }
+
+	private Boolean includeInDataExport;
+	/**
+ Whether the annotation is visible in the exported data table. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/include-in-data-export/">Do not include in the data export</a>
+	*/
+	public void setIncludeInDataExport(Boolean includeInDataExport) {
+		this.includeInDataExport = includeInDataExport;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getIncludeInDataExport(){ return includeInDataExport; }
 
 	private Number borderRadius;
 	/**
@@ -502,6 +514,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.point != null) {
 			params.put("point", this.point.getParams());
+		}
+		if (this.includeInDataExport != null) {
+			params.put("includeInDataExport", this.includeInDataExport);
 		}
 		if (this.borderRadius != null) {
 			params.put("borderRadius", this.borderRadius);

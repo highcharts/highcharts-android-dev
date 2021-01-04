@@ -66,18 +66,17 @@ public class HILang extends HIFoundation {
 
 	public HIAccessibility getAccessibility(){ return accessibility; }
 
-	private HIExportData exportData;
+	private String hideData;
 	/**
- The text for exported table. 
+ The text for the menu item. 
 	*/
-	public void setExportData(HIExportData exportData) {
-		this.exportData = exportData;
-		this.exportData.addObserver(updateObserver);
+	public void setHideData(String hideData) {
+		this.hideData = hideData;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIExportData getExportData(){ return exportData; }
+	public String getHideData(){ return hideData; }
 
 	private ArrayList<String> shortWeekdays;
 	/**
@@ -90,6 +89,19 @@ public class HILang extends HIFoundation {
 	}
 
 	public ArrayList<String> getShortWeekdays(){ return shortWeekdays; }
+
+	private HIExportData exportData;
+	/**
+ The text for exported table. 
+	*/
+	public void setExportData(HIExportData exportData) {
+		this.exportData = exportData;
+		this.exportData.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIExportData getExportData(){ return exportData; }
 
 	private String viewFullscreen;
 	/**
@@ -383,8 +395,8 @@ public HashMap<String, Object> getParams() {
 		if (this.accessibility != null) {
 			params.put("accessibility", this.accessibility.getParams());
 		}
-		if (this.exportData != null) {
-			params.put("exportData", this.exportData.getParams());
+		if (this.hideData != null) {
+			params.put("hideData", this.hideData);
 		}
 		if (this.shortWeekdays != null) {
 			ArrayList<Object> array = new ArrayList<>();
@@ -397,6 +409,9 @@ public HashMap<String, Object> getParams() {
 				}
 			}
 			params.put("shortWeekdays", array);
+		}
+		if (this.exportData != null) {
+			params.put("exportData", this.exportData.getParams());
 		}
 		if (this.viewFullscreen != null) {
 			params.put("viewFullscreen", this.viewFullscreen);

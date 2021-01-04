@@ -34,8 +34,7 @@ public class HIDataLabels extends HIFoundation {
 
 	private Boolean defer;
 	/**
-/** * description: Whether to defer displaying the data labels until the initial series animation has finished. 
-* defaults: true
+/** * description: Whether to defer displaying the data labels until the initial series animation has finished. Setting to false renders the data label immediately. If set to true inherits the defer time set in plotOptions.series.animation. * demo:  •  Set defer time
 */
 	public void setDefer(Boolean defer) {
 		this.defer = defer;
@@ -115,14 +114,65 @@ public class HIDataLabels extends HIFoundation {
 
 	public Boolean getInside(){ return inside; }
 
-	private String y;
-	public void setY(String y) {
+	private Number y;
+	/**
+ The y position offset of the label relative to the point in pixels. 
+	*/
+	public void setY(Number y) {
 		this.y = y;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getY(){ return y; }
+	public Number getY(){ return y; }
+
+	private Number yHigh;
+	/**
+ Y offset of the higher data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
+	*/
+	public void setYHigh(Number yHigh) {
+		this.yHigh = yHigh;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getYHigh(){ return yHigh; }
+
+	private Number xHigh;
+	/**
+ X offset of the higher data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
+	*/
+	public void setXHigh(Number xHigh) {
+		this.xHigh = xHigh;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getXHigh(){ return xHigh; }
+
+	private Number xLow;
+	/**
+ X offset of the lower data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
+	*/
+	public void setXLow(Number xLow) {
+		this.xLow = xLow;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getXLow(){ return xLow; }
+
+	private Number yLow;
+	/**
+ Y offset of the lower data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
+	*/
+	public void setYLow(Number yLow) {
+		this.yLow = yLow;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getYLow(){ return yLow; }
 
 	private Boolean crop;
 	public void setCrop(Boolean crop) {
@@ -199,18 +249,6 @@ public class HIDataLabels extends HIFoundation {
 
 	public Number getBorderRadius(){ return borderRadius; }
 
-	private String overflow;
-	/**
- How to handle data labels that flow outside the plot area. The defaults is "justify", which aligns them inside the plot area. For columns and bars, this means it will be moved inside the bar. To display data labels outside the plot area, set crop to false and overflow to "allow". 
- <br><br><b>defaults:</b><br><br>&ensp;justify	*/
-	public void setOverflow(String overflow) {
-		this.overflow = overflow;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getOverflow(){ return overflow; }
-
 	private String shape;
 	/**
  The name of a symbol to use for the border around the label. Symbols are predefined functions on the Renderer object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-shape/">A callout for annotations</a>
@@ -223,17 +261,17 @@ public class HIDataLabels extends HIFoundation {
 
 	public String getShape(){ return shape; }
 
-	private Number rotation;
+	private String overflow;
 	/**
- Text rotation in degrees. Note that due to a more complex structure, backgrounds, borders and padding will be lost on a rotated data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-rotation/">Vertical labels</a>
- <br><br><b>defaults:</b><br><br>&ensp;0	*/
-	public void setRotation(Number rotation) {
-		this.rotation = rotation;
+ How to handle data labels that flow outside the plot area. The defaults is "justify", which aligns them inside the plot area. For columns and bars, this means it will be moved inside the bar. To display data labels outside the plot area, set crop to false and overflow to "allow". 
+ <br><br><b>defaults:</b><br><br>&ensp;justify	*/
+	public void setOverflow(String overflow) {
+		this.overflow = overflow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getRotation(){ return rotation; }
+	public String getOverflow(){ return overflow; }
 
 	private HIColor borderColor;
 	/**
@@ -284,6 +322,18 @@ public class HIDataLabels extends HIFoundation {
 
 	public HIColor getColor(){ return color; }
 
+	private HIAnimationOptionsObject animation;
+	/**
+ Enable or disable the initial animation when a series is displayed for the dataLabels. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation. For other animations, see chart.animation and the animation parameter under the API methods. The following properties are supported: - defer: The animation delay time in milliseconds. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/animation-defer/">Animation defer settings</a>
+	*/
+	public void setAnimation(HIAnimationOptionsObject animation) {
+		this.animation = animation;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAnimationOptionsObject getAnimation(){ return animation; }
+
 	private Object /* boolean, String */ nullFormat;
 	/**
  Format for points with the value of null. Works analogously to format. nullFormat can be applied only to series which support displaying null points. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-format/">Format data label and tooltip for null point.</a>
@@ -308,6 +358,18 @@ public class HIDataLabels extends HIFoundation {
 
 	public Number getPadding(){ return padding; }
 
+	private Boolean /* boolean */ shadow;
+	/**
+ The shadow of the box. Works best with borderWidth or backgroundColor. Since 2.3 the shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setShadow(Boolean /* boolean */ shadow) {
+		this.shadow = shadow;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean /* boolean */ getShadow(){ return shadow; }
+
 	private Number x;
 	/**
  The x position offset of the label relative to the point in pixels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-rotation/">Vertical and positioned</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bar-datalabels-align-inside-bar/">Data labels inside the bar</a>
@@ -320,17 +382,17 @@ public class HIDataLabels extends HIFoundation {
 
 	public Number getX(){ return x; }
 
-	private Boolean /* boolean */ shadow;
+	private Number rotation;
 	/**
- The shadow of the box. Works best with borderWidth or backgroundColor. Since 2.3 the shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a>
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setShadow(Boolean /* boolean */ shadow) {
-		this.shadow = shadow;
+ Text rotation in degrees. Note that due to a more complex structure, backgrounds, borders and padding will be lost on a rotated data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-rotation/">Vertical labels</a>
+ <br><br><b>defaults:</b><br><br>&ensp;0	*/
+	public void setRotation(Number rotation) {
+		this.rotation = rotation;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean /* boolean */ getShadow(){ return shadow; }
+	public Number getRotation(){ return rotation; }
 
 	private String className;
 	/**
@@ -392,54 +454,6 @@ public class HIDataLabels extends HIFoundation {
 	}
 
 	public HITextPath getTextPath(){ return textPath; }
-
-	private Number yHigh;
-	/**
- Y offset of the higher data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
-	*/
-	public void setYHigh(Number yHigh) {
-		this.yHigh = yHigh;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getYHigh(){ return yHigh; }
-
-	private Number xHigh;
-	/**
- X offset of the higher data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
-	*/
-	public void setXHigh(Number xHigh) {
-		this.xHigh = xHigh;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getXHigh(){ return xHigh; }
-
-	private Number xLow;
-	/**
- X offset of the lower data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
-	*/
-	public void setXLow(Number xLow) {
-		this.xLow = xLow;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getXLow(){ return xLow; }
-
-	private Number yLow;
-	/**
- Y offset of the lower data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
-	*/
-	public void setYLow(Number yLow) {
-		this.yLow = yLow;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getYLow(){ return yLow; }
 
 	private String parentNodeFormat;
 	public void setParentNodeFormat(String parentNodeFormat) {
@@ -584,6 +598,18 @@ public class HIDataLabels extends HIFoundation {
 
 	public HILinkTextPath getLinkTextPath(){ return linkTextPath; }
 
+	private String crookDistance;
+	/**
+ Works only if connectorShape is 'crookedLine'. It defines how far from the vertical plot edge the coonnector path should be crooked. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-crookdistance/">crookDistance set to 90%</a>
+	*/
+	public void setCrookDistance(String crookDistance) {
+		this.crookDistance = crookDistance;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getCrookDistance(){ return crookDistance; }
+
 	private String alignTo;
 	/**
  Alignment method for data labels. Possible values are: - toPlotEdges: Each label touches the nearest vertical edge of  the plot area. - connectors: Connectors have the same x position and the  widest label of each half (left & right) touches the nearest  vertical edge of the plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-alignto-connectors/">alignTo: connectors</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-alignto-plotedges/">alignTo: plotEdges</a>
@@ -632,18 +658,6 @@ public class HIDataLabels extends HIFoundation {
 
 	public String getConnectorShape(){ return connectorShape; }
 
-	private String crookDistance;
-	/**
- Works only if connectorShape is 'crookedLine'. It defines how far from the vertical plot edge the coonnector path should be crooked. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-crookdistance/">crookDistance set to 90%</a>
-	*/
-	public void setCrookDistance(String crookDistance) {
-		this.crookDistance = crookDistance;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getCrookDistance(){ return crookDistance; }
-
 
 
 	public HIDataLabels() {
@@ -685,6 +699,18 @@ public HashMap<String, Object> getParams() {
 		if (this.y != null) {
 			params.put("y", this.y);
 		}
+		if (this.yHigh != null) {
+			params.put("yHigh", this.yHigh);
+		}
+		if (this.xHigh != null) {
+			params.put("xHigh", this.xHigh);
+		}
+		if (this.xLow != null) {
+			params.put("xLow", this.xLow);
+		}
+		if (this.yLow != null) {
+			params.put("yLow", this.yLow);
+		}
 		if (this.crop != null) {
 			params.put("crop", this.crop);
 		}
@@ -706,14 +732,11 @@ public HashMap<String, Object> getParams() {
 		if (this.borderRadius != null) {
 			params.put("borderRadius", this.borderRadius);
 		}
-		if (this.overflow != null) {
-			params.put("overflow", this.overflow);
-		}
 		if (this.shape != null) {
 			params.put("shape", this.shape);
 		}
-		if (this.rotation != null) {
-			params.put("rotation", this.rotation);
+		if (this.overflow != null) {
+			params.put("overflow", this.overflow);
 		}
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
@@ -727,17 +750,23 @@ public HashMap<String, Object> getParams() {
 		if (this.color != null) {
 			params.put("color", this.color.getData());
 		}
+		if (this.animation != null) {
+			params.put("animation", this.animation.getParams());
+		}
 		if (this.nullFormat != null) {
 			params.put("nullFormat", this.nullFormat);
 		}
 		if (this.padding != null) {
 			params.put("padding", this.padding);
 		}
+		if (this.shadow != null) {
+			params.put("shadow", this.shadow);
+		}
 		if (this.x != null) {
 			params.put("x", this.x);
 		}
-		if (this.shadow != null) {
-			params.put("shadow", this.shadow);
+		if (this.rotation != null) {
+			params.put("rotation", this.rotation);
 		}
 		if (this.className != null) {
 			params.put("className", this.className);
@@ -753,18 +782,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.textPath != null) {
 			params.put("textPath", this.textPath.getParams());
-		}
-		if (this.yHigh != null) {
-			params.put("yHigh", this.yHigh);
-		}
-		if (this.xHigh != null) {
-			params.put("xHigh", this.xHigh);
-		}
-		if (this.xLow != null) {
-			params.put("xLow", this.xLow);
-		}
-		if (this.yLow != null) {
-			params.put("yLow", this.yLow);
 		}
 		if (this.parentNodeFormat != null) {
 			params.put("parentNodeFormat", this.parentNodeFormat);
@@ -805,6 +822,9 @@ public HashMap<String, Object> getParams() {
 		if (this.linkTextPath != null) {
 			params.put("linkTextPath", this.linkTextPath.getParams());
 		}
+		if (this.crookDistance != null) {
+			params.put("crookDistance", this.crookDistance);
+		}
 		if (this.alignTo != null) {
 			params.put("alignTo", this.alignTo);
 		}
@@ -816,9 +836,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.connectorShape != null) {
 			params.put("connectorShape", this.connectorShape);
-		}
-		if (this.crookDistance != null) {
-			params.put("crookDistance", this.crookDistance);
 		}
 		return params;
 	}

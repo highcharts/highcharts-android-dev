@@ -29,30 +29,6 @@ public class HICsv extends HIFoundation {
 
 	public HIFunction getColumnHeaderFormatter(){ return columnHeaderFormatter; }
 
-	private String decimalPoint;
-	/**
- Which decimal point to use for exported CSV. Defaults to the same as the browser locale, typically . (English) or , (German, French etc). 
-	*/
-	public void setDecimalPoint(String decimalPoint) {
-		this.decimalPoint = decimalPoint;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getDecimalPoint(){ return decimalPoint; }
-
-	private String lineDelimiter;
-	/**
- The line delimiter in the exported data, defaultss to a newline. 
-	*/
-	public void setLineDelimiter(String lineDelimiter) {
-		this.lineDelimiter = lineDelimiter;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getLineDelimiter(){ return lineDelimiter; }
-
 	private String itemDelimiter;
 	/**
  The item delimiter in the exported data. Use ; for direct exporting to Excel. Defaults to a best guess based on the browser locale. If the locale _decimal point_ is ,, the itemDelimiter defaultss to ;, otherwise the itemDelimiter defaultss to ,. 
@@ -77,6 +53,43 @@ public class HICsv extends HIFoundation {
 
 	public String getDateFormat(){ return dateFormat; }
 
+	private String lineDelimiter;
+	/**
+ The line delimiter in the exported data, defaultss to a newline. 
+	*/
+	public void setLineDelimiter(String lineDelimiter) {
+		this.lineDelimiter = lineDelimiter;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getLineDelimiter(){ return lineDelimiter; }
+
+	private String decimalPoint;
+	/**
+ Which decimal point to use for exported CSV. Defaults to the same as the browser locale, typically . (English) or , (German, French etc). 
+	*/
+	public void setDecimalPoint(String decimalPoint) {
+		this.decimalPoint = decimalPoint;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDecimalPoint(){ return decimalPoint; }
+
+	private HIAnnotations annotations;
+	/**
+ Options for annotations in the export-data table. 
+	*/
+	public void setAnnotations(HIAnnotations annotations) {
+		this.annotations = annotations;
+		this.annotations.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAnnotations getAnnotations(){ return annotations; }
+
 
 
 	public HICsv() {
@@ -91,17 +104,20 @@ public HashMap<String, Object> getParams() {
 		if (this.columnHeaderFormatter != null) {
 			params.put("columnHeaderFormatter", this.columnHeaderFormatter);
 		}
-		if (this.decimalPoint != null) {
-			params.put("decimalPoint", this.decimalPoint);
-		}
-		if (this.lineDelimiter != null) {
-			params.put("lineDelimiter", this.lineDelimiter);
-		}
 		if (this.itemDelimiter != null) {
 			params.put("itemDelimiter", this.itemDelimiter);
 		}
 		if (this.dateFormat != null) {
 			params.put("dateFormat", this.dateFormat);
+		}
+		if (this.lineDelimiter != null) {
+			params.put("lineDelimiter", this.lineDelimiter);
+		}
+		if (this.decimalPoint != null) {
+			params.put("decimalPoint", this.decimalPoint);
+		}
+		if (this.annotations != null) {
+			params.put("annotations", this.annotations.getParams());
 		}
 		return params;
 	}

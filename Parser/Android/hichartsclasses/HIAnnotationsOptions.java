@@ -129,6 +129,18 @@ public class HIAnnotationsOptions extends HIFoundation {
 
 	public String getDraggable(){ return draggable; }
 
+	private HIAnimationOptionsObject animation;
+	/**
+ Enable or disable the initial animation when a series is displayed for the annotation. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation. For other animations, see chart.animation and the animation parameter under the API methods. The following properties are supported: - defer: The animation delay time in milliseconds. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/defer/">Animation defer settings</a>
+	*/
+	public void setAnimation(HIAnimationOptionsObject animation) {
+		this.animation = animation;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAnimationOptionsObject getAnimation(){ return animation; }
+
 	private HIEvents events;
 	/**
  Events available in annotations. 
@@ -197,6 +209,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.draggable != null) {
 			params.put("draggable", this.draggable);
+		}
+		if (this.animation != null) {
+			params.put("animation", this.animation.getParams());
 		}
 		if (this.events != null) {
 			params.put("events", this.events.getParams());

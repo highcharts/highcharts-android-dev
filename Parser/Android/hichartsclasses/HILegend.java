@@ -179,7 +179,7 @@ public class HILegend extends HIFoundation {
 
 	private Object /* Number, String */ width;
 	/**
- The width of the legend box. If a number is set, it translates to pixels. Since v7.0.2 it allows setting a percent string of the full chart width, for example 40%. Defaults to the full chart width from legends below or above the chart, half the chart width for legends to the left and right. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/width/">Aligned to the plot area</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/width-percent/">A percent of the chart width</a>
+ The width of the legend box. If a number is set, it translates to pixels. Since v7.0.2 it allows setting a percent string of the full chart width, for example 40%. Defaults to the full chart width for legends below or above the chart, half the chart width for legends to the left and right. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/width/">Aligned to the plot area</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/width-percent/">A percent of the chart width</a>
 	*/
 	public void setWidth(Object /* Number, String */ width) {
 		this.width = width;

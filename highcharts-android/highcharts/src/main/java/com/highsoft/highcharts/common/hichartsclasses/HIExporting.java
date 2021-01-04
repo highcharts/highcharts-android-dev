@@ -176,17 +176,17 @@ public class HIExporting extends HIFoundation {
 
 	public Object /* boolean, String */ getTableCaption(){ return tableCaption; }
 
-	private HISVGAttributes formAttributes;
+	private HashMap<String, Object> formAttributes;
 	/**
  An object containing additional key value data for the POST form that sends the SVG to the export server. For example, a target can be set to make sure the generated image is received in another frame, or a custom enctype or encoding can be set. 
 	*/
-	public void setFormAttributes(HISVGAttributes formAttributes) {
+	public void setFormAttributes(HashMap<String, Object> formAttributes) {
 		this.formAttributes = formAttributes;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HISVGAttributes getFormAttributes(){ return formAttributes; }
+	public HashMap<String, Object> getFormAttributes(){ return formAttributes; }
 
 	private Boolean useMultiLevelHeaders;
 	/**
@@ -374,7 +374,7 @@ public HashMap<String, Object> getParams() {
 			params.put("tableCaption", this.tableCaption);
 		}
 		if (this.formAttributes != null) {
-			params.put("formAttributes", this.formAttributes.getParams());
+			params.put("formAttributes", this.formAttributes);
 		}
 		if (this.useMultiLevelHeaders != null) {
 			params.put("useMultiLevelHeaders", this.useMultiLevelHeaders);

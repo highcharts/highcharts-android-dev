@@ -129,6 +129,18 @@ public class HIAnnotations extends HIFoundation {
 
 	public String getDraggable(){ return draggable; }
 
+	private HIAnimationOptionsObject animation;
+	/**
+ Enable or disable the initial animation when a series is displayed for the annotation. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation. For other animations, see chart.animation and the animation parameter under the API methods. The following properties are supported: - defer: The animation delay time in milliseconds. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/defer/">Animation defer settings</a>
+	*/
+	public void setAnimation(HIAnimationOptionsObject animation) {
+		this.animation = animation;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAnimationOptionsObject getAnimation(){ return animation; }
+
 	private HIEvents events;
 	/**
  Events available in annotations. 
@@ -177,6 +189,30 @@ public class HIAnnotations extends HIFoundation {
 	}
 
 	public String getHeading(){ return heading; }
+
+	private String itemDelimiter;
+	/**
+ The way to mark the separator for annotations combined in one export-data table cell. 
+	*/
+	public void setItemDelimiter(String itemDelimiter) {
+		this.itemDelimiter = itemDelimiter;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getItemDelimiter(){ return itemDelimiter; }
+
+	private Boolean join;
+	/**
+ When several labels are assigned to a specific point, they will be displayed in one field in the table. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/join-annotations/">Concatenate point annotations with itemDelimiter set.</a>
+	*/
+	public void setJoin(Boolean join) {
+		this.join = join;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getJoin(){ return join; }
 
 
 
@@ -234,6 +270,9 @@ public HashMap<String, Object> getParams() {
 		if (this.draggable != null) {
 			params.put("draggable", this.draggable);
 		}
+		if (this.animation != null) {
+			params.put("animation", this.animation.getParams());
+		}
 		if (this.events != null) {
 			params.put("events", this.events.getParams());
 		}
@@ -248,6 +287,12 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.heading != null) {
 			params.put("heading", this.heading);
+		}
+		if (this.itemDelimiter != null) {
+			params.put("itemDelimiter", this.itemDelimiter);
+		}
+		if (this.join != null) {
+			params.put("join", this.join);
 		}
 		return params;
 	}

@@ -16,17 +16,17 @@ import java.util.HashMap;
 
 public class HIPatternObject extends HIFoundation { 
 
-	private HIAnimationOptionsObject animation;
+	private Boolean animation;
 	/**
  Animation options for the image pattern loading. 
 	*/
-	public void setAnimation(HIAnimationOptionsObject animation) {
+	public void setAnimation(Boolean animation) {
 		this.animation = animation;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIAnimationOptionsObject getAnimation(){ return animation; }
+	public Boolean getAnimation(){ return animation; }
 
 	private HIPatternOptionsObject pattern;
 	/**
@@ -64,7 +64,7 @@ public HashMap<String, Object> getParams() {
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
 		if (this.animation != null) {
-			params.put("animation", this.animation.getParams());
+			params.put("animation", this.animation);
 		}
 		if (this.pattern != null) {
 			params.put("pattern", this.pattern.getParams());

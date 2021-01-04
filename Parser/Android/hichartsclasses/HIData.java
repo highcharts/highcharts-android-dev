@@ -747,7 +747,7 @@ public class HIData extends HIFoundation {
 
 	private Number pointWidth;
 	/**
- A pixel value specifying a fixed width for the column or bar. Overrides pointWidth on the series. 
+ A pixel value specifying a fixed width for the column or bar. Overrides pointWidth on the series. The width effects the dimension that is not based on the point value. 
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setPointWidth(Number pointWidth) {
 		this.pointWidth = pointWidth;

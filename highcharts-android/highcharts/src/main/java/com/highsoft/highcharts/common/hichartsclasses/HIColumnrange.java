@@ -21,18 +21,6 @@ import java.util.HashMap;
 	*/
 
 public class HIColumnrange extends HISeries {
-	private Object pointRange;
-	/**
-/** * description: The X axis range that each point is valid for. This determines the width of the column. On a categorized axis, the range will be 1 by defaults (one category unit). On linear and datetime axes, the range will be computed as the distance between the two closest data points. The defaults null means it is computed automatically, but this option can be used to override the automatic value. This option is set by defaults to 1 if data sorting is enabled. * demo:  •  Set the point range to one day on a data set with one week between the points
-*/
-	public void setPointRange(Object pointRange) {
-		this.pointRange = pointRange;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object getPointRange(){ return pointRange; }
-
 	private Number pointPadding;
 	/**
  Padding between each column or bar, in x axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-defaults/">0.1 by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-025/">0.25</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-none/">0 for tightly packed columns</a>
@@ -56,6 +44,18 @@ public class HIColumnrange extends HISeries {
 	}
 
 	public Number getBorderRadius(){ return borderRadius; }
+
+	private Number pointRange;
+	/**
+ The X axis range that each point is valid for. This determines the width of the column. On a categorized axis, the range will be 1 by defaults (one category unit). On linear and datetime axes, the range will be computed as the distance between the two closest data points. The defaults null means it is computed automatically, but this option can be used to override the automatic value. This option is set by defaults to 1 if data sorting is enabled. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointrange/">Set the point range to one day on a data set with one week between the points</a>
+	*/
+	public void setPointRange(Number pointRange) {
+		this.pointRange = pointRange;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPointRange(){ return pointRange; }
 
 	private Number minPointLength;
 	/**
@@ -143,7 +143,7 @@ public class HIColumnrange extends HISeries {
 
 	private Number pointWidth;
 	/**
- A pixel value specifying a fixed width for each column or bar. When null, the width is calculated from the pointPadding and groupPadding. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointwidth-20/">20px wide columns regardless of chart width or the amount of data points</a>
+ A pixel value specifying a fixed width for each column or bar point. When null, the width is calculated from the pointPadding and groupPadding. The width effects the dimension that is not based on the point value. For column series it is the hoizontal length and for bar series it is the vertical length. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointwidth-20/">20px wide columns regardless of chart width or the amount of data points</a>
 	*/
 	public void setPointWidth(Number pointWidth) {
 		this.pointWidth = pointWidth;
@@ -237,14 +237,14 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
-		if (this.pointRange != null) {
-			params.put("pointRange", this.pointRange);
-		}
 		if (this.pointPadding != null) {
 			params.put("pointPadding", this.pointPadding);
 		}
 		if (this.borderRadius != null) {
 			params.put("borderRadius", this.borderRadius);
+		}
+		if (this.pointRange != null) {
+			params.put("pointRange", this.pointRange);
 		}
 		if (this.minPointLength != null) {
 			params.put("minPointLength", this.minPointLength);

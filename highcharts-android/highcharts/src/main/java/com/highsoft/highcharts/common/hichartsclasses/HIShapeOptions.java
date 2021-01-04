@@ -116,7 +116,7 @@ public class HIShapeOptions extends HIFoundation {
 	private String type;
 	/**
  The type of the shape, e.g. circle or rectangle. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
- <br><br><b>defaults:</b><br><br>&ensp;'rect'	*/
+ <br><br><b>defaults:</b><br><br>&ensp;rect	*/
 	public void setType(String type) {
 		this.type = type;
 		this.setChanged();

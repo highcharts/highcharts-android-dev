@@ -105,17 +105,17 @@ public class HIYAxis extends HIFoundation {
 
 	public ArrayList getPlotBands(){ return plotBands; }
 
-	private ArrayList<HIGradientColorStopObject> stops;
+	private ArrayList stops;
 	/**
  Solid gauge series only. Color stops for the solid gauge. Use this in cases where a linear gradient between a minColor and maxColor is not sufficient. The stops is an array of tuples, where the first item is a float between 0 and 1 assigning the relative position in the gradient, and the second item is the color. For solid gauges, the Y axis also inherits the concept of [data classes](https://api.highcharts.com/highmaps#colorAxis.dataClasses) from the Highmaps color axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-solid/">True by defaults</a>
 	*/
-	public void setStops(ArrayList<HIGradientColorStopObject> stops) {
+	public void setStops(ArrayList stops) {
 		this.stops = stops;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<HIGradientColorStopObject> getStops(){ return stops; }
+	public ArrayList getStops(){ return stops; }
 
 	private Boolean endOnTick;
 	/**
@@ -378,18 +378,6 @@ public class HIYAxis extends HIFoundation {
 	}
 
 	public Object /* Number, String */ getTop(){ return top; }
-
-	private Boolean zoomEnabled;
-	/**
- Whether to zoom axis. If chart.zoomType is set, the option allows to disable zooming on an individual axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/zoomenabled/">Zoom enabled is false</a>
- <br><br><b>defaults:</b><br><br>&ensp;enabled	*/
-	public void setZoomEnabled(Boolean zoomEnabled) {
-		this.zoomEnabled = zoomEnabled;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getZoomEnabled(){ return zoomEnabled; }
 
 	private HIColor minorTickColor;
 	/**
@@ -680,6 +668,18 @@ public class HIYAxis extends HIFoundation {
 
 	public Number getTickLength(){ return tickLength; }
 
+	private Boolean zoomEnabled;
+	/**
+ Whether to zoom axis. If chart.zoomType is set, the option allows to disable zooming on an individual axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/zoomenabled/">Zoom enabled is false</a>
+ <br><br><b>defaults:</b><br><br>&ensp;enabled	*/
+	public void setZoomEnabled(Boolean zoomEnabled) {
+		this.zoomEnabled = zoomEnabled;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getZoomEnabled(){ return zoomEnabled; }
+
 	private Number ceiling;
 	/**
  The highest allowed value for automatically computed axis extremes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/floor-ceiling/">Floor and ceiling</a>
@@ -742,7 +742,7 @@ public class HIYAxis extends HIFoundation {
 
 	private HIDateTimeLabelFormats dateTimeLabelFormats;
 	/**
- For a datetime axis, the scale will automatically adjust to the appropriate unit. This member gives the defaults string representations used for each unit. For intermediate values, different units may be used, for example the day unit can be used on midnight and hour unit be used for intermediate values on the same axis. For an overview of the replacement codes, see `dateFormat`. Defaults to: `js {   millisecond: '%H:%M:%S.%L',   second: '%H:%M:%S',   minute: '%H:%M',   hour: '%H:%M',   day: '%e. %b',   week: '%e. %b',   month: '%b \'%y',   year: '%Y' } ` <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/datetimelabelformats/">Different day format on X axis</a>
+ For a datetime axis, the scale will automatically adjust to the appropriate unit. This member gives the defaults string representations used for each unit. For intermediate values, different units may be used, for example the day unit can be used on midnight and hour unit be used for intermediate values on the same axis. For an overview of the replacement codes, see `dateFormat`. Defaults to: `js {   millisecond: '%H:%M:%S.%L',   second: '%H:%M:%S',   minute: '%H:%M',   hour: '%H:%M',   day: '%e. %b',   week: '%e. %b',   month: '%b \'%y',   year: '%Y' } ` 
 	*/
 	public void setDateTimeLabelFormats(HIDateTimeLabelFormats dateTimeLabelFormats) {
 		this.dateTimeLabelFormats = dateTimeLabelFormats;
@@ -1108,9 +1108,6 @@ public HashMap<String, Object> getParams() {
 		if (this.top != null) {
 			params.put("top", this.top);
 		}
-		if (this.zoomEnabled != null) {
-			params.put("zoomEnabled", this.zoomEnabled);
-		}
 		if (this.minorTickColor != null) {
 			params.put("minorTickColor", this.minorTickColor.getData());
 		}
@@ -1200,6 +1197,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.tickLength != null) {
 			params.put("tickLength", this.tickLength);
+		}
+		if (this.zoomEnabled != null) {
+			params.put("zoomEnabled", this.zoomEnabled);
 		}
 		if (this.ceiling != null) {
 			params.put("ceiling", this.ceiling);

@@ -363,7 +363,10 @@ hc_types = {
         #8.1.1
         "Array.<Array.<Highcharts.SVGPathCommand, number?, number?, number?, number?, number?, number?, number?>>": 'ArrayList',
         "string|Array.<Array.<string, number?, number?, number?, number?, number?, number?, number?>>|undefined": 'ArrayList',
-        "Highcharts.FormatterCallbackFunction.<Series>": 'HIFunction'
+        "Highcharts.FormatterCallbackFunction.<Series>": 'HIFunction',
+		#8.2.0
+        "string|Array.<(Array.<string>|Array.<string, number>|Array.<string, number, number>|Array.<string, number, number, number, number>|Array.<string, number, number, number, number, number, number>|Array.<string, number, number, number, number, number, number, number>)>|undefined": 'ArrayList /* <String, Number> */',
+        "Array.<Array.<number, string|Highcharts.GradientColorObject|Highcharts.PatternObject>>": 'ArrayList'
 }
 
 

@@ -22,6 +22,31 @@ import com.highsoft.highcharts.common.HIColor;
 	*/
 
 public class HIAreasplinerange extends HISeries {
+	private HIColor fillColor;
+	/**
+/** * description: Fill color or gradient for the area. When null, the series' color is used with the series' fillOpacity. In styled mode, the fill color can be set with the .highcharts-area class name. * demo:  •  Null by defaults •  Gradient
+*/
+	public void setFillColor(HIColor fillColor) {
+		this.fillColor = fillColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getFillColor(){ return fillColor; }
+
+	private Number fillOpacity;
+	/**
+/** * description: Fill opacity for the area. When you set an explicit fillColor, the fillOpacity is not applied. Instead, you should define the opacity in the fillColor with an rgba color definition. The fillOpacity setting, also the defaults setting, overrides the alpha component of the color setting. In styled mode, the fill opacity can be set with the .highcharts-area class name. * demo:  •  Automatic fill color and fill opacity of 0.1
+* defaults: 0.75
+*/
+	public void setFillOpacity(Number fillOpacity) {
+		this.fillOpacity = fillOpacity;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getFillOpacity(){ return fillOpacity; }
+
 	private Boolean trackByArea;
 	/**
 /** * description: Whether the whole area or just the line should respond to mouseover tooltips and other mouse or touch events. * demo:  •  Display the tooltip when the area is hovered
@@ -47,18 +72,6 @@ public class HIAreasplinerange extends HISeries {
 
 	public HIColor getNegativeFillColor(){ return negativeFillColor; }
 
-	private HIColor fillColor;
-	/**
- Fill color or gradient for the area. When null, the series' color is used with the series' fillOpacity. In styled mode, the fill color can be set with the .highcharts-area class name. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-fillcolor-defaults/">Null by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-fillcolor-gradient/">Gradient</a>
-	*/
-	public void setFillColor(HIColor fillColor) {
-		this.fillColor = fillColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getFillColor(){ return fillColor; }
-
 	private HIColor lineColor;
 	/**
  A separate color for the graph line. By defaults the line takes the color of the series, but the lineColor setting allows setting a separate color for the line without altering the fillColor. In styled mode, the line stroke can be set with the .highcharts-graph class name. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-linecolor/">Dark gray line</a>
@@ -70,18 +83,6 @@ public class HIAreasplinerange extends HISeries {
 	}
 
 	public HIColor getLineColor(){ return lineColor; }
-
-	private Number fillOpacity;
-	/**
- Fill opacity for the area. When you set an explicit fillColor, the fillOpacity is not applied. Instead, you should define the opacity in the fillColor with an rgba color definition. The fillOpacity setting, also the defaults setting, overrides the alpha component of the color setting. In styled mode, the fill opacity can be set with the .highcharts-area class name. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-fillopacity/">Automatic fill color and fill opacity of 0.1</a>
- <br><br><b>defaults:</b><br><br>&ensp;0.75	*/
-	public void setFillOpacity(Number fillOpacity) {
-		this.fillOpacity = fillOpacity;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getFillOpacity(){ return fillOpacity; }
 
 
 
@@ -95,20 +96,20 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
+		if (this.fillColor != null) {
+			params.put("fillColor", this.fillColor.getData());
+		}
+		if (this.fillOpacity != null) {
+			params.put("fillOpacity", this.fillOpacity);
+		}
 		if (this.trackByArea != null) {
 			params.put("trackByArea", this.trackByArea);
 		}
 		if (this.negativeFillColor != null) {
 			params.put("negativeFillColor", this.negativeFillColor.getData());
 		}
-		if (this.fillColor != null) {
-			params.put("fillColor", this.fillColor.getData());
-		}
 		if (this.lineColor != null) {
 			params.put("lineColor", this.lineColor.getData());
-		}
-		if (this.fillOpacity != null) {
-			params.put("fillOpacity", this.fillOpacity);
 		}
 		return params;
 	}

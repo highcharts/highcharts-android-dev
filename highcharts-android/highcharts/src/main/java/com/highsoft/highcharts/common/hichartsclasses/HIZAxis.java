@@ -20,19 +20,8 @@ import java.util.List;
 import java.util.Map;
 
 
-public class HIZAxis extends HIFoundation {
 
-	private Boolean zoomEnabled;
-	/**
- Whether to zoom axis. If chart.zoomType is set, the option allows to disable zooming on an individual axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/zoomenabled/">Zoom enabled is false</a>
- <br><br><b>defaults:</b><br><br>&ensp;enabled	*/
-	public void setZoomEnabled(Boolean zoomEnabled) {
-		this.zoomEnabled = zoomEnabled;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getZoomEnabled(){ return zoomEnabled; }
+public class HIZAxis extends HIFoundation { 
 
 	private HIColor minorTickColor;
 	/**
@@ -420,6 +409,18 @@ public class HIZAxis extends HIFoundation {
 
 	public Number getTickLength(){ return tickLength; }
 
+	private Boolean zoomEnabled;
+	/**
+ Whether to zoom axis. If chart.zoomType is set, the option allows to disable zooming on an individual axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/zoomenabled/">Zoom enabled is false</a>
+ <br><br><b>defaults:</b><br><br>&ensp;enabled	*/
+	public void setZoomEnabled(Boolean zoomEnabled) {
+		this.zoomEnabled = zoomEnabled;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getZoomEnabled(){ return zoomEnabled; }
+
 	private Number ceiling;
 	/**
  The highest allowed value for automatically computed axis extremes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/floor-ceiling/">Floor and ceiling</a>
@@ -447,7 +448,7 @@ public class HIZAxis extends HIFoundation {
 	private Boolean opposite;
 	/**
  Whether to display the axis on the opposite side of the normal. The normal is on the left side for vertical axes and bottom for horizontal, so the opposite sides will be right and top respectively. This is typically used with dual or multiple axes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/opposite/">Secondary Y axis opposite</a>
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	*/
 	public void setOpposite(Boolean opposite) {
 		this.opposite = opposite;
 		this.setChanged();
@@ -482,7 +483,7 @@ public class HIZAxis extends HIFoundation {
 
 	private HIDateTimeLabelFormats dateTimeLabelFormats;
 	/**
- For a datetime axis, the scale will automatically adjust to the appropriate unit. This member gives the defaults string representations used for each unit. For intermediate values, different units may be used, for example the day unit can be used on midnight and hour unit be used for intermediate values on the same axis. For an overview of the replacement codes, see `dateFormat`. Defaults to: `js {   millisecond: '%H:%M:%S.%L',   second: '%H:%M:%S',   minute: '%H:%M',   hour: '%H:%M',   day: '%e. %b',   week: '%e. %b',   month: '%b \'%y',   year: '%Y' } ` <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/datetimelabelformats/">Different day format on X axis</a>
+ For a datetime axis, the scale will automatically adjust to the appropriate unit. This member gives the defaults string representations used for each unit. For intermediate values, different units may be used, for example the day unit can be used on midnight and hour unit be used for intermediate values on the same axis. For an overview of the replacement codes, see `dateFormat`. Defaults to: `js {   millisecond: '%H:%M:%S.%L',   second: '%H:%M:%S',   minute: '%H:%M',   hour: '%H:%M',   day: '%e. %b',   week: '%e. %b',   month: '%b \'%y',   year: '%Y' } ` 
 	*/
 	public void setDateTimeLabelFormats(HIDateTimeLabelFormats dateTimeLabelFormats) {
 		this.dateTimeLabelFormats = dateTimeLabelFormats;
@@ -1195,6 +1196,7 @@ public class HIZAxis extends HIFoundation {
 		this.notifyObservers(jsClassMethod);
 	}
 
+
 	public HIZAxis() {
 
 	}
@@ -1204,9 +1206,6 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.zoomEnabled != null) {
-			params.put("zoomEnabled", this.zoomEnabled);
-		}
 		if (this.minorTickColor != null) {
 			params.put("minorTickColor", this.minorTickColor.getData());
 		}
@@ -1329,6 +1328,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.tickLength != null) {
 			params.put("tickLength", this.tickLength);
+		}
+		if (this.zoomEnabled != null) {
+			params.put("zoomEnabled", this.zoomEnabled);
 		}
 		if (this.ceiling != null) {
 			params.put("ceiling", this.ceiling);

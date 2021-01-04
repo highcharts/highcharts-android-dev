@@ -1,40 +1,22 @@
 package com.highsoft.devground;
 
 import android.os.Bundle;
-import android.support.annotation.ArrayRes;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.common.hichartsclasses.HICSSObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIChart;
-import com.highsoft.highcharts.common.hichartsclasses.HIColumn;
 import com.highsoft.highcharts.common.hichartsclasses.HIDataLabels;
-import com.highsoft.highcharts.common.hichartsclasses.HIEvents;
-import com.highsoft.highcharts.common.hichartsclasses.HILabels;
-import com.highsoft.highcharts.common.hichartsclasses.HILine;
-import com.highsoft.highcharts.common.hichartsclasses.HINetworkgraph;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
 import com.highsoft.highcharts.common.hichartsclasses.HIPie;
 import com.highsoft.highcharts.common.hichartsclasses.HIPlotOptions;
-import com.highsoft.highcharts.common.hichartsclasses.HISeries;
-import com.highsoft.highcharts.common.hichartsclasses.HISpline;
-import com.highsoft.highcharts.common.hichartsclasses.HIStyle;
 import com.highsoft.highcharts.common.hichartsclasses.HITitle;
 import com.highsoft.highcharts.common.hichartsclasses.HITooltip;
-import com.highsoft.highcharts.common.hichartsclasses.HIXAxis;
-import com.highsoft.highcharts.common.hichartsclasses.HIYAxis;
 import com.highsoft.highcharts.core.HIChartView;
-import com.highsoft.highcharts.core.HIFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
 

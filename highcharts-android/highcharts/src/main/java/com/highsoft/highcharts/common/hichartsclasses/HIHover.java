@@ -234,18 +234,6 @@ public class HIHover extends HIFoundation {
 
 	public HIColor getColor(){ return color; }
 
-	private Number connectorWidthPlus;
-	/**
- The additional connector line width for a hovered point. 
-	*/
-	public void setConnectorWidthPlus(Number connectorWidthPlus) {
-		this.connectorWidthPlus = connectorWidthPlus;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getConnectorWidthPlus(){ return connectorWidthPlus; }
-
 
 
 	public HIHover() {
@@ -313,9 +301,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.color != null) {
 			params.put("color", this.color.getData());
-		}
-		if (this.connectorWidthPlus != null) {
-			params.put("connectorWidthPlus", this.connectorWidthPlus);
 		}
 		return params;
 	}

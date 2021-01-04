@@ -20,7 +20,7 @@ public class HIBubbleLegend extends HIFoundation {
 
 	private HIColor borderColor;
 	/**
- The color of the ranges borders, can be also defined for an individual range. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/similartoseries/">Similat look to the bubble series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/bordercolor/">Individual bubble border color</a>
+ The color of the ranges borders, can be also defined for an individual range. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/similartoseries/">Similar look to the bubble series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/bordercolor/">Individual bubble border color</a>
 	*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
@@ -92,7 +92,7 @@ public class HIBubbleLegend extends HIFoundation {
 
 	private HIColor color;
 	/**
- The main color of the bubble legend. Applies to ranges, if individual color is not defined. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/similartoseries/">Similat look to the bubble series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/color/">Individual bubble color</a>
+ The main color of the bubble legend. Applies to ranges, if individual color is not defined. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/similartoseries/">Similar look to the bubble series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/color/">Individual bubble color</a>
 	*/
 	public void setColor(HIColor color) {
 		this.color = color;

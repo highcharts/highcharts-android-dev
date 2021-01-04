@@ -56,18 +56,6 @@ public class HIChart extends HIFoundation {
 
 	public Number getSpacingBottom(){ return spacingBottom; }
 
-	private Boolean /* boolean */ plotShadow;
-	/**
- Whether to apply a drop shadow to the plot area. Requires that plotBackgroundColor be set. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/plotshadow/">Plot shadow</a>
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setPlotShadow(Boolean /* boolean */ plotShadow) {
-		this.plotShadow = plotShadow;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean /* boolean */ getPlotShadow(){ return plotShadow; }
-
 	private Object /* Number, String */ height;
 	/**
  An explicit height for the chart. If a _number_, the height is given in pixels. If given a _percentage string_ (for example '56%'), the height is given as the percentage of the actual chart width. This allows for preserving the aspect ratio across responsive sizes. By defaults (when null) the height is calculated from the offset height of the containing element, or 400 pixels if the containing element's height is 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/height/">500px height</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/height-percent/">Highcharts with percentage height</a>
@@ -199,6 +187,18 @@ public class HIChart extends HIFoundation {
 	}
 
 	public Boolean getReflow(){ return reflow; }
+
+	private Boolean /* boolean */ plotShadow;
+	/**
+ Whether to apply a drop shadow to the plot area. Requires that plotBackgroundColor be set. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/plotshadow/">Plot shadow</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setPlotShadow(Boolean /* boolean */ plotShadow) {
+		this.plotShadow = plotShadow;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean /* boolean */ getPlotShadow(){ return plotShadow; }
 
 	private String zoomType;
 	/**
@@ -422,7 +422,7 @@ public class HIChart extends HIFoundation {
 
 	private HIAnimationOptionsObject animation;
 	/**
- Set the overall animation for all chart updating. Animation can be disabled throughout the chart by setting it to false here. It can be overridden for each individual API method as a function parameter. The only animation not affected by this option is the initial series animation, see plotOptions.series.animation. The animation can either be set as a boolean or a configuration object. If true, it will use the 'swing' jQuery easing and a duration of 500 ms. If used as a configuration object, the following properties are supported: - **duration**: The duration of the animation in milliseconds. - **easing**: A string reference to an easing function set on the  Math object. See  [the easing demo](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/). When zooming on a series with less than 100 points, the chart redraw will be done with animation, but in case of more data points, it is necessary to set this option to ensure animation on zoom. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-none/">Updating with no animation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-duration/">With a longer duration</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-easing/">With a jQuery UI easing</a>
+ Set the overall animation for all chart updating. Animation can be disabled throughout the chart by setting it to false here. It can be overridden for each individual API method as a function parameter. The only animation not affected by this option is the initial series animation, see plotOptions.series.animation. The animation can either be set as a boolean or a configuration object. If true, it will use the 'swing' jQuery easing and a duration of 500 ms. If used as a configuration object, the following properties are supported: - defer: The animation delay time in milliseconds. - duration: The duration of the animation in milliseconds. - easing: A string reference to an easing function set on the  Math object. See  [the easing demo](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/). When zooming on a series with less than 100 points, the chart redraw will be done with animation, but in case of more data points, it is necessary to set this option to ensure animation on zoom. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-none/">Updating with no animation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-duration/">With a longer duration</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/animation-easing/">With a jQuery UI easing</a>
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
@@ -633,9 +633,6 @@ public HashMap<String, Object> getParams() {
 		if (this.spacingBottom != null) {
 			params.put("spacingBottom", this.spacingBottom);
 		}
-		if (this.plotShadow != null) {
-			params.put("plotShadow", this.plotShadow);
-		}
 		if (this.height != null) {
 			params.put("height", this.height);
 		}
@@ -668,6 +665,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.reflow != null) {
 			params.put("reflow", this.reflow);
+		}
+		if (this.plotShadow != null) {
+			params.put("plotShadow", this.plotShadow);
 		}
 		if (this.zoomType != null) {
 			params.put("zoomType", this.zoomType);

@@ -12,7 +12,10 @@ import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.core.HIFunction;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 
 
@@ -178,7 +181,7 @@ public class HILegend extends HIFoundation {
 
 	private Object /* Number, String */ width;
 	/**
- The width of the legend box. If a number is set, it translates to pixels. Since v7.0.2 it allows setting a percent string of the full chart width, for example 40%. Defaults to the full chart width from legends below or above the chart, half the chart width for legends to the left and right. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/width/">Aligned to the plot area</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/width-percent/">A percent of the chart width</a>
+ The width of the legend box. If a number is set, it translates to pixels. Since v7.0.2 it allows setting a percent string of the full chart width, for example 40%. Defaults to the full chart width for legends below or above the chart, half the chart width for legends to the left and right. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/width/">Aligned to the plot area</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/width-percent/">A percent of the chart width</a>
 	*/
 	public void setWidth(Object /* Number, String */ width) {
 		this.width = width;
@@ -508,6 +511,71 @@ public class HILegend extends HIFoundation {
 
 	public String getLegendItem(){ return legendItem; }
 
+
+	/**
+	 * Set the legend item text.
+	 * @param item The item for which to update the text in the legend.
+	 */
+	public void setPointText(HIPoint item){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Legend");
+			put("method", "setText");
+			put("id", uuid);
+			put("params", Collections.singletonList(item));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Set the legend item text.
+	 * @param item The item for which to update the text in the legend.
+	 */
+	public void setSeriesText(HISeries item){
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Legend");
+			put("method", "setText");
+			put("id", uuid);
+			put("params", Collections.singletonList(item));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Update the legend with new options. Equivalent to running chart.update with a legend configuration option.
+	 * @param options Legend options.
+	 */
+	public void update(HILegend options){
+		Map<String, Object> params = options.getParams();
+		params.remove("_wrapperID");
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Legend");
+			put("method", "update0");
+			put("id", uuid);
+			put("params", Collections.singletonList(params));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
+
+	/**
+	 * Update the legend with new options. Equivalent to running chart.update with a legend configuration option.
+	 * @param options Legend options.
+	 * @param redraw Whether to redraw the chart after the axis is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call HIChartView redraw() after. Whether to redraw the chart.
+	 */
+	public void update(HILegend options, boolean redraw){
+		Map<String, Object> params = options.getParams();
+		params.remove("_wrapperID");
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "Legend");
+			put("method", "update1");
+			put("id", uuid);
+			put("params", Arrays.asList(params, redraw));
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
+	}
 
 
 	public HILegend() {
