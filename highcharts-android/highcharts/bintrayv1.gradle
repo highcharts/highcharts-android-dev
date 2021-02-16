@@ -21,7 +21,7 @@ bintray {
         publish = false
         publicDownloadNumbers = true
         version {
-            desc = 'Highcharts v8.2.2 release'
+            desc = 'Highcharts v9.0.1 release'
         }
     }
 }

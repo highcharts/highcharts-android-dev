@@ -16,23 +16,23 @@ import java.util.HashMap;
 
 public class HIDefs extends HIFoundation { 
 
-	private HISVGDefinitionObject reverseArrow;
-	public void setReverseArrow(HISVGDefinitionObject reverseArrow) {
+	private HIASTNode reverseArrow;
+	public void setReverseArrow(HIASTNode reverseArrow) {
 		this.reverseArrow = reverseArrow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HISVGDefinitionObject getReverseArrow(){ return reverseArrow; }
+	public HIASTNode getReverseArrow(){ return reverseArrow; }
 
-	private HISVGDefinitionObject arrow;
-	public void setArrow(HISVGDefinitionObject arrow) {
+	private HIASTNode arrow;
+	public void setArrow(HIASTNode arrow) {
 		this.arrow = arrow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HISVGDefinitionObject getArrow(){ return arrow; }
+	public HIASTNode getArrow(){ return arrow; }
 
 
 

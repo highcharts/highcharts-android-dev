@@ -1306,7 +1306,6 @@ public class HIXAxis extends HIFoundation {
 	}
 
 
-
 	public HIXAxis() {
 
 	}

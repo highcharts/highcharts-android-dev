@@ -1034,6 +1034,7 @@ public class HIData extends HIFoundation {
 		jsProperties.put(name, value);
 	}
 
+
 	public HIData() {
 
 	}
@@ -1043,11 +1044,6 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if(this.jsProperties != null){
-			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
-				params.put(entry.getKey(), entry.getValue());
-			}
-		}
 		if (this.enablePolling != null) {
 			params.put("enablePolling", this.enablePolling);
 		}
@@ -1332,6 +1328,11 @@ public HashMap<String, Object> getParams() {
 				}
 			}
 			params.put("sets", array);
+		}
+		if(this.jsProperties != null){
+			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
+				params.put(entry.getKey(), entry.getValue());
+			}
 		}
 		return params;
 	}

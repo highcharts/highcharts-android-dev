@@ -9,11 +9,13 @@
         android:id="@+id/hc"
         android:layout_width="match_parent"
         android:layout_height="500dp"/>
+
     <Button
-        android:text="btn"
         android:id="@+id/btn"
-        android:layout_below="@id/hc"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hc"
+        android:text="btn"
+        android:visibility="gone" />
 
 </RelativeLayout>

@@ -66,6 +66,18 @@ public class HILevels extends HIFoundation {
 
 	public String getBorderDashStyle(){ return borderDashStyle; }
 
+	private Number level;
+	/**
+ Decides which level takes effect from the options set in the levels object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/sunburst">Sunburst chart</a>
+	*/
+	public void setLevel(Number level) {
+		this.level = level;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getLevel(){ return level; }
+
 	private HIColor color;
 	/**
  Can set a color on all points which lies on the same level. 
@@ -126,18 +138,6 @@ public class HILevels extends HIFoundation {
 	}
 
 	public Number getRotation(){ return rotation; }
-
-	private Number level;
-	/**
- Decides which level takes effect from the options set in the levels object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-levels/">Styling of both levels</a>
-	*/
-	public void setLevel(Number level) {
-		this.level = level;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getLevel(){ return level; }
 
 	private String layoutAlgorithm;
 	/**
@@ -223,6 +223,9 @@ public HashMap<String, Object> getParams() {
 		if (this.borderDashStyle != null) {
 			params.put("borderDashStyle", this.borderDashStyle);
 		}
+		if (this.level != null) {
+			params.put("level", this.level);
+		}
 		if (this.color != null) {
 			params.put("color", this.color.getData());
 		}
@@ -237,9 +240,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.rotation != null) {
 			params.put("rotation", this.rotation);
-		}
-		if (this.level != null) {
-			params.put("level", this.level);
 		}
 		if (this.layoutAlgorithm != null) {
 			params.put("layoutAlgorithm", this.layoutAlgorithm);

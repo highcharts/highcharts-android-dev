@@ -16,14 +16,14 @@ import java.util.HashMap;
 
 public class HIRangeSelector extends HIFoundation { 
 
-	private String buttonText;
-	public void setButtonText(String buttonText) {
-		this.buttonText = buttonText;
+	private String dropdownLabel;
+	public void setDropdownLabel(String dropdownLabel) {
+		this.dropdownLabel = dropdownLabel;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getButtonText(){ return buttonText; }
+	public String getDropdownLabel(){ return dropdownLabel; }
 
 	private String maxInputLabel;
 	public void setMaxInputLabel(String maxInputLabel) {
@@ -33,6 +33,15 @@ public class HIRangeSelector extends HIFoundation {
 	}
 
 	public String getMaxInputLabel(){ return maxInputLabel; }
+
+	private String clickButtonAnnouncement;
+	public void setClickButtonAnnouncement(String clickButtonAnnouncement) {
+		this.clickButtonAnnouncement = clickButtonAnnouncement;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getClickButtonAnnouncement(){ return clickButtonAnnouncement; }
 
 	private String minInputLabel;
 	public void setMinInputLabel(String minInputLabel) {
@@ -54,11 +63,14 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.buttonText != null) {
-			params.put("buttonText", this.buttonText);
+		if (this.dropdownLabel != null) {
+			params.put("dropdownLabel", this.dropdownLabel);
 		}
 		if (this.maxInputLabel != null) {
 			params.put("maxInputLabel", this.maxInputLabel);
+		}
+		if (this.clickButtonAnnouncement != null) {
+			params.put("clickButtonAnnouncement", this.clickButtonAnnouncement);
 		}
 		if (this.minInputLabel != null) {
 			params.put("minInputLabel", this.minInputLabel);

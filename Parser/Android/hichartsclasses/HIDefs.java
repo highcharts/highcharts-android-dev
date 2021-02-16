@@ -18,23 +18,23 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 public class HIDefs extends HIFoundation { 
 
-	private HISVGDefinitionObject reverse-arrow;
-	public void setReverse-arrow(HISVGDefinitionObject reverse-arrow) {
+	private HIASTNode reverse-arrow;
+	public void setReverse-arrow(HIASTNode reverse-arrow) {
 		this.reverse-arrow = reverse-arrow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HISVGDefinitionObject getReverse-arrow(){ return reverse-arrow; }
+	public HIASTNode getReverse-arrow(){ return reverse-arrow; }
 
-	private HISVGDefinitionObject arrow;
-	public void setArrow(HISVGDefinitionObject arrow) {
+	private HIASTNode arrow;
+	public void setArrow(HIASTNode arrow) {
 		this.arrow = arrow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HISVGDefinitionObject getArrow(){ return arrow; }
+	public HIASTNode getArrow(){ return arrow; }
 
 
 

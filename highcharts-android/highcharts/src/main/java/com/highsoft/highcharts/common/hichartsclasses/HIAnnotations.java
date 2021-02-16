@@ -492,7 +492,6 @@ public class HIAnnotations extends HIFoundation {
 		this.notifyObservers(jsClassMethod);
 	}
 
-
 	public HIAnnotations() {
 
 	}

@@ -89,6 +89,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
     private boolean loaded = false;
 
     private HashMap<HIFunctionHandler, String> jsHandlersMap;
+    private HashMap<String, Object> rawOptionsMap = null;
 
     /**
      * Basic constructor with default chart size
@@ -269,9 +270,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
     @Override
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
-//        Log.e(TAG, "onDraw()");
         if(!loaded) loadChartHtml(); //loading html only if it was not loaded before
-//        loadChartHtml(); //loading html only if it was not loaded before
     }
 
     /**
@@ -279,7 +278,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
      */
     void loadChartHtml() {
 
-        if(isOptionsIncluded(this.options)){
+        if(rawOptionsMap != null || isOptionsIncluded(this.options)){
             float density = getResources().getDisplayMetrics().density;
             this.HTML.prepareViewWidth(Math.round(width/density), Math.round(height/density));
 
@@ -295,10 +294,12 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
             this.HTML.prepareJavaScript("highcharts-more", "js/", suffix);
             this.HTML.prepareJavaScript("highcharts-3d", "js/", suffix);
 
-            List plugins = HIGDependency.pluginsForOptions(this.options.getParams());
-            this.plugins.addAll(plugins);
-            this.plugins.addAll(new LinkedList<>(Arrays.asList("exporting", "offline-exporting")));
-            this.plugins = new LinkedList<>(new HashSet(this.plugins));
+            if(rawOptionsMap == null) {
+                List plugins = HIGDependency.pluginsForOptions(this.options.getParams());
+                this.plugins.addAll(plugins);
+                this.plugins.addAll(new LinkedList<>(Arrays.asList("exporting", "offline-exporting")));
+                this.plugins = new LinkedList<>(new HashSet(this.plugins));
+            }
 
             for (Object plugin : this.plugins) {
                 this.HTML.prepareJavaScript((String)plugin, "js/modules/", suffix);
@@ -319,7 +320,8 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
                 this.HTML.prepareLang(this.lang.getParams());
             if(this.global != null)
                 this.HTML.prepareGlobal(this.global.getParams());
-            this.HTML.prepareOptions(this.options.getParams());
+            if(rawOptionsMap != null) this.HTML.prepareOptions(rawOptionsMap);
+            else this.HTML.prepareOptions(this.options.getParams());
             this.HTML.injectJavaScriptToHTML();
 
             /* Loading the HTML to the WebView **/
@@ -967,6 +969,12 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
             put("method", "zoomOut");
         }};
         makeNativeCall(jsClassMethod);
+    }
+
+    public void loadJSONOptions(HashMap<String, Object> options) {
+        if(options != null) {
+            rawOptionsMap = options;
+        }
     }
 
 }

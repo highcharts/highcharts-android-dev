@@ -104,6 +104,18 @@ public class HIChart extends HIFoundation {
 
 	public Number getMarginRight(){ return marginRight; }
 
+	private Boolean zoomBySingleTouch;
+	/**
+ Enables zooming by a single touch, in combination with chart.zoomType. When enabled, two-finger pinch will still work as set up by chart.pinchType. However, zoomBySingleTouch will interfere with touch-dragging the chart to read the tooltip. And especially when vertical zooming is enabled, it will make it hard to scroll vertically on the page. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/zoombysingletouch">Zoom by single touch enabled, with buttons to toggle</a>
+	*/
+	public void setZoomBySingleTouch(Boolean zoomBySingleTouch) {
+		this.zoomBySingleTouch = zoomBySingleTouch;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getZoomBySingleTouch(){ return zoomBySingleTouch; }
+
 	private HIColor plotBorderColor;
 	/**
  The color of the inner chart or plot area border. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/plotbordercolor/">Blue border</a>
@@ -166,7 +178,7 @@ public class HIChart extends HIFoundation {
 
 	private String renderTo;
 	/**
- The HTML element where the chart will be rendered. If it is a string, the element by that id is used. The HTML element can also be passed by direct reference, or as the first argument of the chart constructor, in which case the option is not needed. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/reflow-true/">String</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/renderto-object/">Object reference</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/renderto-jquery/">Object reference through jQuery</a>
+ The HTML element where the chart will be rendered. If it is a string, the element by that id is used. The HTML element can also be passed by direct reference, or as the first argument of the chart constructor, in which case the option is not needed. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/reflow-true/">String</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/renderto-object/">Object reference</a>
 	*/
 	public void setRenderTo(String renderTo) {
 		this.renderTo = renderTo;
@@ -644,6 +656,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.marginRight != null) {
 			params.put("marginRight", this.marginRight);
+		}
+		if (this.zoomBySingleTouch != null) {
+			params.put("zoomBySingleTouch", this.zoomBySingleTouch);
 		}
 		if (this.plotBorderColor != null) {
 			params.put("plotBorderColor", this.plotBorderColor.getData());

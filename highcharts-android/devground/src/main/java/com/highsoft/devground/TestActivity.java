@@ -4,19 +4,35 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.common.HIGradient;
+import com.highsoft.highcharts.common.HIStop;
+import com.highsoft.highcharts.common.hichartsclasses.HIArea;
+import com.highsoft.highcharts.common.hichartsclasses.HICSSObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIChart;
 import com.highsoft.highcharts.common.hichartsclasses.HIDataLabels;
+import com.highsoft.highcharts.common.hichartsclasses.HIEvents;
+import com.highsoft.highcharts.common.hichartsclasses.HIHover;
+import com.highsoft.highcharts.common.hichartsclasses.HILegend;
+import com.highsoft.highcharts.common.hichartsclasses.HIMarker;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
 import com.highsoft.highcharts.common.hichartsclasses.HIPie;
 import com.highsoft.highcharts.common.hichartsclasses.HIPlotOptions;
+import com.highsoft.highcharts.common.hichartsclasses.HIStates;
+import com.highsoft.highcharts.common.hichartsclasses.HIStyle;
+import com.highsoft.highcharts.common.hichartsclasses.HISubtitle;
 import com.highsoft.highcharts.common.hichartsclasses.HITitle;
 import com.highsoft.highcharts.common.hichartsclasses.HITooltip;
+import com.highsoft.highcharts.common.hichartsclasses.HIXAxis;
+import com.highsoft.highcharts.common.hichartsclasses.HIYAxis;
 import com.highsoft.highcharts.core.HIChartView;
+import com.highsoft.highcharts.core.HIFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -24,7 +40,45 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+
+
         HIChartView chartView = findViewById(R.id.hc);
+
+//        HashMap<String, Object> optionsMap = new HashMap<>();
+//        HashMap<String, Object> title = new HashMap<>();
+//        title.put("Text", "Solar Employment Growth by Sector, 2010-2016");
+//        optionsMap.put("title", title);
+//        ArrayList<Object> seriesArray = new ArrayList<>();
+//        HashMap<String, Object> seriesEntry1 = new HashMap<>();
+//        HashMap<String, Object> seriesEntry2 = new HashMap<>();
+//        HashMap<String, Object> seriesEntry3 = new HashMap<>();
+//        seriesEntry1.put("name", "Installation");
+//        ArrayList<Number> data1 = new ArrayList<>();
+//        data1.add(43934);
+//        data1.add(52503);
+//        data1.add(57177);
+//        data1.add(69658);
+//        seriesEntry1.put("data", data1);
+//        seriesEntry2.put("name", "Manufacturing");
+//        ArrayList<Number> data2 = new ArrayList<>();
+//        data2.add(24916);
+//        data2.add(24064);
+//        data2.add(29742);
+//        data2.add(29851);
+//        seriesEntry2.put("data", data2);
+//        seriesEntry3.put("name", "Sales & Distribution");
+//        ArrayList<Number> data3 = new ArrayList<>();
+//        data3.add(11744);
+//        data3.add(17722);
+//        data3.add(16005);
+//        data3.add(19771);
+//        seriesEntry1.put("data", data3);
+//        seriesArray.add(seriesEntry1);
+//        seriesArray.add(seriesEntry2);
+//        seriesArray.add(seriesEntry3);
+//        optionsMap.put("series", seriesArray);
+//
+//        chartView.loadJSONOptions(optionsMap);
 
         HIOptions options = new HIOptions();
 
@@ -45,22 +99,14 @@ public class TestActivity extends AppCompatActivity {
         plotOptions.setPie(new HIPie());
         plotOptions.getPie().setAllowPointSelect(true);
         plotOptions.getPie().setCursor("pointer");
-
-//        HIDataLabels dataLabels = new HIDataLabels();
-//        dataLabels.setEnabled(true);
-//        dataLabels.setFormat("<b>{point.name}</b>: {point.percentage:.1f} %");
-
         HIDataLabels dataLabels = new HIDataLabels();
-        dataLabels.setAllowOverlap(true);
         dataLabels.setEnabled(true);
-        dataLabels.setShadow(true);
-        dataLabels.setFormat("{point.name}");
-        dataLabels.setDistance(10);
-        dataLabels.setColor(HIColor.initWithHexValue("#FFFFFF"));
-
-
-//        plotOptions.getPie().setDataLabels(new ArrayList<>(Collections.singletonList(dataLabels)));
-
+        dataLabels.setFormat("<b>{point.name}</b>: {point.percentage:.1f} %"); ;
+        dataLabels.setStyle(new HIStyle());
+        dataLabels.getStyle().setColor("black");
+        ArrayList<HIDataLabels> dataLabelsList = new ArrayList<>();
+        dataLabelsList.add(dataLabels);
+        plotOptions.getPie().setDataLabels(dataLabelsList);
         options.setPlotOptions(plotOptions);
 
         HIPie pie = new HIPie();
@@ -86,8 +132,6 @@ public class TestActivity extends AppCompatActivity {
         map6.put("name", "Others");
         map6.put("y", 0.2);
         pie.setData(new ArrayList<>(Arrays.asList(map1, map2, map3, map4, map5, map6)));
-
-        pie.setDataLabels(new ArrayList<>(Collections.singletonList(dataLabels)));
 
         options.setSeries(new ArrayList<>(Collections.singletonList(pie)));
 

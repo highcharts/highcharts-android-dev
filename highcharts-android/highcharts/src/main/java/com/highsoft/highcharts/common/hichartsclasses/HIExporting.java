@@ -12,6 +12,7 @@ import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.core.HIFunction;
 
 import java.util.HashMap;
+import java.util.Map;
 
 
 
@@ -373,8 +374,10 @@ public HashMap<String, Object> getParams() {
 		if (this.tableCaption != null) {
 			params.put("tableCaption", this.tableCaption);
 		}
-		if (this.formAttributes != null) {
-			params.put("formAttributes", this.formAttributes);
+		if(this.formAttributes != null){
+			for (Map.Entry<String, Object> entry : formAttributes.entrySet()) {
+				params.put(entry.getKey(), entry.getValue());
+			}
 		}
 		if (this.useMultiLevelHeaders != null) {
 			params.put("useMultiLevelHeaders", this.useMultiLevelHeaders);

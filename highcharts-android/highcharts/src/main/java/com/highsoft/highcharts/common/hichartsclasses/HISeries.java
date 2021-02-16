@@ -778,7 +778,7 @@ public class HISeries extends HIFoundation {
 
 	private Object /* Number, String */ colorAxis;
 	/**
- When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the  or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/coloraxis-with-pie/">Color axis with pie series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/multiple-coloraxis/">Multiple color axis</a>
+ When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the {colorAxis.id|axis id} or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/coloraxis-with-pie/">Color axis with pie series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/multiple-coloraxis/">Multiple color axis</a>
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setColorAxis(Object /* Number, String */ colorAxis) {
 		this.colorAxis = colorAxis;
@@ -967,17 +967,6 @@ public class HISeries extends HIFoundation {
 	}
 
 	public Boolean getShowInLegend(){ return showInLegend; }
-
-	private HashMap<String, Object> jsProperties;
-	/**
-	 * Add a custom property to your chart. Those can be accessible later by HIFunction callbacks.
-	 * @param name the name by which you can access property
-	 * @param value the actual value which can be accessed
-	 */
-	public void setProperty(String name, Object value) {
-		if(jsProperties == null) jsProperties = new HashMap<>();
-		jsProperties.put(name, value);
-	}
 
 	/**
 	 * Add a point to the series after render time. The point can be added at the end, or by giving it an X value, to the start or in the middle of the series.
@@ -1515,6 +1504,16 @@ public class HISeries extends HIFoundation {
 		this.notifyObservers(jsClassMethod);
 	}
 
+	private HashMap<String, Object> jsProperties;
+	/**
+	 * Add a custom property to your chart. Those can be accessible later by HIFunction callbacks.
+	 * @param name the name by which you can access property
+	 * @param value the actual value which can be accessed
+	 */
+	public void setProperty(String name, Object value) {
+		if(jsProperties == null) jsProperties = new HashMap<>();
+		jsProperties.put(name, value);
+	}
 
 	public HISeries() {
 
@@ -1525,11 +1524,6 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if(this.jsProperties != null){
-			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
-				params.put(entry.getKey(), entry.getValue());
-			}
-		}
 		if (this.data != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.data) {
@@ -1783,7 +1777,6 @@ public HashMap<String, Object> getParams() {
 				params.put("dataLabels", array);
 			}
 		}
-
 		if (this.className != null) {
 			params.put("className", this.className);
 		}
@@ -1801,6 +1794,11 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.showInLegend != null) {
 			params.put("showInLegend", this.showInLegend);
+		}
+		if(this.jsProperties != null){
+			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
+				params.put(entry.getKey(), entry.getValue());
+			}
 		}
 		return params;
 	}

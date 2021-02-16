@@ -204,8 +204,8 @@ public class HILabels extends HIFoundation {
 
 	private String format;
 	/**
- A [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) for the axis label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/labels-format/">Add units to Y axis label</a>
- <br><br><b>defaults:</b><br><br>&ensp;{value}	*/
+ A format string for the axis label. See [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) for example usage. Note: The defaults value is not specified due to the dynamic nature of the defaults implementation. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/labels-format/">Add units to Y axis label</a>
+	*/
 	public void setFormat(String format) {
 		this.format = format;
 		this.setChanged();
