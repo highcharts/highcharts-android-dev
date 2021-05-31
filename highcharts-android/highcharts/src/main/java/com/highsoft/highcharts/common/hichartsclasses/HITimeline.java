@@ -35,15 +35,6 @@ public class HITimeline extends HISeries {
 
 	public Boolean getIgnoreHiddenPoint(){ return ignoreHiddenPoint; }
 
-	private String legendType;
-	public void setLegendType(String legendType) {
-		this.legendType = legendType;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getLegendType(){ return legendType; }
-
 
 
 	public HITimeline() {
@@ -61,9 +52,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.ignoreHiddenPoint != null) {
 			params.put("ignoreHiddenPoint", this.ignoreHiddenPoint);
-		}
-		if (this.legendType != null) {
-			params.put("legendType", this.legendType);
 		}
 		return params;
 	}

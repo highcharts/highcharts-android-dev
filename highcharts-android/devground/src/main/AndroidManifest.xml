@@ -13,8 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".TestActivity" android:exported="true"/>
-        <activity android:name=".ResizeActivity" android:exported="true" />
+        <activity
+            android:name=".MainActivityKotlin"
+            android:exported="true"
+            />
+        <activity
+            android:name=".TestActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ResizeActivity"
+            android:exported="true" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

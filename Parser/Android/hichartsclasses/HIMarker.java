@@ -56,6 +56,7 @@ public class HIMarker extends HIFoundation {
 	private Number radius;
 	/**
 /** * description: The radius of the point marker. * demo:  •  Bigger markers
+* defaults: 4
 */
 	public void setRadius(Number radius) {
 		this.radius = radius;

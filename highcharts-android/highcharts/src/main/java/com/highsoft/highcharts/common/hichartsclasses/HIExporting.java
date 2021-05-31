@@ -12,7 +12,6 @@ import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.core.HIFunction;
 
 import java.util.HashMap;
-import java.util.Map;
 
 
 
@@ -142,7 +141,7 @@ public class HIExporting extends HIFoundation {
 
 	private HICsv csv;
 	/**
- Options for exporting data to CSV or ExCel, or displaying the data in a HTML table or a JavaScript structure. This module adds data export options to the export menu and provides functions like Chart.getCSV, Chart.getTable, Chart.getDataRows and Chart.viewData. The XLS converter is limited and only creates a HTML string that is passed for download, which works but creates a warning before opening. The workaround for this is to use a third party XLSX converter, as demonstrated in the sample below. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/categorized/">Categorized data</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/stock-timeaxis/">Highstock time axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/xlsx/">Using a third party XLSX converter</a>
+ Options for exporting data to CSV or ExCel, or displaying the data in a HTML table or a JavaScript structure. This module adds data export options to the export menu and provides functions like Chart.getCSV, Chart.getTable, Chart.getDataRows and Chart.viewData. The XLS converter is limited and only creates a HTML string that is passed for download, which works but creates a warning before opening. The workaround for this is to use a third party XLSX converter, as demonstrated in the sample below. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/categorized/">Categorized data</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/stock-timeaxis/">Highcharts Stock time axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/xlsx/">Using a third party XLSX converter</a>
 	*/
 	public void setCsv(HICsv csv) {
 		this.csv = csv;
@@ -177,17 +176,17 @@ public class HIExporting extends HIFoundation {
 
 	public Object /* boolean, String */ getTableCaption(){ return tableCaption; }
 
-	private HashMap<String, Object> formAttributes;
+	private HISVGAttributes formAttributes;
 	/**
  An object containing additional key value data for the POST form that sends the SVG to the export server. For example, a target can be set to make sure the generated image is received in another frame, or a custom enctype or encoding can be set. 
 	*/
-	public void setFormAttributes(HashMap<String, Object> formAttributes) {
+	public void setFormAttributes(HISVGAttributes formAttributes) {
 		this.formAttributes = formAttributes;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HashMap<String, Object> getFormAttributes(){ return formAttributes; }
+	public HISVGAttributes getFormAttributes(){ return formAttributes; }
 
 	private Boolean useMultiLevelHeaders;
 	/**
@@ -374,10 +373,8 @@ public HashMap<String, Object> getParams() {
 		if (this.tableCaption != null) {
 			params.put("tableCaption", this.tableCaption);
 		}
-		if(this.formAttributes != null){
-			for (Map.Entry<String, Object> entry : formAttributes.entrySet()) {
-				params.put(entry.getKey(), entry.getValue());
-			}
+		if (this.formAttributes != null) {
+			params.put("formAttributes", this.formAttributes.getParams());
 		}
 		if (this.useMultiLevelHeaders != null) {
 			params.put("useMultiLevelHeaders", this.useMultiLevelHeaders);

@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         bottomXAxis.setEndOnTick(true);
         bottomXAxis.setMinPadding(0);
         bottomXAxis.setMaxPadding(0);
-        bottomXAxis.setOffset(30);
+        bottomXAxis.setOffset("30");
         bottomXAxis.setShowLastLabel(true);
         HILabels bottomXAxisLables = new HILabels();
         bottomXAxisLables.setFormat("{value:%H}");

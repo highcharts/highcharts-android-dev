@@ -57,7 +57,7 @@ public class HIKeyboardNavigation extends HIFoundation {
 
 	private ArrayList<String> order;
 	/**
- Order of tab navigation in the chart. Determines which elements are tabbed to first. Available elements are: series, zoom, rangeSelector, chartMenu, legend. In addition, any custom components can be added here. 
+ Order of tab navigation in the chart. Determines which elements are tabbed to first. Available elements are: series, zoom, rangeSelector, chartMenu, legend and container. In addition, any custom components can be added here. Adding container first in order will make the keyboard focus stop on the chart container first, requiring the user to tab again to enter the chart. 
 	*/
 	public void setOrder(ArrayList<String> order) {
 		this.order = order;

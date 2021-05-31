@@ -21,7 +21,6 @@ import java.util.HashMap;
 	*/
 
 public class HIPyramid3d extends HISeries {
-	private Boolean reversed;
 
 	private String neckWidth;
 	/**
@@ -144,8 +143,9 @@ public class HIPyramid3d extends HISeries {
 
 	private Number borderWidth;
 
+	private Boolean reversed;
 	/**
-/** * description: A reversed pyramid3d is funnel3d, but the latter supports neck related options: neckHeight and neckWidth 
+/** * description: A reversed pyramid3d is funnel3d, but the latter supports neck related options: neckHeight and neckWidth
 */
 	public void setReversed(Boolean reversed) {
 		this.reversed = reversed;

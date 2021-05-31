@@ -83,7 +83,7 @@ public class HIXAxis extends HIFoundation {
 	private Number gridZIndex;
 	/**
  The Z index of the grid lines. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/gridzindex/">A Z index of 4 renders the grid above the graph</a>
- <br><br><b>defaults:</b><br><br>&ensp;1	*/
+	*/
 	public void setGridZIndex(Number gridZIndex) {
 		this.gridZIndex = gridZIndex;
 		this.setChanged();
@@ -132,7 +132,7 @@ public class HIXAxis extends HIFoundation {
 	private Boolean visible;
 	/**
  Whether axis, including axis title, line, ticks and labels, should be visible. 
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+	*/
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
 		this.setChanged();
@@ -144,7 +144,7 @@ public class HIXAxis extends HIFoundation {
 	private Boolean alignTicks;
 	/**
  When using multiple axis, the ticks of two or more opposite axes will automatically be aligned by adding ticks to the axis or axes with the least ticks, as if tickAmount were specified. This can be prevented by setting alignTicks to false. If the grid lines look messy, it's a good idea to hide them for the secondary axis by setting gridLineWidth to 0. If startOnTick or endOnTick in an Axis options are set to false, then the alignTicks will be disabled for the Axis. Disabled for logarithmic axes. 
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+	*/
 	public void setAlignTicks(Boolean alignTicks) {
 		this.alignTicks = alignTicks;
 		this.setChanged();
@@ -180,7 +180,7 @@ public class HIXAxis extends HIFoundation {
 	private Boolean showFirstLabel;
 	/**
  Whether to show the first tick label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/showfirstlabel-false/">Set to false on X axis</a>
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+	*/
 	public void setShowFirstLabel(Boolean showFirstLabel) {
 		this.showFirstLabel = showFirstLabel;
 		this.setChanged();
@@ -263,8 +263,8 @@ public class HIXAxis extends HIFoundation {
 
 	private Boolean allowDecimals;
 	/**
- Whether to allow decimals in this axis' ticks. When counting integers, like persons or hits on a web page, decimals should be avoided in the labels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/allowdecimals-true/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/allowdecimals-false/">False</a>
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+ Whether to allow decimals in this axis' ticks. When counting integers, like persons or hits on a web page, decimals should be avoided in the labels. By defaults, decimals are allowed on small scale axes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/allowdecimals-true/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/allowdecimals-false/">False</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setAllowDecimals(Boolean allowDecimals) {
 		this.allowDecimals = allowDecimals;
 		this.setChanged();
@@ -312,7 +312,7 @@ public class HIXAxis extends HIFoundation {
 	private Boolean reversed;
 	/**
  Whether to reverse the axis so that the highest number is closest to the origin. If the chart is inverted, the x axis is reversed by defaults. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/reversed/">Reversed Y axis</a>
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setReversed(Boolean reversed) {
 		this.reversed = reversed;
 		this.setChanged();
@@ -324,7 +324,7 @@ public class HIXAxis extends HIFoundation {
 	private String minorGridLineDashStyle;
 	/**
  The dash or dot style of the minor grid lines. For possible values, see [this demonstration](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minorgridlinedashstyle/">Long dashes on minor grid lines</a>
- <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
+	*/
 	public void setMinorGridLineDashStyle(String minorGridLineDashStyle) {
 		this.minorGridLineDashStyle = minorGridLineDashStyle;
 		this.setChanged();
@@ -383,7 +383,7 @@ public class HIXAxis extends HIFoundation {
 
 	private ArrayList<ArrayList> units;
 	/**
- Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the second value another array of allowed multiples. Defaults to: `js units: [[   'millisecond', // unit name   [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples ], [   'second',   [1, 2, 5, 10, 15, 30] ], [   'minute',   [1, 2, 5, 10, 15, 30] ], [   'hour',   [1, 2, 3, 4, 6, 8, 12] ], [   'day',   [1] ], [   'week',   [1] ], [   'month',   [1, 3, 6] ], [   'year',   null ]] ` 
+ Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the second value another array of allowed multiples. Defaults to: `js units: [[   'millisecond', // unit name   [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples ], [   'second',   [1, 2, 5, 10, 15, 30] ], [   'minute',   [1, 2, 5, 10, 15, 30] ], [   'hour',   [1, 2, 3, 4, 6, 8, 12] ], [   'day',   [1, 2] ], [   'week',   [1, 2] ], [   'month',   [1, 2, 3, 4, 6] ], [   'year',   null ]] ` 
 	*/
 	public void setUnits(ArrayList<ArrayList> units) {
 		this.units = units;
@@ -444,7 +444,7 @@ public class HIXAxis extends HIFoundation {
 	private Boolean zoomEnabled;
 	/**
  Whether to zoom axis. If chart.zoomType is set, the option allows to disable zooming on an individual axis. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/zoomenabled/">Zoom enabled is false</a>
- <br><br><b>defaults:</b><br><br>&ensp;enabled	*/
+	*/
 	public void setZoomEnabled(Boolean zoomEnabled) {
 		this.zoomEnabled = zoomEnabled;
 		this.setChanged();
@@ -480,7 +480,7 @@ public class HIXAxis extends HIFoundation {
 	private String gridLineDashStyle;
 	/**
  The dash or dot style of the grid lines. For possible values, see [this demonstration](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/gridlinedashstyle/">Long dashes</a>
- <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
+	*/
 	public void setGridLineDashStyle(String gridLineDashStyle) {
 		this.gridLineDashStyle = gridLineDashStyle;
 		this.setChanged();
@@ -550,6 +550,18 @@ public class HIXAxis extends HIFoundation {
 
 	public HIDateTimeLabelFormats getDateTimeLabelFormats(){ return dateTimeLabelFormats; }
 
+	private Number zIndex;
+	/**
+ The Z index for the axis group. 
+	*/
+	public void setZIndex(Number zIndex) {
+		this.zIndex = zIndex;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getZIndex(){ return zIndex; }
+
 	private Boolean minorTicks;
 	/**
  Enable or disable minor ticks. Unless minorTickInterval is set, the tick interval is calculated as a fifth of the tickInterval. On a logarithmic axis, minor ticks are laid out based on a best guess, attempting to enter approximately 5 minor ticks between each major tick. Prior to v6.0.0, ticks were unabled in auto layout by setting minorTickInterval to "auto". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minorticks-true/">Enabled on linear Y axis</a>
@@ -586,17 +598,17 @@ public class HIXAxis extends HIFoundation {
 
 	public Boolean getStartOnTick(){ return startOnTick; }
 
-	private Number offset;
+	private String offset;
 	/**
  The distance in pixels from the plot area to the axis line. A positive offset moves the axis with it's line, labels and ticks away from the plot area. This is typically used when two or more axes are displayed on the same side of the plot. With multiple axes the offset is dynamically adjusted to avoid collision, this can be overridden by setting offset explicitly. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/offset/">Y axis offset of 70</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/offset-centered/">Axes positioned in the center of the plot</a>
- <br><br><b>defaults:</b><br><br>&ensp;0	*/
-	public void setOffset(Number offset) {
+	*/
+	public void setOffset(String offset) {
 		this.offset = offset;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getOffset(){ return offset; }
+	public String getOffset(){ return offset; }
 
 	private Number softMax;
 	/**
@@ -624,8 +636,8 @@ public class HIXAxis extends HIFoundation {
 
 	private Number gridLineWidth;
 	/**
- The width of the grid lines extending the ticks across the plot area. In styled mode, the stroke width is given in the .highcharts-grid-line class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/gridlinewidth/">2px lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/">Styled mode</a>
- <br><br><b>defaults:</b><br><br>&ensp;0	*/
+ The width of the grid lines extending the ticks across the plot area. Defaults to 1 on the Y axis and 0 on the X axis, except for 3d charts. In styled mode, the stroke width is given in the .highcharts-grid-line class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/gridlinewidth/">2px lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/">Styled mode</a>
+	*/
 	public void setGridLineWidth(Number gridLineWidth) {
 		this.gridLineWidth = gridLineWidth;
 		this.setChanged();
@@ -697,7 +709,7 @@ public class HIXAxis extends HIFoundation {
 	private Boolean reversedStacks;
 	/**
  This option determines how stacks should be ordered within a group. For example reversed xAxis also reverses stacks, so first series comes last in a group. To keep order like for non-reversed xAxis enable this option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/reversedstacks/">Reversed stacks comparison</a>
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	*/
 	public void setReversedStacks(Boolean reversedStacks) {
 		this.reversedStacks = reversedStacks;
 		this.setChanged();
@@ -733,7 +745,7 @@ public class HIXAxis extends HIFoundation {
 	private Boolean showLastLabel;
 	/**
  Whether to show the last tick label. Defaults to true on cartesian charts, and false on polar charts. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/showlastlabel-true/">Set to true on X axis</a>
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+	*/
 	public void setShowLastLabel(Boolean showLastLabel) {
 		this.showLastLabel = showLastLabel;
 		this.setChanged();
@@ -757,7 +769,7 @@ public class HIXAxis extends HIFoundation {
 	private Boolean uniqueNames;
 	/**
  Applies only when the axis type is category. When uniqueNames is true, points are placed on the X axis according to their names. If the same point name is repeated in the same or another series, the point is placed on the same X position as other points of the same name. When uniqueNames is false, the points are laid out in increasing X positions regardless of their names, and the X axis category will take the name of the last point in each position. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/uniquenames-true/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/uniquenames-false/">False</a>
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+	*/
 	public void setUniqueNames(Boolean uniqueNames) {
 		this.uniqueNames = uniqueNames;
 		this.setChanged();
@@ -1091,6 +1103,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.dateTimeLabelFormats != null) {
 			params.put("dateTimeLabelFormats", this.dateTimeLabelFormats.getParams());
+		}
+		if (this.zIndex != null) {
+			params.put("zIndex", this.zIndex);
 		}
 		if (this.minorTicks != null) {
 			params.put("minorTicks", this.minorTicks);

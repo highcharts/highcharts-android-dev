@@ -60,7 +60,7 @@ public class HIWindbarb extends HISeries {
 
 	private HIDataGrouping dataGrouping;
 	/**
- Data grouping options for the wind barbs. In Highcharts, this requires the modules/datagrouping.js module to be loaded. In Highstock, data grouping is included. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/windbarb-datagrouping">Wind barb with data grouping</a>
+ Data grouping options for the wind barbs. In Highcharts, this requires the modules/datagrouping.js module to be loaded. In Highcharts Stock, data grouping is included. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/windbarb-datagrouping">Wind barb with data grouping</a>
 	*/
 	public void setDataGrouping(HIDataGrouping dataGrouping) {
 		this.dataGrouping = dataGrouping;

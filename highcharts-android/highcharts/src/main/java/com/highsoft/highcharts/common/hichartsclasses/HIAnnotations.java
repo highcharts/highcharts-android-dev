@@ -216,6 +216,12 @@ public class HIAnnotations extends HIFoundation {
 
 	public Boolean getJoin(){ return join; }
 
+
+
+	public HIAnnotations() {
+
+	}
+
 	/**
 	 * Hide or show annotaiton attached to points.
 	 */
@@ -490,10 +496,6 @@ public class HIAnnotations extends HIFoundation {
 		}};
 		this.setChanged();
 		this.notifyObservers(jsClassMethod);
-	}
-
-	public HIAnnotations() {
-
 	}
 
 	@Override

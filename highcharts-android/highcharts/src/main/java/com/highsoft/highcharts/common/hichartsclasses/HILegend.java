@@ -47,7 +47,7 @@ public class HILegend extends HIFoundation {
 
 	private Boolean rtl;
 	/**
- Whether to show the symbol on the right side of the text rather than the left side. This is common in Arabic and Hebraic. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/rtl/">Symbol to the right</a>
+ Whether to show the symbol on the right side of the text rather than the left side. This is common in Arabic and Hebrew. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/rtl/">Symbol to the right</a>
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setRtl(Boolean rtl) {
 		this.rtl = rtl;

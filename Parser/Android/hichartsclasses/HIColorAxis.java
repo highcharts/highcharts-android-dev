@@ -195,7 +195,7 @@ public class HIColorAxis extends HIFoundation {
 	private Boolean reversed;
 	/**
 /** * description: Whether to reverse the axis so that the highest number is closest to the origin. Defaults to false in a horizontal legend and true in a vertical legend, where the smallest value starts on top. * demo:  •  Reversed Y axis
-* defaults: false
+* defaults: undefined
 */
 	public void setReversed(Boolean reversed) {
 		this.reversed = reversed;
@@ -208,7 +208,6 @@ public class HIColorAxis extends HIFoundation {
 	private Number gridLineWidth;
 	/**
 /** * description: The width of the grid lines extending from the axis across the gradient of a scalar color axis. * demo:  •  2px lines •  Styled mode
-* defaults: 0
 */
 	public void setGridLineWidth(Number gridLineWidth) {
 		this.gridLineWidth = gridLineWidth;
@@ -331,7 +330,7 @@ public class HIColorAxis extends HIFoundation {
 	private Number gridZIndex;
 	/**
  The Z index of the grid lines. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/gridzindex/">A Z index of 4 renders the grid above the graph</a>
- <br><br><b>defaults:</b><br><br>&ensp;1	*/
+	*/
 	public void setGridZIndex(Number gridZIndex) {
 		this.gridZIndex = gridZIndex;
 		this.setChanged();
@@ -356,7 +355,7 @@ public class HIColorAxis extends HIFoundation {
 	private Boolean visible;
 	/**
  Whether axis, including axis title, line, ticks and labels, should be visible. 
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+	*/
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
 		this.setChanged();
@@ -380,7 +379,7 @@ public class HIColorAxis extends HIFoundation {
 	private Boolean showFirstLabel;
 	/**
  Whether to show the first tick label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/showfirstlabel-false/">Set to false on X axis</a>
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+	*/
 	public void setShowFirstLabel(Boolean showFirstLabel) {
 		this.showFirstLabel = showFirstLabel;
 		this.setChanged();
@@ -476,7 +475,7 @@ public class HIColorAxis extends HIFoundation {
 	private String minorGridLineDashStyle;
 	/**
  The dash or dot style of the minor grid lines. For possible values, see [this demonstration](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minorgridlinedashstyle/">Long dashes on minor grid lines</a>
- <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
+	*/
 	public void setMinorGridLineDashStyle(String minorGridLineDashStyle) {
 		this.minorGridLineDashStyle = minorGridLineDashStyle;
 		this.setChanged();
@@ -499,7 +498,7 @@ public class HIColorAxis extends HIFoundation {
 
 	private ArrayList<ArrayList> units;
 	/**
- Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the second value another array of allowed multiples. Defaults to: `js units: [[   'millisecond', // unit name   [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples ], [   'second',   [1, 2, 5, 10, 15, 30] ], [   'minute',   [1, 2, 5, 10, 15, 30] ], [   'hour',   [1, 2, 3, 4, 6, 8, 12] ], [   'day',   [1] ], [   'week',   [1] ], [   'month',   [1, 3, 6] ], [   'year',   null ]] ` 
+ Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the second value another array of allowed multiples. Defaults to: `js units: [[   'millisecond', // unit name   [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples ], [   'second',   [1, 2, 5, 10, 15, 30] ], [   'minute',   [1, 2, 5, 10, 15, 30] ], [   'hour',   [1, 2, 3, 4, 6, 8, 12] ], [   'day',   [1, 2] ], [   'week',   [1, 2] ], [   'month',   [1, 2, 3, 4, 6] ], [   'year',   null ]] ` 
 	*/
 	public void setUnits(ArrayList<ArrayList> units) {
 		this.units = units;
@@ -548,7 +547,7 @@ public class HIColorAxis extends HIFoundation {
 	private String gridLineDashStyle;
 	/**
  The dash or dot style of the grid lines. For possible values, see [this demonstration](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/gridlinedashstyle/">Long dashes</a>
- <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
+	*/
 	public void setGridLineDashStyle(String gridLineDashStyle) {
 		this.gridLineDashStyle = gridLineDashStyle;
 		this.setChanged();
@@ -568,6 +567,18 @@ public class HIColorAxis extends HIFoundation {
 	}
 
 	public String getMinorTickPosition(){ return minorTickPosition; }
+
+	private Number zIndex;
+	/**
+ The Z index for the axis group. 
+	*/
+	public void setZIndex(Number zIndex) {
+		this.zIndex = zIndex;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getZIndex(){ return zIndex; }
 
 	private Boolean minorTicks;
 	/**
@@ -632,7 +643,7 @@ public class HIColorAxis extends HIFoundation {
 	private Boolean showLastLabel;
 	/**
  Whether to show the last tick label. Defaults to true on cartesian charts, and false on polar charts. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/showlastlabel-true/">Set to true on X axis</a>
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+	*/
 	public void setShowLastLabel(Boolean showLastLabel) {
 		this.showLastLabel = showLastLabel;
 		this.setChanged();
@@ -644,7 +655,7 @@ public class HIColorAxis extends HIFoundation {
 	private Boolean uniqueNames;
 	/**
  Applies only when the axis type is category. When uniqueNames is true, points are placed on the X axis according to their names. If the same point name is repeated in the same or another series, the point is placed on the same X position as other points of the same name. When uniqueNames is false, the points are laid out in increasing X positions regardless of their names, and the X axis category will take the name of the last point in each position. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/uniquenames-true/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/uniquenames-false/">False</a>
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
+	*/
 	public void setUniqueNames(Boolean uniqueNames) {
 		this.uniqueNames = uniqueNames;
 		this.setChanged();
@@ -906,6 +917,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.minorTickPosition != null) {
 			params.put("minorTickPosition", this.minorTickPosition);
+		}
+		if (this.zIndex != null) {
+			params.put("zIndex", this.zIndex);
 		}
 		if (this.minorTicks != null) {
 			params.put("minorTicks", this.minorTicks);

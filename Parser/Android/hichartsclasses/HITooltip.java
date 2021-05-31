@@ -309,7 +309,7 @@ public class HITooltip extends HIFoundation {
 
 	private HIDateTimeLabelFormats dateTimeLabelFormats;
 	/**
- For series on a datetime axes, the date format in the tooltip's header will by defaults be guessed based on the closest data points. This member gives the defaults string representations used for each unit. For an overview of the replacement codes, see `dateFormat`. 
+ For series on datetime axes, the date format in the tooltip's header will by defaults be guessed based on the closest data points. This member gives the defaults string representations used for each unit. For an overview of the replacement codes, see `dateFormat`. 
 	*/
 	public void setDateTimeLabelFormats(HIDateTimeLabelFormats dateTimeLabelFormats) {
 		this.dateTimeLabelFormats = dateTimeLabelFormats;
@@ -370,7 +370,7 @@ public class HITooltip extends HIFoundation {
 
 	private String shape;
 	/**
- The name of a symbol to use for the border around the tooltip. Can be one of: "callout", "circle", or "square". When tooltip.split option is enabled, shape is applied to all boxes except header, which is controlled by tooltip.headerShape. Custom callbacks for symbol path generation can also be added to Highcharts.SVGRenderer.prototype.symbols the same way as for `series.marker.symbol`. 
+ The name of a symbol to use for the border around the tooltip. Can be one of: "callout", "circle" or "rect". When tooltip.split option is enabled, shape is applied to all boxes except header, which is controlled by tooltip.headerShape. Custom callbacks for symbol path generation can also be added to Highcharts.SVGRenderer.prototype.symbols the same way as for `series.marker.symbol`. 
  <br><br><b>defaults:</b><br><br>&ensp;callout	*/
 	public void setShape(String shape) {
 		this.shape = shape;
@@ -418,7 +418,7 @@ public class HITooltip extends HIFoundation {
 
 	private Boolean followPointer;
 	/**
- Whether the tooltip should follow the mouse as it moves across columns, pie slices and other point types with an extent. By defaults it behaves this way for pie, polygon, map, sankey and wordcloud series by override in the plotOptions for those series types. For touch moves to behave the same way, followTouchMove must be true also. 
+ Whether the tooltip should follow the mouse as it moves across columns, pie slices and other point types with an extent. By defaults it behaves this way for pie, polygon, map, sankey and wordcloud series by override in the plotOptions for those series types. Does not apply if split is true. For touch moves to behave the same way, followTouchMove must be true also. 
 	*/
 	public void setFollowPointer(Boolean followPointer) {
 		this.followPointer = followPointer;

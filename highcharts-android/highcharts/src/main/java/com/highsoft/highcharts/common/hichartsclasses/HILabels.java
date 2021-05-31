@@ -70,22 +70,22 @@ public class HILabels extends HIFoundation {
 
 	public Number getX(){ return x; }
 
-	private Number staggerLines;
+	private Object staggerLines;
 	/**
- Horizontal axes only. The number of lines to spread the labels over to make room or tighter labels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-staggerlines/">Show labels over two lines</a>
+ Horizontal axes only. The number of lines to spread the labels over to make room or tighter labels. 0 disables staggering. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-staggerlines/">Show labels over two lines</a>
 	*/
-	public void setStaggerLines(Number staggerLines) {
+	public void setStaggerLines(Object staggerLines) {
 		this.staggerLines = staggerLines;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getStaggerLines(){ return staggerLines; }
+	public Object getStaggerLines(){ return staggerLines; }
 
 	private Number autoRotationLimit;
 	/**
  When each category width is more than this many pixels, we don't apply auto rotation. Instead, we lay out the axis label with word wrap. A lower limit makes sense when the label contains multiple short words that don't extend the available horizontal space for each label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-autorotationlimit/">Lower limit</a>
- <br><br><b>defaults:</b><br><br>&ensp;80	*/
+	*/
 	public void setAutoRotationLimit(Number autoRotationLimit) {
 		this.autoRotationLimit = autoRotationLimit;
 		this.setChanged();
@@ -108,7 +108,7 @@ public class HILabels extends HIFoundation {
 
 	private Number rotation;
 	/**
- Rotation of the labels in degrees. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-rotation/">X axis labels rotated 90Â°</a>
+ Rotation of the labels in degrees. When undefined, the autoRotation option takes precedence. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-rotation/">X axis labels rotated 90Â°</a>
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;
@@ -145,7 +145,7 @@ public class HILabels extends HIFoundation {
 	private Boolean useHTML;
 	/**
  Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the labels. 
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	*/
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;
 		this.setChanged();
@@ -168,7 +168,7 @@ public class HILabels extends HIFoundation {
 
 	private HIFunction formatter;
 	/**
- Callback JavaScript function to format the label. The value is given by this.value. Additional properties for this are axis, chart, isFirst and isLast. The value of the defaults label formatter can be retrieved by calling this.axis.defaultsLabelFormatter.call(this) within the function. Defaults to: `js function() {   return this.value; } ` <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-formatter-linked/">Linked category names</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-formatter-extended/">Modified numeric labels</a>
+ Callback JavaScript function to format the label. The value is given by this.value. Additional properties for this are axis, chart, isFirst, isLast and text which holds the value of the defaults formatter. Defaults to a built in function returning a formatted string depending on whether the axis is category, datetime, numeric or other. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-formatter-linked/">Linked category names</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-formatter-extended/">Modified numeric labels</a>
 	*/
 	public void setFormatter(HIFunction formatter) {
 		this.formatter = formatter;
@@ -180,8 +180,8 @@ public class HILabels extends HIFoundation {
 
 	private ArrayList<Number> autoRotation;
 	/**
- For horizontal axes, the allowed degrees of label rotation to prevent overlapping labels. If there is enough space, labels are not rotated. As the chart gets narrower, it will start rotating the labels -45 degrees, then remove every second label and try again with rotations 0 and -45 etc. Set it to false to disable rotation, which will cause the labels to word-wrap if possible. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-autorotation-defaults/">Default auto rotation of 0 or -45</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-autorotation-0-90/">Custom graded auto rotation</a>
- <br><br><b>defaults:</b><br><br>&ensp;[-45]	*/
+ For horizontal axes, the allowed degrees of label rotation to prevent overlapping labels. If there is enough space, labels are not rotated. As the chart gets narrower, it will start rotating the labels -45 degrees, then remove every second label and try again with rotations 0 and -45 etc. Set it to undefined to disable rotation, which will cause the labels to word-wrap if possible. Defaults to [-45]on bottom and top axes,undefined` on left and right axes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-autorotation-defaults/">Default auto rotation of 0 or -45</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-autorotation-0-90/">Custom graded auto rotation</a>
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setAutoRotation(ArrayList<Number> autoRotation) {
 		this.autoRotation = autoRotation;
 		this.setChanged();
@@ -190,21 +190,33 @@ public class HILabels extends HIFoundation {
 
 	public ArrayList<Number> getAutoRotation(){ return autoRotation; }
 
-	private Number padding;
+	private Boolean allowOverlap;
 	/**
- The pixel padding for axis labels, to ensure white space between them. 
- <br><br><b>defaults:</b><br><br>&ensp;5	*/
-	public void setPadding(Number padding) {
-		this.padding = padding;
+ Whether to allow the axis labels to overlap. When false, overlapping labels are hidden. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-allowoverlap-true/">X axis labels overlap enabled</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setAllowOverlap(Boolean allowOverlap) {
+		this.allowOverlap = allowOverlap;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getPadding(){ return padding; }
+	public Boolean getAllowOverlap(){ return allowOverlap; }
+
+	private Number zIndex;
+	/**
+ The Z index for the axis labels. 
+	*/
+	public void setZIndex(Number zIndex) {
+		this.zIndex = zIndex;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getZIndex(){ return zIndex; }
 
 	private String format;
 	/**
- A format string for the axis label. See [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) for example usage. Note: The defaults value is not specified due to the dynamic nature of the defaults implementation. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/labels-format/">Add units to Y axis label</a>
+ A format string for the axis label. The context is available as format string variables. For example, you can use {text} to insert the defaults formatted text. The recommended way of adding units for the label is using text, for example {text} km. To add custom numeric or datetime formatting, use {value} with formatting, for example {value:.1f} or {value:%Y-%m-%d}. See [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) for more examples of formatting. The defaults value is not specified due to the dynamic nature of the defaults implementation. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/labels-format/">Add units to Y axis label</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-format-linked/">Linked category names</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-format-custom/">Custom number format</a>
 	*/
 	public void setFormat(String format) {
 		this.format = format;
@@ -214,21 +226,21 @@ public class HILabels extends HIFoundation {
 
 	public String getFormat(){ return format; }
 
-	private Number zIndex;
+	private Number padding;
 	/**
- The Z index for the axis labels. 
- <br><br><b>defaults:</b><br><br>&ensp;7	*/
-	public void setZIndex(Number zIndex) {
-		this.zIndex = zIndex;
+ The pixel padding for axis labels, to ensure white space between them. 
+	*/
+	public void setPadding(Number padding) {
+		this.padding = padding;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getZIndex(){ return zIndex; }
+	public Number getPadding(){ return padding; }
 
 	private Number step;
 	/**
- To show only every _n_'th label on the axis, set the step to _n_. Setting the step to 2 shows every other label. By defaults, the step is calculated automatically to avoid overlap. To prevent this, set it to 1\. This usually only happens on a category axis, and is often a sign that you have chosen the wrong axis type. Read more at [Axis docs](https://www.highcharts.com/docs/chart-concepts/axes) => What axis should I use? <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-step/">Showing only every other axis label on a categorized x-axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-step-auto/">Auto steps on a category axis</a>
+ To show only every _n_'th label on the axis, set the step to _n_. Setting the step to 2 shows every other label. By defaults, when 0, the step is calculated automatically to avoid overlap. To prevent this, set it to 1\. This usually only happens on a category axis, and is often a sign that you have chosen the wrong axis type. Read more at [Axis docs](https://www.highcharts.com/docs/chart-concepts/axes) => What axis should I use? <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-step/">Showing only every other axis label on a categorized x-axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-step-auto/">Auto steps on a category axis</a>
 	*/
 	public void setStep(Number step) {
 		this.step = step;
@@ -241,7 +253,7 @@ public class HILabels extends HIFoundation {
 	private String overflow;
 	/**
  How to handle overflowing labels on horizontal axis. If set to "allow", it will not be aligned at all. By defaults it "justify" labels inside the chart area. If there is room to move it, it will be aligned to the edge, else it will be removed. <br><br><b>accepted values:</b><br><br>&ensp;["allow", "justify"]
- <br><br><b>defaults:</b><br><br>&ensp;justify	*/
+	*/
 	public void setOverflow(String overflow) {
 		this.overflow = overflow;
 		this.setChanged();
@@ -372,18 +384,6 @@ public class HILabels extends HIFoundation {
 
 	public HIColor getBackgroundColor(){ return backgroundColor; }
 
-	private Boolean allowOverlap;
-	/**
- Whether to allow the annotation's labels to overlap. To make the labels less sensitive for overlapping, the can be set to 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/tooltip-like/">Hide overlapping labels</a>
-	*/
-	public void setAllowOverlap(Boolean allowOverlap) {
-		this.allowOverlap = allowOverlap;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getAllowOverlap(){ return allowOverlap; }
-
 	private Boolean /* boolean */ shadow;
 	/**
  The shadow of the box. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
@@ -456,7 +456,6 @@ public HashMap<String, Object> getParams() {
 			params.put("x", this.x);
 		}
 		if (this.staggerLines != null) {
-			params.put("staggerLines", this.staggerLines);
 		}
 		if (this.autoRotationLimit != null) {
 			params.put("autoRotationLimit", this.autoRotationLimit);
@@ -494,14 +493,17 @@ public HashMap<String, Object> getParams() {
 			}
 			params.put("autoRotation", array);
 		}
-		if (this.padding != null) {
-			params.put("padding", this.padding);
+		if (this.allowOverlap != null) {
+			params.put("allowOverlap", this.allowOverlap);
+		}
+		if (this.zIndex != null) {
+			params.put("zIndex", this.zIndex);
 		}
 		if (this.format != null) {
 			params.put("format", this.format);
 		}
-		if (this.zIndex != null) {
-			params.put("zIndex", this.zIndex);
+		if (this.padding != null) {
+			params.put("padding", this.padding);
 		}
 		if (this.step != null) {
 			params.put("step", this.step);
@@ -538,9 +540,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.backgroundColor != null) {
 			params.put("backgroundColor", this.backgroundColor.getData());
-		}
-		if (this.allowOverlap != null) {
-			params.put("allowOverlap", this.allowOverlap);
 		}
 		if (this.shadow != null) {
 			params.put("shadow", this.shadow);

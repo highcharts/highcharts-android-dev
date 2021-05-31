@@ -26,9 +26,10 @@ import java.util.Random;
 
 class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-    private ArrayList<IssuesActivity.ChartInfo> mValues;
+    private ArrayList<ArrayList<Integer>> mValues;
+//    private ArrayList<TestActivity.ChartInfo> mValues;
 
-    public MyAdapter(ArrayList<IssuesActivity.ChartInfo> mValues) {
+    public MyAdapter(ArrayList<ArrayList<Integer>> mValues) {
         this.mValues = mValues;
     }
 
@@ -61,20 +62,17 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         options.setExporting(new HIExporting());
         options.getExporting().setEnabled(false);
         HIChart chart = new HIChart();
-        chart.setType(mValues.get(position).type);
+        chart.setType("column");
         options.setChart(chart);
         HITitle title = new HITitle();
-        title.setText(mValues.get(position).name);
+        title.setText("Chart no. " + position);
         options.setTitle(title);
         HICredits credits = new HICredits();
         credits.setEnabled(false);
         options.setCredits(credits);
         HISeries series = new HISeries();
-        series.setData(randData(10));
+        series.setData(mValues.get(position));
         options.setSeries(new ArrayList<>(Collections.singletonList(series)));
-        options.setTime(new HITime());
-        holder.chartView.plugins = new ArrayList<>();
-        holder.chartView.plugins.add("Moment");
         holder.chartView.setOptions(options);
     }
 

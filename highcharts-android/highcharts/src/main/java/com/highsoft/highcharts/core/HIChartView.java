@@ -390,7 +390,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
         webView.evaluateJavascript(strJsMethod, new ValueCallback<String>() {
             @Override
             public void onReceiveValue(String value) {
-//                Log.e(TAG, "Native method called.");
+                Log.i(TAG, "Native method called.");
 //                if(value != null) Log.e(TAG, "Val returned: " + String.valueOf(value).toString());
             }
         });

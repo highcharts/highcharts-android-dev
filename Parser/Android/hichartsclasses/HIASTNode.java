@@ -18,6 +18,15 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 public class HIASTNode extends HIFoundation { 
 
+	private HISVGAttributes attributes;
+	public void setAttributes(HISVGAttributes attributes) {
+		this.attributes = attributes;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HISVGAttributes getAttributes(){ return attributes; }
+
 	private ArrayList children;
 	public void setChildren(ArrayList children) {
 		this.children = children;
@@ -56,6 +65,9 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.attributes != null) {
+			params.put("attributes", this.attributes.getParams());
+		}
 		if (this.children != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.children) {

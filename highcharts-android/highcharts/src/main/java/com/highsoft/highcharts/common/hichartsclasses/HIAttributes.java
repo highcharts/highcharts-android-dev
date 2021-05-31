@@ -16,15 +16,6 @@ import java.util.HashMap;
 
 public class HIAttributes extends HIFoundation { 
 
-	private Number refY;
-	public void setRefY(Number refY) {
-		this.refY = refY;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getRefY(){ return refY; }
-
 	private Number refX;
 	public void setRefX(Number refX) {
 		this.refX = refX;
@@ -33,15 +24,6 @@ public class HIAttributes extends HIFoundation {
 	}
 
 	public Number getRefX(){ return refX; }
-
-	private String id;
-	public void setId(String id) {
-		this.id = id;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getId(){ return id; }
 
 	private Number markerWidth;
 	public void setMarkerWidth(Number markerWidth) {
@@ -52,14 +34,23 @@ public class HIAttributes extends HIFoundation {
 
 	public Number getMarkerWidth(){ return markerWidth; }
 
-	private String display;
-	public void setDisplay(String display) {
-		this.display = display;
+	private Number refY;
+	public void setRefY(Number refY) {
+		this.refY = refY;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getDisplay(){ return display; }
+	public Number getRefY(){ return refY; }
+
+	private String id;
+	public void setId(String id) {
+		this.id = id;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getId(){ return id; }
 
 	private Number markerHeight;
 	public void setMarkerHeight(Number markerHeight) {
@@ -90,20 +81,17 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.refY != null) {
-			params.put("refY", this.refY);
-		}
 		if (this.refX != null) {
 			params.put("refX", this.refX);
-		}
-		if (this.id != null) {
-			params.put("id", this.id);
 		}
 		if (this.markerWidth != null) {
 			params.put("markerWidth", this.markerWidth);
 		}
-		if (this.display != null) {
-			params.put("display", this.display);
+		if (this.refY != null) {
+			params.put("refY", this.refY);
+		}
+		if (this.id != null) {
+			params.put("id", this.id);
 		}
 		if (this.markerHeight != null) {
 			params.put("markerHeight", this.markerHeight);

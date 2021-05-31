@@ -79,7 +79,7 @@ public class HIScreenReaderSection extends HIFoundation {
 
 	private String beforeChartFormat;
 	/**
- Format for the screen reader information region before the chart. Supported HTML tags are , , , , , , , and . Attributes are not supported, except for id on , , and . Id is required on  and  in the format . Numbers, lower- and uppercase letters, "-" and "#" are valid characters in IDs. 
+ Format for the screen reader information region before the chart. Supported HTML tags are , , , , , , , and . Attributes are not supported, except for id on , , and . Id is required on  and  in the format . Numbers, lower- and uppercase letters, "-" and "#" are valid characters in IDs. The headingTagName is an auto-detected heading (h1-h6) that corresponds to the heading level below the previous heading in the DOM. 
 	*/
 	public void setBeforeChartFormat(String beforeChartFormat) {
 		this.beforeChartFormat = beforeChartFormat;

@@ -1034,7 +1034,6 @@ public class HIData extends HIFoundation {
 		jsProperties.put(name, value);
 	}
 
-
 	public HIData() {
 
 	}
