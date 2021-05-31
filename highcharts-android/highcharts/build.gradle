@@ -70,7 +70,7 @@ afterEvaluate {
             // Creates a Maven publication called "release".
             release(MavenPublication) {
                 from components.release
-                groupId = group
+                groupId = 'com.github.highcharts'
                 artifactId = 'highcharts-android'
                 version = '9.1.0'
             }
