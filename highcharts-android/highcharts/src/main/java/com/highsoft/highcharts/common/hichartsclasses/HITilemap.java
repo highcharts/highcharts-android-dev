@@ -70,6 +70,18 @@ public class HITilemap extends HISeries {
 
 	public String getTileShape(){ return tileShape; }
 
+	private Number borderRadius;
+	/**
+ The border radius for each heatmap item. 
+	*/
+	public void setBorderRadius(Number borderRadius) {
+		this.borderRadius = borderRadius;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getBorderRadius(){ return borderRadius; }
+
 	private HIColor nullColor;
 	/**
  The color applied to null points. In styled mode, a general CSS class is applied instead. 
@@ -105,6 +117,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.tileShape != null) {
 			params.put("tileShape", this.tileShape);
+		}
+		if (this.borderRadius != null) {
+			params.put("borderRadius", this.borderRadius);
 		}
 		if (this.nullColor != null) {
 			params.put("nullColor", this.nullColor.getData());

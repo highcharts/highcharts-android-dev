@@ -17,13 +17,13 @@ import java.util.HashMap;
 public class HIDefs extends HIFoundation { 
 
 	private HIASTNode reverseArrow;
-	public void setreverseArrow(HIASTNode reverseArrow) {
+	public void setReverseArrow(HIASTNode reverseArrow) {
 		this.reverseArrow = reverseArrow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIASTNode getreverseArrow(){ return reverseArrow; }
+	public HIASTNode getReverseArrow(){ return reverseArrow; }
 
 	private HIASTNode arrow;
 	public void setArrow(HIASTNode arrow) {

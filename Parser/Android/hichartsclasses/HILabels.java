@@ -70,17 +70,17 @@ public class HILabels extends HIFoundation {
 
 	public Number getX(){ return x; }
 
-	private Object staggerLines;
+	private Number staggerLines;
 	/**
  Horizontal axes only. The number of lines to spread the labels over to make room or tighter labels. 0 disables staggering. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-staggerlines/">Show labels over two lines</a>
 	*/
-	public void setStaggerLines(Object staggerLines) {
+	public void setStaggerLines(Number staggerLines) {
 		this.staggerLines = staggerLines;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getStaggerLines(){ return staggerLines; }
+	public Number getStaggerLines(){ return staggerLines; }
 
 	private Number autoRotationLimit;
 	/**
@@ -274,18 +274,17 @@ public class HILabels extends HIFoundation {
 
 	public Boolean getEnabled(){ return enabled; }
 
-	private HIPoint point;
+	private String point;
 	/**
- This option defines the point to which the label will be connected. It can be either the point which exists in the series - it is referenced by the point's id - or a new point with defined x, y properties and optionally axes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/mock-point/">Attach annotation to a mock point</a>
+ This option defines the point to which the label will be connected. It can be either the point which exists in the series - it is referenced by the point's id - or a new point with defined x, y properties and optionally axes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/mock-point/">Attach annotation to a mock point</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/mock-points/">Attach annotation to a mock point with different ways</a>
 	*/
-	public void setPoint(HIPoint point) {
+	public void setPoint(String point) {
 		this.point = point;
-		this.point.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIPoint getPoint(){ return point; }
+	public String getPoint(){ return point; }
 
 	private Boolean includeInDataExport;
 	/**
@@ -456,6 +455,7 @@ public HashMap<String, Object> getParams() {
 			params.put("x", this.x);
 		}
 		if (this.staggerLines != null) {
+			params.put("staggerLines", this.staggerLines);
 		}
 		if (this.autoRotationLimit != null) {
 			params.put("autoRotationLimit", this.autoRotationLimit);
@@ -515,7 +515,7 @@ public HashMap<String, Object> getParams() {
 			params.put("enabled", this.enabled);
 		}
 		if (this.point != null) {
-			params.put("point", this.point.getParams());
+			params.put("point", this.point);
 		}
 		if (this.includeInDataExport != null) {
 			params.put("includeInDataExport", this.includeInDataExport);

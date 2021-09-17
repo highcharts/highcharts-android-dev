@@ -3,73 +3,235 @@ package com.highsoft.devground
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
+import com.highsoft.highcharts.common.HIColor
 import com.highsoft.highcharts.common.hichartsclasses.*
 import com.highsoft.highcharts.core.HIChartView
 import com.highsoft.highcharts.core.HIFoundation
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivityKotlin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
 
+        val button = findViewById<Button>(R.id.btn)
+
         val chartView = findViewById<HIChartView>(R.id.hc)
 
-        val button = findViewById<Button>(R.id.btn)
+        chartView.plugins = ArrayList(Arrays.asList("drilldown"))
 
         val options = HIOptions()
 
-        val column = HIColumn()
-        column.data = ArrayList(listOf(29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4))
-        options.series = ArrayList(listOf(column))
+        val chart = HIChart()
+        chart.type = "column"
+        chart.backgroundColor = HIColor.initWithHexValue("F2F9FC")
+        options.chart = chart
 
-//        val exporting = HIExporting()
-//
-//        val hashMap = HashMap<String, HIFoundation>()
-//        val series = HISeries()
-//        val dataLabelsList = ArrayList<HIDataLabels>()
-//        val dataLabels = HIDataLabels()
-//        dataLabels.enabled = true
-//        dataLabels.format = "{y:.2f} M"
-//        dataLabelsList.add(dataLabels)
-//        series.dataLabels = dataLabelsList
-//        hashMap["series"] = series
-//
-//        exporting.chartOptions = hashMap
-//
-//        options.exporting = exporting
-//
+        val title = HITitle()
+        title.text = ""
+        options.title = title
 
-        val myhashmap= HashMap<String,HIFoundation>()
-        myhashmap["series"] = HISeries().apply {
-            dataLabels= arrayListOf(HIDataLabels().apply {
-                enabled=true
-                format="{y:.2f} M"
-            })
-        }
+        val credits = HICredits()
+        credits.enabled = false
+        options.credits=credits
 
-        options.exporting=HIExporting().apply {
-            enabled=true
-            chartOptions=myhashmap
-        }
+        val export = HIExporting()
+        export.enabled=false
 
-        chartView.options = options
+        options.exporting = export
 
 
 
-        button.setOnClickListener {
-//            chartView.options = options
-//            val subTitle = HISubtitle();
-//            subTitle.text = "YEAAAAAH"
-            val colNew = HIColumn()
-            colNew.data = ArrayList(listOf(4.5, 5.6, 7.8, 12.5, 18.9))
-            options.series = ArrayList(listOf(colNew))
-            val newOptions = options
-            newOptions.series = ArrayList(listOf(colNew))
-            chartView.options = newOptions
-            chartView.redraw()
-//            chartView.update(newOptions, true)
-        }
+        val xAxis = HIXAxis()
+        xAxis.type = "category"
+        xAxis.labels = HILabels()
+        xAxis.labels.autoRotation = arrayListOf(0)
+        options.xAxis=ArrayList(listOf(xAxis))
+
+        val yAxis = HIYAxis()
+        yAxis.title = HITitle()
+        yAxis.title.text = ""
+        yAxis.visible = false
+
+        options.yAxis=ArrayList(listOf(yAxis))
+
+        
+        // 1
+        val legend = HILegend()
+        legend.enabled = false
+        options.legend = legend
+
+        // 2
+        val plotOptions = HIPlotOptions()
+        val col = HIColumn()
+        col.borderWidth = 0
+        col.dataLabels = ArrayList<HIDataLabels>()
+        val dataLabels = HIDataLabels()
+        dataLabels.enabled = true
+        col.dataLabels.add(dataLabels)
+        plotOptions.series = col
+        options.plotOptions = plotOptions
+
+
+        val tooltip = HITooltip()
+        tooltip.headerFormat = "<span style=\"font-size:11px\">{series.name}</span><br>"
+        tooltip.pointFormat =
+            "<span style=\"color:{point.color}\">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>"
+        options.tooltip = tooltip
+
+        val columncolors = ArrayList<String>()
+        columncolors.add("#FBB519")
+        columncolors.add("#F5716F")
+        columncolors.add("#00B9C4")
+        columncolors.add("#ABC22A")
+        columncolors.add("#CA56AF")
+        columncolors.add("#CA56AF")
+
+        val series1 = HIColumn()
+        series1.name = ""
+        series1.colorByPoint = true
+        series1.colors = columncolors
+
+
+
+        val map1: HashMap<String, Any> = HashMap()
+        map1["name"] = "Hyderabad"
+        map1["y"] = 56.33
+        map1[""]
+        map1["drilldown"] = "Microsoft"
+
+        val map2: HashMap<String, Any> = HashMap()
+        map2["name"] = "Vijayawada"
+        map2["y"] = 24.03
+        map2["drilldown"] = "Chrome"
+
+        val map3: HashMap<String, Any> = HashMap()
+        map3["name"] = "Secundrabad"
+        map3["y"] = 18.38
+        map3["drilldown"] = "Firefox"
+
+        val map4: HashMap<String, Any> = HashMap()
+        map4["name"] = "Kakinada"
+        map4["y"] = 14.77
+        map4["drilldown"] = "Safari"
+
+        val map5: HashMap<String, Any> = HashMap()
+        map5["name"] = "Nellore"
+        map5["y"] = 21.50
+        map5["drilldown"] = "Opera"
+
+        val map6: HashMap<String, Any> = HashMap()
+        map6["name"] = "Kurnool"
+        map6["y"] = 30.00
+        map6["drilldown"] = "null"
+
+
+        val series1_data =  ArrayList<HashMap<String, Any>>()
+        series1_data.add(map1)
+        series1_data.add(map2)
+        series1_data.add(map3)
+        series1_data.add(map4)
+        series1_data.add(map5)
+        series1_data.add(map6)
+
+
+        series1.data = ArrayList(series1_data)
+        val series = ArrayList<HISeries>()
+        series.add(series1)
+        options.series = series
+
+
+
+        val drilldown = HIDrilldown()
+
+        val series2 = HIColumn()
+        series2.name = "Hyderabad"
+        series2.id = "Microsoft"
+
+        val object1 = arrayOf<Any>("Quarter1", 24.13)
+        val object2 = arrayOf<Any>("Quarter2", 17.2)
+        val object3 = arrayOf<Any>("Quarter3", 8.11)
+        val object4 = arrayOf<Any>("Quarter4", 5.33)
+
+        val series_list = ArrayList<Any>()
+        series_list.add(object1)
+        series_list.add(object2)
+        series_list.add(object3)
+        series_list.add(object4)
+
+        series2.data =
+            ArrayList(series_list)
+
+        val series3 = HIColumn()
+        series3.name = "Vijayawada"
+        series3.id = "Chrome"
+
+        val object5 = arrayOf<Any>("Quarter1", 24.13)
+        val object6 = arrayOf<Any>("Quarter2", 17.2)
+        val object7 = arrayOf<Any>("Quarter3", 8.11)
+        val object8 = arrayOf<Any>("Quarter4", 5.33)
+
+        val series_list1 = ArrayList<Any>()
+        series_list1.add(object5)
+        series_list1.add(object6)
+        series_list1.add(object7)
+        series_list1.add(object8)
+
+        series3.data =
+            ArrayList(series_list1)
+
+        val series4 = HIColumn()
+        series4.name = "Secundrabad"
+        series4.id = "Firefox"
+
+        val object9 = arrayOf<Any>("Quarter1", 24.13)
+        val object10 = arrayOf<Any>("Quarter2", 17.2)
+        val object11 = arrayOf<Any>("Quarter3", 8.11)
+        val object12 = arrayOf<Any>("Quarter4", 5.33)
+
+        val series_list2 = ArrayList<Any>()
+        series_list2.add(object9)
+        series_list2.add(object10)
+        series_list2.add(object11)
+        series_list2.add(object12)
+
+        series4.data =
+            ArrayList(series_list2)
+
+
+        val series5 = HIColumn()
+        series5.name = "Kakinada"
+        series5.id = "Safari"
+
+        val object13 = arrayOf<Any>("Quarter1", 24.13)
+        val object14= arrayOf<Any>("Quarter2", 17.2)
+        val object15 = arrayOf<Any>("Quarter3", 8.11)
+        val object16 = arrayOf<Any>("Quarter4", 5.33)
+
+        val series_list3 = ArrayList<Any>()
+        series_list3.add(object13)
+        series_list3.add(object14)
+        series_list3.add(object15)
+        series_list3.add(object16)
+
+        series5.data =
+            ArrayList(series_list3)
+
+
+        val seriesList = ArrayList<HISeries>()
+
+        seriesList.add(series2)
+        seriesList.add(series3)
+        seriesList.add(series4)
+        seriesList.add(series5)
+
+
+
+        drilldown.series = ArrayList(seriesList)
+        options.drilldown = drilldown
+
+        chartView.setOptions(options);
 
     }
 }

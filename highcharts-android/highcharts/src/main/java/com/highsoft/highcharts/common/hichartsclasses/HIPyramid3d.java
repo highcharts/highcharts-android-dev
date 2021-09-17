@@ -60,8 +60,28 @@ public class HIPyramid3d extends HISeries {
 	public ArrayList /* <Number, String> */ getCenter(){ return center; }
 
 	private Object /* Number, String */ height;
+	/**
+ The height of the funnel or pyramid. If it is a number it defines the pixel height, if it is a percentage string it is the percentage of the plot area height. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/funnel/">Funnel demo</a>
+	*/
+	public void setHeight(Object /* Number, String */ height) {
+		this.height = height;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getHeight(){ return height; }
 
 	private Object /* Number, String */ width;
+	/**
+ The width of the funnel compared to the width of the plot area, or the pixel width if it is a number. 
+	*/
+	public void setWidth(Object /* Number, String */ width) {
+		this.width = width;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getWidth(){ return width; }
 
 	private Boolean ignoreHiddenPoint;
 	/**
@@ -76,8 +96,28 @@ public class HIPyramid3d extends HISeries {
 	public Boolean getIgnoreHiddenPoint(){ return ignoreHiddenPoint; }
 
 	private ArrayList<String> colors;
+	/**
+ A series specific or series type specific color set to use instead of the global colors. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/">Set defaults colors for all pies</a>
+	*/
+	public void setColors(ArrayList<String> colors) {
+		this.colors = colors;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList<String> getColors(){ return colors; }
 
 	private HIColor borderColor;
+	/**
+ The color of the border surrounding each slice. When null, the border takes the same color as the slice fill. This can be used together with a borderWidth to fill drawing gaps created by antialiazing artefacts in borderless pies. In styled mode, the border stroke is given in the .highcharts-point class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-bordercolor-black/">Black border</a>
+ <br><br><b>defaults:</b><br><br>&ensp;#ffffff	*/
+	public void setBorderColor(HIColor borderColor) {
+		this.borderColor = borderColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getBorderColor(){ return borderColor; }
 
 	private Object /* Number, String */ minSize;
 	/**
@@ -139,13 +179,9 @@ public class HIPyramid3d extends HISeries {
 
 	public Number getSlicedOffset(){ return slicedOffset; }
 
-	private Number depth;
-
-	private Number borderWidth;
-
 	private Boolean reversed;
 	/**
-/** * description: A reversed pyramid3d is funnel3d, but the latter supports neck related options: neckHeight and neckWidth
+/** * description: A reversed pyramid3d is funnel3d, but the latter supports neck related options: neckHeight and neckWidth 
 */
 	public void setReversed(Boolean reversed) {
 		this.reversed = reversed;
@@ -167,28 +203,6 @@ public class HIPyramid3d extends HISeries {
 	}
 
 	public Boolean getColorByPoint(){ return colorByPoint; }
-
-	/**
- The height of the series. If it is a number it defines the pixel height, if it is a percentage string it is the percentage of the plot area height. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/funnel3d/">Funnel3d demo</a>
-	*/
-	public void setHeight(Object /* Number, String */ height) {
-		this.height = height;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object /* Number, String */ getHeight(){ return height; }
-
-	/**
- The max width of the series compared to the width of the plot area, or the pixel width if it is a number. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/funnel3d/">Funnel3d demo</a>
-	*/
-	public void setWidth(Object /* Number, String */ width) {
-		this.width = width;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object /* Number, String */ getWidth(){ return width; }
 
 	private Boolean gradientForSides;
 	/**
@@ -275,28 +289,6 @@ public class HIPyramid3d extends HISeries {
 
 	public Number getGroupZPadding(){ return groupZPadding; }
 
-	/**
- A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
-	*/
-	public void setColors(ArrayList<String> colors) {
-		this.colors = colors;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public ArrayList<String> getColors(){ return colors; }
-
-	/**
- The color of the border surrounding each column or bar. In styled mode, the border stroke can be set with the .highcharts-point rule. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-bordercolor/">Dark gray border</a>
- <br><br><b>defaults:</b><br><br>&ensp;#ffffff	*/
-	public void setBorderColor(HIColor borderColor) {
-		this.borderColor = borderColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getBorderColor(){ return borderColor; }
-
 	private HIColor edgeColor;
 	/**
  3D columns only. The color of the edges. Similar to borderColor, except it defaultss to the same color as the column. 
@@ -357,6 +349,7 @@ public class HIPyramid3d extends HISeries {
 
 	public Number getGroupPadding(){ return groupPadding; }
 
+	private Number depth;
 	/**
  Depth of the columns in a 3D column chart. 
  <br><br><b>defaults:</b><br><br>&ensp;25	*/
@@ -368,6 +361,7 @@ public class HIPyramid3d extends HISeries {
 
 	public Number getDepth(){ return depth; }
 
+	private Number borderWidth;
 	/**
  The width of the border surrounding each column or bar. Defaults to 1 when there is room for a border, but to 0 when the columns are so dense that a border would cover the next column. In styled mode, the stroke width can be set with the .highcharts-point rule. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-borderwidth/">2px black border</a>
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/

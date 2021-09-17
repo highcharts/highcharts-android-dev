@@ -521,6 +521,18 @@ public class HIParallelAxes extends HIFoundation {
 
 	public ArrayList<ArrayList> getUnits(){ return units; }
 
+	private Boolean panningEnabled;
+	/**
+ Whether to pan axis. If chart.panning is enabled, the option allows to disable panning on an individual axis. 
+	*/
+	public void setPanningEnabled(Boolean panningEnabled) {
+		this.panningEnabled = panningEnabled;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getPanningEnabled(){ return panningEnabled; }
+
 	private Number tickLength;
 	/**
  The pixel length of the main tick marks. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/ticklength/">20 px tick length on the X axis</a>
@@ -939,6 +951,9 @@ public HashMap<String, Object> getParams() {
 				}
 			}
 			params.put("units", array);
+		}
+		if (this.panningEnabled != null) {
+			params.put("panningEnabled", this.panningEnabled);
 		}
 		if (this.tickLength != null) {
 			params.put("tickLength", this.tickLength);

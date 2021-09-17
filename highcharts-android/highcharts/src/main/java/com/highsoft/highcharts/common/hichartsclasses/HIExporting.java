@@ -12,6 +12,7 @@ import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.core.HIFunction;
 
 import java.util.HashMap;
+import java.util.Map;
 
 
 
@@ -176,17 +177,17 @@ public class HIExporting extends HIFoundation {
 
 	public Object /* boolean, String */ getTableCaption(){ return tableCaption; }
 
-	private HISVGAttributes formAttributes;
+	private HashMap<String, Object> formAttributes;
 	/**
  An object containing additional key value data for the POST form that sends the SVG to the export server. For example, a target can be set to make sure the generated image is received in another frame, or a custom enctype or encoding can be set. 
 	*/
-	public void setFormAttributes(HISVGAttributes formAttributes) {
+	public void setFormAttributes(HashMap<String, Object> formAttributes) {
 		this.formAttributes = formAttributes;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HISVGAttributes getFormAttributes(){ return formAttributes; }
+	public HashMap<String, Object> getFormAttributes(){ return formAttributes; }
 
 	private Boolean useMultiLevelHeaders;
 	/**
@@ -286,7 +287,7 @@ public class HIExporting extends HIFoundation {
 
 	private String libURL;
 	/**
- Path where Highcharts will look for export module dependencies to load on demand if they don't already exist on window. Should currently point to location of [CanVG](https://github.com/canvg/canvg) library, [RGBColor.js](https://github.com/canvg/canvg), [jsPDF](https://github.com/yWorks/jsPDF) and [svg2pdf.js](https://github.com/yWorks/svg2pdf.js), required for client side export in certain browsers. 
+ Path where Highcharts will look for export module dependencies to load on demand if they don't already exist on window. Should currently point to location of [CanVG](https://github.com/canvg/canvg) library, [jsPDF](https://github.com/yWorks/jsPDF) and [svg2pdf.js](https://github.com/yWorks/svg2pdf.js), required for client side export in certain browsers. 
 	*/
 	public void setLibURL(String libURL) {
 		this.libURL = libURL;
@@ -374,7 +375,9 @@ public HashMap<String, Object> getParams() {
 			params.put("tableCaption", this.tableCaption);
 		}
 		if (this.formAttributes != null) {
-			params.put("formAttributes", this.formAttributes.getParams());
+			for (Map.Entry<String, Object> entry : this.formAttributes.entrySet()) {
+				params.put(entry.getKey(), entry.getValue());
+			}
 		}
 		if (this.useMultiLevelHeaders != null) {
 			params.put("useMultiLevelHeaders", this.useMultiLevelHeaders);

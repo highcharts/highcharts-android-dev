@@ -165,6 +165,18 @@ public class HIXAxis extends HIFoundation {
 
 	public Number getMinTickInterval(){ return minTickInterval; }
 
+	private String type;
+	/**
+ The type of axis. Can be one of linear, logarithmic, datetime or category. In a datetime axis, the numbers are given in milliseconds, and tick marks are placed on appropriate values like full hours or days. In a category axis, the point names of the chart's series are used for categories, if not a categories array is defined. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/type-linear/">Linear</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/type-log/">Logarithmic</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/type-log-minorgrid/">Logarithmic with minor grid lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/type-log-both/">Logarithmic on two axes</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/type-log-negative/">Logarithmic with extension to emulate negative values</a>
+	*/
+	public void setType(String type) {
+		this.type = type;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getType(){ return type; }
+
 	private Number tickWidth;
 	/**
  The pixel width of the major tick marks. Defaults to 0 on category axes, otherwise 1. In styled mode, the stroke width is given in the .highcharts-tick class, but in order for the element to be generated on category axes, the option must be explicitly set to 1. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickwidth/">10 px width</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/">Styled mode</a>
@@ -405,17 +417,17 @@ public class HIXAxis extends HIFoundation {
 
 	public Number getSoftMin(){ return softMin; }
 
-	private String type;
+	private Boolean panningEnabled;
 	/**
- The type of axis. Can be one of linear, logarithmic, datetime or category. In a datetime axis, the numbers are given in milliseconds, and tick marks are placed on appropriate values like full hours or days. In a category axis, the point names of the chart's series are used for categories, if not a categories array is defined. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/type-linear/">Linear</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/type-log/">Logarithmic</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/type-log-minorgrid/">Logarithmic with minor grid lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/type-log-both/">Logarithmic on two axes</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/type-log-negative/">Logarithmic with extension to emulate negative values</a>
+ Whether to pan axis. If chart.panning is enabled, the option allows to disable panning on an individual axis. 
 	*/
-	public void setType(String type) {
-		this.type = type;
+	public void setPanningEnabled(Boolean panningEnabled) {
+		this.panningEnabled = panningEnabled;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getType(){ return type; }
+	public Boolean getPanningEnabled(){ return panningEnabled; }
 
 	private String gridLineInterpolation;
 	/**
@@ -598,17 +610,17 @@ public class HIXAxis extends HIFoundation {
 
 	public Boolean getStartOnTick(){ return startOnTick; }
 
-	private String offset;
+	private Number offset;
 	/**
  The distance in pixels from the plot area to the axis line. A positive offset moves the axis with it's line, labels and ticks away from the plot area. This is typically used when two or more axes are displayed on the same side of the plot. With multiple axes the offset is dynamically adjusted to avoid collision, this can be overridden by setting offset explicitly. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/offset/">Y axis offset of 70</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/offset-centered/">Axes positioned in the center of the plot</a>
 	*/
-	public void setOffset(String offset) {
+	public void setOffset(Number offset) {
 		this.offset = offset;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getOffset(){ return offset; }
+	public Number getOffset(){ return offset; }
 
 	private Number softMax;
 	/**
@@ -972,6 +984,9 @@ public HashMap<String, Object> getParams() {
 		if (this.minTickInterval != null) {
 			params.put("minTickInterval", this.minTickInterval);
 		}
+		if (this.type != null) {
+			params.put("type", this.type);
+		}
 		if (this.tickWidth != null) {
 			params.put("tickWidth", this.tickWidth);
 		}
@@ -1059,8 +1074,8 @@ public HashMap<String, Object> getParams() {
 		if (this.softMin != null) {
 			params.put("softMin", this.softMin);
 		}
-		if (this.type != null) {
-			params.put("type", this.type);
+		if (this.panningEnabled != null) {
+			params.put("panningEnabled", this.panningEnabled);
 		}
 		if (this.gridLineInterpolation != null) {
 			params.put("gridLineInterpolation", this.gridLineInterpolation);

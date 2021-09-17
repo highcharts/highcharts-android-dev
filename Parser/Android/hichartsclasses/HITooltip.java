@@ -117,7 +117,7 @@ public class HITooltip extends HIFoundation {
 
 	private Boolean stickOnContact;
 	/**
- Prevents the tooltip from switching or closing, when touched or pointed. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/stickoncontact/">Tooltip sticks on pointer contact</a>
+ Prevents the tooltip from switching or closing when touched or pointed. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/stickoncontact/">Tooltip sticks on pointer contact</a>
 	*/
 	public void setStickOnContact(Boolean stickOnContact) {
 		this.stickOnContact = stickOnContact;
@@ -166,7 +166,7 @@ public class HITooltip extends HIFoundation {
 	private String headerShape;
 	/**
  The name of a symbol to use for the border around the tooltip header. Applies only when tooltip.split is enabled. Custom callbacks for symbol path generation can also be added to Highcharts.SVGRenderer.prototype.symbols the same way as for `series.marker.symbol`. <br><br><b>accepted values:</b><br><br>&ensp;["callout", "square"]
- <br><br><b>defaults:</b><br><br>&ensp;callout	*/
+	*/
 	public void setHeaderShape(String headerShape) {
 		this.headerShape = headerShape;
 		this.setChanged();
@@ -250,7 +250,7 @@ public class HITooltip extends HIFoundation {
 	private Boolean shared;
 	/**
  When the tooltip is shared, the entire plot area will capture mouse movement or touch events. Tooltip texts for series types with ordered data (not pie, scatter, flags etc) will be shown in a single bubble. This is recommended for single series charts and for tablet/mobile optimized charts. See also tooltip.split, that is better suited for charts with many series, especially line-type series. The tooltip.split option takes precedence over tooltip.shared. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/shared-false/">False by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/shared-true/">True</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/shared-x-crosshair/">True with x axis crosshair</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/shared-true-mixed-types/">True with mixed series types</a>
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	*/
 	public void setShared(Boolean shared) {
 		this.shared = shared;
 		this.setChanged();
@@ -371,7 +371,7 @@ public class HITooltip extends HIFoundation {
 	private String shape;
 	/**
  The name of a symbol to use for the border around the tooltip. Can be one of: "callout", "circle" or "rect". When tooltip.split option is enabled, shape is applied to all boxes except header, which is controlled by tooltip.headerShape. Custom callbacks for symbol path generation can also be added to Highcharts.SVGRenderer.prototype.symbols the same way as for `series.marker.symbol`. 
- <br><br><b>defaults:</b><br><br>&ensp;callout	*/
+	*/
 	public void setShape(String shape) {
 		this.shape = shape;
 		this.setChanged();
@@ -431,7 +431,7 @@ public class HITooltip extends HIFoundation {
 	private Number hideDelay;
 	/**
  The number of milliseconds to wait until the tooltip is hidden when mouse out from a point or chart. 
- <br><br><b>defaults:</b><br><br>&ensp;500	*/
+	*/
 	public void setHideDelay(Number hideDelay) {
 		this.hideDelay = hideDelay;
 		this.setChanged();

@@ -556,6 +556,15 @@ public class HIPopup extends HIFoundation {
 
 	public String getOuterBackground(){ return outerBackground; }
 
+	private String periods;
+	public void setPeriods(String periods) {
+		this.periods = periods;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getPeriods(){ return periods; }
+
 	private String simpleShapes;
 	public void setSimpleShapes(String simpleShapes) {
 		this.simpleShapes = simpleShapes;
@@ -1016,6 +1025,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.outerBackground != null) {
 			params.put("outerBackground", this.outerBackground);
+		}
+		if (this.periods != null) {
+			params.put("periods", this.periods);
 		}
 		if (this.simpleShapes != null) {
 			params.put("simpleShapes", this.simpleShapes);

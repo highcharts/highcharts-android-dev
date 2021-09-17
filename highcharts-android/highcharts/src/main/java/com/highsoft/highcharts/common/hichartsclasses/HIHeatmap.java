@@ -31,6 +31,18 @@ public class HIHeatmap extends HISeries {
 
 	public Number getPointPadding(){ return pointPadding; }
 
+	private Number rowsize;
+	/**
+ The row size - how many Y axis units each heatmap row should span. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/heatmap/">1 by defaults</a>
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
+	public void setRowsize(Number rowsize) {
+		this.rowsize = rowsize;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getRowsize(){ return rowsize; }
+
 	private Number colsize;
 	/**
  The column size - how many X axis units each column in the heatmap should span. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/heatmap/">One day</a>
@@ -43,17 +55,17 @@ public class HIHeatmap extends HISeries {
 
 	public Number getColsize(){ return colsize; }
 
-	private Number rowsize;
+	private Number borderRadius;
 	/**
- The row size - how many Y axis units each heatmap row should span. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/heatmap/">1 by defaults</a>
- <br><br><b>defaults:</b><br><br>&ensp;1	*/
-	public void setRowsize(Number rowsize) {
-		this.rowsize = rowsize;
+ The border radius for each heatmap item. 
+	*/
+	public void setBorderRadius(Number borderRadius) {
+		this.borderRadius = borderRadius;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getRowsize(){ return rowsize; }
+	public Number getBorderRadius(){ return borderRadius; }
 
 	private HIColor nullColor;
 	/**
@@ -82,11 +94,14 @@ public HashMap<String, Object> getParams() {
 		if (this.pointPadding != null) {
 			params.put("pointPadding", this.pointPadding);
 		}
+		if (this.rowsize != null) {
+			params.put("rowsize", this.rowsize);
+		}
 		if (this.colsize != null) {
 			params.put("colsize", this.colsize);
 		}
-		if (this.rowsize != null) {
-			params.put("rowsize", this.rowsize);
+		if (this.borderRadius != null) {
+			params.put("borderRadius", this.borderRadius);
 		}
 		if (this.nullColor != null) {
 			params.put("nullColor", this.nullColor.getData());

@@ -322,7 +322,7 @@ public class HISeries extends HIFoundation {
 
 	private Number pointInterval;
 	/**
- If no x values are given for the points in a series, pointInterval defines the interval of the x values. For example, if a series contains one value every decade starting from year 0, set pointInterval to 10. In true datetime axes, the pointInterval is set in milliseconds. It can be also be combined with pointIntervalUnit to draw irregular time intervals. Please note that this options applies to the _series data_, not the interval of the axis ticks, which is independent. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointstart-datetime/">Datetime X axis</a>
+ If no x values are given for the points in a series, pointInterval defines the interval of the x values. For example, if a series contains one value every decade starting from year 0, set pointInterval to 10. In true datetime axes, the pointInterval is set in milliseconds. It can be also be combined with pointIntervalUnit to draw irregular time intervals. If combined with relativeXValue, an x value can be set on each point, and the pointInterval is added x times to the pointStart setting. Please note that this options applies to the _series data_, not the interval of the axis ticks, which is independent. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointstart-datetime/">Datetime X axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-relativexvalue/">Relative x value</a>
  <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setPointInterval(Number pointInterval) {
 		this.pointInterval = pointInterval;
@@ -457,7 +457,7 @@ public class HISeries extends HIFoundation {
 
 	private HIFunction pointDescriptionFormatter;
 	/**
- Same as accessibility.pointDescriptionFormatter, but for an individual series. Overrides the chart wide configuration. 
+ Same as accessibility.series.descriptionFormatter, but for an individual series. Overrides the chart wide configuration. 
 	*/
 	public void setPointDescriptionFormatter(HIFunction pointDescriptionFormatter) {
 		this.pointDescriptionFormatter = pointDescriptionFormatter;
@@ -574,6 +574,18 @@ public class HISeries extends HIFoundation {
 	}
 
 	public String getFindNearestPointBy(){ return findNearestPointBy; }
+
+	private Boolean relativeXValue;
+	/**
+ When true, X values in the data set are relative to the current pointStart, pointInterval and pointIntervalUnit settings. This allows compression of the data for datasets with irregular X values. The real X values are computed on the formula f(x) = ax + b, where a is the pointInterval (optionally with a time unit given by pointIntervalUnit), and b is the pointStart. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-relativexvalue/">Relative X value</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setRelativeXValue(Boolean relativeXValue) {
+		this.relativeXValue = relativeXValue;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getRelativeXValue(){ return relativeXValue; }
 
 	private Number threshold;
 	/**
@@ -879,7 +891,7 @@ public class HISeries extends HIFoundation {
 
 	private Number pointStart;
 	/**
- If no x values are given for the points in a series, pointStart defines on what value to start. For example, if a series contains one yearly value starting from 1945, set pointStart to 1945. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointstart-linear/">Linear</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointstart-datetime/">Datetime</a>
+ If no x values are given for the points in a series, pointStart defines on what value to start. For example, if a series contains one yearly value starting from 1945, set pointStart to 1945. If combined with relativeXValue, an x value can be set on each point. The x value from the point options is multiplied by pointInterval and added to pointStart to produce a modified x value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointstart-linear/">Linear</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointstart-datetime/">Datetime</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-relativexvalue/">Relative x value</a>
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setPointStart(Number pointStart) {
 		this.pointStart = pointStart;
@@ -1094,6 +1106,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.findNearestPointBy != null) {
 			params.put("findNearestPointBy", this.findNearestPointBy);
+		}
+		if (this.relativeXValue != null) {
+			params.put("relativeXValue", this.relativeXValue);
 		}
 		if (this.threshold != null) {
 			params.put("threshold", this.threshold);

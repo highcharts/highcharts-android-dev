@@ -32,6 +32,18 @@ public class HITreemap extends HISeries {
 
 	public Boolean getIgnoreHiddenPoint(){ return ignoreHiddenPoint; }
 
+	private Number borderRadius;
+	/**
+ The border radius for each treemap item. 
+	*/
+	public void setBorderRadius(Number borderRadius) {
+		this.borderRadius = borderRadius;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getBorderRadius(){ return borderRadius; }
+
 	private ArrayList<String> colors;
 	/**
  A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
@@ -192,6 +204,9 @@ public HashMap<String, Object> getParams() {
 		params = super.getParams();
 		if (this.ignoreHiddenPoint != null) {
 			params.put("ignoreHiddenPoint", this.ignoreHiddenPoint);
+		}
+		if (this.borderRadius != null) {
+			params.put("borderRadius", this.borderRadius);
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();

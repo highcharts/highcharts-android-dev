@@ -154,6 +154,18 @@ public class HILegend extends HIFoundation {
 
 	public HIColor getBorderColor(){ return borderColor; }
 
+	private String className;
+	/**
+ A CSS class name to apply to the legend group. 
+	*/
+	public void setClassName(String className) {
+		this.className = className;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getClassName(){ return className; }
+
 	private String layout;
 	/**
  The layout of the legend items. Can be one of horizontal or vertical or proximate. When proximate, the legend items will be placed as close as possible to the graphs they're representing, except in inverted charts or when the legend position doesn't allow it. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-horizontal/">Horizontal by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-vertical/">Vertical</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-proximate">Labels proximate to the data</a> <br><br><b>accepted values:</b><br><br>&ensp;["horizontal", "vertical", "proximate"]
@@ -628,6 +640,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
+		}
+		if (this.className != null) {
+			params.put("className", this.className);
 		}
 		if (this.layout != null) {
 			params.put("layout", this.layout);

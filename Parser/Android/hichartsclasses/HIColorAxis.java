@@ -520,6 +520,18 @@ public class HIColorAxis extends HIFoundation {
 
 	public Number getSoftMin(){ return softMin; }
 
+	private Boolean panningEnabled;
+	/**
+ Whether to pan axis. If chart.panning is enabled, the option allows to disable panning on an individual axis. 
+	*/
+	public void setPanningEnabled(Boolean panningEnabled) {
+		this.panningEnabled = panningEnabled;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getPanningEnabled(){ return panningEnabled; }
+
 	private String gridLineInterpolation;
 	/**
  Polar charts only. Whether the grid lines should draw as a polygon with straight lines between categories, or as circles. Can be either circle or polygon. Since v8.0.0 this option is also applicable for X axis (inverted polar). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar-spider/">Polygon grid lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/gridlineinterpolation/">Circle and polygon on inverted polar</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/gridlineinterpolation/">Circle and polygon</a> <br><br><b>accepted values:</b><br><br>&ensp;["circle", "polygon"]
@@ -905,6 +917,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.softMin != null) {
 			params.put("softMin", this.softMin);
+		}
+		if (this.panningEnabled != null) {
+			params.put("panningEnabled", this.panningEnabled);
 		}
 		if (this.gridLineInterpolation != null) {
 			params.put("gridLineInterpolation", this.gridLineInterpolation);

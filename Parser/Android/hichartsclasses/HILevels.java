@@ -105,18 +105,6 @@ public class HILevels extends HIFoundation {
 
 	public HIDataLabels getDataLabels(){ return dataLabels; }
 
-	private String rotationMode;
-	/**
- Can set a rotationMode on all points which lies on the same level. 
-	*/
-	public void setRotationMode(String rotationMode) {
-		this.rotationMode = rotationMode;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getRotationMode(){ return rotationMode; }
-
 	private Number borderWidth;
 	/**
  Can set a borderWidth on all points which lies on the same level. 
@@ -128,18 +116,6 @@ public class HILevels extends HIFoundation {
 	}
 
 	public Number getBorderWidth(){ return borderWidth; }
-
-	private Number rotation;
-	/**
- Can set a rotation on all points which lies on the same level. 
-	*/
-	public void setRotation(Number rotation) {
-		this.rotation = rotation;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getRotation(){ return rotation; }
 
 	private String layoutAlgorithm;
 	/**
@@ -234,14 +210,8 @@ public HashMap<String, Object> getParams() {
 		if (this.dataLabels != null) {
 			params.put("dataLabels", this.dataLabels.getParams());
 		}
-		if (this.rotationMode != null) {
-			params.put("rotationMode", this.rotationMode);
-		}
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);
-		}
-		if (this.rotation != null) {
-			params.put("rotation", this.rotation);
 		}
 		if (this.layoutAlgorithm != null) {
 			params.put("layoutAlgorithm", this.layoutAlgorithm);

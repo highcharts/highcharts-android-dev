@@ -69,13 +69,13 @@ public class HIGeoJSON extends HIFoundation {
 	/**
  Map projections and transformations to be used when calculating between lat/lon and chart values. Required for lat/lon support on maps. Allows resizing, rotating, and moving portions of a map within its projected coordinate system while still retaining lat/lon support. If using lat/lon on a portion of the map that does not match a `hitZone`, the definition with the key `defaults` is used. 
 	*/
-	public void sethcTransform(Object hcTransform) {
+	public void setHcTransform(Object hcTransform) {
 		this.hcTransform = hcTransform;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object gethcTransform(){ return hcTransform; }
+	public Object getHcTransform(){ return hcTransform; }
 
 	private String title;
 	/**

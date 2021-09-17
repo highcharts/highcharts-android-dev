@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
 group = 'com.github.highcharts'
-version = '9.1.0'
+version = '9.2.2'
 
 ext{
     bintrayRepo = 'Highcharts'
@@ -17,7 +17,7 @@ ext{
     siteUrl = 'https://www.highcharts.com/'
     gitUrl = 'https://github.com/highcharts/highcharts-android'
 
-    libraryVersion = '9.0.1'
+    libraryVersion = '9.2.2'
 
     developerId = 'bgn'
     developerName = 'Bartosz Gnacek'
@@ -25,6 +25,13 @@ ext{
 
     licenseName = 'Custom'
     licenseUrl = 'https://github.com/highcharts/highcharts-android/blob/master/LICENSE'
+}
+
+repositories {
+    mavenCentral()
+    google()
+    jcenter()
+    maven { url "https://jitpack.io" }
 }
 
 android {
@@ -35,7 +42,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
-        versionName "9.1.0"
+        versionName "9.2.2"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -67,12 +74,8 @@ dependencies {
 afterEvaluate {
     publishing {
         publications {
-            // Creates a Maven publication called "release".
             release(MavenPublication) {
                 from components.release
-                groupId = 'com.github.highcharts'
-                artifactId = 'highcharts-android'
-                version = '9.1.0'
             }
         }
     }

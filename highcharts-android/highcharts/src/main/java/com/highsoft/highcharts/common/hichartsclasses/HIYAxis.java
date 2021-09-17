@@ -647,6 +647,18 @@ public class HIYAxis extends HIFoundation {
 
 	public ArrayList<ArrayList> getUnits(){ return units; }
 
+	private Boolean panningEnabled;
+	/**
+ Whether to pan axis. If chart.panning is enabled, the option allows to disable panning on an individual axis. 
+	*/
+	public void setPanningEnabled(Boolean panningEnabled) {
+		this.panningEnabled = panningEnabled;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getPanningEnabled(){ return panningEnabled; }
+
 	private String gridLineInterpolation;
 	/**
  Polar charts only. Whether the grid lines should draw as a polygon with straight lines between categories, or as circles. Can be either circle or polygon. Since v8.0.0 this option is also applicable for X axis (inverted polar). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar-spider/">Polygon grid lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/gridlineinterpolation/">Circle and polygon on inverted polar</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/gridlineinterpolation/">Circle and polygon</a> <br><br><b>accepted values:</b><br><br>&ensp;["circle", "polygon"]
@@ -792,17 +804,17 @@ public class HIYAxis extends HIFoundation {
 
 	public Number getMinorTickWidth(){ return minorTickWidth; }
 
-	private String offset;
+	private Number offset;
 	/**
  The distance in pixels from the plot area to the axis line. A positive offset moves the axis with it's line, labels and ticks away from the plot area. This is typically used when two or more axes are displayed on the same side of the plot. With multiple axes the offset is dynamically adjusted to avoid collision, this can be overridden by setting offset explicitly. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/offset/">Y axis offset of 70</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/offset-centered/">Axes positioned in the center of the plot</a>
 	*/
-	public void setOffset(String offset) {
+	public void setOffset(Number offset) {
 		this.offset = offset;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getOffset(){ return offset; }
+	public Number getOffset(){ return offset; }
 
 	private HIColor tickColor;
 	/**
@@ -1386,7 +1398,6 @@ public class HIYAxis extends HIFoundation {
 		this.notifyObservers(jsClassMethod);
 	}
 
-
 	public HIYAxis() {
 
 	}
@@ -1593,6 +1604,9 @@ public HashMap<String, Object> getParams() {
 				}
 			}
 			params.put("units", array);
+		}
+		if (this.panningEnabled != null) {
+			params.put("panningEnabled", this.panningEnabled);
 		}
 		if (this.gridLineInterpolation != null) {
 			params.put("gridLineInterpolation", this.gridLineInterpolation);

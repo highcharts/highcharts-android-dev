@@ -29,17 +29,29 @@ public class HITargetOptions extends HIFoundation {
 
 	public HIColor getBorderColor(){ return borderColor; }
 
-	private HIColor color;
+	private Number borderRadius;
 	/**
- The color of the rectangle representing the target. When not set, point's color (if set in point's options - color) or zone of the target value (if zones or negativeColor are set) or the same color as the point has is used. In styled mode, use class highcharts-bullet-target instead. 
+ The border radius of the rectangle representing the target. 
 	*/
-	public void setColor(HIColor color) {
-		this.color = color;
+	public void setBorderRadius(Number borderRadius) {
+		this.borderRadius = borderRadius;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getColor(){ return color; }
+	public Number getBorderRadius(){ return borderRadius; }
+
+	private Number height;
+	/**
+ The height of the rectangle representing the target. 
+	*/
+	public void setHeight(Number height) {
+		this.height = height;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getHeight(){ return height; }
 
 	private Object /* Number, String */ width;
 	/**
@@ -65,17 +77,17 @@ public class HITargetOptions extends HIFoundation {
 
 	public Number getBorderWidth(){ return borderWidth; }
 
-	private Number height;
+	private HIColor color;
 	/**
- The height of the rectangle representing the target. 
+ The color of the rectangle representing the target. When not set, point's color (if set in point's options - color) or zone of the target value (if zones or negativeColor are set) or the same color as the point has is used. In styled mode, use class highcharts-bullet-target instead. 
 	*/
-	public void setHeight(Number height) {
-		this.height = height;
+	public void setColor(HIColor color) {
+		this.color = color;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getHeight(){ return height; }
+	public HIColor getColor(){ return color; }
 
 
 
@@ -91,8 +103,11 @@ public HashMap<String, Object> getParams() {
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
 		}
-		if (this.color != null) {
-			params.put("color", this.color.getData());
+		if (this.borderRadius != null) {
+			params.put("borderRadius", this.borderRadius);
+		}
+		if (this.height != null) {
+			params.put("height", this.height);
 		}
 		if (this.width != null) {
 			params.put("width", this.width);
@@ -100,8 +115,8 @@ public HashMap<String, Object> getParams() {
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);
 		}
-		if (this.height != null) {
-			params.put("height", this.height);
+		if (this.color != null) {
+			params.put("color", this.color.getData());
 		}
 		return params;
 	}

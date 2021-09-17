@@ -55,7 +55,7 @@ public class HILang extends HIFoundation {
 
 	private HIAccessibility accessibility;
 	/**
- Configure the accessibility strings in the chart. Requires the [accessibility module](https://code.highcharts.com/modules/accessibility.js) to be loaded. For a description of the module and information on its features, see [Highcharts Accessibility](https://www.highcharts.com/docs/chart-concepts/accessibility). For more dynamic control over the accessibility functionality, see accessibility.pointDescriptionFormatter, accessibility.seriesDescriptionFormatter, and accessibility.screenReaderSectionFormatter. 
+ Configure the accessibility strings in the chart. Requires the [accessibility module](https://code.highcharts.com/modules/accessibility.js) to be loaded. For a description of the module and information on its features, see [Highcharts Accessibility](https://www.highcharts.com/docs/chart-concepts/accessibility). For more dynamic control over the accessibility functionality, see accessibility.point.descriptionFormatter, accessibility.series.descriptionFormatter, and accessibility.screenReaderSection.beforeChartFormatter. 
 	*/
 	public void setAccessibility(HIAccessibility accessibility) {
 		this.accessibility = accessibility;

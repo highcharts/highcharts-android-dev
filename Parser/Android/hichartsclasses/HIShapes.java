@@ -31,17 +31,17 @@ public class HIShapes extends HIFoundation {
 
 	public String getSrc(){ return src; }
 
-	private ArrayList <HIPoints> points;
+	private ArrayList<String> points;
 	/**
- An array of points for the shape. This option is available for shapes which can use multiple points such as path. A point can be either a point object or a point's id. 
+ An array of points for the shape or a callback function that returns that shape point. This option is available for shapes which can use multiple points such as path. A point can be either a point object or a point's id. 
 	*/
-	public void setPoints(ArrayList points) {
+	public void setPoints(ArrayList<String> points) {
 		this.points = points;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList getPoints(){ return points; }
+	public ArrayList<String> getPoints(){ return points; }
 
 	private String markerEnd;
 	/**
@@ -67,18 +67,17 @@ public class HIShapes extends HIFoundation {
 
 	public String getMarkerStart(){ return markerStart; }
 
-	private HIPoint point;
+	private String point;
 	/**
- This option defines the point to which the shape will be connected. It can be either the point which exists in the series - it is referenced by the point's id - or a new point with defined x, y properties and optionally axes. 
+ This option defines the point to which the shape will be connected. It can be either the point which exists in the series - it is referenced by the point's id - or a new point with defined x, y properties and optionally axes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/mock-points/">Attach annotation to a mock point with different ways</a>
 	*/
-	public void setPoint(HIPoint point) {
+	public void setPoint(String point) {
 		this.point = point;
-		this.point.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIPoint getPoint(){ return point; }
+	public String getPoint(){ return point; }
 
 	private String dashStyle;
 	/**
@@ -221,7 +220,7 @@ public HashMap<String, Object> getParams() {
 			params.put("markerStart", this.markerStart);
 		}
 		if (this.point != null) {
-			params.put("point", this.point.getParams());
+			params.put("point", this.point);
 		}
 		if (this.dashStyle != null) {
 			params.put("dashStyle", this.dashStyle);
