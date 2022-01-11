@@ -8,9 +8,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.core.HIFoundation;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
@@ -52,6 +54,16 @@ public class HIBindings extends HIFoundation {
 
 	public HINavigationBindingsOptionsObject getCircleAnnotation(){ return circleAnnotation; }
 
+	private HIEllipseAnnotation ellipseAnnotation;
+	public void setEllipseAnnotation(HIEllipseAnnotation ellipseAnnotation) {
+		this.ellipseAnnotation = ellipseAnnotation;
+		this.ellipseAnnotation.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIEllipseAnnotation getEllipseAnnotation(){ return ellipseAnnotation; }
+
 
 
 	public HIBindings() {
@@ -71,6 +83,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.circleAnnotation != null) {
 			params.put("circleAnnotation", this.circleAnnotation.getParams());
+		}
+		if (this.ellipseAnnotation != null) {
+			params.put("ellipseAnnotation", this.ellipseAnnotation.getParams());
 		}
 		return params;
 	}

@@ -1,10 +1,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.core.HIFoundation;
-
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 public class HIOptions extends HIFoundation {
 
@@ -70,19 +71,19 @@ public class HIOptions extends HIFoundation {
 
 	public HIAccessibility getAccessibility(){ return accessibility; }
 
-	private ArrayList<String> colors;
+	private ArrayList colors;
 
 	/**
  An array containing the default colors for the chart's series. When all colors are used, new colors are pulled from the start again. Default colors can also be set on a series or series.type basis, see column.colors, pie.colors. In styled mode, the colors option doesn't exist. Instead, colors are defined in CSS and applied either through series or point class names, or through the chart.colorCount option. ### Legacy In Highcharts 3.x, the default colors were: `js colors: ['#2f7ed8', '#0d233a', '#8bbc21', '#910000', '#1aadce',     '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a'] In Highcharts 2.x, the default colors were:js colors: ['#4572A7', '#AA4643', '#89A54E', '#80699B', '#3D96AE',     '#DB843D', '#92A8CD', '#A47D7C', '#B5CA92'] ` <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/colors/">Assign a global color theme</a>
  <br><br><b>default:</b><br><br>&ensp;["#7cb5ec", "#434348", "#90ed7d", "#f7a35c", "#8085e9",
          "#f15c80", "#e4d354", "#2b908f", "#f45b5b", "#91e8e1"]	*/
-	public void setColors(ArrayList<String> colors) {
+	public void setColors(ArrayList colors) {
 		this.colors = colors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<String> getColors(){ return colors; }
+	public ArrayList getColors(){ return colors; }
 
 	private HIPane pane;
 
@@ -393,7 +394,7 @@ public class HIOptions extends HIFoundation {
 	private HINavigation navigation;
 
 	/**
- A collection of options for buttons and menus appearing in the exporting module. 
+ A collection of options for buttons and menus appearing in the exporting module or in Stock Tools. 
 	*/
 	public void setNavigation(HINavigation navigation) {
 		this.navigation = navigation;

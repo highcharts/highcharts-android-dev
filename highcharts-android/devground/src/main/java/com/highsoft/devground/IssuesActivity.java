@@ -246,7 +246,6 @@ public class IssuesActivity extends AppCompatActivity {
         hiTooltip.setFormatter(hiFunction);
         hiTooltip.setBackgroundColor(HIColor.initWithHexValue(tooltip_background_color));
         HICSSObject toolTipHicssObject = new HICSSObject();
-        toolTipHicssObject.setColor("#" + tooltip_text_color);
         toolTipHicssObject.setFontSize("12px");
         toolTipHicssObject.setFontWeight("bold");
         hiTooltip.setStyle(toolTipHicssObject);

@@ -8,13 +8,12 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -344,113 +343,30 @@ public class HIData extends HIFoundation {
 
 	public String getColumnsURL(){ return columnsURL; }
 
-	private Number q1;
+	private Number legendIndex;
 	/**
- The lower quartile for each data point. This is the bottom of the box. 
+ The sequential index of the data point in the legend. 
 	*/
-	public void setQ1(Number q1) {
-		this.q1 = q1;
+	public void setLegendIndex(Number legendIndex) {
+		this.legendIndex = legendIndex;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getQ1(){ return q1; }
+	public Number getLegendIndex(){ return legendIndex; }
 
-	private Number q3;
+	private HIDataLabels dataLabels;
 	/**
- The higher quartile for each data point. This is the top of the box. 
-	*/
-	public void setQ3(Number q3) {
-		this.q3 = q3;
+/** * description: Individual data label for each point. The options are the same as the ones for plotOptions.series.dataLabels. * demo:  •  Show a label for the last value
+*/
+	public void setDataLabels(HIDataLabels dataLabels) {
+		this.dataLabels = dataLabels;
+		this.dataLabels.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getQ3(){ return q3; }
-
-	private Number median;
-	/**
- The median for each data point. This is drawn as a line through the middle area of the box. 
-	*/
-	public void setMedian(Number median) {
-		this.median = median;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getMedian(){ return median; }
-
-	private Number high;
-	/**
- The high value for each data point, signifying the highest value in the sample set. The top whisker is drawn here. 
-	*/
-	public void setHigh(Number high) {
-		this.high = high;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getHigh(){ return high; }
-
-	private String stemDashStyle;
-	/**
- The dash style of the stem. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>
- <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
-	public void setStemDashStyle(String stemDashStyle) {
-		this.stemDashStyle = stemDashStyle;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getStemDashStyle(){ return stemDashStyle; }
-
-	private String whiskerDashStyle;
-	/**
- The dash style of the whiskers. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>
- <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
-	public void setWhiskerDashStyle(String whiskerDashStyle) {
-		this.whiskerDashStyle = whiskerDashStyle;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getWhiskerDashStyle(){ return whiskerDashStyle; }
-
-	private Number low;
-	/**
- The low value for each data point, signifying the lowest value in the sample set. The bottom whisker is drawn here. 
-	*/
-	public void setLow(Number low) {
-		this.low = low;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getLow(){ return low; }
-
-	private String medianDashStyle;
-	/**
- The dash style of the median. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>
- <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
-	public void setMedianDashStyle(String medianDashStyle) {
-		this.medianDashStyle = medianDashStyle;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getMedianDashStyle(){ return medianDashStyle; }
-
-	private String boxDashStyle;
-	/**
- The dash style of the box. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>
- <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
-	public void setBoxDashStyle(String boxDashStyle) {
-		this.boxDashStyle = boxDashStyle;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getBoxDashStyle(){ return boxDashStyle; }
+	public HIDataLabels getDataLabels(){ return dataLabels; }
 
 	private Number labelrank;
 	/**
@@ -586,18 +502,6 @@ public class HIData extends HIFoundation {
 
 	public String getId(){ return id; }
 
-	private Number x;
-	/**
- The x value of the point. For datetime axes, the X value is the timestamp in milliseconds since 1970. 
-	*/
-	public void setX(Number x) {
-		this.x = x;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getX(){ return x; }
-
 	private String drilldown;
 	/**
  The id of a series in the drilldown.series array to use for a drilldown for this point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/basic/">Basic drilldown</a>
@@ -609,19 +513,6 @@ public class HIData extends HIFoundation {
 	}
 
 	public String getDrilldown(){ return drilldown; }
-
-	private HIDataLabels dataLabels;
-	/**
- Individual data label for each point. The options are the same as the ones for plotOptions.series.dataLabels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/datalabels/">Show a label for the last value</a>
-	*/
-	public void setDataLabels(HIDataLabels dataLabels) {
-		this.dataLabels = dataLabels;
-		this.dataLabels.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIDataLabels getDataLabels(){ return dataLabels; }
 
 	private HIEvents events;
 	/**
@@ -648,18 +539,6 @@ public class HIData extends HIFoundation {
 
 	public String getDefinition(){ return definition; }
 
-	private Number legendIndex;
-	/**
- The sequential index of the data point in the legend. 
-	*/
-	public void setLegendIndex(Number legendIndex) {
-		this.legendIndex = legendIndex;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getLegendIndex(){ return legendIndex; }
-
 	private HIMarker marker;
 	/**
  Options for the point markers of line-like series. 
@@ -673,6 +552,18 @@ public class HIData extends HIFoundation {
 
 	public HIMarker getMarker(){ return marker; }
 
+	private Number x;
+	/**
+ The x value of the point. For datetime axes, the X value is the timestamp in milliseconds since 1970. 
+	*/
+	public void setX(Number x) {
+		this.x = x;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getX(){ return x; }
+
 	private String label;
 	/**
  The label of event. 
@@ -684,6 +575,114 @@ public class HIData extends HIFoundation {
 	}
 
 	public String getLabel(){ return label; }
+
+	private Number q1;
+	/**
+ The lower quartile for each data point. This is the bottom of the box. 
+	*/
+	public void setQ1(Number q1) {
+		this.q1 = q1;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getQ1(){ return q1; }
+
+	private Number q3;
+	/**
+ The higher quartile for each data point. This is the top of the box. 
+	*/
+	public void setQ3(Number q3) {
+		this.q3 = q3;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getQ3(){ return q3; }
+
+	private Number median;
+	/**
+ The median for each data point. This is drawn as a line through the middle area of the box. 
+	*/
+	public void setMedian(Number median) {
+		this.median = median;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getMedian(){ return median; }
+
+	private Number high;
+	/**
+ The high value for each data point, signifying the highest value in the sample set. The top whisker is drawn here. 
+	*/
+	public void setHigh(Number high) {
+		this.high = high;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getHigh(){ return high; }
+
+	private String stemDashStyle;
+	/**
+ The dash style of the stem. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>
+ <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
+	public void setStemDashStyle(String stemDashStyle) {
+		this.stemDashStyle = stemDashStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getStemDashStyle(){ return stemDashStyle; }
+
+	private String whiskerDashStyle;
+	/**
+ The dash style of the whiskers. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>
+ <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
+	public void setWhiskerDashStyle(String whiskerDashStyle) {
+		this.whiskerDashStyle = whiskerDashStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getWhiskerDashStyle(){ return whiskerDashStyle; }
+
+	private Number low;
+	/**
+ The low value for each data point, signifying the lowest value in the sample set. The bottom whisker is drawn here. 
+	*/
+	public void setLow(Number low) {
+		this.low = low;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getLow(){ return low; }
+
+	private String medianDashStyle;
+	/**
+ The dash style of the median. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>
+ <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
+	public void setMedianDashStyle(String medianDashStyle) {
+		this.medianDashStyle = medianDashStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getMedianDashStyle(){ return medianDashStyle; }
+
+	private String boxDashStyle;
+	/**
+ The dash style of the box. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/box-plot-styling/">Box plot styling</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/boxplot/">Box plot in styled mode</a>
+ <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
+	public void setBoxDashStyle(String boxDashStyle) {
+		this.boxDashStyle = boxDashStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getBoxDashStyle(){ return boxDashStyle; }
 
 	private Number direction;
 	/**
@@ -708,79 +707,6 @@ public class HIData extends HIFoundation {
 	}
 
 	public Number getLength(){ return length; }
-
-	private Number target;
-	/**
- The target value of a point. 
-	*/
-	public void setTarget(Number target) {
-		this.target = target;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getTarget(){ return target; }
-
-	private HITargetOptions targetOptions;
-	/**
- Individual target options for each point. 
-	*/
-	public void setTargetOptions(HITargetOptions targetOptions) {
-		this.targetOptions = targetOptions;
-		this.targetOptions.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HITargetOptions getTargetOptions(){ return targetOptions; }
-
-	private HIColor borderColor;
-	/**
- The color of the border surrounding the column or bar. In styled mode, the border stroke can be set with the .highcharts-point rule. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-bordercolor/">Dark gray border</a>
-	*/
-	public void setBorderColor(HIColor borderColor) {
-		this.borderColor = borderColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getBorderColor(){ return borderColor; }
-
-	private String dashStyle;
-	/**
- A name for the dash style to use for the column or bar. Overrides dashStyle on the series. In styled mode, the stroke dash-array can be set with the same classes as listed under data.color. 
-	*/
-	public void setDashStyle(String dashStyle) {
-		this.dashStyle = dashStyle;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getDashStyle(){ return dashStyle; }
-
-	private Number pointWidth;
-	/**
- A pixel value specifying a fixed width for the column or bar. Overrides pointWidth on the series. The width effects the dimension that is not based on the point value. 
- <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
-	public void setPointWidth(Number pointWidth) {
-		this.pointWidth = pointWidth;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getPointWidth(){ return pointWidth; }
-
-	private Number borderWidth;
-	/**
- The width of the border surrounding the column or bar. In styled mode, the stroke width can be set with the .highcharts-point rule. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-borderwidth/">2px black border</a>
-	*/
-	public void setBorderWidth(Number borderWidth) {
-		this.borderWidth = borderWidth;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getBorderWidth(){ return borderWidth; }
 
 	private String connectorColor;
 	/**
@@ -866,17 +792,65 @@ public class HIData extends HIFoundation {
 
 	public Boolean getIsSum(){ return isSum; }
 
-	private String to;
+	private Boolean gradientForSides;
 	/**
- The node that the link runs to. 
+ By deafult sides fill is set to a gradient through this option being set to true. Set to false to get solid color for the sides. 
 	*/
-	public void setTo(String to) {
-		this.to = to;
+	public void setGradientForSides(Boolean gradientForSides) {
+		this.gradientForSides = gradientForSides;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getTo(){ return to; }
+	public Boolean getGradientForSides(){ return gradientForSides; }
+
+	private HIColor borderColor;
+	/**
+ The color of the border surrounding the column or bar. In styled mode, the border stroke can be set with the .highcharts-point rule. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-bordercolor/">Dark gray border</a>
+	*/
+	public void setBorderColor(HIColor borderColor) {
+		this.borderColor = borderColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getBorderColor(){ return borderColor; }
+
+	private String dashStyle;
+	/**
+ A name for the dash style to use for the column or bar. Overrides dashStyle on the series. In styled mode, the stroke dash-array can be set with the same classes as listed under data.color. 
+	*/
+	public void setDashStyle(String dashStyle) {
+		this.dashStyle = dashStyle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDashStyle(){ return dashStyle; }
+
+	private Number pointWidth;
+	/**
+ A pixel value specifying a fixed width for the column or bar. Overrides pointWidth on the series. The width effects the dimension that is not based on the point value. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setPointWidth(Number pointWidth) {
+		this.pointWidth = pointWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPointWidth(){ return pointWidth; }
+
+	private Number borderWidth;
+	/**
+ The width of the border surrounding the column or bar. In styled mode, the stroke width can be set with the .highcharts-point rule. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-borderwidth/">2px black border</a>
+	*/
+	public void setBorderWidth(Number borderWidth) {
+		this.borderWidth = borderWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getBorderWidth(){ return borderWidth; }
 
 	private String from;
 	/**
@@ -890,18 +864,6 @@ public class HIData extends HIFoundation {
 
 	public String getFrom(){ return from; }
 
-	private Boolean gradientForSides;
-	/**
- By deafult sides fill is set to a gradient through this option being set to true. Set to false to get solid color for the sides. 
-	*/
-	public void setGradientForSides(Boolean gradientForSides) {
-		this.gradientForSides = gradientForSides;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getGradientForSides(){ return gradientForSides; }
-
 	private Number weight;
 	/**
  The weight of the link. 
@@ -913,6 +875,18 @@ public class HIData extends HIFoundation {
 	}
 
 	public Number getWeight(){ return weight; }
+
+	private String to;
+	/**
+ The node that the link runs to. 
+	*/
+	public void setTo(String to) {
+		this.to = to;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTo(){ return to; }
 
 	private Object /* Number, String */ innerRadius;
 	/**
@@ -937,18 +911,6 @@ public class HIData extends HIFoundation {
 	}
 
 	public Object /* Number, String */ getRadius(){ return radius; }
-
-	private Boolean outgoing;
-	/**
- Whether the link goes out of the system. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-outgoing">Sankey chart with outgoing links</a>
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setOutgoing(Boolean outgoing) {
-		this.outgoing = outgoing;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getOutgoing(){ return outgoing; }
 
 	private Number z;
 	/**
@@ -1035,16 +997,56 @@ public class HIData extends HIFoundation {
 
 	public ArrayList<String> getSets(){ return sets; }
 
-	private HashMap<String, Object> jsProperties;
+	private Boolean outgoing;
 	/**
-	 * Add a custom property to your chart. Those can be accessible later by HIFunction callbacks.
-	 * @param name the name by which you can access property
-	 * @param value the actual value which can be accessed
-	 */
-	public void setProperty(String name, Object value) {
-		if(jsProperties == null) jsProperties = new HashMap<>();
-		jsProperties.put(name, value);
+ Whether the link goes out of the system. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-outgoing">Sankey chart with outgoing links</a>
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setOutgoing(Boolean outgoing) {
+		this.outgoing = outgoing;
+		this.setChanged();
+		this.notifyObservers();
 	}
+
+	public Boolean getOutgoing(){ return outgoing; }
+
+	private Number target;
+	/**
+ The target value of a point. 
+	*/
+	public void setTarget(Number target) {
+		this.target = target;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getTarget(){ return target; }
+
+	private HITargetOptions targetOptions;
+	/**
+ Individual target options for each point. 
+	*/
+	public void setTargetOptions(HITargetOptions targetOptions) {
+		this.targetOptions = targetOptions;
+		this.targetOptions.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HITargetOptions getTargetOptions(){ return targetOptions; }
+
+	private Object dateFormats;
+	/**
+ A collection of available date formats, extendable from the outside to support custom date formats. 
+	*/
+	public void setDateFormats(Object dateFormats) {
+		this.dateFormats = dateFormats;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getDateFormats(){ return dateFormats; }
+
+
 
 	public HIData() {
 
@@ -1163,32 +1165,11 @@ public HashMap<String, Object> getParams() {
 		if (this.columnsURL != null) {
 			params.put("columnsURL", this.columnsURL);
 		}
-		if (this.q1 != null) {
-			params.put("q1", this.q1);
+		if (this.legendIndex != null) {
+			params.put("legendIndex", this.legendIndex);
 		}
-		if (this.q3 != null) {
-			params.put("q3", this.q3);
-		}
-		if (this.median != null) {
-			params.put("median", this.median);
-		}
-		if (this.high != null) {
-			params.put("high", this.high);
-		}
-		if (this.stemDashStyle != null) {
-			params.put("stemDashStyle", this.stemDashStyle);
-		}
-		if (this.whiskerDashStyle != null) {
-			params.put("whiskerDashStyle", this.whiskerDashStyle);
-		}
-		if (this.low != null) {
-			params.put("low", this.low);
-		}
-		if (this.medianDashStyle != null) {
-			params.put("medianDashStyle", this.medianDashStyle);
-		}
-		if (this.boxDashStyle != null) {
-			params.put("boxDashStyle", this.boxDashStyle);
+		if (this.dataLabels != null) {
+			params.put("dataLabels", this.dataLabels.getParams());
 		}
 		if (this.labelrank != null) {
 			params.put("labelrank", this.labelrank);
@@ -1223,14 +1204,8 @@ public HashMap<String, Object> getParams() {
 		if (this.id != null) {
 			params.put("id", this.id);
 		}
-		if (this.x != null) {
-			params.put("x", this.x);
-		}
 		if (this.drilldown != null) {
 			params.put("drilldown", this.drilldown);
-		}
-		if (this.dataLabels != null) {
-			params.put("dataLabels", this.dataLabels.getParams());
 		}
 		if (this.events != null) {
 			params.put("events", this.events.getParams());
@@ -1238,38 +1213,47 @@ public HashMap<String, Object> getParams() {
 		if (this.definition != null) {
 			params.put("definition", this.definition);
 		}
-		if (this.legendIndex != null) {
-			params.put("legendIndex", this.legendIndex);
-		}
 		if (this.marker != null) {
 			params.put("marker", this.marker.getParams());
 		}
+		if (this.x != null) {
+			params.put("x", this.x);
+		}
 		if (this.label != null) {
 			params.put("label", this.label);
+		}
+		if (this.q1 != null) {
+			params.put("q1", this.q1);
+		}
+		if (this.q3 != null) {
+			params.put("q3", this.q3);
+		}
+		if (this.median != null) {
+			params.put("median", this.median);
+		}
+		if (this.high != null) {
+			params.put("high", this.high);
+		}
+		if (this.stemDashStyle != null) {
+			params.put("stemDashStyle", this.stemDashStyle);
+		}
+		if (this.whiskerDashStyle != null) {
+			params.put("whiskerDashStyle", this.whiskerDashStyle);
+		}
+		if (this.low != null) {
+			params.put("low", this.low);
+		}
+		if (this.medianDashStyle != null) {
+			params.put("medianDashStyle", this.medianDashStyle);
+		}
+		if (this.boxDashStyle != null) {
+			params.put("boxDashStyle", this.boxDashStyle);
 		}
 		if (this.direction != null) {
 			params.put("direction", this.direction);
 		}
 		if (this.length != null) {
 			params.put("length", this.length);
-		}
-		if (this.target != null) {
-			params.put("target", this.target);
-		}
-		if (this.targetOptions != null) {
-			params.put("targetOptions", this.targetOptions.getParams());
-		}
-		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor.getData());
-		}
-		if (this.dashStyle != null) {
-			params.put("dashStyle", this.dashStyle);
-		}
-		if (this.pointWidth != null) {
-			params.put("pointWidth", this.pointWidth);
-		}
-		if (this.borderWidth != null) {
-			params.put("borderWidth", this.borderWidth);
 		}
 		if (this.connectorColor != null) {
 			params.put("connectorColor", this.connectorColor);
@@ -1292,26 +1276,35 @@ public HashMap<String, Object> getParams() {
 		if (this.isSum != null) {
 			params.put("isSum", this.isSum);
 		}
-		if (this.to != null) {
-			params.put("to", this.to);
+		if (this.gradientForSides != null) {
+			params.put("gradientForSides", this.gradientForSides);
+		}
+		if (this.borderColor != null) {
+			params.put("borderColor", this.borderColor.getData());
+		}
+		if (this.dashStyle != null) {
+			params.put("dashStyle", this.dashStyle);
+		}
+		if (this.pointWidth != null) {
+			params.put("pointWidth", this.pointWidth);
+		}
+		if (this.borderWidth != null) {
+			params.put("borderWidth", this.borderWidth);
 		}
 		if (this.from != null) {
 			params.put("from", this.from);
 		}
-		if (this.gradientForSides != null) {
-			params.put("gradientForSides", this.gradientForSides);
-		}
 		if (this.weight != null) {
 			params.put("weight", this.weight);
+		}
+		if (this.to != null) {
+			params.put("to", this.to);
 		}
 		if (this.innerRadius != null) {
 			params.put("innerRadius", this.innerRadius);
 		}
 		if (this.radius != null) {
 			params.put("radius", this.radius);
-		}
-		if (this.outgoing != null) {
-			params.put("outgoing", this.outgoing);
 		}
 		if (this.z != null) {
 			params.put("z", this.z);
@@ -1343,10 +1336,17 @@ public HashMap<String, Object> getParams() {
 			}
 			params.put("sets", array);
 		}
-		if(this.jsProperties != null){
-			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
-				params.put(entry.getKey(), entry.getValue());
-			}
+		if (this.outgoing != null) {
+			params.put("outgoing", this.outgoing);
+		}
+		if (this.target != null) {
+			params.put("target", this.target);
+		}
+		if (this.targetOptions != null) {
+			params.put("targetOptions", this.targetOptions.getParams());
+		}
+		if (this.dateFormats != null) {
+			params.put("dateFormats", this.dateFormats);
 		}
 		return params;
 	}

@@ -8,12 +8,12 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
-
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -274,17 +274,17 @@ public class HILabels extends HIFoundation {
 
 	public Boolean getEnabled(){ return enabled; }
 
-	private String point;
+	private HIAnnotationMockPointOptionsObject point;
 	/**
  This option defines the point to which the label will be connected. It can be either the point which exists in the series - it is referenced by the point's id - or a new point with defined x, y properties and optionally axes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/mock-point/">Attach annotation to a mock point</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/mock-points/">Attach annotation to a mock point with different ways</a>
 	*/
-	public void setPoint(String point) {
+	public void setPoint(HIAnnotationMockPointOptionsObject point) {
 		this.point = point;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getPoint(){ return point; }
+	public HIAnnotationMockPointOptionsObject getPoint(){ return point; }
 
 	private Boolean includeInDataExport;
 	/**
@@ -359,17 +359,17 @@ public class HILabels extends HIFoundation {
 
 	public String getShape(){ return shape; }
 
-	private HIColor borderColor;
+	private Object borderColor;
 	/**
  The border color for the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
 	*/
-	public void setBorderColor(HIColor borderColor) {
+	public void setBorderColor(Object borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getBorderColor(){ return borderColor; }
+	public Object getBorderColor(){ return borderColor; }
 
 	private HIColor backgroundColor;
 	/**
@@ -383,17 +383,17 @@ public class HILabels extends HIFoundation {
 
 	public HIColor getBackgroundColor(){ return backgroundColor; }
 
-	private Boolean /* boolean */ shadow;
+	private HIShadowOptionsObject /* boolean */ shadow;
 	/**
  The shadow of the box. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
 	*/
-	public void setShadow(Boolean /* boolean */ shadow) {
+	public void setShadow(HIShadowOptionsObject /* boolean */ shadow) {
 		this.shadow = shadow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean /* boolean */ getShadow(){ return shadow; }
+	public HIShadowOptionsObject /* boolean */ getShadow(){ return shadow; }
 
 	private String verticalAlign;
 	/**
@@ -515,7 +515,7 @@ public HashMap<String, Object> getParams() {
 			params.put("enabled", this.enabled);
 		}
 		if (this.point != null) {
-			params.put("point", this.point);
+			params.put("point", this.point.getParams());
 		}
 		if (this.includeInDataExport != null) {
 			params.put("includeInDataExport", this.includeInDataExport);
@@ -536,13 +536,13 @@ public HashMap<String, Object> getParams() {
 			params.put("shape", this.shape);
 		}
 		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor.getData());
+			params.put("borderColor", this.borderColor);
 		}
 		if (this.backgroundColor != null) {
 			params.put("backgroundColor", this.backgroundColor.getData());
 		}
 		if (this.shadow != null) {
-			params.put("shadow", this.shadow);
+			params.put("shadow", this.shadow.getParams());
 		}
 		if (this.verticalAlign != null) {
 			params.put("verticalAlign", this.verticalAlign);

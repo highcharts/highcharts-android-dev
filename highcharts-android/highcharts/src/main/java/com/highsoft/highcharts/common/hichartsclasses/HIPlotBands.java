@@ -8,10 +8,12 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -53,17 +55,17 @@ public class HIPlotBands extends HIFoundation {
 
 	public Object /* Number, String */ getThickness(){ return thickness; }
 
-	private HIColor borderColor;
+	private Object borderColor;
 	/**
  Border color for the plot band. Also requires borderWidth to be set. 
 	*/
-	public void setBorderColor(HIColor borderColor) {
+	public void setBorderColor(Object borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getBorderColor(){ return borderColor; }
+	public Object getBorderColor(){ return borderColor; }
 
 	private Number zIndex;
 	/**
@@ -175,18 +177,6 @@ public class HIPlotBands extends HIFoundation {
 
 	public HIEvents getEvents(){ return events; }
 
-	/**
-	 * Remove the plot band.
-	 */
-	public void destroy() {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "PlotLineOrBand");
-			put("method", "destroy");
-			put("id", uuid);
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
 
 
 	public HIPlotBands() {
@@ -208,7 +198,7 @@ public HashMap<String, Object> getParams() {
 			params.put("thickness", this.thickness);
 		}
 		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor.getData());
+			params.put("borderColor", this.borderColor);
 		}
 		if (this.zIndex != null) {
 			params.put("zIndex", this.zIndex);

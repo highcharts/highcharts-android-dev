@@ -297,7 +297,6 @@ public class MainActivity extends AppCompatActivity {
         airPressureSeries.setData(pressures);
         airPressureSeries.setMarker(new HIMarker());
         airPressureSeries.getMarker().setEnabled(false);
-        airPressureSeries.setShadow(false);
         airPressureSeries.setTooltip(new HITooltip());
         airPressureSeries.getTooltip().setValueSuffix(" hPa");
         airPressureSeries.setDashStyle("shortdot");

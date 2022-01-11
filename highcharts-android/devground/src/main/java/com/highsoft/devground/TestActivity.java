@@ -3,23 +3,36 @@ package com.highsoft.devground;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Toast;
 
 import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.common.hichartsclasses.HICSSObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIChart;
 import com.highsoft.highcharts.common.hichartsclasses.HIColumn;
+import com.highsoft.highcharts.common.hichartsclasses.HICondition;
 import com.highsoft.highcharts.common.hichartsclasses.HICredits;
 import com.highsoft.highcharts.common.hichartsclasses.HIDataLabels;
 import com.highsoft.highcharts.common.hichartsclasses.HIDial;
+import com.highsoft.highcharts.common.hichartsclasses.HIEvents;
 import com.highsoft.highcharts.common.hichartsclasses.HIExporting;
 import com.highsoft.highcharts.common.hichartsclasses.HIGauge;
+import com.highsoft.highcharts.common.hichartsclasses.HIHeatmap;
+import com.highsoft.highcharts.common.hichartsclasses.HILabel;
 import com.highsoft.highcharts.common.hichartsclasses.HILabels;
 import com.highsoft.highcharts.common.hichartsclasses.HILegend;
+import com.highsoft.highcharts.common.hichartsclasses.HILine;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
 import com.highsoft.highcharts.common.hichartsclasses.HIPane;
 import com.highsoft.highcharts.common.hichartsclasses.HIPivot;
 import com.highsoft.highcharts.common.hichartsclasses.HIPlotBands;
 import com.highsoft.highcharts.common.hichartsclasses.HIPlotOptions;
+import com.highsoft.highcharts.common.hichartsclasses.HIPoint;
+import com.highsoft.highcharts.common.hichartsclasses.HIResponsive;
+import com.highsoft.highcharts.common.hichartsclasses.HIRules;
+import com.highsoft.highcharts.common.hichartsclasses.HIScrollablePlotArea;
+import com.highsoft.highcharts.common.hichartsclasses.HISeries;
 import com.highsoft.highcharts.common.hichartsclasses.HISpline;
 import com.highsoft.highcharts.common.hichartsclasses.HIStackLabels;
 import com.highsoft.highcharts.common.hichartsclasses.HIStyle;
@@ -36,6 +49,7 @@ import com.highsoft.highcharts.core.HIFunctionInterface;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -48,112 +62,87 @@ public class TestActivity extends AppCompatActivity {
 
         HIOptions options = new HIOptions();
 
+        HIScrollablePlotArea scrollablePlotArea = new HIScrollablePlotArea();
+        scrollablePlotArea.setMinWidth(700);
+        scrollablePlotArea.setScrollPositionX(1);
+
+        HIChart chart = new HIChart();
+        chart.setScrollablePlotArea(scrollablePlotArea);
+
+        options.setChart(chart);
+
         HITitle title = new HITitle();
-        title.setText("Stacked column chart");
+        title.setText("Solar Employment Growth by Sector, 2010-2016");
         options.setTitle(title);
 
         HISubtitle subtitle = new HISubtitle();
-        subtitle.setText("Plain");
+        subtitle.setText("Source: thesolarfoundation.com");
         options.setSubtitle(subtitle);
 
-//        HIXAxis xaxis = new HIXAxis();
-//        xaxis.setCategories(new ArrayList<>(Arrays.asList("Appled", "Oranges", "Pears", "Grapes", "Bananas")));
-//        options.setXAxis(new ArrayList<>(Collections.singletonList(xaxis)));
-//
-//        HIYAxis yaxis = new HIYAxis();
-//        yaxis.setMin(0);
-//        yaxis.setTitle(new HITitle());
-//        yaxis.getTitle().setText("Total fruit consumption");
-
-        HIStackLabels hiStackLabels = new HIStackLabels();
-        hiStackLabels.setEnabled(true);
-        hiStackLabels.setRotation(0);
-        hiStackLabels.setBackgroundColor(HIColor.initWithRGBA(255, 0, 0, 0));
-        hiStackLabels.setBorderRadius(4);
-        hiStackLabels.setBorderColor(HIColor.initWithHexValue("e0e0e0"));
-        hiStackLabels.setAlign("center");
-        hiStackLabels.setVerticalAlign("center");
-        hiStackLabels.setAllowOverlap(false);
-        hiStackLabels.setStyle(new HICSSObject());
-        hiStackLabels.getStyle().setTextOutline("none");
-        hiStackLabels.setOverflow("none");
-        hiStackLabels.setAllowOverlap(false);
-        hiStackLabels.setCrop(true);
-        hiStackLabels.getStyle().setColor("#000000");
-        hiStackLabels.setTextAlign("center");
-        hiStackLabels.setY(-5);
-        hiStackLabels.setBorderWidth(1);
-
-//        yaxis.setStackLabels(hiStackLabels);
-//        yaxis.setStackLabels(new HIStackLabels());
-//        yaxis.getStackLabels().setEnabled(true);
-//        yaxis.getStackLabels().setStyle(new HICSSObject());
-//        yaxis.getStackLabels().getStyle().setFontWeight("bold");
-//        yaxis.getStackLabels().getStyle().setColor("gray");
-//        options.setYAxis(new ArrayList<>(Collections.singletonList(yaxis)));
-
+        HIYAxis yaxis = new HIYAxis();
+        yaxis.setTitle(new HITitle());
+        yaxis.getTitle().setText("Number of Employees");
+        HIEvents events = new HIEvents();
+        events.setClick(new HIFunction(
+                f -> {
+                    Toast t = Toast.makeText(
+                            this,
+                            "Clicked point [ " + f.getProperty("x") + ", " + f.getProperty("y") + " ]",
+                            Toast.LENGTH_SHORT
+                    );
+                    t.show();
+                },
+                new String[] {"x"}
+        ));
+        yaxis.setEvents(events);
+        options.setYAxis(new ArrayList<>(Collections.singletonList(yaxis)));
         HILegend legend = new HILegend();
-//        legend.setAlign("right");
-//        legend.setX(-30);
-//        legend.setVerticalAlign("top");
-//        legend.setY(25);
-//        legend.setFloating(true);
-//        legend.setBackgroundColor(HIColor.initWithName("white"));
-//        legend.setBorderColor(HIColor.initWithHexValue("ccc"));
-//        legend.setBorderWidth(1);
-//        legend.setShadow(false);
+        legend.setLayout("vertical");
+        legend.setAlign("right");
+        legend.setVerticalAlign("middle");
         options.setLegend(legend);
 
-        HITooltip tooltip = new HITooltip();
-        tooltip.setPointFormat("{series.name}: {point.y}<br/>Total: {point.stackTotal}");
-        tooltip.setHeaderFormat("<b>{point.x}</b><br/>");
-        options.setTooltip(tooltip);
-
         HIPlotOptions plotoptions = new HIPlotOptions();
-        plotoptions.setColumn(new HIColumn());
-        plotoptions.getColumn().setStacking("normal");
-//        plotoptions.getColumn().setPointPadding(0);
-//        plotoptions.getColumn().setGroupPadding(0);
-        ArrayList<HIDataLabels> hiDataLabelsArrayList = new ArrayList<>();
-        HIDataLabels dataLabels = new HIDataLabels();
-        dataLabels.setEnabled(true);
-//        dataLabels.setColor(HIColor.initWithName("white"));
-//        dataLabels.setStyle(new HIStyle());
-//        dataLabels.getStyle().setTextOutline("0 0 3px black");
+        plotoptions.setSeries(new HISeries());
+        plotoptions.getSeries().setEvents(new HIEvents());
+        plotoptions.getSeries().setPoint(new HIPoint());
+        plotoptions.getSeries().getPoint().setEvents(new HIEvents());
+        plotoptions.getSeries().getPoint().getEvents().setClick(new HIFunction(
+                f -> {
+                    Toast t = Toast.makeText(
+                            this,
+                            "Clicked point [ " + f.getProperty("x") + ", " + f.getProperty("y") + " ]; category: " + f.getProperty("category"),
+                            Toast.LENGTH_SHORT
+                    );
+                    t.show();
+                },
+                new String[] {"x", "y", "category"}
+        ));
+        options.setPlotOptions(plotoptions);
+        plotoptions.getSeries().setLabel(new HILabel());
+        plotoptions.getSeries().getLabel().setConnectorAllowed(false);
+        plotoptions.getSeries().setPointStart(2010);
 
-        dataLabels.setFormatter(new HIFunction(new HIFunctionInterface<HIChartContext, String>() {
-            @Override
-            public String apply(HIChartContext hiContext) {
-                Double value = (Double) hiContext.getProperty("x");
-                // do some computation with the value
-                String test = value.toString() + " HEHE";
-                System.out.println("TEST FORMATTERS: " + test);
-                return test;
-            }
-        }, new String[] {"x"}));
-        hiDataLabelsArrayList.add(dataLabels);
-//        plotoptions.getColumn().setDataLabels(hiDataLabelsArrayList);
-//        options.setPlotOptions(plotoptions);
+        HILine line1 = new HILine();
+        line1.setName("Installation");
+        line1.setData(new ArrayList<>(Arrays.asList(43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175)));
 
-        HIColumn column1 = new HIColumn();
-        column1.setName("John");
-        column1.setDataLabels(hiDataLabelsArrayList);
-        Number[] column1Data = new Number[] { 5, 3, 4, 7, 2 };
-        column1.setData(new ArrayList<>(Arrays.asList(column1Data)));
+        HIResponsive responsive = new HIResponsive();
 
-        HISpline column2 = new HISpline();
-//        column2.setName("Jane");
-//        column2.setDataLabels(hiDataLabelsArrayList);
-        Number[] column2Data = new Number[] { 2, 2, 3, 2, 1 };
-        column2.setData(new ArrayList<>(Arrays.asList(column2Data)));
-//
-//        HIColumn column3 = new HIColumn();
-//        column3.setName("Joe");
-//        column3.setDataLabels(hiDataLabelsArrayList);
-//        Number[] column3Data = new Number[] { 3, 4, 4, 2, 5 };
-//        column3.setData(new ArrayList<>(Arrays.asList(column3Data)));
+        HIRules rules1 = new HIRules();
+        rules1.setCondition(new HICondition());
+        rules1.getCondition().setMaxWidth(500);
+        HashMap<String, HashMap> chartLegend = new HashMap<>();
+        HashMap<String, String> legendOptions = new HashMap<>();
+        legendOptions.put("layout", "horizontal");
+        legendOptions.put("align", "center");
+        legendOptions.put("verticalAlign", "bottom");
+        chartLegend.put("legend", legendOptions);
+        rules1.setChartOptions(chartLegend);
+        responsive.setRules(new ArrayList<>(Collections.singletonList(rules1)));
+        options.setResponsive(responsive);
 
-        options.setSeries(new ArrayList<>(Arrays.asList(column1)));
+        options.setSeries(new ArrayList<>(Collections.singletonList(line1)));
 
         chartView.setOptions(options);
     }

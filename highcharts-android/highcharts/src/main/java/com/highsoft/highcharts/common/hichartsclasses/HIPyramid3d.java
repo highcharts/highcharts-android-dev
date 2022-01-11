@@ -8,12 +8,15 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
+import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.common.HIColor;
 
 
 	/**
@@ -59,30 +62,6 @@ public class HIPyramid3d extends HISeries {
 
 	public ArrayList /* <Number, String> */ getCenter(){ return center; }
 
-	private Object /* Number, String */ height;
-	/**
- The height of the funnel or pyramid. If it is a number it defines the pixel height, if it is a percentage string it is the percentage of the plot area height. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/funnel/">Funnel demo</a>
-	*/
-	public void setHeight(Object /* Number, String */ height) {
-		this.height = height;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object /* Number, String */ getHeight(){ return height; }
-
-	private Object /* Number, String */ width;
-	/**
- The width of the funnel compared to the width of the plot area, or the pixel width if it is a number. 
-	*/
-	public void setWidth(Object /* Number, String */ width) {
-		this.width = width;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object /* Number, String */ getWidth(){ return width; }
-
 	private Boolean ignoreHiddenPoint;
 	/**
  Equivalent to chart.ignoreHiddenSeries, this option tells whether the series shall be redrawn as if the hidden point were null. The defaults value changed from false to true with Highcharts 3.0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-ignorehiddenpoint/">True, the hiddden point is ignored</a>
@@ -94,30 +73,6 @@ public class HIPyramid3d extends HISeries {
 	}
 
 	public Boolean getIgnoreHiddenPoint(){ return ignoreHiddenPoint; }
-
-	private ArrayList<String> colors;
-	/**
- A series specific or series type specific color set to use instead of the global colors. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/">Set defaults colors for all pies</a>
-	*/
-	public void setColors(ArrayList<String> colors) {
-		this.colors = colors;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public ArrayList<String> getColors(){ return colors; }
-
-	private HIColor borderColor;
-	/**
- The color of the border surrounding each slice. When null, the border takes the same color as the slice fill. This can be used together with a borderWidth to fill drawing gaps created by antialiazing artefacts in borderless pies. In styled mode, the border stroke is given in the .highcharts-point class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-bordercolor-black/">Black border</a>
- <br><br><b>defaults:</b><br><br>&ensp;#ffffff	*/
-	public void setBorderColor(HIColor borderColor) {
-		this.borderColor = borderColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getBorderColor(){ return borderColor; }
 
 	private Object /* Number, String */ minSize;
 	/**
@@ -204,6 +159,30 @@ public class HIPyramid3d extends HISeries {
 
 	public Boolean getColorByPoint(){ return colorByPoint; }
 
+	private Object /* Number, String */ height;
+	/**
+ The height of the series. If it is a number it defines the pixel height, if it is a percentage string it is the percentage of the plot area height. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/funnel3d/">Funnel3d demo</a>
+	*/
+	public void setHeight(Object /* Number, String */ height) {
+		this.height = height;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getHeight(){ return height; }
+
+	private Object /* Number, String */ width;
+	/**
+ The max width of the series compared to the width of the plot area, or the pixel width if it is a number. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/funnel3d/">Funnel3d demo</a>
+	*/
+	public void setWidth(Object /* Number, String */ width) {
+		this.width = width;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getWidth(){ return width; }
+
 	private Boolean gradientForSides;
 	/**
  By deafult sides fill is set to a gradient through this option being set to true. Set to false to get solid color for the sides. 
@@ -289,17 +268,41 @@ public class HIPyramid3d extends HISeries {
 
 	public Number getGroupZPadding(){ return groupZPadding; }
 
-	private HIColor edgeColor;
+	private ArrayList<HIColor> colors;
+	/**
+ A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
+	*/
+	public void setColors(ArrayList<HIColor> colors) {
+		this.colors = colors;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList<HIColor> getColors(){ return colors; }
+
+	private HIColor borderColor;
+	/**
+ The color of the border surrounding each column or bar. In styled mode, the border stroke can be set with the .highcharts-point rule. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-bordercolor/">Dark gray border</a>
+ <br><br><b>defaults:</b><br><br>&ensp;#ffffff	*/
+	public void setBorderColor(HIColor borderColor) {
+		this.borderColor = borderColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getBorderColor(){ return borderColor; }
+
+	private Object edgeColor;
 	/**
  3D columns only. The color of the edges. Similar to borderColor, except it defaultss to the same color as the column. 
 	*/
-	public void setEdgeColor(HIColor edgeColor) {
+	public void setEdgeColor(Object edgeColor) {
 		this.edgeColor = edgeColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getEdgeColor(){ return edgeColor; }
+	public Object getEdgeColor(){ return edgeColor; }
 
 	private Boolean centerInCategory;
 	/**
@@ -429,13 +432,8 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.colors) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
+			for (HIColor hiColor : this.colors) {
+				array.add(hiColor.getData());
 			}
 			params.put("colors", array);
 		}
@@ -498,13 +496,8 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.colors) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
+			for (HIColor hiColor : this.colors) {
+				array.add(hiColor.getData());
 			}
 			params.put("colors", array);
 		}
@@ -512,7 +505,7 @@ public HashMap<String, Object> getParams() {
 			params.put("borderColor", this.borderColor.getData());
 		}
 		if (this.edgeColor != null) {
-			params.put("edgeColor", this.edgeColor.getData());
+			params.put("edgeColor", this.edgeColor);
 		}
 		if (this.centerInCategory != null) {
 			params.put("centerInCategory", this.centerInCategory);

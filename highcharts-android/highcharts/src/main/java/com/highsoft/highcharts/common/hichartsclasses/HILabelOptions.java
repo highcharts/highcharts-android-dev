@@ -8,11 +8,12 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -103,17 +104,17 @@ public class HILabelOptions extends HIFoundation {
 
 	public Boolean getUseHTML(){ return useHTML; }
 
-	private HIColor borderColor;
+	private Object borderColor;
 	/**
  The border color for the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
 	*/
-	public void setBorderColor(HIColor borderColor) {
+	public void setBorderColor(Object borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getBorderColor(){ return borderColor; }
+	public Object getBorderColor(){ return borderColor; }
 
 	private HICSSObject style;
 	/**
@@ -163,17 +164,17 @@ public class HILabelOptions extends HIFoundation {
 
 	public Boolean getAllowOverlap(){ return allowOverlap; }
 
-	private Boolean /* boolean */ shadow;
+	private HIShadowOptionsObject /* boolean */ shadow;
 	/**
  The shadow of the box. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
 	*/
-	public void setShadow(Boolean /* boolean */ shadow) {
+	public void setShadow(HIShadowOptionsObject /* boolean */ shadow) {
 		this.shadow = shadow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean /* boolean */ getShadow(){ return shadow; }
+	public HIShadowOptionsObject /* boolean */ getShadow(){ return shadow; }
 
 	private String format;
 	/**
@@ -328,7 +329,7 @@ public HashMap<String, Object> getParams() {
 			params.put("useHTML", this.useHTML);
 		}
 		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor.getData());
+			params.put("borderColor", this.borderColor);
 		}
 		if (this.style != null) {
 			params.put("style", this.style.getParams());
@@ -343,7 +344,7 @@ public HashMap<String, Object> getParams() {
 			params.put("allowOverlap", this.allowOverlap);
 		}
 		if (this.shadow != null) {
-			params.put("shadow", this.shadow);
+			params.put("shadow", this.shadow.getParams());
 		}
 		if (this.format != null) {
 			params.put("format", this.format);

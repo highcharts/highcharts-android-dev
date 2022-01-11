@@ -8,12 +8,12 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
-
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -200,17 +200,17 @@ public class HIChart extends HIFoundation {
 
 	public Boolean getReflow(){ return reflow; }
 
-	private Boolean /* boolean */ plotShadow;
+	private HICSSObject /* boolean */ plotShadow;
 	/**
  Whether to apply a drop shadow to the plot area. Requires that plotBackgroundColor be set. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/plotshadow/">Plot shadow</a>
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setPlotShadow(Boolean /* boolean */ plotShadow) {
+	public void setPlotShadow(HICSSObject /* boolean */ plotShadow) {
 		this.plotShadow = plotShadow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean /* boolean */ getPlotShadow(){ return plotShadow; }
+	public HICSSObject /* boolean */ getPlotShadow(){ return plotShadow; }
 
 	private String zoomType;
 	/**
@@ -408,17 +408,17 @@ public class HIChart extends HIFoundation {
 
 	public HIScrollablePlotArea getScrollablePlotArea(){ return scrollablePlotArea; }
 
-	private Boolean /* boolean */ shadow;
+	private HICSSObject /* boolean */ shadow;
 	/**
  Whether to apply a drop shadow to the outer chart area. Requires that backgroundColor be set. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/shadow/">Shadow</a>
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setShadow(Boolean /* boolean */ shadow) {
+	public void setShadow(HICSSObject /* boolean */ shadow) {
 		this.shadow = shadow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean /* boolean */ getShadow(){ return shadow; }
+	public HICSSObject /* boolean */ getShadow(){ return shadow; }
 
 	private Boolean inverted;
 	/**
@@ -625,6 +625,327 @@ public class HIChart extends HIFoundation {
 
 	public Boolean getStyledMode(){ return styledMode; }
 
+	private ArrayList axes;
+	/**
+ All the axes in the chart. 
+	*/
+	public void setAxes(ArrayList axes) {
+		this.axes = axes;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList getAxes(){ return axes; }
+
+	private Number chartHeight;
+	/**
+ The current pixel height of the chart. 
+	*/
+	public void setChartHeight(Number chartHeight) {
+		this.chartHeight = chartHeight;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getChartHeight(){ return chartHeight; }
+
+	private Number chartWidth;
+	/**
+ The current pixel width of the chart. 
+	*/
+	public void setChartWidth(Number chartWidth) {
+		this.chartWidth = chartWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getChartWidth(){ return chartWidth; }
+
+	private Object container;
+	/**
+ The containing HTML element of the chart. The container is dynamically inserted into the element given as the `renderTo` parameter in the {@link Highcharts#chart} constructor. 
+	*/
+	public void setContainer(Object container) {
+		this.container = container;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getContainer(){ return container; }
+
+	private HISVGElement credits;
+	/**
+ The chart's credits label. The label has an `update` method that allows setting new options as per the [credits options set](https://api.highcharts.com/highcharts/credits). 
+	*/
+	public void setCredits(HISVGElement credits) {
+		this.credits = credits;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HISVGElement getCredits(){ return credits; }
+
+	private HIData data;
+	/**
+ The data parser for this chart. 
+	*/
+	public void setData(HIData data) {
+		this.data = data;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIData getData(){ return data; }
+
+	private HIFullscreen fullscreen;
+	public void setFullscreen(HIFullscreen fullscreen) {
+		this.fullscreen = fullscreen;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFullscreen getFullscreen(){ return fullscreen; }
+
+	private Boolean hasParallelCoordinates;
+	/**
+ Flag used in parallel coordinates plot to check if chart has ||-coords (parallel coords). 
+	*/
+	public void setHasParallelCoordinates(Boolean hasParallelCoordinates) {
+		this.hasParallelCoordinates = hasParallelCoordinates;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getHasParallelCoordinates(){ return hasParallelCoordinates; }
+
+	private HIPoint hoverPoint;
+	/**
+ Contains the original hovered point. 
+	*/
+	public void setHoverPoint(HIPoint hoverPoint) {
+		this.hoverPoint = hoverPoint;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIPoint getHoverPoint(){ return hoverPoint; }
+
+	private ArrayList hoverPoints;
+	/**
+ Contains all hovered points. 
+	*/
+	public void setHoverPoints(ArrayList hoverPoints) {
+		this.hoverPoints = hoverPoints;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList getHoverPoints(){ return hoverPoints; }
+
+	private HISeries hoverSeries;
+	/**
+ Contains the original hovered series. 
+	*/
+	public void setHoverSeries(HISeries hoverSeries) {
+		this.hoverSeries = hoverSeries;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HISeries getHoverSeries(){ return hoverSeries; }
+
+	private Number index;
+	/**
+ Index position of the chart in the {@link Highcharts#charts} property. 
+	*/
+	public void setIndex(Number index) {
+		this.index = index;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getIndex(){ return index; }
+
+	private HILegend legend;
+	/**
+ The overview of the chart's series. 
+	*/
+	public void setLegend(HILegend legend) {
+		this.legend = legend;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HILegend getLegend(){ return legend; }
+
+	private HashMap options;
+	/**
+ The options structure for the chart after merging {@link #defaultsOptions} and {@link #userOptions}. It contains members for the sub elements like series, legend, tooltip etc. 
+	*/
+	public void setOptions(HashMap options) {
+		this.options = options;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HashMap getOptions(){ return options; }
+
+	private Number plotHeight;
+	/**
+ The current height of the plot area in pixels. 
+	*/
+	public void setPlotHeight(Number plotHeight) {
+		this.plotHeight = plotHeight;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPlotHeight(){ return plotHeight; }
+
+	private Number plotLeft;
+	/**
+ The current left position of the plot area in pixels. 
+	*/
+	public void setPlotLeft(Number plotLeft) {
+		this.plotLeft = plotLeft;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPlotLeft(){ return plotLeft; }
+
+	private Number plotTop;
+	/**
+ The current top position of the plot area in pixels. 
+	*/
+	public void setPlotTop(Number plotTop) {
+		this.plotTop = plotTop;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPlotTop(){ return plotTop; }
+
+	private Number plotWidth;
+	/**
+ The current width of the plot area in pixels. 
+	*/
+	public void setPlotWidth(Number plotWidth) {
+		this.plotWidth = plotWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPlotWidth(){ return plotWidth; }
+
+	private HISVGRenderer renderer;
+	/**
+ The renderer instance of the chart. Each chart instance has only one associated renderer. 
+	*/
+	public void setRenderer(HISVGRenderer renderer) {
+		this.renderer = renderer;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HISVGRenderer getRenderer(){ return renderer; }
+
+	private ArrayList series;
+	/**
+ All the current series in the chart. 
+	*/
+	public void setSeries(ArrayList series) {
+		this.series = series;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList getSeries(){ return series; }
+
+	private HISubtitle subtitle;
+	/**
+ The chart subtitle. The subtitle has an `update` method that allows modifying the options directly or indirectly via `chart.update`. 
+	*/
+	public void setSubtitle(HISubtitle subtitle) {
+		this.subtitle = subtitle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HISubtitle getSubtitle(){ return subtitle; }
+
+	private HITime time;
+	/**
+ The `Time` object associated with the chart. Since v6.0.5, time settings can be applied individually for each chart. If no individual settings apply, the `Time` object is shared by all instances. 
+	*/
+	public void setTime(HITime time) {
+		this.time = time;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HITime getTime(){ return time; }
+
+	private HITitle title;
+	/**
+ The chart title. The title has an `update` method that allows modifying the options directly or indirectly via `chart.update`. 
+	*/
+	public void setTitle(HITitle title) {
+		this.title = title;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HITitle getTitle(){ return title; }
+
+	private HITooltip tooltip;
+	/**
+ Tooltip object for points of series. 
+	*/
+	public void setTooltip(HITooltip tooltip) {
+		this.tooltip = tooltip;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HITooltip getTooltip(){ return tooltip; }
+
+	private HashMap userOptions;
+	/**
+ The original options given to the constructor or a chart factory like {@link Highcharts.chart} and {@link Highcharts.stockChart}. 
+	*/
+	public void setUserOptions(HashMap userOptions) {
+		this.userOptions = userOptions;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HashMap getUserOptions(){ return userOptions; }
+
+	private ArrayList xAxis;
+	/**
+ A collection of the X axes in the chart. 
+	*/
+	public void setXAxis(ArrayList xAxis) {
+		this.xAxis = xAxis;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList getXAxis(){ return xAxis; }
+
+	private ArrayList yAxis;
+	/**
+ A collection of the Y axes in the chart. 
+	*/
+	public void setYAxis(ArrayList yAxis) {
+		this.yAxis = yAxis;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList getYAxis(){ return yAxis; }
+
 
 
 	public HIChart() {
@@ -682,7 +1003,7 @@ public HashMap<String, Object> getParams() {
 			params.put("reflow", this.reflow);
 		}
 		if (this.plotShadow != null) {
-			params.put("plotShadow", this.plotShadow);
+			params.put("plotShadow", this.plotShadow.getParams());
 		}
 		if (this.zoomType != null) {
 			params.put("zoomType", this.zoomType);
@@ -742,7 +1063,7 @@ public HashMap<String, Object> getParams() {
 			params.put("scrollablePlotArea", this.scrollablePlotArea.getParams());
 		}
 		if (this.shadow != null) {
-			params.put("shadow", this.shadow);
+			params.put("shadow", this.shadow.getParams());
 		}
 		if (this.inverted != null) {
 			params.put("inverted", this.inverted);
@@ -803,6 +1124,132 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.styledMode != null) {
 			params.put("styledMode", this.styledMode);
+		}
+		if (this.axes != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.axes) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("axes", array);
+		}
+		if (this.chartHeight != null) {
+			params.put("chartHeight", this.chartHeight);
+		}
+		if (this.chartWidth != null) {
+			params.put("chartWidth", this.chartWidth);
+		}
+		if (this.container != null) {
+			params.put("container", this.container);
+		}
+		if (this.credits != null) {
+			params.put("credits", this.credits.getParams());
+		}
+		if (this.data != null) {
+			params.put("data", this.data.getParams());
+		}
+		if (this.fullscreen != null) {
+			params.put("fullscreen", this.fullscreen.getParams());
+		}
+		if (this.hasParallelCoordinates != null) {
+			params.put("hasParallelCoordinates", this.hasParallelCoordinates);
+		}
+		if (this.hoverPoint != null) {
+			params.put("hoverPoint", this.hoverPoint.getParams());
+		}
+		if (this.hoverPoints != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.hoverPoints) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("hoverPoints", array);
+		}
+		if (this.hoverSeries != null) {
+			params.put("hoverSeries", this.hoverSeries.getParams());
+		}
+		if (this.index != null) {
+			params.put("index", this.index);
+		}
+		if (this.legend != null) {
+			params.put("legend", this.legend.getParams());
+		}
+		if (this.options != null) {
+			params.put("options", this.options);
+		}
+		if (this.plotHeight != null) {
+			params.put("plotHeight", this.plotHeight);
+		}
+		if (this.plotLeft != null) {
+			params.put("plotLeft", this.plotLeft);
+		}
+		if (this.plotTop != null) {
+			params.put("plotTop", this.plotTop);
+		}
+		if (this.plotWidth != null) {
+			params.put("plotWidth", this.plotWidth);
+		}
+		if (this.renderer != null) {
+			params.put("renderer", this.renderer.getParams());
+		}
+		if (this.series != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.series) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("series", array);
+		}
+		if (this.subtitle != null) {
+			params.put("subtitle", this.subtitle.getParams());
+		}
+		if (this.time != null) {
+			params.put("time", this.time.getParams());
+		}
+		if (this.title != null) {
+			params.put("title", this.title.getParams());
+		}
+		if (this.tooltip != null) {
+			params.put("tooltip", this.tooltip.getParams());
+		}
+		if (this.userOptions != null) {
+			params.put("userOptions", this.userOptions);
+		}
+		if (this.xAxis != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.xAxis) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("xAxis", array);
+		}
+		if (this.yAxis != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.yAxis) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("yAxis", array);
 		}
 		return params;
 	}

@@ -8,9 +8,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.core.HIFoundation;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
@@ -25,15 +27,15 @@ public class HIHalo extends HIFoundation {
 
 	public Number getOpacity(){ return opacity; }
 
-	private HISVGAttributes attributes;
-	public void setAttributes(HISVGAttributes attributes) {
+	private HIAttributes attributes;
+	public void setAttributes(HIAttributes attributes) {
 		this.attributes = attributes;
 		this.attributes.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HISVGAttributes getAttributes(){ return attributes; }
+	public HIAttributes getAttributes(){ return attributes; }
 
 	private Boolean enabled;
 	public void setEnabled(Boolean enabled) {

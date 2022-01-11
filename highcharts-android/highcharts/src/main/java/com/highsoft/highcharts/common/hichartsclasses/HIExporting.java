@@ -8,11 +8,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
-
 import java.util.HashMap;
-import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
@@ -177,17 +177,17 @@ public class HIExporting extends HIFoundation {
 
 	public Object /* boolean, String */ getTableCaption(){ return tableCaption; }
 
-	private HashMap<String, Object> formAttributes;
+	private Object formAttributes;
 	/**
  An object containing additional key value data for the POST form that sends the SVG to the export server. For example, a target can be set to make sure the generated image is received in another frame, or a custom enctype or encoding can be set. 
 	*/
-	public void setFormAttributes(HashMap<String, Object> formAttributes) {
+	public void setFormAttributes(Object formAttributes) {
 		this.formAttributes = formAttributes;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HashMap<String, Object> getFormAttributes(){ return formAttributes; }
+	public Object getFormAttributes(){ return formAttributes; }
 
 	private Boolean useMultiLevelHeaders;
 	/**
@@ -297,15 +297,6 @@ public class HIExporting extends HIFoundation {
 
 	public String getLibURL(){ return libURL; }
 
-	private String exportRegionLabel;
-	public void setExportRegionLabel(String exportRegionLabel) {
-		this.exportRegionLabel = exportRegionLabel;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getExportRegionLabel(){ return exportRegionLabel; }
-
 	private String menuButtonLabel;
 	public void setMenuButtonLabel(String menuButtonLabel) {
 		this.menuButtonLabel = menuButtonLabel;
@@ -375,9 +366,7 @@ public HashMap<String, Object> getParams() {
 			params.put("tableCaption", this.tableCaption);
 		}
 		if (this.formAttributes != null) {
-			for (Map.Entry<String, Object> entry : this.formAttributes.entrySet()) {
-				params.put(entry.getKey(), entry.getValue());
-			}
+			params.put("formAttributes", this.formAttributes);
 		}
 		if (this.useMultiLevelHeaders != null) {
 			params.put("useMultiLevelHeaders", this.useMultiLevelHeaders);
@@ -405,9 +394,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.libURL != null) {
 			params.put("libURL", this.libURL);
-		}
-		if (this.exportRegionLabel != null) {
-			params.put("exportRegionLabel", this.exportRegionLabel);
 		}
 		if (this.menuButtonLabel != null) {
 			params.put("menuButtonLabel", this.menuButtonLabel);

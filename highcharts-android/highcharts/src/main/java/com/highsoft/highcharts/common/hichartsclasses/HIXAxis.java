@@ -8,32 +8,27 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
 public class HIXAxis extends HIFoundation { 
 
-	private HIColor minorTickColor;
+	private Object minorTickColor;
 	/**
  Color for the minor tick marks. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minortickcolor/">Black tick marks on Y axis</a>
  <br><br><b>defaults:</b><br><br>&ensp;#999999	*/
-	public void setMinorTickColor(HIColor minorTickColor) {
+	public void setMinorTickColor(Object minorTickColor) {
 		this.minorTickColor = minorTickColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getMinorTickColor(){ return minorTickColor; }
+	public Object getMinorTickColor(){ return minorTickColor; }
 
 	private Number pane;
 	/**
@@ -301,17 +296,17 @@ public class HIXAxis extends HIFoundation {
 
 	public Number getFloor(){ return floor; }
 
-	private HIColor minorGridLineColor;
+	private Object minorGridLineColor;
 	/**
  Color of the minor, secondary grid lines. In styled mode, the stroke width is given in the .highcharts-minor-grid-line class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minorgridlinecolor/">Bright grey lines from Y axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/">Styled mode</a>
  <br><br><b>defaults:</b><br><br>&ensp;#f2f2f2	*/
-	public void setMinorGridLineColor(HIColor minorGridLineColor) {
+	public void setMinorGridLineColor(Object minorGridLineColor) {
 		this.minorGridLineColor = minorGridLineColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getMinorGridLineColor(){ return minorGridLineColor; }
+	public Object getMinorGridLineColor(){ return minorGridLineColor; }
 
 	private HIFunction tickPositioner;
 	/**
@@ -375,7 +370,7 @@ public class HIXAxis extends HIFoundation {
 
 	private Boolean endOnTick;
 	/**
- Whether to force the axis to end on a tick. Use this option with the maxPadding option to control the axis end. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/reflow-true/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/endontick/">False</a>
+ Whether to force the axis to end on a tick. Use this option with the maxPadding option to control the axis end. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/endontick/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/endontick-false/">False</a>
 	*/
 	public void setEndOnTick(Boolean endOnTick) {
 		this.endOnTick = endOnTick;
@@ -638,17 +633,17 @@ public class HIXAxis extends HIFoundation {
 
 	public Number getSoftMax(){ return softMax; }
 
-	private HIColor tickColor;
+	private Object tickColor;
 	/**
  Color for the main tick marks. In styled mode, the stroke is given in the .highcharts-tick class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickcolor/">Red ticks on X axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/">Styled mode</a>
  <br><br><b>defaults:</b><br><br>&ensp;#ccd6eb	*/
-	public void setTickColor(HIColor tickColor) {
+	public void setTickColor(Object tickColor) {
 		this.tickColor = tickColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getTickColor(){ return tickColor; }
+	public Object getTickColor(){ return tickColor; }
 
 	private Number gridLineWidth;
 	/**
@@ -710,17 +705,17 @@ public class HIXAxis extends HIFoundation {
 
 	public Number getTickPixelInterval(){ return tickPixelInterval; }
 
-	private HIColor gridLineColor;
+	private Object gridLineColor;
 	/**
  Color of the grid lines extending the ticks across the plot area. In styled mode, the stroke is given in the .highcharts-grid-line class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/gridlinecolor/">Green lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/">Styled mode</a>
  <br><br><b>defaults:</b><br><br>&ensp;#e6e6e6	*/
-	public void setGridLineColor(HIColor gridLineColor) {
+	public void setGridLineColor(Object gridLineColor) {
 		this.gridLineColor = gridLineColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getGridLineColor(){ return gridLineColor; }
+	public Object getGridLineColor(){ return gridLineColor; }
 
 	private Boolean reversedStacks;
 	/**
@@ -746,17 +741,17 @@ public class HIXAxis extends HIFoundation {
 
 	public Number getLinkedTo(){ return linkedTo; }
 
-	private HIColor alternateGridColor;
+	private Object alternateGridColor;
 	/**
  When using an alternate grid color, a band is painted across the plot area between every other grid line. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/alternategridcolor/">Alternate grid color on the Y axis</a>
 	*/
-	public void setAlternateGridColor(HIColor alternateGridColor) {
+	public void setAlternateGridColor(Object alternateGridColor) {
 		this.alternateGridColor = alternateGridColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getAlternateGridColor(){ return alternateGridColor; }
+	public Object getAlternateGridColor(){ return alternateGridColor; }
 
 	private Boolean showLastLabel;
 	/**
@@ -844,17 +839,17 @@ public class HIXAxis extends HIFoundation {
 
 	public HICrosshair getCrosshair(){ return crosshair; }
 
-	private HIColor lineColor;
+	private Object lineColor;
 	/**
  The color of the line marking the axis itself. In styled mode, the line stroke is given in the .highcharts-axis-line or .highcharts-xaxis-line class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/linecolor/">A red line on Y axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis/">Axes in styled mode</a>
  <br><br><b>defaults:</b><br><br>&ensp;#ccd6eb	*/
-	public void setLineColor(HIColor lineColor) {
+	public void setLineColor(Object lineColor) {
 		this.lineColor = lineColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getLineColor(){ return lineColor; }
+	public Object getLineColor(){ return lineColor; }
 
 	private Number minorGridLineWidth;
 	/**
@@ -941,393 +936,6 @@ public class HIXAxis extends HIFoundation {
 
 	public Object /* Number, String */ getLeft(){ return left; }
 
-	/**
-	 * Add a plot band after render time.
-	 * @param options A configuration object for the plot band, as defined in xAxis.plotBands.
-	 */
-	public void addPlotBand(HIPlotBands options) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("method", "addPlotBand");
-			put("axis", "x");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(options.getParams())));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-
-	/**
-	 * Add a plot line after render time.
-	 * @param options A configuration object for the plot line, as defined in xAxis.plotLines.
-	 */
-	public void addPlotLine(HIPlotLines options) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "addPlotLine");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(options.getParams())));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Adds the title defined in axis.options.title.
-	 * @param display Whether or not to display the title.
-	 */
-	public void addTitle(Boolean display) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "addTitle");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(display)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Internal function to draw a crosshair.
-	 */
-	public void drawCrosshair() {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "drawCrosshair");
-			put("id", uuid);
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Hide the crosshair if visible.
-	 */
-	public void hideCrosshair() {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "hideCrosshair");
-			put("id", uuid);
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Remove the axis from the chart.
-	 */
-	public void remove() {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "remove0");
-			put("id", uuid);
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Remove the axis from the chart.
-	 * @param redraw Whether to redraw the chart following the remove.
-	 */
-	public void remove(Boolean redraw) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "remove1");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(redraw)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Remove a plot band by its id.
-	 * @param id The plot band's id as given in the original configuration object or in the addPlotBand option.
-	 */
-	public void removePlotBand(String id) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "removePlotBand");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(id)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Remove a plot line by its id.
-	 * @param id The plot line's id as given in the original configuration object or in the addPlotLine option.
-	 */
-	public void removePlotLine(String id) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "removePlotLine");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(id)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Render the axis line. Called internally when rendering and redrawing the axis.
-	 */
-	public void renderLine() {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "renderLine");
-			put("id", uuid);
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Render a minor tick into the given position. If a minor tick already exists in this position, move it.
-	 * @param pos The position in axis values.
-	 */
-	public void renderMinorTick(Number pos) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "renderMinorTick");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(pos)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Render a major tick into the given position. If a tick already exists in this position, move it.
-	 * @param pos The position in axis values.
-	 * @param i The tick index.
-	 */
-	public void renderTick(Number pos, Number i) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "renderTick");
-			put("id", uuid);
-			put("params", new ArrayList<>(Arrays.asList(pos, i)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Set new axis categories and optionally redraw.
-	 * @param categories The new categories.
-	 */
-	public void setCategories(List<String> categories) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "setCategories0");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(categories)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Set new axis categories and optionally redraw.
-	 * @param categories The new categories.
-	 * @param redraw Whether to redraw the chart.
-	 */
-	public void setCategories(List<String> categories, boolean redraw) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "setCategories1");
-			put("id", uuid);
-			put("params", new ArrayList<>(Arrays.asList(categories, redraw)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Set the minimum and maximum of the axes after render time. If the startOnTick and endOnTick options are true, the minimum and maximum values are rounded off to the nearest tick. To prevent this, these options can be set to false before calling setExtremes. Also, setExtremes will not allow a range lower than the minRange option, which by default is the range of five points.
-	 */
-	public void setExtremes() {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "setExtremes0");
-			put("id", uuid);
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Set the minimum and maximum of the axes after render time. If the startOnTick and endOnTick options are true, the minimum and maximum values are rounded off to the nearest tick. To prevent this, these options can be set to false before calling setExtremes. Also, setExtremes will not allow a range lower than the minRange option, which by default is the range of five points.
-	 * @param newMin The new minimum value.
-	 */
-	public void setExtremes(Number newMin) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "setExtremes1");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(newMin)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Set the minimum and maximum of the axes after render time. If the startOnTick and endOnTick options are true, the minimum and maximum values are rounded off to the nearest tick. To prevent this, these options can be set to false before calling setExtremes. Also, setExtremes will not allow a range lower than the minRange option, which by default is the range of five points.
-	 * @param newMin The new minimum value.
-	 * @param newMax The new maximum value.
-	 */
-	public void setExtremes(Number newMin, Number newMax) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "setExtremes2");
-			put("id", uuid);
-			put("params", new ArrayList<>(Arrays.asList(newMin, newMax)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Set the minimum and maximum of the axes after render time. If the startOnTick and endOnTick options are true, the minimum and maximum values are rounded off to the nearest tick. To prevent this, these options can be set to false before calling setExtremes. Also, setExtremes will not allow a range lower than the minRange option, which by default is the range of five points.
-	 * @param newMin The new minimum value.
-	 * @param newMax The new maximum value.
-	 * @param redraw Whether to redraw the chart or wait for an explicit call to HIChartView redraw()
-	 */
-	public void setExtremes(Number newMin, Number newMax, boolean redraw) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "setExtremes3");
-			put("id", uuid);
-			put("params", new ArrayList<>(Arrays.asList(newMin, newMax, redraw)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-
-	/**
-	 * Set the minimum and maximum of the axes after render time. If the startOnTick and endOnTick options are true, the minimum and maximum values are rounded off to the nearest tick. To prevent this, these options can be set to false before calling setExtremes. Also, setExtremes will not allow a range lower than the minRange option, which by default is the range of five points.
-	 * @param newMin The new minimum value.
-	 * @param newMax The new maximum value.
-	 * @param redraw Whether to redraw the chart or wait for an explicit call to HIChartView redraw()
-	 * @param animation Enable or modify animations.
-	 */
-	public void setExtremes(Number newMin, Number newMax, boolean redraw, HIAnimationOptionsObject animation) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "setExtremes4");
-			put("id", uuid);
-			put("params", new ArrayList<>(Arrays.asList(newMin, newMax, redraw, animation.getParams())));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Now we have computed the normalized tickInterval, get the tick positions
-	 */
-	public void setTickPositions() {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "setTickPositions");
-			put("id", uuid);
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Update the axis title by options after render time.
-	 * @param title The additional title options.
-	 */
-	public void setAxisTitle(HITitle title) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "setTitle0");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(title)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Update the axis title by options after render time.
-	 * @param title The additional title options.
-	 * @param redraw Whether to redraw the chart after setting the title.
-	 */
-	public void setAxisTitle(HITitle title, boolean redraw) {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "setTitle1");
-			put("id", uuid);
-			put("params", new ArrayList<>(Arrays.asList(title, redraw)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Translate a pixel position along the axis to a value in terms of axis units.
-	 * @param options The new options that will be merged in with existing options on the axis.
-	 */
-	public void update(HIXAxis options) {
-		Map<String, Object> params = options.getParams();
-		params.remove("_wrapperID");
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "setTitle0");
-			put("id", uuid);
-			put("params", new ArrayList<>(Collections.singletonList(params)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Translate a pixel position along the axis to a value in terms of axis units.
-	 * @param options The new options that will be merged in with existing options on the axis.
-	 * @param redraw Whether to redraw the chart after the axis is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call redraw() on HIChartView after.
-	 */
-	public void update(HIXAxis options, boolean redraw) {
-		Map<String, Object> params = options.getParams();
-		params.remove("_wrapperID");
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Axis");
-			put("axis", "x");
-			put("method", "setTitle1");
-			put("id", uuid);
-			put("params", new ArrayList<>(Arrays.asList(params, redraw)));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
 
 
 	public HIXAxis() {
@@ -1340,7 +948,7 @@ public HashMap<String, Object> getParams() {
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
 		if (this.minorTickColor != null) {
-			params.put("minorTickColor", this.minorTickColor.getData());
+			params.put("minorTickColor", this.minorTickColor);
 		}
 		if (this.pane != null) {
 			params.put("pane", this.pane);
@@ -1418,7 +1026,7 @@ public HashMap<String, Object> getParams() {
 			params.put("floor", this.floor);
 		}
 		if (this.minorGridLineColor != null) {
-			params.put("minorGridLineColor", this.minorGridLineColor.getData());
+			params.put("minorGridLineColor", this.minorGridLineColor);
 		}
 		if (this.tickPositioner != null) {
 			params.put("tickPositioner", this.tickPositioner);
@@ -1529,7 +1137,7 @@ public HashMap<String, Object> getParams() {
 			params.put("softMax", this.softMax);
 		}
 		if (this.tickColor != null) {
-			params.put("tickColor", this.tickColor.getData());
+			params.put("tickColor", this.tickColor);
 		}
 		if (this.gridLineWidth != null) {
 			params.put("gridLineWidth", this.gridLineWidth);
@@ -1556,7 +1164,7 @@ public HashMap<String, Object> getParams() {
 			params.put("tickPixelInterval", this.tickPixelInterval);
 		}
 		if (this.gridLineColor != null) {
-			params.put("gridLineColor", this.gridLineColor.getData());
+			params.put("gridLineColor", this.gridLineColor);
 		}
 		if (this.reversedStacks != null) {
 			params.put("reversedStacks", this.reversedStacks);
@@ -1565,7 +1173,7 @@ public HashMap<String, Object> getParams() {
 			params.put("linkedTo", this.linkedTo);
 		}
 		if (this.alternateGridColor != null) {
-			params.put("alternateGridColor", this.alternateGridColor.getData());
+			params.put("alternateGridColor", this.alternateGridColor);
 		}
 		if (this.showLastLabel != null) {
 			params.put("showLastLabel", this.showLastLabel);
@@ -1589,7 +1197,7 @@ public HashMap<String, Object> getParams() {
 			params.put("crosshair", this.crosshair.getParams());
 		}
 		if (this.lineColor != null) {
-			params.put("lineColor", this.lineColor.getData());
+			params.put("lineColor", this.lineColor);
 		}
 		if (this.minorGridLineWidth != null) {
 			params.put("minorGridLineWidth", this.minorGridLineWidth);

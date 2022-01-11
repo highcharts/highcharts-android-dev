@@ -8,9 +8,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.core.HIFoundation;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
@@ -43,7 +45,7 @@ public class HIBoost extends HIFoundation {
 	private Number seriesThreshold;
 	/**
  Set the series threshold for when the boost should kick in globally. Setting to e.g. 20 will cause the whole chart to enter boost mode if there are 20 or more series active. When the chart is in boost mode, every series in it will be rendered to a common canvas. This offers a significant speed improvment in charts with a very high amount of series. 
- <br><br><b>defaults:</b><br><br>&ensp;null	*/
+ <br><br><b>defaults:</b><br><br>&ensp;50	*/
 	public void setSeriesThreshold(Number seriesThreshold) {
 		this.seriesThreshold = seriesThreshold;
 		this.setChanged();

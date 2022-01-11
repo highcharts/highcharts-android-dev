@@ -8,26 +8,15 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
 public class HIEvents extends HIFoundation { 
-
-	private HIFunction checkboxClick;
-	/**
- Fires when the checkbox next to the point name in the legend is clicked. One parameter, event, is passed to the function. The state of the checkbox is found by event.checked. The checked item is found by event.item. Return false to prevent the defaults action which is to toggle the select state of the series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-events-checkboxclick/">Alert checkbox status</a>
-	*/
-	public void setCheckboxClick(HIFunction checkboxClick) {
-		this.checkboxClick = checkboxClick;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getCheckboxClick(){ return checkboxClick; }
 
 	private HIFunction pointInBreak;
 	/**
@@ -269,18 +258,6 @@ public class HIEvents extends HIFoundation {
 
 	public HIFunction getAfterPrint(){ return afterPrint; }
 
-	private HIFunction drillToCluster;
-	/**
- Fires when the cluster point is clicked and drillToCluster is enabled. One parameter, event, is passed to the function. The defaults action is to zoom to the cluster points range. This can be prevented by calling event.preventDefault(). 
-	*/
-	public void setDrillToCluster(HIFunction drillToCluster) {
-		this.drillToCluster = drillToCluster;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getDrillToCluster(){ return drillToCluster; }
-
 	private HIFunction unselect;
 	/**
  Fires when the point is unselected either programmatically or following a click on the point. One parameter, event, is passed to the function. Returning false cancels the operation. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-point-events-unselect/">Report the last unselected point</a>
@@ -389,6 +366,18 @@ public class HIEvents extends HIFoundation {
 
 	public HIFunction getDragStart(){ return dragStart; }
 
+	private HIFunction drillToCluster;
+	/**
+ Fires when the cluster point is clicked and drillToCluster is enabled. One parameter, event, is passed to the function. The defaults action is to zoom to the cluster points range. This can be prevented by calling event.preventDefault(). 
+	*/
+	public void setDrillToCluster(HIFunction drillToCluster) {
+		this.drillToCluster = drillToCluster;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getDrillToCluster(){ return drillToCluster; }
+
 	private HIFunction setRootNode;
 	/**
  Fires on a request for change of root node for the tree, before the update is made. An event object is passed to the function, containing additional properties newRootId, previousRootId, redraw and trigger. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-events-setrootnode/">Alert update information on setRootNode event.</a>
@@ -400,6 +389,18 @@ public class HIEvents extends HIFoundation {
 	}
 
 	public HIFunction getSetRootNode(){ return setRootNode; }
+
+	private HIFunction checkboxClick;
+	/**
+ Fires when the checkbox next to the point name in the legend is clicked. One parameter, event, is passed to the function. The state of the checkbox is found by event.checked. The checked item is found by event.item. Return false to prevent the defaults action which is to toggle the select state of the series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-events-checkboxclick/">Alert checkbox status</a>
+	*/
+	public void setCheckboxClick(HIFunction checkboxClick) {
+		this.checkboxClick = checkboxClick;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getCheckboxClick(){ return checkboxClick; }
 
 	private HIFunction closePopup;
 	/**
@@ -532,9 +533,6 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.checkboxClick != null) {
-			params.put("checkboxClick", this.checkboxClick);
-		}
 		if (this.pointInBreak != null) {
 			params.put("pointInBreak", this.pointInBreak);
 		}
@@ -595,9 +593,6 @@ public HashMap<String, Object> getParams() {
 		if (this.afterPrint != null) {
 			params.put("afterPrint", this.afterPrint);
 		}
-		if (this.drillToCluster != null) {
-			params.put("drillToCluster", this.drillToCluster);
-		}
 		if (this.unselect != null) {
 			params.put("unselect", this.unselect);
 		}
@@ -625,8 +620,14 @@ public HashMap<String, Object> getParams() {
 		if (this.dragStart != null) {
 			params.put("dragStart", this.dragStart);
 		}
+		if (this.drillToCluster != null) {
+			params.put("drillToCluster", this.drillToCluster);
+		}
 		if (this.setRootNode != null) {
 			params.put("setRootNode", this.setRootNode);
+		}
+		if (this.checkboxClick != null) {
+			params.put("checkboxClick", this.checkboxClick);
 		}
 		if (this.closePopup != null) {
 			params.put("closePopup", this.closePopup);

@@ -27,17 +27,11 @@ bridge = set()
 options = list()
 classes = dict()
 comments = dict()
-types = dict()
 unknown_types_tree = set()
-series_description = ""
-series_data_description = ""
-filelicense = "/**\n* (c) 2009-2018 Highsoft AS\n*\n* License: www.highcharts.com/license\n" \
-              "* For commercial usage, a valid license is required. To purchase a license for Highcharts iOS, please see our website: https://shop.highsoft.com/\n" \
-              "* In case of questions, please contact sales@highsoft.com\n*/\n\n"
 
-fileAndroidlicense = "/**\n* (c) 2009-2018 Highsoft AS\n*\n* License: www.highcharts.com/license\n" \
-                     "* For commercial usage, a valid license is required. To purchase a license for Highcharts Android, please see our website: https://shop.highsoft.com/\n" \
-                     "* In case of questions, please contact sales@highsoft.com\n*/\n\n"
+fileLicense = "/**\n* (c) 2009-2018 Highsoft AS\n*\n* License: www.highcharts.com/license\n" \
+              "* For commercial usage, a valid license is required. To purchase a license for Highcharts Android, please see our website: https://shop.highsoft.com/\n" \
+              "* In case of questions, please contact sales@highsoft.com\n*/\n\n"
 
 
 class HIChartsClass:
@@ -115,33 +109,17 @@ class HIChartsClass:
         self.not_highcharts_properties.append(get_last(variable))
 
 
-# def clean_comment(comment):
-#     soup = BeautifulSoup(comment, 'html.parser')
-#     demos = list()
-#     for m in soup.find_all('a'):
-#         a = str(m)
-#         if a in comment:
-#             if 'href' in a:
-#                 demo_link = m['href']
-#                 demo_text = m.__dict__['next_element']
-#                 if not demo_link.startswith("#"):
-#                     if demo_text in demos:
-#                         comment = comment.replace(a, "")
-#                         replaced_text = demos[-1] + "\n"
-#                         comment = comment.replace(replaced_text, demos[-1])
-#                     else:
-#                         demos.append(demo_text)
-#                         comment = comment.replace(a, demo_link + " : " + demo_text, 1)
-#
-#     soup = BeautifulSoup(comment, 'html.parser')
-#     comment = soup.get_text()
-#     return comment
-
-
 def clean_comment(comment):
-    comment = comment.replace('\n', ' ').replace('  ', ' ').replace('.  ', '. ').replace('(//code.highcharts.com/', '(https://code.highcharts.com/').replace('[code.highcharts.com/', '[https://code.highcharts.com/')
-    comment = re.sub('(\(|\[)[\w\.*/ *: *\-*]+[\.\-/_]\s+[\w\.*/ *: *\- *]+(\)|\])', lambda s: s.group(0).replace(' ', ''), comment)
-    comment = re.sub('\[(.+?)\]\((.+?)\)', lambda s: s.group(0) if s.group(2).startswith("http") else s.group(0).replace(s.group(0), '`{}`'.format(s.group(1))), comment)
+    comment = comment.replace('\n', ' ').replace('  ', ' ').replace('.  ', '. ').replace('(//code.highcharts.com/',
+                                                                                         '(https://code.highcharts.com/').replace(
+        '[code.highcharts.com/', '[https://code.highcharts.com/')
+    comment = re.sub('(\(|\[)[\w\.*/ *: *\-*]+[\.\-/_]\s+[\w\.*/ *: *\- *]+(\)|\])',
+                     lambda s: s.group(0).replace(' ', ''), comment)
+    comment = re.sub('\[(.+?)\]\((.+?)\)',
+                     lambda s: s.group(0) if s.group(2).startswith("http") else s.group(0).replace(s.group(0),
+                                                                                                   '`{}`'.format(
+                                                                                                       s.group(1))),
+                     comment)
     comment = re.sub('\((.+?)\)\[(.+?)\]', r'[\1](\2)', comment)
     comment = comment.replace('`<', '__x__').replace('>`', '__y__')
     soup = BeautifulSoup(comment, 'html.parser')
@@ -274,9 +252,9 @@ hc_types = {
     # tree
     "Highcharts.PlotSeriesDataLabelsOptions": 'Object',
     "Highcharts.Options": 'HashMap',
-    "boolean|Highcharts.ShadowOptionsObject": 'Boolean /* boolean */',
+    "boolean|Highcharts.ShadowOptionsObject": 'HIShadowOptionsObject /* boolean */',
     "string|Highcharts.SVGDOMElement": 'String',
-    "boolean|Highcharts.CSSObject": 'Boolean /* boolean */',
+    "boolean|Highcharts.CSSObject": 'HICSSObject /* boolean */',
     # color fixes
     "Highcharts.ColorString": 'HIColor',
     "Highcharts.ColorString|null": 'HIColor',
@@ -316,14 +294,14 @@ hc_types = {
     "*|undefined": 'Object',
     "Highcharts.Dictionary.<number>": 'HashMap',
     "Object|*": 'Object',
-    #7.0.1
+    # 7.0.1
     "Highcharts.FormatterCallbackFunction.<Highcharts.AxisLabelsFormatterContextObject>": 'HIFunction',
     "Highcharts.FormatterCallbackFunction.<Highcharts.Point>": 'HIFunction',
     "string|Highcharts.HTMLDOMElement": 'String',
     # 7.0.2
     "Array.<(string|Highcharts.GradientColorObject|Highcharts.PatternObject)>": 'ArrayList<String>',
     "string|function": 'String',
-    #7.1.1
+    # 7.1.1
     "undefined|number": 'Number',
     "Highcharts.ScreenReaderFormatterCallbackFunction.<Highcharts.Chart>": 'HIFunction',
     "Highcharts.ScreenReaderFormatterCallbackFunction.<Highcharts.Series>": 'HIFunction',
@@ -334,50 +312,83 @@ hc_types = {
     "Highcharts.FormatterCallbackFunction.<Highcharts.SankeyNodeObject>": 'HIFunction',
     "Highcharts.FormatterCallbackFunction.<Highcharts.StackItemObject>": 'HIFunction',
     "null|*": 'Object',
-        #7.1.2
-        "string|number|function": 'Object',
-        "Highcharts.EventCallbackFunction.<Highcharts.Annotation>": 'HIFunction',
-        "Highcharts.FormatterCallbackFunction.<Highcharts.BubbleLegendFormatterContextObject>": 'HIFunction',
-        #namespace
-        "string|function|undefined": 'String',
-        "Highcharts.FormatterCallbackFunction.<Highcharts.SankeyNodeObject>|undefined": 'HIFunction',
-        "string|boolean|undefined": 'NSString',
-        "string|Highcharts.CSSObject|undefined": 'HICSSObject',
-        "string|Highcharts.GradientColorObject|Highcharts.PatternObject|undefined": 'HIColor',
-        "boolean|Highcharts.ShadowOptionsObject|undefined": 'HIShadowOptionsObject',
-        "boolean|Highcharts.AnimationOptionsObject|undefined": 'HIAnimationOptionsObject',
-        "string|Highcharts.SVGAttributes": 'HISVGAttributes',
-        #7.1.3
-        "Array.<Array.<number|string|null>>": 'ArrayList<ArrayList>',
-        "Highcharts.FormatterCallbackFunction.<(Point|Series)>": 'HIFunction',
-        "Array.<(number|string|null), (number|string|null)>": 'ArrayList /* <Number, String> */',
-        "Highcharts.EventCallbackFunction.<Highcharts.PlotLineOrBand>": 'HIFunction',
-        "Highcharts.FormatterCallbackFunction.<Highcharts.PlotLineOrBand>": 'HIFunction',
-        "string|null|undefined": 'String',
-        #7.2.0
-        "number|string|boolean": 'Object /* Number, String */',
-        #8.0
-        "Array.<(*)>": 'ArrayList',
-        # 8.0.4
-        "Array.<(string|*)>": 'ArrayList',
-        #8.1.1
-        "Array.<Array.<Highcharts.SVGPathCommand, number?, number?, number?, number?, number?, number?, number?>>": 'ArrayList',
-        "string|Array.<Array.<string, number?, number?, number?, number?, number?, number?, number?>>|undefined": 'ArrayList',
-        "Highcharts.FormatterCallbackFunction.<Series>": 'HIFunction',
-		#8.2.0
-        "string|Array.<(Array.<string>|Array.<string, number>|Array.<string, number, number>|Array.<string, number, number, number, number>|Array.<string, number, number, number, number, number, number>|Array.<string, number, number, number, number, number, number, number>)>|undefined": 'ArrayList /* <String, Number> */',
-        "Array.<Array.<number, string|Highcharts.GradientColorObject|Highcharts.PatternObject>>": 'ArrayList'
+    # 7.1.2
+    "string|number|function": 'Object',
+    "Highcharts.EventCallbackFunction.<Highcharts.Annotation>": 'HIFunction',
+    "Highcharts.FormatterCallbackFunction.<Highcharts.BubbleLegendFormatterContextObject>": 'HIFunction',
+    # namespace
+    "string|function|undefined": 'String',
+    "Highcharts.FormatterCallbackFunction.<Highcharts.SankeyNodeObject>|undefined": 'HIFunction',
+    "string|boolean|undefined": 'String',
+    "string|Highcharts.CSSObject|undefined": 'HICSSObject',
+    "string|Highcharts.GradientColorObject|Highcharts.PatternObject|undefined": 'HIColor',
+    "boolean|Highcharts.ShadowOptionsObject|undefined": 'HIShadowOptionsObject',
+    "boolean|Highcharts.AnimationOptionsObject|undefined": 'HIAnimationOptionsObject',
+    "string|Highcharts.SVGAttributes": 'HISVGAttributes',
+    # 7.1.3
+    "Array.<Array.<number|string|null>>": 'ArrayList<ArrayList>',
+    "Highcharts.FormatterCallbackFunction.<(Point|Series)>": 'HIFunction',
+    "Array.<(number|string|null), (number|string|null)>": 'ArrayList /* <Number, String> */',
+    "Highcharts.EventCallbackFunction.<Highcharts.PlotLineOrBand>": 'HIFunction',
+    "Highcharts.FormatterCallbackFunction.<Highcharts.PlotLineOrBand>": 'HIFunction',
+    "string|null|undefined": 'String',
+    # 7.2.0
+    "number|string|boolean": 'Object /* Number, String */',
+    # 8.0
+    "Array.<(*)>": 'ArrayList',
+    # 8.0.4
+    "Array.<(string|*)>": 'ArrayList',
+    # 8.1.1
+    "Array.<Array.<Highcharts.SVGPathCommand, number?, number?, number?, number?, number?, number?, number?>>": 'ArrayList',
+    "string|Array.<Array.<string, number?, number?, number?, number?, number?, number?, number?>>|undefined": 'ArrayList',
+    "Highcharts.FormatterCallbackFunction.<Series>": 'HIFunction',
+    # 8.2.0
+    "string|Array.<(Array.<string>|Array.<string, number>|Array.<string, number, number>|Array.<string, number, number, number, number>|Array.<string, number, number, number, number, number, number>|Array.<string, number, number, number, number, number, number, number>)>|undefined": 'ArrayList /* <String, Number> */',
+    "Array.<Array.<number, string|Highcharts.GradientColorObject|Highcharts.PatternObject>>": 'ArrayList',
+    # 9.3.0
+    "Array.<*>|* (original type: Array.<Highcharts.SeriesMapDataOptions>|*)": 'ArrayList',
+    "Highcharts.PlotSeriesOptions": "HIPlotSeriesOptions",
+    "string|Array.<*>|Highcharts.GeoJSON": 'String',
+    # 9.3.3
+    "Array.<string|Highcharts.AnnotationMockPointOptionsObject|function>": "Array<HIAnnotationMockPointOptionsObject",
+    # namespace multi-types
+    "number|null|undefined": "Number",
+    "Highcharts.Point|null": "HIPoint",
+    "Array.<*>|null": "ArrayList",
+    "Highcharts.Series|null": "HISeries",
+    "None": "Object",
+    "Array.<Array.<string>>": "ArrayList<ArrayList<String>>",
+    "number|function": "Object",
+    "number|function|undefined": "Object",
+    "Highcharts.Instrument|string": "HIInstrument",
+    "string|Highcharts.Instrument": "HIInstrument",
+    "number|string|undefined": "Object",
+    "string|number|function|undefined": "Object",
+    "boolean|Highcharts.XAxisCrosshairOptions|Highcharts.YAxisCrosshairOptions": "Object",
+    "Highcharts.XAxisOptions|Highcharts.YAxisOptions|Highcharts.ZAxisOptions": "Object",
+    "Array<number>|undefined": "ArrayList<Number>",
+    "string|Highcharts.AnnotationMockPointOptionsObject|function": "Object",
+    "Array.<(Array.<string>|Array.<string, number>|Array.<string, number, number>|Array.<string, number, number, number, number>|Array.<string, number, number, number, number, number, number>|Array.<string, number, number, number, number, number, number, number>)>": "Object",
+    "Array.<(*|undefined)>": "ArrayList<Object>",
+    "Array.<Array.<Array.<number>, function()>>": "ArrayList<ArrayList<ArrayList<Number>>>",
+    "Object|Array.<object>|undefined": "Object",
+    "Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject": "HIColor",
+    "Array.<(*|Highcharts.GradientColorObject|Highcharts.PatternObject)>": "ArrayList<HIColor>",
+    "Array.<Array.<number, *>>": "ArrayList<ArrayList<Number>>",
+    "Highcharts.SVGDOMElement|Highcharts.HTMLDOMElement": "Object",
+    "Highcharts.ColorString|Highcharts.GradientColorObject": "HIColor",
+    "string|Highcharts.SVGPathArray|undefined": "String",
+    "boolean|Highcharts.AxisCrosshairOptions": "Object",
+    "Highcharts.SymbolKeyValue|string": "String",
+    "Highcharts.AxisExtremesTriggerValue|string": "String",
+    "string|Highcharts.CursorValue": "String",
+    "string|Highcharts.ColorString|undefined": "HIColor"
 }
-
-
-# def get_java_type(x):
-#     return {
-#         # tu byl slownik
-#     }[str(x)]
 
 
 def get_java_type(x):
     return hc_types[str(x)]
+
 
 def upper_first(x):
     r = x[0].upper() + x[1:]
@@ -385,7 +396,6 @@ def upper_first(x):
 
 
 def get_last(x):
-    last = ''
     n = x.split(".")
     last = n[len(n) - 1]
     if last == 'description':
@@ -393,14 +403,14 @@ def get_last(x):
     return last
 
 
-def removeDuplicates(listofElements):
-    uniqueList = []
+def remove_duplicates(list_of_elements):
+    unique_list = []
 
-    for elem in listofElements:
-        if elem not in uniqueList:
-            uniqueList.append(elem)
+    for elem in list_of_elements:
+        if elem not in unique_list:
+            unique_list.append(elem)
 
-    return uniqueList
+    return unique_list
 
 
 def create_name(source):
@@ -409,8 +419,9 @@ def create_name(source):
 
 
 def create_java_file(name):
+    if "<T>" in name:
+        return
     source = structure[name]
-    java = None
     if source.properties:
         java = format_to_java(name, source)
         if java:
@@ -538,7 +549,7 @@ def format_to_java(name, source):
 
     # SETTERS all fields changed to private, added setters and getters
     for field in classes[class_name]:
-
+        # print class_name + " " + get_last(field.name)
         if field_in_parent(field, source):
             continue
 
@@ -569,9 +580,10 @@ def format_to_java(name, source):
             # pointless? no >.data in tree.json
             elif "List" in str(get_java_type(field.data_type)) and field.name.endswith(">.data"):
                 fields += "\tprivate {0} {1};\n".format(get_java_type(field.data_type),
-                                                      get_last(field.name))
+                                                        get_last(field.name))
 
-            elif "List" in str(get_java_type(field.data_type)) and structure[field.name].properties and 'HI' not in get_java_type(field.data_type):
+            elif "List" in str(get_java_type(field.data_type)) and structure[
+                field.name].properties and 'HI' not in get_java_type(field.data_type):
                 fields += "\tprivate {0} <{1}> {2};\n".format(
                     get_java_type(field.data_type),
                     "HI" + upper_first(create_name(field.name)),
@@ -611,7 +623,7 @@ def format_to_java(name, source):
                     upper_first(get_last(field.name)),
                     get_last(field.name)
                 )
-                hi_match = re.search(r'<(HI[A-Z]{1}[a-zA-Z]+) \*>', get_java_type(field.data_type)) # dodane
+                hi_match = re.search(r'<(HI[A-Z]{1}[a-zA-Z]+) \*>', get_java_type(field.data_type))  # dodane
                 if hi_match:
                     import_hi_set.add(hi_match.group(1))
             elif field.data_type == "Object" or field.data_type == "object":
@@ -693,7 +705,7 @@ def format_to_java(name, source):
                         upper_first(get_last(field.name)),
                         get_last(field.name)
                     )
-                    if 'HI' in field.data_type: # to samo co wyzej
+                    if 'HI' in field.data_type:  # to samo co wyzej
                         import_hi_set.add(get_java_type(field.data_type))
         else:
             if not field.data_type and not structure[field.name].properties:
@@ -737,25 +749,12 @@ def format_to_java(name, source):
         imports += "\nimport com.highsoft.highcharts.common.HIColor;"
     imports += "\n"
 
-    # for mathch in import_hi_set: # set
-    #     import_hi_string += "#import \"" + mathch + ".h\"\n"
-    #
-    # if 'HIColor' in import_hi_set:
-    #     import_hi_set.remove('HIColor')
-    # if 'HIFunction' in import_hi_set:
-    #     import_hi_set.remove('HIFunction')
-    #
-    # if imports == "" and len(import_hi_set) == 0:
-    #     imports += "#import \"HIChartsJSONSerializable.h\"\n"
-    # imports += import_hi_string
-    #
-    # imports += "\n\n"  # koniec set
-
     methods += "\n\t@Override\npublic HashMap<String, Object> getParams() {\n\n\t\tHashMap<String, Object> params =" \
                " new HashMap<>();\n"
     if source.extends:
         methods += "\t\tparams = super.getParams();\n"
-    else: methods += "\t\tparams.put(\"_wrapperID\", this.uuid);\n"
+    else:
+        methods += "\t\tparams.put(\"_wrapperID\", this.uuid);\n"
 
     for field in classes[class_name]:
         if field_in_parent(field, source):
@@ -804,7 +803,7 @@ def format_to_java(name, source):
     methods += "\t}\n"
     imports += "\n\n"
 
-    javatext += fileAndroidlicense + imports + declaration + fields + constructor + methods + "\n}"
+    javatext += fileLicense + imports + declaration + fields + constructor + methods + "\n}"
     javatext = javatext.replace("default", "defaults")
     javatext = javatext.replace("\"defaults\"", "\"default\"")
 
@@ -842,8 +841,8 @@ def create_java_options_file():
                    "\n\t\tthis.{3} = {4};"
     setter_mid = "\n\t\tthis.{0}.addObserver(updateObserver);"
     setter_loop = "\n\t\tfor(Object listElement : {0}){{" \
-                    "\n\t\t\tif(listElement instanceof HIFoundation)" \
-                    "\n\t\t\t\t((HIFoundation)listElement).addObserver(updateObserver);\n\t\t}}"
+                  "\n\t\t\tif(listElement instanceof HIFoundation)" \
+                  "\n\t\t\t\t((HIFoundation)listElement).addObserver(updateObserver);\n\t\t}}"
 
     setter_end = "\n\t\tthis.setChanged();" \
                  "\n\t\tthis.notifyObservers();" \
@@ -890,7 +889,7 @@ def create_java_options_file():
                         )
                     else:
                         fields += "\tprivate {0} {1};\n\n".format(get_java_type(field.data_type),
-                                                               get_last(field.name))
+                                                                  get_last(field.name))
                         if field.comment:
                             fields += "{0}".format(field.comment)
                         fields += setter_start.format(
@@ -909,15 +908,15 @@ def create_java_options_file():
                         )
                 elif "List" in str(get_java_type(field.data_type)) and field.properties:
                     fields += "\tprivate {0}<{1}> {2};\n\n".format(get_java_type(field.data_type),
-                                                                "HI" + upper_first(
-                                                                    create_name(field.name)),
-                                                                get_last(field.name))
+                                                                   "HI" + upper_first(
+                                                                       create_name(field.name)),
+                                                                   get_last(field.name))
                     if field.comment:
                         fields += "{0}".format(field.comment)
                     fields += setter_start.format(
                         upper_first(get_last(field.name)),
                         get_java_type(field.data_type) + "<" + "HI" + upper_first(
-                                                                    create_name(field.name)) + ">",
+                            create_name(field.name)) + ">",
                         get_last(field.name),
                         get_last(field.name),
                         get_last(field.name)
@@ -927,13 +926,13 @@ def create_java_options_file():
                     fields += setter_end
                     fields += getter.format(
                         get_java_type(field.data_type) + "<" + "HI" + upper_first(
-                                                                    create_name(field.name)) + ">",
+                            create_name(field.name)) + ">",
                         upper_first(get_last(field.name)),
                         get_last(field.name)
                     )
                 else:
                     fields += "\tprivate {0} {1};\n\n".format(get_java_type(field.data_type),
-                                                           get_last(field.name))
+                                                              get_last(field.name))
                     if field.comment:
                         fields += "{0}".format(field.comment)
                     fields += setter_start.format(
@@ -1036,10 +1035,10 @@ def create_android_files():
 
 
 def print_structure():
+    print "^^^^^^^^^ STRUCTURE ^^^^^^^^^^^"
     for c in structure:
-        text = "name: {0}, type: {1}, group: {3}, extends: {2}, props: ".format(c, structure[c].data_type,
-                                                                                structure[c].extends,
-                                                                                structure[c].group)
+        # text = "name: {0}, type: {1}, group: {3}, extends: {2}, props: ".format(c, structure[c].data_type, structure[c].extends, structure[c].group)
+        text = "name: {0}, type: {1}, props: ".format(c, structure[c].data_type)
         for p in structure[c].properties:
             text += "{0} | ".format(p.name)
         print text
@@ -1135,37 +1134,12 @@ def add_entry_to_documentation(documentation, field, source):
     documentation.append(entry)
 
 
-def add_to_documentation(documentation, field, parent):
-    add_entry_to_documentation(documentation, field, structure[parent])
-    if structure[parent].properties:
-        for property in structure[parent].properties:
-            if field != "series":
-                children = "{0}.{1}".format(field, get_last(property.name))
-                add_to_documentation(documentation, children, property.name)
-
-
-def generate_documentation():
-    documentation = list()
-
-    for field in structure:
-        add_to_documentation(documentation, field, field)
-
-    entry = dict()
-    entry["_id"] = "options--additionalOptions"
-    entry["fullname"] = "options.additionalOptions"
-    entry["title"] = "additionalOptions"
-    entry["description"] = "Additional options that are not listed but are accepted by API"
-    entry["returnType"] = "NSDictionary"
-    entry["isParent"] = False
-    documentation.append(entry)
-    with open('APIDocs.json', 'w') as json_file:
-        json.dump(documentation, json_file)
-
-
 def merge_extended_properties(field):
     class_name = structure[field].name
     if structure[field].extends and not structure[field].checkedExtends:
+        # print structure[field].extends
         for extends in structure[field].extends.split(","):
+            # if extends in structure:
             parent = structure[extends]
             structure[field].not_highcharts_properties += parent.not_highcharts_properties
             if parent.extends:
@@ -1270,7 +1244,7 @@ def create_class(node):
                         elif 'Highcharts.Dictionary.<Highcharts.' in curr_type:
                             types[ind] = "Object"
 
-                    types = removeDuplicates(types)
+                    types = remove_duplicates(types)
 
                     data_type = '|'.join(types)
 
@@ -1333,7 +1307,6 @@ def add_to_structure(name, source, parent):
 
         # if hi_class.name == "series":
         #     hi_class.data_type = "Array.<Object>"
-
         structure[node.name] = hi_class
 
         if parent:
@@ -1404,6 +1377,7 @@ def create_structure():
         data = json.load(data_file)
 
     for field in data:
+        # print "Field name: " +field
         add_to_structure(field, data[field], None)
 
     add_additions_to_series()
@@ -1412,9 +1386,9 @@ def create_structure():
         merge_extended_properties(field)
 
 
-#-----------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------------------------
 # --------------NAMESPACE PARSER----------------------------------------------------------------------
-#-----------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------------------------
 
 
 namespace_structure = dict()
@@ -1424,8 +1398,10 @@ unknown_type_namespace = set()
 
 
 def print_namespace_structure():
+    print "\n\n********************\nNamespace structure:\n********************\n\n"
     for c in namespace_structure:
-        text = "name: {0}, type: {1}, kind: {2}, props: ".format(c, namespace_structure[c].data_type, namespace_structure[c].kind)
+        text = "name: {0}, type: {1}, kind: {2}, props: ".format(c, namespace_structure[c].data_type,
+                                                                 namespace_structure[c].kind)
         for p in namespace_structure[c].properties:
             text += "{0} | ".format(p.name)
         print text
@@ -1472,7 +1448,7 @@ def create_namespace_class(node):
                     elif 'Highcharts.Dictionary.<Highcharts.' in type:
                         types[ind] = "Object"
 
-                types = removeDuplicates(types)
+                types = remove_duplicates(types)
 
                 data_type = '|'.join(types)
 
@@ -1490,7 +1466,8 @@ def create_namespace_class(node):
                 if doclet["isDeprecated"]:
                     return None
 
-        c = HIChartsClass(node.name, data_type, description, demo, values, defaults, products, extends, exclude, source, parent)
+        c = HIChartsClass(node.name, data_type, description, demo, values, defaults, products, extends, exclude, source,
+                          parent)
         c.kind = kind
         return c
 
@@ -1507,6 +1484,8 @@ def create_namespace_structure():
 
     for field in namespace_structure:
         change_namespace_types(field)
+
+    del namespace_structure["Highcharts"]  # redundant namespace object in structure
 
 
 def add_to_namespace_structure(name, source, parent):
@@ -1527,9 +1506,22 @@ def add_to_namespace_structure(name, source, parent):
 
         if "children" in source:
             childrens = source["children"]
-            for children in childrens:
-                if children["doclet"]["name"]:
-                    add_to_namespace_structure(get_last(children["doclet"]["name"]), children, fullname)
+            for child in childrens:
+                doclet = child["doclet"]
+                if doclet["kind"] == "interface" or doclet["kind"] == "class" or doclet["kind"] == "member":
+                    if "name" in doclet:
+                        if "products" in doclet and "highcharts" in doclet["products"]:
+                            add_to_namespace_structure(get_last(doclet["name"]), child, fullname)
+                        else:
+                            add_to_namespace_structure(get_last(doclet["name"]), child, fullname)
+                # do not add typedef to structure but add them to types dictionary so parser will understand them
+                if doclet["kind"] == "typedef":
+                    if "CallbackFunction" in doclet["name"]:
+                        hc_types[doclet["name"]] = "HIFunction"
+                    elif "Value" in doclet["name"]:
+                        hc_types[doclet["name"]] = "String"
+                    else:
+                        hc_types[doclet["name"]] = "Object"
 
 
 def change_namespace_types(name):
@@ -1598,7 +1590,7 @@ def get_namespace_type(name):
         for index, type in enumerate(types):
             type = get_namespace_array_type(type)
 
-	    ori_type = type
+            ori_type = type
 
             while type in namespace_types:
                 type = namespace_types[type]
@@ -1615,7 +1607,8 @@ def get_namespace_type(name):
                 type = '|'.join(splitted)
             elif type == default_type and 'Highcharts.' in ori_type:
                 if ori_type in namespace_structure and \
-                    (namespace_structure[ori_type].kind == 'class' or namespace_structure[ori_type].kind == 'interface'):
+                        (namespace_structure[ori_type].kind == 'class' or namespace_structure[
+                            ori_type].kind == 'interface'):
                     type = ori_type
                     hc_types[type] = ori_type.replace('Highcharts.', 'HI')
                 else:
@@ -1632,7 +1625,7 @@ def get_namespace_type(name):
 
             types[index] = type
 
-        types = removeDuplicates(types)
+        types = remove_duplicates(types)
 
         new_type = '|'.join(types)
 
@@ -1656,7 +1649,7 @@ def find_namespace_array_type(type):
             else:
                 temp = 'HI.' + get_last(temp)
         else:
-            print temp + " not in namespace structure!"
+            # print temp + " not in namespace structure!"
             temp = "*"
 
         if temp.startswith('Array'):
@@ -1703,7 +1696,7 @@ def find_namespace_type(name):
 
         types[index] = type
 
-    types = removeDuplicates(types)
+    types = remove_duplicates(types)
 
     new_type = '|'.join(types)
 
@@ -1719,7 +1712,8 @@ def type_from_namespace(type):
             if hc_match:
                 temp = hc_match.group(1)
                 if temp in namespace_structure:
-                    print "Added type from namespace : " + new_type + ", value: " + 'ArrayList<{}>'.format('HI' + get_last(temp))
+                    print "Added type from namespace : " + new_type + ", value: " + 'ArrayList<{}>'.format(
+                        'HI' + get_last(temp))
                     hc_types[new_type] = 'ArrayList<{}>'.format('HI' + get_last(temp))
 
         elif new_type in namespace_structure:
@@ -1738,7 +1732,7 @@ def type_from_namespace(type):
 
 
 def print_unknown_namespace_types():
-    print "Unknown namespace types:"
+    print "\n\n*************************\nUnknown namespace types:\n*************************\n"
     for type in unknown_type_namespace:
         print type
     print "- - - - - - - - - - - - - - - - - - - - - - - - - - -  \n\n"
@@ -1750,16 +1744,15 @@ def print_unknown_tree_types():
         print type
     print "- - - - - - - - - - - - - - - - - - - - - - - - - - -  \n\n"
 
+
 def main():
     create_namespace_structure()
-
-    print_unknown_namespace_types()
-
+    structure.update(namespace_structure)
+    # print_namespace_structure()
+    # print_unknown_namespace_types()
     create_structure()
-
-    print_unknown_tree_types()
-    # create_files()
-    # generate_documentation()
+    # print_structure()
+    # print_unknown_tree_types()
     create_android_files()
 
 

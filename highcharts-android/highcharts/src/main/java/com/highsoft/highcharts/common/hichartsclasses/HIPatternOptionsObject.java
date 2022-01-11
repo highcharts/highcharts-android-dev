@@ -8,9 +8,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.core.HIFoundation;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
@@ -28,29 +30,29 @@ public class HIPatternOptionsObject extends HIFoundation {
 
 	public Number getAspectRatio(){ return aspectRatio; }
 
-	private String backgroundColor;
+	private Object backgroundColor;
 	/**
  Background color for the pattern if a `path` is set (not images). 
 	*/
-	public void setBackgroundColor(String backgroundColor) {
+	public void setBackgroundColor(Object backgroundColor) {
 		this.backgroundColor = backgroundColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getBackgroundColor(){ return backgroundColor; }
+	public Object getBackgroundColor(){ return backgroundColor; }
 
-	private String color;
+	private Object color;
 	/**
  Pattern color, used as defaults path stroke. 
 	*/
-	public void setColor(String color) {
+	public void setColor(Object color) {
 		this.color = color;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getColor(){ return color; }
+	public Object getColor(){ return color; }
 
 	private Number height;
 	/**

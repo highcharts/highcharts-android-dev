@@ -8,9 +8,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.core.HIFoundation;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
@@ -87,6 +89,15 @@ public class HIPopup extends HIFoundation {
 	}
 
 	public String getCrosshairY(){ return crosshairY; }
+
+	private String clearFilter;
+	public void setClearFilter(String clearFilter) {
+		this.clearFilter = clearFilter;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getClearFilter(){ return clearFilter; }
 
 	private String highIndex;
 	public void setHighIndex(String highIndex) {
@@ -169,6 +180,15 @@ public class HIPopup extends HIFoundation {
 
 	public String getBackground(){ return background; }
 
+	private String color;
+	public void setColor(String color) {
+		this.color = color;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getColor(){ return color; }
+
 	private String slowAvgPeriod;
 	public void setSlowAvgPeriod(String slowAvgPeriod) {
 		this.slowAvgPeriod = slowAvgPeriod;
@@ -241,14 +261,14 @@ public class HIPopup extends HIFoundation {
 
 	public String getSeries(){ return series; }
 
-	private String maxAccelerationFactor;
-	public void setMaxAccelerationFactor(String maxAccelerationFactor) {
-		this.maxAccelerationFactor = maxAccelerationFactor;
+	private String fibonacciTimeZones;
+	public void setFibonacciTimeZones(String fibonacciTimeZones) {
+		this.fibonacciTimeZones = fibonacciTimeZones;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getMaxAccelerationFactor(){ return maxAccelerationFactor; }
+	public String getFibonacciTimeZones(){ return fibonacciTimeZones; }
 
 	private String measure;
 	public void setMeasure(String measure) {
@@ -276,6 +296,15 @@ public class HIPopup extends HIFoundation {
 	}
 
 	public String getIndex(){ return index; }
+
+	private String timeCycles;
+	public void setTimeCycles(String timeCycles) {
+		this.timeCycles = timeCycles;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTimeCycles(){ return timeCycles; }
 
 	private String typeOptions;
 	public void setTypeOptions(String typeOptions) {
@@ -358,6 +387,24 @@ public class HIPopup extends HIFoundation {
 
 	public String getSaveButton(){ return saveButton; }
 
+	private String noFilterMatch;
+	public void setNoFilterMatch(String noFilterMatch) {
+		this.noFilterMatch = noFilterMatch;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getNoFilterMatch(){ return noFilterMatch; }
+
+	private String maxAccelerationFactor;
+	public void setMaxAccelerationFactor(String maxAccelerationFactor) {
+		this.maxAccelerationFactor = maxAccelerationFactor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getMaxAccelerationFactor(){ return maxAccelerationFactor; }
+
 	private String title;
 	public void setTitle(String title) {
 		this.title = title;
@@ -394,14 +441,14 @@ public class HIPopup extends HIFoundation {
 
 	public String getHorizontalLine(){ return horizontalLine; }
 
-	private String color;
-	public void setColor(String color) {
-		this.color = color;
+	private String borderRadius;
+	public void setBorderRadius(String borderRadius) {
+		this.borderRadius = borderRadius;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getColor(){ return color; }
+	public String getBorderRadius(){ return borderRadius; }
 
 	private String period;
 	public void setPeriod(String period) {
@@ -438,6 +485,15 @@ public class HIPopup extends HIFoundation {
 	}
 
 	public String getRemoveButton(){ return removeButton; }
+
+	private String ellipse;
+	public void setEllipse(String ellipse) {
+		this.ellipse = ellipse;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getEllipse(){ return ellipse; }
 
 	private String borderColor;
 	public void setBorderColor(String borderColor) {
@@ -565,6 +621,15 @@ public class HIPopup extends HIFoundation {
 
 	public String getPeriods(){ return periods; }
 
+	private String searchIndicators;
+	public void setSearchIndicators(String searchIndicators) {
+		this.searchIndicators = searchIndicators;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getSearchIndicators(){ return searchIndicators; }
+
 	private String simpleShapes;
 	public void setSimpleShapes(String simpleShapes) {
 		this.simpleShapes = simpleShapes;
@@ -628,15 +693,6 @@ public class HIPopup extends HIFoundation {
 
 	public String getFill(){ return fill; }
 
-	private String arrowLine;
-	public void setArrowLine(String arrowLine) {
-		this.arrowLine = arrowLine;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getArrowLine(){ return arrowLine; }
-
 	private String ray;
 	public void setRay(String ray) {
 		this.ray = ray;
@@ -655,15 +711,6 @@ public class HIPopup extends HIFoundation {
 
 	public String getVerticalLabel(){ return verticalLabel; }
 
-	private String borderRadius;
-	public void setBorderRadius(String borderRadius) {
-		this.borderRadius = borderRadius;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getBorderRadius(){ return borderRadius; }
-
 	private String initialAccelerationFactor;
 	public void setInitialAccelerationFactor(String initialAccelerationFactor) {
 		this.initialAccelerationFactor = initialAccelerationFactor;
@@ -681,6 +728,15 @@ public class HIPopup extends HIFoundation {
 	}
 
 	public String getStrokeWidth(){ return strokeWidth; }
+
+	private String arrowInfinityLine;
+	public void setArrowInfinityLine(String arrowInfinityLine) {
+		this.arrowInfinityLine = arrowInfinityLine;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getArrowInfinityLine(){ return arrowInfinityLine; }
 
 	private String labelOptions;
 	public void setLabelOptions(String labelOptions) {
@@ -870,6 +926,9 @@ public HashMap<String, Object> getParams() {
 		if (this.crosshairY != null) {
 			params.put("crosshairY", this.crosshairY);
 		}
+		if (this.clearFilter != null) {
+			params.put("clearFilter", this.clearFilter);
+		}
 		if (this.highIndex != null) {
 			params.put("highIndex", this.highIndex);
 		}
@@ -897,6 +956,9 @@ public HashMap<String, Object> getParams() {
 		if (this.background != null) {
 			params.put("background", this.background);
 		}
+		if (this.color != null) {
+			params.put("color", this.color);
+		}
 		if (this.slowAvgPeriod != null) {
 			params.put("slowAvgPeriod", this.slowAvgPeriod);
 		}
@@ -921,8 +983,8 @@ public HashMap<String, Object> getParams() {
 		if (this.series != null) {
 			params.put("series", this.series);
 		}
-		if (this.maxAccelerationFactor != null) {
-			params.put("maxAccelerationFactor", this.maxAccelerationFactor);
+		if (this.fibonacciTimeZones != null) {
+			params.put("fibonacciTimeZones", this.fibonacciTimeZones);
 		}
 		if (this.measure != null) {
 			params.put("measure", this.measure);
@@ -932,6 +994,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.index != null) {
 			params.put("index", this.index);
+		}
+		if (this.timeCycles != null) {
+			params.put("timeCycles", this.timeCycles);
 		}
 		if (this.typeOptions != null) {
 			params.put("typeOptions", this.typeOptions);
@@ -960,6 +1025,12 @@ public HashMap<String, Object> getParams() {
 		if (this.saveButton != null) {
 			params.put("saveButton", this.saveButton);
 		}
+		if (this.noFilterMatch != null) {
+			params.put("noFilterMatch", this.noFilterMatch);
+		}
+		if (this.maxAccelerationFactor != null) {
+			params.put("maxAccelerationFactor", this.maxAccelerationFactor);
+		}
 		if (this.title != null) {
 			params.put("title", this.title);
 		}
@@ -972,8 +1043,8 @@ public HashMap<String, Object> getParams() {
 		if (this.horizontalLine != null) {
 			params.put("horizontalLine", this.horizontalLine);
 		}
-		if (this.color != null) {
-			params.put("color", this.color);
+		if (this.borderRadius != null) {
+			params.put("borderRadius", this.borderRadius);
 		}
 		if (this.period != null) {
 			params.put("period", this.period);
@@ -986,6 +1057,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.removeButton != null) {
 			params.put("removeButton", this.removeButton);
+		}
+		if (this.ellipse != null) {
+			params.put("ellipse", this.ellipse);
 		}
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor);
@@ -1029,6 +1103,9 @@ public HashMap<String, Object> getParams() {
 		if (this.periods != null) {
 			params.put("periods", this.periods);
 		}
+		if (this.searchIndicators != null) {
+			params.put("searchIndicators", this.searchIndicators);
+		}
 		if (this.simpleShapes != null) {
 			params.put("simpleShapes", this.simpleShapes);
 		}
@@ -1050,23 +1127,20 @@ public HashMap<String, Object> getParams() {
 		if (this.fill != null) {
 			params.put("fill", this.fill);
 		}
-		if (this.arrowLine != null) {
-			params.put("arrowLine", this.arrowLine);
-		}
 		if (this.ray != null) {
 			params.put("ray", this.ray);
 		}
 		if (this.verticalLabel != null) {
 			params.put("verticalLabel", this.verticalLabel);
 		}
-		if (this.borderRadius != null) {
-			params.put("borderRadius", this.borderRadius);
-		}
 		if (this.initialAccelerationFactor != null) {
 			params.put("initialAccelerationFactor", this.initialAccelerationFactor);
 		}
 		if (this.strokeWidth != null) {
 			params.put("strokeWidth", this.strokeWidth);
+		}
+		if (this.arrowInfinityLine != null) {
+			params.put("arrowInfinityLine", this.arrowInfinityLine);
 		}
 		if (this.labelOptions != null) {
 			params.put("labelOptions", this.labelOptions);

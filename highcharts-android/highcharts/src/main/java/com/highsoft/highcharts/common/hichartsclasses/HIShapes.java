@@ -8,11 +8,12 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -30,17 +31,17 @@ public class HIShapes extends HIFoundation {
 
 	public String getSrc(){ return src; }
 
-	private ArrayList<String> points;
+	private ArrayList points;
 	/**
  An array of points for the shape or a callback function that returns that shape point. This option is available for shapes which can use multiple points such as path. A point can be either a point object or a point's id. 
 	*/
-	public void setPoints(ArrayList<String> points) {
+	public void setPoints(ArrayList points) {
 		this.points = points;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<String> getPoints(){ return points; }
+	public ArrayList getPoints(){ return points; }
 
 	private String markerEnd;
 	/**
@@ -66,17 +67,17 @@ public class HIShapes extends HIFoundation {
 
 	public String getMarkerStart(){ return markerStart; }
 
-	private String point;
+	private HIAnnotationMockPointOptionsObject point;
 	/**
  This option defines the point to which the shape will be connected. It can be either the point which exists in the series - it is referenced by the point's id - or a new point with defined x, y properties and optionally axes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/mock-points/">Attach annotation to a mock point with different ways</a>
 	*/
-	public void setPoint(String point) {
+	public void setPoint(HIAnnotationMockPointOptionsObject point) {
 		this.point = point;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getPoint(){ return point; }
+	public HIAnnotationMockPointOptionsObject getPoint(){ return point; }
 
 	private String dashStyle;
 	/**
@@ -102,6 +103,30 @@ public class HIShapes extends HIFoundation {
 
 	public Number getStrokeWidth(){ return strokeWidth; }
 
+	private Number yAxis;
+	/**
+ The yAxis index to which the points should be attached. Used for the ellipse. 
+	*/
+	public void setYAxis(Number yAxis) {
+		this.yAxis = yAxis;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getYAxis(){ return yAxis; }
+
+	private Number ry;
+	/**
+ The radius of the shape in y direction. Used for the ellipse. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/ellipse/">Ellipse annotation</a>
+	*/
+	public void setRy(Number ry) {
+		this.ry = ry;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getRy(){ return ry; }
+
 	private Number height;
 	/**
  The height of the shape. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
@@ -126,17 +151,17 @@ public class HIShapes extends HIFoundation {
 
 	public Number getWidth(){ return width; }
 
-	private HIColor stroke;
+	private Object stroke;
 	/**
  The color of the shape's stroke. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
 	*/
-	public void setStroke(HIColor stroke) {
+	public void setStroke(Object stroke) {
 		this.stroke = stroke;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getStroke(){ return stroke; }
+	public Object getStroke(){ return stroke; }
 
 	private Number r;
 	/**
@@ -149,6 +174,18 @@ public class HIShapes extends HIFoundation {
 	}
 
 	public Number getR(){ return r; }
+
+	private Number xAxis;
+	/**
+ The xAxis index to which the points should be attached. Used for the ellipse. 
+	*/
+	public void setXAxis(Number xAxis) {
+		this.xAxis = xAxis;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getXAxis(){ return xAxis; }
 
 	private Number snap;
 	/**
@@ -164,7 +201,7 @@ public class HIShapes extends HIFoundation {
 
 	private String type;
 	/**
- The type of the shape, e.g. circle or rectangle. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
+ The type of the shape. Avaliable options are circle, rect and ellipse. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/ellipse/">Ellipse annotation</a>
  <br><br><b>defaults:</b><br><br>&ensp;rect	*/
 	public void setType(String type) {
 		this.type = type;
@@ -219,13 +256,19 @@ public HashMap<String, Object> getParams() {
 			params.put("markerStart", this.markerStart);
 		}
 		if (this.point != null) {
-			params.put("point", this.point);
+			params.put("point", this.point.getParams());
 		}
 		if (this.dashStyle != null) {
 			params.put("dashStyle", this.dashStyle);
 		}
 		if (this.strokeWidth != null) {
 			params.put("strokeWidth", this.strokeWidth);
+		}
+		if (this.yAxis != null) {
+			params.put("yAxis", this.yAxis);
+		}
+		if (this.ry != null) {
+			params.put("ry", this.ry);
 		}
 		if (this.height != null) {
 			params.put("height", this.height);
@@ -234,10 +277,13 @@ public HashMap<String, Object> getParams() {
 			params.put("width", this.width);
 		}
 		if (this.stroke != null) {
-			params.put("stroke", this.stroke.getData());
+			params.put("stroke", this.stroke);
 		}
 		if (this.r != null) {
 			params.put("r", this.r);
+		}
+		if (this.xAxis != null) {
+			params.put("xAxis", this.xAxis);
 		}
 		if (this.snap != null) {
 			params.put("snap", this.snap);

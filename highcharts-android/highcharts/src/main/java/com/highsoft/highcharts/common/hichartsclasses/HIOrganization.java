@@ -8,12 +8,13 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
+import com.highsoft.highcharts.common.HIColor;
 
 
 	/**
@@ -33,18 +34,18 @@ public class HIOrganization extends HISeries {
 
 	public ArrayList getNodes(){ return nodes; }
 
-	private HIColor borderColor;
+	private Object borderColor;
 	/**
 /** * description: The border color of the node cards. * demo:  •  Dark gray border
 * defaults: #ffffff
 */
-	public void setBorderColor(HIColor borderColor) {
+	public void setBorderColor(Object borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getBorderColor(){ return borderColor; }
+	public Object getBorderColor(){ return borderColor; }
 
 	private Number nodeWidth;
 	/**
@@ -82,17 +83,17 @@ public class HIOrganization extends HISeries {
 
 	public Number getLinkRadius(){ return linkRadius; }
 
-	private HIColor linkColor;
+	private Object linkColor;
 	/**
  The color of the links between nodes. 
 	*/
-	public void setLinkColor(HIColor linkColor) {
+	public void setLinkColor(Object linkColor) {
 		this.linkColor = linkColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getLinkColor(){ return linkColor; }
+	public Object getLinkColor(){ return linkColor; }
 
 	private Number borderWidth;
 	/**
@@ -192,17 +193,17 @@ public class HIOrganization extends HISeries {
 
 	public Number getLinkOpacity(){ return linkOpacity; }
 
-	private ArrayList<String> colors;
+	private ArrayList<HIColor> colors;
 	/**
  A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
 	*/
-	public void setColors(ArrayList<String> colors) {
+	public void setColors(ArrayList<HIColor> colors) {
 		this.colors = colors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<String> getColors(){ return colors; }
+	public ArrayList<HIColor> getColors(){ return colors; }
 
 	private Boolean centerInCategory;
 	/**
@@ -241,7 +242,7 @@ public HashMap<String, Object> getParams() {
 			params.put("nodes", array);
 		}
 		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor.getData());
+			params.put("borderColor", this.borderColor);
 		}
 		if (this.nodeWidth != null) {
 			params.put("nodeWidth", this.nodeWidth);
@@ -253,7 +254,7 @@ public HashMap<String, Object> getParams() {
 			params.put("linkRadius", this.linkRadius);
 		}
 		if (this.linkColor != null) {
-			params.put("linkColor", this.linkColor.getData());
+			params.put("linkColor", this.linkColor);
 		}
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);
@@ -290,13 +291,8 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.colors) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
+			for (HIColor hiColor : this.colors) {
+				array.add(hiColor.getData());
 			}
 			params.put("colors", array);
 		}

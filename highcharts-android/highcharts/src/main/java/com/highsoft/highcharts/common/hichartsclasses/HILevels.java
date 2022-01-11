@@ -8,26 +8,28 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
 public class HILevels extends HIFoundation { 
 
-	private HIColor borderColor;
+	private Object borderColor;
 	/**
  Can set a borderColor on all points which lies on the same level. 
 	*/
-	public void setBorderColor(HIColor borderColor) {
+	public void setBorderColor(Object borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getBorderColor(){ return borderColor; }
+	public Object getBorderColor(){ return borderColor; }
 
 	private HIColorVariation colorVariation;
 	/**
@@ -188,7 +190,7 @@ public HashMap<String, Object> getParams() {
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
 		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor.getData());
+			params.put("borderColor", this.borderColor);
 		}
 		if (this.colorVariation != null) {
 			params.put("colorVariation", this.colorVariation.getParams());

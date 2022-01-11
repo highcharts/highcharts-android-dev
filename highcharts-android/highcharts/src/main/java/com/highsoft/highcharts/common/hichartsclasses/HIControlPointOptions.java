@@ -8,23 +8,24 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
 public class HIControlPointOptions extends HIFoundation { 
 
-	private HIFunction positioner;
-	public void setPositioner(HIFunction positioner) {
+	private Object positioner;
+	public void setPositioner(Object positioner) {
 		this.positioner = positioner;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIFunction getPositioner(){ return positioner; }
+	public Object getPositioner(){ return positioner; }
 
 
 

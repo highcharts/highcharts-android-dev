@@ -8,14 +8,12 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
-
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -324,17 +322,17 @@ public class HILegend extends HIFoundation {
 
 	public String getVerticalAlign(){ return verticalAlign; }
 
-	private Boolean /* boolean */ shadow;
+	private HICSSObject /* boolean */ shadow;
 	/**
  Whether to apply a drop shadow to the legend. A backgroundColor also needs to be applied for this to take effect. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/shadow/">White background and drop shadow</a>
 	*/
-	public void setShadow(Boolean /* boolean */ shadow) {
+	public void setShadow(HICSSObject /* boolean */ shadow) {
 		this.shadow = shadow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean /* boolean */ getShadow(){ return shadow; }
+	public HICSSObject /* boolean */ getShadow(){ return shadow; }
 
 	private HICSSObject itemHoverStyle;
 	/**
@@ -505,6 +503,66 @@ public class HILegend extends HIFoundation {
 
 	public Number getMargin(){ return margin; }
 
+	private ArrayList allItems;
+	/**
+ All items for the legend, which is an array of series for most series and an array of points for pie series and its derivatives. 
+	*/
+	public void setAllItems(ArrayList allItems) {
+		this.allItems = allItems;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList getAllItems(){ return allItems; }
+
+	private HISVGElement box;
+	/**
+ SVG element of the legend box. 
+	*/
+	public void setBox(HISVGElement box) {
+		this.box = box;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HISVGElement getBox(){ return box; }
+
+	private HIChart chart;
+	/**
+ Chart of this legend. 
+	*/
+	public void setChart(HIChart chart) {
+		this.chart = chart;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIChart getChart(){ return chart; }
+
+	private HISVGElement group;
+	/**
+ SVG group of the legend. 
+	*/
+	public void setGroup(HISVGElement group) {
+		this.group = group;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HISVGElement getGroup(){ return group; }
+
+	private Object options;
+	/**
+ Legend options. 
+	*/
+	public void setOptions(Object options) {
+		this.options = options;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getOptions(){ return options; }
+
 	private String legendLabel;
 	public void setLegendLabel(String legendLabel) {
 		this.legendLabel = legendLabel;
@@ -532,71 +590,6 @@ public class HILegend extends HIFoundation {
 
 	public String getLegendItem(){ return legendItem; }
 
-
-	/**
-	 * Set the legend item text.
-	 * @param item The item for which to update the text in the legend.
-	 */
-	public void setPointText(HIPoint item){
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Legend");
-			put("method", "setText");
-			put("id", uuid);
-			put("params", Collections.singletonList(item));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Set the legend item text.
-	 * @param item The item for which to update the text in the legend.
-	 */
-	public void setSeriesText(HISeries item){
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Legend");
-			put("method", "setText");
-			put("id", uuid);
-			put("params", Collections.singletonList(item));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Update the legend with new options. Equivalent to running chart.update with a legend configuration option.
-	 * @param options Legend options.
-	 */
-	public void update(HILegend options){
-		Map<String, Object> params = options.getParams();
-		params.remove("_wrapperID");
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Legend");
-			put("method", "update0");
-			put("id", uuid);
-			put("params", Collections.singletonList(params));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 * Update the legend with new options. Equivalent to running chart.update with a legend configuration option.
-	 * @param options Legend options.
-	 * @param redraw Whether to redraw the chart after the axis is altered. If doing more operations on the chart, it is a good idea to set redraw to false and call HIChartView redraw() after. Whether to redraw the chart.
-	 */
-	public void update(HILegend options, boolean redraw){
-		Map<String, Object> params = options.getParams();
-		params.remove("_wrapperID");
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Legend");
-			put("method", "update1");
-			put("id", uuid);
-			put("params", Arrays.asList(params, redraw));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
 
 
 	public HILegend() {
@@ -684,7 +677,7 @@ public HashMap<String, Object> getParams() {
 			params.put("verticalAlign", this.verticalAlign);
 		}
 		if (this.shadow != null) {
-			params.put("shadow", this.shadow);
+			params.put("shadow", this.shadow.getParams());
 		}
 		if (this.itemHoverStyle != null) {
 			params.put("itemHoverStyle", this.itemHoverStyle.getParams());
@@ -727,6 +720,30 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.margin != null) {
 			params.put("margin", this.margin);
+		}
+		if (this.allItems != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.allItems) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("allItems", array);
+		}
+		if (this.box != null) {
+			params.put("box", this.box.getParams());
+		}
+		if (this.chart != null) {
+			params.put("chart", this.chart.getParams());
+		}
+		if (this.group != null) {
+			params.put("group", this.group.getParams());
+		}
+		if (this.options != null) {
+			params.put("options", this.options);
 		}
 		if (this.legendLabel != null) {
 			params.put("legendLabel", this.legendLabel);

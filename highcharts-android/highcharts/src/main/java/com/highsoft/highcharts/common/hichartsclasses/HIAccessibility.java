@@ -8,10 +8,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
@@ -19,7 +20,7 @@ public class HIAccessibility extends HIFoundation {
 
 	private String landmarkVerbosity;
 	/**
- Amount of landmarks/regions to create for screen reader users. More landmarks can make navigation with screen readers easier, but can be distracting if there are lots of charts on the page. Three modes are available: - all: Adds regions for all series, legend, menu, information   region. - one: Adds a single landmark per chart. - disabled: No landmarks are added. <br><br><b>accepted values:</b><br><br>&ensp;["all", "one", "disabled"]
+ Amount of landmarks/regions to create for screen reader users. More landmarks can make navigation with screen readers easier, but can be distracting if there are lots of charts on the page. Three modes are available: - all: Adds regions for all series, legend, information   region. - one: Adds a single landmark per chart. - disabled: No landmarks are added. <br><br><b>accepted values:</b><br><br>&ensp;["all", "one", "disabled"]
 	*/
 	public void setLandmarkVerbosity(String landmarkVerbosity) {
 		this.landmarkVerbosity = landmarkVerbosity;
@@ -177,18 +178,6 @@ public class HIAccessibility extends HIFoundation {
 	}
 
 	public Boolean getExposeAsGroupOnly(){ return exposeAsGroupOnly; }
-
-	private HIFunction pointDescriptionFormatter;
-	/**
- Formatter function to use instead of the defaults for point descriptions. Same as accessibility.point.descriptionFormatter, but for a single series. 
-	*/
-	public void setPointDescriptionFormatter(HIFunction pointDescriptionFormatter) {
-		this.pointDescriptionFormatter = pointDescriptionFormatter;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getPointDescriptionFormatter(){ return pointDescriptionFormatter; }
 
 	private String rangeDescription;
 	/**
@@ -449,9 +438,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.exposeAsGroupOnly != null) {
 			params.put("exposeAsGroupOnly", this.exposeAsGroupOnly);
-		}
-		if (this.pointDescriptionFormatter != null) {
-			params.put("pointDescriptionFormatter", this.pointDescriptionFormatter);
 		}
 		if (this.rangeDescription != null) {
 			params.put("rangeDescription", this.rangeDescription);

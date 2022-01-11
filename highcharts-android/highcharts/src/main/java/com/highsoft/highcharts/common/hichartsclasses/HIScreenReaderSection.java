@@ -8,10 +8,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
@@ -79,7 +80,7 @@ public class HIScreenReaderSection extends HIFoundation {
 
 	private String beforeChartFormat;
 	/**
- Format for the screen reader information region before the chart. Supported HTML tags are , , , , , , , and . Attributes are not supported, except for id on , , and . Id is required on  and  in the format . Numbers, lower- and uppercase letters, "-" and "#" are valid characters in IDs. The headingTagName is an auto-detected heading (h1-h6) that corresponds to the heading level below the previous heading in the DOM. 
+ Format for the screen reader information region before the chart. Supported HTML tags are , , , , , , , and . Attributes are not supported, except for id on , , and . Id is required on  and  in the format . Numbers, lower- and uppercase letters, "-" and "#" are valid characters in IDs. The headingTagName is an auto-detected heading (h1-h6) that corresponds to the heading level below the previous heading in the DOM. Set to empty string to remove the region altogether. 
 	*/
 	public void setBeforeChartFormat(String beforeChartFormat) {
 		this.beforeChartFormat = beforeChartFormat;

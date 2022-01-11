@@ -8,25 +8,15 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
-import java.util.HashMap;
 
 
-
-public class HIPoints extends HIFoundation { 
-
-	private Number y;
-	/**
- The y position of the point. Units can be either in axis or chart pixel coordinates. 
-	*/
-	public void setY(Number y) {
-		this.y = y;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getY(){ return y; }
+public class HIAnnotationMockPointOptionsObject extends HIFoundation { 
 
 	private Number x;
 	/**
@@ -52,6 +42,18 @@ public class HIPoints extends HIFoundation {
 
 	public Object /* Number, String */ getXAxis(){ return xAxis; }
 
+	private Number y;
+	/**
+ The y position of the point. Units can be either in axis or chart pixel coordinates. 
+	*/
+	public void setY(Number y) {
+		this.y = y;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getY(){ return y; }
+
 	private Object /* Number, String */ yAxis;
 	/**
  This number defines which yAxis the point is connected to. It refers to either the axis id or the index of the axis in the yAxis array. If the option is not configured or the axis is not found the point's y coordinate refers to the chart pixels. 
@@ -66,7 +68,7 @@ public class HIPoints extends HIFoundation {
 
 
 
-	public HIPoints() {
+	public HIAnnotationMockPointOptionsObject() {
 
 	}
 
@@ -75,14 +77,14 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.y != null) {
-			params.put("y", this.y);
-		}
 		if (this.x != null) {
 			params.put("x", this.x);
 		}
 		if (this.xAxis != null) {
 			params.put("xAxis", this.xAxis);
+		}
+		if (this.y != null) {
+			params.put("y", this.y);
 		}
 		if (this.yAxis != null) {
 			params.put("yAxis", this.yAxis);

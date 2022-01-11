@@ -2,11 +2,12 @@ package com.highsoft.devground
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import com.highsoft.highcharts.common.HIColor
 import com.highsoft.highcharts.common.hichartsclasses.*
-import com.highsoft.highcharts.core.HIChartView
-import com.highsoft.highcharts.core.HIFoundation
+import com.highsoft.highcharts.core.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -26,6 +27,18 @@ class MainActivityKotlin : AppCompatActivity() {
         val chart = HIChart()
         chart.type = "column"
         chart.backgroundColor = HIColor.initWithHexValue("F2F9FC")
+        chart.events = HIEvents()
+//        chart.events.drilldown = HIFunction(
+//            // this.series[0].data[this.series[0].data.indexOf(this.hoverPoint)].name
+//            HIConsumer { f: HIChartContext ->
+//                val t = Toast.makeText(
+//                    this,
+//                    "Name: " + f.getProperty("series.0.data.(0).name"),
+//                    Toast.LENGTH_SHORT
+//                )
+//                t.show()
+//            }, arrayOf("series.0.data.(0).name")
+//        )
         options.chart = chart
 
         val title = HITitle()
@@ -56,7 +69,7 @@ class MainActivityKotlin : AppCompatActivity() {
 
         options.yAxis=ArrayList(listOf(yAxis))
 
-        
+
         // 1
         val legend = HILegend()
         legend.enabled = false
@@ -89,9 +102,8 @@ class MainActivityKotlin : AppCompatActivity() {
         columncolors.add("#CA56AF")
 
         val series1 = HIColumn()
-        series1.name = ""
+        series1.name = "Browsers"
         series1.colorByPoint = true
-        series1.colors = columncolors
 
 
 
@@ -226,6 +238,22 @@ class MainActivityKotlin : AppCompatActivity() {
         seriesList.add(series4)
         seriesList.add(series5)
 
+        val plotoptions = HIPlotOptions()
+        plotoptions.series = HISeries()
+        plotoptions.series.events = HIEvents()
+        plotoptions.series.point = HIPoint()
+        plotoptions.series.point.events = HIEvents()
+        plotoptions.series.point.events.click = HIFunction(
+            HIConsumer { f: HIChartContext ->
+                val t = Toast.makeText(
+                    this,
+                    "X value [ " + f.getProperty("x") + " ]; category: " + f.getProperty("category"),
+                    Toast.LENGTH_SHORT
+                )
+                t.show()
+            }, arrayOf("x", "category")
+        )
+        options.plotOptions = plotoptions
 
 
         drilldown.series = ArrayList(seriesList)

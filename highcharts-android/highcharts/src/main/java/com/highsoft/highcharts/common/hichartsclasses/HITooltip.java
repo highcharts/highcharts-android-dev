@@ -8,14 +8,12 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -334,17 +332,17 @@ public class HITooltip extends HIFoundation {
 
 	public Number getPadding(){ return padding; }
 
-	private Boolean /* boolean */ shadow;
+	private HIShadowOptionsObject /* boolean */ shadow;
 	/**
  Whether to apply a drop shadow to the tooltip. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/bordercolor-defaults/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/shadow/">False</a>
 	*/
-	public void setShadow(Boolean /* boolean */ shadow) {
+	public void setShadow(HIShadowOptionsObject /* boolean */ shadow) {
 		this.shadow = shadow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean /* boolean */ getShadow(){ return shadow; }
+	public HIShadowOptionsObject /* boolean */ getShadow(){ return shadow; }
 
 	private Number distance;
 	/**
@@ -475,128 +473,54 @@ public class HITooltip extends HIFoundation {
 
 	public HIFunction getNodeFormatter(){ return nodeFormatter; }
 
+	private HIChart chart;
 	/**
-	 In case no user defined formatter is given, this will be used. Note that the context here is an object holding point, series, x, y etc.
-	 @param tooltip Tooltip
-	 */
-	public void defaultFormatter(HITooltip tooltip){
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Tooltip");
-			put("method", "defaultFormatter");
-			put("id", uuid);
-			put("params", Collections.singletonList(tooltip.getParams()));
-		}};
+ Chart of the tooltip. 
+	*/
+	public void setChart(HIChart chart) {
+		this.chart = chart;
 		this.setChanged();
-		this.notifyObservers(jsClassMethod);
+		this.notifyObservers();
 	}
 
+	public HIChart getChart(){ return chart; }
+
+	private Object container;
 	/**
-	 Removes and destroys the tooltip and its elements.
-	 */
-	public void destroy(){
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Tooltip");
-			put("method", "destroy");
-			put("id", uuid);
-		}};
+ Reference to the tooltip's container, when [Highcharts.Tooltip#outside] is set to true, otherwise it's undefined. 
+	*/
+	public void setContainer(Object container) {
+		this.container = container;
 		this.setChanged();
-		this.notifyObservers(jsClassMethod);
+		this.notifyObservers();
 	}
 
+	public Object getContainer(){ return container; }
 
+	private Object options;
 	/**
-	 Creates the Tooltip label element if it does not exist.
-	 */
-	public void getLabel(){
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Tooltip");
-			put("method", "getLabel");
-			put("id", uuid);
-		}};
+ Used tooltip options. 
+	*/
+	public void setOptions(Object options) {
+		this.options = options;
 		this.setChanged();
-		this.notifyObservers(jsClassMethod);
+		this.notifyObservers();
 	}
 
+	public Object getOptions(){ return options; }
+
+	private HISVGRenderer renderer;
 	/**
-	 Hides the tooltip with a fade out animation.
-	 */
-	public void hide(){
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Tooltip");
-			put("method", "hide0");
-			put("id", uuid);
-		}};
+ Reference to the tooltip's renderer, when [Highcharts.Tooltip#outside] is set to true, otherwise it's undefined. 
+	*/
+	public void setRenderer(HISVGRenderer renderer) {
+		this.renderer = renderer;
 		this.setChanged();
-		this.notifyObservers(jsClassMethod);
+		this.notifyObservers();
 	}
 
-	/**
-	 Hides the tooltip with a fade out animation.
-	 @param delay The fade out in milliseconds. If no value is provided the value of the tooltip.hideDelay option is used. A value of 0 disables the fade out animation.
-	 */
-	public void hide(Number delay){
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Tooltip");
-			put("method", "hide1");
-			put("id", uuid);
-			put("params", Collections.singletonList(delay));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
+	public HISVGRenderer getRenderer(){ return renderer; }
 
-	/**
-	 Refresh the tooltip's text and position.
-	 @param point A point.
-	 */
-	public void refreshByPoint(HIPoint point){
-		Map<String, Object> params = point.getParams();
-		String pointID = (String) params.get("_wrapperID");
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Tooltip");
-			put("method", "refreshByPoint");
-			put("id", uuid);
-			put("pointID", pointID);
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
-	/**
-	 Refresh the tooltip's text and position.
-	 @param points An array of points.
-	 */
-	public void refreshByPoints(ArrayList<HIPoint> points){
-		ArrayList<String> pointIDs = new ArrayList<>();
-		for(HIPoint point : points){
-			Map<String, Object> params = point.getParams();
-			pointIDs.add((String) params.get("_wrapperID"));
-		}
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Tooltip");
-			put("method", "refreshByPoints");
-			put("id", uuid);
-			put("pointIDs", pointIDs.toString());
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-	/**
-	 Updates the tooltip with the provided tooltip options.
-	 @param options The tooltip options to update.
-	 */
-	public void update(HITooltip options){
-		Map<String, Object> params = options.getParams();
-		params.remove("_wrapperID");
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "Tooltip");
-			put("method", "update");
-			put("id", uuid);
-			put("params", Collections.singletonList(params));
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
 
 
 	public HITooltip() {
@@ -686,7 +610,7 @@ public HashMap<String, Object> getParams() {
 			params.put("padding", this.padding);
 		}
 		if (this.shadow != null) {
-			params.put("shadow", this.shadow);
+			params.put("shadow", this.shadow.getParams());
 		}
 		if (this.distance != null) {
 			params.put("distance", this.distance);
@@ -720,6 +644,18 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.nodeFormatter != null) {
 			params.put("nodeFormatter", this.nodeFormatter);
+		}
+		if (this.chart != null) {
+			params.put("chart", this.chart.getParams());
+		}
+		if (this.container != null) {
+			params.put("container", this.container);
+		}
+		if (this.options != null) {
+			params.put("options", this.options);
+		}
+		if (this.renderer != null) {
+			params.put("renderer", this.renderer.getParams());
 		}
 		return params;
 	}

@@ -8,10 +8,12 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -26,29 +28,17 @@ public class HITheme extends HIFoundation {
 
 	public Number getZIndex(){ return zIndex; }
 
-	private Number padding;
-	/**
- Padding for the button. 
-	*/
-	public void setPadding(Number padding) {
-		this.padding = padding;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getPadding(){ return padding; }
-
-	private HIColor stroke;
+	private Object stroke;
 	/**
  Default stroke for the buttons. 
  <br><br><b>defaults:</b><br><br>&ensp;none	*/
-	public void setStroke(HIColor stroke) {
+	public void setStroke(Object stroke) {
 		this.stroke = stroke;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getStroke(){ return stroke; }
+	public Object getStroke(){ return stroke; }
 
 	private HIColor fill;
 	/**
@@ -76,11 +66,8 @@ public HashMap<String, Object> getParams() {
 		if (this.zIndex != null) {
 			params.put("zIndex", this.zIndex);
 		}
-		if (this.padding != null) {
-			params.put("padding", this.padding);
-		}
 		if (this.stroke != null) {
-			params.put("stroke", this.stroke.getData());
+			params.put("stroke", this.stroke);
 		}
 		if (this.fill != null) {
 			params.put("fill", this.fill.getData());

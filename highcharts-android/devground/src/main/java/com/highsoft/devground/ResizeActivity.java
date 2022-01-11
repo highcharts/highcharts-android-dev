@@ -40,7 +40,6 @@ public class ResizeActivity extends AppCompatActivity {
         hiStackLabels.setOverflow("none");
         hiStackLabels.setAllowOverlap(false);
         hiStackLabels.setCrop(true);
-        hiStackLabels.getStyle().setColor("#000000");
         hiStackLabels.setTextAlign("center");
         hiStackLabels.setY(-5);
         hiStackLabels.setBorderWidth(1);

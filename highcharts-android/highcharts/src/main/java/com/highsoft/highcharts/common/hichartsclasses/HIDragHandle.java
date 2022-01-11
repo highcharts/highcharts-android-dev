@@ -8,11 +8,12 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -78,17 +79,17 @@ public class HIDragHandle extends HIFoundation {
 
 	public HIFunction getPathFormatter(){ return pathFormatter; }
 
-	private HIColor lineColor;
+	private Object lineColor;
 	/**
  The line color of the drag handles. 
 	*/
-	public void setLineColor(HIColor lineColor) {
+	public void setLineColor(Object lineColor) {
 		this.lineColor = lineColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getLineColor(){ return lineColor; }
+	public Object getLineColor(){ return lineColor; }
 
 	private Number lineWidth;
 	/**
@@ -129,7 +130,7 @@ public HashMap<String, Object> getParams() {
 			params.put("pathFormatter", this.pathFormatter);
 		}
 		if (this.lineColor != null) {
-			params.put("lineColor", this.lineColor.getData());
+			params.put("lineColor", this.lineColor);
 		}
 		if (this.lineWidth != null) {
 			params.put("lineWidth", this.lineWidth);

@@ -8,10 +8,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
@@ -41,17 +42,17 @@ public class HIPlotLines extends HIFoundation {
 
 	public String getDashStyle(){ return dashStyle; }
 
-	private HIColor color;
+	private Object color;
 	/**
  The color of the line. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">A red line from X axis</a>
  <br><br><b>defaults:</b><br><br>&ensp;#999999	*/
-	public void setColor(HIColor color) {
+	public void setColor(Object color) {
 		this.color = color;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getColor(){ return color; }
+	public Object getColor(){ return color; }
 
 	private HILabel label;
 	/**
@@ -127,18 +128,6 @@ public class HIPlotLines extends HIFoundation {
 
 	public String getId(){ return id; }
 
-	/**
-	 * Remove the plot line.
-	 */
-	public void destroy() {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "PlotLineOrBand");
-			put("method", "destroy");
-			put("id", uuid);
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
 
 
 	public HIPlotLines() {
@@ -157,7 +146,7 @@ public HashMap<String, Object> getParams() {
 			params.put("dashStyle", this.dashStyle);
 		}
 		if (this.color != null) {
-			params.put("color", this.color.getData());
+			params.put("color", this.color);
 		}
 		if (this.label != null) {
 			params.put("label", this.label.getParams());
