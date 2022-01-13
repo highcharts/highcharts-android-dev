@@ -11,6 +11,8 @@ package com.highsoft.highcharts.common.hichartsclasses;
 import java.util.HashMap;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Map;
+
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
@@ -1046,7 +1048,16 @@ public class HIData extends HIFoundation {
 
 	public Object getDateFormats(){ return dateFormats; }
 
-
+	private HashMap<String, Object> jsProperties;
+	/**
+	 * Add a custom property to your chart. Those can be accessible later by HIFunction callbacks.
+	 * @param name the name by which you can access property
+	 * @param value the actual value which can be accessed
+	 */
+	public void setProperty(String name, Object value) {
+		if(jsProperties == null) jsProperties = new HashMap<>();
+		jsProperties.put(name, value);
+	}
 
 	public HIData() {
 
@@ -1347,6 +1358,11 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.dateFormats != null) {
 			params.put("dateFormats", this.dateFormats);
+		}
+		if(this.jsProperties != null){
+			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
+				params.put(entry.getKey(), entry.getValue());
+			}
 		}
 		return params;
 	}

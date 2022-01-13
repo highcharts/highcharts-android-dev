@@ -9,4 +9,6 @@
     <dimen name="normal_text_size">16sp</dimen>
     <color name="red">#ffcc0000</color>
     <color name="green">#ff669900</color>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

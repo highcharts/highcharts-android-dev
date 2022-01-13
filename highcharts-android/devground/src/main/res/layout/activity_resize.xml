@@ -5,11 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".ResizeActivity">
 
-    <com.highsoft.highcharts.core.HIChartView
-        android:id="@+id/hc"
+    <FrameLayout
+        android:id="@+id/holder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </com.highsoft.highcharts.core.HIChartView>
+        android:layout_height="match_parent">
+    </FrameLayout>
 
 </LinearLayout>
