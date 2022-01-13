@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.highsoft.highcharts.common"},{"l":"com.highsoft.highcharts.common.hichartsclasses"},{"l":"com.highsoft.highcharts.core"}]
