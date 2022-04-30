@@ -7,6 +7,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.common.hichartsclasses.HICSSObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIChart;
@@ -46,10 +48,12 @@ import com.highsoft.highcharts.core.HIChartView;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFunctionInterface;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -62,88 +66,285 @@ public class TestActivity extends AppCompatActivity {
 
         HIOptions options = new HIOptions();
 
-        HIScrollablePlotArea scrollablePlotArea = new HIScrollablePlotArea();
-        scrollablePlotArea.setMinWidth(700);
-        scrollablePlotArea.setScrollPositionX(1);
+        HashMap<String, Object> pureOptions = new HashMap<>();
 
-        HIChart chart = new HIChart();
-        chart.setScrollablePlotArea(scrollablePlotArea);
+        String jsonStr = "{\n" +
+                "  \"title\": \"\",\n" +
+                "  \"credits\": {\n" +
+                "    \"enabled\": false\n" +
+                "  },\n" +
+                "  \"chart\": {\n" +
+                "    \"height\": \"30%\",\n" +
+                "    \"style\": {\n" +
+                "      \"fontFamily\": \"FrutigerLTPro, Helvetica, sans-serif\"\n" +
+                "    }\n" +
+                "  },\n" +
+                "  \"xAxis\": {\n" +
+                "    \"type\": \"datetime\",\n" +
+                "    \"dateTimeLabelFormats\": {\n" +
+                "      \"week\": \"%B\",\n" +
+                "      \"month\": \"%B %Y\",\n" +
+                "      \"year\": \"%Y\"\n" +
+                "    },\n" +
+                "    \"lineColor\": \"#91e6f0\",\n" +
+                "    \"endOnTick\": false,\n" +
+                "    \"tickLength\": 0,\n" +
+                "    \"tickmarkPlacement\": \"on\",\n" +
+                "    \"crosshair\": {\n" +
+                "      \"dashStyle\": \"Dash\",\n" +
+                "      \"color\": \"#785bec\",\n" +
+                "      \"zIndex\": 2\n" +
+                "    },\n" +
+                "    \"labels\": {\n" +
+                "      \"step\": 2,\n" +
+                "      \"y\": 30,\n" +
+                "      \"useHTML\": true,\n" +
+                "      \"align\": \"center\",\n" +
+                "      \"style\": {\n" +
+                "        \"color\": \"#411f99\",\n" +
+                "        \"fontSize\": \"14px\",\n" +
+                "        \"textOverflow\": \"none\"\n" +
+                "      }\n" +
+                "    }\n" +
+                "  },\n" +
+                "  \"yAxis\": {\n" +
+                "    \"title\": \"\",\n" +
+                "    \"startOnTick\": false,\n" +
+                "    \"endOnTick\": false,\n" +
+                "    \"gridLineColor\": \"#91e6f0\",\n" +
+                "    \"opposite\": true,\n" +
+                "    \"tickAmount\": 5,\n" +
+                "    \"offset\": 0,\n" +
+                "    \"labels\": {\n" +
+                "      \"step\": 2,\n" +
+                "      \"useHTML\": true,\n" +
+                "      \"align\": \"left\",\n" +
+                "      \"style\": {\n" +
+                "        \"padding\": \"0px 5px\",\n" +
+                "        \"color\": \"#411f99\",\n" +
+                "        \"fontWeight\": \"bold\",\n" +
+                "        \"fontSize\": \"14px\",\n" +
+                "        \"backgroundColor\": \"rgba(255, 255, 255, 0.7)\"\n" +
+                "      },\n" +
+                "      \"padding\": 20\n" +
+                "    }\n" +
+                "  },\n" +
+                "  \"tooltip\": {\n" +
+                "    \"xDateFormat\": \"%d.%m.%Y\",\n" +
+                "    \"backgroundColor\": \"#785bec\",\n" +
+                "    \"headerFormat\": \"<span style=\\\"background:white;color:#411f99;font-weight:bold;font-size:12px;padding:2px 5px;border-radius:5px;\\\">{series.name}</span> {point.key}\",\n" +
+                "    \"pointFormat\": \"<br><span style=\\\"margin-top:3px; display:block;font-weight:bold;font-size:15px\\\">CHF {point.y}</span>\",\n" +
+                "    \"borderWidth\": 0,\n" +
+                "    \"crosshairs\": true,\n" +
+                "    \"shadow\": false,\n" +
+                "    \"borderRadius\": 5,\n" +
+                "    \"useHTML\": true,\n" +
+                "    \"style\": {\n" +
+                "      \"color\": \"white\",\n" +
+                "      \"fontSize\": \"14px\"\n" +
+                "    }\n" +
+                "  },\n" +
+                "  \"plotOptions\": {\n" +
+                "    \"area\": {\n" +
+                "      \"color\": \"#00c2d4\",\n" +
+                "      \"fillColor\": \"rgba(233, 250, 255, 0.73)\",\n" +
+                "      \"fillOpacity\": 1\n" +
+                "    },\n" +
+                "    \"series\": {\n" +
+                "      \"marker\": {\n" +
+                "        \"enabled\": true,\n" +
+                "        \"fillColor\": \"#FFFFFF\",\n" +
+                "        \"lineWidth\": 4,\n" +
+                "        \"lineColor\": \"#785bec\"\n" +
+                "      },\n" +
+                "      \"states\": {\n" +
+                "        \"inactive\": {\n" +
+                "          \"opacity\": 1\n" +
+                "        },\n" +
+                "        \"hover\": {\n" +
+                "          \"lineWidth\": 2,\n" +
+                "          \"halo\": {\n" +
+                "            \"size\": 0\n" +
+                "          }\n" +
+                "        }\n" +
+                "      }\n" +
+                "    }\n" +
+                "  },\n" +
+                "  \"series\": [\n" +
+                "    {\n" +
+                "      \"type\": \"area\",\n" +
+                "      \"marker\": {\n" +
+                "        \"enabled\": false\n" +
+                "      },\n" +
+                "      \"tooltip\": {\n" +
+                "        \"headerFormat\": \"{point.key}\"\n" +
+                "      },\n" +
+                "      \"name\": \"Wert\",\n" +
+                "      \"data\": [\n" +
+                "        [\n" +
+                "          1.62389E12,\n" +
+                "          48872.0\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.62397E12,\n" +
+                "          49003.17\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.62423E12,\n" +
+                "          48555.33\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.62432E12,\n" +
+                "          48868.86\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.62441E12,\n" +
+                "          49092.65\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.62449E12,\n" +
+                "          48959.05\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.62458E12,\n" +
+                "          49283.68\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.62484E12,\n" +
+                "          49390.87\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.62492E12,\n" +
+                "          49462.44\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.62501E12,\n" +
+                "          49536.66\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.6251E12,\n" +
+                "          49456.82\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.62518E12,\n" +
+                "          49610.27\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.62544E12,\n" +
+                "          49754.84\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.62553E12,\n" +
+                "          49700.05\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.62562E12,\n" +
+                "          49659.4\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.6257E12,\n" +
+                "          49880.23\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.62579E12,\n" +
+                "          49229.84\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.62968E12,\n" +
+                "          50341.59\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.63054E12,\n" +
+                "          51171.43\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.63115E12,\n" +
+                "          50991.41\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          1.63175E12,\n" +
+                "          50632.27\n" +
+                "        ]\n" +
+                "      ]\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"type\": \"scatter\",\n" +
+                "      \"marker\": {\n" +
+                "        \"enabled\": true,\n" +
+                "        \"symbol\": \"arrow-up\"\n" +
+                "      },\n" +
+                "      \"name\": \"Einzahlung\",\n" +
+                "      \"data\": []\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"type\": \"scatter\",\n" +
+                "      \"marker\": {\n" +
+                "        \"enabled\": true,\n" +
+                "        \"symbol\": \"arrow-down\"\n" +
+                "      },\n" +
+                "      \"name\": \"Auszahlung\",\n" +
+                "      \"data\": []\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"responsive\": {\n" +
+                "    \"rules\": [\n" +
+                "      {\n" +
+                "        \"condition\": {\n" +
+                "          \"maxWidth\": 800\n" +
+                "        },\n" +
+                "        \"chartOptions\": {\n" +
+                "          \"chart\": {\n" +
+                "            \"height\": \"50%\"\n" +
+                "          },\n" +
+                "          \"yAxis\": {\n" +
+                "            \"opposite\": false,\n" +
+                "            \"labels\": {\n" +
+                "              \"align\": \"right\"\n" +
+                "            }\n" +
+                "          }\n" +
+                "        }\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"condition\": {\n" +
+                "          \"maxWidth\": 500\n" +
+                "        },\n" +
+                "        \"chartOptions\": {\n" +
+                "          \"chart\": {\n" +
+                "            \"height\": \"75%\"\n" +
+                "          },\n" +
+                "          \"yAxis\": {\n" +
+                "            \"offset\": -25,\n" +
+                "            \"labels\": {\n" +
+                "              \"align\": \"left\",\n" +
+                "              \"style\": {\n" +
+                "                \"color\": \"#00c2d4\"\n" +
+                "              }\n" +
+                "            }\n" +
+                "          },\n" +
+                "          \"xAxis\": {\n" +
+                "            \"dateTimeLabelFormats\": {\n" +
+                "              \"week\": \"%b\",\n" +
+                "              \"month\": \"%b %y\",\n" +
+                "              \"year\": \"%Y\"\n" +
+                "            },\n" +
+                "            \"labels\": {\n" +
+                "              \"step\": 0\n" +
+                "            }\n" +
+                "          }\n" +
+                "        }\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }\n" +
+                "}";
 
-        options.setChart(chart);
+        Type mapType = new TypeToken<Map<String, Object>>(){}.getType();
+        Map<String, Object> jsonOptions = new Gson().fromJson(jsonStr, mapType);
 
-        HITitle title = new HITitle();
-        title.setText("Solar Employment Growth by Sector, 2010-2016");
-        options.setTitle(title);
+//        chartView.loadJSONOptions(new HashMap<>(jsonOptions));
 
-        HISubtitle subtitle = new HISubtitle();
-        subtitle.setText("Source: thesolarfoundation.com");
-        options.setSubtitle(subtitle);
-
-        HIYAxis yaxis = new HIYAxis();
-        yaxis.setTitle(new HITitle());
-        yaxis.getTitle().setText("Number of Employees");
-        HIEvents events = new HIEvents();
-        events.setClick(new HIFunction(
-                f -> {
-                    Toast t = Toast.makeText(
-                            this,
-                            "Clicked point [ " + f.getProperty("x") + ", " + f.getProperty("y") + " ]",
-                            Toast.LENGTH_SHORT
-                    );
-                    t.show();
-                },
-                new String[] {"x"}
-        ));
-        yaxis.setEvents(events);
-        options.setYAxis(new ArrayList<>(Collections.singletonList(yaxis)));
-        HILegend legend = new HILegend();
-        legend.setLayout("vertical");
-        legend.setAlign("right");
-        legend.setVerticalAlign("middle");
-        options.setLegend(legend);
-
-        HIPlotOptions plotoptions = new HIPlotOptions();
-        plotoptions.setSeries(new HISeries());
-        plotoptions.getSeries().setEvents(new HIEvents());
-        plotoptions.getSeries().setPoint(new HIPoint());
-        plotoptions.getSeries().getPoint().setEvents(new HIEvents());
-        plotoptions.getSeries().getPoint().getEvents().setClick(new HIFunction(
-                f -> {
-                    Toast t = Toast.makeText(
-                            this,
-                            "Clicked point [ " + f.getProperty("x") + ", " + f.getProperty("y") + " ]; category: " + f.getProperty("category"),
-                            Toast.LENGTH_SHORT
-                    );
-                    t.show();
-                },
-                new String[] {"x", "y", "category"}
-        ));
-        options.setPlotOptions(plotoptions);
-        plotoptions.getSeries().setLabel(new HILabel());
-        plotoptions.getSeries().getLabel().setConnectorAllowed(false);
-        plotoptions.getSeries().setPointStart(2010);
-
-        HILine line1 = new HILine();
-        line1.setName("Installation");
-        line1.setData(new ArrayList<>(Arrays.asList(43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175)));
-
-        HIResponsive responsive = new HIResponsive();
-
-        HIRules rules1 = new HIRules();
-        rules1.setCondition(new HICondition());
-        rules1.getCondition().setMaxWidth(500);
-        HashMap<String, HashMap> chartLegend = new HashMap<>();
-        HashMap<String, String> legendOptions = new HashMap<>();
-        legendOptions.put("layout", "horizontal");
-        legendOptions.put("align", "center");
-        legendOptions.put("verticalAlign", "bottom");
-        chartLegend.put("legend", legendOptions);
-        rules1.setChartOptions(chartLegend);
-        responsive.setRules(new ArrayList<>(Collections.singletonList(rules1)));
-        options.setResponsive(responsive);
-
-        options.setSeries(new ArrayList<>(Collections.singletonList(line1)));
-
-        chartView.setOptions(options);
+        findViewById(R.id.btn).setOnClickListener(view -> {
+            chartView.loadJSONOptions(new HashMap<>(jsonOptions));
+            chartView.invalidate();
+        });
     }
 }

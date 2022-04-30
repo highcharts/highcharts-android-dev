@@ -4,73 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".IssuesActivity">
 
-    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent" android:layout_height="wrap_content">
-            <LinearLayout
-                android:padding="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-                <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/category_size"/>
-                <Spinner
-                    android:id="@+id/spinner1"
-                    android:layout_width="100dp"
-                    android:gravity="center"
-                    android:layout_height="match_parent"
-                    />
+    <com.highsoft.highcharts.core.HIChartView
+        android:layout_width="match_parent"
+        android:id="@+id/chartview1"
+        android:layout_height="500dp"/>
 
-                <TextView android:layout_width="wrap_content"
-                    android:text="\u2190 click to change category size"
-                    android:gravity="center"
-                    android:textColor="@color/red"
-                    android:layout_height="match_parent"/>
-            </LinearLayout>
-
-            <TextView
-                android:padding="5dp"
-                android:layout_width="match_parent"
-                android:text="@string/issues"
-                android:layout_height="wrap_content"/>
-
-            <com.highsoft.highcharts.core.HIChartView
-                android:layout_width="match_parent"
-                android:id="@+id/chartview1"
-                android:layout_height="wrap_content"/>
-            <LinearLayout
-                android:padding="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-                <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/category_size"/>
-                <Spinner
-                    android:id="@+id/spinner2"
-                    android:layout_width="100dp"
-                    android:gravity="center"
-                    android:layout_height="match_parent"
-                    />
-
-                <TextView android:layout_width="wrap_content"
-                    android:text="\u2190 click to change category size"
-                    android:gravity="center"
-                    android:textColor="@color/red"
-                    android:layout_height="match_parent"/>
-            </LinearLayout>
-            <com.highsoft.highcharts.core.HIChartView
-                android:layout_width="match_parent"
-                android:id="@+id/chartview2"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-    </ScrollView>
 
 
 </FrameLayout>

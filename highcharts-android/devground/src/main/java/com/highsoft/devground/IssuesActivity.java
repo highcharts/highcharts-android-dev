@@ -1,353 +1,168 @@
 package com.highsoft.devground;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.common.hichartsclasses.HIBar;
+import com.highsoft.highcharts.common.HIGradient;
+import com.highsoft.highcharts.common.HIStop;
+import com.highsoft.highcharts.common.hichartsclasses.HIArea;
 import com.highsoft.highcharts.common.hichartsclasses.HICSSObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIChart;
+import com.highsoft.highcharts.common.hichartsclasses.HIColumn;
+import com.highsoft.highcharts.common.hichartsclasses.HIColumnrange;
 import com.highsoft.highcharts.common.hichartsclasses.HICredits;
-import com.highsoft.highcharts.common.hichartsclasses.HICrosshair;
 import com.highsoft.highcharts.common.hichartsclasses.HIEvents;
-import com.highsoft.highcharts.common.hichartsclasses.HIExporting;
+import com.highsoft.highcharts.common.hichartsclasses.HIInactive;
 import com.highsoft.highcharts.common.hichartsclasses.HILabels;
 import com.highsoft.highcharts.common.hichartsclasses.HILegend;
+import com.highsoft.highcharts.common.hichartsclasses.HIMarker;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
 import com.highsoft.highcharts.common.hichartsclasses.HIPlotOptions;
-import com.highsoft.highcharts.common.hichartsclasses.HIScrollablePlotArea;
 import com.highsoft.highcharts.common.hichartsclasses.HISeries;
-import com.highsoft.highcharts.common.hichartsclasses.HIStackLabels;
+import com.highsoft.highcharts.common.hichartsclasses.HIStates;
+import com.highsoft.highcharts.common.hichartsclasses.HIStyle;
+import com.highsoft.highcharts.common.hichartsclasses.HISubtitle;
 import com.highsoft.highcharts.common.hichartsclasses.HITitle;
 import com.highsoft.highcharts.common.hichartsclasses.HITooltip;
 import com.highsoft.highcharts.common.hichartsclasses.HIXAxis;
 import com.highsoft.highcharts.common.hichartsclasses.HIYAxis;
+import com.highsoft.highcharts.common.hichartsclasses.HIZones;
 import com.highsoft.highcharts.core.HIChartView;
 import com.highsoft.highcharts.core.HIFunction;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.LinkedList;
 
 public class IssuesActivity extends AppCompatActivity {
 
-
-    private static final String TAG = "Issue";
-    private IssuesActivity mTestActivity;
-    private Spinner mSpinner1;
-    private Spinner mSpinner2;
-    private HIChartView mChartView1;
-    private HIChartView mChartView2;
-
-
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_issues);
-        DensityUtil.init(this);
-        mTestActivity = this;
-        setUpChartView();
-        setUpSpinner1();
-        setUpSpinner2();
-    }
 
-    private void setUpChartView() {
-        mChartView1 = findViewById(R.id.chartview1);
-        mChartView2 = findViewById(R.id.chartview2);
-    }
+        HIChartView chartView = findViewById(R.id.chartview1);
 
-    private void setUpSpinner1() {
-        mSpinner1 = findViewById(R.id.spinner1);
-        mSpinner1.setDropDownWidth(400);
-        mSpinner1.setDropDownHorizontalOffset(100);
-        mSpinner1.setDropDownVerticalOffset(200);
-        String[] spinnerItems = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(mTestActivity,
-                R.layout.item_select, spinnerItems);
-        spinnerAdapter.setDropDownViewResource(R.layout.item_drop);
-        mSpinner1.setAdapter(spinnerAdapter);
-
-        mSpinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (view instanceof TextView) {
-                    TextView textView = (TextView) view;
-                    String text = textView.getText().toString();
-                    int integer = Integer.parseInt(text);
-                    Toast.makeText(mTestActivity, text, Toast.LENGTH_SHORT).show();
-                    initChartDatas(integer, targetStack);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        mSpinner1.setSelection(8);
-    }
-
-    private void setUpSpinner2() {
-        mSpinner2 = findViewById(R.id.spinner2);
-        mSpinner2.setDropDownWidth(400);
-        mSpinner2.setDropDownHorizontalOffset(100);
-        mSpinner2.setDropDownVerticalOffset(200);
-        String[] spinnerItems = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(mTestActivity,
-                R.layout.item_select, spinnerItems);
-        spinnerAdapter.setDropDownViewResource(R.layout.item_drop);
-        mSpinner2.setAdapter(spinnerAdapter);
-
-        mSpinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (view instanceof TextView) {
-                    TextView textView = (TextView) view;
-                    String text = textView.getText().toString();
-                    int integer = Integer.parseInt(text);
-                    Toast.makeText(mTestActivity, text, Toast.LENGTH_SHORT).show();
-                    initChartDatas(integer, indicationStack);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
-
-    private static final String targetDistrTitle = "Drug distribution at the same target";
-    private static final String indicationDistrTitle = "Distribution of Syndrome Drugs";
-    private static final String targetStack = "target";
-    private static final String indicationStack = "indication";
-    private static final String tooltip_background_color = "dbecfd";
-    private static final String tooltip_text_color = "03356f";
-    private static final String listName = "list";
-    private static final String listColor = "548ed4";
-    private static final String endName = "end";
-    private static final String endColor = "cf5250";
-    private static final String noProgressName = "No progress";
-    private static final String noProgressColor = "e6c486";
-    private static final String onGoingName = "Ongoing";
-    private static final String onGoingColor = "51ce73";
-    private static final List<String> DEFAULT_CATEGORIES_LIST =
-            new ArrayList<String>() {{
-                add("Approval");
-                add("NDA");
-                add("BLA");
-                add("PhaseIII");
-                add("PhaseII");
-                add("PhaseI");
-                add("PhaseUnknown");
-                add("Apply");
-                add("Pre");
-            }};
-
-    private HIOptions initChartOptions(String type, final List<String> categories, Number[]... data) {
         HIOptions options = new HIOptions();
 
-        HIChart hiChart = new HIChart();
-        hiChart.setType("bar");
-        hiChart.setMarginRight(50);
-        int size = categories.size();
-        hiChart.setHeight(80 + size * 32);
-        HIScrollablePlotArea hiScrollablePlotArea = new HIScrollablePlotArea();
-        hiScrollablePlotArea.setMinHeight(0);
-        hiChart.setScrollablePlotArea(hiScrollablePlotArea);
-        hiChart.setReflow(true);
-        options.setChart(hiChart);
+        HIChart chart = new HIChart();
+        chart.setHeight(300);
+        chart.setMarginLeft(45);
+        HIEvents events = new HIEvents();
+        events.setLoad(new HIFunction("function() { const chart = this; var cssId = 'myCss'; if (!document.getElementById(cssId)) { var head = document.getElementsByTagName('head')[0]; var link = document.createElement('link'); link.rel = 'stylesheet'; link.type = 'text/css'; link.href = 'https://github.s3.amazonaws.com/downloads/lafeber/world-flags-sprite/flags32.css'; link.media = 'all'; head.appendChild(link); } }"));
+        chart.setEvents(events);
+        options.setChart(chart);
 
-        HITitle hiTitle = new HITitle();
-        hiTitle.setText(TextUtils.equals(type, targetStack) ? targetDistrTitle : indicationDistrTitle);
-        hiTitle.setMargin(8);
-        options.setTitle(hiTitle);
+        HILegend legend = new HILegend();
+        legend.setEnabled(false);
+        options.setLegend(legend);
 
-        final HIYAxis hiyAxis = new HIYAxis();
-        hiyAxis.setEvents(new HIEvents());
-        hiyAxis.getEvents().setClick(new HIFunction(() -> Toast.makeText(this, "Clicked!", Toast.LENGTH_SHORT).show()));
-        hiyAxis.setTitle(new HITitle());
-        hiyAxis.getTitle().setText("");
-        HIStackLabels hiStackLabels = new HIStackLabels();
-        hiStackLabels.setEnabled(true);
-        hiStackLabels.setAlign("right");
-        hiyAxis.setStackLabels(hiStackLabels);
-        hiyAxis.setAllowDecimals(false);
+        HITitle title = new HITitle();
+        title.setText("");
+        options.setTitle(title);
 
+        HIXAxis hixAxis = new HIXAxis();
+        hixAxis.setTickWidth(0);
+        ArrayList<HIXAxis> xaxisList = new ArrayList<>();
+        xaxisList.add(hixAxis);
+        options.setXAxis(xaxisList);
 
-        options.setYAxis(new ArrayList<HIYAxis>() {
-            {
-                add(hiyAxis);
-            }
-        });
+        HIYAxis hiyAxis = new HIYAxis();
+        hiyAxis.setType("category");
+        hiyAxis.setMin(0);
+        hiyAxis.setMax(4);
+        HILabels labels = new HILabels();
+        labels.setY(0);
+        labels.setX(-40);
+        labels.setUseHTML(true);
+        HICSSObject style = new HICSSObject();
+        style.setWidth(32);
+        labels.setStyle(style);
+        labels.setFormatter(new HIFunction("function() { return '<span class=\"f32\"> <span class=\"flag us\"></span> </span>' }"));
+        hiyAxis.setLabels(labels);
+        HITitle yaxisTitle = new HITitle();
+        yaxisTitle.setText("");
+        hiyAxis.setTitle(yaxisTitle);
+        ArrayList<HIYAxis> yaxisList = new ArrayList<>();
+        yaxisList.add(hiyAxis);
+        options.setYAxis(yaxisList);
 
-        final HIXAxis hixAxis = new HIXAxis();
-        HICrosshair hiCrosshair = new HICrosshair();
-        hiCrosshair.setSnap(true);
-        hiCrosshair.setWidth(22);
-        hixAxis.setCrosshair(hiCrosshair);
-        HILabels hiLabels = new HILabels();
-        HICSSObject hicssObject = new HICSSObject();
-        hicssObject.setFontSize("10px");
-        hiLabels.setStyle(hicssObject);
-        hixAxis.setLabels(hiLabels);
-        hixAxis.setCategories(new ArrayList<String>() {
-            {
-                addAll(categories);
-            }
-        });
-        options.setXAxis(new ArrayList<HIXAxis>() {
-            {
-                add(hixAxis);
-            }
-        });
+        HIColumnrange columnrange = new HIColumnrange();
+        columnrange.setBorderRadius(5);
+        columnrange.setPointPadding(0.4);
 
-        HILegend hiLegend = new HILegend();
-        hiLegend.setReversed(true);
-        hiLegend.setVerticalAlign("top");
-        hiLegend.setSymbolRadius(0);
-        hiLegend.setSymbolPadding(0);
-        HICSSObject legendHicssObject = new HICSSObject();
-        legendHicssObject.setFontSize("8px");
-        hiLegend.setItemStyle(legendHicssObject);
-        hiLegend.setMargin(8);
-        hiLegend.setItemDistance(8);
-        options.setLegend(hiLegend);
+        ArrayList<Double> l1 = new ArrayList<>();
+        l1.add(18.0);
+        l1.add(2.5);
+        l1.add(3.5);
 
-        HIPlotOptions hiPlotOptions = new HIPlotOptions();
-        HISeries hiSeries = new HISeries();
-        hiSeries.setStacking(type);
-        HIEvents hiEvents = new HIEvents();
-        hiEvents.setLegendItemClick(new HIFunction("function () {return false;}"));
-        hiSeries.setEvents(hiEvents);
-        hiPlotOptions.setSeries(hiSeries);
-        options.setPlotOptions(hiPlotOptions);
+        ArrayList<Double> l2 = new ArrayList<>();
+        l2.add(20.0);
+        l2.add(2.5);
+        l2.add(3.5);
 
-        HITooltip hiTooltip = new HITooltip();
-        hiTooltip.setBorderWidth(0);
-        hiTooltip.setShared(true);
-        hiTooltip.setOutside(false);
-        String jsFunction =
-                "function () {return this.points.reduce(function (s, point) {return point.y==0?s:s+'<br/>'+point.series.name+' '+point.y;}, '');}";
-        HIFunction hiFunction = new HIFunction(jsFunction);
-        hiTooltip.setFormatter(hiFunction);
-        hiTooltip.setBackgroundColor(HIColor.initWithHexValue(tooltip_background_color));
-        HICSSObject toolTipHicssObject = new HICSSObject();
-        toolTipHicssObject.setFontSize("12px");
-        toolTipHicssObject.setFontWeight("bold");
-        hiTooltip.setStyle(toolTipHicssObject);
-        options.setTooltip(hiTooltip);
+        ArrayList<Double> l3 = new ArrayList<>();
+        l3.add(21.0);
+        l3.add(3.5);
+        l3.add(4.5);
 
-        HICredits hiCredits = new HICredits();
-        hiCredits.setEnabled(false);
-        options.setCredits(hiCredits);
+        ArrayList<Double> l4 = new ArrayList<>();
+        l4.add(22.0);
+        l4.add(-0.5);
+        l4.add(0.5);
 
-        HIExporting hiExporting = new HIExporting();
-        hiExporting.setEnabled(false);
-        options.setExporting(hiExporting);
+        ArrayList<Double> l5 = new ArrayList<>();
+        l5.add(23.0);
+        l5.add(0.5);
+        l5.add(1.5);
 
-        HIBar listBar = new HIBar();
-        listBar.setColor(HIColor.initWithHexValue(listColor));
-        listBar.setName(listName);
-        List<Number> ints0 = Arrays.asList(data[0]);
-        listBar.setPointWidth(16);
-        listBar.setData(new ArrayList<>(ints0));
+        ArrayList<Double> l6 = new ArrayList<>();
+        l6.add(24.0);
+        l6.add(2.5);
+        l6.add(3.5);
 
-        HIBar endBar = new HIBar();
-        endBar.setColor(HIColor.initWithHexValue(endColor));
-        endBar.setName(endName);
-        List<Number> ints1 = Arrays.asList(data[1]);
-        endBar.setPointWidth(16);
-        endBar.setData(new ArrayList<>(ints1));
+        ArrayList<ArrayList<Double>> data = new ArrayList<>();
+        data.add(l1);
+        data.add(l2);
+        data.add(l3);
+        data.add(l4);
+        data.add(l5);
+        data.add(l6);
+        columnrange.setData(data);
 
-        HIBar noProgressBar = new HIBar();
-        noProgressBar.setColor(HIColor.initWithHexValue(noProgressColor));
-        noProgressBar.setName(noProgressName);
-        List<Number> ints2 = Arrays.asList(data[2]);
-        noProgressBar.setPointWidth(16);
-        noProgressBar.setData(new ArrayList<>(ints2));
+        HIZones zone1 = new HIZones();
+        zone1.setValue(0);
+        zone1.setColor(HIColor.initWithName("green"));
 
-        HIBar onGoingBar = new HIBar();
-        onGoingBar.setColor(HIColor.initWithHexValue(onGoingColor));
-        onGoingBar.setName(onGoingName);
-        List<Number> ints3 = Arrays.asList(data[3]);
-        onGoingBar.setPointWidth(16);
-        onGoingBar.setData(new ArrayList<>(ints3));
+        HIZones zone2 = new HIZones();
+        zone2.setValue(1);
+        zone2.setColor(HIColor.initWithName("blue"));
 
-        ArrayList<HISeries> hiBars = new ArrayList<HISeries>(Arrays.asList(onGoingBar, noProgressBar, endBar, listBar));
-        options.setSeries(hiBars);
+        HIZones zone3 = new HIZones();
+        zone3.setValue(2);
+        zone3.setColor(HIColor.initWithName("red"));
 
-        return options;
-    }
+        HIZones zone4 = new HIZones();
+        zone4.setValue(3);
+        zone4.setColor(HIColor.initWithName("orange"));
 
-    private void initChartDatas(int categorySize, String type) {
-        List<String>
-                categories = DEFAULT_CATEGORIES_LIST.subList(0, categorySize);
-        Number[] listData = new Number[categorySize];
-        putData(listData);
-        Number[] endData = new Number[categorySize];
-        putData(endData);
-        Number[] noProgressData = new Number[categorySize];
-        putData(noProgressData);
-        Number[] onGoingData = new Number[categorySize];
-        putData(onGoingData);
+        HIZones zone5 = new HIZones();
+        zone5.setValue(3);
+        zone5.setColor(HIColor.initWithName("black"));
 
-        HIOptions options = initChartOptions(type, categories, listData, endData, noProgressData, onGoingData);
-        if (TextUtils.equals(type, targetStack)) {
-            mChartView1.setOptions(options);
-            mChartView1.reload();
-        } else if (TextUtils.equals(type, indicationStack)) {
-            mChartView2.setOptions(options);
-            mChartView2.reload();
-        }
+        ArrayList<HIZones> zonesList = new ArrayList<>();
+        zonesList.add(zone1);
+        zonesList.add(zone2);
+        zonesList.add(zone3);
+        zonesList.add(zone4);
+        zonesList.add(zone5);
+        columnrange.setZones(zonesList);
 
-        Object height = options.getChart().getHeight();
-        Log.d(TAG, "chartHeight: " + height);
-        chartLayoutHeight(type, (Integer) height);
-    }
+        options.setSeries(new ArrayList<>(Collections.singletonList(columnrange)));
 
-    private void chartLayoutHeight(String type, int height) {
-        int h = DensityUtil.dip2px(height);
-        Log.d(TAG, "chartLayoutHeight: "+h);
-        if (TextUtils.equals(type, targetStack)) {
-            ViewGroup.LayoutParams layoutParams = mChartView1.getLayoutParams();
-            layoutParams.height = h;
-            mChartView1.setLayoutParams(layoutParams);
-        } else {
-            ViewGroup.LayoutParams layoutParams = mChartView2.getLayoutParams();
-            layoutParams.height = h;
-            mChartView2.setLayoutParams(layoutParams);
-        }
-    }
-
-    private void putData(Number[] data) {
-        int length = data.length;
-        Random random = new Random();
-        for (int i = 0; i < length; i++) {
-            data[i] = random.nextInt(99);
-        }
-    }
-
-    class ChartInfo {
-        String type;
-        String name;
-
-        public ChartInfo(String type, String name) {
-            this.type = type;
-            this.name = name;
-        }
+        chartView.setOptions(options);
     }
 }

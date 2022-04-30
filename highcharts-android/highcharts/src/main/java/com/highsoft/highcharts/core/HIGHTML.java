@@ -141,7 +141,7 @@ final class HIGHTML implements Serializable {
         this.html = this.html
                 .replace("{{script}}", this.scripts)
                 .replace("{{options}}", this.options);
-//        System.out.println("GENERATED CHART OPTIONS\n" + this.options);
+        System.out.println("GENERATED CHART OPTIONS\n" + this.options);
     }
 
     private String getContentsOfFile(Context context, String path) throws IOException {
