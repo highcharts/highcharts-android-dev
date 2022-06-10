@@ -259,6 +259,7 @@ class MainActivityKotlin : AppCompatActivity() {
         drilldown.series = ArrayList(seriesList)
         options.drilldown = drilldown
 
+
         chartView.setOptions(options);
 
     }
