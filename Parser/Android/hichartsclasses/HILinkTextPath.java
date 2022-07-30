@@ -18,6 +18,15 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 public class HILinkTextPath extends HIFoundation { 
 
+	private HISVGAttributes attributes;
+	public void setAttributes(HISVGAttributes attributes) {
+		this.attributes = attributes;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HISVGAttributes getAttributes(){ return attributes; }
+
 	private Boolean enabled;
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -38,6 +47,9 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.attributes != null) {
+			params.put("attributes", this.attributes.getParams());
+		}
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);
 		}

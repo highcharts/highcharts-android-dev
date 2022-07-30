@@ -15,10 +15,11 @@ import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
+import com.highsoft.highcharts.common.HIColor;
 
 
 	/**
- A waterfall series. If the type option is not specified, it is inherited from chart.type. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all waterfall series are defined in  `plotOptions.waterfall`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     waterfall: {       // shared options for all waterfall series     }   },   series: [{     // specific options for this series instance     type: 'waterfall'   }] }); `       
+ A waterfall chart displays sequentially introduced positive or negative values in cumulative columns. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all waterfall series are defined in  `plotOptions.waterfall`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     waterfall: {       // shared options for all waterfall series     }   },   series: [{     // specific options for this series instance     type: 'waterfall'   }] }); `        <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/waterfall/">Waterfall chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/waterfall-inverted/">Horizontal (inverted) waterfall</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/waterfall-stacked/">Stacked waterfall chart</a>
 	*/
 
 public class HIWaterfall extends HISeries {
@@ -119,29 +120,29 @@ public class HIWaterfall extends HISeries {
 
 	public Number getGroupZPadding(){ return groupZPadding; }
 
-	private ArrayList<String> colors;
+	private ArrayList<HIColor> colors;
 	/**
  A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
 	*/
-	public void setColors(ArrayList<String> colors) {
+	public void setColors(ArrayList<HIColor> colors) {
 		this.colors = colors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<String> getColors(){ return colors; }
+	public ArrayList<HIColor> getColors(){ return colors; }
 
-	private HIColor edgeColor;
+	private Object edgeColor;
 	/**
  3D columns only. The color of the edges. Similar to borderColor, except it defaultss to the same color as the column. 
 	*/
-	public void setEdgeColor(HIColor edgeColor) {
+	public void setEdgeColor(Object edgeColor) {
 		this.edgeColor = edgeColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getEdgeColor(){ return edgeColor; }
+	public Object getEdgeColor(){ return edgeColor; }
 
 	private Boolean centerInCategory;
 	/**
@@ -289,18 +290,13 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.colors) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
+			for (HIColor hiColor : this.colors) {
+				array.add(hiColor.getData());
 			}
 			params.put("colors", array);
 		}
 		if (this.edgeColor != null) {
-			params.put("edgeColor", this.edgeColor.getData());
+			params.put("edgeColor", this.edgeColor);
 		}
 		if (this.centerInCategory != null) {
 			params.put("centerInCategory", this.centerInCategory);

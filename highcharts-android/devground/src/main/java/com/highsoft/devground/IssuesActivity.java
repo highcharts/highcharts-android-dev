@@ -1,7 +1,12 @@
 package com.highsoft.devground;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.common.HIGradient;
@@ -14,17 +19,27 @@ import com.highsoft.highcharts.common.hichartsclasses.HIColumn;
 import com.highsoft.highcharts.common.hichartsclasses.HIColumnrange;
 import com.highsoft.highcharts.common.hichartsclasses.HICredits;
 import com.highsoft.highcharts.common.hichartsclasses.HICrosshair;
+import com.highsoft.highcharts.common.hichartsclasses.HIData;
+import com.highsoft.highcharts.common.hichartsclasses.HIDataLabels;
+import com.highsoft.highcharts.common.hichartsclasses.HIDrilldown;
 import com.highsoft.highcharts.common.hichartsclasses.HIEvents;
+import com.highsoft.highcharts.common.hichartsclasses.HIHover;
 import com.highsoft.highcharts.common.hichartsclasses.HIInactive;
 import com.highsoft.highcharts.common.hichartsclasses.HILabels;
 import com.highsoft.highcharts.common.hichartsclasses.HILegend;
 import com.highsoft.highcharts.common.hichartsclasses.HILine;
 import com.highsoft.highcharts.common.hichartsclasses.HIMarker;
+import com.highsoft.highcharts.common.hichartsclasses.HINormal;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
 import com.highsoft.highcharts.common.hichartsclasses.HIPlotBands;
 import com.highsoft.highcharts.common.hichartsclasses.HIPlotOptions;
+import com.highsoft.highcharts.common.hichartsclasses.HIPoint;
+import com.highsoft.highcharts.common.hichartsclasses.HIScatter;
+import com.highsoft.highcharts.common.hichartsclasses.HIScrollablePlotArea;
+import com.highsoft.highcharts.common.hichartsclasses.HISelect;
 import com.highsoft.highcharts.common.hichartsclasses.HISeries;
 import com.highsoft.highcharts.common.hichartsclasses.HIShadowOptionsObject;
+import com.highsoft.highcharts.common.hichartsclasses.HISpline;
 import com.highsoft.highcharts.common.hichartsclasses.HIStates;
 import com.highsoft.highcharts.common.hichartsclasses.HIStyle;
 import com.highsoft.highcharts.common.hichartsclasses.HISubtitle;
@@ -40,6 +55,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class IssuesActivity extends AppCompatActivity {
@@ -49,169 +65,119 @@ public class IssuesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_issues);
 
-        HIChartView chartView = findViewById(R.id.chartview1);
+        TextView loadingView = findViewById(R.id.loading);
+        Button btnTest = findViewById(R.id.btnTest);
 
+        HIChartView chartView = findViewById(R.id.chartview1);
         HIOptions options = new HIOptions();
 
-        HIChart chart = new HIChart();
-        chart.setHeight(300);
-        chart.setWidth(300);
-        options.setChart(chart);
-        chart.setType("area");
-        HIEvents events =  new HIEvents();
-//        HIFunction load = new HIFunction("function() { var H = Highcharts, rel = H.relativeLength;  H.wrap(H.seriesTypes.column.prototype, 'translate', function(proceed) { var options = this.options, topMargin = options.topMargin || 0, bottomMargin = options.bottomMargin || 0; proceed.call(this); this.points.forEach(function(point) { var shapeArgs = point.shapeArgs, w = shapeArgs.width, h = shapeArgs.height, x = shapeArgs.x, y = shapeArgs.y;  var rTopLeft = rel(options.borderRadiusTopLeft || 0, w), rTopRight = rel(options.borderRadiusTopRight || 0, w), rBottomRight = rel(options.borderRadiusBottomRight || 0, w), rBottomLeft = rel(options.borderRadiusBottomLeft || 0, w); if (rTopLeft || rTopRight || rBottomRight || rBottomLeft) { var maxR = (Math.min(w, h) / 2); if (rTopLeft > maxR) { rTopLeft = maxR; } if (rTopRight > maxR) { rTopRight = maxR; } if (rBottomRight > maxR) { rBottomRight = maxR; } if (rBottomLeft > maxR) { rBottomLeft = maxR; } point.dlBox = point.shapeArgs; point.shapeType = 'path'; point.shapeArgs = {  d: [ ['M', x + rTopLeft, y + topMargin], ['L', x + w - rTopRight, y + topMargin], ['C', x + w - rTopRight / 2, y, x + w, y + rTopRight / 2, x + w, y + rTopRight], ['L', x + w, y + h - rBottomRight], ['C', x + w, y + h - rBottomRight / 2, x + w - rBottomRight / 2, y + h, x + w - rBottomRight, y + h + bottomMargin], ['L', x + rBottomLeft, y + h + bottomMargin], ['C', x + rBottomLeft / 2, y + h, x, y + h - rBottomLeft / 2, x, y + h - rBottomLeft], ['L', x, y + rTopLeft], ['C', x, y + rTopLeft / 2, x + rTopLeft / 2, y, x + rTopLeft, y], ['Z'] ] }; } }); }); this.series[0].update({  borderRadiusTopLeft: 20, borderRadiusTopRight: 20 } ); }");
-//        events.setLoad(load);
-        chart.setEvents(events);
-        options.setChart(chart);
+        HIXAxis xAxis = new HIXAxis();
+        String[] categoriesList = new String[] {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+        xAxis.setCategories(new ArrayList<>(Arrays.asList(categoriesList)));
+        options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
 
-//        labels.setFormatter(new HIFunction("function() { if(this.value === 2) { return '<img src=\"https://www.highcharts.com/samples/graphics/snow.png\"/>' }  }"));
-//        hiyAxis.setType("category");
-//        HILabels labels = new HILabels();
-//        labels.setUseHTML(true);
-//        labels.setX(10);
-//        String imgUrl = "file:///android_asset/ic_android.png";
-//        labels.setFormatter(new HIFunction("function() { if(this.value === 2) { return '<img src=\"" + imgUrl + "\" />' }  }"));
-//        hiyAxis.setLabels(labels);
-//        hiyAxis.setTitle(new HITitle());
-//        hiyAxis.getTitle().setText("");
 
-        HIYAxis hiyAxis = new HIYAxis();
-
-        HIPlotBands plotBands = new HIPlotBands();
-        plotBands.setColor(HIColor.initWithName("red"));
-        plotBands.setFrom(2);
-        plotBands.setTo(4);
-
-        hiyAxis.setPlotBands(new ArrayList<>(Collections.singletonList(plotBands)));
-
-        options.setYAxis(new ArrayList<>(Collections.singletonList(hiyAxis)));
-
-        HILine series1 = new HILine();
+        HISpline series1 = new HISpline();
         series1.setName("Tokyo");
-        Number[] series1_data = new Number[] {1, 2, 3, 2, 4};
-        series1.setData(new ArrayList<>(Arrays.asList(series1_data)));
+        series1.setColor(HIColor.initWithName("green"));
+        series1.setData(new ArrayList<>(Arrays.asList(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6)));
+
         options.setSeries(new ArrayList<>(Arrays.asList(series1)));
 
-//        HIChart chart = new HIChart();
-//        chart.setType("columnrange");
-//        chart.setHeight(300);
-//        chart.setMarginLeft(45);
-//        HIEvents events =  new HIEvents();
-//        HIFunction load = new HIFunction("function() { var H = Highcharts, rel = H.relativeLength;  H.wrap(H.seriesTypes.column.prototype, 'translate', function(proceed) { var options = this.options, topMargin = options.topMargin || 0, bottomMargin = options.bottomMargin || 0; proceed.call(this); this.points.forEach(function(point) { var shapeArgs = point.shapeArgs, w = shapeArgs.width, h = shapeArgs.height, x = shapeArgs.x, y = shapeArgs.y;  var rTopLeft = rel(options.borderRadiusTopLeft || 0, w), rTopRight = rel(options.borderRadiusTopRight || 0, w), rBottomRight = rel(options.borderRadiusBottomRight || 0, w), rBottomLeft = rel(options.borderRadiusBottomLeft || 0, w); if (rTopLeft || rTopRight || rBottomRight || rBottomLeft) { var maxR = (Math.min(w, h) / 2); if (rTopLeft > maxR) { rTopLeft = maxR; } if (rTopRight > maxR) { rTopRight = maxR; } if (rBottomRight > maxR) { rBottomRight = maxR; } if (rBottomLeft > maxR) { rBottomLeft = maxR; } point.dlBox = point.shapeArgs; point.shapeType = 'path'; point.shapeArgs = {  d: [ ['M', x + rTopLeft, y + topMargin], ['L', x + w - rTopRight, y + topMargin], ['C', x + w - rTopRight / 2, y, x + w, y + rTopRight / 2, x + w, y + rTopRight], ['L', x + w, y + h - rBottomRight], ['C', x + w, y + h - rBottomRight / 2, x + w - rBottomRight / 2, y + h, x + w - rBottomRight, y + h + bottomMargin], ['L', x + rBottomLeft, y + h + bottomMargin], ['C', x + rBottomLeft / 2, y + h, x, y + h - rBottomLeft / 2, x, y + h - rBottomLeft], ['L', x, y + rTopLeft], ['C', x, y + rTopLeft / 2, x + rTopLeft / 2, y, x + rTopLeft, y], ['Z'] ] }; } }); }); this.series[0].update({  borderRadiusTopLeft: 20, borderRadiusTopRight: 20 } ); }");
-//        events.setLoad(load);
-//        chart.setEvents(events);
-//        options.setChart(chart);
-//
-//        HILegend legend = new HILegend();
-//        legend.setEnabled(false);
-//        options.setLegend(legend);
-//
-//        HITitle title = new HITitle();
-//        title.setText("");
-//        options.setTitle(title);
-//
-//        HIXAxis hixAxis = new HIXAxis();
-//        hixAxis.setTickWidth(0);
-//        ArrayList<HIXAxis> xaxisList = new ArrayList<>();
-//        xaxisList.add(hixAxis);
-//        options.setXAxis(xaxisList);
-//
-//
-//
-//
-//        HIYAxis hiyAxis = new HIYAxis();
-//        hiyAxis.setType("category");
-//        hiyAxis.setMin(0);
-//        hiyAxis.setMax(4);
-//        HILabels labels = new HILabels();
-//        labels.setY(0);
-//        labels.setX(-40);
-//        labels.setUseHTML(true);
-//        HICSSObject style = new HICSSObject();
-//        style.setWidth(32);
-//        labels.setStyle(style);
-////        labels.setFormatter(new HIFunction("function() { return '<span class=\"f32\"> <span class=\"flag us\"></span> </span>' }"));
-////        hiyAxis.setLabels(labels);
-//        HITitle yaxisTitle = new HITitle();
-//        yaxisTitle.setText("");
-//        hiyAxis.setTitle(yaxisTitle);
-//        ArrayList<HIYAxis> yaxisList = new ArrayList<>();
-//        yaxisList.add(hiyAxis);
-//        options.setYAxis(yaxisList);
-//
-//        HIColumnrange columnrange = new HIColumnrange();
-//        columnrange.setBorderRadius(5);
-//        columnrange.setPointPadding(0.4);
-//
-//        ArrayList<Double> l1 = new ArrayList<>();
-//        l1.add(18.0);
-//        l1.add(2.5);
-//        l1.add(3.5);
-//
-//        ArrayList<Double> l2 = new ArrayList<>();
-//        l2.add(20.0);
-//        l2.add(2.5);
-//        l2.add(3.5);
-//
-//        ArrayList<Double> l3 = new ArrayList<>();
-//        l3.add(21.0);
-//        l3.add(3.5);
-//        l3.add(4.5);
-//
-//        ArrayList<Double> l4 = new ArrayList<>();
-//        l4.add(22.0);
-//        l4.add(-0.5);
-//        l4.add(0.5);
-//
-//        ArrayList<Double> l5 = new ArrayList<>();
-//        l5.add(23.0);
-//        l5.add(0.5);
-//        l5.add(1.5);
-//
-//        ArrayList<Double> l6 = new ArrayList<>();
-//        l6.add(24.0);
-//        l6.add(2.5);
-//        l6.add(3.5);
-//
-//        ArrayList<ArrayList<Double>> data = new ArrayList<>();
-//        data.add(l1);
-//        data.add(l2);
-//        data.add(l3);
-//        data.add(l4);
-//        data.add(l5);
-//        data.add(l6);
-//        columnrange.setData(data);
-//
-//        HIZones zone1 = new HIZones();
-//        zone1.setValue(0);
-//        zone1.setColor(HIColor.initWithName("green"));
-//
-//        HIZones zone2 = new HIZones();
-//        zone2.setValue(1);
-//        zone2.setColor(HIColor.initWithName("blue"));
-//
-//        HIZones zone3 = new HIZones();
-//        zone3.setValue(2);
-//        zone3.setColor(HIColor.initWithName("red"));
-//
-//        HIZones zone4 = new HIZones();
-//        zone4.setValue(3);
-//        zone4.setColor(HIColor.initWithName("orange"));
-//
-//        HIZones zone5 = new HIZones();
-//        zone5.setValue(3);
-//        zone5.setColor(HIColor.initWithName("black"));
-//
-//        ArrayList<HIZones> zonesList = new ArrayList<>();
-//        zonesList.add(zone1);
-//        zonesList.add(zone2);
-//        zonesList.add(zone3);
-//        zonesList.add(zone4);
-//        zonesList.add(zone5);
-//        columnrange.setZones(zonesList);
-//
-//        options.setSeries(new ArrayList<>(Collections.singletonList(columnrange)));
+        HITooltip tooltip = new HITooltip();
+        tooltip.setEnabled(true);
+        tooltip.setFormatter(new HIFunction("function() { return `<span style=\"color:${this.color}\">●</span> ${this.series.name}<br> x: <b>${this.point.category}</b><br>y: <b>${this.y}`; }"));
+        options.setTooltip(tooltip);
 
         chartView.setOptions(options);
+
+//        HIChartView chartView = findViewById(R.id.chartview1);
+//        HIOptions options = new HIOptions();
+//
+//        HIXAxis xAxis = new HIXAxis();
+//        String[] categoriesList = new String[] {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+//        xAxis.setCategories(new ArrayList<>(Arrays.asList(categoriesList)));
+//        options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
+//
+//
+//        HISpline series1 = new HISpline();
+//        series1.setName("Tokyo");
+//        series1.setColor(HIColor.initWithName("green"));
+//        series1.setData(new ArrayList<>(Arrays.asList(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6)));
+//
+//        options.setSeries(new ArrayList<>(Arrays.asList(series1)));
+//
+//        HITooltip tooltip = new HITooltip();
+//        tooltip.setEnabled(true);
+//        tooltip.setFormatter(new HIFunction("function() { return `<span style=\"color:${this.color}\">●</span> ${this.series.name}<br> x: <b>${this.point.category}</b><br>y: <b>${this.y}`; }"));
+//        options.setTooltip(tooltip);
+//
+//        chartView.setOptions(options);
+
+//        HIChartView chartView = findViewById(R.id.chartview1);
+//        HIOptions options = new HIOptions();
+//
+//        HIChart chart = new HIChart();
+//        chart.setType("column");
+//        chart.setScrollablePlotArea(new HIScrollablePlotArea());
+//        chart.getScrollablePlotArea().setMinWidth(700);
+//        options.setChart(chart);
+//
+//        HIXAxis xAxis = new HIXAxis();
+//        String[] categoriesList = new String[] {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+//        xAxis.setCategories(new ArrayList<>(Arrays.asList(categoriesList)));
+//        options.setXAxis(new ArrayList<HIXAxis>(){{add(xAxis);}});
+//
+//        HIYAxis yAxis = new HIYAxis();
+//        yAxis.setMax(1);
+//        yAxis.setVisible(false);
+//        options.setYAxis(new ArrayList<HIYAxis>(){{add(yAxis);}});
+//
+//        HITooltip tooltip = new HITooltip();
+//        tooltip.setShared(true);
+//        tooltip.setFollowPointer(false);
+//        options.setTooltip(tooltip);
+//
+        HIPlotOptions plotOptions = new HIPlotOptions();
+        plotOptions.setSeries(new HISeries());
+        plotOptions.getSeries().
+        plotOptions.getSeries().setAllowPointSelect(true);
+        plotOptions.getSeries().setPoint(new HIPoint());
+        plotOptions.getSeries().getPoint().setEvents(new HIEvents());
+        plotOptions.getSeries().getPoint().getEvents().setClick(new HIFunction("function() { const point = this, chart = point.series.chart, seriesIndex = point.series.index, otherPoint = chart.series[seriesIndex === 0 ? 1 : 0].points[point.x]; chart.series.forEach(series => { series.points.forEach(point => { point.update({ color: Highcharts.color(series.color).setOpacity(0.2).get() }, false) }) }); if (point.state !== 'select') { otherPoint.update({ color: otherPoint.series.color }, false, false) } chart.redraw() }"));
+        plotOptions.getSeries().setStates(new HIStates());
+        plotOptions.getSeries().getStates().setNormal(new HINormal());
+        plotOptions.getSeries().getStates().getNormal().setAnimation(new HIAnimationOptionsObject());
+        plotOptions.getSeries().getStates().getNormal().getAnimation().setDuration(0);
+        plotOptions.getSeries().getStates().setHover(new HIHover());
+        plotOptions.getSeries().getStates().getHover().setEnabled(false);
+        options.setPlotOptions(plotOptions);
+
+//        HIColumn column1 = new HIColumn();
+//        column1.setName("CHF 8,100");
+//        column1.setColor(HIColor.initWithHexValue("006622"));
+//        column1.setStates(new HIStates());
+//        column1.getStates().setSelect(new HISelect());
+//        column1.getStates().getSelect().setColor(HIColor.initWithHexValue("006622"));
+//        column1.getStates().getSelect().setBorderColor(HIColor.initWithName("transparent"));
+//        Number[] columnData1 = new Number[] { 0.24241777588120805, 0.3365607760984871, 0.6486666367455813, 0.025683369602743755, 0.873850736669133, 0.689106033785561, 0.33545651337196414, 0.09455847318642174, 0.6306711083884627, 0.19374049973082375, 0.4634314466302971, 0.19322149629497987 };
+//        column1.setData(new ArrayList<>(Arrays.asList(columnData1)));
+//
+//        HIColumn column2 = new HIColumn();
+//        column2.setName("CHF 1,850");
+//        column2.setColor(HIColor.initWithHexValue("cc3300"));
+//        column2.setStates(new HIStates());
+//        column2.getStates().setSelect(new HISelect());
+//        column2.getStates().getSelect().setColor(HIColor.initWithHexValue("cc3300"));
+//        column2.getStates().getSelect().setBorderColor(HIColor.initWithName("transparent"));
+//        Number[] columnData2 = new Number[] { 0.22441811642798026, 0.2708184240447048, 0.6264280444742762, 0.7513558282273284, 0.47233378113842406, 0.23098273059767893, 0.11325184334763871, 0.4869911560003778, 0.08685336967961499, 0.448150689615636, 0.2673804685200395, 0.3796370223648643 };
+//        column2.setData(new ArrayList<>(Arrays.asList(columnData2)));
+//        options.setSeries(new ArrayList<>(Arrays.asList(column1, column2)));
+//
+//        chartView.setOptions(options);
+
+
+        btnTest.setOnClickListener(view -> chartView.clearFocus());
+
     }
 }

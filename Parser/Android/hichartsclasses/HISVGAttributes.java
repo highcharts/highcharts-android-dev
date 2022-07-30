@@ -13,29 +13,28 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.common.HIColor;
 
 
 
 public class HISVGAttributes extends HIFoundation { 
 
-	private ArrayList /* <String, Number> */ d;
-	public void setD(ArrayList /* <String, Number> */ d) {
+	private String d;
+	public void setD(String d) {
 		this.d = d;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList /* <String, Number> */ getD(){ return d; }
+	public String getD(){ return d; }
 
-	private HIColor fill;
-	public void setFill(HIColor fill) {
+	private Object fill;
+	public void setFill(Object fill) {
 		this.fill = fill;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getFill(){ return fill; }
+	public Object getFill(){ return fill; }
 
 	private Boolean inverted;
 	public void setInverted(Boolean inverted) {
@@ -100,14 +99,14 @@ public class HISVGAttributes extends HIFoundation {
 
 	public Number getScaleY(){ return scaleY; }
 
-	private HIColor stroke;
-	public void setStroke(HIColor stroke) {
+	private Object stroke;
+	public void setStroke(Object stroke) {
 		this.stroke = stroke;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getStroke(){ return stroke; }
+	public Object getStroke(){ return stroke; }
 
 	private HICSSObject style;
 	public void setStyle(HICSSObject style) {
@@ -157,19 +156,10 @@ public HashMap<String, Object> getParams() {
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
 		if (this.d != null) {
-			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.d) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
-			}
-			params.put("d", array);
+			params.put("d", this.d);
 		}
 		if (this.fill != null) {
-			params.put("fill", this.fill.getData());
+			params.put("fill", this.fill);
 		}
 		if (this.inverted != null) {
 			params.put("inverted", this.inverted);
@@ -202,7 +192,7 @@ public HashMap<String, Object> getParams() {
 			params.put("scaleY", this.scaleY);
 		}
 		if (this.stroke != null) {
-			params.put("stroke", this.stroke.getData());
+			params.put("stroke", this.stroke);
 		}
 		if (this.style != null) {
 			params.put("style", this.style.getParams());

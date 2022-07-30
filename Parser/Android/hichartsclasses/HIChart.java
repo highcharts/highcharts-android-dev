@@ -70,7 +70,7 @@ public class HIChart extends HIFoundation {
 
 	private Boolean alignTicks;
 	/**
- When using multiple axis, the ticks of two or more opposite axes will automatically be aligned by adding ticks to the axis or axes with the least ticks, as if tickAmount were specified. This can be prevented by setting alignTicks to false. If the grid lines look messy, it's a good idea to hide them for the secondary axis by setting gridLineWidth to 0. If startOnTick or endOnTick in an Axis options are set to false, then the alignTicks will be disabled for the Axis. Disabled for logarithmic axes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/alignticks-true/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/alignticks-false/">False</a>
+ When using multiple axes, the ticks of two or more opposite axes will automatically be aligned by adding ticks to the axis or axes with the least ticks, as if tickAmount were specified. This can be prevented by setting alignTicks to false. If the grid lines look messy, it's a good idea to hide them for the secondary axis by setting gridLineWidth to 0. If startOnTick or endOnTick in the axis options are set to false, then the alignTicks will be disabled for the axis. Disabled for logarithmic axes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/alignticks-true/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/alignticks-false/">False</a>
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setAlignTicks(Boolean alignTicks) {
 		this.alignTicks = alignTicks;
@@ -127,6 +127,18 @@ public class HIChart extends HIFoundation {
 	}
 
 	public HIColor getPlotBorderColor(){ return plotBorderColor; }
+
+	private Boolean alignThresholds;
+	/**
+ When using multiple axes, align the thresholds. When this is true, other ticks will also be aligned. Note that for line series and some other series types, the threshold option is set to null by defaults. This will in turn cause their y-axis to not have a threshold. In order to avoid that, set the series threshold to 0 or another number. If startOnTick or endOnTick in the axis options are set to false, or if the axis is logarithmic, the threshold will not be aligned. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/alignthresholds/">Set to true</a>
+	*/
+	public void setAlignThresholds(Boolean alignThresholds) {
+		this.alignThresholds = alignThresholds;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getAlignThresholds(){ return alignThresholds; }
 
 	private Number spacingRight;
 	/**
@@ -200,17 +212,17 @@ public class HIChart extends HIFoundation {
 
 	public Boolean getReflow(){ return reflow; }
 
-	private Boolean /* boolean */ plotShadow;
+	private HICSSObject /* boolean */ plotShadow;
 	/**
  Whether to apply a drop shadow to the plot area. Requires that plotBackgroundColor be set. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/plotshadow/">Plot shadow</a>
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setPlotShadow(Boolean /* boolean */ plotShadow) {
+	public void setPlotShadow(HICSSObject /* boolean */ plotShadow) {
 		this.plotShadow = plotShadow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean /* boolean */ getPlotShadow(){ return plotShadow; }
+	public HICSSObject /* boolean */ getPlotShadow(){ return plotShadow; }
 
 	private String zoomType;
 	/**
@@ -395,6 +407,18 @@ public class HIChart extends HIFoundation {
 
 	public HICSSObject getStyle(){ return style; }
 
+	private Boolean allowMutatingData;
+	/**
+ By defaults, (because of memory and performance reasons) the chart does not copy the data but keeps it as a reference. In some cases, this might result in mutating the original data source. In order to prevent that, set that property to false. Please note that changing that might decrease performance, especially with bigger sets of data. 
+	*/
+	public void setAllowMutatingData(Boolean allowMutatingData) {
+		this.allowMutatingData = allowMutatingData;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getAllowMutatingData(){ return allowMutatingData; }
+
 	private HIScrollablePlotArea scrollablePlotArea;
 	/**
  Options for a scrollable plot area. This feature provides a minimum size for the plot area of the chart. If the size gets smaller than this, typically on mobile devices, a native browser scrollbar is presented. This scrollbar provides smooth scrolling for the contents of the plot area, whereas the title, legend and unaffected axes are fixed. Since v7.1.2, a scrollable plot area can be defined for either horizontal or vertical scrolling, depending on whether the minWidth or minHeight option is set. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/scrollable-plotarea">Scrollable plot area</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/scrollable-plotarea-vertical">Vertically scrollable plot area</a>
@@ -408,17 +432,17 @@ public class HIChart extends HIFoundation {
 
 	public HIScrollablePlotArea getScrollablePlotArea(){ return scrollablePlotArea; }
 
-	private Boolean /* boolean */ shadow;
+	private HICSSObject /* boolean */ shadow;
 	/**
  Whether to apply a drop shadow to the outer chart area. Requires that backgroundColor be set. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/shadow/">Shadow</a>
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setShadow(Boolean /* boolean */ shadow) {
+	public void setShadow(HICSSObject /* boolean */ shadow) {
 		this.shadow = shadow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean /* boolean */ getShadow(){ return shadow; }
+	public HICSSObject /* boolean */ getShadow(){ return shadow; }
 
 	private Boolean inverted;
 	/**
@@ -663,6 +687,9 @@ public HashMap<String, Object> getParams() {
 		if (this.plotBorderColor != null) {
 			params.put("plotBorderColor", this.plotBorderColor.getData());
 		}
+		if (this.alignThresholds != null) {
+			params.put("alignThresholds", this.alignThresholds);
+		}
 		if (this.spacingRight != null) {
 			params.put("spacingRight", this.spacingRight);
 		}
@@ -682,7 +709,7 @@ public HashMap<String, Object> getParams() {
 			params.put("reflow", this.reflow);
 		}
 		if (this.plotShadow != null) {
-			params.put("plotShadow", this.plotShadow);
+			params.put("plotShadow", this.plotShadow.getParams());
 		}
 		if (this.zoomType != null) {
 			params.put("zoomType", this.zoomType);
@@ -738,11 +765,14 @@ public HashMap<String, Object> getParams() {
 		if (this.style != null) {
 			params.put("style", this.style.getParams());
 		}
+		if (this.allowMutatingData != null) {
+			params.put("allowMutatingData", this.allowMutatingData);
+		}
 		if (this.scrollablePlotArea != null) {
 			params.put("scrollablePlotArea", this.scrollablePlotArea.getParams());
 		}
 		if (this.shadow != null) {
-			params.put("shadow", this.shadow);
+			params.put("shadow", this.shadow.getParams());
 		}
 		if (this.inverted != null) {
 			params.put("inverted", this.inverted);

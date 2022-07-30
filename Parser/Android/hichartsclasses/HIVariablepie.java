@@ -15,6 +15,7 @@ import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
+import com.highsoft.highcharts.common.HIColor;
 
 
 	/**
@@ -94,17 +95,17 @@ public class HIVariablepie extends HISeries {
 
 	public Boolean getIgnoreHiddenPoint(){ return ignoreHiddenPoint; }
 
-	private ArrayList<String> colors;
+	private ArrayList<HIColor> colors;
 	/**
  A series specific or series type specific color set to use instead of the global colors. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/">Set defaults colors for all pies</a>
 	*/
-	public void setColors(ArrayList<String> colors) {
+	public void setColors(ArrayList<HIColor> colors) {
 		this.colors = colors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<String> getColors(){ return colors; }
+	public ArrayList<HIColor> getColors(){ return colors; }
 
 	private Object /* Number, String */ size;
 	/**
@@ -129,6 +130,18 @@ public class HIVariablepie extends HISeries {
 	}
 
 	public HIColor getBorderColor(){ return borderColor; }
+
+	private Number thickness;
+	/**
+ Thickness describing the ring size for a donut type chart, overriding innerSize. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setThickness(Number thickness) {
+		this.thickness = thickness;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getThickness(){ return thickness; }
 
 	private Object /* Number, String */ minSize;
 	/**
@@ -180,7 +193,7 @@ public class HIVariablepie extends HISeries {
 
 	private Object /* Number, String */ innerSize;
 	/**
- The size of the inner diameter for the pie. A size greater than 0 renders a donut chart. Can be a percentage or pixel value. Percentages are relative to the pie size. Pixel values are given as integers. Note: in Highcharts < 4.1.2, the percentage was relative to the plot area, not the pie size. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-innersize-80px/">80px inner size</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-innersize-50percent/">50% of the plot area</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/3d-pie-donut/">3D donut</a>
+ The size of the inner diameter for the pie. A size greater than 0 renders a donut chart. Can be a percentage or pixel value. Percentages are relative to the pie size. Pixel values are given as integers. Setting overridden by thickness. Note: in Highcharts < 4.1.2, the percentage was relative to the plot area, not the pie size. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-innersize-80px/">80px inner size</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-innersize-50percent/">50% of the plot area</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/3d-pie-donut/">3D donut</a>
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setInnerSize(Object /* Number, String */ innerSize) {
 		this.innerSize = innerSize;
@@ -270,13 +283,8 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.colors) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
+			for (HIColor hiColor : this.colors) {
+				array.add(hiColor.getData());
 			}
 			params.put("colors", array);
 		}
@@ -285,6 +293,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
+		}
+		if (this.thickness != null) {
+			params.put("thickness", this.thickness);
 		}
 		if (this.minSize != null) {
 			params.put("minSize", this.minSize);

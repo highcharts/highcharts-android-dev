@@ -138,102 +138,6 @@ public class HILabel extends HIFoundation {
 
 	public Boolean getConnectorAllowed(){ return connectorAllowed; }
 
-	private String verticalAlign;
-	/**
- Vertical alignment of the label relative to the plot line. Can be one of "top", "middle" or "bottom". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-verticalalign-middle/">Vertically centered label</a>
- <br><br><b>defaults:</b><br><br>&ensp;top	*/
-	public void setVerticalAlign(String verticalAlign) {
-		this.verticalAlign = verticalAlign;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getVerticalAlign(){ return verticalAlign; }
-
-	private String text;
-	/**
- The text itself. A subset of HTML is supported. 
-	*/
-	public void setText(String text) {
-		this.text = text;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getText(){ return text; }
-
-	private String align;
-	/**
- Horizontal alignment of the label. Can be one of "left", "center" or "right". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-align-right/">Aligned to the right</a>
- <br><br><b>defaults:</b><br><br>&ensp;left	*/
-	public void setAlign(String align) {
-		this.align = align;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getAlign(){ return align; }
-
-	private Boolean useHTML;
-	/**
- Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the labels. 
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setUseHTML(Boolean useHTML) {
-		this.useHTML = useHTML;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getUseHTML(){ return useHTML; }
-
-	private Number y;
-	/**
- Vertical position of the text baseline relative to the alignment. Default varies by orientation. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-y/">Label below the plot line</a>
-	*/
-	public void setY(Number y) {
-		this.y = y;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getY(){ return y; }
-
-	private Number x;
-	/**
- Horizontal position relative the alignment. Default varies by orientation. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-align-right/">Aligned 10px from the right edge</a>
-	*/
-	public void setX(Number x) {
-		this.x = x;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getX(){ return x; }
-
-	private Number rotation;
-	/**
- Rotation of the text label in degrees. Defaults to 0 for horizontal plot lines and 90 for vertical lines. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-verticalalign-middle/">Slanted text</a>
-	*/
-	public void setRotation(Number rotation) {
-		this.rotation = rotation;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getRotation(){ return rotation; }
-
-	private String textAlign;
-	/**
- The text alignment for the label. While align determines where the texts anchor point is placed within the plot band, textAlign determines how the text is aligned against its anchor point. Possible values are "left", "center" and "right". Defaults to the same as the align option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-textalign/">Text label in bottom position</a>
-	*/
-	public void setTextAlign(String textAlign) {
-		this.textAlign = textAlign;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getTextAlign(){ return textAlign; }
-
 
 
 	public HILabel() {
@@ -283,30 +187,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.connectorAllowed != null) {
 			params.put("connectorAllowed", this.connectorAllowed);
-		}
-		if (this.verticalAlign != null) {
-			params.put("verticalAlign", this.verticalAlign);
-		}
-		if (this.text != null) {
-			params.put("text", this.text);
-		}
-		if (this.align != null) {
-			params.put("align", this.align);
-		}
-		if (this.useHTML != null) {
-			params.put("useHTML", this.useHTML);
-		}
-		if (this.y != null) {
-			params.put("y", this.y);
-		}
-		if (this.x != null) {
-			params.put("x", this.x);
-		}
-		if (this.rotation != null) {
-			params.put("rotation", this.rotation);
-		}
-		if (this.textAlign != null) {
-			params.put("textAlign", this.textAlign);
 		}
 		return params;
 	}

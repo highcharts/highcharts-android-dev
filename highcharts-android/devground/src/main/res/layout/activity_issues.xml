@@ -6,11 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".IssuesActivity">
 
-    <com.highsoft.highcharts.core.HIChartView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:id="@+id/chartview1"
-        android:layout_height="500dp"/>
+        android:layout_height="match_parent">
 
+        <com.highsoft.highcharts.core.HIChartView
+            android:visibility="visible"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:id="@+id/chartview1"
+            android:layout_height="500dp"/>
 
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/loading"
+            android:text="Loading..."
+            android:textSize="40sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+    <Button
+        android:visibility="visible"
+        android:text="Test"
+        android:id="@+id/btnTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
+    
 </FrameLayout>

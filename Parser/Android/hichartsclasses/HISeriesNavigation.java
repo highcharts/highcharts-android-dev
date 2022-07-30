@@ -18,6 +18,18 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 public class HISeriesNavigation extends HIFoundation { 
 
+	private Boolean rememberPointFocus;
+	/**
+ Remember which point was focused even after navigating away from the series, so that when navigating back to the series you start at the last focused point. 
+	*/
+	public void setRememberPointFocus(Boolean rememberPointFocus) {
+		this.rememberPointFocus = rememberPointFocus;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getRememberPointFocus(){ return rememberPointFocus; }
+
 	private Boolean skipNullPoints;
 	/**
  Skip null points when navigating through points with the keyboard. 
@@ -65,6 +77,9 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.rememberPointFocus != null) {
+			params.put("rememberPointFocus", this.rememberPointFocus);
+		}
 		if (this.skipNullPoints != null) {
 			params.put("skipNullPoints", this.skipNullPoints);
 		}

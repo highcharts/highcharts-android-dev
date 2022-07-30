@@ -15,10 +15,11 @@ import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
+import com.highsoft.highcharts.common.HIColor;
 
 
 	/**
- A windbarb series. If the type option is not specified, it is inherited from chart.type. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all windbarb series are defined in  `plotOptions.windbarb`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     windbarb: {       // shared options for all windbarb series     }   },   series: [{     // specific options for this series instance     type: 'windbarb'   }] }); `       
+ Wind barbs are a convenient way to represent wind speed and direction in one graphical form. Wind direction is given by the stem direction, and wind speed by the number and shape of barbs. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all windbarb series are defined in  `plotOptions.windbarb`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     windbarb: {       // shared options for all windbarb series     }   },   series: [{     // specific options for this series instance     type: 'windbarb'   }] }); `        <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/windbarb-series/">Wind barb series</a>
 	*/
 
 public class HIWindbarb extends HISeries {
@@ -143,17 +144,17 @@ public class HIWindbarb extends HISeries {
 
 	public Number getGroupZPadding(){ return groupZPadding; }
 
-	private ArrayList<String> colors;
+	private ArrayList<HIColor> colors;
 	/**
  A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
 	*/
-	public void setColors(ArrayList<String> colors) {
+	public void setColors(ArrayList<HIColor> colors) {
 		this.colors = colors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<String> getColors(){ return colors; }
+	public ArrayList<HIColor> getColors(){ return colors; }
 
 	private HIColor borderColor;
 	/**
@@ -167,17 +168,17 @@ public class HIWindbarb extends HISeries {
 
 	public HIColor getBorderColor(){ return borderColor; }
 
-	private HIColor edgeColor;
+	private Object edgeColor;
 	/**
  3D columns only. The color of the edges. Similar to borderColor, except it defaultss to the same color as the column. 
 	*/
-	public void setEdgeColor(HIColor edgeColor) {
+	public void setEdgeColor(Object edgeColor) {
 		this.edgeColor = edgeColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getEdgeColor(){ return edgeColor; }
+	public Object getEdgeColor(){ return edgeColor; }
 
 	private Boolean centerInCategory;
 	/**
@@ -331,13 +332,8 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.colors) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
+			for (HIColor hiColor : this.colors) {
+				array.add(hiColor.getData());
 			}
 			params.put("colors", array);
 		}
@@ -345,7 +341,7 @@ public HashMap<String, Object> getParams() {
 			params.put("borderColor", this.borderColor.getData());
 		}
 		if (this.edgeColor != null) {
-			params.put("edgeColor", this.edgeColor.getData());
+			params.put("edgeColor", this.edgeColor);
 		}
 		if (this.centerInCategory != null) {
 			params.put("centerInCategory", this.centerInCategory);

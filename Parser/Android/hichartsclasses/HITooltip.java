@@ -105,7 +105,7 @@ public class HITooltip extends HIFoundation {
 
 	private HIFunction positioner;
 	/**
- A callback function to place the tooltip in a defaults position. The callback receives three parameters: labelWidth, labelHeight and point, where point contains values for plotX and plotY telling where the reference point is in the plot area. Add chart.plotLeft and chart.plotTop to get the full coordinates. Since v7, when tooltip.split option is enabled, positioner is called for each of the boxes separately, including xAxis header. xAxis header is not a point, instead point argument contains info: { plotX: Number, plotY: Number, isHeader: Boolean }  The return should be an object containing x and y values, for example { x: 100, y: 100 }. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/positioner/">A fixed tooltip position</a>
+ A callback function to place the tooltip in a custom position. The callback receives three parameters: labelWidth, labelHeight and point, where point contains values for plotX and plotY telling where the reference point is in the plot area. Add chart.plotLeft and chart.plotTop to get the full coordinates. To find the actual hovered Point instance, use this.chart.hoverPoint. For shared or split tooltips, all the hover points are available in this.chart.hoverPoints. Since v7, when tooltip.split option is enabled, positioner is called for each of the boxes separately, including xAxis header. xAxis header is not a point, instead point argument contains info: { plotX: Number, plotY: Number, isHeader: Boolean } The return should be an object containing x and y values, for example { x: 100, y: 100 }. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/positioner/">A fixed tooltip position</a>
 	*/
 	public void setPositioner(HIFunction positioner) {
 		this.positioner = positioner;
@@ -285,7 +285,7 @@ public class HITooltip extends HIFoundation {
 
 	private String pointFormat;
 	/**
- The HTML of the point's line in the tooltip. Variables are enclosed by curly brackets. Available variables are point.x, point.y, series.name and series.color and other properties on the same form. Furthermore, point.y can be extended by the tooltip.valuePrefix and tooltip.valueSuffix variables. This can also be overridden for each series, which makes it a good hook for displaying units. In styled mode, the dot is colored by a class name rather than the point color. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/pointformat/">A different point format with value suffix</a>
+ The HTML of the point's line in the tooltip. Variables are enclosed by curly brackets. Available variables are point.x, point.y, series.name and series.color and other properties on the same form. Furthermore, point.y can be extended by the tooltip.valuePrefix and tooltip.valueSuffix variables. This can also be overridden for each series, which makes it a good hook for displaying units. In styled mode, the dot is colored by a class name rather than the point color. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/pointformat/">A different point format with value suffix</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/pointformat-extra-information/">Show extra information about points in the tooltip</a>
 	*/
 	public void setPointFormat(String pointFormat) {
 		this.pointFormat = pointFormat;
@@ -332,17 +332,17 @@ public class HITooltip extends HIFoundation {
 
 	public Number getPadding(){ return padding; }
 
-	private Boolean /* boolean */ shadow;
+	private HIShadowOptionsObject /* boolean */ shadow;
 	/**
  Whether to apply a drop shadow to the tooltip. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/bordercolor-defaults/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/tooltip/shadow/">False</a>
 	*/
-	public void setShadow(Boolean /* boolean */ shadow) {
+	public void setShadow(HIShadowOptionsObject /* boolean */ shadow) {
 		this.shadow = shadow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean /* boolean */ getShadow(){ return shadow; }
+	public HIShadowOptionsObject /* boolean */ getShadow(){ return shadow; }
 
 	private Number distance;
 	/**
@@ -473,6 +473,54 @@ public class HITooltip extends HIFoundation {
 
 	public HIFunction getNodeFormatter(){ return nodeFormatter; }
 
+	private HIChart chart;
+	/**
+ Chart of the tooltip. 
+	*/
+	public void setChart(HIChart chart) {
+		this.chart = chart;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIChart getChart(){ return chart; }
+
+	private Object container;
+	/**
+ Reference to the tooltip's container, when [Highcharts.Tooltip#outside] is set to true, otherwise it's undefined. 
+	*/
+	public void setContainer(Object container) {
+		this.container = container;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getContainer(){ return container; }
+
+	private Object options;
+	/**
+ Used tooltip options. 
+	*/
+	public void setOptions(Object options) {
+		this.options = options;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getOptions(){ return options; }
+
+	private HISVGRenderer renderer;
+	/**
+ Reference to the tooltip's renderer, when [Highcharts.Tooltip#outside] is set to true, otherwise it's undefined. 
+	*/
+	public void setRenderer(HISVGRenderer renderer) {
+		this.renderer = renderer;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HISVGRenderer getRenderer(){ return renderer; }
+
 
 
 	public HITooltip() {
@@ -562,7 +610,7 @@ public HashMap<String, Object> getParams() {
 			params.put("padding", this.padding);
 		}
 		if (this.shadow != null) {
-			params.put("shadow", this.shadow);
+			params.put("shadow", this.shadow.getParams());
 		}
 		if (this.distance != null) {
 			params.put("distance", this.distance);
@@ -596,6 +644,18 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.nodeFormatter != null) {
 			params.put("nodeFormatter", this.nodeFormatter);
+		}
+		if (this.chart != null) {
+			params.put("chart", this.chart.getParams());
+		}
+		if (this.container != null) {
+			params.put("container", this.container);
+		}
+		if (this.options != null) {
+			params.put("options", this.options);
+		}
+		if (this.renderer != null) {
+			params.put("renderer", this.renderer.getParams());
 		}
 		return params;
 	}

@@ -128,6 +128,15 @@ public class HILang extends HIFoundation {
 
 	public String getNoData(){ return noData; }
 
+	private String mainBreadcrumb;
+	public void setMainBreadcrumb(String mainBreadcrumb) {
+		this.mainBreadcrumb = mainBreadcrumb;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getMainBreadcrumb(){ return mainBreadcrumb; }
+
 	private String loading;
 	/**
  The loading text that appears when the chart is set into the loading state following a call to chart.showLoading. 
@@ -201,17 +210,17 @@ public class HILang extends HIFoundation {
 
 	public String getDownloadSVG(){ return downloadSVG; }
 
-	private String drillUpText;
+	private Object drillUpText;
 	/**
  The text for the button that appears when drilling down, linking back to the parent series. The parent series' name is inserted for {series.name}. 
 	*/
-	public void setDrillUpText(String drillUpText) {
+	public void setDrillUpText(Object drillUpText) {
 		this.drillUpText = drillUpText;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getDrillUpText(){ return drillUpText; }
+	public Object getDrillUpText(){ return drillUpText; }
 
 	private String viewData;
 	/**
@@ -420,6 +429,9 @@ public HashMap<String, Object> getParams() {
 		if (this.noData != null) {
 			params.put("noData", this.noData);
 		}
+		if (this.mainBreadcrumb != null) {
+			params.put("mainBreadcrumb", this.mainBreadcrumb);
+		}
 		if (this.loading != null) {
 			params.put("loading", this.loading);
 		}
@@ -457,7 +469,6 @@ public HashMap<String, Object> getParams() {
 			params.put("downloadSVG", this.downloadSVG);
 		}
 		if (this.drillUpText != null) {
-			params.put("drillUpText", this.drillUpText);
 		}
 		if (this.viewData != null) {
 			params.put("viewData", this.viewData);

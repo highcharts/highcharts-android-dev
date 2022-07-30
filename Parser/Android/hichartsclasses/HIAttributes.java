@@ -63,15 +63,6 @@ public class HIAttributes extends HIFoundation {
 
 	public Number getMarkerHeight(){ return markerHeight; }
 
-	private Number zIndex;
-	public void setZIndex(Number zIndex) {
-		this.zIndex = zIndex;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getZIndex(){ return zIndex; }
-
 
 
 	public HIAttributes() {
@@ -97,9 +88,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.markerHeight != null) {
 			params.put("markerHeight", this.markerHeight);
-		}
-		if (this.zIndex != null) {
-			params.put("zIndex", this.zIndex);
 		}
 		return params;
 	}

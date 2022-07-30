@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -266,18 +265,18 @@ public class HIParallelAxes extends HIFoundation {
 
 	public Number getMaxPadding(){ return maxPadding; }
 
-	private HIColor lineColor;
+	private Object lineColor;
 	/**
 /** * description: The color of the line marking the axis itself. In styled mode, the line stroke is given in the .highcharts-axis-line or .highcharts-xaxis-line class. * demo:  •  A red line on Y axis •  Axes in styled mode
 * defaults: #ccd6eb
 */
-	public void setLineColor(HIColor lineColor) {
+	public void setLineColor(Object lineColor) {
 		this.lineColor = lineColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getLineColor(){ return lineColor; }
+	public Object getLineColor(){ return lineColor; }
 
 	private Boolean reversedStacks;
 	/**
@@ -304,17 +303,17 @@ public class HIParallelAxes extends HIFoundation {
 
 	public Object /* Number, String */ getTop(){ return top; }
 
-	private HIColor minorTickColor;
+	private Object minorTickColor;
 	/**
  Color for the minor tick marks. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minortickcolor/">Black tick marks on Y axis</a>
  <br><br><b>defaults:</b><br><br>&ensp;#999999	*/
-	public void setMinorTickColor(HIColor minorTickColor) {
+	public void setMinorTickColor(Object minorTickColor) {
 		this.minorTickColor = minorTickColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getMinorTickColor(){ return minorTickColor; }
+	public Object getMinorTickColor(){ return minorTickColor; }
 
 	private Number pane;
 	/**
@@ -642,17 +641,17 @@ public class HIParallelAxes extends HIFoundation {
 
 	public Number getMinorTickWidth(){ return minorTickWidth; }
 
-	private HIColor tickColor;
+	private Object tickColor;
 	/**
  Color for the main tick marks. In styled mode, the stroke is given in the .highcharts-tick class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickcolor/">Red ticks on X axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/">Styled mode</a>
  <br><br><b>defaults:</b><br><br>&ensp;#ccd6eb	*/
-	public void setTickColor(HIColor tickColor) {
+	public void setTickColor(Object tickColor) {
 		this.tickColor = tickColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getTickColor(){ return tickColor; }
+	public Object getTickColor(){ return tickColor; }
 
 	private Number tickInterval;
 	/**
@@ -872,7 +871,7 @@ public HashMap<String, Object> getParams() {
 			params.put("maxPadding", this.maxPadding);
 		}
 		if (this.lineColor != null) {
-			params.put("lineColor", this.lineColor.getData());
+			params.put("lineColor", this.lineColor);
 		}
 		if (this.reversedStacks != null) {
 			params.put("reversedStacks", this.reversedStacks);
@@ -881,7 +880,7 @@ public HashMap<String, Object> getParams() {
 			params.put("top", this.top);
 		}
 		if (this.minorTickColor != null) {
-			params.put("minorTickColor", this.minorTickColor.getData());
+			params.put("minorTickColor", this.minorTickColor);
 		}
 		if (this.pane != null) {
 			params.put("pane", this.pane);
@@ -983,7 +982,7 @@ public HashMap<String, Object> getParams() {
 			params.put("minorTickWidth", this.minorTickWidth);
 		}
 		if (this.tickColor != null) {
-			params.put("tickColor", this.tickColor.getData());
+			params.put("tickColor", this.tickColor);
 		}
 		if (this.tickInterval != null) {
 			params.put("tickInterval", this.tickInterval);

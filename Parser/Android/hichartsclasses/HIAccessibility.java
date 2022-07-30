@@ -20,7 +20,7 @@ public class HIAccessibility extends HIFoundation {
 
 	private String landmarkVerbosity;
 	/**
- Amount of landmarks/regions to create for screen reader users. More landmarks can make navigation with screen readers easier, but can be distracting if there are lots of charts on the page. Three modes are available: - all: Adds regions for all series, legend, menu, information   region. - one: Adds a single landmark per chart. - disabled: No landmarks are added. <br><br><b>accepted values:</b><br><br>&ensp;["all", "one", "disabled"]
+ Amount of landmarks/regions to create for screen reader users. More landmarks can make navigation with screen readers easier, but can be distracting if there are lots of charts on the page. Three modes are available: - all: Adds regions for all series, legend, information   region. - one: Adds a single landmark per chart. - disabled: No landmarks are added. <br><br><b>accepted values:</b><br><br>&ensp;["all", "one", "disabled"]
 	*/
 	public void setLandmarkVerbosity(String landmarkVerbosity) {
 		this.landmarkVerbosity = landmarkVerbosity;
@@ -95,7 +95,7 @@ public class HIAccessibility extends HIFoundation {
 
 	private Boolean enabled;
 	/**
- Enable accessibility functionality for the chart. 
+ Enable accessibility functionality for the chart. For more information on how to include these features, and why this is recommended, see [Highcharts Accessibility](https://www.highcharts.com/docs/accessibility/accessibility-module). Highcharts will by defaults emit a warning to the console if the [accessibility module](https://code.highcharts.com/modules/accessibility.js) is not loaded. Setting this option to false will override and silence the warning. Once the module is loaded, setting this option to false will disable the module for this chart. 
 	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -179,18 +179,6 @@ public class HIAccessibility extends HIFoundation {
 
 	public Boolean getExposeAsGroupOnly(){ return exposeAsGroupOnly; }
 
-	private HIFunction pointDescriptionFormatter;
-	/**
- Formatter function to use instead of the defaults for point descriptions. Same as accessibility.point.descriptionFormatter, but for a single series. 
-	*/
-	public void setPointDescriptionFormatter(HIFunction pointDescriptionFormatter) {
-		this.pointDescriptionFormatter = pointDescriptionFormatter;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getPointDescriptionFormatter(){ return pointDescriptionFormatter; }
-
 	private String rangeDescription;
 	/**
  Range description for an axis. Overrides the defaults range description. Set to empty to disable range description for this axis. 
@@ -202,204 +190,6 @@ public class HIAccessibility extends HIFoundation {
 	}
 
 	public String getRangeDescription(){ return rangeDescription; }
-
-	private String defaultsChartTitle;
-	public void setDefaultChartTitle(String defaultsChartTitle) {
-		this.defaultsChartTitle = defaultsChartTitle;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getDefaultChartTitle(){ return defaultsChartTitle; }
-
-	private String svgContainerLabel;
-	public void setSvgContainerLabel(String svgContainerLabel) {
-		this.svgContainerLabel = svgContainerLabel;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getSvgContainerLabel(){ return svgContainerLabel; }
-
-	private String thousandsSep;
-	/**
- Thousands separator to use when formatting numbers for screen readers. Note that many screen readers will not handle space as a thousands separator, and will consider "11 700" as two numbers. Set to null to use the separator defined in `lang.thousandsSep`. 
-	*/
-	public void setThousandsSep(String thousandsSep) {
-		this.thousandsSep = thousandsSep;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getThousandsSep(){ return thousandsSep; }
-
-	private HIChartTypes chartTypes;
-	/**
- Chart type description strings. This is added to the chart information region. If there is only a single series type used in the chart, we use the format string for the series type, or defaults if missing. There is one format string for cases where there is only a single series in the chart, and one for multiple series of the same type. 
-	*/
-	public void setChartTypes(HIChartTypes chartTypes) {
-		this.chartTypes = chartTypes;
-		this.chartTypes.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIChartTypes getChartTypes(){ return chartTypes; }
-
-	private HITable table;
-	/**
- Accessibility language options for the data table. 
-	*/
-	public void setTable(HITable table) {
-		this.table = table;
-		this.table.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HITable getTable(){ return table; }
-
-	private HIZoom zoom;
-	/**
- Chart and map zoom accessibility language options. 
-	*/
-	public void setZoom(HIZoom zoom) {
-		this.zoom = zoom;
-		this.zoom.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIZoom getZoom(){ return zoom; }
-
-	private String credits;
-	public void setCredits(String credits) {
-		this.credits = credits;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getCredits(){ return credits; }
-
-	private HISeriesTypeDescriptions seriesTypeDescriptions;
-	/**
- Descriptions of lesser known series types. The relevant description is added to the screen reader information region when these series types are used. 
-	*/
-	public void setSeriesTypeDescriptions(HISeriesTypeDescriptions seriesTypeDescriptions) {
-		this.seriesTypeDescriptions = seriesTypeDescriptions;
-		this.seriesTypeDescriptions.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HISeriesTypeDescriptions getSeriesTypeDescriptions(){ return seriesTypeDescriptions; }
-
-	private String drillUpButton;
-	public void setDrillUpButton(String drillUpButton) {
-		this.drillUpButton = drillUpButton;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getDrillUpButton(){ return drillUpButton; }
-
-	private HIExporting exporting;
-	/**
- Exporting menu format strings for accessibility module. 
-	*/
-	public void setExporting(HIExporting exporting) {
-		this.exporting = exporting;
-		this.exporting.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIExporting getExporting(){ return exporting; }
-
-	private HIRangeSelector rangeSelector;
-	/**
- Range selector language options for accessibility. 
-	*/
-	public void setRangeSelector(HIRangeSelector rangeSelector) {
-		this.rangeSelector = rangeSelector;
-		this.rangeSelector.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIRangeSelector getRangeSelector(){ return rangeSelector; }
-
-	private String svgContainerTitle;
-	/**
- Title element text for the chart SVG element. Leave this empty to disable adding the title element. Browsers will display this content when hovering over elements in the chart. Assistive technology may use this element to label the chart. 
-	*/
-	public void setSvgContainerTitle(String svgContainerTitle) {
-		this.svgContainerTitle = svgContainerTitle;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getSvgContainerTitle(){ return svgContainerTitle; }
-
-	private HISonification sonification;
-	/**
- Language options for sonification. 
-	*/
-	public void setSonification(HISonification sonification) {
-		this.sonification = sonification;
-		this.sonification.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HISonification getSonification(){ return sonification; }
-
-	private String graphicContainerLabel;
-	/**
- Set a label on the container wrapping the SVG. 
-	*/
-	public void setGraphicContainerLabel(String graphicContainerLabel) {
-		this.graphicContainerLabel = graphicContainerLabel;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getGraphicContainerLabel(){ return graphicContainerLabel; }
-
-	private HILegend legend;
-	/**
- Language options for accessibility of the legend. 
-	*/
-	public void setLegend(HILegend legend) {
-		this.legend = legend;
-		this.legend.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HILegend getLegend(){ return legend; }
-
-	private String chartContainerLabel;
-	public void setChartContainerLabel(String chartContainerLabel) {
-		this.chartContainerLabel = chartContainerLabel;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getChartContainerLabel(){ return chartContainerLabel; }
-
-	private HIAxis axis;
-	/**
- Axis description format strings. 
-	*/
-	public void setAxis(HIAxis axis) {
-		this.axis = axis;
-		this.axis.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIAxis getAxis(){ return axis; }
 
 
 
@@ -451,62 +241,8 @@ public HashMap<String, Object> getParams() {
 		if (this.exposeAsGroupOnly != null) {
 			params.put("exposeAsGroupOnly", this.exposeAsGroupOnly);
 		}
-		if (this.pointDescriptionFormatter != null) {
-			params.put("pointDescriptionFormatter", this.pointDescriptionFormatter);
-		}
 		if (this.rangeDescription != null) {
 			params.put("rangeDescription", this.rangeDescription);
-		}
-		if (this.defaultsChartTitle != null) {
-			params.put("defaultsChartTitle", this.defaultsChartTitle);
-		}
-		if (this.svgContainerLabel != null) {
-			params.put("svgContainerLabel", this.svgContainerLabel);
-		}
-		if (this.thousandsSep != null) {
-			params.put("thousandsSep", this.thousandsSep);
-		}
-		if (this.chartTypes != null) {
-			params.put("chartTypes", this.chartTypes.getParams());
-		}
-		if (this.table != null) {
-			params.put("table", this.table.getParams());
-		}
-		if (this.zoom != null) {
-			params.put("zoom", this.zoom.getParams());
-		}
-		if (this.credits != null) {
-			params.put("credits", this.credits);
-		}
-		if (this.seriesTypeDescriptions != null) {
-			params.put("seriesTypeDescriptions", this.seriesTypeDescriptions.getParams());
-		}
-		if (this.drillUpButton != null) {
-			params.put("drillUpButton", this.drillUpButton);
-		}
-		if (this.exporting != null) {
-			params.put("exporting", this.exporting.getParams());
-		}
-		if (this.rangeSelector != null) {
-			params.put("rangeSelector", this.rangeSelector.getParams());
-		}
-		if (this.svgContainerTitle != null) {
-			params.put("svgContainerTitle", this.svgContainerTitle);
-		}
-		if (this.sonification != null) {
-			params.put("sonification", this.sonification.getParams());
-		}
-		if (this.graphicContainerLabel != null) {
-			params.put("graphicContainerLabel", this.graphicContainerLabel);
-		}
-		if (this.legend != null) {
-			params.put("legend", this.legend.getParams());
-		}
-		if (this.chartContainerLabel != null) {
-			params.put("chartContainerLabel", this.chartContainerLabel);
-		}
-		if (this.axis != null) {
-			params.put("axis", this.axis.getParams());
 		}
 		return params;
 	}

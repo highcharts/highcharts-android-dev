@@ -15,6 +15,7 @@ import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
+import com.highsoft.highcharts.common.HIColor;
 
 
 	/**
@@ -95,17 +96,17 @@ public class HIBullet extends HISeries {
 
 	public Number getGroupZPadding(){ return groupZPadding; }
 
-	private ArrayList<String> colors;
+	private ArrayList<HIColor> colors;
 	/**
  A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
 	*/
-	public void setColors(ArrayList<String> colors) {
+	public void setColors(ArrayList<HIColor> colors) {
 		this.colors = colors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<String> getColors(){ return colors; }
+	public ArrayList<HIColor> getColors(){ return colors; }
 
 	private HIColor borderColor;
 	/**
@@ -119,17 +120,17 @@ public class HIBullet extends HISeries {
 
 	public HIColor getBorderColor(){ return borderColor; }
 
-	private HIColor edgeColor;
+	private Object edgeColor;
 	/**
  3D columns only. The color of the edges. Similar to borderColor, except it defaultss to the same color as the column. 
 	*/
-	public void setEdgeColor(HIColor edgeColor) {
+	public void setEdgeColor(Object edgeColor) {
 		this.edgeColor = edgeColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getEdgeColor(){ return edgeColor; }
+	public Object getEdgeColor(){ return edgeColor; }
 
 	private Boolean centerInCategory;
 	/**
@@ -271,13 +272,8 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.colors) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
+			for (HIColor hiColor : this.colors) {
+				array.add(hiColor.getData());
 			}
 			params.put("colors", array);
 		}
@@ -285,7 +281,7 @@ public HashMap<String, Object> getParams() {
 			params.put("borderColor", this.borderColor.getData());
 		}
 		if (this.edgeColor != null) {
-			params.put("edgeColor", this.edgeColor.getData());
+			params.put("edgeColor", this.edgeColor);
 		}
 		if (this.centerInCategory != null) {
 			params.put("centerInCategory", this.centerInCategory);

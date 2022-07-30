@@ -177,17 +177,17 @@ public class HIExporting extends HIFoundation {
 
 	public Object /* boolean, String */ getTableCaption(){ return tableCaption; }
 
-	private HIHTMLAttributes formAttributes;
+	private Object formAttributes;
 	/**
  An object containing additional key value data for the POST form that sends the SVG to the export server. For example, a target can be set to make sure the generated image is received in another frame, or a custom enctype or encoding can be set. 
 	*/
-	public void setFormAttributes(HIHTMLAttributes formAttributes) {
+	public void setFormAttributes(Object formAttributes) {
 		this.formAttributes = formAttributes;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIHTMLAttributes getFormAttributes(){ return formAttributes; }
+	public Object getFormAttributes(){ return formAttributes; }
 
 	private Boolean useMultiLevelHeaders;
 	/**
@@ -261,6 +261,19 @@ public class HIExporting extends HIFoundation {
 
 	public Boolean getAllowHTML(){ return allowHTML; }
 
+	private HIPdfFont pdfFont;
+	/**
+ Settings for a custom font for the exported PDF, when using the offline-exporting module. This is used for languages containing non-ASCII characters, like Chinese, Russian, Japanese etc. As described in the [jsPDF docs](https://github.com/parallax/jsPDF#use-of-unicode-characters--utf-8), the 14 standard fonts in PDF are limited to the ASCII-codepage. Therefore, in order to support other text in the exported PDF, one or more TTF font files have to be passed on to the exporting module. See more in [the docs](https://www.highcharts.com/docs/export-module/client-side-export). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/offline-download-pdffont/">Download PDF in a language containing non-Latin characters.</a>
+	*/
+	public void setPdfFont(HIPdfFont pdfFont) {
+		this.pdfFont = pdfFont;
+		this.pdfFont.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIPdfFont getPdfFont(){ return pdfFont; }
+
 	private HashMap chartOptions;
 	/**
  Additional chart options to be merged into the chart before exporting to an image format. This does not apply to printing the chart via the export menu. For example, a common use case is to add data labels to improve readability of the exported chart, or to add a printer-friendly color scheme to exported PDFs. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/exporting/chartoptions-data-labels/">Added data labels</a>
@@ -287,7 +300,7 @@ public class HIExporting extends HIFoundation {
 
 	private String libURL;
 	/**
- Path where Highcharts will look for export module dependencies to load on demand if they don't already exist on window. Should currently point to location of [CanVG](https://github.com/canvg/canvg) library, [jsPDF](https://github.com/yWorks/jsPDF) and [svg2pdf.js](https://github.com/yWorks/svg2pdf.js), required for client side export in certain browsers. 
+ Path where Highcharts will look for export module dependencies to load on demand if they don't already exist on window. Should currently point to location of [CanVG](https://github.com/canvg/canvg) library, [jsPDF](https://github.com/parallax/jsPDF) and [svg2pdf.js](https://github.com/yWorks/svg2pdf.js), required for client side export in certain browsers. 
 	*/
 	public void setLibURL(String libURL) {
 		this.libURL = libURL;
@@ -296,15 +309,6 @@ public class HIExporting extends HIFoundation {
 	}
 
 	public String getLibURL(){ return libURL; }
-
-	private String exportRegionLabel;
-	public void setExportRegionLabel(String exportRegionLabel) {
-		this.exportRegionLabel = exportRegionLabel;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getExportRegionLabel(){ return exportRegionLabel; }
 
 	private String menuButtonLabel;
 	public void setMenuButtonLabel(String menuButtonLabel) {
@@ -375,7 +379,7 @@ public HashMap<String, Object> getParams() {
 			params.put("tableCaption", this.tableCaption);
 		}
 		if (this.formAttributes != null) {
-			params.put("formAttributes", this.formAttributes.getParams());
+			params.put("formAttributes", this.formAttributes);
 		}
 		if (this.useMultiLevelHeaders != null) {
 			params.put("useMultiLevelHeaders", this.useMultiLevelHeaders);
@@ -395,6 +399,9 @@ public HashMap<String, Object> getParams() {
 		if (this.allowHTML != null) {
 			params.put("allowHTML", this.allowHTML);
 		}
+		if (this.pdfFont != null) {
+			params.put("pdfFont", this.pdfFont.getParams());
+		}
 		if (this.chartOptions != null) {
 			params.put("chartOptions", this.chartOptions);
 		}
@@ -403,9 +410,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.libURL != null) {
 			params.put("libURL", this.libURL);
-		}
-		if (this.exportRegionLabel != null) {
-			params.put("exportRegionLabel", this.exportRegionLabel);
 		}
 		if (this.menuButtonLabel != null) {
 			params.put("menuButtonLabel", this.menuButtonLabel);

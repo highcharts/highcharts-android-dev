@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -31,17 +30,17 @@ public class HIStackLabels extends HIFoundation {
 
 	public Boolean getAllowOverlap(){ return allowOverlap; }
 
-	private HIColor borderColor;
+	private Object borderColor;
 	/**
  The border color for the stack label. Defaults to undefined. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-box/">Stack labels box options</a>
 	*/
-	public void setBorderColor(HIColor borderColor) {
+	public void setBorderColor(Object borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getBorderColor(){ return borderColor; }
+	public Object getBorderColor(){ return borderColor; }
 
 	private HICSSObject style;
 	/**
@@ -163,17 +162,17 @@ public class HIStackLabels extends HIFoundation {
 
 	public Number getBorderWidth(){ return borderWidth; }
 
-	private HIColor backgroundColor;
+	private Object backgroundColor;
 	/**
  The background color or gradient for the stack label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-box/">Stack labels box options</a>
 	*/
-	public void setBackgroundColor(HIColor backgroundColor) {
+	public void setBackgroundColor(Object backgroundColor) {
 		this.backgroundColor = backgroundColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getBackgroundColor(){ return backgroundColor; }
+	public Object getBackgroundColor(){ return backgroundColor; }
 
 	private Number y;
 	/**
@@ -262,7 +261,7 @@ public HashMap<String, Object> getParams() {
 			params.put("allowOverlap", this.allowOverlap);
 		}
 		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor.getData());
+			params.put("borderColor", this.borderColor);
 		}
 		if (this.style != null) {
 			params.put("style", this.style.getParams());
@@ -295,7 +294,7 @@ public HashMap<String, Object> getParams() {
 			params.put("borderWidth", this.borderWidth);
 		}
 		if (this.backgroundColor != null) {
-			params.put("backgroundColor", this.backgroundColor.getData());
+			params.put("backgroundColor", this.backgroundColor);
 		}
 		if (this.y != null) {
 			params.put("y", this.y);

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
+import com.highsoft.highcharts.common.HIColor;
 
 
 	/**
@@ -45,17 +46,17 @@ public class HITreemap extends HISeries {
 
 	public Number getBorderRadius(){ return borderRadius; }
 
-	private ArrayList<String> colors;
+	private ArrayList<HIColor> colors;
 	/**
  A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
 	*/
-	public void setColors(ArrayList<String> colors) {
+	public void setColors(ArrayList<HIColor> colors) {
 		this.colors = colors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<String> getColors(){ return colors; }
+	public ArrayList<HIColor> getColors(){ return colors; }
 
 	private Number sortIndex;
 	/**
@@ -69,17 +70,30 @@ public class HITreemap extends HISeries {
 
 	public Number getSortIndex(){ return sortIndex; }
 
-	private Object colorByPoint;
+	private Boolean colorByPoint;
 	/**
  When using automatic point colors pulled from the options.colors collection, this option determines whether the chart should receive one color per series or one color per point. 
 	*/
-	public void setColorByPoint(Object colorByPoint) {
+	public void setColorByPoint(Boolean colorByPoint) {
 		this.colorByPoint = colorByPoint;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getColorByPoint(){ return colorByPoint; }
+	public Boolean getColorByPoint(){ return colorByPoint; }
+
+	private HIBreadcrumbs breadcrumbs;
+	/**
+ Options for the breadcrumbs, the navigation at the top leading the way up through the traversed levels. 
+	*/
+	public void setBreadcrumbs(HIBreadcrumbs breadcrumbs) {
+		this.breadcrumbs = breadcrumbs;
+		this.breadcrumbs.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIBreadcrumbs getBreadcrumbs(){ return breadcrumbs; }
 
 	private Boolean allowTraversingTree;
 	/**
@@ -141,19 +155,6 @@ public class HITreemap extends HISeries {
 
 	public Boolean getAlternateStartingDirection(){ return alternateStartingDirection; }
 
-	private HITraverseUpButton traverseUpButton;
-	/**
- Options for the button appearing when traversing down in a treemap. 
-	*/
-	public void setTraverseUpButton(HITraverseUpButton traverseUpButton) {
-		this.traverseUpButton = traverseUpButton;
-		this.traverseUpButton.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HITraverseUpButton getTraverseUpButton(){ return traverseUpButton; }
-
 	private String layoutAlgorithm;
 	/**
  This option decides which algorithm is used for setting position and dimensions of the points. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-layoutalgorithm-sliceanddice/">SliceAndDice by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-layoutalgorithm-stripes/">Stripes</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-layoutalgorithm-squarified/">Squarified</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-layoutalgorithm-strip/">Strip</a> <br><br><b>accepted values:</b><br><br>&ensp;["sliceAndDice", "stripes", "squarified", "strip"]
@@ -178,19 +179,6 @@ public class HITreemap extends HISeries {
 
 	public Boolean getLevelIsConstant(){ return levelIsConstant; }
 
-	private HICluster cluster;
-	/**
- Options for marker clusters, the concept of sampling the data values into larger blocks in order to ease readability and increase performance of the JavaScript charts. Note: marker clusters module is not working with boost and draggable-points modules. The marker clusters feature requires the marker-clusters.js file to be loaded, found in the modules directory of the download package, or online at `https://code.highcharts.com/modules/marker-clusters.js`. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/marker-clusters/europe">Maps marker clusters</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/marker-clusters/basic">Scatter marker clusters</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/marker-clusters/optimized-kmeans">Marker clusters with colorAxis</a>
-	*/
-	public void setCluster(HICluster cluster) {
-		this.cluster = cluster;
-		this.cluster.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HICluster getCluster(){ return cluster; }
-
 
 
 	public HITreemap() {
@@ -211,13 +199,8 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.colors) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
+			for (HIColor hiColor : this.colors) {
+				array.add(hiColor.getData());
 			}
 			params.put("colors", array);
 		}
@@ -225,6 +208,10 @@ public HashMap<String, Object> getParams() {
 			params.put("sortIndex", this.sortIndex);
 		}
 		if (this.colorByPoint != null) {
+			params.put("colorByPoint", this.colorByPoint);
+		}
+		if (this.breadcrumbs != null) {
+			params.put("breadcrumbs", this.breadcrumbs.getParams());
 		}
 		if (this.allowTraversingTree != null) {
 			params.put("allowTraversingTree", this.allowTraversingTree);
@@ -250,17 +237,11 @@ public HashMap<String, Object> getParams() {
 		if (this.alternateStartingDirection != null) {
 			params.put("alternateStartingDirection", this.alternateStartingDirection);
 		}
-		if (this.traverseUpButton != null) {
-			params.put("traverseUpButton", this.traverseUpButton.getParams());
-		}
 		if (this.layoutAlgorithm != null) {
 			params.put("layoutAlgorithm", this.layoutAlgorithm);
 		}
 		if (this.levelIsConstant != null) {
 			params.put("levelIsConstant", this.levelIsConstant);
-		}
-		if (this.cluster != null) {
-			params.put("cluster", this.cluster.getParams());
 		}
 		return params;
 	}

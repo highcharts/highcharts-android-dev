@@ -15,6 +15,7 @@ import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
+import com.highsoft.highcharts.common.HIColor;
 
 
 	/**
@@ -69,18 +70,18 @@ public class HISunburst extends HISeries {
 
 	public ArrayList /* <Number, String> */ getCenter(){ return center; }
 
-	private HITraverseUpButton traverseUpButton;
+	private HIBreadcrumbs breadcrumbs;
 	/**
- Options for the button appearing when traversing down in a treemap. 
+ Options for the breadcrumbs, the navigation at the top leading the way up through the traversed levels. 
 	*/
-	public void setTraverseUpButton(HITraverseUpButton traverseUpButton) {
-		this.traverseUpButton = traverseUpButton;
-		this.traverseUpButton.addObserver(updateObserver);
+	public void setBreadcrumbs(HIBreadcrumbs breadcrumbs) {
+		this.breadcrumbs = breadcrumbs;
+		this.breadcrumbs.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HITraverseUpButton getTraverseUpButton(){ return traverseUpButton; }
+	public HIBreadcrumbs getBreadcrumbs(){ return breadcrumbs; }
 
 	private Number slicedOffset;
 	/**
@@ -130,17 +131,17 @@ public class HISunburst extends HISeries {
 
 	public Boolean getAllowTraversingTree(){ return allowTraversingTree; }
 
-	private ArrayList<String> colors;
+	private ArrayList<HIColor> colors;
 	/**
  A series specific or series type specific color set to use instead of the global colors. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/">Set defaults colors for all pies</a>
 	*/
-	public void setColors(ArrayList<String> colors) {
+	public void setColors(ArrayList<HIColor> colors) {
 		this.colors = colors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<String> getColors(){ return colors; }
+	public ArrayList<HIColor> getColors(){ return colors; }
 
 	private Object /* Number, String */ size;
 	/**
@@ -165,6 +166,18 @@ public class HISunburst extends HISeries {
 	}
 
 	public HIColor getBorderColor(){ return borderColor; }
+
+	private Number thickness;
+	/**
+ Thickness describing the ring size for a donut type chart, overriding innerSize. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setThickness(Number thickness) {
+		this.thickness = thickness;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getThickness(){ return thickness; }
 
 	private HIColor fillColor;
 	/**
@@ -235,8 +248,8 @@ public HashMap<String, Object> getParams() {
 			}
 			params.put("center", array);
 		}
-		if (this.traverseUpButton != null) {
-			params.put("traverseUpButton", this.traverseUpButton.getParams());
+		if (this.breadcrumbs != null) {
+			params.put("breadcrumbs", this.breadcrumbs.getParams());
 		}
 		if (this.slicedOffset != null) {
 			params.put("slicedOffset", this.slicedOffset);
@@ -261,13 +274,8 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.colors) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
+			for (HIColor hiColor : this.colors) {
+				array.add(hiColor.getData());
 			}
 			params.put("colors", array);
 		}
@@ -276,6 +284,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
+		}
+		if (this.thickness != null) {
+			params.put("thickness", this.thickness);
 		}
 		if (this.fillColor != null) {
 			params.put("fillColor", this.fillColor.getData());

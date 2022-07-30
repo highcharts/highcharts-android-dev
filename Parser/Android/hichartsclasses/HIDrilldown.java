@@ -30,17 +30,18 @@ public class HIDrilldown extends HIFoundation {
 
 	public HICSSObject getActiveDataLabelStyle(){ return activeDataLabelStyle; }
 
-	private ArrayList series;
+	private HIBreadcrumbs breadcrumbs;
 	/**
- An array of series configurations for the drill down. Each series configuration uses the same syntax as the series option set. These drilldown series are hidden by defaults. The drilldown series is linked to the parent series' point by its id. 
+ Options for the breadcrumbs, the navigation at the top leading the way up through the drilldown levels. 
 	*/
-	public void setSeries(ArrayList series) {
-		this.series = series;
+	public void setBreadcrumbs(HIBreadcrumbs breadcrumbs) {
+		this.breadcrumbs = breadcrumbs;
+		this.breadcrumbs.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList getSeries(){ return series; }
+	public HIBreadcrumbs getBreadcrumbs(){ return breadcrumbs; }
 
 	private Boolean allowPointDrilldown;
 	/**
@@ -66,18 +67,17 @@ public class HIDrilldown extends HIFoundation {
 
 	public HIAnimationOptionsObject getAnimation(){ return animation; }
 
-	private HIDrillUpButton drillUpButton;
+	private ArrayList series;
 	/**
- Options for the drill up button that appears when drilling down on a series. The text for the button is defined in lang.drillUpText. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/drillupbutton/">Drill up button</a>
+ An array of series configurations for the drill down. Each series configuration uses the same syntax as the series option set. These drilldown series are hidden by defaults. The drilldown series is linked to the parent series' point by its id. 
 	*/
-	public void setDrillUpButton(HIDrillUpButton drillUpButton) {
-		this.drillUpButton = drillUpButton;
-		this.drillUpButton.addObserver(updateObserver);
+	public void setSeries(ArrayList series) {
+		this.series = series;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIDrillUpButton getDrillUpButton(){ return drillUpButton; }
+	public ArrayList getSeries(){ return series; }
 
 	private HICSSObject activeAxisLabelStyle;
 	/**
@@ -105,6 +105,15 @@ public HashMap<String, Object> getParams() {
 		if (this.activeDataLabelStyle != null) {
 			params.put("activeDataLabelStyle", this.activeDataLabelStyle.getParams());
 		}
+		if (this.breadcrumbs != null) {
+			params.put("breadcrumbs", this.breadcrumbs.getParams());
+		}
+		if (this.allowPointDrilldown != null) {
+			params.put("allowPointDrilldown", this.allowPointDrilldown);
+		}
+		if (this.animation != null) {
+			params.put("animation", this.animation.getParams());
+		}
 		if (this.series != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.series) {
@@ -116,15 +125,6 @@ public HashMap<String, Object> getParams() {
 				}
 			}
 			params.put("series", array);
-		}
-		if (this.allowPointDrilldown != null) {
-			params.put("allowPointDrilldown", this.allowPointDrilldown);
-		}
-		if (this.animation != null) {
-			params.put("animation", this.animation.getParams());
-		}
-		if (this.drillUpButton != null) {
-			params.put("drillUpButton", this.drillUpButton.getParams());
 		}
 		if (this.activeAxisLabelStyle != null) {
 			params.put("activeAxisLabelStyle", this.activeAxisLabelStyle.getParams());

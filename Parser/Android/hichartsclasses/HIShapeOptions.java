@@ -55,6 +55,30 @@ public class HIShapeOptions extends HIFoundation {
 
 	public Number getStrokeWidth(){ return strokeWidth; }
 
+	private Number yAxis;
+	/**
+ The yAxis index to which the points should be attached. Used for the ellipse. 
+	*/
+	public void setYAxis(Number yAxis) {
+		this.yAxis = yAxis;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getYAxis(){ return yAxis; }
+
+	private Number ry;
+	/**
+ The radius of the shape in y direction. Used for the ellipse. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/ellipse/">Ellipse annotation</a>
+	*/
+	public void setRy(Number ry) {
+		this.ry = ry;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getRy(){ return ry; }
+
 	private Number height;
 	/**
  The height of the shape. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
@@ -79,17 +103,17 @@ public class HIShapeOptions extends HIFoundation {
 
 	public Number getWidth(){ return width; }
 
-	private HIColor stroke;
+	private Object stroke;
 	/**
  The color of the shape's stroke. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
 	*/
-	public void setStroke(HIColor stroke) {
+	public void setStroke(Object stroke) {
 		this.stroke = stroke;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getStroke(){ return stroke; }
+	public Object getStroke(){ return stroke; }
 
 	private Number r;
 	/**
@@ -102,6 +126,18 @@ public class HIShapeOptions extends HIFoundation {
 	}
 
 	public Number getR(){ return r; }
+
+	private Number xAxis;
+	/**
+ The xAxis index to which the points should be attached. Used for the ellipse. 
+	*/
+	public void setXAxis(Number xAxis) {
+		this.xAxis = xAxis;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getXAxis(){ return xAxis; }
 
 	private Number snap;
 	/**
@@ -117,7 +153,7 @@ public class HIShapeOptions extends HIFoundation {
 
 	private String type;
 	/**
- The type of the shape, e.g. circle or rectangle. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
+ The type of the shape. Avaliable options are circle, rect and ellipse. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/ellipse/">Ellipse annotation</a>
  <br><br><b>defaults:</b><br><br>&ensp;rect	*/
 	public void setType(String type) {
 		this.type = type;
@@ -159,6 +195,12 @@ public HashMap<String, Object> getParams() {
 		if (this.strokeWidth != null) {
 			params.put("strokeWidth", this.strokeWidth);
 		}
+		if (this.yAxis != null) {
+			params.put("yAxis", this.yAxis);
+		}
+		if (this.ry != null) {
+			params.put("ry", this.ry);
+		}
 		if (this.height != null) {
 			params.put("height", this.height);
 		}
@@ -166,10 +208,13 @@ public HashMap<String, Object> getParams() {
 			params.put("width", this.width);
 		}
 		if (this.stroke != null) {
-			params.put("stroke", this.stroke.getData());
+			params.put("stroke", this.stroke);
 		}
 		if (this.r != null) {
 			params.put("r", this.r);
+		}
+		if (this.xAxis != null) {
+			params.put("xAxis", this.xAxis);
 		}
 		if (this.snap != null) {
 			params.put("snap", this.snap);

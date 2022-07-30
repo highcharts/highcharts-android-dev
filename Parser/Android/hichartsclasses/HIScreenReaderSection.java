@@ -80,7 +80,7 @@ public class HIScreenReaderSection extends HIFoundation {
 
 	private String beforeChartFormat;
 	/**
- Format for the screen reader information region before the chart. Supported HTML tags are , , , , , , , and . Attributes are not supported, except for id on , , and . Id is required on  and  in the format . Numbers, lower- and uppercase letters, "-" and "#" are valid characters in IDs. The headingTagName is an auto-detected heading (h1-h6) that corresponds to the heading level below the previous heading in the DOM. 
+ Format for the screen reader information region before the chart. Supported HTML tags are , , , , , , , and . Attributes are not supported, except for id on , , and . Id is required on  and  in the format . Numbers, lower- and uppercase letters, "-" and "#" are valid characters in IDs. The headingTagName is an auto-detected heading (h1-h6) that corresponds to the heading level below the previous heading in the DOM. Set to empty string to remove the region altogether. 
 	*/
 	public void setBeforeChartFormat(String beforeChartFormat) {
 		this.beforeChartFormat = beforeChartFormat;
@@ -101,49 +101,6 @@ public class HIScreenReaderSection extends HIFoundation {
 	}
 
 	public HIFunction getAfterChartFormatter(){ return afterChartFormatter; }
-
-	private String beforeRegionLabel;
-	public void setBeforeRegionLabel(String beforeRegionLabel) {
-		this.beforeRegionLabel = beforeRegionLabel;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getBeforeRegionLabel(){ return beforeRegionLabel; }
-
-	private String afterRegionLabel;
-	public void setAfterRegionLabel(String afterRegionLabel) {
-		this.afterRegionLabel = afterRegionLabel;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getAfterRegionLabel(){ return afterRegionLabel; }
-
-	private HIAnnotations annotations;
-	/**
- Language options for annotation descriptions. 
-	*/
-	public void setAnnotations(HIAnnotations annotations) {
-		this.annotations = annotations;
-		this.annotations.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIAnnotations getAnnotations(){ return annotations; }
-
-	private String endOfChartMarker;
-	/**
- Label for the end of the chart. Announced by screen readers. 
-	*/
-	public void setEndOfChartMarker(String endOfChartMarker) {
-		this.endOfChartMarker = endOfChartMarker;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getEndOfChartMarker(){ return endOfChartMarker; }
 
 
 
@@ -176,18 +133,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.afterChartFormatter != null) {
 			params.put("afterChartFormatter", this.afterChartFormatter);
-		}
-		if (this.beforeRegionLabel != null) {
-			params.put("beforeRegionLabel", this.beforeRegionLabel);
-		}
-		if (this.afterRegionLabel != null) {
-			params.put("afterRegionLabel", this.afterRegionLabel);
-		}
-		if (this.annotations != null) {
-			params.put("annotations", this.annotations.getParams());
-		}
-		if (this.endOfChartMarker != null) {
-			params.put("endOfChartMarker", this.endOfChartMarker);
 		}
 		return params;
 	}

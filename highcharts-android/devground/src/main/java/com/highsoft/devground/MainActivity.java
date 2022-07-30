@@ -249,18 +249,18 @@ public class MainActivity extends AppCompatActivity {
         temperatureMarker.setStates(new HIStates());
         temperatureMarker.getStates().setHover(new HIHover());
         temperatureMarker.getStates().getHover().setEnabled(true);
-        temperatureSeries.setMarker(temperatureMarker);
+        temperatureSeries.set(temperatureMarker);
         temperatureSeries.setTooltip(new HITooltip());
         temperatureSeries.getTooltip().setPointFormat("<span style=\"color:{point.color}\">\u25CF</span> {series.name}: <b>{point.y}°C</b><br/>");
         temperatureSeries.setZIndex(1);
-        temperatureSeries.setColor(HIColor.initWithHexValue("FF3333"));
+        temperatureSeries.setColors(HIColor.initWithHexValue("FF3333"));
         temperatureSeries.setNegativeColor(HIColor.initWithHexValue("48AFE8"));
         options.getSeries().add(temperatureSeries);
 
         HIColumn precipErrSeries = new HIColumn();
         precipErrSeries.setName("Precipitation");
         precipErrSeries.setData(precipitationsError);
-        precipErrSeries.setColor(HIColor.initWithHexValue("68CFE8"));
+        precipErrSeries.setColors(HIColor.initWithHexValue("68CFE8"));
         precipErrSeries.setYAxis(1);
         precipErrSeries.setGroupPadding(0);
         precipErrSeries.setPointPadding(0);

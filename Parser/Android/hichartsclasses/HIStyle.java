@@ -45,15 +45,6 @@ public class HIStyle extends HIFoundation {
 
 	public String getFontSize(){ return fontSize; }
 
-	private String textOutline;
-	public void setTextOutline(String textOutline) {
-		this.textOutline = textOutline;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getTextOutline(){ return textOutline; }
-
 	private String color;
 	public void setColor(String color) {
 		this.color = color;
@@ -62,6 +53,15 @@ public class HIStyle extends HIFoundation {
 	}
 
 	public String getColor(){ return color; }
+
+	private String textOutline;
+	public void setTextOutline(String textOutline) {
+		this.textOutline = textOutline;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTextOutline(){ return textOutline; }
 
 	private String cursor;
 	public void setCursor(String cursor) {
@@ -99,6 +99,33 @@ public class HIStyle extends HIFoundation {
 
 	public String getTextOverflow(){ return textOverflow; }
 
+	private String stroke;
+	public void setStroke(String stroke) {
+		this.stroke = stroke;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getStroke(){ return stroke; }
+
+	private Number stroke-width;
+	public void setStroke-width(Number stroke-width) {
+		this.stroke-width = stroke-width;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getStroke-width(){ return stroke-width; }
+
+	private String fill;
+	public void setFill(String fill) {
+		this.fill = fill;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getFill(){ return fill; }
+
 	private String whiteSpace;
 	public void setWhiteSpace(String whiteSpace) {
 		this.whiteSpace = whiteSpace;
@@ -128,11 +155,11 @@ public HashMap<String, Object> getParams() {
 		if (this.fontSize != null) {
 			params.put("fontSize", this.fontSize);
 		}
-		if (this.textOutline != null) {
-			params.put("textOutline", this.textOutline);
-		}
 		if (this.color != null) {
 			params.put("color", this.color);
+		}
+		if (this.textOutline != null) {
+			params.put("textOutline", this.textOutline);
 		}
 		if (this.cursor != null) {
 			params.put("cursor", this.cursor);
@@ -145,6 +172,15 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.textOverflow != null) {
 			params.put("textOverflow", this.textOverflow);
+		}
+		if (this.stroke != null) {
+			params.put("stroke", this.stroke);
+		}
+		if (this.stroke-width != null) {
+			params.put("stroke-width", this.stroke-width);
+		}
+		if (this.fill != null) {
+			params.put("fill", this.fill);
 		}
 		if (this.whiteSpace != null) {
 			params.put("whiteSpace", this.whiteSpace);

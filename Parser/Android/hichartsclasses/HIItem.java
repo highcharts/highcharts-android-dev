@@ -15,6 +15,7 @@ import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
+import com.highsoft.highcharts.common.HIColor;
 
 
 	/**
@@ -108,17 +109,17 @@ public class HIItem extends HISeries {
 
 	public Boolean getIgnoreHiddenPoint(){ return ignoreHiddenPoint; }
 
-	private ArrayList<String> colors;
+	private ArrayList<HIColor> colors;
 	/**
  A series specific or series type specific color set to use instead of the global colors. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome/">Set defaults colors for all pies</a>
 	*/
-	public void setColors(ArrayList<String> colors) {
+	public void setColors(ArrayList<HIColor> colors) {
 		this.colors = colors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<String> getColors(){ return colors; }
+	public ArrayList<HIColor> getColors(){ return colors; }
 
 	private Object /* Number, String */ size;
 	/**
@@ -131,6 +132,18 @@ public class HIItem extends HISeries {
 	}
 
 	public Object /* Number, String */ getSize(){ return size; }
+
+	private Number thickness;
+	/**
+ Thickness describing the ring size for a donut type chart, overriding innerSize. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setThickness(Number thickness) {
+		this.thickness = thickness;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getThickness(){ return thickness; }
 
 	private Object /* Number, String */ minSize;
 	/**
@@ -203,18 +216,16 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.colors) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
+			for (HIColor hiColor : this.colors) {
+				array.add(hiColor.getData());
 			}
 			params.put("colors", array);
 		}
 		if (this.size != null) {
 			params.put("size", this.size);
+		}
+		if (this.thickness != null) {
+			params.put("thickness", this.thickness);
 		}
 		if (this.minSize != null) {
 			params.put("minSize", this.minSize);

@@ -19,17 +19,17 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HILevels extends HIFoundation { 
 
-	private HIColor borderColor;
+	private Object borderColor;
 	/**
  Can set a borderColor on all points which lies on the same level. 
 	*/
-	public void setBorderColor(HIColor borderColor) {
+	public void setBorderColor(Object borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getBorderColor(){ return borderColor; }
+	public Object getBorderColor(){ return borderColor; }
 
 	private HIColorVariation colorVariation;
 	/**
@@ -141,43 +141,6 @@ public class HILevels extends HIFoundation {
 
 	public String getLayoutStartingDirection(){ return layoutStartingDirection; }
 
-	private Boolean colorByPoint;
-	/**
- Can set colorByPoint on all nodes which lay on the same level. 
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
-	public void setColorByPoint(Boolean colorByPoint) {
-		this.colorByPoint = colorByPoint;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getColorByPoint(){ return colorByPoint; }
-
-	private HIStates states;
-	/**
- Can set states on all nodes and points which lay on the same level. 
-	*/
-	public void setStates(HIStates states) {
-		this.states = states;
-		this.states.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIStates getStates(){ return states; }
-
-	private Number linkOpacity;
-	/**
- Can set linkOpacity on all points which lay on the same level. 
- <br><br><b>defaults:</b><br><br>&ensp;0.5	*/
-	public void setLinkOpacity(Number linkOpacity) {
-		this.linkOpacity = linkOpacity;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getLinkOpacity(){ return linkOpacity; }
-
 
 
 	public HILevels() {
@@ -190,7 +153,7 @@ public HashMap<String, Object> getParams() {
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
 		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor.getData());
+			params.put("borderColor", this.borderColor);
 		}
 		if (this.colorVariation != null) {
 			params.put("colorVariation", this.colorVariation.getParams());
@@ -218,15 +181,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.layoutStartingDirection != null) {
 			params.put("layoutStartingDirection", this.layoutStartingDirection);
-		}
-		if (this.colorByPoint != null) {
-			params.put("colorByPoint", this.colorByPoint);
-		}
-		if (this.states != null) {
-			params.put("states", this.states.getParams());
-		}
-		if (this.linkOpacity != null) {
-			params.put("linkOpacity", this.linkOpacity);
 		}
 		return params;
 	}

@@ -15,6 +15,7 @@ import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
 
+import com.highsoft.highcharts.common.HIColor;
 
 
 	/**
@@ -22,6 +23,18 @@ import com.highsoft.highcharts.common.HIColor;
 	*/
 
 public class HIColumnrange extends HISeries {
+	private Object pointRange;
+	/**
+/** * description: The X axis range that each point is valid for. This determines the width of the column. On a categorized axis, the range will be 1 by defaults (one category unit). On linear and datetime axes, the range will be computed as the distance between the two closest data points. The defaults null means it is computed automatically, but this option can be used to override the automatic value. This option is set by defaults to 1 if data sorting is enabled. * demo:  •  Set the point range to one day on a data set with one week between the points
+*/
+	public void setPointRange(Object pointRange) {
+		this.pointRange = pointRange;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getPointRange(){ return pointRange; }
+
 	private Number pointPadding;
 	/**
  Padding between each column or bar, in x axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-defaults/">0.1 by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-025/">0.25</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-none/">0 for tightly packed columns</a>
@@ -45,18 +58,6 @@ public class HIColumnrange extends HISeries {
 	}
 
 	public Number getBorderRadius(){ return borderRadius; }
-
-	private Number pointRange;
-	/**
- The X axis range that each point is valid for. This determines the width of the column. On a categorized axis, the range will be 1 by defaults (one category unit). On linear and datetime axes, the range will be computed as the distance between the two closest data points. The defaults null means it is computed automatically, but this option can be used to override the automatic value. This option is set by defaults to 1 if data sorting is enabled. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointrange/">Set the point range to one day on a data set with one week between the points</a>
-	*/
-	public void setPointRange(Number pointRange) {
-		this.pointRange = pointRange;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getPointRange(){ return pointRange; }
 
 	private Number minPointLength;
 	/**
@@ -82,17 +83,17 @@ public class HIColumnrange extends HISeries {
 
 	public Number getGroupZPadding(){ return groupZPadding; }
 
-	private ArrayList<String> colors;
+	private ArrayList<HIColor> colors;
 	/**
  A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
 	*/
-	public void setColors(ArrayList<String> colors) {
+	public void setColors(ArrayList<HIColor> colors) {
 		this.colors = colors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<String> getColors(){ return colors; }
+	public ArrayList<HIColor> getColors(){ return colors; }
 
 	private HIColor borderColor;
 	/**
@@ -106,17 +107,17 @@ public class HIColumnrange extends HISeries {
 
 	public HIColor getBorderColor(){ return borderColor; }
 
-	private HIColor edgeColor;
+	private Object edgeColor;
 	/**
  3D columns only. The color of the edges. Similar to borderColor, except it defaultss to the same color as the column. 
 	*/
-	public void setEdgeColor(HIColor edgeColor) {
+	public void setEdgeColor(Object edgeColor) {
 		this.edgeColor = edgeColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getEdgeColor(){ return edgeColor; }
+	public Object getEdgeColor(){ return edgeColor; }
 
 	private Boolean centerInCategory;
 	/**
@@ -238,14 +239,14 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
+		if (this.pointRange != null) {
+			params.put("pointRange", this.pointRange);
+		}
 		if (this.pointPadding != null) {
 			params.put("pointPadding", this.pointPadding);
 		}
 		if (this.borderRadius != null) {
 			params.put("borderRadius", this.borderRadius);
-		}
-		if (this.pointRange != null) {
-			params.put("pointRange", this.pointRange);
 		}
 		if (this.minPointLength != null) {
 			params.put("minPointLength", this.minPointLength);
@@ -255,13 +256,8 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.colors) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
+			for (HIColor hiColor : this.colors) {
+				array.add(hiColor.getData());
 			}
 			params.put("colors", array);
 		}
@@ -269,7 +265,7 @@ public HashMap<String, Object> getParams() {
 			params.put("borderColor", this.borderColor.getData());
 		}
 		if (this.edgeColor != null) {
-			params.put("edgeColor", this.edgeColor.getData());
+			params.put("edgeColor", this.edgeColor);
 		}
 		if (this.centerInCategory != null) {
 			params.put("centerInCategory", this.centerInCategory);

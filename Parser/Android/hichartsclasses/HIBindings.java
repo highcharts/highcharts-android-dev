@@ -54,6 +54,18 @@ public class HIBindings extends HIFoundation {
 
 	public HINavigationBindingsOptionsObject getCircleAnnotation(){ return circleAnnotation; }
 
+	private HINavigationBindingsOptionsObject ellipseAnnotation;
+	/**
+ A ellipse annotation bindings. Includes start and two events in steps array. First updates the second point, responsible for a rx width, and second updates the ry width. 
+	*/
+	public void setEllipseAnnotation(HINavigationBindingsOptionsObject ellipseAnnotation) {
+		this.ellipseAnnotation = ellipseAnnotation;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HINavigationBindingsOptionsObject getEllipseAnnotation(){ return ellipseAnnotation; }
+
 
 
 	public HIBindings() {
@@ -73,6 +85,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.circleAnnotation != null) {
 			params.put("circleAnnotation", this.circleAnnotation.getParams());
+		}
+		if (this.ellipseAnnotation != null) {
+			params.put("ellipseAnnotation", this.ellipseAnnotation.getParams());
 		}
 		return params;
 	}

@@ -13,23 +13,22 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.common.HIColor;
 
 
 
 public class HIXAxis extends HIFoundation { 
 
-	private HIColor minorTickColor;
+	private Object minorTickColor;
 	/**
  Color for the minor tick marks. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minortickcolor/">Black tick marks on Y axis</a>
  <br><br><b>defaults:</b><br><br>&ensp;#999999	*/
-	public void setMinorTickColor(HIColor minorTickColor) {
+	public void setMinorTickColor(Object minorTickColor) {
 		this.minorTickColor = minorTickColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getMinorTickColor(){ return minorTickColor; }
+	public Object getMinorTickColor(){ return minorTickColor; }
 
 	private Number pane;
 	/**
@@ -297,17 +296,17 @@ public class HIXAxis extends HIFoundation {
 
 	public Number getFloor(){ return floor; }
 
-	private HIColor minorGridLineColor;
+	private Object minorGridLineColor;
 	/**
  Color of the minor, secondary grid lines. In styled mode, the stroke width is given in the .highcharts-minor-grid-line class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/minorgridlinecolor/">Bright grey lines from Y axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/">Styled mode</a>
  <br><br><b>defaults:</b><br><br>&ensp;#f2f2f2	*/
-	public void setMinorGridLineColor(HIColor minorGridLineColor) {
+	public void setMinorGridLineColor(Object minorGridLineColor) {
 		this.minorGridLineColor = minorGridLineColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getMinorGridLineColor(){ return minorGridLineColor; }
+	public Object getMinorGridLineColor(){ return minorGridLineColor; }
 
 	private HIFunction tickPositioner;
 	/**
@@ -371,7 +370,7 @@ public class HIXAxis extends HIFoundation {
 
 	private Boolean endOnTick;
 	/**
- Whether to force the axis to end on a tick. Use this option with the maxPadding option to control the axis end. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/reflow-true/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/endontick/">False</a>
+ Whether to force the axis to end on a tick. Use this option with the maxPadding option to control the axis end. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/endontick/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/endontick-false/">False</a>
 	*/
 	public void setEndOnTick(Boolean endOnTick) {
 		this.endOnTick = endOnTick;
@@ -634,17 +633,17 @@ public class HIXAxis extends HIFoundation {
 
 	public Number getSoftMax(){ return softMax; }
 
-	private HIColor tickColor;
+	private Object tickColor;
 	/**
  Color for the main tick marks. In styled mode, the stroke is given in the .highcharts-tick class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/tickcolor/">Red ticks on X axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/">Styled mode</a>
  <br><br><b>defaults:</b><br><br>&ensp;#ccd6eb	*/
-	public void setTickColor(HIColor tickColor) {
+	public void setTickColor(Object tickColor) {
 		this.tickColor = tickColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getTickColor(){ return tickColor; }
+	public Object getTickColor(){ return tickColor; }
 
 	private Number gridLineWidth;
 	/**
@@ -706,17 +705,17 @@ public class HIXAxis extends HIFoundation {
 
 	public Number getTickPixelInterval(){ return tickPixelInterval; }
 
-	private HIColor gridLineColor;
+	private Object gridLineColor;
 	/**
  Color of the grid lines extending the ticks across the plot area. In styled mode, the stroke is given in the .highcharts-grid-line class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/gridlinecolor/">Green lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis-grid/">Styled mode</a>
  <br><br><b>defaults:</b><br><br>&ensp;#e6e6e6	*/
-	public void setGridLineColor(HIColor gridLineColor) {
+	public void setGridLineColor(Object gridLineColor) {
 		this.gridLineColor = gridLineColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getGridLineColor(){ return gridLineColor; }
+	public Object getGridLineColor(){ return gridLineColor; }
 
 	private Boolean reversedStacks;
 	/**
@@ -742,17 +741,17 @@ public class HIXAxis extends HIFoundation {
 
 	public Number getLinkedTo(){ return linkedTo; }
 
-	private HIColor alternateGridColor;
+	private Object alternateGridColor;
 	/**
  When using an alternate grid color, a band is painted across the plot area between every other grid line. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/alternategridcolor/">Alternate grid color on the Y axis</a>
 	*/
-	public void setAlternateGridColor(HIColor alternateGridColor) {
+	public void setAlternateGridColor(Object alternateGridColor) {
 		this.alternateGridColor = alternateGridColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getAlternateGridColor(){ return alternateGridColor; }
+	public Object getAlternateGridColor(){ return alternateGridColor; }
 
 	private Boolean showLastLabel;
 	/**
@@ -840,17 +839,17 @@ public class HIXAxis extends HIFoundation {
 
 	public HICrosshair getCrosshair(){ return crosshair; }
 
-	private HIColor lineColor;
+	private Object lineColor;
 	/**
  The color of the line marking the axis itself. In styled mode, the line stroke is given in the .highcharts-axis-line or .highcharts-xaxis-line class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/linecolor/">A red line on Y axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/axis/">Axes in styled mode</a>
  <br><br><b>defaults:</b><br><br>&ensp;#ccd6eb	*/
-	public void setLineColor(HIColor lineColor) {
+	public void setLineColor(Object lineColor) {
 		this.lineColor = lineColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getLineColor(){ return lineColor; }
+	public Object getLineColor(){ return lineColor; }
 
 	private Number minorGridLineWidth;
 	/**
@@ -949,7 +948,7 @@ public HashMap<String, Object> getParams() {
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
 		if (this.minorTickColor != null) {
-			params.put("minorTickColor", this.minorTickColor.getData());
+			params.put("minorTickColor", this.minorTickColor);
 		}
 		if (this.pane != null) {
 			params.put("pane", this.pane);
@@ -1027,7 +1026,7 @@ public HashMap<String, Object> getParams() {
 			params.put("floor", this.floor);
 		}
 		if (this.minorGridLineColor != null) {
-			params.put("minorGridLineColor", this.minorGridLineColor.getData());
+			params.put("minorGridLineColor", this.minorGridLineColor);
 		}
 		if (this.tickPositioner != null) {
 			params.put("tickPositioner", this.tickPositioner);
@@ -1138,7 +1137,7 @@ public HashMap<String, Object> getParams() {
 			params.put("softMax", this.softMax);
 		}
 		if (this.tickColor != null) {
-			params.put("tickColor", this.tickColor.getData());
+			params.put("tickColor", this.tickColor);
 		}
 		if (this.gridLineWidth != null) {
 			params.put("gridLineWidth", this.gridLineWidth);
@@ -1165,7 +1164,7 @@ public HashMap<String, Object> getParams() {
 			params.put("tickPixelInterval", this.tickPixelInterval);
 		}
 		if (this.gridLineColor != null) {
-			params.put("gridLineColor", this.gridLineColor.getData());
+			params.put("gridLineColor", this.gridLineColor);
 		}
 		if (this.reversedStacks != null) {
 			params.put("reversedStacks", this.reversedStacks);
@@ -1174,7 +1173,7 @@ public HashMap<String, Object> getParams() {
 			params.put("linkedTo", this.linkedTo);
 		}
 		if (this.alternateGridColor != null) {
-			params.put("alternateGridColor", this.alternateGridColor.getData());
+			params.put("alternateGridColor", this.alternateGridColor);
 		}
 		if (this.showLastLabel != null) {
 			params.put("showLastLabel", this.showLastLabel);
@@ -1198,7 +1197,7 @@ public HashMap<String, Object> getParams() {
 			params.put("crosshair", this.crosshair.getParams());
 		}
 		if (this.lineColor != null) {
-			params.put("lineColor", this.lineColor.getData());
+			params.put("lineColor", this.lineColor);
 		}
 		if (this.minorGridLineWidth != null) {
 			params.put("minorGridLineWidth", this.minorGridLineWidth);

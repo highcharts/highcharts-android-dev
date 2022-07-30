@@ -322,17 +322,17 @@ public class HILegend extends HIFoundation {
 
 	public String getVerticalAlign(){ return verticalAlign; }
 
-	private Boolean /* boolean */ shadow;
+	private HICSSObject /* boolean */ shadow;
 	/**
  Whether to apply a drop shadow to the legend. A backgroundColor also needs to be applied for this to take effect. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/shadow/">White background and drop shadow</a>
 	*/
-	public void setShadow(Boolean /* boolean */ shadow) {
+	public void setShadow(HICSSObject /* boolean */ shadow) {
 		this.shadow = shadow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean /* boolean */ getShadow(){ return shadow; }
+	public HICSSObject /* boolean */ getShadow(){ return shadow; }
 
 	private HICSSObject itemHoverStyle;
 	/**
@@ -503,33 +503,6 @@ public class HILegend extends HIFoundation {
 
 	public Number getMargin(){ return margin; }
 
-	private String legendLabel;
-	public void setLegendLabel(String legendLabel) {
-		this.legendLabel = legendLabel;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getLegendLabel(){ return legendLabel; }
-
-	private String legendLabelNoTitle;
-	public void setLegendLabelNoTitle(String legendLabelNoTitle) {
-		this.legendLabelNoTitle = legendLabelNoTitle;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getLegendLabelNoTitle(){ return legendLabelNoTitle; }
-
-	private String legendItem;
-	public void setLegendItem(String legendItem) {
-		this.legendItem = legendItem;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getLegendItem(){ return legendItem; }
-
 
 
 	public HILegend() {
@@ -617,7 +590,7 @@ public HashMap<String, Object> getParams() {
 			params.put("verticalAlign", this.verticalAlign);
 		}
 		if (this.shadow != null) {
-			params.put("shadow", this.shadow);
+			params.put("shadow", this.shadow.getParams());
 		}
 		if (this.itemHoverStyle != null) {
 			params.put("itemHoverStyle", this.itemHoverStyle.getParams());
@@ -660,15 +633,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.margin != null) {
 			params.put("margin", this.margin);
-		}
-		if (this.legendLabel != null) {
-			params.put("legendLabel", this.legendLabel);
-		}
-		if (this.legendLabelNoTitle != null) {
-			params.put("legendLabelNoTitle", this.legendLabelNoTitle);
-		}
-		if (this.legendItem != null) {
-			params.put("legendItem", this.legendItem);
 		}
 		return params;
 	}

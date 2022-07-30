@@ -18,18 +18,6 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 public class HIEvents extends HIFoundation { 
 
-	private HIFunction checkboxClick;
-	/**
- Fires when the checkbox next to the point name in the legend is clicked. One parameter, event, is passed to the function. The state of the checkbox is found by event.checked. The checked item is found by event.item. Return false to prevent the defaults action which is to toggle the select state of the series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-events-checkboxclick/">Alert checkbox status</a>
-	*/
-	public void setCheckboxClick(HIFunction checkboxClick) {
-		this.checkboxClick = checkboxClick;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getCheckboxClick(){ return checkboxClick; }
-
 	private HIFunction pointInBreak;
 	/**
  An event fired when a point falls inside a break from this axis. 
@@ -150,6 +138,18 @@ public class HIEvents extends HIFoundation {
 
 	public HIFunction getLoad(){ return load; }
 
+	private HIFunction fullscreenOpen;
+	/**
+ Fires when a fullscreen is opened through the context menu item, or the Chart.fullscreen.open method. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-fullscreen">Title size change on fullscreen open</a>
+	*/
+	public void setFullscreenOpen(HIFunction fullscreenOpen) {
+		this.fullscreenOpen = fullscreenOpen;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getFullscreenOpen(){ return fullscreenOpen; }
+
 	private HIFunction selection;
 	/**
  Fires when an area of the chart has been selected. Selection is enabled by setting the chart's zoomType. One parameter, event, is passed to the function, containing common event information. The defaults action for the selection event is to zoom the chart to the selected area. It can be prevented by calling event.preventDefault() or return false. Information on the selected area can be found through event.xAxis and event.yAxis, which are arrays containing the axes of each dimension and each axis' min and max values. The primary axes are event.xAxis[0] and event.yAxis[0]. Remember the unit of a datetime axis is milliseconds since 1970-01-01 00:00:00. `js selection: function(event) {   // log the min and max of the primary, datetime x-axis   console.log(     Highcharts.dateFormat(       '%Y-%m-%d %H:%M:%S',       event.xAxis[0].min     ),     Highcharts.dateFormat(       '%Y-%m-%d %H:%M:%S',       event.xAxis[0].max     )   );   // log the min and max of the y axis   console.log(event.yAxis[0].min, event.yAxis[0].max); } ` <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-selection/">Report on selection and reset</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-selection-points/">Select a range of points through a drag selection</a>
@@ -185,6 +185,18 @@ public class HIEvents extends HIFoundation {
 	}
 
 	public HIFunction getAddSeries(){ return addSeries; }
+
+	private HIFunction fullscreenClose;
+	/**
+ Fires when a fullscreen is closed through the context menu item, or a fullscreen is closed on the Escape button click, or the Chart.fullscreen.close method. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-fullscreen">Title size change on fullscreen open</a>
+	*/
+	public void setFullscreenClose(HIFunction fullscreenClose) {
+		this.fullscreenClose = fullscreenClose;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getFullscreenClose(){ return fullscreenClose; }
 
 	private HIFunction drillup;
 	/**
@@ -270,18 +282,6 @@ public class HIEvents extends HIFoundation {
 
 	public HIFunction getAfterPrint(){ return afterPrint; }
 
-	private HIFunction drillToCluster;
-	/**
- Fires when the cluster point is clicked and drillToCluster is enabled. One parameter, event, is passed to the function. The defaults action is to zoom to the cluster points range. This can be prevented by calling event.preventDefault(). 
-	*/
-	public void setDrillToCluster(HIFunction drillToCluster) {
-		this.drillToCluster = drillToCluster;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getDrillToCluster(){ return drillToCluster; }
-
 	private HIFunction unselect;
 	/**
  Fires when the point is unselected either programmatically or following a click on the point. One parameter, event, is passed to the function. Returning false cancels the operation. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-point-events-unselect/">Report the last unselected point</a>
@@ -356,7 +356,7 @@ public class HIEvents extends HIFoundation {
 
 	private HIFunction mouseOver;
 	/**
- Fires when the mouse enters the area close to the point. One parameter, event, is passed to the function, containing common event information. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-point-events-mouseover/">Show values in the chart's corner on mouse over</a>
+ Fires when the mouse enters the area close to the point. One parameter, event, is passed to the function, containing common event information. Returning false cancels the defaults behavior, which is to show a tooltip for the point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-point-events-mouseover/">Show values in the chart's corner on mouse over</a>
 	*/
 	public void setMouseOver(HIFunction mouseOver) {
 		this.mouseOver = mouseOver;
@@ -390,6 +390,18 @@ public class HIEvents extends HIFoundation {
 
 	public HIFunction getDragStart(){ return dragStart; }
 
+	private HIFunction drillToCluster;
+	/**
+ Fires when the cluster point is clicked and drillToCluster is enabled. One parameter, event, is passed to the function. The defaults action is to zoom to the cluster points range. This can be prevented by calling event.preventDefault(). 
+	*/
+	public void setDrillToCluster(HIFunction drillToCluster) {
+		this.drillToCluster = drillToCluster;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getDrillToCluster(){ return drillToCluster; }
+
 	private HIFunction setRootNode;
 	/**
  Fires on a request for change of root node for the tree, before the update is made. An event object is passed to the function, containing additional properties newRootId, previousRootId, redraw and trigger. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/treemap-events-setrootnode/">Alert update information on setRootNode event.</a>
@@ -401,6 +413,18 @@ public class HIEvents extends HIFoundation {
 	}
 
 	public HIFunction getSetRootNode(){ return setRootNode; }
+
+	private HIFunction checkboxClick;
+	/**
+ Fires when the checkbox next to the point name in the legend is clicked. One parameter, event, is passed to the function. The state of the checkbox is found by event.checked. The checked item is found by event.item. Return false to prevent the defaults action which is to toggle the select state of the series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-events-checkboxclick/">Alert checkbox status</a>
+	*/
+	public void setCheckboxClick(HIFunction checkboxClick) {
+		this.checkboxClick = checkboxClick;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getCheckboxClick(){ return checkboxClick; }
 
 	private HIFunction closePopup;
 	/**
@@ -462,66 +486,6 @@ public class HIEvents extends HIFoundation {
 
 	public HIFunction getLegendItemClick(){ return legendItemClick; }
 
-	private HIFunction hide;
-	/**
- Fires when the series is hidden after chart generation time, either by clicking the legend item or by calling .hide(). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-events-hide/">Alert when the series is hidden by clicking the legend item</a>
-	*/
-	public void setHide(HIFunction hide) {
-		this.hide = hide;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getHide(){ return hide; }
-
-	private HIFunction show;
-	/**
- Fires when the series is shown after chart generation time, either by clicking the legend item or by calling .show(). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-events-show/">Alert when the series is shown by clicking the legend item.</a>
-	*/
-	public void setShow(HIFunction show) {
-		this.show = show;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getShow(){ return show; }
-
-	private HIFunction afterAnimate;
-	/**
- Fires after the series has finished its initial animation, or in case animation is disabled, immediately as the series is displayed. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-events-afteranimate/">Show label after animate</a>
-	*/
-	public void setAfterAnimate(HIFunction afterAnimate) {
-		this.afterAnimate = afterAnimate;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getAfterAnimate(){ return afterAnimate; }
-
-	private HIFunction add;
-	/**
- Event callback when annotation is added to the chart. 
-	*/
-	public void setAdd(HIFunction add) {
-		this.add = add;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getAdd(){ return add; }
-
-	private HIFunction afterUpdate;
-	/**
- Event callback when annotation is updated (e.g.draganddropppedorresizedbycontrolpoints). 
-	*/
-	public void setAfterUpdate(HIFunction afterUpdate) {
-		this.afterUpdate = afterUpdate;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getAfterUpdate(){ return afterUpdate; }
-
 
 
 	public HIEvents() {
@@ -533,9 +497,6 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.checkboxClick != null) {
-			params.put("checkboxClick", this.checkboxClick);
-		}
 		if (this.pointInBreak != null) {
 			params.put("pointInBreak", this.pointInBreak);
 		}
@@ -566,6 +527,9 @@ public HashMap<String, Object> getParams() {
 		if (this.load != null) {
 			params.put("load", this.load);
 		}
+		if (this.fullscreenOpen != null) {
+			params.put("fullscreenOpen", this.fullscreenOpen);
+		}
 		if (this.selection != null) {
 			params.put("selection", this.selection);
 		}
@@ -574,6 +538,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.addSeries != null) {
 			params.put("addSeries", this.addSeries);
+		}
+		if (this.fullscreenClose != null) {
+			params.put("fullscreenClose", this.fullscreenClose);
 		}
 		if (this.drillup != null) {
 			params.put("drillup", this.drillup);
@@ -595,9 +562,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.afterPrint != null) {
 			params.put("afterPrint", this.afterPrint);
-		}
-		if (this.drillToCluster != null) {
-			params.put("drillToCluster", this.drillToCluster);
 		}
 		if (this.unselect != null) {
 			params.put("unselect", this.unselect);
@@ -626,8 +590,14 @@ public HashMap<String, Object> getParams() {
 		if (this.dragStart != null) {
 			params.put("dragStart", this.dragStart);
 		}
+		if (this.drillToCluster != null) {
+			params.put("drillToCluster", this.drillToCluster);
+		}
 		if (this.setRootNode != null) {
 			params.put("setRootNode", this.setRootNode);
+		}
+		if (this.checkboxClick != null) {
+			params.put("checkboxClick", this.checkboxClick);
 		}
 		if (this.closePopup != null) {
 			params.put("closePopup", this.closePopup);
@@ -643,21 +613,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.legendItemClick != null) {
 			params.put("legendItemClick", this.legendItemClick);
-		}
-		if (this.hide != null) {
-			params.put("hide", this.hide);
-		}
-		if (this.show != null) {
-			params.put("show", this.show);
-		}
-		if (this.afterAnimate != null) {
-			params.put("afterAnimate", this.afterAnimate);
-		}
-		if (this.add != null) {
-			params.put("add", this.add);
-		}
-		if (this.afterUpdate != null) {
-			params.put("afterUpdate", this.afterUpdate);
 		}
 		return params;
 	}
