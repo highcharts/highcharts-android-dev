@@ -1,5 +1,5 @@
 /*
- Highcharts Gantt JS v10.2.0 (2022-07-05)
+ Highcharts Gantt JS v10.3.2 (2022-11-28)
 
  StaticScale
 

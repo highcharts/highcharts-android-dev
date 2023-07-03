@@ -15,11 +15,12 @@ import sys
 import os
 import re
 from bs4 import BeautifulSoup, SoupStrainer
-from HTMLParser import HTMLParser
+# from HTMLParser import HTMLParser
 import cgi
+import html
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
+# reload(sys)
+# sys.setdefaultencoding('utf-8')
 
 structure = dict()
 files = list()
@@ -55,9 +56,9 @@ class HIChartsClass:
         if self.description:
             self.comment = "\n{0}\n".format(self.description)
             if self.demo:
-                self.comment += cgi.escape(" <br><br><b><i>Try it:</b></i><br>{0}".format(self.demo))
+                self.comment += html.escape(" <br><br><b><i>Try it:</b></i><br>{0}".format(self.demo))
             if self.values:
-                self.comment += cgi.escape(" <br><br><b>accepted values:</b><br><br>&ensp;{0}".format(self.values))
+                self.comment += html.escape(" <br><br><b>accepted values:</b><br><br>&ensp;{0}".format(self.values))
             self.comment = clean_comment(self.comment)
             if self.defaults:
                 self.comment += " <br><br><b>default:</b><br><br>&ensp;{0}".format(self.defaults)
@@ -1035,13 +1036,13 @@ def create_android_files():
 
 
 def print_structure():
-    print "^^^^^^^^^ STRUCTURE ^^^^^^^^^^^"
+    print("^^^^^^^^^ STRUCTURE ^^^^^^^^^^^")
     for c in structure:
         # text = "name: {0}, type: {1}, group: {3}, extends: {2}, props: ".format(c, structure[c].data_type, structure[c].extends, structure[c].group)
         text = "name: {0}, type: {1}, props: ".format(c, structure[c].data_type)
         for p in structure[c].properties:
             text += "{0} | ".format(p.name)
-        print text
+        print(text)
 
 
 def get_documentation_name(name, isProperties, doubleLast=True):
@@ -1373,7 +1374,7 @@ def add_additions_to_series():
 
 
 def create_structure():
-    with open('tree.json') as data_file:
+    with open('tree.json', encoding="utf8") as data_file:
         data = json.load(data_file)
 
     for field in data:
@@ -1398,13 +1399,13 @@ unknown_type_namespace = set()
 
 
 def print_namespace_structure():
-    print "\n\n********************\nNamespace structure:\n********************\n\n"
+    print("\n\n********************\nNamespace structure:\n********************\n\n")
     for c in namespace_structure:
         text = "name: {0}, type: {1}, kind: {2}, props: ".format(c, namespace_structure[c].data_type,
                                                                  namespace_structure[c].kind)
         for p in namespace_structure[c].properties:
             text += "{0} | ".format(p.name)
-        print text
+        print(text)
 
 
 def create_namespace_class(node):
@@ -1712,12 +1713,12 @@ def type_from_namespace(type):
             if hc_match:
                 temp = hc_match.group(1)
                 if temp in namespace_structure:
-                    print "Added type from namespace : " + new_type + ", value: " + 'ArrayList<{}>'.format(
-                        'HI' + get_last(temp))
+                    print("Added type from namespace : " + new_type + ", value: " + 'ArrayList<{}>'.format(
+                        'HI' + get_last(temp)))
                     hc_types[new_type] = 'ArrayList<{}>'.format('HI' + get_last(temp))
 
         elif new_type in namespace_structure:
-            print "Added type from namespace : " + new_type + ", value: " + "HI" + get_last(new_type)
+            print("Added type from namespace : " + new_type + ", value: " + "HI" + get_last(new_type))
             hc_types[new_type] = 'HI' + get_last(new_type)
         elif 'Highcharts.AnimationOptionsObject' in new_type or 'Highcharts.AnimationObject' in new_type:
             hc_types[new_type] = 'HIAnimationOptionsObject'
@@ -1732,17 +1733,17 @@ def type_from_namespace(type):
 
 
 def print_unknown_namespace_types():
-    print "\n\n*************************\nUnknown namespace types:\n*************************\n"
+    print("\n\n*************************\nUnknown namespace types:\n*************************\n")
     for type in unknown_type_namespace:
-        print type
-    print "- - - - - - - - - - - - - - - - - - - - - - - - - - -  \n\n"
+        print(type)
+    print("- - - - - - - - - - - - - - - - - - - - - - - - - - -  \n\n")
 
 
 def print_unknown_tree_types():
-    print "Unknown tree types:"
+    print("Unknown tree types:")
     for type in unknown_types_tree:
-        print type
-    print "- - - - - - - - - - - - - - - - - - - - - - - - - - -  \n\n"
+        print(type)
+    print("- - - - - - - - - - - - - - - - - - - - - - - - - - -  \n\n")
 
 
 def main():

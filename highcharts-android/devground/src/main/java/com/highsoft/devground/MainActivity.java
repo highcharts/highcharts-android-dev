@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.highsoft.highcharts.common.hichartsclasses.HIAnimationOptionsObject;
 import com.highsoft.highcharts.common.hichartsclasses.HICSSObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIChart;
 import com.highsoft.highcharts.common.hichartsclasses.HIColumn;
@@ -183,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
 
         options.setXAxis(new ArrayList<>(Arrays.asList(bottomXAxis, topXAxis)));
 
+
         HIYAxis temperatureAxis = new HIYAxis();
         temperatureAxis.setTitle(new HITitle());
         temperatureAxis.getTitle().setText("");
@@ -235,9 +237,12 @@ public class MainActivity extends AppCompatActivity {
         options.setLegend(new HILegend());
         options.getLegend().setEnabled(false);
 
+
         options.setPlotOptions(new HIPlotOptions());
         options.getPlotOptions().setSeries(new HISeries());
         options.getPlotOptions().getSeries().setPointPlacement("between");
+        options.getPlotOptions().getSeries().setAnimation(new HIAnimationOptionsObject());
+        options.getPlotOptions().getSeries().getAnimation().setDuration(0);
 
         options.setSeries(new ArrayList<>());
 
@@ -249,18 +254,15 @@ public class MainActivity extends AppCompatActivity {
         temperatureMarker.setStates(new HIStates());
         temperatureMarker.getStates().setHover(new HIHover());
         temperatureMarker.getStates().getHover().setEnabled(true);
-        temperatureSeries.set(temperatureMarker);
         temperatureSeries.setTooltip(new HITooltip());
         temperatureSeries.getTooltip().setPointFormat("<span style=\"color:{point.color}\">\u25CF</span> {series.name}: <b>{point.y}°C</b><br/>");
         temperatureSeries.setZIndex(1);
-        temperatureSeries.setColors(HIColor.initWithHexValue("FF3333"));
         temperatureSeries.setNegativeColor(HIColor.initWithHexValue("48AFE8"));
         options.getSeries().add(temperatureSeries);
 
         HIColumn precipErrSeries = new HIColumn();
         precipErrSeries.setName("Precipitation");
         precipErrSeries.setData(precipitationsError);
-        precipErrSeries.setColors(HIColor.initWithHexValue("68CFE8"));
         precipErrSeries.setYAxis(1);
         precipErrSeries.setGroupPadding(0);
         precipErrSeries.setPointPadding(0);
