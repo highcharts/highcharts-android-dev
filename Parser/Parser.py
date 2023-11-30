@@ -19,8 +19,8 @@ from bs4 import BeautifulSoup, SoupStrainer
 import cgi
 import html
 
-# reload(sys)
-# sys.setdefaultencoding('utf-8')
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 structure = dict()
 files = list()
@@ -28,6 +28,7 @@ bridge = set()
 options = list()
 classes = dict()
 comments = dict()
+types = dict()
 unknown_types_tree = set()
 
 fileLicense = "/**\n* (c) 2009-2018 Highsoft AS\n*\n* License: www.highcharts.com/license\n" \
@@ -52,13 +53,10 @@ class HIChartsClass:
         self.checkedExtends = False
         self.info = info
         self.parent = parent
+        self.kind = ""
 
         if self.description:
             self.comment = "\n{0}\n".format(self.description)
-            if self.demo:
-                self.comment += html.escape(" <br><br><b><i>Try it:</b></i><br>{0}".format(self.demo))
-            if self.values:
-                self.comment += html.escape(" <br><br><b>accepted values:</b><br><br>&ensp;{0}".format(self.values))
             self.comment = clean_comment(self.comment)
             if self.defaults:
                 self.comment += " <br><br><b>default:</b><br><br>&ensp;{0}".format(self.defaults)
@@ -346,44 +344,24 @@ hc_types = {
     # 8.2.0
     "string|Array.<(Array.<string>|Array.<string, number>|Array.<string, number, number>|Array.<string, number, number, number, number>|Array.<string, number, number, number, number, number, number>|Array.<string, number, number, number, number, number, number, number>)>|undefined": 'ArrayList /* <String, Number> */',
     "Array.<Array.<number, string|Highcharts.GradientColorObject|Highcharts.PatternObject>>": 'ArrayList',
-    # 9.3.0
-    "Array.<*>|* (original type: Array.<Highcharts.SeriesMapDataOptions>|*)": 'ArrayList',
-    "Highcharts.PlotSeriesOptions": "HIPlotSeriesOptions",
-    "string|Array.<*>|Highcharts.GeoJSON": 'String',
-    # 9.3.3
-    "Array.<string|Highcharts.AnnotationMockPointOptionsObject|function>": "Array<HIAnnotationMockPointOptionsObject",
-    # namespace multi-types
-    "number|null|undefined": "Number",
-    "Highcharts.Point|null": "HIPoint",
-    "Array.<*>|null": "ArrayList",
-    "Highcharts.Series|null": "HISeries",
-    "None": "Object",
-    "Array.<Array.<string>>": "ArrayList<ArrayList<String>>",
-    "number|function": "Object",
-    "number|function|undefined": "Object",
-    "Highcharts.Instrument|string": "HIInstrument",
-    "string|Highcharts.Instrument": "HIInstrument",
-    "number|string|undefined": "Object",
-    "string|number|function|undefined": "Object",
-    "boolean|Highcharts.XAxisCrosshairOptions|Highcharts.YAxisCrosshairOptions": "Object",
-    "Highcharts.XAxisOptions|Highcharts.YAxisOptions|Highcharts.ZAxisOptions": "Object",
-    "Array<number>|undefined": "ArrayList<Number>",
-    "string|Highcharts.AnnotationMockPointOptionsObject|function": "Object",
-    "Array.<(Array.<string>|Array.<string, number>|Array.<string, number, number>|Array.<string, number, number, number, number>|Array.<string, number, number, number, number, number, number>|Array.<string, number, number, number, number, number, number, number>)>": "Object",
-    "Array.<(*|undefined)>": "ArrayList<Object>",
-    "Array.<Array.<Array.<number>, function()>>": "ArrayList<ArrayList<ArrayList<Number>>>",
-    "Object|Array.<object>|undefined": "Object",
-    "Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject": "HIColor",
-    "Array.<(*|Highcharts.GradientColorObject|Highcharts.PatternObject)>": "ArrayList<HIColor>",
-    "Array.<Array.<number, *>>": "ArrayList<ArrayList<Number>>",
-    "Highcharts.SVGDOMElement|Highcharts.HTMLDOMElement": "Object",
-    "Highcharts.ColorString|Highcharts.GradientColorObject": "HIColor",
-    "string|Highcharts.SVGPathArray|undefined": "String",
-    "boolean|Highcharts.AxisCrosshairOptions": "Object",
-    "Highcharts.SymbolKeyValue|string": "String",
-    "Highcharts.AxisExtremesTriggerValue|string": "String",
-    "string|Highcharts.CursorValue": "String",
-    "string|Highcharts.ColorString|undefined": "HIColor"
+    #11.1.0
+    "'default'|'curved'|'straight'": 'String',
+    "Highcharts.SeriesPieDataLabelsOptionsObject": 'Object',
+    "function|object": 'Object',
+    "number|string|Highcharts.BorderRadiusOptionsObject": 'HIBorderRadiusOptionsObject',
+    "string|Highcharts.SynthPatchOptionsObject": 'HISynthPatchOptionsObject',
+    "DataLabelTextPathOptions": 'HIDataLabelTextPathOptions',
+    "OrganizationDataLabelsFormatterCallbackFunction": 'HIFunction',
+    "Array.<string|Highcharts.AnnotationMockPointOptionsObject|function>": 'ArrayList<HIAnnotationMockPointOptionsObject *>',
+    "string|Highcharts.AnnotationMockPointOptionsObject|function": 'HIAnnotationMockPointOptionsObject',
+    "Highcharts.AnnotationsOptions": 'HIAnnotationsOptions',
+    "boolean|object": 'Object',
+    "Array.<string>|undefined": 'ArrayList<String>',
+    "string|number|function|object": 'Object',
+    "string|Highcharts.SVGAttributes|undefined": 'HISVGAttributes',
+    "Highcharts.DataLabelsOptions": 'HIDataLabelsOptions',
+    "Highcharts.PointMarkerOptionsObject": 'HIPointMarkerOptionsObject',
+    "Array.<(Array.<string>|Array.<string, number>|Array.<string, number, number>|Array.<string, number, number, number, number>|Array.<string, number, number, number, number, number, number>|Array.<string, number, number, number, number, number, number, number>)>": 'ArrayList'
 }
 
 
@@ -550,7 +528,7 @@ def format_to_java(name, source):
 
     # SETTERS all fields changed to private, added setters and getters
     for field in classes[class_name]:
-        # print class_name + " " + get_last(field.name)
+        # print(class_name + " " + get_last(field.name))
         if field_in_parent(field, source):
             continue
 
@@ -1138,9 +1116,7 @@ def add_entry_to_documentation(documentation, field, source):
 def merge_extended_properties(field):
     class_name = structure[field].name
     if structure[field].extends and not structure[field].checkedExtends:
-        # print structure[field].extends
         for extends in structure[field].extends.split(","):
-            # if extends in structure:
             parent = structure[extends]
             structure[field].not_highcharts_properties += parent.not_highcharts_properties
             if parent.extends:
@@ -1195,10 +1171,11 @@ def create_class(node):
             doclet = source["doclet"]
 
             if "description" in doclet:
-                description = doclet["description"]
-                description = re.sub(r'`\s*(.*?)\s*`', r'\1', description)
-                description = re.sub(r'(\[(.*?)\]\(#.*?\))', r'\2', description)
-                description = description.replace("\r", "\n")
+                description = doclet["description"] if node.name != 'series' else "General options for all series types."
+
+                # description = re.sub(r'`\s*(.*?)\s*`', r'\1', description)
+                # description = re.sub(r'(\[(.*?)\]\(#.*?\))', r'\2', description)
+                # description = description.replace("\r", "\n")
 
             if "values" in doclet and len(doclet["values"]) > 0:
                 values = doclet["values"]
@@ -1209,7 +1186,7 @@ def create_class(node):
                     defaults = defaultByProduct["highcharts"]
 
             if "defaultvalue" in doclet:
-                defaults = doclet["defaultvalue"].replace("\r", "\n")
+                defaults = doclet["defaultvalue"]
 
             if "samples" in doclet:
                 samples = doclet["samples"]
@@ -1226,10 +1203,7 @@ def create_class(node):
                         elif attr_sample == "products":
                             attr_products = sample[attr_sample]
                     if attr_products is None or "highcharts" in attr_products:
-                        demo += "<br>&ensp;&bull;&ensp; <a href=\"https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/{0}\">{1}</a>".format(
-                            value, name)
-                        # demo += cgi.escape("\n&bull;<a href=\"https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/{0}\">{1}</a>".format(value, name))
-                        # demo += "https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/{0} : {1}\n".format(value, name)
+                        demo += "* [{0}](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/{1})\n".format(name, value)
                 if demo == "":
                     demo = None
 
@@ -1284,9 +1258,9 @@ def create_class(node):
         elif name == "description":
             name = "definition"
 
-        c = HIChartsClass(name, data_type, description, demo, values, defaults, products, extends, exclude, source,
-                          parent)
+        c = HIChartsClass(name, data_type, description, demo, values, defaults, products, extends, exclude, source, parent)
         return c
+
 
 
 def add_to_structure(name, source, parent):
@@ -1305,9 +1279,6 @@ def add_to_structure(name, source, parent):
     hi_class = create_class(node)
 
     if hi_class:
-
-        # if hi_class.name == "series":
-        #     hi_class.data_type = "Array.<Object>"
         structure[node.name] = hi_class
 
         if parent:
@@ -1320,6 +1291,34 @@ def add_to_structure(name, source, parent):
             childrens = source["children"]
             for children in childrens:
                 add_to_structure(children, childrens[children], fullname)
+
+def add_additional_fields_to_point():
+    fields = [
+        ("category", "string", "For categorized axes this property holds the category name for the point. For other axes it holds the X value."),
+        ("color", "Highcharts.ColorString", "The point's current color."),
+        ("colorIndex", "number", "The point's current color index, used in styled mode instead of `color`. The color index is inserted in class names used for styling."),
+        ("name", "string", "The name of the point. The name can be given as the first position of the point configuration array, or as a `name` property in the configuration:"),
+        ("percentage", "number", "The percentage for points in a stacked series or pies."),
+        ("plotX", "number", "The translated X value for the point in terms of pixels. Relative to the X axis position if the series has one, otherwise relative to the plot area. Depending on the series type this value might not be defined."),
+        ("plotY", "number", "The translated Y value for the point in terms of pixels. Relative to the Y axis position if the series has one, otherwise relative to the plot area. Depending on the series type this value might not be defined."),
+        ("selected", "boolean", "Whether the point is selected or not."),
+        ("sliced", "boolean", "Pie series only. Whether to display a slice offset from the center."),
+        ("total", "number", "The total of values in either a stack for stacked series, or a pie in a pie series."),
+        ("visible", "boolean", "For certain series types, like pie charts, where individual points can be shown or hidden."),
+        ("x", "number", "The x value of the point."),
+        ("y", "number", "The y value of the point.")
+    ]
+
+    acc_point = "accessibility.point"
+
+    if acc_point in structure:
+        parent = structure[acc_point]
+
+        for field in fields:
+            name = acc_point + "." + field[0]
+            hi_class = HIChartsClass(name, field[1], field[2], None, None, None, None, None, None, None, acc_point)
+            structure[name] = hi_class
+            parent.add_property(hi_class)
 
 
 def add_additions_to_series():
@@ -1374,7 +1373,7 @@ def add_additions_to_series():
 
 
 def create_structure():
-    with open('tree.json', encoding="utf8") as data_file:
+    with open('tree.json') as data_file:
         data = json.load(data_file)
 
     for field in data:
@@ -1382,14 +1381,15 @@ def create_structure():
         add_to_structure(field, data[field], None)
 
     add_additions_to_series()
+    add_additional_fields_to_point()
 
     for field in structure:
         merge_extended_properties(field)
 
 
-# -----------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------
 # --------------NAMESPACE PARSER----------------------------------------------------------------------
-# -----------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------
 
 
 namespace_structure = dict()
@@ -1399,13 +1399,10 @@ unknown_type_namespace = set()
 
 
 def print_namespace_structure():
-    print("\n\n********************\nNamespace structure:\n********************\n\n")
     for c in namespace_structure:
-        text = "name: {0}, type: {1}, kind: {2}, props: ".format(c, namespace_structure[c].data_type,
-                                                                 namespace_structure[c].kind)
+        text = "name: {0}, type: {1}, kind: {2}, props: ".format(c, namespace_structure[c].data_type, namespace_structure[c].kind)
         for p in namespace_structure[c].properties:
             text += "{0} | ".format(p.name)
-        print(text)
 
 
 def create_namespace_class(node):
@@ -1467,8 +1464,7 @@ def create_namespace_class(node):
                 if doclet["isDeprecated"]:
                     return None
 
-        c = HIChartsClass(node.name, data_type, description, demo, values, defaults, products, extends, exclude, source,
-                          parent)
+        c = HIChartsClass(node.name, data_type, description, demo, values, defaults, products, extends, exclude, source, parent)
         c.kind = kind
         return c
 
@@ -1485,8 +1481,6 @@ def create_namespace_structure():
 
     for field in namespace_structure:
         change_namespace_types(field)
-
-    del namespace_structure["Highcharts"]  # redundant namespace object in structure
 
 
 def add_to_namespace_structure(name, source, parent):
@@ -1507,22 +1501,9 @@ def add_to_namespace_structure(name, source, parent):
 
         if "children" in source:
             childrens = source["children"]
-            for child in childrens:
-                doclet = child["doclet"]
-                if doclet["kind"] == "interface" or doclet["kind"] == "class" or doclet["kind"] == "member":
-                    if "name" in doclet:
-                        if "products" in doclet and "highcharts" in doclet["products"]:
-                            add_to_namespace_structure(get_last(doclet["name"]), child, fullname)
-                        else:
-                            add_to_namespace_structure(get_last(doclet["name"]), child, fullname)
-                # do not add typedef to structure but add them to types dictionary so parser will understand them
-                if doclet["kind"] == "typedef":
-                    if "CallbackFunction" in doclet["name"]:
-                        hc_types[doclet["name"]] = "HIFunction"
-                    elif "Value" in doclet["name"]:
-                        hc_types[doclet["name"]] = "String"
-                    else:
-                        hc_types[doclet["name"]] = "Object"
+            for children in childrens:
+                if children["doclet"]["name"]:
+                    add_to_namespace_structure(get_last(children["doclet"]["name"]), children, fullname)
 
 
 def change_namespace_types(name):
@@ -1608,8 +1589,7 @@ def get_namespace_type(name):
                 type = '|'.join(splitted)
             elif type == default_type and 'Highcharts.' in ori_type:
                 if ori_type in namespace_structure and \
-                        (namespace_structure[ori_type].kind == 'class' or namespace_structure[
-                            ori_type].kind == 'interface'):
+                    (namespace_structure[ori_type].kind == 'class' or namespace_structure[ori_type].kind == 'interface'):
                     type = ori_type
                     hc_types[type] = ori_type.replace('Highcharts.', 'HI')
                 else:
@@ -1650,7 +1630,7 @@ def find_namespace_array_type(type):
             else:
                 temp = 'HI.' + get_last(temp)
         else:
-            # print temp + " not in namespace structure!"
+            print temp + " not in namespace structure!"
             temp = "*"
 
         if temp.startswith('Array'):
@@ -1713,12 +1693,9 @@ def type_from_namespace(type):
             if hc_match:
                 temp = hc_match.group(1)
                 if temp in namespace_structure:
-                    print("Added type from namespace : " + new_type + ", value: " + 'ArrayList<{}>'.format(
-                        'HI' + get_last(temp)))
-                    hc_types[new_type] = 'ArrayList<{}>'.format('HI' + get_last(temp))
+                    hc_types[new_type] = 'NSArray<{} *>'.format('HI' + get_last(temp))
 
         elif new_type in namespace_structure:
-            print("Added type from namespace : " + new_type + ", value: " + "HI" + get_last(new_type))
             hc_types[new_type] = 'HI' + get_last(new_type)
         elif 'Highcharts.AnimationOptionsObject' in new_type or 'Highcharts.AnimationObject' in new_type:
             hc_types[new_type] = 'HIAnimationOptionsObject'
@@ -1748,7 +1725,6 @@ def print_unknown_tree_types():
 
 def main():
     create_namespace_structure()
-    structure.update(namespace_structure)
     # print_namespace_structure()
     # print_unknown_namespace_types()
     create_structure()
