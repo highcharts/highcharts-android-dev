@@ -11,6 +11,7 @@ package com.highsoft.highcharts.common.hichartsclasses;
 import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.core.HIFoundation;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -19,7 +20,7 @@ public class HIDial extends HIFoundation {
 
 	private HIColor borderColor;
 	/**
- The border color or stroke of the gauge's dial. By defaults, the borderWidth is 0, so this must be set in addition to a custom border color. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a>
+ The border color or stroke of the gauge's dial. By defaults, the borderWidth is 0, so this must be set in addition to a custom border color. 
  <br><br><b>defaults:</b><br><br>&ensp;#cccccc	*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
@@ -31,7 +32,7 @@ public class HIDial extends HIFoundation {
 
 	private String rearLength;
 	/**
- The length of the dial's rear end, the part that extends out on the other side of the pivot. Relative to the dial's length. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a>
+ The length of the dial's rear end, the part that extends out on the other side of the pivot. Relative to the dial's length. 
  <br><br><b>defaults:</b><br><br>&ensp;10%	*/
 	public void setRearLength(String rearLength) {
 		this.rearLength = rearLength;
@@ -43,7 +44,7 @@ public class HIDial extends HIFoundation {
 
 	private String baseLength;
 	/**
- The length of the dial's base part, relative to the total radius or length of the dial. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a>
+ The length of the dial's base part, relative to the total radius or length of the dial. 
  <br><br><b>defaults:</b><br><br>&ensp;70%	*/
 	public void setBaseLength(String baseLength) {
 		this.baseLength = baseLength;
@@ -55,7 +56,7 @@ public class HIDial extends HIFoundation {
 
 	private String radius;
 	/**
- The radius or length of the dial, in percentages relative to the radius of the gauge itself. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a>
+ The radius or length of the dial, in percentages relative to the radius of the gauge itself. 
  <br><br><b>defaults:</b><br><br>&ensp;80%	*/
 	public void setRadius(String radius) {
 		this.radius = radius;
@@ -67,7 +68,7 @@ public class HIDial extends HIFoundation {
 
 	private Number borderWidth;
 	/**
- The width of the gauge dial border in pixels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a>
+ The width of the gauge dial border in pixels. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
@@ -79,7 +80,7 @@ public class HIDial extends HIFoundation {
 
 	private HIColor backgroundColor;
 	/**
- The background or fill color of the gauge's dial. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a>
+ The background or fill color of the gauge's dial. 
  <br><br><b>defaults:</b><br><br>&ensp;#000000	*/
 	public void setBackgroundColor(HIColor backgroundColor) {
 		this.backgroundColor = backgroundColor;
@@ -91,7 +92,7 @@ public class HIDial extends HIFoundation {
 
 	private Number topWidth;
 	/**
- The width of the top of the dial, closest to the perimeter. The pivot narrows in from the base to the top. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a>
+ The width of the top of the dial, closest to the perimeter. The pivot narrows in from the base to the top. 
  <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setTopWidth(Number topWidth) {
 		this.topWidth = topWidth;
@@ -101,9 +102,21 @@ public class HIDial extends HIFoundation {
 
 	public Number getTopWidth(){ return topWidth; }
 
+	private ArrayList path;
+	/**
+ An array with an SVG path for the custom dial. 
+	*/
+	public void setPath(ArrayList path) {
+		this.path = path;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList getPath(){ return path; }
+
 	private Number baseWidth;
 	/**
- The pixel width of the base of the gauge dial. The base is the part closest to the pivot, defined by baseLength. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-dial/">Dial options demonstrated</a>
+ The pixel width of the base of the gauge dial. The base is the part closest to the pivot, defined by baseLength. 
  <br><br><b>defaults:</b><br><br>&ensp;3	*/
 	public void setBaseWidth(Number baseWidth) {
 		this.baseWidth = baseWidth;
@@ -144,6 +157,18 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.topWidth != null) {
 			params.put("topWidth", this.topWidth);
+		}
+		if (this.path != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.path) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("path", array);
 		}
 		if (this.baseWidth != null) {
 			params.put("baseWidth", this.baseWidth);

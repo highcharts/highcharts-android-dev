@@ -18,7 +18,7 @@ public class HICaption extends HIFoundation {
 
 	private HICSSObject style;
 	/**
- CSS styles for the caption. In styled mode, the caption style is given in the .highcharts-caption class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/titles/">Styled mode</a>
+ CSS styles for the caption. In styled mode, the caption style is given in the `.highcharts-caption` class. 
  <br><br><b>defaults:</b><br><br>&ensp;{"color": "#666666"}	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
@@ -30,8 +30,8 @@ public class HICaption extends HIFoundation {
 
 	private String verticalAlign;
 	/**
- The vertical alignment of the caption. Can be one of "top", "middle" and "bottom". When middle, the caption behaves as floating. 
-	*/
+ The vertical alignment of the caption. Can be one of `"top"`, `"middle"` and `"bottom"`. When middle, the caption behaves as floating. 
+ <br><br><b>defaults:</b><br><br>&ensp;bottom	*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
 		this.setChanged();
@@ -42,7 +42,7 @@ public class HICaption extends HIFoundation {
 
 	private String text;
 	/**
- The caption text of the chart. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/caption/text/">Custom caption</a>
+ The caption text of the chart. 
 	*/
 	public void setText(String text) {
 		this.text = text;
@@ -55,7 +55,7 @@ public class HICaption extends HIFoundation {
 	private String align;
 	/**
  The horizontal alignment of the caption. Can be one of "left", "center" and "right". 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;left	*/
 	public void setAlign(String align) {
 		this.align = align;
 		this.setChanged();
@@ -66,7 +66,7 @@ public class HICaption extends HIFoundation {
 
 	private Number y;
 	/**
- The y position of the caption relative to the alignment within chart.spacingTop and chart.spacingBottom. 
+ The y position of the caption relative to the alignment within `chart.spacingTop` and `chart.spacingBottom`. 
 	*/
 	public void setY(Number y) {
 		this.y = y;
@@ -78,7 +78,7 @@ public class HICaption extends HIFoundation {
 
 	private Number x;
 	/**
- The x position of the caption relative to the alignment within chart.spacingLeft and chart.spacingRight. 
+ The x position of the caption relative to the alignment within `chart.spacingLeft` and `chart.spacingRight`. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setX(Number x) {
 		this.x = x;
@@ -103,7 +103,7 @@ public class HICaption extends HIFoundation {
 	private Number margin;
 	/**
  The margin between the caption and the plot area. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;15	*/
 	public void setMargin(Number margin) {
 		this.margin = margin;
 		this.setChanged();

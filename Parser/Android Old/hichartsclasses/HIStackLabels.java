@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -20,7 +21,7 @@ public class HIStackLabels extends HIFoundation {
 
 	private Boolean allowOverlap;
 	/**
- Allow the stack labels to overlap. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-allowoverlap-false/">Default false</a>
+ Allow the stack labels to overlap. 
 	*/
 	public void setAllowOverlap(Boolean allowOverlap) {
 		this.allowOverlap = allowOverlap;
@@ -30,21 +31,21 @@ public class HIStackLabels extends HIFoundation {
 
 	public Boolean getAllowOverlap(){ return allowOverlap; }
 
-	private Object borderColor;
+	private HIColor borderColor;
 	/**
- The border color for the stack label. Defaults to undefined. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-box/">Stack labels box options</a>
+ The border color for the stack label. Defaults to `undefined`. 
 	*/
-	public void setBorderColor(Object borderColor) {
+	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getBorderColor(){ return borderColor; }
+	public HIColor getBorderColor(){ return borderColor; }
 
 	private HICSSObject style;
 	/**
- CSS styles for the label. In styled mode, the styles are set in the .highcharts-stack-label class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-style/">Red stack total labels</a>
+ CSS styles for the label. In styled mode, the styles are set in the `.highcharts-stack-label` class. 
 	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
@@ -56,7 +57,7 @@ public class HIStackLabels extends HIFoundation {
 
 	private String verticalAlign;
 	/**
- Defines the vertical alignment of the stack total label. Can be one of "top", "middle" or "bottom". The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-verticalalign-top/">Vertically aligned top</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-verticalalign-middle/">Vertically aligned middle</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-verticalalign-bottom/">Vertically aligned bottom</a>
+ Defines the vertical alignment of the stack total label. Can be one of `"top"`, `"middle"` or `"bottom"`. The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. 
 	*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
@@ -68,7 +69,7 @@ public class HIStackLabels extends HIFoundation {
 
 	private String format;
 	/**
- A format string for the data label. Available variables are the same as for formatter. 
+ A format string for the data label. Available variables are the same as for `formatter`. 
  <br><br><b>defaults:</b><br><br>&ensp;{total}	*/
 	public void setFormat(String format) {
 		this.format = format;
@@ -80,7 +81,7 @@ public class HIStackLabels extends HIFoundation {
 
 	private Number borderRadius;
 	/**
- The border radius in pixels for the stack label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-box/">Stack labels box options</a>
+ The border radius in pixels for the stack label. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setBorderRadius(Number borderRadius) {
 		this.borderRadius = borderRadius;
@@ -92,7 +93,7 @@ public class HIStackLabels extends HIFoundation {
 
 	private String align;
 	/**
- Defines the horizontal alignment of the stack total label. Can be one of "left", "center" or "right". The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-align-left/">Aligned to the left</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-align-center/">Aligned in center</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-align-right/">Aligned to the right</a>
+ Defines the horizontal alignment of the stack total label. Can be one of `"left"`, `"center"` or `"right"`. The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. 
 	*/
 	public void setAlign(String align) {
 		this.align = align;
@@ -104,7 +105,7 @@ public class HIStackLabels extends HIFoundation {
 
 	private Boolean enabled;
 	/**
- Enable or disable the stack total labels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-enabled/">Enabled stack total labels</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-enabled-waterfall/">Enabled stack labels in waterfall chart</a>
+ Enable or disable the stack total labels. 
 	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -117,7 +118,7 @@ public class HIStackLabels extends HIFoundation {
 	private Boolean crop;
 	/**
  Whether to hide stack labels that are outside the plot area. By defaults, the stack label is moved inside the plot area according to the `overflow` option. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setCrop(Boolean crop) {
 		this.crop = crop;
 		this.setChanged();
@@ -128,7 +129,7 @@ public class HIStackLabels extends HIFoundation {
 
 	private String textAlign;
 	/**
- The text alignment for the label. While align determines where the texts anchor point is placed with regards to the stack, textAlign determines how the text is aligned against its anchor point. Possible values are "left", "center" and "right". The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-textalign-left/">Label in center position but text-aligned left</a>
+ The text alignment for the label. While `align` determines where the texts anchor point is placed with regards to the stack, `textAlign` determines how the text is aligned against its anchor point. Possible values are `"left"`, `"center"` and `"right"`. The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. 
 	*/
 	public void setTextAlign(String textAlign) {
 		this.textAlign = textAlign;
@@ -140,7 +141,7 @@ public class HIStackLabels extends HIFoundation {
 
 	private HIAnimationOptionsObject animation;
 	/**
- Enable or disable the initial animation when a series is displayed for the stackLabels. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation. For other animations, see chart.animation and the animation parameter under the API methods. The following properties are supported: - defer: The animation delay time in milliseconds. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/animation-defer/">Animation defer settings</a>
+ Enable or disable the initial animation when a series is displayed for the `stackLabels`. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation. For other animations, see `chart.animation` and the animation parameter under the API methods. The following properties are supported: - `defer`: The animation delay time in milliseconds. 
 	*/
 	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
@@ -152,7 +153,7 @@ public class HIStackLabels extends HIFoundation {
 
 	private Number borderWidth;
 	/**
- The border width in pixels for the stack label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-box/">Stack labels box options</a>
+ The border width in pixels for the stack label. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
@@ -162,21 +163,21 @@ public class HIStackLabels extends HIFoundation {
 
 	public Number getBorderWidth(){ return borderWidth; }
 
-	private Object backgroundColor;
+	private HIColor backgroundColor;
 	/**
- The background color or gradient for the stack label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-box/">Stack labels box options</a>
+ The background color or gradient for the stack label. 
 	*/
-	public void setBackgroundColor(Object backgroundColor) {
+	public void setBackgroundColor(HIColor backgroundColor) {
 		this.backgroundColor = backgroundColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getBackgroundColor(){ return backgroundColor; }
+	public HIColor getBackgroundColor(){ return backgroundColor; }
 
 	private Number y;
 	/**
- The y position offset of the label relative to the tick position on the axis. The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-y/">Stack total labels with y offset</a>
+ The y position offset of the label relative to the tick position on the axis. The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. 
 	*/
 	public void setY(Number y) {
 		this.y = y;
@@ -188,7 +189,7 @@ public class HIStackLabels extends HIFoundation {
 
 	private Number x;
 	/**
- The x position offset of the label relative to the left of the stacked bar. The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-x/">Stack total labels with x offset</a>
+ The x position offset of the label relative to the left of the stacked bar. The defaults value is calculated at runtime and depends on orientation and whether the stack is positive or negative. 
 	*/
 	public void setX(Number x) {
 		this.x = x;
@@ -200,8 +201,8 @@ public class HIStackLabels extends HIFoundation {
 
 	private String overflow;
 	/**
- How to handle stack total labels that flow outside the plot area. The defaults is set to "justify", which aligns them inside the plot area. For columns and bars, this means it will be moved inside the bar. To display stack labels outside the plot area, set crop to false and overflow to "allow". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-overflow/">Stack labels flows outside the plot area.</a>
-	*/
+ How to handle stack total labels that flow outside the plot area. The defaults is set to `"justify"`, which aligns them inside the plot area. For columns and bars, this means it will be moved inside the bar. To display stack labels outside the plot area, set `crop` to `false` and `overflow` to `"allow"`. 
+ <br><br><b>defaults:</b><br><br>&ensp;justify	*/
 	public void setOverflow(String overflow) {
 		this.overflow = overflow;
 		this.setChanged();
@@ -212,7 +213,7 @@ public class HIStackLabels extends HIFoundation {
 
 	private HIFunction formatter;
 	/**
- Callback JavaScript function to format the label. The value is given by this.total. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-formatter/">Added units to stack total value</a>
+ Callback JavaScript function to format the label. The value is given by `this.total`. 
 	*/
 	public void setFormatter(HIFunction formatter) {
 		this.formatter = formatter;
@@ -224,7 +225,7 @@ public class HIStackLabels extends HIFoundation {
 
 	private Number rotation;
 	/**
- Rotation of the labels in degrees. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/stacklabels-rotation/">Labels rotated 45Â°</a>
+ Rotation of the labels in degrees. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;
@@ -261,7 +262,7 @@ public HashMap<String, Object> getParams() {
 			params.put("allowOverlap", this.allowOverlap);
 		}
 		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor);
+			params.put("borderColor", this.borderColor.getData());
 		}
 		if (this.style != null) {
 			params.put("style", this.style.getParams());
@@ -294,7 +295,7 @@ public HashMap<String, Object> getParams() {
 			params.put("borderWidth", this.borderWidth);
 		}
 		if (this.backgroundColor != null) {
-			params.put("backgroundColor", this.backgroundColor);
+			params.put("backgroundColor", this.backgroundColor.getData());
 		}
 		if (this.y != null) {
 			params.put("y", this.y);

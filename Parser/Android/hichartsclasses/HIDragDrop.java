@@ -154,7 +154,7 @@ public class HIDragDrop extends HIFoundation {
 
 	private Number dragPrecisionX;
 	/**
- The X precision value to drag to for this series. Set to 0 to disable. By defaults this is disabled, except for category axes, where the defaults is 1. 
+ The X precision value to drag to for this series. Set to 0 to disable. By defaults this is disabled, except for category axes, where the defaults is `1`. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setDragPrecisionX(Number dragPrecisionX) {
 		this.dragPrecisionX = dragPrecisionX;
@@ -166,7 +166,7 @@ public class HIDragDrop extends HIFoundation {
 
 	private Number dragPrecisionY;
 	/**
- The Y precision value to drag to for this series. Set to 0 to disable. By defaults this is disabled, except for category axes, where the defaults is 1. 
+ The Y precision value to drag to for this series. Set to 0 to disable. By defaults this is disabled, except for category axes, where the defaults is `1`. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setDragPrecisionY(Number dragPrecisionY) {
 		this.dragPrecisionY = dragPrecisionY;

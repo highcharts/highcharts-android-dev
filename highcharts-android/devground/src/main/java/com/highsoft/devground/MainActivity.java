@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         HIDataLabels precipErrDataLabels = new HIDataLabels();
         precipErrDataLabels.setFormatter(new HIFunction("function() { if (this.point.maxvalue > 0) { return this.point.maxvalue; }"));
         precipErrDataLabels.setStyle(new HIStyle());
-        precipErrDataLabels.getStyle().setFontSize("8px");
+        precipErrDataLabels.getStyle().setFontSize(8);
         options.getSeries().add(precipErrSeries);
 
 
@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<HIPlotLines> xAxisPlotLines = new ArrayList<>();
 
         HIPlotLines plotLine = new HIPlotLines();
-        plotLine.setColor("rgba(0,0,0,0.5)");
+        plotLine.setColor(HIColor.initWithRGBA(0,0,0,0.5));
         plotLine.setWidth(2);
         plotLine.setValue(4);
         plotLine.setZIndex(10);

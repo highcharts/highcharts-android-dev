@@ -85,7 +85,7 @@ public class HIOptions extends HIFoundation {
     "#2ee0ca",
     "#fa4b42",
     "#feb56a",
-    "#91e8e12
+    "#91e8e1"
 ]	*/
 	public void setColors(ArrayList<String> colors) {
 		this.colors = colors;

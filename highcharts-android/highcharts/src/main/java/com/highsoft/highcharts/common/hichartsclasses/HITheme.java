@@ -17,26 +17,29 @@ import java.util.HashMap;
 
 public class HITheme extends HIFoundation { 
 
-	private Number zIndex;
-	public void setZIndex(Number zIndex) {
-		this.zIndex = zIndex;
+	private Number padding;
+	/**
+ Padding for the button. 
+ <br><br><b>defaults:</b><br><br>&ensp;5	*/
+	public void setPadding(Number padding) {
+		this.padding = padding;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getZIndex(){ return zIndex; }
+	public Number getPadding(){ return padding; }
 
-	private Object stroke;
+	private HIColor stroke;
 	/**
  Default stroke for the buttons. 
  <br><br><b>defaults:</b><br><br>&ensp;none	*/
-	public void setStroke(Object stroke) {
+	public void setStroke(HIColor stroke) {
 		this.stroke = stroke;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getStroke(){ return stroke; }
+	public HIColor getStroke(){ return stroke; }
 
 	private HIColor fill;
 	/**
@@ -50,6 +53,15 @@ public class HITheme extends HIFoundation {
 
 	public HIColor getFill(){ return fill; }
 
+	private Number zIndex;
+	public void setZIndex(Number zIndex) {
+		this.zIndex = zIndex;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getZIndex(){ return zIndex; }
+
 
 
 	public HITheme() {
@@ -61,14 +73,17 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.zIndex != null) {
-			params.put("zIndex", this.zIndex);
+		if (this.padding != null) {
+			params.put("padding", this.padding);
 		}
 		if (this.stroke != null) {
-			params.put("stroke", this.stroke);
+			params.put("stroke", this.stroke.getData());
 		}
 		if (this.fill != null) {
 			params.put("fill", this.fill.getData());
+		}
+		if (this.zIndex != null) {
+			params.put("zIndex", this.zIndex);
 		}
 		return params;
 	}

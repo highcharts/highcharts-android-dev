@@ -609,18 +609,17 @@ public class HIData extends HIFoundation {
 
 	public String getDrilldown(){ return drilldown; }
 
-	private HIDataLabels dataLabels;
+	private ArrayList dataLabels;
 	/**
  Individual data label for each point. The options are the same as the ones for `plotOptions.series.dataLabels`. 
 	*/
-	public void setDataLabels(HIDataLabels dataLabels) {
+	public void setDataLabels(ArrayList dataLabels) {
 		this.dataLabels = dataLabels;
-		this.dataLabels.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIDataLabels getDataLabels(){ return dataLabels; }
+	public ArrayList getDataLabels(){ return dataLabels; }
 
 	private HIEvents events;
 	/**
@@ -719,30 +718,6 @@ public class HIData extends HIFoundation {
 	}
 
 	public String getTo(){ return to; }
-
-	private Number direction;
-	/**
- The vector direction in degrees, where 0 is north (pointing towards south). 
-	*/
-	public void setDirection(Number direction) {
-		this.direction = direction;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getDirection(){ return direction; }
-
-	private Number length;
-	/**
- The length of the vector. The rendered length will relate to the `vectorLength` setting. 
-	*/
-	public void setLength(Number length) {
-		this.length = length;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getLength(){ return length; }
 
 	private Number target;
 	/**
@@ -913,6 +888,30 @@ public class HIData extends HIFoundation {
 
 	public Boolean getGradientForSides(){ return gradientForSides; }
 
+	private Number direction;
+	/**
+ The vector direction in degrees, where 0 is north (pointing towards south). 
+	*/
+	public void setDirection(Number direction) {
+		this.direction = direction;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getDirection(){ return direction; }
+
+	private Number length;
+	/**
+ The length of the vector. The rendered length will relate to the `vectorLength` setting. 
+	*/
+	public void setLength(Number length) {
+		this.length = length;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getLength(){ return length; }
+
 	private String innerRadius;
 	/**
  The inner radius of an individual point in a solid gauge. Can be given only in percentage, either as a number or a string like `"50%"`. 
@@ -963,7 +962,7 @@ public class HIData extends HIFoundation {
 
 	private HIColor lowColor;
 	/**
- Color of the start markers in a dumbbell graph. 
+ Color of the start markers in a dumbbell graph. This option takes priority over the series color. To avoid this, set `lowColor` to `undefined`. 
  <br><br><b>defaults:</b><br><br>&ensp;#333333	*/
 	public void setLowColor(HIColor lowColor) {
 		this.lowColor = lowColor;
@@ -1244,7 +1243,16 @@ public HashMap<String, Object> getParams() {
 			params.put("drilldown", this.drilldown);
 		}
 		if (this.dataLabels != null) {
-			params.put("dataLabels", this.dataLabels.getParams());
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.dataLabels) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("dataLabels", array);
 		}
 		if (this.events != null) {
 			params.put("events", this.events.getParams());
@@ -1269,12 +1277,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.to != null) {
 			params.put("to", this.to);
-		}
-		if (this.direction != null) {
-			params.put("direction", this.direction);
-		}
-		if (this.length != null) {
-			params.put("length", this.length);
 		}
 		if (this.target != null) {
 			params.put("target", this.target);
@@ -1317,6 +1319,12 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.gradientForSides != null) {
 			params.put("gradientForSides", this.gradientForSides);
+		}
+		if (this.direction != null) {
+			params.put("direction", this.direction);
+		}
+		if (this.length != null) {
+			params.put("length", this.length);
 		}
 		if (this.innerRadius != null) {
 			params.put("innerRadius", this.innerRadius);

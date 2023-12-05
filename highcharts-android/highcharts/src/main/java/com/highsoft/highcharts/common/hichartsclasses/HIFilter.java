@@ -18,7 +18,7 @@ public class HIFilter extends HIFoundation {
 
 	private String operator;
 	/**
- The operator to compare by. Can be one of >, <, >=, <=, ==, and ===. <br><br><b>accepted values:</b><br><br>&ensp;[">", "<", ">=", "<=", "==", "==="]
+ The operator to compare by. Can be one of `>`, `<`, `>=`, `<=`, `==`, and `===`. 
 	*/
 	public void setOperator(String operator) {
 		this.operator = operator;
@@ -30,7 +30,7 @@ public class HIFilter extends HIFoundation {
 
 	private String property;
 	/**
- The point property to filter by. Point options are passed directly to properties, additionally there are y value, percentage and others listed under {@link Highcharts.Point} members. 
+ The point property to filter by. Point options are passed directly to properties, additionally there are `y` value, `percentage` and others listed under {@link Highcharts.Point} members. 
 	*/
 	public void setProperty(String property) {
 		this.property = property;

@@ -19,7 +19,7 @@ import android.widget.RelativeLayout;
 import com.highsoft.highcharts.common.hichartsclasses.HIAnimationOptionsObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIAnnotations;
 import com.highsoft.highcharts.common.hichartsclasses.HICredits;
-import com.highsoft.highcharts.common.hichartsclasses.HIGlobal;
+import com.highsoft.highcharts.common.hichartsclasses.HIGlobalContextTracks;
 import com.highsoft.highcharts.common.hichartsclasses.HILang;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
 import com.highsoft.highcharts.common.hichartsclasses.HIPoint;
@@ -80,7 +80,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
     /**
      * Global object. It contains global options that apply to the chart view but are not within other classes,
      */
-    public HIGlobal global;
+    public HIGlobalContextTracks global;
 
     private WebView webView;
     private HIGHTML HTML;

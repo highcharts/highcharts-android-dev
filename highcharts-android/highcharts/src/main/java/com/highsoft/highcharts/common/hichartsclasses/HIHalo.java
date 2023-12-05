@@ -25,15 +25,15 @@ public class HIHalo extends HIFoundation {
 
 	public Number getOpacity(){ return opacity; }
 
-	private HIAttributes attributes;
-	public void setAttributes(HIAttributes attributes) {
+	private HISVGAttributes attributes;
+	public void setAttributes(HISVGAttributes attributes) {
 		this.attributes = attributes;
 		this.attributes.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIAttributes getAttributes(){ return attributes; }
+	public HISVGAttributes getAttributes(){ return attributes; }
 
 	private Boolean enabled;
 	public void setEnabled(Boolean enabled) {

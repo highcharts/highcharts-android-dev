@@ -19,7 +19,7 @@ public class HINormal extends HIFoundation {
 	private HIAnimationOptionsObject animation;
 	/**
  Animation when returning to normal state after hovering. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
 		this.setChanged();

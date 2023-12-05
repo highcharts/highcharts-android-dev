@@ -467,7 +467,7 @@ public class HITooltip extends HIFoundation {
 	private String linkFormat;
 	/**
  The HTML of the point's line in the tooltip. Variables are enclosed by curly brackets. Available variables are `point.id`, `point.fromNode.id`, `point.toNode.id`, `series.name`, `series.color` and other properties on the same form. Furthermore, This can also be overridden for each series, which makes it a good hook for displaying units. In styled mode, the dot is colored by a class name rather than the point color. 
- <br><br><b>defaults:</b><br><br>&ensp;{point.fromNode.id} â†’ {point.toNode.id}	*/
+ <br><br><b>defaults:</b><br><br>&ensp;{point.fromNode.id} → {point.toNode.id}	*/
 	public void setLinkFormat(String linkFormat) {
 		this.linkFormat = linkFormat;
 		this.setChanged();

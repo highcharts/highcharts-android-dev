@@ -8,22 +8,17 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.core.HIFunction;
+
+import java.util.HashMap;
 
 
 
 public class HIDataLabels extends HIFoundation { 
 
 	private Boolean allowOverlap;
-	/**
-/** * description: Whether to allow data labels to overlap. To make the labels less sensitive for overlapping, the dataLabels.padding can be set to 0. * demo:  •  Don't allow overlap
-* defaults: false
-*/
 	public void setAllowOverlap(Boolean allowOverlap) {
 		this.allowOverlap = allowOverlap;
 		this.setChanged();
@@ -33,9 +28,6 @@ public class HIDataLabels extends HIFoundation {
 	public Boolean getAllowOverlap(){ return allowOverlap; }
 
 	private Boolean defer;
-	/**
-/** * description: Whether to defer displaying the data labels until the initial series animation has finished. Setting to false renders the data label immediately. If set to true inherits the defer time set in plotOptions.series.animation. If set to a number, a defer time is specified in milliseconds. * demo:  •  Set defer time
-*/
 	public void setDefer(Boolean defer) {
 		this.defer = defer;
 		this.setChanged();
@@ -45,9 +37,6 @@ public class HIDataLabels extends HIFoundation {
 	public Boolean getDefer(){ return defer; }
 
 	private HIStyle style;
-	/**
-/** * description: Styles for the label. The defaults color setting is "contrast", which is a pseudo color that Highcharts picks up and applies the maximum contrast to the underlying point item, for example the bar in a bar chart. The textOutline is a pseudo property that applies an outline of the given width with the given color, which by defaults is the maximum contrast to the text. So a bright text color will result in a black text outline for maximum readability on a mixed background. In some cases, especially with grayscale text, the text outline doesn't work well, in which cases it can be disabled by setting it to "none". When useHTML is true, the textOutline will not be picked up. In this, case, the same effect can be acheived through the text-shadow CSS property. For some series types, where each point has an extent, like for example tree maps, the data label may overflow the point. There are two strategies for handling overflow. By defaults, the text will wrap to multiple lines. The other strategy is to set style.textOverflow to ellipsis, which will keep the text on one line plus it will break inside long words. * demo:  •  Bold labels •  Long labels truncated with an ellipsis in a pie •  Long labels are wrapped in a pie
-*/
 	public void setStyle(HIStyle style) {
 		this.style = style;
 		this.style.addObserver(updateObserver);
@@ -59,8 +48,8 @@ public class HIDataLabels extends HIFoundation {
 
 	private String rotationMode;
 	/**
- Decides how the data label will be rotated relative to the perimeter of the sunburst. Valid values are auto, circular, parallel and perpendicular. When auto, the best fit will be computed for the point. The circular option works similiar to auto, but uses the textPath feature - labels are curved, resulting in a better layout, however multiple lines and textOutline are not supported. The rotation option takes precedence over rotationMode. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-datalabels-rotationmode-circular/">Circular rotation mode</a> <br><br><b>accepted values:</b><br><br>&ensp;["auto", "perpendicular", "parallel", "circular"]
-	*/
+ Decides how the data label will be rotated relative to the perimeter of the sunburst. Valid values are `circular`, `auto`, `parallel` and `perpendicular`. When `circular`, the best fit will be computed for the point, so that the label is curved around the center when there is room for it, otherwise perpendicular. The legacy `auto` option works similiar to `circular`, but instead of curving the labels they are tangent to the perimiter. The `rotation` option takes precedence over `rotationMode`. 
+ <br><br><b>defaults:</b><br><br>&ensp;circular	*/
 	public void setRotationMode(String rotationMode) {
 		this.rotationMode = rotationMode;
 		this.setChanged();
@@ -69,16 +58,71 @@ public class HIDataLabels extends HIFoundation {
 
 	public String getRotationMode(){ return rotationMode; }
 
-	private String verticalAlign;
-	public void setVerticalAlign(String verticalAlign) {
-		this.verticalAlign = verticalAlign;
+	private HIColor connectorColor;
+	/**
+ The color of the line connecting the data label to the pie slice. The defaults color is the same as the point's color. In styled mode, the connector stroke is given in the `.highcharts-data-label-connector` class. 
+	*/
+	public void setConnectorColor(HIColor connectorColor) {
+		this.connectorColor = connectorColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getVerticalAlign(){ return verticalAlign; }
+	public HIColor getConnectorColor(){ return connectorColor; }
+
+	private String crookDistance;
+	/**
+ Works only if `connectorShape` is `'crookedLine'`. It defines how far from the vertical plot edge the coonnector path should be crooked. With the defaults, `undefined`, the crook is placed so that the horizontal line from the label intersects with the radial line extending through the center of the pie slice. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setCrookDistance(String crookDistance) {
+		this.crookDistance = crookDistance;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getCrookDistance(){ return crookDistance; }
+
+	private String alignTo;
+	/**
+ Alignment method for data labels. Possible values are: - `plotEdges`: Each label touches the nearest vertical edge of  the plot area. - `connectors`: Connectors have the same x position and the  widest label of each half (left & right) touches the nearest  vertical edge of the plot area. 
+	*/
+	public void setAlignTo(String alignTo) {
+		this.alignTo = alignTo;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getAlignTo(){ return alignTo; }
+
+	private Number connectorWidth;
+	/**
+ The width of the line connecting the data label to the pie slice. In styled mode, the connector stroke width is given in the `.highcharts-data-label-connector` class. 
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
+	public void setConnectorWidth(Number connectorWidth) {
+		this.connectorWidth = connectorWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getConnectorWidth(){ return connectorWidth; }
+
+	private Boolean softConnector;
+	/**
+ Whether to render the connector as a soft arc or a line with a sharp break. Works only if `connectorShape` equals to `fixedOffset`. 
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
+	public void setSoftConnector(Boolean softConnector) {
+		this.softConnector = softConnector;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getSoftConnector(){ return softConnector; }
 
 	private String format;
+	/**
+/** * description: A [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) for the data label. Available variables are the same as for `formatter`. * demo: * [Add a unit](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-format/) 
+* defaults: undefined
+*/
 	public void setFormat(String format) {
 		this.format = format;
 		this.setChanged();
@@ -87,16 +131,11 @@ public class HIDataLabels extends HIFoundation {
 
 	public String getFormat(){ return format; }
 
-	private String align;
-	public void setAlign(String align) {
-		this.align = align;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getAlign(){ return align; }
-
 	private Boolean enabled;
+	/**
+/** * description: Enable or disable the data labels. * demo: * [Data labels enabled](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-enabled/) 
+* defaults: True
+*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -105,103 +144,35 @@ public class HIDataLabels extends HIFoundation {
 
 	public Boolean getEnabled(){ return enabled; }
 
-	private Boolean inside;
-	public void setInside(Boolean inside) {
-		this.inside = inside;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getInside(){ return inside; }
-
-	private Number y;
-	public void setY(Number y) {
-		this.y = y;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getY(){ return y; }
-
-	private Number yHigh;
+	private Number connectorPadding;
 	/**
- Y offset of the higher data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
-	*/
-	public void setYHigh(Number yHigh) {
-		this.yHigh = yHigh;
+ The distance from the data label to the connector. Note that data labels also have a defaults `padding`, so in order for the connector to touch the text, the `padding` must also be 0. 
+ <br><br><b>defaults:</b><br><br>&ensp;5	*/
+	public void setConnectorPadding(Number connectorPadding) {
+		this.connectorPadding = connectorPadding;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getYHigh(){ return yHigh; }
+	public Number getConnectorPadding(){ return connectorPadding; }
 
-	private Number xHigh;
+	private String connectorShape;
 	/**
- X offset of the higher data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
-	*/
-	public void setXHigh(Number xHigh) {
-		this.xHigh = xHigh;
+ Specifies the method that is used to generate the connector path. Highcharts provides 3 built-in connector shapes: `'crookedLine'` (defaults since v11), `'fixedOffset'` and `'straight'`. Users can provide their own method by passing a function instead of a string. Three arguments are passed to the callback: - An object that holds the information about the coordinates of the  label (`x` & `y` properties) and how the label is located in  relation to the pie (`alignment` property). `alignment` can by one  of the following: `'left'` (pie on the left side of the data  label), `'right'` (pie on the right side of the data label) or  `'center'` (data label overlaps the pie). - An object that holds the information about the position of the  connector. Its `touchingSliceAt` porperty tells the position of  the place where the connector touches the slice. - Data label options The function has to return an SVG path definition in array form (see the example). 
+ <br><br><b>defaults:</b><br><br>&ensp;crookedLine	*/
+	public void setConnectorShape(String connectorShape) {
+		this.connectorShape = connectorShape;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getXHigh(){ return xHigh; }
-
-	private Number xLow;
-	/**
- X offset of the lower data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
-	*/
-	public void setXLow(Number xLow) {
-		this.xLow = xLow;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getXLow(){ return xLow; }
-
-	private Number yLow;
-	/**
- Y offset of the lower data labels relative to the point value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-datalabels/">Data labels on range series</a>
-	*/
-	public void setYLow(Number yLow) {
-		this.yLow = yLow;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getYLow(){ return yLow; }
-
-	private Boolean crop;
-	public void setCrop(Boolean crop) {
-		this.crop = crop;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getCrop(){ return crop; }
-
-	private HIFunction nodeFormatter;
-	/**
- Callback to format data labels for _nodes_ in the sankey diagram. The nodeFormat option takes precedence over the nodeFormatter. 
-	*/
-	public void setNodeFormatter(HIFunction nodeFormatter) {
-		this.nodeFormatter = nodeFormatter;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getNodeFormatter(){ return nodeFormatter; }
-
-	private String backgroundColor;
-	public void setBackgroundColor(String backgroundColor) {
-		this.backgroundColor = backgroundColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getBackgroundColor(){ return backgroundColor; }
+	public String getConnectorShape(){ return connectorShape; }
 
 	private HIFunction formatter;
+	/**
+/** * description: Callback JavaScript function to format the data label. Note that if a `format` is defined, the format takes precedence and the formatter is ignored. 
+* defaults: function () { return this.point.isNull ? void 0 : this.point.name; }
+*/
 	public void setFormatter(HIFunction formatter) {
 		this.formatter = formatter;
 		this.setChanged();
@@ -210,21 +181,21 @@ public class HIDataLabels extends HIFoundation {
 
 	public HIFunction getFormatter(){ return formatter; }
 
-	private String nodeFormat;
+	private Object /* Number, String */ distance;
 	/**
- The [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) specifying what to show for _nodes_ in the sankey diagram. By defaults the nodeFormatter returns {point.name}. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-link-datalabels/">Node and link data labels</a>
-	*/
-	public void setNodeFormat(String nodeFormat) {
-		this.nodeFormat = nodeFormat;
+ The distance of the data label from the pie's edge. Negative numbers put the data label on top of the pie slices. Can also be defined as a percentage of pie's radius. Connectors are only shown for data labels outside the pie. 
+ <br><br><b>defaults:</b><br><br>&ensp;30	*/
+	public void setDistance(Object /* Number, String */ distance) {
+		this.distance = distance;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getNodeFormat(){ return nodeFormat; }
+	public Object /* Number, String */ getDistance(){ return distance; }
 
 	private HIFunction nullFormatter;
 	/**
- Callback JavaScript function that defines formatting for points with the value of null. Works analogously to formatter. nullPointFormatter can be applied only to series which support displaying null points. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-format/">Format data label and tooltip for null point.</a>
+ Callback JavaScript function that defines formatting for points with the value of null. Works analogously to `formatter`. `nullFormatter` can be applied only to series which support displaying null points i.e `heatmap` or `tilemap`. Does not work with series that don't display null points, like `line`, `column`, `bar` or `pie`. 
 	*/
 	public void setNullFormatter(HIFunction nullFormatter) {
 		this.nullFormatter = nullFormatter;
@@ -236,7 +207,7 @@ public class HIDataLabels extends HIFoundation {
 
 	private Number borderRadius;
 	/**
- The border radius in pixels for the data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a>
+ The border radius in pixels for the data label. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setBorderRadius(Number borderRadius) {
 		this.borderRadius = borderRadius;
@@ -246,9 +217,21 @@ public class HIDataLabels extends HIFoundation {
 
 	public Number getBorderRadius(){ return borderRadius; }
 
+	private Boolean crop;
+	/**
+ Whether to hide data labels that are outside the plot area. By defaults, the data label is moved inside the plot area according to the `overflow` option. 
+ <br><br><b>defaults:</b><br><br>&ensp;true	*/
+	public void setCrop(Boolean crop) {
+		this.crop = crop;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getCrop(){ return crop; }
+
 	private String shape;
 	/**
- The name of a symbol to use for the border around the label. Symbols are predefined functions on the Renderer object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-shape/">A callout for annotations</a>
+ The name of a symbol to use for the border around the label. Symbols are predefined functions on the Renderer object. 
  <br><br><b>defaults:</b><br><br>&ensp;square	*/
 	public void setShape(String shape) {
 		this.shape = shape;
@@ -260,7 +243,7 @@ public class HIDataLabels extends HIFoundation {
 
 	private String overflow;
 	/**
- How to handle data labels that flow outside the plot area. The defaults is "justify", which aligns them inside the plot area. For columns and bars, this means it will be moved inside the bar. To display data labels outside the plot area, set crop to false and overflow to "allow". 
+ How to handle data labels that flow outside the plot area. The defaults is `"justify"`, which aligns them inside the plot area. For columns and bars, this means it will be moved inside the bar. To display data labels outside the plot area, set `crop` to `false` and `overflow` to `"allow"`. 
  <br><br><b>defaults:</b><br><br>&ensp;justify	*/
 	public void setOverflow(String overflow) {
 		this.overflow = overflow;
@@ -272,7 +255,7 @@ public class HIDataLabels extends HIFoundation {
 
 	private HIColor borderColor;
 	/**
- The border color for the data label. Defaults to undefined. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a>
+ The border color for the data label. Setting it to `auto` will use the point's color. Defaults to `undefined`. 
 	*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
@@ -284,7 +267,7 @@ public class HIDataLabels extends HIFoundation {
 
 	private HIFilter filter;
 	/**
- A declarative filter to control of which data labels to display. The declarative filter is designed for use when callback functions are not available, like when the chart options require a pure JSON structure or for use with graphical editors. For programmatic control, use the formatter instead, and return undefined to disable a single data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pie-monochrome">Data labels filtered by percentage</a>
+ A declarative filter to control of which data labels to display. The declarative filter is designed for use when callback functions are not available, like when the chart options require a pure JSON structure or for use with graphical editors. For programmatic control, use the `formatter` instead, and return `undefined` to disable a single data label. 
 	*/
 	public void setFilter(HIFilter filter) {
 		this.filter = filter;
@@ -307,21 +290,9 @@ public class HIDataLabels extends HIFoundation {
 
 	public Boolean getUseHTML(){ return useHTML; }
 
-	private HIColor color;
-	/**
- The text color for the data labels. Defaults to undefined. For certain series types, like column or map, the data labels can be drawn inside the points. In this case the data label will be drawn with maximum contrast by defaults. Additionally, it will be given a text-outline style with the opposite color, to further increase the contrast. This can be overridden by setting the text-outline style to none in the dataLabels.style option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-color/">Red data labels</a>
-	*/
-	public void setColor(HIColor color) {
-		this.color = color;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getColor(){ return color; }
-
 	private HIAnimationOptionsObject animation;
 	/**
- Enable or disable the initial animation when a series is displayed for the dataLabels. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation. For other animations, see chart.animation and the animation parameter under the API methods. The following properties are supported: - defer: The animation delay time in milliseconds. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/animation-defer/">Animation defer settings</a>
+ Enable or disable the initial animation when a series is displayed for the `dataLabels`. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation. For other animations, see `chart.animation` and the animation parameter under the API methods. The following properties are supported: - `defer`: The animation delay time in milliseconds. 
 	*/
 	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
@@ -331,9 +302,21 @@ public class HIDataLabels extends HIFoundation {
 
 	public HIAnimationOptionsObject getAnimation(){ return animation; }
 
+	private HIColor backgroundColor;
+	/**
+ The background color or gradient for the data label. Setting it to `auto` will use the point's color. 
+	*/
+	public void setBackgroundColor(HIColor backgroundColor) {
+		this.backgroundColor = backgroundColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getBackgroundColor(){ return backgroundColor; }
+
 	private Object /* boolean, String */ nullFormat;
 	/**
- Format for points with the value of null. Works analogously to format. nullFormat can be applied only to series which support displaying null points. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-format/">Format data label and tooltip for null point.</a>
+ Format for points with the value of null. Works analogously to `format`. `nullFormat` can be applied only to series which support displaying null points i.e `heatmap` or `tilemap`. Does not work with series that don't display null points, like `line`, `column`, `bar` or `pie`. 
 	*/
 	public void setNullFormat(Object /* boolean, String */ nullFormat) {
 		this.nullFormat = nullFormat;
@@ -345,8 +328,8 @@ public class HIDataLabels extends HIFoundation {
 
 	private Number padding;
 	/**
- When either the borderWidth or the backgroundColor is set, this is the padding within the box. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a>
-	*/
+ When either the `borderWidth` or the `backgroundColor` is set, this is the padding within the box. 
+ <br><br><b>defaults:</b><br><br>&ensp;5	*/
 	public void setPadding(Number padding) {
 		this.padding = padding;
 		this.setChanged();
@@ -357,7 +340,7 @@ public class HIDataLabels extends HIFoundation {
 
 	private HIShadowOptionsObject /* boolean */ shadow;
 	/**
- The shadow of the box. Works best with borderWidth or backgroundColor. Since 2.3 the shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a>
+ The shadow of the box. Works best with `borderWidth` or `backgroundColor`. Since 2.3 the shadow can be an object configuration containing `color`, `offsetX`, `offsetY`, `opacity` and `width`. 
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setShadow(HIShadowOptionsObject /* boolean */ shadow) {
 		this.shadow = shadow;
@@ -369,7 +352,7 @@ public class HIDataLabels extends HIFoundation {
 
 	private Number x;
 	/**
- The x position offset of the label relative to the point in pixels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-rotation/">Vertical and positioned</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bar-datalabels-align-inside-bar/">Data labels inside the bar</a>
+ The x position offset of the label relative to the point in pixels. 
 	*/
 	public void setX(Number x) {
 		this.x = x;
@@ -381,7 +364,7 @@ public class HIDataLabels extends HIFoundation {
 
 	private Number rotation;
 	/**
- Text rotation in degrees. Note that due to a more complex structure, backgrounds, borders and padding will be lost on a rotated data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-rotation/">Vertical labels</a>
+ Text rotation in degrees. Note that due to a more complex structure, backgrounds, borders and padding will be lost on a rotated data label. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;
@@ -391,9 +374,33 @@ public class HIDataLabels extends HIFoundation {
 
 	public Number getRotation(){ return rotation; }
 
+	private Number zIndex;
+	/**
+ The z index of the data labels. Use a `zIndex` of 6 to display it above the series, or use a `zIndex` of 2 to display it behind the series. 
+ <br><br><b>defaults:</b><br><br>&ensp;6	*/
+	public void setZIndex(Number zIndex) {
+		this.zIndex = zIndex;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getZIndex(){ return zIndex; }
+
+	private String verticalAlign;
+	/**
+ The vertical alignment of a data label. Can be one of `top`, `middle` or `bottom`. The defaults value depends on the data, for instance in a column chart, the label is above positive values and below negative values. 
+	*/
+	public void setVerticalAlign(String verticalAlign) {
+		this.verticalAlign = verticalAlign;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getVerticalAlign(){ return verticalAlign; }
+
 	private String className;
 	/**
- A class name for the data label. Particularly in styled mode, this can be used to give each series' or point's data label unique styling. In addition to this option, a defaults color class name is added so that we can give the labels a contrast text shadow. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/data-label-contrast/">Contrast text shadow</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-datalabels/">Styling by CSS</a>
+ A class name for the data label. Particularly in styled mode, this can be used to give each series' or point's data label unique styling. In addition to this option, a defaults color class name is added so that we can give the labels a contrast text shadow. 
 	*/
 	public void setClassName(String className) {
 		this.className = className;
@@ -405,7 +412,7 @@ public class HIDataLabels extends HIFoundation {
 
 	private Number borderWidth;
 	/**
- The border width in pixels for the data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-box/">Data labels box options</a>
+ The border width in pixels for the data label. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
@@ -415,9 +422,21 @@ public class HIDataLabels extends HIFoundation {
 
 	public Number getBorderWidth(){ return borderWidth; }
 
+	private Number y;
+	/**
+ The y position offset of the label relative to the point in pixels. 
+	*/
+	public void setY(Number y) {
+		this.y = y;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getY(){ return y; }
+
 	private String position;
 	/**
- Aligns data labels relative to points. If center alignment is not possible, it defaultss to right. 
+ Aligns data labels relative to points. If `center` alignment is not possible, it defaultss to `right`. 
  <br><br><b>defaults:</b><br><br>&ensp;center	*/
 	public void setPosition(String position) {
 		this.position = position;
@@ -427,21 +446,9 @@ public class HIDataLabels extends HIFoundation {
 
 	public String getPosition(){ return position; }
 
-	private Number z;
-	/**
- The Z index of the data labels. The defaults Z index puts it above the series. Use a Z index of 2 to display it behind the series. 
- <br><br><b>defaults:</b><br><br>&ensp;6	*/
-	public void setZ(Number z) {
-		this.z = z;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getZ(){ return z; }
-
 	private HITextPath textPath;
 	/**
- Options for a label text which should follow marker's shape. Border and background are disabled for a label that follows a path. **Note:** Only SVG-based renderer supports this option. Setting useHTML to true will disable this option. 
+ Options for a label text which should follow marker's shape. Border and background are disabled for a label that follows a path. **Note:** Only SVG-based renderer supports this option. Setting `useHTML` to true will disable this option. 
 	*/
 	public void setTextPath(HITextPath textPath) {
 		this.textPath = textPath;
@@ -452,101 +459,131 @@ public class HIDataLabels extends HIFoundation {
 
 	public HITextPath getTextPath(){ return textPath; }
 
-	private HIColor connectorColor;
+	private String align;
+	public void setAlign(String align) {
+		this.align = align;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getAlign(){ return align; }
+
+	private Boolean inside;
+	public void setInside(Boolean inside) {
+		this.inside = inside;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getInside(){ return inside; }
+
+	private String linkFormat;
 	/**
- The color of the line connecting the data label to the pie slice. The defaults color is the same as the point's color. In styled mode, the connector stroke is given in the .highcharts-data-label-connector class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorcolor/">Blue connectors</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/pie-point/">Styled connectors</a>
+ The format string specifying what to show for *links* in the organization chart. Best to use with ``linkTextPath`` enabled. 
 	*/
-	public void setConnectorColor(HIColor connectorColor) {
-		this.connectorColor = connectorColor;
+	public void setLinkFormat(String linkFormat) {
+		this.linkFormat = linkFormat;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getConnectorColor(){ return connectorColor; }
+	public String getLinkFormat(){ return linkFormat; }
 
-	private String crookDistance;
+	private HILinkTextPath linkTextPath;
 	/**
- Works only if connectorShape is 'crookedLine'. It defines how far from the vertical plot edge the coonnector path should be crooked. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-crookdistance/">crookDistance set to 90%</a>
+ Options for a _link_ label text which should follow link connection. 
 	*/
-	public void setCrookDistance(String crookDistance) {
-		this.crookDistance = crookDistance;
+	public void setLinkTextPath(HILinkTextPath linkTextPath) {
+		this.linkTextPath = linkTextPath;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getCrookDistance(){ return crookDistance; }
+	public HILinkTextPath getLinkTextPath(){ return linkTextPath; }
 
-	private String alignTo;
+	private HIFunction linkFormatter;
 	/**
- Alignment method for data labels. Possible values are: - toPlotEdges: Each label touches the nearest vertical edge of  the plot area. - connectors: Connectors have the same x position and the  widest label of each half (left & right) touches the nearest  vertical edge of the plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-alignto-connectors/">alignTo: connectors</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-alignto-plotedges/">alignTo: plotEdges</a>
+ Callback to format data labels for _links_ in the organization chart. The `linkFormat` option takes precedence over the `linkFormatter`. 
 	*/
-	public void setAlignTo(String alignTo) {
-		this.alignTo = alignTo;
+	public void setLinkFormatter(HIFunction linkFormatter) {
+		this.linkFormatter = linkFormatter;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getAlignTo(){ return alignTo; }
+	public HIFunction getLinkFormatter(){ return linkFormatter; }
 
-	private Number connectorWidth;
+	private Number yHigh;
 	/**
- The width of the line connecting the data label to the pie slice. In styled mode, the connector stroke width is given in the .highcharts-data-label-connector class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorwidth-disabled/">Disable the connector</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/pie-point/">Styled connectors</a>
- <br><br><b>defaults:</b><br><br>&ensp;1	*/
-	public void setConnectorWidth(Number connectorWidth) {
-		this.connectorWidth = connectorWidth;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getConnectorWidth(){ return connectorWidth; }
-
-	private Boolean softConnector;
-	/**
- Whether to render the connector as a soft arc or a line with sharp break. Works only if connectorShape equals to fixedOffset. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-softconnector-true/">Soft</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-softconnector-false/">Non soft</a>
+ Y offset of the higher data labels relative to the point value. 
 	*/
-	public void setSoftConnector(Boolean softConnector) {
-		this.softConnector = softConnector;
+	public void setYHigh(Number yHigh) {
+		this.yHigh = yHigh;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getSoftConnector(){ return softConnector; }
+	public Number getYHigh(){ return yHigh; }
 
-	private Number connectorPadding;
+	private Number xHigh;
 	/**
- The distance from the data label to the connector. Note that data labels also have a defaults padding, so in order for the connector to touch the text, the padding must also be 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorpadding/">No padding</a>
+ X offset of the higher data labels relative to the point value. 
 	*/
-	public void setConnectorPadding(Number connectorPadding) {
-		this.connectorPadding = connectorPadding;
+	public void setXHigh(Number xHigh) {
+		this.xHigh = xHigh;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getConnectorPadding(){ return connectorPadding; }
+	public Number getXHigh(){ return xHigh; }
 
-	private String connectorShape;
+	private Number xLow;
 	/**
- Specifies the method that is used to generate the connector path. Highcharts provides 3 built-in connector shapes: 'fixedOffset' (defaults), 'straight' and 'crookedLine'. Using 'crookedLine' has the most sense (in most of the cases) when 'alignTo' is set. Users can provide their own method by passing a function instead of a String. 3 arguments are passed to the callback: - Object that holds the information about the coordinates of the  label (x & y properties) and how the label is located in  relation to the pie (alignment property). alignment can by  one of the following:  'left' (pie on the left side of the data label),  'right' (pie on the right side of the data label) or  'center' (data label overlaps the pie). - Object that holds the information about the position of the  connector. Its touchingSliceAt porperty tells the position  of the place where the connector touches the slice. - Data label options The function has to return an SVG path definition in array form (see the example). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorshape-string/">connectorShape is a String</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-connectorshape-function/">connectorShape is a function</a>
+ X offset of the lower data labels relative to the point value. 
 	*/
-	public void setConnectorShape(String connectorShape) {
-		this.connectorShape = connectorShape;
+	public void setXLow(Number xLow) {
+		this.xLow = xLow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getConnectorShape(){ return connectorShape; }
+	public Number getXLow(){ return xLow; }
 
-	private Object /* Number, String */ distance;
+	private Number yLow;
 	/**
- The distance of the data label from the pie's edge. Negative numbers put the data label on top of the pie slices. Can also be defined as a percentage of pie's radius. Connectors are only shown for data labels outside the pie. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-datalabels-distance/">Data labels on top of the pie</a>
+ Y offset of the lower data labels relative to the point value. 
 	*/
-	public void setDistance(Object /* Number, String */ distance) {
-		this.distance = distance;
+	public void setYLow(Number yLow) {
+		this.yLow = yLow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number, String */ getDistance(){ return distance; }
+	public Number getYLow(){ return yLow; }
+
+	private HIFunction nodeFormatter;
+	/**
+ Callback to format data labels for _nodes_ in the sankey diagram. The `nodeFormat` option takes precedence over the `nodeFormatter`. 
+	*/
+	public void setNodeFormatter(HIFunction nodeFormatter) {
+		this.nodeFormatter = nodeFormatter;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getNodeFormatter(){ return nodeFormatter; }
+
+	private String nodeFormat;
+	/**
+ The [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) specifying what to show for _nodes_ in the sankey diagram. By defaults the `nodeFormatter` returns `{point.name}`. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setNodeFormat(String nodeFormat) {
+		this.nodeFormat = nodeFormat;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getNodeFormat(){ return nodeFormat; }
 
 	private String parentNodeFormat;
 	public void setParentNodeFormat(String parentNodeFormat) {
@@ -590,8 +627,8 @@ public class HIDataLabels extends HIFoundation {
 
 	private Boolean alternate;
 	/**
- Whether to position data labels alternately. For example, if distance is set equal to 100, then data labels will be positioned alternately (on both sides of the point) at a distance of 100px. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-timeline/alternate-disabled">Alternate disabled</a>
-	*/
+ Whether to position data labels alternately. For example, if `distance` is set equal to `100`, then data labels will be positioned alternately (on both sides of the point) at a distance of 100px. 
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setAlternate(Boolean alternate) {
 		this.alternate = alternate;
 		this.setChanged();
@@ -599,6 +636,15 @@ public class HIDataLabels extends HIFoundation {
 	}
 
 	public Boolean getAlternate(){ return alternate; }
+
+	private String color;
+	public void setColor(String color) {
+		this.color = color;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getColor(){ return color; }
 
 	private Number width;
 	public void setWidth(Number width) {
@@ -608,52 +654,6 @@ public class HIDataLabels extends HIFoundation {
 	}
 
 	public Number getWidth(){ return width; }
-
-	private Number zIndex;
-	public void setZIndex(Number zIndex) {
-		this.zIndex = zIndex;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getZIndex(){ return zIndex; }
-
-	private String linkFormat;
-	/**
- The [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) specifying what to show for _links_ in the networkgraph. (Default: undefined) 
-	*/
-	public void setLinkFormat(String linkFormat) {
-		this.linkFormat = linkFormat;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getLinkFormat(){ return linkFormat; }
-
-	private HIFunction linkFormatter;
-	/**
- Callback to format data labels for _links_ in the sankey diagram. The linkFormat option takes precedence over the linkFormatter. 
-	*/
-	public void setLinkFormatter(HIFunction linkFormatter) {
-		this.linkFormatter = linkFormatter;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getLinkFormatter(){ return linkFormatter; }
-
-	private HILinkTextPath linkTextPath;
-	/**
- Options for a _link_ label text which should follow link connection. Border and background are disabled for a label that follows a path. **Note:** Only SVG-based renderer supports this option. Setting useHTML to true will disable this option. 
-	*/
-	public void setLinkTextPath(HILinkTextPath linkTextPath) {
-		this.linkTextPath = linkTextPath;
-		this.linkTextPath.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HILinkTextPath getLinkTextPath(){ return linkTextPath; }
 
 
 
@@ -678,56 +678,47 @@ public HashMap<String, Object> getParams() {
 		if (this.rotationMode != null) {
 			params.put("rotationMode", this.rotationMode);
 		}
-		if (this.verticalAlign != null) {
-			params.put("verticalAlign", this.verticalAlign);
+		if (this.connectorColor != null) {
+			params.put("connectorColor", this.connectorColor.getData());
+		}
+		if (this.crookDistance != null) {
+			params.put("crookDistance", this.crookDistance);
+		}
+		if (this.alignTo != null) {
+			params.put("alignTo", this.alignTo);
+		}
+		if (this.connectorWidth != null) {
+			params.put("connectorWidth", this.connectorWidth);
+		}
+		if (this.softConnector != null) {
+			params.put("softConnector", this.softConnector);
 		}
 		if (this.format != null) {
 			params.put("format", this.format);
 		}
-		if (this.align != null) {
-			params.put("align", this.align);
-		}
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);
 		}
-		if (this.inside != null) {
-			params.put("inside", this.inside);
+		if (this.connectorPadding != null) {
+			params.put("connectorPadding", this.connectorPadding);
 		}
-		if (this.y != null) {
-			params.put("y", this.y);
-		}
-		if (this.yHigh != null) {
-			params.put("yHigh", this.yHigh);
-		}
-		if (this.xHigh != null) {
-			params.put("xHigh", this.xHigh);
-		}
-		if (this.xLow != null) {
-			params.put("xLow", this.xLow);
-		}
-		if (this.yLow != null) {
-			params.put("yLow", this.yLow);
-		}
-		if (this.crop != null) {
-			params.put("crop", this.crop);
-		}
-		if (this.nodeFormatter != null) {
-			params.put("nodeFormatter", this.nodeFormatter);
-		}
-		if (this.backgroundColor != null) {
-			params.put("backgroundColor", this.backgroundColor);
+		if (this.connectorShape != null) {
+			params.put("connectorShape", this.connectorShape);
 		}
 		if (this.formatter != null) {
 			params.put("formatter", this.formatter);
 		}
-		if (this.nodeFormat != null) {
-			params.put("nodeFormat", this.nodeFormat);
+		if (this.distance != null) {
+			params.put("distance", this.distance);
 		}
 		if (this.nullFormatter != null) {
 			params.put("nullFormatter", this.nullFormatter);
 		}
 		if (this.borderRadius != null) {
 			params.put("borderRadius", this.borderRadius);
+		}
+		if (this.crop != null) {
+			params.put("crop", this.crop);
 		}
 		if (this.shape != null) {
 			params.put("shape", this.shape);
@@ -744,11 +735,11 @@ public HashMap<String, Object> getParams() {
 		if (this.useHTML != null) {
 			params.put("useHTML", this.useHTML);
 		}
-		if (this.color != null) {
-			params.put("color", this.color.getData());
-		}
 		if (this.animation != null) {
 			params.put("animation", this.animation.getParams());
+		}
+		if (this.backgroundColor != null) {
+			params.put("backgroundColor", this.backgroundColor.getData());
 		}
 		if (this.nullFormat != null) {
 			params.put("nullFormat", this.nullFormat);
@@ -765,44 +756,59 @@ public HashMap<String, Object> getParams() {
 		if (this.rotation != null) {
 			params.put("rotation", this.rotation);
 		}
+		if (this.zIndex != null) {
+			params.put("zIndex", this.zIndex);
+		}
+		if (this.verticalAlign != null) {
+			params.put("verticalAlign", this.verticalAlign);
+		}
 		if (this.className != null) {
 			params.put("className", this.className);
 		}
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);
 		}
+		if (this.y != null) {
+			params.put("y", this.y);
+		}
 		if (this.position != null) {
 			params.put("position", this.position);
-		}
-		if (this.z != null) {
-			params.put("z", this.z);
 		}
 		if (this.textPath != null) {
 			params.put("textPath", this.textPath.getParams());
 		}
-		if (this.connectorColor != null) {
-			params.put("connectorColor", this.connectorColor.getData());
+		if (this.align != null) {
+			params.put("align", this.align);
 		}
-		if (this.crookDistance != null) {
-			params.put("crookDistance", this.crookDistance);
+		if (this.inside != null) {
+			params.put("inside", this.inside);
 		}
-		if (this.alignTo != null) {
-			params.put("alignTo", this.alignTo);
+		if (this.linkFormat != null) {
+			params.put("linkFormat", this.linkFormat);
 		}
-		if (this.connectorWidth != null) {
-			params.put("connectorWidth", this.connectorWidth);
+		if (this.linkTextPath != null) {
+			params.put("linkTextPath", this.linkTextPath.getParams());
 		}
-		if (this.softConnector != null) {
-			params.put("softConnector", this.softConnector);
+		if (this.linkFormatter != null) {
+			params.put("linkFormatter", this.linkFormatter);
 		}
-		if (this.connectorPadding != null) {
-			params.put("connectorPadding", this.connectorPadding);
+		if (this.yHigh != null) {
+			params.put("yHigh", this.yHigh);
 		}
-		if (this.connectorShape != null) {
-			params.put("connectorShape", this.connectorShape);
+		if (this.xHigh != null) {
+			params.put("xHigh", this.xHigh);
 		}
-		if (this.distance != null) {
-			params.put("distance", this.distance);
+		if (this.xLow != null) {
+			params.put("xLow", this.xLow);
+		}
+		if (this.yLow != null) {
+			params.put("yLow", this.yLow);
+		}
+		if (this.nodeFormatter != null) {
+			params.put("nodeFormatter", this.nodeFormatter);
+		}
+		if (this.nodeFormat != null) {
+			params.put("nodeFormat", this.nodeFormat);
 		}
 		if (this.parentNodeFormat != null) {
 			params.put("parentNodeFormat", this.parentNodeFormat);
@@ -819,20 +825,11 @@ public HashMap<String, Object> getParams() {
 		if (this.alternate != null) {
 			params.put("alternate", this.alternate);
 		}
+		if (this.color != null) {
+			params.put("color", this.color);
+		}
 		if (this.width != null) {
 			params.put("width", this.width);
-		}
-		if (this.zIndex != null) {
-			params.put("zIndex", this.zIndex);
-		}
-		if (this.linkFormat != null) {
-			params.put("linkFormat", this.linkFormat);
-		}
-		if (this.linkFormatter != null) {
-			params.put("linkFormatter", this.linkFormatter);
-		}
-		if (this.linkTextPath != null) {
-			params.put("linkTextPath", this.linkTextPath.getParams());
 		}
 		return params;
 	}

@@ -25,6 +25,7 @@ public class HIErrorbar extends HISeries {
 	private Number whiskerWidth;
 	/**
 /** * description: The line width of the whiskers, the horizontal lines marking low and high values. When `null`, the general `lineWidth` applies. * demo: * [Error bar styling](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/error-bar-styling/) 
+* defaults: 2
 */
 	public void setWhiskerWidth(Number whiskerWidth) {
 		this.whiskerWidth = whiskerWidth;

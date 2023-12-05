@@ -18,10 +18,19 @@ import com.highsoft.highcharts.common.HIColor;
 
 
 	/**
- The lollipop series. If the type option is not specified, it is inherited from chart.type. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all lollipop series are defined in  `plotOptions.lollipop`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     lollipop: {       // shared options for all lollipop series     }   },   series: [{     // specific options for this series instance     type: 'lollipop'   }] }); `       
+ The `lollipop` series. If the `type` option is not specified, it is inherited from `chart.type`. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all `lollipop` series are defined in  `plotOptions.lollipop`. 3. Options for one single series are given in  `the series instance array`. ``` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     lollipop: {       // shared options for all lollipop series     }   },   series: [{     // specific options for this series instance     type: 'lollipop'   }] }); ```       
 	*/
 
 public class HILollipop extends HISeries {
+	private Number pointRange;
+	public void setPointRange(Number pointRange) {
+		this.pointRange = pointRange;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPointRange(){ return pointRange; }
+
 	private String connectorColor;
 	/**
  Color of the line that connects the dumbbell point's values. By defaults it is the series' color. 
@@ -37,7 +46,7 @@ public class HILollipop extends HISeries {
 	private Number connectorWidth;
 	/**
  Pixel width of the line that connects the dumbbell point's values. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setConnectorWidth(Number connectorWidth) {
 		this.connectorWidth = connectorWidth;
 		this.setChanged();
@@ -55,15 +64,6 @@ public class HILollipop extends HISeries {
 
 	public Number getPointPadding(){ return pointPadding; }
 
-	private Number pointRange;
-	public void setPointRange(Number pointRange) {
-		this.pointRange = pointRange;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getPointRange(){ return pointRange; }
-
 	private Number groupPadding;
 	public void setGroupPadding(Number groupPadding) {
 		this.groupPadding = groupPadding;
@@ -75,7 +75,7 @@ public class HILollipop extends HISeries {
 
 	private HIColor negativeFillColor;
 	/**
- A separate color for the negative part of the area. In styled mode, a negative color is set with the .highcharts-negative class name. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-negative-color/">Negative color in styled mode</a>
+ A separate color for the negative part of the area. In styled mode, a negative color is set with the `.highcharts-negative` class name. 
 	*/
 	public void setNegativeFillColor(HIColor negativeFillColor) {
 		this.negativeFillColor = negativeFillColor;
@@ -87,7 +87,7 @@ public class HILollipop extends HISeries {
 
 	private HIColor lineColor;
 	/**
- A separate color for the graph line. By defaults the line takes the color of the series, but the lineColor setting allows setting a separate color for the line without altering the fillColor. In styled mode, the line stroke can be set with the .highcharts-graph class name. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-linecolor/">Dark gray line</a>
+ A separate color for the graph line. By defaults the line takes the `color` of the series, but the lineColor setting allows setting a separate color for the line without altering the `fillColor`. In styled mode, the line stroke can be set with the `.highcharts-graph` class name. 
 	*/
 	public void setLineColor(HIColor lineColor) {
 		this.lineColor = lineColor;
@@ -109,6 +109,9 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
+		if (this.pointRange != null) {
+			params.put("pointRange", this.pointRange);
+		}
 		if (this.connectorColor != null) {
 			params.put("connectorColor", this.connectorColor);
 		}
@@ -117,9 +120,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.pointPadding != null) {
 			params.put("pointPadding", this.pointPadding);
-		}
-		if (this.pointRange != null) {
-			params.put("pointRange", this.pointRange);
 		}
 		if (this.groupPadding != null) {
 			params.put("groupPadding", this.groupPadding);

@@ -8,11 +8,10 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.core.HIFunction;
+
+import java.util.HashMap;
 
 
 
@@ -65,7 +64,7 @@ public class HIAnnounceNewData extends HIFoundation {
 
 	private Boolean enabled;
 	/**
- Enable announcing new data to screen reader users <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/accessibility/accessible-dynamic">Dynamic data accessible</a>
+ Enable announcing new data to screen reader users 
 	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -75,17 +74,17 @@ public class HIAnnounceNewData extends HIFoundation {
 
 	public Boolean getEnabled(){ return enabled; }
 
-	private Object announcementFormatter;
+	private HIFunction announcementFormatter;
 	/**
- Optional formatter callback for the announcement. Receives up to three arguments. The first argument is always an array of all series that received updates. If an announcement is already queued, the series that received updates for that announcement are also included in this array. The second argument is provided if chart.addSeries was called, and there is a new series. In that case, this argument is a reference to the new series. The third argument, similarly, is provided if series.addPoint was called, and there is a new point. In that case, this argument is a reference to the new point. The function should return a string with the text to announce to the user. Return empty string to not announce anything. Return false to use the defaults announcement format. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/accessibility/custom-dynamic">High priority live alerts</a>
+ Optional formatter callback for the announcement. Receives up to three arguments. The first argument is always an array of all series that received updates. If an announcement is already queued, the series that received updates for that announcement are also included in this array. The second argument is provided if `chart.addSeries` was called, and there is a new series. In that case, this argument is a reference to the new series. The third argument, similarly, is provided if `series.addPoint` was called, and there is a new point. In that case, this argument is a reference to the new point. The function should return a string with the text to announce to the user. Return empty string to not announce anything. Return `false` to use the defaults announcement format. 
 	*/
-	public void setAnnouncementFormatter(Object announcementFormatter) {
+	public void setAnnouncementFormatter(HIFunction announcementFormatter) {
 		this.announcementFormatter = announcementFormatter;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getAnnouncementFormatter(){ return announcementFormatter; }
+	public HIFunction getAnnouncementFormatter(){ return announcementFormatter; }
 
 	private Boolean interruptUser;
 	/**
@@ -102,7 +101,7 @@ public class HIAnnounceNewData extends HIFoundation {
 	private Number minAnnounceInterval;
 	/**
  Minimum interval between announcements in milliseconds. If new data arrives before this amount of time has passed, it is queued for announcement. If another new data event happens while an announcement is queued, the queued announcement is dropped, and the latest announcement is queued instead. Set to 0 to allow all announcements, but be warned that frequent announcements are disturbing to users. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;5000	*/
 	public void setMinAnnounceInterval(Number minAnnounceInterval) {
 		this.minAnnounceInterval = minAnnounceInterval;
 		this.setChanged();

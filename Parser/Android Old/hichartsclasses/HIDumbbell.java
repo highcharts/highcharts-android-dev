@@ -18,7 +18,7 @@ import com.highsoft.highcharts.common.HIColor;
 
 
 	/**
- The dumbbell series is a cartesian series with higher and lower values for each point along an X axis, connected with a line between the values. Requires highcharts-more.js and modules/dumbbell.js. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all dumbbell series are defined in  `plotOptions.dumbbell`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     dumbbell: {       // shared options for all dumbbell series     }   },   series: [{     // specific options for this series instance     type: 'dumbbell'   }] }); `        <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/dumbbell/">Dumbbell chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-dumbbell/styled-mode-dumbbell/">Styled mode</a>
+ The `dumbbell` series. If the `type` option is not specified, it is inherited from `chart.type`. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all `dumbbell` series are defined in  `plotOptions.dumbbell`. 3. Options for one single series are given in  `the series instance array`. ``` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     dumbbell: {       // shared options for all dumbbell series     }   },   series: [{     // specific options for this series instance     type: 'dumbbell'   }] }); ```       
 	*/
 
 public class HIDumbbell extends HISeries {
@@ -37,7 +37,7 @@ public class HIDumbbell extends HISeries {
 	private Number connectorWidth;
 	/**
  Pixel width of the line that connects the dumbbell point's values. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setConnectorWidth(Number connectorWidth) {
 		this.connectorWidth = connectorWidth;
 		this.setChanged();
@@ -76,7 +76,7 @@ public class HIDumbbell extends HISeries {
 	private HIColor lowColor;
 	/**
  Color of the start markers in a dumbbell graph. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;#333333	*/
 	public void setLowColor(HIColor lowColor) {
 		this.lowColor = lowColor;
 		this.setChanged();
@@ -87,7 +87,7 @@ public class HIDumbbell extends HISeries {
 
 	private HIColor negativeFillColor;
 	/**
- A separate color for the negative part of the area. In styled mode, a negative color is set with the .highcharts-negative class name. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-negative-color/">Negative color in styled mode</a>
+ A separate color for the negative part of the area. In styled mode, a negative color is set with the `.highcharts-negative` class name. 
 	*/
 	public void setNegativeFillColor(HIColor negativeFillColor) {
 		this.negativeFillColor = negativeFillColor;
@@ -99,7 +99,7 @@ public class HIDumbbell extends HISeries {
 
 	private HIColor lineColor;
 	/**
- A separate color for the graph line. By defaults the line takes the color of the series, but the lineColor setting allows setting a separate color for the line without altering the fillColor. In styled mode, the line stroke can be set with the .highcharts-graph class name. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-linecolor/">Dark gray line</a>
+ A separate color for the graph line. By defaults the line takes the `color` of the series, but the lineColor setting allows setting a separate color for the line without altering the `fillColor`. In styled mode, the line stroke can be set with the `.highcharts-graph` class name. 
 	*/
 	public void setLineColor(HIColor lineColor) {
 		this.lineColor = lineColor;

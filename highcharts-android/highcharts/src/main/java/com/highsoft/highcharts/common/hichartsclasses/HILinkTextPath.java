@@ -8,15 +8,23 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
 public class HILinkTextPath extends HIFoundation { 
+
+	private HIAttributes attributes;
+	public void setAttributes(HIAttributes attributes) {
+		this.attributes = attributes;
+		this.attributes.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIAttributes getAttributes(){ return attributes; }
 
 	private Boolean enabled;
 	public void setEnabled(Boolean enabled) {
@@ -38,6 +46,9 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.attributes != null) {
+			params.put("attributes", this.attributes.getParams());
+		}
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);
 		}

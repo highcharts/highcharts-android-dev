@@ -19,29 +19,17 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HIDragHandle extends HIFoundation { 
 
-	private String cursor;
+	private String className;
 	/**
- The mouse cursor to use for the drag handles. By defaults this is intelligently switching between `ew-resize` and `ns-resize` depending on the direction the point is being dragged. 
-	*/
-	public void setCursor(String cursor) {
-		this.cursor = cursor;
+ The class name of the drag handles. Defaults to `highcharts-drag-handle`. 
+ <br><br><b>defaults:</b><br><br>&ensp;highcharts-drag-handle	*/
+	public void setClassName(String className) {
+		this.className = className;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getCursor(){ return cursor; }
-
-	private Number zIndex;
-	/**
- The z index for the drag handles. 
- <br><br><b>defaults:</b><br><br>&ensp;901	*/
-	public void setZIndex(Number zIndex) {
-		this.zIndex = zIndex;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getZIndex(){ return zIndex; }
+	public String getClassName(){ return className; }
 
 	private HIColor color;
 	/**
@@ -55,29 +43,29 @@ public class HIDragHandle extends HIFoundation {
 
 	public HIColor getColor(){ return color; }
 
-	private String className;
+	private Number lineWidth;
 	/**
- The class name of the drag handles. Defaults to `highcharts-drag-handle`. 
- <br><br><b>defaults:</b><br><br>&ensp;highcharts-drag-handle	*/
-	public void setClassName(String className) {
-		this.className = className;
+ The line width for the drag handles. 
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
+	public void setLineWidth(Number lineWidth) {
+		this.lineWidth = lineWidth;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getClassName(){ return className; }
+	public Number getLineWidth(){ return lineWidth; }
 
-	private HIFunction pathFormatter;
+	private Number zIndex;
 	/**
- Function to define the SVG path to use for the drag handles. Takes the point as argument. Should return an SVG path in array format. The SVG path is automatically positioned on the point. 
-	*/
-	public void setPathFormatter(HIFunction pathFormatter) {
-		this.pathFormatter = pathFormatter;
+ The z index for the drag handles. 
+ <br><br><b>defaults:</b><br><br>&ensp;901	*/
+	public void setZIndex(Number zIndex) {
+		this.zIndex = zIndex;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIFunction getPathFormatter(){ return pathFormatter; }
+	public Number getZIndex(){ return zIndex; }
 
 	private HIColor lineColor;
 	/**
@@ -91,17 +79,29 @@ public class HIDragHandle extends HIFoundation {
 
 	public HIColor getLineColor(){ return lineColor; }
 
-	private Number lineWidth;
+	private String cursor;
 	/**
- The line width for the drag handles. 
- <br><br><b>defaults:</b><br><br>&ensp;1	*/
-	public void setLineWidth(Number lineWidth) {
-		this.lineWidth = lineWidth;
+ The mouse cursor to use for the drag handles. By defaults this is intelligently switching between `ew-resize` and `ns-resize` depending on the direction the point is being dragged. 
+	*/
+	public void setCursor(String cursor) {
+		this.cursor = cursor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getLineWidth(){ return lineWidth; }
+	public String getCursor(){ return cursor; }
+
+	private HIFunction pathFormatter;
+	/**
+ Function to define the SVG path to use for the drag handles. Takes the point as argument. Should return an SVG path in array format. The SVG path is automatically positioned on the point. 
+	*/
+	public void setPathFormatter(HIFunction pathFormatter) {
+		this.pathFormatter = pathFormatter;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getPathFormatter(){ return pathFormatter; }
 
 
 
@@ -114,26 +114,26 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.cursor != null) {
-			params.put("cursor", this.cursor);
-		}
-		if (this.zIndex != null) {
-			params.put("zIndex", this.zIndex);
+		if (this.className != null) {
+			params.put("className", this.className);
 		}
 		if (this.color != null) {
 			params.put("color", this.color.getData());
 		}
-		if (this.className != null) {
-			params.put("className", this.className);
+		if (this.lineWidth != null) {
+			params.put("lineWidth", this.lineWidth);
 		}
-		if (this.pathFormatter != null) {
-			params.put("pathFormatter", this.pathFormatter);
+		if (this.zIndex != null) {
+			params.put("zIndex", this.zIndex);
 		}
 		if (this.lineColor != null) {
 			params.put("lineColor", this.lineColor.getData());
 		}
-		if (this.lineWidth != null) {
-			params.put("lineWidth", this.lineWidth);
+		if (this.cursor != null) {
+			params.put("cursor", this.cursor);
+		}
+		if (this.pathFormatter != null) {
+			params.put("pathFormatter", this.pathFormatter);
 		}
 		return params;
 	}

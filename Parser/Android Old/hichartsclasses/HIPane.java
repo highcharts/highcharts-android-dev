@@ -20,8 +20,8 @@ public class HIPane extends HIFoundation {
 
 	private Object /* Number, String */ innerSize;
 	/**
- The inner size of the pane, either as a number defining pixels, or a percentage defining a percentage of the pane's size. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-polar/column-inverted-inner">The inner size set to 20%</a>
-	*/
+ The inner size of the pane, either as a number defining pixels, or a percentage defining a percentage of the pane's size. 
+ <br><br><b>defaults:</b><br><br>&ensp;0%	*/
 	public void setInnerSize(Object /* Number, String */ innerSize) {
 		this.innerSize = innerSize;
 		this.setChanged();
@@ -32,7 +32,7 @@ public class HIPane extends HIFoundation {
 
 	private ArrayList /* <String, Number> */ center;
 	/**
- The center of a polar chart or angular gauge, given as an array of [x, y] positions. Positions can be given as integers that transform to pixels, or as percentages of the plot area size. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-vu-meter/">Two gauges with different center</a>
+ The center of a polar chart or angular gauge, given as an array of [x, y] positions. Positions can be given as integers that transform to pixels, or as percentages of the plot area size. 
  <br><br><b>defaults:</b><br><br>&ensp;["50%", "50%"]	*/
 	public void setCenter(ArrayList /* <String, Number> */ center) {
 		this.center = center;
@@ -44,7 +44,7 @@ public class HIPane extends HIFoundation {
 
 	private Number endAngle;
 	/**
- The end angle of the polar X axis or gauge value axis, given in degrees where 0 is north. Defaults to startAngle + 360. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-vu-meter/">VU-meter with custom start and end angle</a>
+ The end angle of the polar X axis or gauge value axis, given in degrees where 0 is north. Defaults to `startAngle` + 360. 
 	*/
 	public void setEndAngle(Number endAngle) {
 		this.endAngle = endAngle;
@@ -56,7 +56,7 @@ public class HIPane extends HIFoundation {
 
 	private ArrayList <HIBackground> background;
 	/**
- An array of background items for the pane. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-speedometer/">Speedometer gauge with multiple backgrounds</a>
+ An array of background items for the pane. 
 	*/
 	public void setBackground(ArrayList background) {
 		this.background = background;
@@ -68,7 +68,7 @@ public class HIPane extends HIFoundation {
 
 	private Number startAngle;
 	/**
- The start angle of the polar X axis or gauge axis, given in degrees where 0 is north. Defaults to 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-vu-meter/">VU-meter with custom start and end angle</a>
+ The start angle of the polar X axis or gauge axis, given in degrees where 0 is north. Defaults to 0. 
 	*/
 	public void setStartAngle(Number startAngle) {
 		this.startAngle = startAngle;
@@ -80,8 +80,8 @@ public class HIPane extends HIFoundation {
 
 	private Object /* Number, String */ size;
 	/**
- The size of the pane, either as a number defining pixels, or a percentage defining a percentage of the available plot area (the smallest of the plot height or plot width). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/gauge-vu-meter/">Smaller size</a>
-	*/
+ The size of the pane, either as a number defining pixels, or a percentage defining a percentage of the available plot area (the smallest of the plot height or plot width). 
+ <br><br><b>defaults:</b><br><br>&ensp;85%	*/
 	public void setSize(Object /* Number, String */ size) {
 		this.size = size;
 		this.setChanged();

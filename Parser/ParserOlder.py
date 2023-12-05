@@ -10,13 +10,12 @@
 #                  Highsoft AS
 #              www.highcharts.com
 
+import cgi
 import json
-import sys
 import os
 import re
-from bs4 import BeautifulSoup, SoupStrainer
-from HTMLParser import HTMLParser
-import cgi
+import sys
+from bs4 import BeautifulSoup
 
 reload(sys)
 sys.setdefaultencoding('utf-8')

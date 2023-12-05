@@ -8,11 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
@@ -20,7 +18,7 @@ public class HIAnimation extends HIFoundation {
 
 	private Number defer;
 	/**
- The animation delay time in milliseconds. Set to 0 renders annotation immediately. As undefined inherits defer time from the series.animation.defer. 
+ The animation delay time in milliseconds. Set to `0` renders annotation immediately. As `undefined` inherits defer time from the `series.animation.defer`. 
 	*/
 	public void setDefer(Number defer) {
 		this.defer = defer;

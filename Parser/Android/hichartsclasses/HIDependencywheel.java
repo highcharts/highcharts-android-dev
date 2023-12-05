@@ -168,6 +168,18 @@ public class HIDependencywheel extends HISeries {
 
 	public Number getLinkOpacity(){ return linkOpacity; }
 
+	private String linkColorMode;
+	/**
+ Determines color mode for sankey links. Available options: - `from` color of the sankey link will be the same as the 'from node' - `gradient` color of the sankey link will be set to gradient between colors of 'from node' and 'to node' - `to` color of the sankey link will be same as the 'to node'. 
+ <br><br><b>defaults:</b><br><br>&ensp;from	*/
+	public void setLinkColorMode(String linkColorMode) {
+		this.linkColorMode = linkColorMode;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getLinkColorMode(){ return linkColorMode; }
+
 	private ArrayList<String> colors;
 	/**
  A series specific or series type specific color set to apply instead of the global `colors` when `colorByPoint` is true. 
@@ -278,6 +290,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.linkOpacity != null) {
 			params.put("linkOpacity", this.linkOpacity);
+		}
+		if (this.linkColorMode != null) {
+			params.put("linkColorMode", this.linkColorMode);
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();

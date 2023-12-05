@@ -8,11 +8,10 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.core.HIFunction;
+
+import java.util.HashMap;
 
 
 
@@ -32,7 +31,7 @@ public class HICondition extends HIFoundation {
 
 	private HIFunction callback;
 	/**
- A callback function to gain complete control on when the responsive rule applies. Return true if it applies. This opens for checking against other metrics than the chart size, for example the document size or other elements. 
+ A callback function to gain complete control on when the responsive rule applies. Return `true` if it applies. This opens for checking against other metrics than the chart size, for example the document size or other elements. 
 	*/
 	public void setCallback(HIFunction callback) {
 		this.callback = callback;
@@ -56,7 +55,7 @@ public class HICondition extends HIFoundation {
 
 	private Number maxWidth;
 	/**
- The responsive rule applies if the chart width is less than this. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/">Max width is 500</a>
+ The responsive rule applies if the chart width is less than this. 
 	*/
 	public void setMaxWidth(Number maxWidth) {
 		this.maxWidth = maxWidth;

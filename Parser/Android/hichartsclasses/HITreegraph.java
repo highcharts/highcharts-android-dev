@@ -31,18 +31,17 @@ public class HITreegraph extends HISeries {
 
 	public HILink getLink(){ return link; }
 
-	private HILevels levels;
+	private ArrayList <HILevels> levels;
 	/**
 /** * description: Set options on specific levels. Takes precedence over series options, but not point options. * demo: * [Treegraph chart with level options applied](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-treegraph/level-options) 
 */
-	public void setLevels(HILevels levels) {
+	public void setLevels(ArrayList levels) {
 		this.levels = levels;
-		this.levels.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HILevels getLevels(){ return levels; }
+	public ArrayList getLevels(){ return levels; }
 
 	private HICollapseButton collapseButton;
 	/**
@@ -121,7 +120,16 @@ public HashMap<String, Object> getParams() {
 			params.put("link", this.link.getParams());
 		}
 		if (this.levels != null) {
-			params.put("levels", this.levels.getParams());
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.levels) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("levels", array);
 		}
 		if (this.collapseButton != null) {
 			params.put("collapseButton", this.collapseButton.getParams());

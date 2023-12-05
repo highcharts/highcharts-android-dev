@@ -22,6 +22,7 @@ import com.highsoft.highcharts.common.hichartsclasses.HITooltip;
 import com.highsoft.highcharts.common.hichartsclasses.HIXAxis;
 import com.highsoft.highcharts.common.hichartsclasses.HIYAxis;
 import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.common.hichartsclasses.HIZooming;
 import com.highsoft.highcharts.core.HIChartView;
 import com.highsoft.highcharts.core.HIFunction;
 
@@ -207,7 +208,7 @@ public class HeatMapBuilder {
     @NotNull
     private HIChart getChart(String type) {
         HIChart chart = new HIChart();
-        chart.setZoomType("xy");
+        chart.setZooming(new HIZooming());
         chart.setType(type);
         chart.setPlotBorderWidth(plotBorderWidth);
         chart.setEvents(new HIEvents());
@@ -305,7 +306,7 @@ public class HeatMapBuilder {
     /*also try to add this:
     hiDataLabels.setStyle(new HIStyle());
     hiDataLabels.getStyle().setColor("000000");*/
-        hiDataLabels.setColor(HIColor.initWithHexValue("000000"));
+        hiDataLabels.setColor("000000");
         hiDataLabelsArrayList.add(hiDataLabels);
         return hiDataLabelsArrayList;
     }

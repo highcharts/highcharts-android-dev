@@ -8,11 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
@@ -20,8 +18,8 @@ public class HIParentNodeTextPath extends HIFoundation {
 
 	private Boolean enabled;
 	/**
- Enable or disable textPath option for link's or marker's data labels. 
-	*/
+ Enable or disable `textPath` option for link's or marker's data labels. 
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();

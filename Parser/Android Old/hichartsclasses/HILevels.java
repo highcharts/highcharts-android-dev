@@ -19,21 +19,45 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HILevels extends HIFoundation { 
 
-	private Object borderColor;
+	private Boolean collapsed;
 	/**
- Can set a borderColor on all points which lies on the same level. 
+ Set collapsed status for nodes level-wise. 
 	*/
-	public void setBorderColor(Object borderColor) {
+	public void setCollapsed(Boolean collapsed) {
+		this.collapsed = collapsed;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getCollapsed(){ return collapsed; }
+
+	private HIColor borderColor;
+	/**
+ Can set a `borderColor` on all points which lies on the same level. 
+	*/
+	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getBorderColor(){ return borderColor; }
+	public HIColor getBorderColor(){ return borderColor; }
+
+	private Boolean colorByPoint;
+	/**
+ Determines whether the chart should receive one color per point based on this level. 
+	*/
+	public void setColorByPoint(Boolean colorByPoint) {
+		this.colorByPoint = colorByPoint;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getColorByPoint(){ return colorByPoint; }
 
 	private HIColorVariation colorVariation;
 	/**
- Can set a colorVariation on all points which lies on the same level. 
+ Can set a `colorVariation` on all points which lies on the same level. 
 	*/
 	public void setColorVariation(HIColorVariation colorVariation) {
 		this.colorVariation = colorVariation;
@@ -46,7 +70,7 @@ public class HILevels extends HIFoundation {
 
 	private Object levelSize;
 	/**
- Can set a levelSize on all points which lies on the same level. 
+ Can set a `levelSize` on all points which lies on the same level. 
 	*/
 	public void setLevelSize(Object levelSize) {
 		this.levelSize = levelSize;
@@ -58,7 +82,7 @@ public class HILevels extends HIFoundation {
 
 	private String borderDashStyle;
 	/**
- Can set a borderDashStyle on all points which lies on the same level. 
+ Can set a `borderDashStyle` on all points which lies on the same level. 
 	*/
 	public void setBorderDashStyle(String borderDashStyle) {
 		this.borderDashStyle = borderDashStyle;
@@ -70,7 +94,7 @@ public class HILevels extends HIFoundation {
 
 	private Number level;
 	/**
- Decides which level takes effect from the options set in the levels object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/sunburst">Sunburst chart</a>
+ Decides which level takes effect from the options set in the levels object. 
 	*/
 	public void setLevel(Number level) {
 		this.level = level;
@@ -82,7 +106,7 @@ public class HILevels extends HIFoundation {
 
 	private HIColor color;
 	/**
- Can set a color on all points which lies on the same level. 
+ Can set a `color` on all points which lies on the same level. 
 	*/
 	public void setColor(HIColor color) {
 		this.color = color;
@@ -94,7 +118,7 @@ public class HILevels extends HIFoundation {
 
 	private HIDataLabels dataLabels;
 	/**
- Can set dataLabels on all points which lies on the same level. 
+ Can set `dataLabels` on all points which lies on the same level. 
 	*/
 	public void setDataLabels(HIDataLabels dataLabels) {
 		this.dataLabels = dataLabels;
@@ -107,7 +131,7 @@ public class HILevels extends HIFoundation {
 
 	private Number borderWidth;
 	/**
- Can set a borderWidth on all points which lies on the same level. 
+ Can set a `borderWidth` on all points which lies on the same level. 
 	*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
@@ -119,7 +143,7 @@ public class HILevels extends HIFoundation {
 
 	private String layoutAlgorithm;
 	/**
- Can set the layoutAlgorithm option on a specific level. <br><br><b>accepted values:</b><br><br>&ensp;["sliceAndDice", "stripes", "squarified", "strip"]
+ Can set the layoutAlgorithm option on a specific level. 
 	*/
 	public void setLayoutAlgorithm(String layoutAlgorithm) {
 		this.layoutAlgorithm = layoutAlgorithm;
@@ -131,7 +155,7 @@ public class HILevels extends HIFoundation {
 
 	private String layoutStartingDirection;
 	/**
- Can set the layoutStartingDirection option on a specific level. <br><br><b>accepted values:</b><br><br>&ensp;["vertical", "horizontal"]
+ Can set the layoutStartingDirection option on a specific level. 
 	*/
 	public void setLayoutStartingDirection(String layoutStartingDirection) {
 		this.layoutStartingDirection = layoutStartingDirection;
@@ -140,6 +164,31 @@ public class HILevels extends HIFoundation {
 	}
 
 	public String getLayoutStartingDirection(){ return layoutStartingDirection; }
+
+	private HIStates states;
+	/**
+ Can set `states` on all nodes and points which lay on the same level. 
+	*/
+	public void setStates(HIStates states) {
+		this.states = states;
+		this.states.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIStates getStates(){ return states; }
+
+	private Number linkOpacity;
+	/**
+ Can set `linkOpacity` on all points which lay on the same level. 
+ <br><br><b>defaults:</b><br><br>&ensp;0.5	*/
+	public void setLinkOpacity(Number linkOpacity) {
+		this.linkOpacity = linkOpacity;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getLinkOpacity(){ return linkOpacity; }
 
 
 
@@ -152,8 +201,14 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.collapsed != null) {
+			params.put("collapsed", this.collapsed);
+		}
 		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor);
+			params.put("borderColor", this.borderColor.getData());
+		}
+		if (this.colorByPoint != null) {
+			params.put("colorByPoint", this.colorByPoint);
 		}
 		if (this.colorVariation != null) {
 			params.put("colorVariation", this.colorVariation.getParams());
@@ -181,6 +236,12 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.layoutStartingDirection != null) {
 			params.put("layoutStartingDirection", this.layoutStartingDirection);
+		}
+		if (this.states != null) {
+			params.put("states", this.states.getParams());
+		}
+		if (this.linkOpacity != null) {
+			params.put("linkOpacity", this.linkOpacity);
 		}
 		return params;
 	}

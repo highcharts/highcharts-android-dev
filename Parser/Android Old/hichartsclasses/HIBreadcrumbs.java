@@ -21,7 +21,7 @@ public class HIBreadcrumbs extends HIFoundation {
 	private Number zIndex;
 	/**
  The z index of the breadcrumbs group. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;7	*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
 		this.setChanged();
@@ -32,7 +32,7 @@ public class HIBreadcrumbs extends HIFoundation {
 
 	private HISVGAttributes style;
 	/**
- CSS styles for all breadcrumbs. In styled mode, the breadcrumbs buttons are styled by the .highcharts-breadcrumbs-buttons .highcharts-button rule with its different states. 
+ CSS styles for all breadcrumbs. In styled mode, the breadcrumbs buttons are styled by the `.highcharts-breadcrumbs-buttons .highcharts-button` rule with its different states. 
 	*/
 	public void setStyle(HISVGAttributes style) {
 		this.style = style;
@@ -44,7 +44,7 @@ public class HIBreadcrumbs extends HIFoundation {
 
 	private String format;
 	/**
- A format string for the breadcrumbs button. Variables are enclosed by curly brackets. Available values are passed in the declared point options. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/breadcrumbs/format">Display custom values in breadcrumb button.</a>
+ A format string for the breadcrumbs button. Variables are enclosed by curly brackets. Available values are passed in the declared point options. 
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setFormat(String format) {
 		this.format = format;
@@ -56,7 +56,7 @@ public class HIBreadcrumbs extends HIFoundation {
 
 	private Boolean rtl;
 	/**
- Whether to reverse the order of buttons. This is common in Arabic and Hebrew. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/breadcrumbs/rtl">Breadcrumbs in RTL</a>
+ Whether to reverse the order of buttons. This is common in Arabic and Hebrew. 
 	*/
 	public void setRtl(Boolean rtl) {
 		this.rtl = rtl;
@@ -80,7 +80,7 @@ public class HIBreadcrumbs extends HIFoundation {
 
 	private HISVGAttributes buttonTheme;
 	/**
- A collection of attributes for the buttons. The object takes SVG attributes like fill, stroke, stroke-width, as well as style, a collection of CSS properties for the text. The object can also be extended with states, so you can set presentational options for hover, select or disabled button states. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/breadcrumbs/single-button">Themed, single button</a>
+ A collection of attributes for the buttons. The object takes SVG attributes like `fill`, `stroke`, `stroke-width`, as well as `style`, a collection of CSS properties for the text. The object can also be extended with states, so you can set presentational options for `hover`, `select` or `disabled` button states. 
 	*/
 	public void setButtonTheme(HISVGAttributes buttonTheme) {
 		this.buttonTheme = buttonTheme;
@@ -92,7 +92,7 @@ public class HIBreadcrumbs extends HIFoundation {
 
 	private String relativeTo;
 	/**
- What box to align the button to. Can be either plotBox or spacingBox. 
+ What box to align the button to. Can be either `plotBox` or `spacingBox`. 
  <br><br><b>defaults:</b><br><br>&ensp;plotBox	*/
 	public void setRelativeTo(String relativeTo) {
 		this.relativeTo = relativeTo;
@@ -105,7 +105,7 @@ public class HIBreadcrumbs extends HIFoundation {
 	private Number buttonSpacing;
 	/**
  The defaults padding for each button and separator in each direction. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;5	*/
 	public void setButtonSpacing(Number buttonSpacing) {
 		this.buttonSpacing = buttonSpacing;
 		this.setChanged();
@@ -129,8 +129,8 @@ public class HIBreadcrumbs extends HIFoundation {
 
 	private Boolean showFullPath;
 	/**
- Show full path or only a single button. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/breadcrumbs/single-button">Single, styled button</a>
-	*/
+ Show full path or only a single button. 
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setShowFullPath(Boolean showFullPath) {
 		this.showFullPath = showFullPath;
 		this.setChanged();
@@ -141,7 +141,7 @@ public class HIBreadcrumbs extends HIFoundation {
 
 	private HIBreadcrumbsAlignOptions position;
 	/**
- Positioning for the button row. The breadcrumbs buttons will be aligned properly for the defaults chart layout (title, subtitle, legend, range selector) for the custom chart layout set the position properties. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/breadcrumbs/single-button">Single, right aligned button</a>
+ Positioning for the button row. The breadcrumbs buttons will be aligned properly for the defaults chart layout (title, subtitle, legend, range selector) for the custom chart layout set the position properties. 
 	*/
 	public void setPosition(HIBreadcrumbsAlignOptions position) {
 		this.position = position;
@@ -153,7 +153,7 @@ public class HIBreadcrumbs extends HIFoundation {
 
 	private Boolean floating;
 	/**
- When the breadcrumbs are floating, the plot area will not move to make space for it. By defaults, the chart will not make space for the buttons. This property won't work when positioned in the middle. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/breadcrumbs/single-button">Floating button</a>
+ When the breadcrumbs are floating, the plot area will not move to make space for it. By defaults, the chart will not make space for the buttons. This property won't work when positioned in the middle. 
 	*/
 	public void setFloating(Boolean floating) {
 		this.floating = floating;

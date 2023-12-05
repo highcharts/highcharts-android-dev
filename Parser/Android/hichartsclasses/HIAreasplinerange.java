@@ -47,6 +47,19 @@ public class HIAreasplinerange extends HISeries {
 
 	public Number getFillOpacity(){ return fillOpacity; }
 
+	private HILowMarker lowMarker;
+	/**
+ Options for the lower markers of the arearange-like series. When `lowMarker` is not defined, options inherit form the marker. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setLowMarker(HILowMarker lowMarker) {
+		this.lowMarker = lowMarker;
+		this.lowMarker.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HILowMarker getLowMarker(){ return lowMarker; }
+
 	private Boolean trackByArea;
 	/**
 /** * description: Whether the whole area or just the line should respond to mouseover tooltips and other mouse or touch events. * demo: * [Display the tooltip when the area is hovered](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-trackbyarea/) 
@@ -101,6 +114,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.fillOpacity != null) {
 			params.put("fillOpacity", this.fillOpacity);
+		}
+		if (this.lowMarker != null) {
+			params.put("lowMarker", this.lowMarker.getParams());
 		}
 		if (this.trackByArea != null) {
 			params.put("trackByArea", this.trackByArea);

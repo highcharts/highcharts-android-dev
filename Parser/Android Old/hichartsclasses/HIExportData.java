@@ -21,7 +21,7 @@ public class HIExportData extends HIFoundation {
 	private String annotationHeader;
 	/**
  The annotation column title. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;Annotations	*/
 	public void setAnnotationHeader(String annotationHeader) {
 		this.annotationHeader = annotationHeader;
 		this.setChanged();
@@ -33,7 +33,7 @@ public class HIExportData extends HIFoundation {
 	private String categoryHeader;
 	/**
  The category column title. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;Category	*/
 	public void setCategoryHeader(String categoryHeader) {
 		this.categoryHeader = categoryHeader;
 		this.setChanged();
@@ -45,7 +45,7 @@ public class HIExportData extends HIFoundation {
 	private String categoryDatetimeHeader;
 	/**
  The category column title when axis type set to "datetime". 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;DateTime	*/
 	public void setCategoryDatetimeHeader(String categoryDatetimeHeader) {
 		this.categoryDatetimeHeader = categoryDatetimeHeader;
 		this.setChanged();

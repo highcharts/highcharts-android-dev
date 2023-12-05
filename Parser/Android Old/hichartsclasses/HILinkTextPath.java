@@ -18,14 +18,15 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 public class HILinkTextPath extends HIFoundation { 
 
-	private HISVGAttributes attributes;
-	public void setAttributes(HISVGAttributes attributes) {
+	private HIAttributes attributes;
+	public void setAttributes(HIAttributes attributes) {
 		this.attributes = attributes;
+		this.attributes.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HISVGAttributes getAttributes(){ return attributes; }
+	public HIAttributes getAttributes(){ return attributes; }
 
 	private Boolean enabled;
 	public void setEnabled(Boolean enabled) {

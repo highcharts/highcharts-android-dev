@@ -8,11 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
@@ -32,7 +30,7 @@ public class HIScrollablePlotArea extends HIFoundation {
 
 	private Number opacity;
 	/**
- The opacity of mask applied on one of the sides of the plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/scrollable-plotarea-opacity">Disabled opacity for the mask</a>
+ The opacity of mask applied on one of the sides of the plot area. 
  <br><br><b>defaults:</b><br><br>&ensp;0.85	*/
 	public void setOpacity(Number opacity) {
 		this.opacity = opacity;

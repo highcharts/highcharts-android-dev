@@ -8,11 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
@@ -20,7 +18,7 @@ public class HIPosition extends HIFoundation {
 
 	private Number y;
 	/**
- Vertical offset of the button. 
+ Y position of the series center. By defaults, the series is displayed on the point that it is connected to. 
 	*/
 	public void setY(Number y) {
 		this.y = y;
@@ -32,7 +30,7 @@ public class HIPosition extends HIFoundation {
 
 	private Number x;
 	/**
- Horizontal offset of the button. 
+ X position of the series center. By defaults, the series is displayed on the point that it is connected to. 
 	*/
 	public void setX(Number x) {
 		this.x = x;
@@ -42,10 +40,34 @@ public class HIPosition extends HIFoundation {
 
 	public Number getX(){ return x; }
 
+	private Number offsetX;
+	/**
+ Series center offset from the original x position. If defined, the connector line is drawn connecting original position with new position. 
+	*/
+	public void setOffsetX(Number offsetX) {
+		this.offsetX = offsetX;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getOffsetX(){ return offsetX; }
+
+	private Number offsetY;
+	/**
+ Series center offset from the original y position. If defined, the connector line is drawn from original position to a new position. 
+	*/
+	public void setOffsetY(Number offsetY) {
+		this.offsetY = offsetY;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getOffsetY(){ return offsetY; }
+
 	private String align;
 	/**
- Horizontal alignment of the button. 
-	*/
+ The horizontal alignment of the button. 
+ <br><br><b>defaults:</b><br><br>&ensp;right	*/
 	public void setAlign(String align) {
 		this.align = align;
 		this.setChanged();
@@ -56,7 +78,7 @@ public class HIPosition extends HIFoundation {
 
 	private String verticalAlign;
 	/**
- Vertical alignment of the button. 
+ The vertical alignment of the button. 
  <br><br><b>defaults:</b><br><br>&ensp;top	*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
@@ -82,6 +104,12 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.x != null) {
 			params.put("x", this.x);
+		}
+		if (this.offsetX != null) {
+			params.put("offsetX", this.offsetX);
+		}
+		if (this.offsetY != null) {
+			params.put("offsetY", this.offsetY);
 		}
 		if (this.align != null) {
 			params.put("align", this.align);

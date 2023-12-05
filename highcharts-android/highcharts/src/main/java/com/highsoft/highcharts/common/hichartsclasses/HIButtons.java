@@ -18,7 +18,7 @@ public class HIButtons extends HIFoundation {
 
 	private HIContextButton contextButton;
 	/**
- Options for the export button. In styled mode, export button styles can be applied with the .highcharts-contextbutton class. 
+ Options for the export button. In styled mode, export button styles can be applied with the `.highcharts-contextbutton` class. 
 	*/
 	public void setContextButton(HIContextButton contextButton) {
 		this.contextButton = contextButton;

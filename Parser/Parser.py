@@ -11,13 +11,12 @@
 #              www.highcharts.com
 
 import json
-import sys
 import os
 import re
-from bs4 import BeautifulSoup, SoupStrainer
+import sys
+from bs4 import BeautifulSoup
+
 # from HTMLParser import HTMLParser
-import cgi
-import html
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -361,7 +360,10 @@ hc_types = {
     "string|Highcharts.SVGAttributes|undefined": 'HISVGAttributes',
     "Highcharts.DataLabelsOptions": 'HIDataLabelsOptions',
     "Highcharts.PointMarkerOptionsObject": 'HIPointMarkerOptionsObject',
-    "Array.<(Array.<string>|Array.<string, number>|Array.<string, number, number>|Array.<string, number, number, number, number>|Array.<string, number, number, number, number, number, number>|Array.<string, number, number, number, number, number, number, number>)>": 'ArrayList'
+    "Array.<(Array.<string>|Array.<string, number>|Array.<string, number, number>|Array.<string, number, number, number, number>|Array.<string, number, number, number, number, number, number>|Array.<string, number, number, number, number, number, number, number>)>": 'ArrayList',
+    # 11.2.0
+    "'from'|'gradient'|'to'": 'String',
+    "'top'|'center'|'bottom'": 'String',
 }
 
 

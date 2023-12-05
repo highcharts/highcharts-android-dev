@@ -8,11 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
@@ -21,7 +19,7 @@ public class HIOptions3d extends HIFoundation {
 	private Number viewDistance;
 	/**
  Defines the distance the viewer is standing in front of the chart, this setting is important to calculate the perspective effect in column and scatter charts. It is not used for 3D pie charts. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;25	*/
 	public void setViewDistance(Number viewDistance) {
 		this.viewDistance = viewDistance;
 		this.setChanged();
@@ -45,7 +43,7 @@ public class HIOptions3d extends HIFoundation {
 
 	private String axisLabelPosition;
 	/**
- Set it to "auto" to automatically move the labels to the best edge. 
+ Set it to `"auto"` to automatically move the labels to the best edge. 
 	*/
 	public void setAxisLabelPosition(String axisLabelPosition) {
 		this.axisLabelPosition = axisLabelPosition;
@@ -57,7 +55,7 @@ public class HIOptions3d extends HIFoundation {
 
 	private Boolean enabled;
 	/**
- Wether to render the chart using the 3D functionality. 
+ Whether to render the chart using the 3D functionality. 
 	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -70,7 +68,7 @@ public class HIOptions3d extends HIFoundation {
 	private Number depth;
 	/**
  The total depth of the chart. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;100	*/
 	public void setDepth(Number depth) {
 		this.depth = depth;
 		this.setChanged();
@@ -94,7 +92,7 @@ public class HIOptions3d extends HIFoundation {
 	private Boolean fitToPlot;
 	/**
  Whether the 3d box should automatically adjust to the chart plot area. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setFitToPlot(Boolean fitToPlot) {
 		this.fitToPlot = fitToPlot;
 		this.setChanged();

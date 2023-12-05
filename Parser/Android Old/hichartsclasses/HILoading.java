@@ -20,7 +20,7 @@ public class HILoading extends HIFoundation {
 
 	private HICSSObject style;
 	/**
- CSS styles for the loading screen that covers the plot area. In styled mode, the loading label is styled with the .highcharts-loading class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/style/">Gray plot area, white text</a>
+ CSS styles for the loading screen that covers the plot area. In styled mode, the loading label is styled with the `.highcharts-loading` class. 
  <br><br><b>defaults:</b><br><br>&ensp;{"position": "absolute", "backgroundColor": "#ffffff", "opacity": 0.5, "textAlign": "center"}	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
@@ -32,7 +32,7 @@ public class HILoading extends HIFoundation {
 
 	private HICSSObject labelStyle;
 	/**
- CSS styles for the loading label span. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/labelstyle/">Vertically centered</a>
+ CSS styles for the loading label `span`. 
  <br><br><b>defaults:</b><br><br>&ensp;{"fontWeight": "bold", "position": "relative", "top": "45%"}	*/
 	public void setLabelStyle(HICSSObject labelStyle) {
 		this.labelStyle = labelStyle;
@@ -44,7 +44,7 @@ public class HILoading extends HIFoundation {
 
 	private Number hideDuration;
 	/**
- The duration in milliseconds of the fade out effect. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/hideduration/">Fade in and out over a second</a>
+ The duration in milliseconds of the fade out effect. 
  <br><br><b>defaults:</b><br><br>&ensp;100	*/
 	public void setHideDuration(Number hideDuration) {
 		this.hideDuration = hideDuration;
@@ -56,7 +56,7 @@ public class HILoading extends HIFoundation {
 
 	private Number showDuration;
 	/**
- The duration in milliseconds of the fade in effect. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/loading/hideduration/">Fade in and out over a second</a>
+ The duration in milliseconds of the fade in effect. 
  <br><br><b>defaults:</b><br><br>&ensp;100	*/
 	public void setShowDuration(Number showDuration) {
 		this.showDuration = showDuration;

@@ -8,12 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.common.HIColor;
+
+import java.util.HashMap;
 
 
 
@@ -31,17 +28,17 @@ public class HICSSObject extends HIFoundation {
 
 	public String getBackground(){ return background; }
 
-	private Object backgroundColor;
+	private String backgroundColor;
 	/**
  Background color of the element. 
 	*/
-	public void setBackgroundColor(Object backgroundColor) {
+	public void setBackgroundColor(String backgroundColor) {
 		this.backgroundColor = backgroundColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getBackgroundColor(){ return backgroundColor; }
+	public String getBackgroundColor(){ return backgroundColor; }
 
 	private String border;
 	/**
@@ -67,17 +64,17 @@ public class HICSSObject extends HIFoundation {
 
 	public Number getBorderRadius(){ return borderRadius; }
 
-	private HIColor color;
+	private String color;
 	/**
  Color used in the element. The 'contrast' option is a Highcharts custom property that results in black or white, depending on the background of the element. 
 	*/
-	public void setColor(HIColor color) {
+	public void setColor(String color) {
 		this.color = color;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getColor(){ return color; }
+	public String getColor(){ return color; }
 
 	private String cursor;
 	/**
@@ -319,7 +316,7 @@ public HashMap<String, Object> getParams() {
 			params.put("borderRadius", this.borderRadius);
 		}
 		if (this.color != null) {
-			params.put("color", this.color.getData());
+			params.put("color", this.color);
 		}
 		if (this.cursor != null) {
 			params.put("cursor", this.cursor);

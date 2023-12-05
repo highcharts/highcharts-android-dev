@@ -33,7 +33,7 @@ public class HIOnPoint extends HIFoundation {
 
 	private HISVGAttributes connectorOptions;
 	/**
- Options for the connector in the _Series on point_ feature. In styled mode, the connector can be styled with the .highcharts-connector-seriesonpoint class name. 
+ Options for the connector in the _Series on point_ feature. In styled mode, the connector can be styled with the `.highcharts-connector-seriesonpoint` class name. 
 	*/
 	public void setConnectorOptions(HISVGAttributes connectorOptions) {
 		this.connectorOptions = connectorOptions;
@@ -45,7 +45,7 @@ public class HIOnPoint extends HIFoundation {
 
 	private String id;
 	/**
- The id of the point that we connect the series to. Only points with a given plotX and plotY values and map points are valid. 
+ The `id` of the point that we connect the series to. Only points with a given `plotX` and `plotY` values and map points are valid. 
 	*/
 	public void setId(String id) {
 		this.id = id;

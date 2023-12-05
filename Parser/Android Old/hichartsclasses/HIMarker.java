@@ -31,7 +31,8 @@ public class HIMarker extends HIFoundation {
 
 	private String symbol;
 	/**
-/** * description: A predefined shape or symbol for the marker. When undefined, the symbol is pulled from options.symbols. Other possible values are 'circle', 'square','diamond', 'triangle' and 'triangle-down'. Additionally, the URL to a graphic can be given on this form: 'url(graphic.png)'. Note that for the image to be applied to exported charts, its URL needs to be accessible by the export server. Custom callbacks for symbol path generation can also be added to Highcharts.SVGRenderer.prototype.symbols. The callback is then used by its method name, as shown in the demo. * demo:  •  Predefined, graphic and custom markers
+/** * description: A predefined shape or symbol for the marker. When undefined, the symbol is pulled from options.symbols. Other possible values are `'circle'`, `'square'`,`'diamond'`, `'triangle'` and `'triangle-down'`. Additionally, the URL to a graphic can be given on this form: `'url(graphic.png)'`. Note that for the image to be applied to exported charts, its URL needs to be accessible by the export server. Custom callbacks for symbol path generation can also be added to `Highcharts.SVGRenderer.prototype.symbols`. The callback is then used by its method name, as shown in the demo. * demo: * [Predefined, graphic and custom markers](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-symbol/) 
+* defaults: circle
 */
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
@@ -43,7 +44,7 @@ public class HIMarker extends HIFoundation {
 
 	private Number lineWidth;
 	/**
-/** * description: The width of the point marker's outline. * demo:  •  2px blue marker
+/** * description: The width of the point marker's outline. * demo: * [2px blue marker](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-fillcolor/) 
 */
 	public void setLineWidth(Number lineWidth) {
 		this.lineWidth = lineWidth;
@@ -55,8 +56,8 @@ public class HIMarker extends HIFoundation {
 
 	private Number radius;
 	/**
-/** * description: The radius of the point marker. * demo:  •  Bigger markers
-* defaults: 4
+/** * description: The radius of the point marker. * demo: * [Bigger markers](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-radius/) 
+* defaults: 10
 */
 	public void setRadius(Number radius) {
 		this.radius = radius;
@@ -66,33 +67,18 @@ public class HIMarker extends HIFoundation {
 
 	public Number getRadius(){ return radius; }
 
-	private String lineColor;
-	/**
-/** * description: The color of the point marker's outline. When undefined, the series' or point's color is used. * demo:  •  Inherit from series color (undefined)
-*/
-	public void setLineColor(String lineColor) {
-		this.lineColor = lineColor;
+	private Number fillOpacity;
+	public void setFillOpacity(Number fillOpacity) {
+		this.fillOpacity = fillOpacity;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getLineColor(){ return lineColor; }
-
-	private Boolean enabled;
-	/**
- Enable or disable the point marker. If undefined, the markers are hidden when the data is dense, and shown for more widespread data points. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-enabled/">Disabled markers</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-enabled-false/">Disabled in normal state but enabled on hover</a>
- <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getEnabled(){ return enabled; }
+	public Number getFillOpacity(){ return fillOpacity; }
 
 	private Number height;
 	/**
- Image markers only. Set the image width explicitly. When using this option, a width must also be set. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-width-height/">Fixed width and height</a>
+ Image markers only. Set the image width explicitly. When using this option, a `width` must also be set. 
 	*/
 	public void setHeight(Number height) {
 		this.height = height;
@@ -104,7 +90,7 @@ public class HIMarker extends HIFoundation {
 
 	private Number width;
 	/**
- Image markers only. Set the image width explicitly. When using this option, a height must also be set. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-width-height/">Fixed width and height</a>
+ Image markers only. Set the image width explicitly. When using this option, a `height` must also be set. 
 	*/
 	public void setWidth(Number width) {
 		this.width = width;
@@ -116,7 +102,7 @@ public class HIMarker extends HIFoundation {
 
 	private HIColor fillColor;
 	/**
- The fill color of the point marker. When undefined, the series' or point's color is used. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-fillcolor/">White fill</a>
+ The fill color of the point marker. When `undefined`, the series' or point's color is used. 
 	*/
 	public void setFillColor(HIColor fillColor) {
 		this.fillColor = fillColor;
@@ -126,10 +112,31 @@ public class HIMarker extends HIFoundation {
 
 	public HIColor getFillColor(){ return fillColor; }
 
+	private HIColor lineColor;
+	/**
+ The color of the point marker's outline. When `undefined`, the series' or point's color is used. 
+ <br><br><b>defaults:</b><br><br>&ensp;#ffffff	*/
+	public void setLineColor(HIColor lineColor) {
+		this.lineColor = lineColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getLineColor(){ return lineColor; }
+
+	private Boolean enabled;
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getEnabled(){ return enabled; }
+
 	private HIColor color;
 	/**
  The color of the marker. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;#999999	*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -140,7 +147,7 @@ public class HIMarker extends HIFoundation {
 
 	private HIAnimationOptionsObject animation;
 	/**
- Animation for the marker as it moves between values. Set to false to disable animation. Defaults to { duration: 50 }. 
+ Animation for the marker as it moves between values. Set to `false` to disable animation. Defaults to `{ duration: 50 }`. 
 	*/
 	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
@@ -150,19 +157,10 @@ public class HIMarker extends HIFoundation {
 
 	public HIAnimationOptionsObject getAnimation(){ return animation; }
 
-	private Number fillOpacity;
-	public void setFillOpacity(Number fillOpacity) {
-		this.fillOpacity = fillOpacity;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getFillOpacity(){ return fillOpacity; }
-
 	private Number enabledThreshold;
 	/**
- The threshold for how dense the point markers should be before they are hidden, given that enabled is not defined. The number indicates the horizontal distance between the two closest points in the series, as multiples of the marker.radius. In other words, the defaults value of 2 means points are hidden if overlapping horizontally. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-enabledthreshold">A higher threshold</a>
-	*/
+ The threshold for how dense the point markers should be before they are hidden, given that `enabled` is not defined. The number indicates the horizontal distance between the two closest points in the series, as multiples of the `marker.radius`. In other words, the defaults value of 2 means points are hidden if overlapping horizontally. 
+ <br><br><b>defaults:</b><br><br>&ensp;2	*/
 	public void setEnabledThreshold(Number enabledThreshold) {
 		this.enabledThreshold = enabledThreshold;
 		this.setChanged();
@@ -194,11 +192,8 @@ public HashMap<String, Object> getParams() {
 		if (this.radius != null) {
 			params.put("radius", this.radius);
 		}
-		if (this.lineColor != null) {
-			params.put("lineColor", this.lineColor);
-		}
-		if (this.enabled != null) {
-			params.put("enabled", this.enabled);
+		if (this.fillOpacity != null) {
+			params.put("fillOpacity", this.fillOpacity);
 		}
 		if (this.height != null) {
 			params.put("height", this.height);
@@ -209,14 +204,17 @@ public HashMap<String, Object> getParams() {
 		if (this.fillColor != null) {
 			params.put("fillColor", this.fillColor.getData());
 		}
+		if (this.lineColor != null) {
+			params.put("lineColor", this.lineColor.getData());
+		}
+		if (this.enabled != null) {
+			params.put("enabled", this.enabled);
+		}
 		if (this.color != null) {
 			params.put("color", this.color.getData());
 		}
 		if (this.animation != null) {
 			params.put("animation", this.animation.getParams());
-		}
-		if (this.fillOpacity != null) {
-			params.put("fillOpacity", this.fillOpacity);
 		}
 		if (this.enabledThreshold != null) {
 			params.put("enabledThreshold", this.enabledThreshold);

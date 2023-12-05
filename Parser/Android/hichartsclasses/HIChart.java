@@ -32,6 +32,18 @@ public class HIChart extends HIFoundation {
 
 	public HIParallelAxes getParallelAxes(){ return parallelAxes; }
 
+	private Boolean polar;
+	/**
+ When true, cartesian charts like line, spline, area and column are transformed into the polar coordinate system. This produces _polar charts_, also known as _radar charts_. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setPolar(Boolean polar) {
+		this.polar = polar;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getPolar(){ return polar; }
+
 	private Number borderRadius;
 	/**
  The corner radius of the outer chart border. 
@@ -55,6 +67,18 @@ public class HIChart extends HIFoundation {
 	}
 
 	public Number getSpacingBottom(){ return spacingBottom; }
+
+	private HIShadowOptionsObject /* boolean */ plotShadow;
+	/**
+ Whether to apply a drop shadow to the plot area. Requires that plotBackgroundColor be set. The shadow can be an object configuration containing `color`, `offsetX`, `offsetY`, `opacity` and `width`. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setPlotShadow(HIShadowOptionsObject /* boolean */ plotShadow) {
+		this.plotShadow = plotShadow;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIShadowOptionsObject /* boolean */ getPlotShadow(){ return plotShadow; }
 
 	private Object /* Number, String */ height;
 	/**
@@ -164,17 +188,17 @@ public class HIChart extends HIFoundation {
 
 	public String getClassName(){ return className; }
 
-	private Boolean polar;
+	private HICSSObject style;
 	/**
- When true, cartesian charts like line, spline, area and column are transformed into the polar coordinate system. This produces _polar charts_, also known as _radar charts_. 
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setPolar(Boolean polar) {
-		this.polar = polar;
+ Additional CSS styles to apply inline to the container `div` and the root SVG. Since v11, the root font size is 1rem by defaults, and all child element are given a relative `em` font size by defaults. This allows implementers to control all the chart's font sizes by only setting the root level. 
+ <br><br><b>defaults:</b><br><br>&ensp;{"fontFamily": Helvetica, Arial, sans-serif","fontSize":"1rem"}	*/
+	public void setStyle(HICSSObject style) {
+		this.style = style;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getPolar(){ return polar; }
+	public HICSSObject getStyle(){ return style; }
 
 	private String renderTo;
 	/**
@@ -199,18 +223,6 @@ public class HIChart extends HIFoundation {
 	}
 
 	public Boolean getReflow(){ return reflow; }
-
-	private HIShadowOptionsObject /* boolean */ plotShadow;
-	/**
- Whether to apply a drop shadow to the plot area. Requires that plotBackgroundColor be set. The shadow can be an object configuration containing `color`, `offsetX`, `offsetY`, `opacity` and `width`. 
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setPlotShadow(HIShadowOptionsObject /* boolean */ plotShadow) {
-		this.plotShadow = plotShadow;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIShadowOptionsObject /* boolean */ getPlotShadow(){ return plotShadow; }
 
 	private Number spacingTop;
 	/**
@@ -248,17 +260,17 @@ public class HIChart extends HIFoundation {
 
 	public Object /* Number, String */ getWidth(){ return width; }
 
-	private Number marginLeft;
+	private HIAnimationOptionsObject animation;
 	/**
- The margin between the left outer edge of the chart and the plot area. Use this to set a fixed pixel value for the margin as opposed to the defaults dynamic margin. See also `spacingLeft`. 
-	*/
-	public void setMarginLeft(Number marginLeft) {
-		this.marginLeft = marginLeft;
+ Set the overall animation for all chart updating. Animation can be disabled throughout the chart by setting it to false here. It can be overridden for each individual API method as a function parameter. The only animation not affected by this option is the initial series animation, see `plotOptions.series.animation`. The animation can either be set as a boolean or a configuration object. If `true`, it will use the 'swing' jQuery easing and a duration of 500 ms. If used as a configuration object, the following properties are supported: - `defer`: The animation delay time in milliseconds. - `duration`: The duration of the animation in milliseconds. - `easing`: A string reference to an easing function set on the  `Math` object. See  [the easing demo](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/). When zooming on a series with less than 100 points, the chart redraw will be done with animation, but in case of more data points, it is necessary to set this option to ensure animation on zoom. 
+ <br><br><b>defaults:</b><br><br>&ensp;true	*/
+	public void setAnimation(HIAnimationOptionsObject animation) {
+		this.animation = animation;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getMarginLeft(){ return marginLeft; }
+	public HIAnimationOptionsObject getAnimation(){ return animation; }
 
 	private HIColor plotBackgroundColor;
 	/**
@@ -371,17 +383,17 @@ public class HIChart extends HIFoundation {
 
 	public String getPanKey(){ return panKey; }
 
-	private HICSSObject style;
+	private Number marginLeft;
 	/**
- Additional CSS styles to apply inline to the container `div` and the root SVG. Since v11, the root font size is 1rem by defaults, and all child element are given a relative `em` font size by defaults. This allows implementers to control all the chart's font sizes by only setting the root level. 
- <br><br><b>defaults:</b><br><br>&ensp;{"fontFamily": Helvetica, Arial, sans-serif","fontSize":"1rem"}	*/
-	public void setStyle(HICSSObject style) {
-		this.style = style;
+ The margin between the left outer edge of the chart and the plot area. Use this to set a fixed pixel value for the margin as opposed to the defaults dynamic margin. See also `spacingLeft`. 
+	*/
+	public void setMarginLeft(Number marginLeft) {
+		this.marginLeft = marginLeft;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HICSSObject getStyle(){ return style; }
+	public Number getMarginLeft(){ return marginLeft; }
 
 	private Boolean allowMutatingData;
 	/**
@@ -431,18 +443,6 @@ public class HIChart extends HIFoundation {
 	}
 
 	public Boolean getInverted(){ return inverted; }
-
-	private HIAnimationOptionsObject animation;
-	/**
- Set the overall animation for all chart updating. Animation can be disabled throughout the chart by setting it to false here. It can be overridden for each individual API method as a function parameter. The only animation not affected by this option is the initial series animation, see `plotOptions.series.animation`. The animation can either be set as a boolean or a configuration object. If `true`, it will use the 'swing' jQuery easing and a duration of 500 ms. If used as a configuration object, the following properties are supported: - `defer`: The animation delay time in milliseconds. - `duration`: The duration of the animation in milliseconds. - `easing`: A string reference to an easing function set on the  `Math` object. See  [the easing demo](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/). When zooming on a series with less than 100 points, the chart redraw will be done with animation, but in case of more data points, it is necessary to set this option to ensure animation on zoom. 
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
-	public void setAnimation(HIAnimationOptionsObject animation) {
-		this.animation = animation;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIAnimationOptionsObject getAnimation(){ return animation; }
 
 	private Number plotBorderWidth;
 	/**
@@ -615,11 +615,17 @@ public HashMap<String, Object> getParams() {
 		if (this.parallelAxes != null) {
 			params.put("parallelAxes", this.parallelAxes.getParams());
 		}
+		if (this.polar != null) {
+			params.put("polar", this.polar);
+		}
 		if (this.borderRadius != null) {
 			params.put("borderRadius", this.borderRadius);
 		}
 		if (this.spacingBottom != null) {
 			params.put("spacingBottom", this.spacingBottom);
+		}
+		if (this.plotShadow != null) {
+			params.put("plotShadow", this.plotShadow.getParams());
 		}
 		if (this.height != null) {
 			params.put("height", this.height);
@@ -648,17 +654,14 @@ public HashMap<String, Object> getParams() {
 		if (this.className != null) {
 			params.put("className", this.className);
 		}
-		if (this.polar != null) {
-			params.put("polar", this.polar);
+		if (this.style != null) {
+			params.put("style", this.style.getParams());
 		}
 		if (this.renderTo != null) {
 			params.put("renderTo", this.renderTo);
 		}
 		if (this.reflow != null) {
 			params.put("reflow", this.reflow);
-		}
-		if (this.plotShadow != null) {
-			params.put("plotShadow", this.plotShadow.getParams());
 		}
 		if (this.spacingTop != null) {
 			params.put("spacingTop", this.spacingTop);
@@ -669,8 +672,8 @@ public HashMap<String, Object> getParams() {
 		if (this.width != null) {
 			params.put("width", this.width);
 		}
-		if (this.marginLeft != null) {
-			params.put("marginLeft", this.marginLeft);
+		if (this.animation != null) {
+			params.put("animation", this.animation.getParams());
 		}
 		if (this.plotBackgroundColor != null) {
 			params.put("plotBackgroundColor", this.plotBackgroundColor.getData());
@@ -708,8 +711,8 @@ public HashMap<String, Object> getParams() {
 		if (this.panKey != null) {
 			params.put("panKey", this.panKey);
 		}
-		if (this.style != null) {
-			params.put("style", this.style.getParams());
+		if (this.marginLeft != null) {
+			params.put("marginLeft", this.marginLeft);
 		}
 		if (this.allowMutatingData != null) {
 			params.put("allowMutatingData", this.allowMutatingData);
@@ -722,9 +725,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.inverted != null) {
 			params.put("inverted", this.inverted);
-		}
-		if (this.animation != null) {
-			params.put("animation", this.animation.getParams());
 		}
 		if (this.plotBorderWidth != null) {
 			params.put("plotBorderWidth", this.plotBorderWidth);

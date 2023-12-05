@@ -36,14 +36,14 @@ public class HIStyle extends HIFoundation {
 
 	public String getFontWeight(){ return fontWeight; }
 
-	private String fontSize;
-	public void setFontSize(String fontSize) {
+	private Number fontSize;
+	public void setFontSize(Number fontSize) {
 		this.fontSize = fontSize;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getFontSize(){ return fontSize; }
+	public Number getFontSize(){ return fontSize; }
 
 	private String color;
 	public void setColor(String color) {
@@ -54,14 +54,14 @@ public class HIStyle extends HIFoundation {
 
 	public String getColor(){ return color; }
 
-	private String textOutline;
-	public void setTextOutline(String textOutline) {
+	private Number textOutline;
+	public void setTextOutline(Number textOutline) {
 		this.textOutline = textOutline;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getTextOutline(){ return textOutline; }
+	public Number getTextOutline(){ return textOutline; }
 
 	private String cursor;
 	public void setCursor(String cursor) {
@@ -126,15 +126,6 @@ public class HIStyle extends HIFoundation {
 
 	public String getFill(){ return fill; }
 
-	private String whiteSpace;
-	public void setWhiteSpace(String whiteSpace) {
-		this.whiteSpace = whiteSpace;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getWhiteSpace(){ return whiteSpace; }
-
 
 
 	public HIStyle() {
@@ -181,9 +172,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.fill != null) {
 			params.put("fill", this.fill);
-		}
-		if (this.whiteSpace != null) {
-			params.put("whiteSpace", this.whiteSpace);
 		}
 		return params;
 	}
