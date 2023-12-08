@@ -20,7 +20,7 @@ public class HIRanges extends HIFoundation {
 	private HIColor borderColor;
 	/**
  The color of the border for individual range. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
@@ -32,7 +32,7 @@ public class HIRanges extends HIFoundation {
 	private HIColor color;
 	/**
  The color of the bubble for individual range. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -44,7 +44,7 @@ public class HIRanges extends HIFoundation {
 	private HIColor connectorColor;
 	/**
  The color of the connector for individual range. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setConnectorColor(HIColor connectorColor) {
 		this.connectorColor = connectorColor;
 		this.setChanged();

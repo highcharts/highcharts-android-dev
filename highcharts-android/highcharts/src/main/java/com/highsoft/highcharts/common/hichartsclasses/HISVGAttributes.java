@@ -8,33 +8,51 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 
 public class HISVGAttributes extends HIFoundation { 
 
-	private String d;
-	public void setD(String d) {
+	private ArrayList /* <String, Number> */ d;
+	public void setD(ArrayList /* <String, Number> */ d) {
 		this.d = d;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getD(){ return d; }
+	public ArrayList /* <String, Number> */ getD(){ return d; }
 
-	private Object fill;
-	public void setFill(Object fill) {
+	private Number dx;
+	public void setDx(Number dx) {
+		this.dx = dx;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getDx(){ return dx; }
+
+	private Number dy;
+	public void setDy(Number dy) {
+		this.dy = dy;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getDy(){ return dy; }
+
+	private HIColor fill;
+	public void setFill(HIColor fill) {
 		this.fill = fill;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getFill(){ return fill; }
+	public HIColor getFill(){ return fill; }
 
 	private Boolean inverted;
 	public void setInverted(Boolean inverted) {
@@ -99,14 +117,14 @@ public class HISVGAttributes extends HIFoundation {
 
 	public Number getScaleY(){ return scaleY; }
 
-	private Object stroke;
-	public void setStroke(Object stroke) {
+	private HIColor stroke;
+	public void setStroke(HIColor stroke) {
 		this.stroke = stroke;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getStroke(){ return stroke; }
+	public HIColor getStroke(){ return stroke; }
 
 	private HICSSObject style;
 	public void setStyle(HICSSObject style) {
@@ -156,10 +174,25 @@ public HashMap<String, Object> getParams() {
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
 		if (this.d != null) {
-			params.put("d", this.d);
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.d) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("d", array);
+		}
+		if (this.dx != null) {
+			params.put("dx", this.dx);
+		}
+		if (this.dy != null) {
+			params.put("dy", this.dy);
 		}
 		if (this.fill != null) {
-			params.put("fill", this.fill);
+			params.put("fill", this.fill.getData());
 		}
 		if (this.inverted != null) {
 			params.put("inverted", this.inverted);
@@ -192,7 +225,7 @@ public HashMap<String, Object> getParams() {
 			params.put("scaleY", this.scaleY);
 		}
 		if (this.stroke != null) {
-			params.put("stroke", this.stroke);
+			params.put("stroke", this.stroke.getData());
 		}
 		if (this.style != null) {
 			params.put("style", this.style.getParams());

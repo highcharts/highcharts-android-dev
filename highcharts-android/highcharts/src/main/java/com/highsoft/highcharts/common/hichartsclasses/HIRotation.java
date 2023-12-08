@@ -8,11 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
@@ -21,7 +19,7 @@ public class HIRotation extends HIFoundation {
 	private Number to;
 	/**
  The largest degree of rotation for a word. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;90	*/
 	public void setTo(Number to) {
 		this.to = to;
 		this.setChanged();
@@ -44,8 +42,8 @@ public class HIRotation extends HIFoundation {
 
 	private Number orientations;
 	/**
- The number of possible orientations for a word, within the range of rotation.from and rotation.to. Must be a number larger than 0. 
-	*/
+ The number of possible orientations for a word, within the range of `rotation.from` and `rotation.to`. Must be a number larger than 0. 
+ <br><br><b>defaults:</b><br><br>&ensp;2	*/
 	public void setOrientations(Number orientations) {
 		this.orientations = orientations;
 		this.setChanged();

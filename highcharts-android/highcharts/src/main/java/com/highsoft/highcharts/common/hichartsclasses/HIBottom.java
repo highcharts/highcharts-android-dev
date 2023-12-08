@@ -31,7 +31,7 @@ public class HIBottom extends HIFoundation {
 
 	private Object /* boolean, String */ visible;
 	/**
- Whether to display the frame. Possible values are true, false, "auto" to display only the frames behind the data, and "default" to display faces behind the data based on the axis layout, ignoring the point of view. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/scatter-frame/">Auto frames</a>
+ Whether to display the frame. Possible values are `true`, `false`, `"auto"` to display only the frames behind the data, and `"default"` to display faces behind the data based on the axis layout, ignoring the point of view. 
  <br><br><b>defaults:</b><br><br>&ensp;defaults	*/
 	public void setVisible(Object /* boolean, String */ visible) {
 		this.visible = visible;

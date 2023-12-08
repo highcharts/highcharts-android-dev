@@ -30,7 +30,7 @@ public class HIBreaks extends HIFoundation {
 
 	private Number breakSize;
 	/**
- A number indicating how much space should be left between the start and the end of the break. The break size is given in axis units, so for instance on a datetime axis, a break size of 3600000 would indicate the equivalent of an hour. 
+ A number indicating how much space should be left between the start and the end of the break. The break size is given in axis units, so for instance on a `datetime` axis, a break size of 3600000 would indicate the equivalent of an hour. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setBreakSize(Number breakSize) {
 		this.breakSize = breakSize;

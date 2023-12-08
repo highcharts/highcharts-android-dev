@@ -8,32 +8,28 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
 public class HITextPath extends HIFoundation { 
 
-	private HISVGAttributes attributes;
-	/**
- Presentation attributes for the text path. 
-	*/
-	public void setAttributes(HISVGAttributes attributes) {
+	private HIAttributes attributes;
+	public void setAttributes(HIAttributes attributes) {
 		this.attributes = attributes;
+		this.attributes.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HISVGAttributes getAttributes(){ return attributes; }
+	public HIAttributes getAttributes(){ return attributes; }
 
 	private Boolean enabled;
 	/**
- Enable or disable textPath option for link's or marker's data labels. 
-	*/
+ Enable or disable `textPath` option for link's or marker's data labels. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();

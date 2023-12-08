@@ -366,18 +366,6 @@ public class HISeries extends HIFoundation {
 
 	public String getColorKey(){ return colorKey; }
 
-	private Boolean selected;
-	/**
- Whether to select the series initially. If `showCheckbox` is true, the checkbox next to the series name in the legend will be checked for a selected series. 
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setSelected(Boolean selected) {
-		this.selected = selected;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getSelected(){ return selected; }
-
 	private Boolean softThreshold;
 	/**
  When this is true, the series will not cause the Y axis to cross the zero plane (or `threshold` option) unless the data actually crosses the plane. For example, if `softThreshold` is `false`, a series of 0, 1, 2, 3 will make the Y axis show negative values according to the `minPadding` option. If `softThreshold` is `true`, the Y axis starts at 0. 
@@ -526,6 +514,18 @@ public class HISeries extends HIFoundation {
 	}
 
 	public Boolean getConnectNulls(){ return connectNulls; }
+
+	private Boolean inactiveOtherPoints;
+	/**
+ Highlight only the hovered point and fade the remaining points. Scatter-type series require enabling the 'inactive' marker state and adjusting opacity. Note that this approach could affect performance with large datasets. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setInactiveOtherPoints(Boolean inactiveOtherPoints) {
+		this.inactiveOtherPoints = inactiveOtherPoints;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getInactiveOtherPoints(){ return inactiveOtherPoints; }
 
 	private Boolean enableMouseTracking;
 	/**
@@ -709,6 +709,18 @@ public class HISeries extends HIFoundation {
 
 	public Number getAnimationLimit(){ return animationLimit; }
 
+	private Number turboThreshold;
+	/**
+ When a series contains a data array that is longer than this, only one dimensional arrays of numbers, or two dimensional arrays with x and y values are allowed. Also, only the first point is tested, and the rest are assumed to be the same format. This saves expensive data checking and indexing in long series. Set it to `0` disable. Note: In boost mode turbo threshold is forced. Only array of numbers or two dimensional arrays are allowed. 
+ <br><br><b>defaults:</b><br><br>&ensp;1000	*/
+	public void setTurboThreshold(Number turboThreshold) {
+		this.turboThreshold = turboThreshold;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getTurboThreshold(){ return turboThreshold; }
+
 	private ArrayList<String> keys;
 	/**
  An array specifying which option maps to which key in the data point array. This makes it convenient to work with unstructured data arrays from different sources. 
@@ -721,17 +733,17 @@ public class HISeries extends HIFoundation {
 
 	public ArrayList<String> getKeys(){ return keys; }
 
-	private Number turboThreshold;
+	private Boolean selected;
 	/**
- When a series contains a data array that is longer than this, only one dimensional arrays of numbers, or two dimensional arrays with x and y values are allowed. Also, only the first point is tested, and the rest are assumed to be the same format. This saves expensive data checking and indexing in long series. Set it to `0` disable. Note: In boost mode turbo threshold is forced. Only array of numbers or two dimensional arrays are allowed. 
- <br><br><b>defaults:</b><br><br>&ensp;1000	*/
-	public void setTurboThreshold(Number turboThreshold) {
-		this.turboThreshold = turboThreshold;
+ Whether to select the series initially. If `showCheckbox` is true, the checkbox next to the series name in the legend will be checked for a selected series. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setSelected(Boolean selected) {
+		this.selected = selected;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getTurboThreshold(){ return turboThreshold; }
+	public Boolean getSelected(){ return selected; }
 
 	private Boolean skipKeyboardNavigation;
 	/**
@@ -870,7 +882,7 @@ public class HISeries extends HIFoundation {
 	private Number lineWidth;
 	/**
  Pixel width of the graph line. 
- <br><br><b>defaults:</b><br><br>&ensp;1	*/
+ <br><br><b>defaults:</b><br><br>&ensp;2	*/
 	public void setLineWidth(Number lineWidth) {
 		this.lineWidth = lineWidth;
 		this.setChanged();
@@ -1118,9 +1130,6 @@ public HashMap<String, Object> getParams() {
 		if (this.colorKey != null) {
 			params.put("colorKey", this.colorKey);
 		}
-		if (this.selected != null) {
-			params.put("selected", this.selected);
-		}
 		if (this.softThreshold != null) {
 			params.put("softThreshold", this.softThreshold);
 		}
@@ -1156,6 +1165,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.connectNulls != null) {
 			params.put("connectNulls", this.connectNulls);
+		}
+		if (this.inactiveOtherPoints != null) {
+			params.put("inactiveOtherPoints", this.inactiveOtherPoints);
 		}
 		if (this.enableMouseTracking != null) {
 			params.put("enableMouseTracking", this.enableMouseTracking);
@@ -1202,6 +1214,9 @@ public HashMap<String, Object> getParams() {
 		if (this.animationLimit != null) {
 			params.put("animationLimit", this.animationLimit);
 		}
+		if (this.turboThreshold != null) {
+			params.put("turboThreshold", this.turboThreshold);
+		}
 		if (this.keys != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.keys) {
@@ -1214,8 +1229,8 @@ public HashMap<String, Object> getParams() {
 			}
 			params.put("keys", array);
 		}
-		if (this.turboThreshold != null) {
-			params.put("turboThreshold", this.turboThreshold);
+		if (this.selected != null) {
+			params.put("selected", this.selected);
 		}
 		if (this.skipKeyboardNavigation != null) {
 			params.put("skipKeyboardNavigation", this.skipKeyboardNavigation);

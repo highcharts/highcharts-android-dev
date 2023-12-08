@@ -22,45 +22,6 @@ import com.highsoft.highcharts.common.HIColor;
 	*/
 
 public class HIPyramid extends HISeries {
-	private Boolean reversed;
-	/**
-/** * description: The pyramid is reversed by defaults, as opposed to the funnel, which shares the layout engine, and is not reversed. 
-* defaults: True
-*/
-	public void setReversed(Boolean reversed) {
-		this.reversed = reversed;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getReversed(){ return reversed; }
-
-	private Number neckWidth;
-	/**
-/** * description: The pyramid neck width is zero by defaults, as opposed to the funnel, which shares the same layout logic. * demo: * [Funnel demo](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/funnel/) 
-* defaults: 30%
-*/
-	public void setNeckWidth(Number neckWidth) {
-		this.neckWidth = neckWidth;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getNeckWidth(){ return neckWidth; }
-
-	private Number neckHeight;
-	/**
-/** * description: The pyramid neck width is zero by defaults, as opposed to the funnel, which shares the same layout logic. 
-* defaults: 25%
-*/
-	public void setNeckHeight(Number neckHeight) {
-		this.neckHeight = neckHeight;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getNeckHeight(){ return neckHeight; }
-
 	private ArrayList /* <Number, String> */ center;
 	/**
 /** * description: The center of the series. By defaults, it is centered in the middle of the plot area, so it fills the plot area height. * demo: * [Centered at 100, 100](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/pie-center/) 
@@ -86,6 +47,30 @@ public class HIPyramid extends HISeries {
 
 	public Number getBorderRadius(){ return borderRadius; }
 
+	private Boolean reversed;
+	/**
+ A reversed funnel has the widest area down. A reversed funnel with no neck width and neck height is a pyramid. 
+	*/
+	public void setReversed(Boolean reversed) {
+		this.reversed = reversed;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getReversed(){ return reversed; }
+
+	private Object /* Number, String */ neckHeight;
+	/**
+ The height of the neck, the lower part of the funnel. A number defines pixel width, a percentage string defines a percentage of the plot area height. 
+ <br><br><b>defaults:</b><br><br>&ensp;25%	*/
+	public void setNeckHeight(Object /* Number, String */ neckHeight) {
+		this.neckHeight = neckHeight;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getNeckHeight(){ return neckHeight; }
+
 	private Object /* Number, String */ height;
 	/**
  The height of the funnel or pyramid. If it is a number it defines the pixel height, if it is a percentage string it is the percentage of the plot area height. 
@@ -109,6 +94,18 @@ public class HIPyramid extends HISeries {
 	}
 
 	public Object /* Number, String */ getWidth(){ return width; }
+
+	private Object /* Number, String */ neckWidth;
+	/**
+ The width of the neck, the lower part of the funnel. A number defines pixel width, a percentage string defines a percentage of the plot area width. 
+ <br><br><b>defaults:</b><br><br>&ensp;30%	*/
+	public void setNeckWidth(Object /* Number, String */ neckWidth) {
+		this.neckWidth = neckWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getNeckWidth(){ return neckWidth; }
 
 	private Boolean ignoreHiddenPoint;
 	/**
@@ -254,15 +251,6 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
-		if (this.reversed != null) {
-			params.put("reversed", this.reversed);
-		}
-		if (this.neckWidth != null) {
-			params.put("neckWidth", this.neckWidth);
-		}
-		if (this.neckHeight != null) {
-			params.put("neckHeight", this.neckHeight);
-		}
 		if (this.center != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.center) {
@@ -278,11 +266,20 @@ public HashMap<String, Object> getParams() {
 		if (this.borderRadius != null) {
 			params.put("borderRadius", this.borderRadius);
 		}
+		if (this.reversed != null) {
+			params.put("reversed", this.reversed);
+		}
+		if (this.neckHeight != null) {
+			params.put("neckHeight", this.neckHeight);
+		}
 		if (this.height != null) {
 			params.put("height", this.height);
 		}
 		if (this.width != null) {
 			params.put("width", this.width);
+		}
+		if (this.neckWidth != null) {
+			params.put("neckWidth", this.neckWidth);
 		}
 		if (this.ignoreHiddenPoint != null) {
 			params.put("ignoreHiddenPoint", this.ignoreHiddenPoint);

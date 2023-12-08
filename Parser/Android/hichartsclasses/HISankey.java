@@ -107,6 +107,18 @@ public class HISankey extends HISeries {
 
 	public Number getBorderWidth(){ return borderWidth; }
 
+	private String nodeAlignment;
+	/**
+ Determines which side of the chart the nodes are to be aligned to. When the chart is inverted, `top` aligns to the left and `bottom` to the right. 
+	*/
+	public void setNodeAlignment(String nodeAlignment) {
+		this.nodeAlignment = nodeAlignment;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getNodeAlignment(){ return nodeAlignment; }
+
 	private Number linkOpacity;
 	/**
  Opacity for the links between nodes in the sankey diagram. 
@@ -118,6 +130,18 @@ public class HISankey extends HISeries {
 	}
 
 	public Number getLinkOpacity(){ return linkOpacity; }
+
+	private String linkColorMode;
+	/**
+ Determines color mode for sankey links. Available options: - `from` color of the sankey link will be the same as the 'from node' - `gradient` color of the sankey link will be set to gradient between colors of 'from node' and 'to node' - `to` color of the sankey link will be same as the 'to node'. 
+ <br><br><b>defaults:</b><br><br>&ensp;from	*/
+	public void setLinkColorMode(String linkColorMode) {
+		this.linkColorMode = linkColorMode;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getLinkColorMode(){ return linkColorMode; }
 
 	private ArrayList<String> colors;
 	/**
@@ -209,8 +233,14 @@ public HashMap<String, Object> getParams() {
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);
 		}
+		if (this.nodeAlignment != null) {
+			params.put("nodeAlignment", this.nodeAlignment);
+		}
 		if (this.linkOpacity != null) {
 			params.put("linkOpacity", this.linkOpacity);
+		}
+		if (this.linkColorMode != null) {
+			params.put("linkColorMode", this.linkColorMode);
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();

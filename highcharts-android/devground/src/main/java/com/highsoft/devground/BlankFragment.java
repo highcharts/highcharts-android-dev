@@ -19,7 +19,6 @@ import com.highsoft.highcharts.common.hichartsclasses.HISeries;
 import com.highsoft.highcharts.common.hichartsclasses.HITitle;
 import com.highsoft.highcharts.common.hichartsclasses.HIXAxis;
 import com.highsoft.highcharts.common.hichartsclasses.HIYAxis;
-import com.highsoft.highcharts.core.HIChartView;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -34,56 +34,19 @@ public class HIDumbbell extends HISeries {
 
 	public String getConnectorColor(){ return connectorColor; }
 
-	private Number connectorWidth;
+	private HILowMarker lowMarker;
 	/**
- Pixel width of the line that connects the dumbbell point's values. 
- <br><br><b>defaults:</b><br><br>&ensp;1	*/
-	public void setConnectorWidth(Number connectorWidth) {
-		this.connectorWidth = connectorWidth;
+/** * description: Options for the lower markers of the dumbbell-like series. When `lowMarker` is not defined, options inherit form the marker. 
+* defaults: undefined
+*/
+	public void setLowMarker(HILowMarker lowMarker) {
+		this.lowMarker = lowMarker;
+		this.lowMarker.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getConnectorWidth(){ return connectorWidth; }
-
-	private Number pointPadding;
-	public void setPointPadding(Number pointPadding) {
-		this.pointPadding = pointPadding;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getPointPadding(){ return pointPadding; }
-
-	private Number pointRange;
-	public void setPointRange(Number pointRange) {
-		this.pointRange = pointRange;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getPointRange(){ return pointRange; }
-
-	private Number groupPadding;
-	public void setGroupPadding(Number groupPadding) {
-		this.groupPadding = groupPadding;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getGroupPadding(){ return groupPadding; }
-
-	private HIColor lowColor;
-	/**
- Color of the start markers in a dumbbell graph. 
- <br><br><b>defaults:</b><br><br>&ensp;#333333	*/
-	public void setLowColor(HIColor lowColor) {
-		this.lowColor = lowColor;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIColor getLowColor(){ return lowColor; }
+	public HILowMarker getLowMarker(){ return lowMarker; }
 
 	private HIColor negativeFillColor;
 	/**
@@ -124,20 +87,8 @@ public HashMap<String, Object> getParams() {
 		if (this.connectorColor != null) {
 			params.put("connectorColor", this.connectorColor);
 		}
-		if (this.connectorWidth != null) {
-			params.put("connectorWidth", this.connectorWidth);
-		}
-		if (this.pointPadding != null) {
-			params.put("pointPadding", this.pointPadding);
-		}
-		if (this.pointRange != null) {
-			params.put("pointRange", this.pointRange);
-		}
-		if (this.groupPadding != null) {
-			params.put("groupPadding", this.groupPadding);
-		}
-		if (this.lowColor != null) {
-			params.put("lowColor", this.lowColor.getData());
+		if (this.lowMarker != null) {
+			params.put("lowMarker", this.lowMarker.getParams());
 		}
 		if (this.negativeFillColor != null) {
 			params.put("negativeFillColor", this.negativeFillColor.getData());

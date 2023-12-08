@@ -8,11 +8,10 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 
@@ -20,7 +19,7 @@ public class HIResponsive extends HIFoundation {
 
 	private ArrayList <HIRules> rules;
 	/**
- A set of rules for responsive settings. The rules are executed from the top down. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/responsive/axis/">Axis changes</a>
+ A set of rules for responsive settings. The rules are executed from the top down. 
 	*/
 	public void setRules(ArrayList rules) {
 		this.rules = rules;

@@ -19,6 +19,19 @@ import com.highsoft.highcharts.common.HIColor;
 
 public class HILevels extends HIFoundation { 
 
+	private HIMarker marker;
+	/**
+ Set marker options for nodes at the level. 
+	*/
+	public void setMarker(HIMarker marker) {
+		this.marker = marker;
+		this.marker.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIMarker getMarker(){ return marker; }
+
 	private Boolean collapsed;
 	/**
  Set collapsed status for nodes level-wise. 
@@ -201,6 +214,9 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.marker != null) {
+			params.put("marker", this.marker.getParams());
+		}
 		if (this.collapsed != null) {
 			params.put("collapsed", this.collapsed);
 		}

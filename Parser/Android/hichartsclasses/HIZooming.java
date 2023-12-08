@@ -20,7 +20,7 @@ public class HIZooming extends HIFoundation {
 
 	private HIMouseWheel mouseWheel;
 	/**
- The mouse wheel zoom is a feature included in Highcharts Stock, but is also available for Highcharts Core as a module. Zooming with the mouse wheel is enabled by defaults. It can be disabled by setting this option to `false`. 
+ The mouse wheel zoom is a feature included in Highcharts Stock, but is also available for Highcharts Core as a module. Zooming with the mouse wheel is enabled by defaults in Highcharts Stock. In Highcharts Core it is enabled if `chart.zooming.type` is set. It can be disabled by setting this option to `false`. 
 	*/
 	public void setMouseWheel(HIMouseWheel mouseWheel) {
 		this.mouseWheel = mouseWheel;

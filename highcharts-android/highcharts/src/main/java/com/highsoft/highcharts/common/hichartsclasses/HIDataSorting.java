@@ -8,11 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
@@ -20,7 +18,7 @@ public class HIDataSorting extends HIFoundation {
 
 	private Boolean matchByName;
 	/**
- Whether to allow matching points by name in an update. If this option is disabled, points will be matched by order. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/datasorting/match-by-name/">Enabled match by name</a>
+ Whether to allow matching points by name in an update. If this option is disabled, points will be matched by order. 
 	*/
 	public void setMatchByName(Boolean matchByName) {
 		this.matchByName = matchByName;
@@ -32,7 +30,7 @@ public class HIDataSorting extends HIFoundation {
 
 	private Boolean enabled;
 	/**
- Enable or disable data sorting for the series. Use xAxis.reversed to change the sorting order. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/datasorting/animation/">Data sorting in scatter-3d</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/datasorting/labels-animation/">Axis labels animation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/datasorting/dependent-sorting/">Dependent series sorting</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/datasorting/independent-sorting/">Independent series sorting</a>
+ Enable or disable data sorting for the series. Use `xAxis.reversed` to change the sorting order. 
 	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -44,7 +42,7 @@ public class HIDataSorting extends HIFoundation {
 
 	private String sortKey;
 	/**
- Determines what data value should be used to sort by. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/datasorting/sort-key/">Sort key as `z` value</a>
+ Determines what data value should be used to sort by. 
  <br><br><b>defaults:</b><br><br>&ensp;y	*/
 	public void setSortKey(String sortKey) {
 		this.sortKey = sortKey;

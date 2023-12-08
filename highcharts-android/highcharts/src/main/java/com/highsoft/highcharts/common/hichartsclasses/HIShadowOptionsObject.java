@@ -8,27 +8,25 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
 public class HIShadowOptionsObject extends HIFoundation { 
 
-	private Object color;
+	private String color;
 	/**
  The shadow color. 
 	*/
-	public void setColor(Object color) {
+	public void setColor(String color) {
 		this.color = color;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getColor(){ return color; }
+	public String getColor(){ return color; }
 
 	private Number offsetX;
 	/**

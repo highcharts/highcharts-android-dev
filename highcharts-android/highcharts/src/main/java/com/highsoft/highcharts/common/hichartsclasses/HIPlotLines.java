@@ -8,11 +8,10 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
@@ -20,7 +19,7 @@ public class HIPlotLines extends HIFoundation {
 
 	private Number zIndex;
 	/**
- The z index of the plot line within the chart. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-zindex-behind/">Behind plot lines by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-zindex-above/">Above plot lines</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-zindex-above-all/">Above plot lines and series</a>
+ The z index of the plot line within the chart. 
 	*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
@@ -32,7 +31,7 @@ public class HIPlotLines extends HIFoundation {
 
 	private String dashStyle;
 	/**
- The dashing or dot style for the plot line. For possible values see [this overview](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-dashstyle/">Dash and dot pattern</a>
+ The dashing or dot style for the plot line. For possible values see [this overview](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/). 
  <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
 	public void setDashStyle(String dashStyle) {
 		this.dashStyle = dashStyle;
@@ -42,17 +41,27 @@ public class HIPlotLines extends HIFoundation {
 
 	public String getDashStyle(){ return dashStyle; }
 
-	private Object color;
+	private HIColor color;
 	/**
- The color of the line. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">A red line from X axis</a>
+ The color of the line. 
  <br><br><b>defaults:</b><br><br>&ensp;#999999	*/
-	public void setColor(Object color) {
+	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getColor(){ return color; }
+	public HIColor getColor(){ return color; }
+
+	private HILabels labels;
+	public void setLabels(HILabels labels) {
+		this.labels = labels;
+		this.labels.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HILabels getLabels(){ return labels; }
 
 	private HILabel label;
 	/**
@@ -69,7 +78,7 @@ public class HIPlotLines extends HIFoundation {
 
 	private Number value;
 	/**
- The position of the line in axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">Between two categories on X axis</a>
+ The position of the line in axis units. 
 	*/
 	public void setValue(Number value) {
 		this.value = value;
@@ -81,7 +90,7 @@ public class HIPlotLines extends HIFoundation {
 
 	private HIEvents events;
 	/**
- An object defining mouse events for the plot line. Supported properties are click, mouseover, mouseout, mousemove. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-events/">Mouse events demonstrated</a>
+ An object defining mouse events for the plot line. Supported properties are `click`, `mouseover`, `mouseout`, `mousemove`. 
 	*/
 	public void setEvents(HIEvents events) {
 		this.events = events;
@@ -94,7 +103,7 @@ public class HIPlotLines extends HIFoundation {
 
 	private String className;
 	/**
- A custom class name, in addition to the defaults highcharts-plot-line, to apply to each individual line. 
+ A custom class name, in addition to the defaults `highcharts-plot-line`, to apply to each individual line. 
 	*/
 	public void setClassName(String className) {
 		this.className = className;
@@ -106,7 +115,7 @@ public class HIPlotLines extends HIFoundation {
 
 	private Number width;
 	/**
- The width or thickness of the plot line. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-color/">2px wide line from X axis</a>
+ The width or thickness of the plot line. 
  <br><br><b>defaults:</b><br><br>&ensp;2	*/
 	public void setWidth(Number width) {
 		this.width = width;
@@ -118,7 +127,7 @@ public class HIPlotLines extends HIFoundation {
 
 	private String id;
 	/**
- An id used for identifying the plot line in Axis.removePlotLine. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-id/">Remove plot line by id</a>
+ An id used for identifying the plot line in Axis.removePlotLine. 
 	*/
 	public void setId(String id) {
 		this.id = id;
@@ -127,6 +136,12 @@ public class HIPlotLines extends HIFoundation {
 	}
 
 	public String getId(){ return id; }
+
+
+
+	public HIPlotLines() {
+
+	}
 
 	/**
 	 * Remove the plot line.
@@ -142,10 +157,6 @@ public class HIPlotLines extends HIFoundation {
 	}
 
 
-	public HIPlotLines() {
-
-	}
-
 	@Override
 public HashMap<String, Object> getParams() {
 
@@ -158,7 +169,10 @@ public HashMap<String, Object> getParams() {
 			params.put("dashStyle", this.dashStyle);
 		}
 		if (this.color != null) {
-			params.put("color", this.color);
+			params.put("color", this.color.getData());
+		}
+		if (this.labels != null) {
+			params.put("labels", this.labels.getParams());
 		}
 		if (this.label != null) {
 			params.put("label", this.label.getParams());

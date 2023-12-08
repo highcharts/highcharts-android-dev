@@ -20,8 +20,8 @@ public class HIMouseWheel extends HIFoundation {
 
 	private String type;
 	/**
- Decides in what dimensions the user can zoom scrolling the wheel. Can be one of `x`, `y` or `xy`. If not specified here, it will inherit the type from `chart.zooming.type`. Note that particularly with mouse wheel in the y direction, the zoom is affected by the defaults `yAxis.startOnTick` and `endOnTick`) settings. In order to respect these settings, the zoom level will adjust after the user has stopped zooming. To prevent this, consider setting `startOnTick` and `endOnTick` to `false`. 
- <br><br><b>defaults:</b><br><br>&ensp;x	*/
+ Decides in what dimensions the user can zoom scrolling the wheel. Can be one of `x`, `y` or `xy`. In Highcharts Core, if not specified here, it will inherit the type from `chart.zooming.type`. In Highcharts Stock, it defaultss to `x`. Note that particularly with mouse wheel in the y direction, the zoom is affected by the defaults `yAxis.startOnTick` and `endOnTick`) settings. In order to respect these settings, the zoom level will adjust after the user has stopped zooming. To prevent this, consider setting `startOnTick` and `endOnTick` to `false`. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setType(String type) {
 		this.type = type;
 		this.setChanged();

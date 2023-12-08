@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import com.highsoft.highcharts.common.HIColor
-import com.highsoft.highcharts.common.HIGradient
-import com.highsoft.highcharts.common.HIStop
-import com.highsoft.highcharts.common.hichartsclasses.*
-import com.highsoft.highcharts.core.*
-import java.math.BigDecimal
-import java.util.*
-import kotlin.collections.HashMap
+import com.highsoft.highcharts.common.hichartsclasses.HIAccessibility
+import com.highsoft.highcharts.common.hichartsclasses.HIArea
+import com.highsoft.highcharts.common.hichartsclasses.HICredits
+import com.highsoft.highcharts.common.hichartsclasses.HILabel
+import com.highsoft.highcharts.common.hichartsclasses.HIMarker
+import com.highsoft.highcharts.common.hichartsclasses.HIOptions
+import com.highsoft.highcharts.common.hichartsclasses.HIZones
+import com.highsoft.highcharts.core.HIChartView
 
 
 class MainActivityKotlin : AppCompatActivity() {

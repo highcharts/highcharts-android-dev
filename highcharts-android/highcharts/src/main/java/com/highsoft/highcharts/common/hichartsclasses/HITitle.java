@@ -18,8 +18,8 @@ public class HITitle extends HIFoundation {
 
 	private Number widthAdjust;
 	/**
- Adjustment made to the title width, normally to reserve space for the exporting burger menu. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/widthadjust/">Wider menu, greater padding</a>
-	*/
+ Adjustment made to the title width, normally to reserve space for the exporting burger menu. 
+ <br><br><b>defaults:</b><br><br>&ensp;-44	*/
 	public void setWidthAdjust(Number widthAdjust) {
 		this.widthAdjust = widthAdjust;
 		this.setChanged();
@@ -30,7 +30,7 @@ public class HITitle extends HIFoundation {
 
 	private HICSSObject style;
 	/**
- CSS styles for the title. Use this for font styling, but use align, x and y for text alignment. In styled mode, the title style is given in the .highcharts-title class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/style/">Custom color and weight</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/titles/">Styled mode</a>
+ CSS styles for the title. Use this for font styling, but use `align`, `x` and `y` for text alignment. In styled mode, the title style is given in the `.highcharts-title` class. 
  <br><br><b>defaults:</b><br><br>&ensp;{ "color": "#333333", "fontSize": "18px" }	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
@@ -42,7 +42,7 @@ public class HITitle extends HIFoundation {
 
 	private String verticalAlign;
 	/**
- The vertical alignment of the title. Can be one of "top", "middle" and "bottom". When a value is given, the title behaves as if floating were true. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/verticalalign/">Chart title in bottom right corner</a>
+ The vertical alignment of the title. Can be one of `"top"`, `"middle"` and `"bottom"`. When a value is given, the title behaves as if `floating` were `true`. 
 	*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
@@ -54,7 +54,7 @@ public class HITitle extends HIFoundation {
 
 	private String text;
 	/**
- The title of the chart. To disable the title, set the text to undefined. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/text/">Custom title</a>
+ The title of the chart. To disable the title, set the `text` to `undefined`. 
  <br><br><b>defaults:</b><br><br>&ensp;Chart title	*/
 	public void setText(String text) {
 		this.text = text;
@@ -66,8 +66,8 @@ public class HITitle extends HIFoundation {
 
 	private String align;
 	/**
- The horizontal alignment of the title. Can be one of "left", "center" and "right". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/align/">Aligned to the plot area (x = 70px = margin left - spacing left)</a>
-	*/
+ The horizontal alignment of the title. Can be one of "left", "center" and "right". 
+ <br><br><b>defaults:</b><br><br>&ensp;center	*/
 	public void setAlign(String align) {
 		this.align = align;
 		this.setChanged();
@@ -78,7 +78,7 @@ public class HITitle extends HIFoundation {
 
 	private Number y;
 	/**
- The y position of the title relative to the alignment within chart.spacingTop and chart.spacingBottom. By defaults it depends on the font size. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/y/">Title inside the plot area</a>
+ The y position of the title relative to the alignment within `chart.spacingTop` and `chart.spacingBottom`. By defaults it depends on the font size. 
 	*/
 	public void setY(Number y) {
 		this.y = y;
@@ -90,7 +90,7 @@ public class HITitle extends HIFoundation {
 
 	private Number x;
 	/**
- The x position of the title relative to the alignment within chart.spacingLeft and chart.spacingRight. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/align/">Aligned to the plot area (x = 70px = margin left - spacing left)</a>
+ The x position of the title relative to the alignment within `chart.spacingLeft` and `chart.spacingRight`. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setX(Number x) {
 		this.x = x;
@@ -102,7 +102,7 @@ public class HITitle extends HIFoundation {
 
 	private Boolean floating;
 	/**
- When the title is floating, the plot area will not move to make space for it. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/zoomtype-none/">False by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/floating/">True - title on top of the plot area</a>
+ When the title is floating, the plot area will not move to make space for it. 
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setFloating(Boolean floating) {
 		this.floating = floating;
@@ -114,8 +114,8 @@ public class HITitle extends HIFoundation {
 
 	private Number margin;
 	/**
- The margin between the title and the plot area, or if a subtitle is present, the margin between the subtitle and the plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/margin-50/">A chart title margin of 50</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/title/margin-subtitle/">The same margin applied with a subtitle</a>
-	*/
+ The margin between the title and the plot area, or if a subtitle is present, the margin between the subtitle and the plot area. 
+ <br><br><b>defaults:</b><br><br>&ensp;15	*/
 	public void setMargin(Number margin) {
 		this.margin = margin;
 		this.setChanged();
@@ -138,8 +138,8 @@ public class HITitle extends HIFoundation {
 
 	private Number rotation;
 	/**
- The rotation of the text in degrees. 0 is horizontal, 270 is vertical reading from bottom to top. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/title-offset/">Horizontal</a>
-	*/
+ The rotation of the text in degrees. 0 is horizontal, 270 is vertical reading from bottom to top. 
+ <br><br><b>defaults:</b><br><br>&ensp;270	*/
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;
 		this.setChanged();
@@ -162,7 +162,7 @@ public class HITitle extends HIFoundation {
 
 	private Boolean skew3d;
 	/**
- If enabled, the axis title will skewed to follow the perspective. This will fix overlapping labels and titles, but texts become less legible due to the distortion. The final appearance depends heavily on title.position3d. A null value will use the config from labels.skew3d. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/">Skewed labels</a>
+ If enabled, the axis title will skewed to follow the perspective. This will fix overlapping labels and titles, but texts become less legible due to the distortion. The final appearance depends heavily on `title.position3d`. A `null` value will use the config from `labels.skew3d`. 
 	*/
 	public void setSkew3d(Boolean skew3d) {
 		this.skew3d = skew3d;
@@ -174,7 +174,7 @@ public class HITitle extends HIFoundation {
 
 	private String position3d;
 	/**
- Defines how the title is repositioned according to the 3D chart orientation. - 'offset': Maintain a fixed horizontal/vertical distance from  the tick marks, despite the chart orientation. This is the  backwards compatible behavior, and causes skewing of X and Z  axes. - 'chart': Preserve 3D position relative to the chart. This  looks nice, but hard to read if the text isn't forward-facing. - 'flap': Rotated text along the axis to compensate for the  chart orientation. This tries to maintain text as legible as  possible on all orientations. - 'ortho': Rotated text along the axis direction so that the  labels are orthogonal to the axis. This is very similar to  'flap', but prevents skewing the labels (X and Y scaling are  still present). - undefined: Will use the config from labels.position3d <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/">Skewed labels</a>
+ Defines how the title is repositioned according to the 3D chart orientation. - `'offset'`: Maintain a fixed horizontal/vertical distance from  the tick marks, despite the chart orientation. This is the  backwards compatible behavior, and causes skewing of X and Z  axes. - `'chart'`: Preserve 3D position relative to the chart. This  looks nice, but hard to read if the text isn't forward-facing. - `'flap'`: Rotated text along the axis to compensate for the  chart orientation. This tries to maintain text as legible as  possible on all orientations. - `'ortho'`: Rotated text along the axis direction so that the  labels are orthogonal to the axis. This is very similar to  `'flap'`, but prevents skewing the labels (X and Y scaling are  still present). - `undefined`: Will use the config from `labels.position3d` 
 	*/
 	public void setPosition3d(String position3d) {
 		this.position3d = position3d;
@@ -186,7 +186,7 @@ public class HITitle extends HIFoundation {
 
 	private Number offset;
 	/**
- The distance of the axis title from the axis line. By defaults, this distance is computed from the offset width of the labels, the labels' distance from the axis and the title's margin. However when the offset option is set, it overrides all this. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/title-offset/">Place the axis title on top of the axis</a>
+ The distance of the axis title from the axis line. By defaults, this distance is computed from the offset width of the labels, the labels' distance from the axis and the title's margin. However when the offset option is set, it overrides all this. 
 	*/
 	public void setOffset(Number offset) {
 		this.offset = offset;
@@ -198,7 +198,7 @@ public class HITitle extends HIFoundation {
 
 	private String textAlign;
 	/**
- Alignment of the text, can be "left", "right" or "center". Default alignment depends on the `title.align`: Horizontal axes: - for align = "low", textAlign is set to left - for align = "middle", textAlign is set to center - for align = "high", textAlign is set to right Vertical axes: - for align = "low" and opposite = true, textAlign is  set to right - for align = "low" and opposite = false, textAlign is  set to left - for align = "middle", textAlign is set to center - for align = "high" and opposite = true textAlign is  set to left - for align = "high" and opposite = false textAlign is  set to right 
+ Alignment of the text, can be `"left"`, `"right"` or `"center"`. Default alignment depends on the `title.align`: Horizontal axes: - for `align` = `"low"`, `textAlign` is set to `left` - for `align` = `"middle"`, `textAlign` is set to `center` - for `align` = `"high"`, `textAlign` is set to `right` Vertical axes: - for `align` = `"low"` and `opposite` = `true`, `textAlign` is  set to `right` - for `align` = `"low"` and `opposite` = `false`, `textAlign` is  set to `left` - for `align` = `"middle"`, `textAlign` is set to `center` - for `align` = `"high"` and `opposite` = `true` `textAlign` is  set to `left` - for `align` = `"high"` and `opposite` = `false` `textAlign` is  set to `right` 
 	*/
 	public void setTextAlign(String textAlign) {
 		this.textAlign = textAlign;

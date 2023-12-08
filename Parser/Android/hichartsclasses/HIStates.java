@@ -18,6 +18,16 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 public class HIStates extends HIFoundation { 
 
+	private HIHover hover;
+	public void setHover(HIHover hover) {
+		this.hover = hover;
+		this.hover.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIHover getHover(){ return hover; }
+
 	private HIInactive inactive;
 	/**
  The opposite state of a hover for a single point node/link. 
@@ -30,16 +40,6 @@ public class HIStates extends HIFoundation {
 	}
 
 	public HIInactive getInactive(){ return inactive; }
-
-	private HIHover hover;
-	public void setHover(HIHover hover) {
-		this.hover = hover;
-		this.hover.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIHover getHover(){ return hover; }
 
 	private HISelect select;
 	public void setSelect(HISelect select) {
@@ -75,11 +75,11 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.inactive != null) {
-			params.put("inactive", this.inactive.getParams());
-		}
 		if (this.hover != null) {
 			params.put("hover", this.hover.getParams());
+		}
+		if (this.inactive != null) {
+			params.put("inactive", this.inactive.getParams());
 		}
 		if (this.select != null) {
 			params.put("select", this.select.getParams());

@@ -22,6 +22,19 @@ import com.highsoft.highcharts.common.HIColor;
 	*/
 
 public class HIArearange extends HISeries {
+	private HILowMarker lowMarker;
+	/**
+ Options for the lower markers of the arearange-like series. When `lowMarker` is not defined, options inherit form the marker. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setLowMarker(HILowMarker lowMarker) {
+		this.lowMarker = lowMarker;
+		this.lowMarker.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HILowMarker getLowMarker(){ return lowMarker; }
+
 	private HIColor fillColor;
 	/**
 /** * description: Fill color or gradient for the area. When `null`, the series' `color` is used with the series' `fillOpacity`. In styled mode, the fill color can be set with the `.highcharts-area` class name. * demo: * [Null by defaults](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-fillcolor-defaults/) * [Gradient](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-fillcolor-gradient/) 
@@ -96,6 +109,9 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
+		if (this.lowMarker != null) {
+			params.put("lowMarker", this.lowMarker.getParams());
+		}
 		if (this.fillColor != null) {
 			params.put("fillColor", this.fillColor.getData());
 		}

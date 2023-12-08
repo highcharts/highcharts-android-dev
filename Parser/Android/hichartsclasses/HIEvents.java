@@ -30,17 +30,17 @@ public class HIEvents extends HIFoundation {
 
 	public HIFunction getCheckboxClick(){ return checkboxClick; }
 
-	private HIFunction pointInBreak;
+	private HIFunction setExtremes;
 	/**
- An event fired when a point falls inside a break from this axis. 
+ Fires when the minimum and maximum is set for the axis, either by calling the `.setExtremes()` method or by selecting an area in the chart. One parameter, `event`, is passed to the function, containing common event information. The new user set minimum and maximum values can be found by `event.min` and `event.max`. These reflect the axis minimum and maximum in data values. When an axis is zoomed all the way out from the "Reset zoom" button, `event.min` and `event.max` are null, and the new extremes are set based on `this.dataMin` and `this.dataMax`. 
 	*/
-	public void setPointInBreak(HIFunction pointInBreak) {
-		this.pointInBreak = pointInBreak;
+	public void setSetExtremes(HIFunction setExtremes) {
+		this.setExtremes = setExtremes;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIFunction getPointInBreak(){ return pointInBreak; }
+	public HIFunction getSetExtremes(){ return setExtremes; }
 
 	private HIFunction afterBreaks;
 	/**
@@ -54,6 +54,18 @@ public class HIEvents extends HIFoundation {
 
 	public HIFunction getAfterBreaks(){ return afterBreaks; }
 
+	private HIFunction pointBreakOut;
+	/**
+ An event fired when a point is outside a break after zoom. 
+	*/
+	public void setPointBreakOut(HIFunction pointBreakOut) {
+		this.pointBreakOut = pointBreakOut;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getPointBreakOut(){ return pointBreakOut; }
+
 	private HIFunction pointBreak;
 	/**
  An event fired when a break from this axis occurs on a point. 
@@ -66,17 +78,17 @@ public class HIEvents extends HIFoundation {
 
 	public HIFunction getPointBreak(){ return pointBreak; }
 
-	private HIFunction setExtremes;
+	private HIFunction pointInBreak;
 	/**
- Fires when the minimum and maximum is set for the axis, either by calling the `.setExtremes()` method or by selecting an area in the chart. One parameter, `event`, is passed to the function, containing common event information. The new user set minimum and maximum values can be found by `event.min` and `event.max`. These reflect the axis minimum and maximum in data values. When an axis is zoomed all the way out from the "Reset zoom" button, `event.min` and `event.max` are null, and the new extremes are set based on `this.dataMin` and `this.dataMax`. 
+ An event fired when a point falls inside a break from this axis. 
 	*/
-	public void setSetExtremes(HIFunction setExtremes) {
-		this.setExtremes = setExtremes;
+	public void setPointInBreak(HIFunction pointInBreak) {
+		this.pointInBreak = pointInBreak;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIFunction getSetExtremes(){ return setExtremes; }
+	public HIFunction getPointInBreak(){ return pointInBreak; }
 
 	private HIFunction afterSetExtremes;
 	/**
@@ -668,17 +680,20 @@ public HashMap<String, Object> getParams() {
 		if (this.checkboxClick != null) {
 			params.put("checkboxClick", this.checkboxClick);
 		}
-		if (this.pointInBreak != null) {
-			params.put("pointInBreak", this.pointInBreak);
+		if (this.setExtremes != null) {
+			params.put("setExtremes", this.setExtremes);
 		}
 		if (this.afterBreaks != null) {
 			params.put("afterBreaks", this.afterBreaks);
 		}
+		if (this.pointBreakOut != null) {
+			params.put("pointBreakOut", this.pointBreakOut);
+		}
 		if (this.pointBreak != null) {
 			params.put("pointBreak", this.pointBreak);
 		}
-		if (this.setExtremes != null) {
-			params.put("setExtremes", this.setExtremes);
+		if (this.pointInBreak != null) {
+			params.put("pointInBreak", this.pointInBreak);
 		}
 		if (this.afterSetExtremes != null) {
 			params.put("afterSetExtremes", this.afterSetExtremes);

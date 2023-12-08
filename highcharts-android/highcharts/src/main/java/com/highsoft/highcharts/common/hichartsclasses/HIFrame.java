@@ -71,7 +71,7 @@ public class HIFrame extends HIFoundation {
 	private String visible;
 	/**
  Whether the frames are visible. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;defaults	*/
 	public void setVisible(String visible) {
 		this.visible = visible;
 		this.setChanged();
@@ -96,7 +96,7 @@ public class HIFrame extends HIFoundation {
 	private Number size;
 	/**
  General pixel thickness for the frame faces. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setSize(Number size) {
 		this.size = size;
 		this.setChanged();

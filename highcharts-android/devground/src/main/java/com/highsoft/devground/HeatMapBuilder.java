@@ -3,6 +3,7 @@ package com.highsoft.devground;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.common.hichartsclasses.HICSSObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIChart;
 import com.highsoft.highcharts.common.hichartsclasses.HICredits;
@@ -10,18 +11,14 @@ import com.highsoft.highcharts.common.hichartsclasses.HIDataLabels;
 import com.highsoft.highcharts.common.hichartsclasses.HIEvents;
 import com.highsoft.highcharts.common.hichartsclasses.HIExporting;
 import com.highsoft.highcharts.common.hichartsclasses.HIHeatmap;
-import com.highsoft.highcharts.common.hichartsclasses.HILabels;
 import com.highsoft.highcharts.common.hichartsclasses.HILegend;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
 import com.highsoft.highcharts.common.hichartsclasses.HIPlotOptions;
 import com.highsoft.highcharts.common.hichartsclasses.HISeries;
-import com.highsoft.highcharts.common.hichartsclasses.HISolidgauge;
-import com.highsoft.highcharts.common.hichartsclasses.HIStyle;
 import com.highsoft.highcharts.common.hichartsclasses.HITitle;
-import com.highsoft.highcharts.common.hichartsclasses.HITooltip;
 import com.highsoft.highcharts.common.hichartsclasses.HIXAxis;
 import com.highsoft.highcharts.common.hichartsclasses.HIYAxis;
-import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.common.hichartsclasses.HIZooming;
 import com.highsoft.highcharts.core.HIChartView;
 import com.highsoft.highcharts.core.HIFunction;
 
@@ -207,7 +204,7 @@ public class HeatMapBuilder {
     @NotNull
     private HIChart getChart(String type) {
         HIChart chart = new HIChart();
-        chart.setZoomType("xy");
+        chart.setZooming(new HIZooming());
         chart.setType(type);
         chart.setPlotBorderWidth(plotBorderWidth);
         chart.setEvents(new HIEvents());
