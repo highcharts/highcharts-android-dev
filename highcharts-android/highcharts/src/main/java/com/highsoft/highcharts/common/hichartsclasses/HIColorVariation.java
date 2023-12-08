@@ -8,11 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
@@ -32,7 +30,7 @@ public class HIColorVariation extends HIFoundation {
 
 	private String key;
 	/**
- The key of a color variation. Currently supports brightness only. <br><br><b>accepted values:</b><br><br>&ensp;["brightness"]
+ The key of a color variation. Currently supports `brightness` only. 
 	*/
 	public void setKey(String key) {
 		this.key = key;

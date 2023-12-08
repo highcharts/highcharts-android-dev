@@ -19,8 +19,8 @@ public class HICluster extends HIFoundation {
 
 	private Boolean allowOverlap;
 	/**
- When set to false prevent cluster overlapping - this option works only when layoutAlgorithm.type = "grid". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/marker-clusters/grid">Prevent overlapping</a>
-	*/
+ When set to `false` prevent cluster overlapping - this option works only when `layoutAlgorithm.type = "grid"`. 
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setAllowOverlap(Boolean allowOverlap) {
 		this.allowOverlap = allowOverlap;
 		this.setChanged();
@@ -41,7 +41,7 @@ public class HICluster extends HIFoundation {
 
 	private ArrayList <HIZones> zones;
 	/**
- An array defining zones within marker clusters. In styled mode, the color zones are styled with the .highcharts-cluster-zone-{n} class, or custom classed from the className option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/marker-clusters/basic">Marker clusters zones</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/marker-clusters/custom-alg">Zones on maps</a>
+ An array defining zones within marker clusters. In styled mode, the color zones are styled with the `.highcharts-cluster-zone-{n}` class, or custom classed from the `className` option. 
 	*/
 	public void setZones(ArrayList zones) {
 		this.zones = zones;
@@ -53,7 +53,7 @@ public class HICluster extends HIFoundation {
 
 	private Boolean enabled;
 	/**
- Whether to enable the marker-clusters module. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/marker-clusters/basic">Maps marker clusters</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/marker-clusters/basic">Scatter marker clusters</a>
+ Whether to enable the marker-clusters module. 
 	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -82,7 +82,6 @@ public class HICluster extends HIFoundation {
 	*/
 	public void setDataLabels(HIDataLabels dataLabels) {
 		this.dataLabels = dataLabels;
-		this.dataLabels.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
@@ -92,7 +91,7 @@ public class HICluster extends HIFoundation {
 	private Boolean drillToCluster;
 	/**
  Zoom the plot area to the cluster points range when a cluster is clicked. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setDrillToCluster(Boolean drillToCluster) {
 		this.drillToCluster = drillToCluster;
 		this.setChanged();
@@ -119,7 +118,6 @@ public class HICluster extends HIFoundation {
 	*/
 	public void setMarker(HIMarker marker) {
 		this.marker = marker;
-		this.marker.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
@@ -128,8 +126,8 @@ public class HICluster extends HIFoundation {
 
 	private Number minimumClusterSize;
 	/**
- The minimum amount of points to be combined into a cluster. This value has to be greater or equal to 2. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/marker-clusters/basic">At least three points in the cluster</a>
-	*/
+ The minimum amount of points to be combined into a cluster. This value has to be greater or equal to 2. 
+ <br><br><b>defaults:</b><br><br>&ensp;2	*/
 	public void setMinimumClusterSize(Number minimumClusterSize) {
 		this.minimumClusterSize = minimumClusterSize;
 		this.setChanged();

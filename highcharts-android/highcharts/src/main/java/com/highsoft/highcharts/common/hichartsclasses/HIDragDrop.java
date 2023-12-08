@@ -88,6 +88,19 @@ public class HIDragDrop extends HIFoundation {
 
 	public Boolean getDraggableQ3(){ return draggableQ3; }
 
+	private HIDragHandle dragHandle;
+	/**
+ Options for the drag handles available in column series. 
+	*/
+	public void setDragHandle(HIDragHandle dragHandle) {
+		this.dragHandle = dragHandle;
+		this.dragHandle.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIDragHandle getDragHandle(){ return dragHandle; }
+
 	private Boolean draggableTarget;
 	/**
  Allow target value to be dragged individually. 
@@ -102,7 +115,7 @@ public class HIDragDrop extends HIFoundation {
 
 	private HIGuideBox guideBox;
 	/**
- Style options for the guide box. The guide box has one state by defaults, the defaults state. 
+ Style options for the guide box. The guide box has one state by defaults, the `defaults` state. 
 	*/
 	public void setGuideBox(HIGuideBox guideBox) {
 		this.guideBox = guideBox;
@@ -115,7 +128,7 @@ public class HIDragDrop extends HIFoundation {
 
 	private Number dragMaxX;
 	/**
- Set the maximum X value the points can be moved to. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-xrange">Limit dragging</a>
+ Set the maximum X value the points can be moved to. 
 	*/
 	public void setDragMaxX(Number dragMaxX) {
 		this.dragMaxX = dragMaxX;
@@ -127,7 +140,7 @@ public class HIDragDrop extends HIFoundation {
 
 	private Number dragMaxY;
 	/**
- Set the maximum Y value the points can be moved to. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-xrange">Limit dragging</a>
+ Set the maximum Y value the points can be moved to. 
 	*/
 	public void setDragMaxY(Number dragMaxY) {
 		this.dragMaxY = dragMaxY;
@@ -139,7 +152,7 @@ public class HIDragDrop extends HIFoundation {
 
 	private Number dragPrecisionX;
 	/**
- The X precision value to drag to for this series. Set to 0 to disable. By defaults this is disabled, except for category axes, where the defaults is 1. 
+ The X precision value to drag to for this series. Set to 0 to disable. By defaults this is disabled, except for category axes, where the defaults is `1`. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setDragPrecisionX(Number dragPrecisionX) {
 		this.dragPrecisionX = dragPrecisionX;
@@ -151,7 +164,7 @@ public class HIDragDrop extends HIFoundation {
 
 	private Number dragPrecisionY;
 	/**
- The Y precision value to drag to for this series. Set to 0 to disable. By defaults this is disabled, except for category axes, where the defaults is 1. 
+ The Y precision value to drag to for this series. Set to 0 to disable. By defaults this is disabled, except for category axes, where the defaults is `1`. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setDragPrecisionY(Number dragPrecisionY) {
 		this.dragPrecisionY = dragPrecisionY;
@@ -163,7 +176,7 @@ public class HIDragDrop extends HIFoundation {
 
 	private Number dragMinX;
 	/**
- Set the minimum X value the points can be moved to. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-xrange">Limit dragging</a>
+ Set the minimum X value the points can be moved to. 
 	*/
 	public void setDragMinX(Number dragMinX) {
 		this.dragMinX = dragMinX;
@@ -175,7 +188,7 @@ public class HIDragDrop extends HIFoundation {
 
 	private Number dragMinY;
 	/**
- Set the minimum Y value the points can be moved to. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-xrange">Limit dragging</a>
+ Set the minimum Y value the points can be moved to. 
 	*/
 	public void setDragMinY(Number dragMinY) {
 		this.dragMinY = dragMinY;
@@ -223,7 +236,7 @@ public class HIDragDrop extends HIFoundation {
 
 	private String groupBy;
 	/**
- Group the points by a property. Points with the same property value will be grouped together when moving. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-xrange">Drag grouped points</a>
+ Group the points by a property. Points with the same property value will be grouped together when moving. 
 	*/
 	public void setGroupBy(String groupBy) {
 		this.groupBy = groupBy;
@@ -233,22 +246,9 @@ public class HIDragDrop extends HIFoundation {
 
 	public String getGroupBy(){ return groupBy; }
 
-	private HIDragHandle dragHandle;
-	/**
- Options for the drag handles. 
-	*/
-	public void setDragHandle(HIDragHandle dragHandle) {
-		this.dragHandle = dragHandle;
-		this.dragHandle.addObserver(updateObserver);
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIDragHandle getDragHandle(){ return dragHandle; }
-
 	private Boolean liveRedraw;
 	/**
- Update points as they are dragged. If false, a guide box is drawn to illustrate the new point size. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-xrange">liveRedraw disabled</a>
+ Update points as they are dragged. If false, a guide box is drawn to illustrate the new point size. 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setLiveRedraw(Boolean liveRedraw) {
 		this.liveRedraw = liveRedraw;
@@ -287,6 +287,9 @@ public HashMap<String, Object> getParams() {
 		if (this.draggableQ3 != null) {
 			params.put("draggableQ3", this.draggableQ3);
 		}
+		if (this.dragHandle != null) {
+			params.put("dragHandle", this.dragHandle.getParams());
+		}
 		if (this.draggableTarget != null) {
 			params.put("draggableTarget", this.draggableTarget);
 		}
@@ -322,9 +325,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.groupBy != null) {
 			params.put("groupBy", this.groupBy);
-		}
-		if (this.dragHandle != null) {
-			params.put("dragHandle", this.dragHandle.getParams());
 		}
 		if (this.liveRedraw != null) {
 			params.put("liveRedraw", this.liveRedraw);

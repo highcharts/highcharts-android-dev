@@ -8,11 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
@@ -21,7 +19,7 @@ public class HIInactive extends HIFoundation {
 	private Number opacity;
 	/**
  Opacity of inactive markers. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;0.3	*/
 	public void setOpacity(Number opacity) {
 		this.opacity = opacity;
 		this.setChanged();
@@ -32,7 +30,7 @@ public class HIInactive extends HIFoundation {
 
 	private HIAnimationOptionsObject animation;
 	/**
- Animation when not hovering over the marker. 
+ Animation when not hovering over the node. 
 	*/
 	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
@@ -44,7 +42,7 @@ public class HIInactive extends HIFoundation {
 
 	private Boolean enabled;
 	/**
- Enable or disable the inactive state for a series <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-inactive-disabled">Disabled inactive state</a>
+ Enable or disable the inactive state for a series 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -57,7 +55,7 @@ public class HIInactive extends HIFoundation {
 	private Number linkOpacity;
 	/**
  Opacity for the links between nodes in the sankey diagram in inactive mode. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;0.1	*/
 	public void setLinkOpacity(Number linkOpacity) {
 		this.linkOpacity = linkOpacity;
 		this.setChanged();

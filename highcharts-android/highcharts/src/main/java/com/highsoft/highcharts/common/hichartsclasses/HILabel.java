@@ -20,7 +20,7 @@ public class HILabel extends HIFoundation {
 
 	private HICSSObject style;
 	/**
- Styles for the series label. The color defaultss to the series color, or a contrast color if onArea. 
+ Styles for the series label. The color defaultss to the series color, or a contrast color if `onArea`. 
 	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
@@ -44,8 +44,8 @@ public class HILabel extends HIFoundation {
 
 	private String format;
 	/**
- A format string for the label, with support for a subset of HTML. Variables are enclosed by curly brackets. Available variables are name, options.xxx, color and other members from the series object. Use this option also to set a static text for the label. 
-	*/
+ A format string for the label, with support for a subset of HTML. Variables are enclosed by curly brackets. Available variables are `name`, `options.xxx`, `color` and other members from the `series` object. Use this option also to set a static text for the label. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setFormat(String format) {
 		this.format = format;
 		this.setChanged();
@@ -69,7 +69,7 @@ public class HILabel extends HIFoundation {
 	private Boolean enabled;
 	/**
  Enable the series label per series. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -81,7 +81,7 @@ public class HILabel extends HIFoundation {
 	private Number connectorNeighbourDistance;
 	/**
  If the label is closer than this to a neighbour graph, draw a connector. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;24	*/
 	public void setConnectorNeighbourDistance(Number connectorNeighbourDistance) {
 		this.connectorNeighbourDistance = connectorNeighbourDistance;
 		this.setChanged();
@@ -92,7 +92,7 @@ public class HILabel extends HIFoundation {
 
 	private Boolean onArea;
 	/**
- Draw the label on the area of an area series. By defaults it is drawn on the area. Set it to false to draw it next to the graph instead. 
+ Draw the label on the area of an area series. By defaults it is drawn on the area. Set it to `false` to draw it next to the graph instead. 
 	*/
 	public void setOnArea(Boolean onArea) {
 		this.onArea = onArea;
@@ -104,7 +104,7 @@ public class HILabel extends HIFoundation {
 
 	private ArrayList<HILabelIntersectBoxObject> boxesToAvoid;
 	/**
- An array of boxes to avoid when laying out the labels. Each item has a left, right, top and bottom property. 
+ An array of boxes to avoid when laying out the labels. Each item has a `left`, `right`, `top` and `bottom` property. 
 	*/
 	public void setBoxesToAvoid(ArrayList<HILabelIntersectBoxObject> boxesToAvoid) {
 		this.boxesToAvoid = boxesToAvoid;
@@ -116,8 +116,8 @@ public class HILabel extends HIFoundation {
 
 	private HIFunction formatter;
 	/**
- Callback function to format each of the series' labels. The this keyword refers to the series object. By defaults the formatter is undefined and the series.name is rendered. 
-	*/
+ Callback function to format each of the series' labels. The `this` keyword refers to the series object. By defaults the `formatter` is undefined and the `series.name` is rendered. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setFormatter(HIFunction formatter) {
 		this.formatter = formatter;
 		this.setChanged();
@@ -125,6 +125,18 @@ public class HILabel extends HIFoundation {
 	}
 
 	public HIFunction getFormatter(){ return formatter; }
+
+	private Boolean useHTML;
+	/**
+ Whether to use HTML to render the series label. 
+	*/
+	public void setUseHTML(Boolean useHTML) {
+		this.useHTML = useHTML;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getUseHTML(){ return useHTML; }
 
 	private Boolean connectorAllowed;
 	/**
@@ -140,7 +152,7 @@ public class HILabel extends HIFoundation {
 
 	private String verticalAlign;
 	/**
- Vertical alignment of the label relative to the plot line. Can be one of "top", "middle" or "bottom". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-verticalalign-middle/">Vertically centered label</a>
+ Vertical alignment of the label relative to the plot line. Can be one of "top", "middle" or "bottom". 
  <br><br><b>defaults:</b><br><br>&ensp;top	*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
@@ -164,7 +176,7 @@ public class HILabel extends HIFoundation {
 
 	private String align;
 	/**
- Horizontal alignment of the label. Can be one of "left", "center" or "right". <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-align-right/">Aligned to the right</a>
+ Horizontal alignment of the label. Can be one of "left", "center" or "right". 
  <br><br><b>defaults:</b><br><br>&ensp;left	*/
 	public void setAlign(String align) {
 		this.align = align;
@@ -174,21 +186,9 @@ public class HILabel extends HIFoundation {
 
 	public String getAlign(){ return align; }
 
-	private Boolean useHTML;
-	/**
- Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the labels. 
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setUseHTML(Boolean useHTML) {
-		this.useHTML = useHTML;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getUseHTML(){ return useHTML; }
-
 	private Number y;
 	/**
- Vertical position of the text baseline relative to the alignment. Default varies by orientation. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-y/">Label below the plot line</a>
+ Vertical position of the text baseline relative to the alignment. Default varies by orientation. 
 	*/
 	public void setY(Number y) {
 		this.y = y;
@@ -200,7 +200,7 @@ public class HILabel extends HIFoundation {
 
 	private Number x;
 	/**
- Horizontal position relative the alignment. Default varies by orientation. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-align-right/">Aligned 10px from the right edge</a>
+ Horizontal position relative the alignment. Default varies by orientation. 
 	*/
 	public void setX(Number x) {
 		this.x = x;
@@ -212,7 +212,7 @@ public class HILabel extends HIFoundation {
 
 	private Number rotation;
 	/**
- Rotation of the text label in degrees. Defaults to 0 for horizontal plot lines and 90 for vertical lines. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-verticalalign-middle/">Slanted text</a>
+ Rotation of the text label in degrees. Defaults to 0 for horizontal plot lines and 90 for vertical lines. 
 	*/
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;
@@ -224,7 +224,7 @@ public class HILabel extends HIFoundation {
 
 	private String textAlign;
 	/**
- The text alignment for the label. While align determines where the texts anchor point is placed within the plot band, textAlign determines how the text is aligned against its anchor point. Possible values are "left", "center" and "right". Defaults to the same as the align option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/plotlines-label-textalign/">Text label in bottom position</a>
+ The text alignment for the label. While `align` determines where the texts anchor point is placed within the plot band, `textAlign` determines how the text is aligned against its anchor point. Possible values are "left", "center" and "right". Defaults to the same as the `align` option. 
 	*/
 	public void setTextAlign(String textAlign) {
 		this.textAlign = textAlign;
@@ -267,19 +267,13 @@ public HashMap<String, Object> getParams() {
 			params.put("onArea", this.onArea);
 		}
 		if (this.boxesToAvoid != null) {
-			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.boxesToAvoid) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
-			}
-			params.put("boxesToAvoid", array);
+			params.put("boxesToAvoid", this.boxesToAvoid);
 		}
 		if (this.formatter != null) {
 			params.put("formatter", this.formatter);
+		}
+		if (this.useHTML != null) {
+			params.put("useHTML", this.useHTML);
 		}
 		if (this.connectorAllowed != null) {
 			params.put("connectorAllowed", this.connectorAllowed);
@@ -292,9 +286,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.align != null) {
 			params.put("align", this.align);
-		}
-		if (this.useHTML != null) {
-			params.put("useHTML", this.useHTML);
 		}
 		if (this.y != null) {
 			params.put("y", this.y);

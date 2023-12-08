@@ -8,11 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
@@ -21,7 +19,7 @@ public class HIFocusBorder extends HIFoundation {
 	private Number margin;
 	/**
  Focus border margin around the elements. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;2	*/
 	public void setMargin(Number margin) {
 		this.margin = margin;
 		this.setChanged();
@@ -32,7 +30,7 @@ public class HIFocusBorder extends HIFoundation {
 
 	private HICSSObject style;
 	/**
- Style options for the focus border drawn around elements while navigating through them. Note that some browsers in addition draw their own borders for focused elements. These automatic borders can not be styled by Highcharts. In styled mode, the border is given the .highcharts-focus-border class. 
+ Style options for the focus border drawn around elements while navigating through them. Note that some browsers in addition draw their own borders for focused elements. These automatic borders cannot be styled by Highcharts. In styled mode, the border is given the `.highcharts-focus-border` class. 
 	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
@@ -45,7 +43,7 @@ public class HIFocusBorder extends HIFoundation {
 	private Boolean enabled;
 	/**
  Enable/disable focus border for chart. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -57,7 +55,7 @@ public class HIFocusBorder extends HIFoundation {
 	private Boolean hideBrowserFocusOutline;
 	/**
  Hide the browser's defaults focus indicator. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setHideBrowserFocusOutline(Boolean hideBrowserFocusOutline) {
 		this.hideBrowserFocusOutline = hideBrowserFocusOutline;
 		this.setChanged();

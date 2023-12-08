@@ -18,7 +18,7 @@ public class HIBoost extends HIFoundation {
 
 	private Boolean allowForce;
 	/**
- If set to true, the whole chart will be boosted if one of the series crosses its threshold, and all the series can be boosted. 
+ The chart will be boosted, if one of the series crosses its threshold and all the series in the chart can be boosted. 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setAllowForce(Boolean allowForce) {
 		this.allowForce = allowForce;
@@ -27,6 +27,18 @@ public class HIBoost extends HIFoundation {
 	}
 
 	public Boolean getAllowForce(){ return allowForce; }
+
+	private Number pixelRatio;
+	/**
+ The pixel ratio for the WebGL content. If 0, the `window.devicePixelRatio` is used. This ensures sharp graphics on high DPI displays like Apple's Retina, as well as when a page is zoomed. The defaults is left at 1 for now, as this is a new feature that has the potential to break existing setups. Over time, when it has been battle tested, the intention is to set it to 0 by defaults. Another use case for this option is to set it to 2 in order to make exported and upscaled charts render sharp. One limitation when using the `pixelRatio` is that the line width of graphs is scaled down. Since the Boost module currently can only render 1px line widths, it is scaled down to a thin 0.5 pixels on a Retina display. 
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
+	public void setPixelRatio(Number pixelRatio) {
+		this.pixelRatio = pixelRatio;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPixelRatio(){ return pixelRatio; }
 
 	private Boolean enabled;
 	/**
@@ -102,6 +114,9 @@ public HashMap<String, Object> getParams() {
 		params.put("_wrapperID", this.uuid);
 		if (this.allowForce != null) {
 			params.put("allowForce", this.allowForce);
+		}
+		if (this.pixelRatio != null) {
+			params.put("pixelRatio", this.pixelRatio);
 		}
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);

@@ -8,15 +8,34 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
 public class HIAttributes extends HIFoundation { 
+
+	private Number startOffset;
+	public void setStartOffset(Number startOffset) {
+		this.startOffset = startOffset;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getStartOffset(){ return startOffset; }
+
+	private HISVGAttributes dy;
+	/**
+ Text path shift along its y-axis. 
+ <br><br><b>defaults:</b><br><br>&ensp;5	*/
+	public void setDy(HISVGAttributes dy) {
+		this.dy = dy;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HISVGAttributes getDy(){ return dy; }
 
 	private Number refX;
 	public void setRefX(Number refX) {
@@ -63,6 +82,15 @@ public class HIAttributes extends HIFoundation {
 
 	public Number getMarkerHeight(){ return markerHeight; }
 
+	private String textAnchor;
+	public void setTextAnchor(String textAnchor) {
+		this.textAnchor = textAnchor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTextAnchor(){ return textAnchor; }
+
 	private Number zIndex;
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
@@ -83,6 +111,12 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.startOffset != null) {
+			params.put("startOffset", this.startOffset);
+		}
+		if (this.dy != null) {
+			params.put("dy", this.dy.getParams());
+		}
 		if (this.refX != null) {
 			params.put("refX", this.refX);
 		}
@@ -97,6 +131,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.markerHeight != null) {
 			params.put("markerHeight", this.markerHeight);
+		}
+		if (this.textAnchor != null) {
+			params.put("textAnchor", this.textAnchor);
 		}
 		if (this.zIndex != null) {
 			params.put("zIndex", this.zIndex);

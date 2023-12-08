@@ -146,7 +146,7 @@ public HashMap<String, Object> getParams() {
 			params.put("features", array);
 		}
 		if (this.hcTransform != null) {
-			params.put("hcTransform", this.hcTransform);
+			params.put("hc-transform", this.hcTransform);
 		}
 		if (this.title != null) {
 			params.put("title", this.title);

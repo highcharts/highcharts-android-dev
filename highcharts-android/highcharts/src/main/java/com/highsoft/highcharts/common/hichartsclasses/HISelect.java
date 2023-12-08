@@ -19,7 +19,7 @@ public class HISelect extends HIFoundation {
 
 	private Number radius;
 	/**
- The radius of the point marker. In hover state, it defaultss to the normal state's radius + 2. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-select-radius/">10px radius for selected points</a>
+ The radius of the point marker. In hover state, it defaultss to the normal state's radius + 2. 
 	*/
 	public void setRadius(Number radius) {
 		this.radius = radius;
@@ -31,8 +31,8 @@ public class HISelect extends HIFoundation {
 
 	private Number lineWidth;
 	/**
- The width of the point marker's outline. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-select-linewidth/">3px line width for selected points</a>
-	*/
+ The width of the point marker's outline. 
+ <br><br><b>defaults:</b><br><br>&ensp;2	*/
 	public void setLineWidth(Number lineWidth) {
 		this.lineWidth = lineWidth;
 		this.setChanged();
@@ -43,7 +43,7 @@ public class HISelect extends HIFoundation {
 
 	private Boolean enabled;
 	/**
- Enable or disable visible feedback for selection. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-select-enabled/">Disabled select state</a>
+ Enable or disable visible feedback for selection. 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -55,8 +55,8 @@ public class HISelect extends HIFoundation {
 
 	private HIColor fillColor;
 	/**
- The fill color of the point marker. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-select-fillcolor/">Solid red discs for selected points</a>
-	*/
+ The fill color of the point marker. 
+ <br><br><b>defaults:</b><br><br>&ensp;#cccccc	*/
 	public void setFillColor(HIColor fillColor) {
 		this.fillColor = fillColor;
 		this.setChanged();
@@ -67,8 +67,8 @@ public class HISelect extends HIFoundation {
 
 	private HIColor lineColor;
 	/**
- The color of the point marker's outline. When undefined, the series' or point's color is used. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-select-linecolor/">Red line color for selected points</a>
-	*/
+ The color of the point marker's outline. When `undefined`, the series' or point's color is used. 
+ <br><br><b>defaults:</b><br><br>&ensp;#000000	*/
 	public void setLineColor(HIColor lineColor) {
 		this.lineColor = lineColor;
 		this.setChanged();
@@ -79,7 +79,7 @@ public class HISelect extends HIFoundation {
 
 	private Number width;
 	/**
- Set the marker's fixed width on select state. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-marker-states-hover-width">70px fixed marker's width and height on hover</a>
+ Set the marker's fixed width on select state. 
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setWidth(Number width) {
 		this.width = width;
@@ -91,7 +91,7 @@ public class HISelect extends HIFoundation {
 
 	private Number heightPlus;
 	/**
- The number of pixels to increase the height of the hovered point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-marker-states-hover-widthplus">One day</a>
+ The number of pixels to increase the height of the hovered point. 
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setHeightPlus(Number heightPlus) {
 		this.heightPlus = heightPlus;
@@ -103,7 +103,7 @@ public class HISelect extends HIFoundation {
 
 	private Number widthPlus;
 	/**
- The number of pixels to increase the width of the hovered point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-marker-states-hover-widthplus">One day</a>
+ The number of pixels to increase the width of the hovered point. 
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setWidthPlus(Number widthPlus) {
 		this.widthPlus = widthPlus;
@@ -115,7 +115,7 @@ public class HISelect extends HIFoundation {
 
 	private Number height;
 	/**
- Set the marker's fixed height on select state. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-marker-states-hover-width">70px fixed marker's width and height on hover</a>
+ Set the marker's fixed height on select state. 
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setHeight(Number height) {
 		this.height = height;
@@ -164,8 +164,8 @@ public class HISelect extends HIFoundation {
 
 	private Number lineWidthPlus;
 	/**
- The additional line width for the graph of a hovered series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-states-hover-linewidthplus/">5 pixels wider</a>
-	*/
+ The additional line width for the graph of a hovered series. 
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setLineWidthPlus(Number lineWidthPlus) {
 		this.lineWidthPlus = lineWidthPlus;
 		this.setChanged();
@@ -176,7 +176,7 @@ public class HISelect extends HIFoundation {
 
 	private HIHalo halo;
 	/**
- Options for the halo appearing around the hovered point in line-type series as well as outside the hovered slice in pie charts. By defaults the halo is filled by the current point or series color with an opacity of 0.25\. The halo can be disabled by setting the halo option to null. In styled mode, the halo is styled with the .highcharts-halo class, with colors inherited from .highcharts-color-{n}. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/halo/">Halo options</a>
+ Options for the halo appearing around the hovered point in line-type series as well as outside the hovered slice in pie charts. By defaults the halo is filled by the current point or series color with an opacity of 0.25\. The halo can be disabled by setting the `halo` option to `null`. In styled mode, the halo is styled with the `.highcharts-halo` class, with colors inherited from `.highcharts-color-{n}`. 
 	*/
 	public void setHalo(HIHalo halo) {
 		this.halo = halo;

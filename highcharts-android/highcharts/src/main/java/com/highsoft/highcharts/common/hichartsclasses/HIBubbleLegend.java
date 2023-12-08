@@ -8,12 +8,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 
@@ -21,8 +20,8 @@ public class HIBubbleLegend extends HIFoundation {
 
 	private HIColor borderColor;
 	/**
- The color of the ranges borders, can be also defined for an individual range. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/similartoseries/">Similar look to the bubble series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/bordercolor/">Individual bubble border color</a>
-	*/
+ The color of the ranges borders, can be also defined for an individual range. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
@@ -34,7 +33,7 @@ public class HIBubbleLegend extends HIFoundation {
 	private HIColor connectorColor;
 	/**
  The color of the connector, can be also defined for an individual range. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setConnectorColor(HIColor connectorColor) {
 		this.connectorColor = connectorColor;
 		this.setChanged();
@@ -46,7 +45,7 @@ public class HIBubbleLegend extends HIFoundation {
 	private Number zIndex;
 	/**
  Define the visual z index of the bubble legend. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
 		this.setChanged();
@@ -57,8 +56,8 @@ public class HIBubbleLegend extends HIFoundation {
 
 	private String sizeBy;
 	/**
- Whether the bubble legend range value should be represented by the area or the width of the bubble. The defaults, area, corresponds best to the human perception of the size of each bubble. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/ranges/">Size by width</a>
-	*/
+ Whether the bubble legend range value should be represented by the area or the width of the bubble. The defaults, area, corresponds best to the human perception of the size of each bubble. 
+ <br><br><b>defaults:</b><br><br>&ensp;area	*/
 	public void setSizeBy(String sizeBy) {
 		this.sizeBy = sizeBy;
 		this.setChanged();
@@ -69,7 +68,7 @@ public class HIBubbleLegend extends HIFoundation {
 
 	private Number legendIndex;
 	/**
- The position of the bubble legend in the legend. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/connectorandlabels/">Bubble legend as last item in legend</a>
+ The position of the bubble legend in the legend. 
 	*/
 	public void setLegendIndex(Number legendIndex) {
 		this.legendIndex = legendIndex;
@@ -81,8 +80,8 @@ public class HIBubbleLegend extends HIFoundation {
 
 	private Number connectorWidth;
 	/**
- The width of the connectors in pixels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/connectorandlabels/">Increased connector width</a>
-	*/
+ The width of the connectors in pixels. 
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setConnectorWidth(Number connectorWidth) {
 		this.connectorWidth = connectorWidth;
 		this.setChanged();
@@ -93,8 +92,8 @@ public class HIBubbleLegend extends HIFoundation {
 
 	private HIColor color;
 	/**
- The main color of the bubble legend. Applies to ranges, if individual color is not defined. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/similartoseries/">Similar look to the bubble series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/color/">Individual bubble color</a>
-	*/
+ The main color of the bubble legend. Applies to ranges, if individual color is not defined. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
@@ -142,8 +141,8 @@ public class HIBubbleLegend extends HIFoundation {
 
 	private String className;
 	/**
- An additional class name to apply to the bubble legend' circle graphical elements. This option does not replace defaults class names of the graphical element. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/bubble-legend/">Styling by CSS</a>
-	*/
+ An additional class name to apply to the bubble legend' circle graphical elements. This option does not replace defaults class names of the graphical element. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setClassName(String className) {
 		this.className = className;
 		this.setChanged();
@@ -154,7 +153,7 @@ public class HIBubbleLegend extends HIFoundation {
 
 	private ArrayList <HIRanges> ranges;
 	/**
- Options for specific range. One range consists of bubble, label and connector. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/ranges/">Manually defined ranges</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/autoranges/">Auto calculated ranges</a>
+ Options for specific range. One range consists of bubble, label and connector. 
 	*/
 	public void setRanges(ArrayList ranges) {
 		this.ranges = ranges;
@@ -166,8 +165,8 @@ public class HIBubbleLegend extends HIFoundation {
 
 	private Number maxSize;
 	/**
- Miximum bubble legend range size. If values for ranges are not specified, the minSize and the maxSize are calculated from bubble series. 
-	*/
+ Miximum bubble legend range size. If values for ranges are not specified, the `minSize` and the `maxSize` are calculated from bubble series. 
+ <br><br><b>defaults:</b><br><br>&ensp;60	*/
 	public void setMaxSize(Number maxSize) {
 		this.maxSize = maxSize;
 		this.setChanged();
@@ -178,8 +177,8 @@ public class HIBubbleLegend extends HIFoundation {
 
 	private Number minSize;
 	/**
- Minimum bubble legend range size. If values for ranges are not specified, the minSize and the maxSize are calculated from bubble series. 
-	*/
+ Minimum bubble legend range size. If values for ranges are not specified, the `minSize` and the `maxSize` are calculated from bubble series. 
+ <br><br><b>defaults:</b><br><br>&ensp;10	*/
 	public void setMinSize(Number minSize) {
 		this.minSize = minSize;
 		this.setChanged();
@@ -191,7 +190,7 @@ public class HIBubbleLegend extends HIFoundation {
 	private Number borderWidth;
 	/**
  The width of the ranges borders in pixels, can be also defined for an individual range. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;2	*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
 		this.setChanged();
@@ -202,8 +201,8 @@ public class HIBubbleLegend extends HIFoundation {
 
 	private String connectorClassName;
 	/**
- An additional class name to apply to the bubble legend's connector graphical elements. This option does not replace defaults class names of the graphical element. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/bubble-legend/">Styling by CSS</a>
-	*/
+ An additional class name to apply to the bubble legend's connector graphical elements. This option does not replace defaults class names of the graphical element. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setConnectorClassName(String connectorClassName) {
 		this.connectorClassName = connectorClassName;
 		this.setChanged();
@@ -226,8 +225,8 @@ public class HIBubbleLegend extends HIFoundation {
 
 	private Number connectorDistance;
 	/**
- The length of the connectors in pixels. If labels are centered, the distance is reduced to 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/bubble-legend/connectorandlabels/">Increased connector length</a>
-	*/
+ The length of the connectors in pixels. If labels are centered, the distance is reduced to 0. 
+ <br><br><b>defaults:</b><br><br>&ensp;60	*/
 	public void setConnectorDistance(Number connectorDistance) {
 		this.connectorDistance = connectorDistance;
 		this.setChanged();

@@ -12,7 +12,6 @@ import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.core.HIFunction;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -24,7 +23,7 @@ public class HILegend extends HIFoundation {
 
 	private Number symbolRadius;
 	/**
- The border radius of the symbol for series types that use a rectangle in the legend. Defaults to half the symbolHeight. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/symbolradius/">Round symbols</a>
+ The border radius of the symbol for series types that use a rectangle in the legend. Defaults to half the `symbolHeight`, effectively creating a circle. For color axis scales, it defaultss to 3. 
 	*/
 	public void setSymbolRadius(Number symbolRadius) {
 		this.symbolRadius = symbolRadius;
@@ -36,7 +35,7 @@ public class HILegend extends HIFoundation {
 
 	private Number borderRadius;
 	/**
- The border corner radius of the legend. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/borderradius-defaults/">Square by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/borderradius-round/">5px rounded</a>
+ The border corner radius of the legend. 
 	*/
 	public void setBorderRadius(Number borderRadius) {
 		this.borderRadius = borderRadius;
@@ -48,7 +47,7 @@ public class HILegend extends HIFoundation {
 
 	private Boolean rtl;
 	/**
- Whether to show the symbol on the right side of the text rather than the left side. This is common in Arabic and Hebrew. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/rtl/">Symbol to the right</a>
+ Whether to show the symbol on the right side of the text rather than the left side. This is common in Arabic and Hebrew. 
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setRtl(Boolean rtl) {
 		this.rtl = rtl;
@@ -57,6 +56,18 @@ public class HILegend extends HIFoundation {
 	}
 
 	public Boolean getRtl(){ return rtl; }
+
+	private String valueSuffix;
+	/**
+ For a color axis with data classes, a suffix for the range numbers in the legend. 
+ <br><br><b>defaults:</b><br><br>&ensp;''	*/
+	public void setValueSuffix(String valueSuffix) {
+		this.valueSuffix = valueSuffix;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getValueSuffix(){ return valueSuffix; }
 
 	private HIAccessibility accessibility;
 	/**
@@ -74,7 +85,7 @@ public class HILegend extends HIFoundation {
 	private Boolean squareSymbol;
 	/**
  When this is true, the legend symbol width will be the same as the symbol height, which in turn defaultss to the font size of the legend items. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setSquareSymbol(Boolean squareSymbol) {
 		this.squareSymbol = squareSymbol;
 		this.setChanged();
@@ -85,7 +96,7 @@ public class HILegend extends HIFoundation {
 
 	private Number itemWidth;
 	/**
- The width for each legend item. By defaults the items are laid out successively. In a `horizontal layout`, if the items are laid out across two rows or more, they will be vertically aligned depending on the `legend.alignColumns` option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/itemwidth-defaults/">Undefined by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/itemwidth-80/">80 for aligned legend items</a>
+ The width for each legend item. By defaults the items are laid out successively. In a `horizontal layout`, if the items are laid out across two rows or more, they will be vertically aligned depending on the `legend.alignColumns` option. 
 	*/
 	public void setItemWidth(Number itemWidth) {
 		this.itemWidth = itemWidth;
@@ -97,8 +108,8 @@ public class HILegend extends HIFoundation {
 
 	private Number symbolPadding;
 	/**
- The pixel padding between the legend item symbol and the legend item text. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/symbolpadding/">Greater symbol width and padding</a>
-	*/
+ The pixel padding between the legend item symbol and the legend item text. 
+ <br><br><b>defaults:</b><br><br>&ensp;5	*/
 	public void setSymbolPadding(Number symbolPadding) {
 		this.symbolPadding = symbolPadding;
 		this.setChanged();
@@ -109,7 +120,7 @@ public class HILegend extends HIFoundation {
 
 	private Boolean floating;
 	/**
- When the legend is floating, the plot area ignores it and is allowed to be placed below it. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/floating-false/">False by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/floating-true/">True</a>
+ When the legend is floating, the plot area ignores it and is allowed to be placed below it. 
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setFloating(Boolean floating) {
 		this.floating = floating;
@@ -121,7 +132,7 @@ public class HILegend extends HIFoundation {
 
 	private Number symbolWidth;
 	/**
- The pixel width of the legend item symbol. When the squareSymbol option is set, this defaultss to the symbolHeight, otherwise 16. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/symbolwidth/">Greater symbol width and padding</a>
+ The pixel width of the legend item symbol. When the `squareSymbol` option is set, this defaultss to the `symbolHeight`, otherwise 16. 
 	*/
 	public void setSymbolWidth(Number symbolWidth) {
 		this.symbolWidth = symbolWidth;
@@ -133,7 +144,7 @@ public class HILegend extends HIFoundation {
 
 	private Boolean useHTML;
 	/**
- Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the legend item texts. Prior to 4.1.7, when using HTML, legend.navigation was disabled. 
+ Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the legend item texts. Prior to 4.1.7, when using HTML, `legend.navigation` was disabled. 
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;
@@ -145,8 +156,8 @@ public class HILegend extends HIFoundation {
 
 	private HIColor borderColor;
 	/**
- The color of the drawn border around the legend. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/bordercolor/">Brown border</a>
-	*/
+ The color of the drawn border around the legend. 
+ <br><br><b>defaults:</b><br><br>&ensp;#999999	*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
@@ -158,7 +169,7 @@ public class HILegend extends HIFoundation {
 	private String className;
 	/**
  A CSS class name to apply to the legend group. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;highcharts-no-tooltip	*/
 	public void setClassName(String className) {
 		this.className = className;
 		this.setChanged();
@@ -169,8 +180,8 @@ public class HILegend extends HIFoundation {
 
 	private String layout;
 	/**
- The layout of the legend items. Can be one of horizontal or vertical or proximate. When proximate, the legend items will be placed as close as possible to the graphs they're representing, except in inverted charts or when the legend position doesn't allow it. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-horizontal/">Horizontal by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-vertical/">Vertical</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-proximate">Labels proximate to the data</a> <br><br><b>accepted values:</b><br><br>&ensp;["horizontal", "vertical", "proximate"]
-	*/
+ The layout of the legend items. Can be one of `horizontal` or `vertical` or `proximate`. When `proximate`, the legend items will be placed as close as possible to the graphs they're representing, except in inverted charts or when the legend position doesn't allow it. 
+ <br><br><b>defaults:</b><br><br>&ensp;horizontal	*/
 	public void setLayout(String layout) {
 		this.layout = layout;
 		this.setChanged();
@@ -181,7 +192,7 @@ public class HILegend extends HIFoundation {
 
 	private HITitle title;
 	/**
- A title to be added on top of the legend. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/title/">Legend title</a>
+ A title to be added on top of the legend. 
 	*/
 	public void setTitle(HITitle title) {
 		this.title = title;
@@ -194,7 +205,7 @@ public class HILegend extends HIFoundation {
 
 	private Object /* Number, String */ width;
 	/**
- The width of the legend box. If a number is set, it translates to pixels. Since v7.0.2 it allows setting a percent string of the full chart width, for example 40%. Defaults to the full chart width for legends below or above the chart, half the chart width for legends to the left and right. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/width/">Aligned to the plot area</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/width-percent/">A percent of the chart width</a>
+ The width of the legend box. If a number is set, it translates to pixels. Since v7.0.2 it allows setting a percent string of the full chart width, for example `40%`. Defaults to the full chart width for legends below or above the chart, half the chart width for legends to the left and right. 
 	*/
 	public void setWidth(Object /* Number, String */ width) {
 		this.width = width;
@@ -206,8 +217,8 @@ public class HILegend extends HIFoundation {
 
 	private Number itemMarginBottom;
 	/**
- The pixel bottom margin for each legend item. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/padding-itemmargin/">Padding and item margins demonstrated</a>
- <br><br><b>defaults:</b><br><br>&ensp;0	*/
+ The pixel bottom margin for each legend item. 
+ <br><br><b>defaults:</b><br><br>&ensp;2	*/
 	public void setItemMarginBottom(Number itemMarginBottom) {
 		this.itemMarginBottom = itemMarginBottom;
 		this.setChanged();
@@ -218,7 +229,7 @@ public class HILegend extends HIFoundation {
 
 	private HIColor backgroundColor;
 	/**
- The background color of the legend. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/backgroundcolor/">Yellowish background</a>
+ The background color of the legend. 
 	*/
 	public void setBackgroundColor(HIColor backgroundColor) {
 		this.backgroundColor = backgroundColor;
@@ -230,8 +241,8 @@ public class HILegend extends HIFoundation {
 
 	private Number itemMarginTop;
 	/**
- The pixel top margin for each legend item. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/padding-itemmargin/">Padding and item margins demonstrated</a>
- <br><br><b>defaults:</b><br><br>&ensp;0	*/
+ The pixel top margin for each legend item. 
+ <br><br><b>defaults:</b><br><br>&ensp;2	*/
 	public void setItemMarginTop(Number itemMarginTop) {
 		this.itemMarginTop = itemMarginTop;
 		this.setChanged();
@@ -267,8 +278,8 @@ public class HILegend extends HIFoundation {
 
 	private HICSSObject itemStyle;
 	/**
- CSS styles for each legend item. Only a subset of CSS is supported, notably those options related to text. The defaults textOverflow property makes long texts truncate. Set it to undefined to wrap text instead. A width property can be added to control the text width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/itemstyle/">Bold black text</a>
- <br><br><b>defaults:</b><br><br>&ensp;{"color": "#333333", "cursor": "pointer", "fontSize": "12px", "fontWeight": "bold", "textOverflow": "ellipsis"}	*/
+ CSS styles for each legend item. Only a subset of CSS is supported, notably those options related to text. The defaults `textOverflow` property makes long texts truncate. Set it to `undefined` to wrap text instead. A `width` property can be added to control the text width. 
+ <br><br><b>defaults:</b><br><br>&ensp;{"color": "#333333", "cursor": "pointer", "fontSize": "0.75em", "fontWeight": "bold", "textOverflow": "ellipsis"}	*/
 	public void setItemStyle(HICSSObject itemStyle) {
 		this.itemStyle = itemStyle;
 		this.setChanged();
@@ -279,7 +290,7 @@ public class HILegend extends HIFoundation {
 
 	private Boolean reversed;
 	/**
- Whether to reverse the order of the legend items compared to the order of the series or points as defined in the configuration object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/reversed/">Stacked bar with reversed legend</a>
+ Whether to reverse the order of the legend items compared to the order of the series or points as defined in the configuration object. 
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setReversed(Boolean reversed) {
 		this.reversed = reversed;
@@ -291,7 +302,7 @@ public class HILegend extends HIFoundation {
 
 	private HICSSObject itemCheckboxStyle;
 	/**
- Default styling for the checkbox next to a legend item when showCheckbox is true. 
+ Default styling for the checkbox next to a legend item when `showCheckbox` is true. 
  <br><br><b>defaults:</b><br><br>&ensp;{"width": "13px", "height": "13px", "position":"absolute"}	*/
 	public void setItemCheckboxStyle(HICSSObject itemCheckboxStyle) {
 		this.itemCheckboxStyle = itemCheckboxStyle;
@@ -303,7 +314,7 @@ public class HILegend extends HIFoundation {
 
 	private Number padding;
 	/**
- The inner padding of the legend box. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/padding-itemmargin/">Padding and item margins demonstrated</a>
+ The inner padding of the legend box. 
  <br><br><b>defaults:</b><br><br>&ensp;8	*/
 	public void setPadding(Number padding) {
 		this.padding = padding;
@@ -315,8 +326,8 @@ public class HILegend extends HIFoundation {
 
 	private String verticalAlign;
 	/**
- The vertical alignment of the legend box. Can be one of top, middle or bottom. Vertical position can be further determined by the y option. In the case that the legend is aligned in a corner position, the layout option will determine whether to place it above/below or on the side of the plot area. When the layout option is proximate, the verticalAlign option doesn't apply. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/verticalalign/">Legend 100px from the top of the chart</a>
-	*/
+ The vertical alignment of the legend box. Can be one of `top`, `middle` or `bottom`. Vertical position can be further determined by the `y` option. In the case that the legend is aligned in a corner position, the `layout` option will determine whether to place it above/below or on the side of the plot area. When the `layout` option is `proximate`, the `verticalAlign` option doesn't apply. 
+ <br><br><b>defaults:</b><br><br>&ensp;bottom	*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
 		this.setChanged();
@@ -327,7 +338,7 @@ public class HILegend extends HIFoundation {
 
 	private HICSSObject /* boolean */ shadow;
 	/**
- Whether to apply a drop shadow to the legend. A backgroundColor also needs to be applied for this to take effect. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/shadow/">White background and drop shadow</a>
+ Whether to apply a drop shadow to the legend. A `backgroundColor` also needs to be applied for this to take effect. The shadow can be an object configuration containing `color`, `offsetX`, `offsetY`, `opacity` and `width`. 
 	*/
 	public void setShadow(HICSSObject /* boolean */ shadow) {
 		this.shadow = shadow;
@@ -339,7 +350,7 @@ public class HILegend extends HIFoundation {
 
 	private HICSSObject itemHoverStyle;
 	/**
- CSS styles for each legend item in hover mode. Only a subset of CSS is supported, notably those options related to text. Properties are inherited from style unless overridden here. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/itemhoverstyle/">Red on hover</a>
+ CSS styles for each legend item in hover mode. Only a subset of CSS is supported, notably those options related to text. Properties are inherited from `style` unless overridden here. 
  <br><br><b>defaults:</b><br><br>&ensp;{"color": "#000000"}	*/
 	public void setItemHoverStyle(HICSSObject itemHoverStyle) {
 		this.itemHoverStyle = itemHoverStyle;
@@ -351,7 +362,7 @@ public class HILegend extends HIFoundation {
 
 	private Number itemDistance;
 	/**
- In a legend with horizontal layout, the itemDistance defines the pixel distance between each item. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/layout-horizontal/">50px item distance</a>
+ In a legend with horizontal layout, the itemDistance defines the pixel distance between each item. 
  <br><br><b>defaults:</b><br><br>&ensp;20	*/
 	public void setItemDistance(Number itemDistance) {
 		this.itemDistance = itemDistance;
@@ -376,8 +387,8 @@ public class HILegend extends HIFoundation {
 
 	private String align;
 	/**
- The horizontal alignment of the legend box within the chart area. Valid values are left, center and right. In the case that the legend is aligned in a corner position, the layout option will determine whether to place it above/below or on the side of the plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/align/">Legend at the right of the chart</a>
-	*/
+ The horizontal alignment of the legend box within the chart area. Valid values are `left`, `center` and `right`. In the case that the legend is aligned in a corner position, the `layout` option will determine whether to place it above/below or on the side of the plot area. 
+ <br><br><b>defaults:</b><br><br>&ensp;center	*/
 	public void setAlign(String align) {
 		this.align = align;
 		this.setChanged();
@@ -388,8 +399,8 @@ public class HILegend extends HIFoundation {
 
 	private Boolean enabled;
 	/**
- Enable or disable the legend. There is also a series-specific option, showInLegend, that can hide the series from the legend. In some series types this is false by defaults, so it must set to true in order to show the legend for the series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/enabled-false/">Legend disabled</a>
-	*/
+ Enable or disable the legend. There is also a series-specific option, `showInLegend`, that can hide the series from the legend. In some series types this is `false` by defaults, so it must set to `true` in order to show the legend for the series. 
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -412,7 +423,7 @@ public class HILegend extends HIFoundation {
 
 	private HICSSObject itemHiddenStyle;
 	/**
- CSS styles for each legend item when the corresponding series or point is hidden. Only a subset of CSS is supported, notably those options related to text. Properties are inherited from style unless overridden here. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/itemhiddenstyle/">Darker gray color</a>
+ CSS styles for each legend item when the corresponding series or point is hidden. Only a subset of CSS is supported, notably those options related to text. Properties are inherited from `style` unless overridden here. 
  <br><br><b>defaults:</b><br><br>&ensp;{"color": "#cccccc"}	*/
 	public void setItemHiddenStyle(HICSSObject itemHiddenStyle) {
 		this.itemHiddenStyle = itemHiddenStyle;
@@ -424,8 +435,8 @@ public class HILegend extends HIFoundation {
 
 	private Boolean alignColumns;
 	/**
- If the `layout` is horizontal and the legend items span over two lines or more, whether to align the items into vertical columns. Setting this to false makes room for more items, but will look more messy. 
-	*/
+ If the `layout` is `horizontal` and the legend items span over two lines or more, whether to align the items into vertical columns. Setting this to `false` makes room for more items, but will look more messy. 
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setAlignColumns(Boolean alignColumns) {
 		this.alignColumns = alignColumns;
 		this.setChanged();
@@ -448,7 +459,7 @@ public class HILegend extends HIFoundation {
 
 	private Number borderWidth;
 	/**
- The width of the drawn border around the legend. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/borderwidth/">2px border width</a>
+ The width of the drawn border around the legend. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
@@ -460,7 +471,7 @@ public class HILegend extends HIFoundation {
 
 	private HIFunction labelFormatter;
 	/**
- Callback function to format each of the series' labels. The this keyword refers to the series object, or the point object in case of pie charts. By defaults the series or point name is printed. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/labelformatter/">Add text</a>
+ Callback function to format each of the series' labels. The `this` keyword refers to the series object, or the point object in case of pie charts. By defaults the series or point name is printed. 
 	*/
 	public void setLabelFormatter(HIFunction labelFormatter) {
 		this.labelFormatter = labelFormatter;
@@ -472,7 +483,7 @@ public class HILegend extends HIFoundation {
 
 	private Number y;
 	/**
- The vertical offset of the legend relative to it's vertical alignment verticalAlign within chart.spacingTop and chart.spacingBottom. Negative y moves it up, positive y moves it down. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/verticalalign/">Legend 100px from the top of the chart</a>
+ The vertical offset of the legend relative to it's vertical alignment `verticalAlign` within chart.spacingTop and chart.spacingBottom. Negative y moves it up, positive y moves it down. 
 	*/
 	public void setY(Number y) {
 		this.y = y;
@@ -484,7 +495,7 @@ public class HILegend extends HIFoundation {
 
 	private Number x;
 	/**
- The x offset of the legend relative to its horizontal alignment align within chart.spacingLeft and chart.spacingRight. Negative x moves it to the left, positive x moves it to the right. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/width/">Aligned to the plot area</a>
+ The x offset of the legend relative to its horizontal alignment `align` within chart.spacingLeft and chart.spacingRight. Negative x moves it to the left, positive x moves it to the right. 
 	*/
 	public void setX(Number x) {
 		this.x = x;
@@ -496,7 +507,7 @@ public class HILegend extends HIFoundation {
 
 	private Number margin;
 	/**
- If the plot area sized is calculated automatically and the legend is not floating, the legend margin is the space between the legend and the axis labels or plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/margin-defaults/">12 pixels by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/margin-30/">30 pixels</a>
+ If the plot area sized is calculated automatically and the legend is not floating, the legend margin is the space between the legend and the axis labels or plot area. 
  <br><br><b>defaults:</b><br><br>&ensp;12	*/
 	public void setMargin(Number margin) {
 		this.margin = margin;
@@ -506,67 +517,22 @@ public class HILegend extends HIFoundation {
 
 	public Number getMargin(){ return margin; }
 
-	private ArrayList allItems;
+	private Number valueDecimals;
 	/**
- All items for the legend, which is an array of series for most series and an array of points for pie series and its derivatives. 
-	*/
-	public void setAllItems(ArrayList allItems) {
-		this.allItems = allItems;
+ For a color axis with data classes, how many decimals to render in the legend. The defaults preserves the decimals of the range numbers. 
+ <br><br><b>defaults:</b><br><br>&ensp;-1	*/
+	public void setValueDecimals(Number valueDecimals) {
+		this.valueDecimals = valueDecimals;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList getAllItems(){ return allItems; }
-
-	private HISVGElement box;
-	/**
- SVG element of the legend box. 
-	*/
-	public void setBox(HISVGElement box) {
-		this.box = box;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HISVGElement getBox(){ return box; }
-
-	private HIChart chart;
-	/**
- Chart of this legend. 
-	*/
-	public void setChart(HIChart chart) {
-		this.chart = chart;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIChart getChart(){ return chart; }
-
-	private HISVGElement group;
-	/**
- SVG group of the legend. 
-	*/
-	public void setGroup(HISVGElement group) {
-		this.group = group;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HISVGElement getGroup(){ return group; }
-
-	private Object options;
-	/**
- Legend options. 
-	*/
-	public void setOptions(Object options) {
-		this.options = options;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object getOptions(){ return options; }
+	public Number getValueDecimals(){ return valueDecimals; }
 
 	private String legendLabel;
+	/**
+ Accessible label for the legend, for charts where there is a legend title defined. `{legendTitle}` refers to the visual text in the legend title. 
+ <br><br><b>defaults:</b><br><br>&ensp;Chart legend: {legendTitle}	*/
 	public void setLegendLabel(String legendLabel) {
 		this.legendLabel = legendLabel;
 		this.setChanged();
@@ -576,6 +542,9 @@ public class HILegend extends HIFoundation {
 	public String getLegendLabel(){ return legendLabel; }
 
 	private String legendLabelNoTitle;
+	/**
+ Accessible label for the legend, for charts where there is no legend title defined. 
+ <br><br><b>defaults:</b><br><br>&ensp;Toggle series visibility, {chartTitle}	*/
 	public void setLegendLabelNoTitle(String legendLabelNoTitle) {
 		this.legendLabelNoTitle = legendLabelNoTitle;
 		this.setChanged();
@@ -585,6 +554,9 @@ public class HILegend extends HIFoundation {
 	public String getLegendLabelNoTitle(){ return legendLabelNoTitle; }
 
 	private String legendItem;
+	/**
+ Accessible label for individual legend items. `{itemName}` refers to the visual text in the legend for that item. 
+ <br><br><b>defaults:</b><br><br>&ensp;Show {itemName}	*/
 	public void setLegendItem(String legendItem) {
 		this.legendItem = legendItem;
 		this.setChanged();
@@ -592,6 +564,12 @@ public class HILegend extends HIFoundation {
 	}
 
 	public String getLegendItem(){ return legendItem; }
+
+
+
+	public HILegend() {
+
+	}
 
 
 	/**
@@ -660,10 +638,6 @@ public class HILegend extends HIFoundation {
 	}
 
 
-	public HILegend() {
-
-	}
-
 	@Override
 public HashMap<String, Object> getParams() {
 
@@ -677,6 +651,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.rtl != null) {
 			params.put("rtl", this.rtl);
+		}
+		if (this.valueSuffix != null) {
+			params.put("valueSuffix", this.valueSuffix);
 		}
 		if (this.accessibility != null) {
 			params.put("accessibility", this.accessibility.getParams());
@@ -789,29 +766,8 @@ public HashMap<String, Object> getParams() {
 		if (this.margin != null) {
 			params.put("margin", this.margin);
 		}
-		if (this.allItems != null) {
-			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.allItems) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
-			}
-			params.put("allItems", array);
-		}
-		if (this.box != null) {
-			params.put("box", this.box.getParams());
-		}
-		if (this.chart != null) {
-			params.put("chart", this.chart.getParams());
-		}
-		if (this.group != null) {
-			params.put("group", this.group.getParams());
-		}
-		if (this.options != null) {
-			params.put("options", this.options);
+		if (this.valueDecimals != null) {
+			params.put("valueDecimals", this.valueDecimals);
 		}
 		if (this.legendLabel != null) {
 			params.put("legendLabel", this.legendLabel);

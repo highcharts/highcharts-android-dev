@@ -19,7 +19,7 @@ public class HIZones extends HIFoundation {
 
 	private String className;
 	/**
- Styled mode only. A custom class name for the zone. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/">Zones styled by class name</a>
+ Styled mode only. A custom class name for the zone. 
 	*/
 	public void setClassName(String className) {
 		this.className = className;
@@ -80,7 +80,7 @@ public class HIZones extends HIFoundation {
 
 	private String dashStyle;
 	/**
- A name for the dash style to use for the graph. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/color-zones-dashstyle-dot/">Dashed line indicates prognosis</a>
+ A name for the dash style to use for the graph. 
 	*/
 	public void setDashStyle(String dashStyle) {
 		this.dashStyle = dashStyle;

@@ -34,23 +34,14 @@ public class HIStyle extends HIFoundation {
 
 	public String getFontWeight(){ return fontWeight; }
 
-	private String fontSize;
-	public void setFontSize(String fontSize) {
+	private Number fontSize;
+	public void setFontSize(Number fontSize) {
 		this.fontSize = fontSize;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getFontSize(){ return fontSize; }
-
-	private String textOutline;
-	public void setTextOutline(String textOutline) {
-		this.textOutline = textOutline;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getTextOutline(){ return textOutline; }
+	public Number getFontSize(){ return fontSize; }
 
 	private String color;
 	public void setColor(String color) {
@@ -60,6 +51,15 @@ public class HIStyle extends HIFoundation {
 	}
 
 	public String getColor(){ return color; }
+
+	private Number textOutline;
+	public void setTextOutline(Number textOutline) {
+		this.textOutline = textOutline;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getTextOutline(){ return textOutline; }
 
 	private String cursor;
 	public void setCursor(String cursor) {
@@ -97,14 +97,32 @@ public class HIStyle extends HIFoundation {
 
 	public String getTextOverflow(){ return textOverflow; }
 
-	private String whiteSpace;
-	public void setWhiteSpace(String whiteSpace) {
-		this.whiteSpace = whiteSpace;
+	private String stroke;
+	public void setStroke(String stroke) {
+		this.stroke = stroke;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getWhiteSpace(){ return whiteSpace; }
+	public String getStroke(){ return stroke; }
+
+	private Number strokeWidth;
+	public void setStrokeWidth(Number strokeWidth) {
+		this.strokeWidth = strokeWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getStrokeWidth(){ return strokeWidth; }
+
+	private String fill;
+	public void setFill(String fill) {
+		this.fill = fill;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getFill(){ return fill; }
 
 
 
@@ -126,11 +144,11 @@ public HashMap<String, Object> getParams() {
 		if (this.fontSize != null) {
 			params.put("fontSize", this.fontSize);
 		}
-		if (this.textOutline != null) {
-			params.put("textOutline", this.textOutline);
-		}
 		if (this.color != null) {
 			params.put("color", this.color);
+		}
+		if (this.textOutline != null) {
+			params.put("textOutline", this.textOutline);
 		}
 		if (this.cursor != null) {
 			params.put("cursor", this.cursor);
@@ -144,8 +162,14 @@ public HashMap<String, Object> getParams() {
 		if (this.textOverflow != null) {
 			params.put("textOverflow", this.textOverflow);
 		}
-		if (this.whiteSpace != null) {
-			params.put("whiteSpace", this.whiteSpace);
+		if (this.stroke != null) {
+			params.put("stroke", this.stroke);
+		}
+		if (this.strokeWidth != null) {
+			params.put("stroke-width", this.strokeWidth);
+		}
+		if (this.fill != null) {
+			params.put("fill", this.fill);
 		}
 		return params;
 	}

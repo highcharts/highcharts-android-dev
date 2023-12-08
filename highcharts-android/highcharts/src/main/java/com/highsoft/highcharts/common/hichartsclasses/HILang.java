@@ -20,7 +20,7 @@ public class HILang extends HIFoundation {
 	private String downloadCSV;
 	/**
  The text for the menu item. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;Download CSV	*/
 	public void setDownloadCSV(String downloadCSV) {
 		this.downloadCSV = downloadCSV;
 		this.setChanged();
@@ -32,7 +32,7 @@ public class HILang extends HIFoundation {
 	private String downloadXLS;
 	/**
  The text for the menu item. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;Download XLS	*/
 	public void setDownloadXLS(String downloadXLS) {
 		this.downloadXLS = downloadXLS;
 		this.setChanged();
@@ -44,7 +44,7 @@ public class HILang extends HIFoundation {
 	private String downloadPNG;
 	/**
  Exporting module only. The text for the PNG download menu item. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;Download PNG image	*/
 	public void setDownloadPNG(String downloadPNG) {
 		this.downloadPNG = downloadPNG;
 		this.setChanged();
@@ -55,7 +55,7 @@ public class HILang extends HIFoundation {
 
 	private HIAccessibility accessibility;
 	/**
- Configure the accessibility strings in the chart. Requires the [accessibility module](https://code.highcharts.com/modules/accessibility.js) to be loaded. For a description of the module and information on its features, see [Highcharts Accessibility](https://www.highcharts.com/docs/chart-concepts/accessibility). For more dynamic control over the accessibility functionality, see accessibility.point.descriptionFormatter, accessibility.series.descriptionFormatter, and accessibility.screenReaderSection.beforeChartFormatter. 
+ Configure the accessibility strings in the chart. Requires the [accessibility module](https://code.highcharts.com/modules/accessibility.js) to be loaded. For a description of the module and information on its features, see [Highcharts Accessibility](https://www.highcharts.com/docs/chart-concepts/accessibility). The lang options use [Format Strings](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#format-strings) with variables that are replaced at run time. These variables should be used when available, to avoid duplicating text that is defined elsewhere. For more dynamic control over the accessibility functionality, see `accessibility.point.descriptionFormatter`, `accessibility.series.descriptionFormatter`, and `accessibility.screenReaderSection.beforeChartFormatter`. 
 	*/
 	public void setAccessibility(HIAccessibility accessibility) {
 		this.accessibility = accessibility;
@@ -69,7 +69,7 @@ public class HILang extends HIFoundation {
 	private String hideData;
 	/**
  The text for the menu item. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;Hide data table	*/
 	public void setHideData(String hideData) {
 		this.hideData = hideData;
 		this.setChanged();
@@ -80,7 +80,7 @@ public class HILang extends HIFoundation {
 
 	private ArrayList<String> shortWeekdays;
 	/**
- Short week days, starting Sunday. If not specified, Highcharts uses the first three letters of the lang.weekdays option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/shortweekdays/">Finnish two-letter abbreviations</a>
+ Short week days, starting Sunday. If not specified, Highcharts uses the first three letters of the `lang.weekdays` option. 
 	*/
 	public void setShortWeekdays(ArrayList<String> shortWeekdays) {
 		this.shortWeekdays = shortWeekdays;
@@ -106,7 +106,7 @@ public class HILang extends HIFoundation {
 	private String viewFullscreen;
 	/**
  Exporting module only. The text for the menu item to view the chart in full screen. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;View in full screen	*/
 	public void setViewFullscreen(String viewFullscreen) {
 		this.viewFullscreen = viewFullscreen;
 		this.setChanged();
@@ -117,8 +117,8 @@ public class HILang extends HIFoundation {
 
 	private String noData;
 	/**
- The text to display when the chart contains no data. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line">No-data text</a>
-	*/
+ The text to display when the chart contains no data. 
+ <br><br><b>defaults:</b><br><br>&ensp;No data to display	*/
 	public void setNoData(String noData) {
 		this.noData = noData;
 		this.setChanged();
@@ -127,10 +127,19 @@ public class HILang extends HIFoundation {
 
 	public String getNoData(){ return noData; }
 
+	private String mainBreadcrumb;
+	public void setMainBreadcrumb(String mainBreadcrumb) {
+		this.mainBreadcrumb = mainBreadcrumb;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getMainBreadcrumb(){ return mainBreadcrumb; }
+
 	private String loading;
 	/**
- The loading text that appears when the chart is set into the loading state following a call to chart.showLoading. 
-	*/
+ The loading text that appears when the chart is set into the loading state following a call to `chart.showLoading`. 
+ <br><br><b>defaults:</b><br><br>&ensp;Loading...	*/
 	public void setLoading(String loading) {
 		this.loading = loading;
 		this.setChanged();
@@ -141,7 +150,7 @@ public class HILang extends HIFoundation {
 
 	private ArrayList<String> numericSymbols;
 	/**
- [Metric prefixes](https://en.wikipedia.org/wiki/Metric_prefix) used to shorten high numbers in axis labels. Replacing any of the positions with null causes the full number to be written. Setting numericSymbols to null disables shortening altogether. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbols/">Replacing the symbols with text</a>
+ [Metric prefixes](https://en.wikipedia.org/wiki/Metric_prefix) used to shorten high numbers in axis labels. Replacing any of the positions with `null` causes the full number to be written. Setting `numericSymbols` to `null` disables shortening altogether. 
  <br><br><b>defaults:</b><br><br>&ensp;["k", "M", "G", "T", "P", "E"]	*/
 	public void setNumericSymbols(ArrayList<String> numericSymbols) {
 		this.numericSymbols = numericSymbols;
@@ -154,7 +163,7 @@ public class HILang extends HIFoundation {
 	private String printChart;
 	/**
  Exporting module only. The text for the menu item to print the chart. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;Print chart	*/
 	public void setPrintChart(String printChart) {
 		this.printChart = printChart;
 		this.setChanged();
@@ -165,7 +174,7 @@ public class HILang extends HIFoundation {
 
 	private Number numericSymbolMagnitude;
 	/**
- The magnitude of numericSymbols replacements. Use 10000 for Japanese, Korean and various Chinese locales, which use symbols for 10^4, 10^8 and 10^12. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/lang/numericsymbolmagnitude/">10000 magnitude for Japanese</a>
+ The magnitude of `numericSymbols` replacements. Use 10000 for Japanese, Korean and various Chinese locales, which use symbols for 10^4, 10^8 and 10^12. 
  <br><br><b>defaults:</b><br><br>&ensp;1000	*/
 	public void setNumericSymbolMagnitude(Number numericSymbolMagnitude) {
 		this.numericSymbolMagnitude = numericSymbolMagnitude;
@@ -191,7 +200,7 @@ public class HILang extends HIFoundation {
 	private String downloadSVG;
 	/**
  Exporting module only. The text for the SVG download menu item. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;Download SVG vector image	*/
 	public void setDownloadSVG(String downloadSVG) {
 		this.downloadSVG = downloadSVG;
 		this.setChanged();
@@ -200,22 +209,10 @@ public class HILang extends HIFoundation {
 
 	public String getDownloadSVG(){ return downloadSVG; }
 
-	private String drillUpText;
-	/**
- The text for the button that appears when drilling down, linking back to the parent series. The parent series' name is inserted for {series.name}. 
-	*/
-	public void setDrillUpText(String drillUpText) {
-		this.drillUpText = drillUpText;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getDrillUpText(){ return drillUpText; }
-
 	private String viewData;
 	/**
  The text for the menu item. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;View data table	*/
 	public void setViewData(String viewData) {
 		this.viewData = viewData;
 		this.setChanged();
@@ -227,7 +224,7 @@ public class HILang extends HIFoundation {
 	private String contextButtonTitle;
 	/**
  Exporting module menu. The tooltip title for the context menu holding print and export menu items. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;Chart context menu	*/
 	public void setContextButtonTitle(String contextButtonTitle) {
 		this.contextButtonTitle = contextButtonTitle;
 		this.setChanged();
@@ -248,10 +245,22 @@ public class HILang extends HIFoundation {
 
 	public String getInvalidDate(){ return invalidDate; }
 
+	private String playAsSound;
+	/**
+ The text for the Play as sound menu item in the export menu. 
+ <br><br><b>defaults:</b><br><br>&ensp;Play as sound	*/
+	public void setPlayAsSound(String playAsSound) {
+		this.playAsSound = playAsSound;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getPlayAsSound(){ return playAsSound; }
+
 	private String exitFullscreen;
 	/**
  Exporting module only. The text for the menu item to exit the chart from full screen. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;Exit from full screen	*/
 	public void setExitFullscreen(String exitFullscreen) {
 		this.exitFullscreen = exitFullscreen;
 		this.setChanged();
@@ -263,7 +272,7 @@ public class HILang extends HIFoundation {
 	private String resetZoom;
 	/**
  The text for the label appearing when a chart is zoomed. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;Reset zoom	*/
 	public void setResetZoom(String resetZoom) {
 		this.resetZoom = resetZoom;
 		this.setChanged();
@@ -275,7 +284,7 @@ public class HILang extends HIFoundation {
 	private String downloadPDF;
 	/**
  Exporting module only. The text for the PDF download menu item. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;Download PDF document	*/
 	public void setDownloadPDF(String downloadPDF) {
 		this.downloadPDF = downloadPDF;
 		this.setChanged();
@@ -287,7 +296,7 @@ public class HILang extends HIFoundation {
 	private String resetZoomTitle;
 	/**
  The tooltip title for the label appearing when a chart is zoomed. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;Reset zoom level 1:1	*/
 	public void setResetZoomTitle(String resetZoomTitle) {
 		this.resetZoomTitle = resetZoomTitle;
 		this.setChanged();
@@ -298,7 +307,7 @@ public class HILang extends HIFoundation {
 
 	private ArrayList<String> months;
 	/**
- An array containing the months names. Corresponds to the %B format in Highcharts.dateFormat(). 
+ An array containing the months names. Corresponds to the `%B` format in `Highcharts.dateFormat()`. 
  <br><br><b>defaults:</b><br><br>&ensp;["January", "February", "March", "April", "May", "June",
          "July", "August", "September", "October", "November",
          "December"]	*/
@@ -312,7 +321,7 @@ public class HILang extends HIFoundation {
 
 	private ArrayList<String> shortMonths;
 	/**
- An array containing the months names in abbreviated form. Corresponds to the %b format in Highcharts.dateFormat(). 
+ An array containing the months names in abbreviated form. Corresponds to the `%b` format in `Highcharts.dateFormat()`. 
  <br><br><b>defaults:</b><br><br>&ensp;["Jan", "Feb", "Mar", "Apr", "May", "Jun",
          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]	*/
 	public void setShortMonths(ArrayList<String> shortMonths) {
@@ -326,7 +335,7 @@ public class HILang extends HIFoundation {
 	private String downloadJPEG;
 	/**
  Exporting module only. The text for the JPEG download menu item. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;Download JPEG image	*/
 	public void setDownloadJPEG(String downloadJPEG) {
 		this.downloadJPEG = downloadJPEG;
 		this.setChanged();
@@ -337,8 +346,8 @@ public class HILang extends HIFoundation {
 
 	private String decimalPoint;
 	/**
- The defaults decimal point used in the Highcharts.numberFormat method unless otherwise specified in the function arguments. 
-	*/
+ The defaults decimal point used in the `Highcharts.numberFormat` method unless otherwise specified in the function arguments. 
+ <br><br><b>defaults:</b><br><br>&ensp;.	*/
 	public void setDecimalPoint(String decimalPoint) {
 		this.decimalPoint = decimalPoint;
 		this.setChanged();
@@ -347,9 +356,21 @@ public class HILang extends HIFoundation {
 
 	public String getDecimalPoint(){ return decimalPoint; }
 
+	private String thousandsSep;
+	/**
+ The defaults thousands separator used in the `Highcharts.numberFormat` method unless otherwise specified in the function arguments. Defaults to a single space character, which is recommended in [ISO 31-0](https://en.wikipedia.org/wiki/ISO_31-0#Numbers) and works across Anglo-American and continental European languages. 
+ <br><br><b>defaults:</b><br><br>&ensp;\u0020	*/
+	public void setThousandsSep(String thousandsSep) {
+		this.thousandsSep = thousandsSep;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getThousandsSep(){ return thousandsSep; }
+
 	private HINavigation navigation;
 	/**
- Configure the Popup strings in the chart. Requires the annotations.js or annotations-advanced.src.js module to be loaded. 
+ Configure the Popup strings in the chart. Requires the `annotations.js` or `annotations-advanced.src.js` module to be loaded. 
 	*/
 	public void setNavigation(HINavigation navigation) {
 		this.navigation = navigation;
@@ -360,17 +381,17 @@ public class HILang extends HIFoundation {
 
 	public HINavigation getNavigation(){ return navigation; }
 
-	private String thousandsSep;
+	private String downloadMIDI;
 	/**
- The defaults thousands separator used in the Highcharts.numberFormat method unless otherwise specified in the function arguments. Defaults to a single space character, which is recommended in [ISO 31-0](https://en.wikipedia.org/wiki/ISO_31-0#Numbers) and works across Anglo-American and continental European languages. 
- <br><br><b>defaults:</b><br><br>&ensp;\u0020	*/
-	public void setThousandsSep(String thousandsSep) {
-		this.thousandsSep = thousandsSep;
+ The text for the MIDI download menu item in the export menu. 
+ <br><br><b>defaults:</b><br><br>&ensp;Download MIDI	*/
+	public void setDownloadMIDI(String downloadMIDI) {
+		this.downloadMIDI = downloadMIDI;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getThousandsSep(){ return thousandsSep; }
+	public String getDownloadMIDI(){ return downloadMIDI; }
 
 
 
@@ -419,6 +440,9 @@ public HashMap<String, Object> getParams() {
 		if (this.noData != null) {
 			params.put("noData", this.noData);
 		}
+		if (this.mainBreadcrumb != null) {
+			params.put("mainBreadcrumb", this.mainBreadcrumb);
+		}
 		if (this.loading != null) {
 			params.put("loading", this.loading);
 		}
@@ -455,9 +479,6 @@ public HashMap<String, Object> getParams() {
 		if (this.downloadSVG != null) {
 			params.put("downloadSVG", this.downloadSVG);
 		}
-		if (this.drillUpText != null) {
-			params.put("drillUpText", this.drillUpText);
-		}
 		if (this.viewData != null) {
 			params.put("viewData", this.viewData);
 		}
@@ -466,6 +487,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.invalidDate != null) {
 			params.put("invalidDate", this.invalidDate);
+		}
+		if (this.playAsSound != null) {
+			params.put("playAsSound", this.playAsSound);
 		}
 		if (this.exitFullscreen != null) {
 			params.put("exitFullscreen", this.exitFullscreen);
@@ -509,11 +533,14 @@ public HashMap<String, Object> getParams() {
 		if (this.decimalPoint != null) {
 			params.put("decimalPoint", this.decimalPoint);
 		}
+		if (this.thousandsSep != null) {
+			params.put("thousandsSep", this.thousandsSep);
+		}
 		if (this.navigation != null) {
 			params.put("navigation", this.navigation.getParams());
 		}
-		if (this.thousandsSep != null) {
-			params.put("thousandsSep", this.thousandsSep);
+		if (this.downloadMIDI != null) {
+			params.put("downloadMIDI", this.downloadMIDI);
 		}
 		return params;
 	}

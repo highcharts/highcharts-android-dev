@@ -8,11 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
@@ -20,8 +18,8 @@ public class HILevelSize extends HIFoundation {
 
 	private Number value;
 	/**
- The value used for calculating the width of the ring. Its' affect is determined by levelSize.unit. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-levelsize/">Sunburst with various sizes per level</a>
-	*/
+ The value used for calculating the width of the ring. Its' affect is determined by `levelSize.unit`. 
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setValue(Number value) {
 		this.value = value;
 		this.setChanged();
@@ -32,8 +30,8 @@ public class HILevelSize extends HIFoundation {
 
 	private String unit;
 	/**
- How to interpret levelSize.value. - percentage gives a width relative to result of outer radius  minus inner radius. - pixels gives the ring a fixed width in pixels. - weight takes the remaining width after percentage and pixels,  and distributes it accross all "weighted" levels. The value  relative to the sum of all weights determines the width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sunburst-levelsize/">Sunburst with various sizes per level</a> <br><br><b>accepted values:</b><br><br>&ensp;["percentage", "pixels", "weight"]
-	*/
+ How to interpret `levelSize.value`. - `percentage` gives a width relative to result of outer radius  minus inner radius. - `pixels` gives the ring a fixed width in pixels. - `weight` takes the remaining width after percentage and pixels,  and distributes it accross all "weighted" levels. The value  relative to the sum of all weights determines the width. 
+ <br><br><b>defaults:</b><br><br>&ensp;weight	*/
 	public void setUnit(String unit) {
 		this.unit = unit;
 		this.setChanged();

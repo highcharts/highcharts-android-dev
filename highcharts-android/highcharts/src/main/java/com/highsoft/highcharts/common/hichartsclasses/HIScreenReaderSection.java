@@ -8,11 +8,10 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.core.HIFunction;
+
+import java.util.HashMap;
 
 
 
@@ -20,7 +19,7 @@ public class HIScreenReaderSection extends HIFoundation {
 
 	private HIFunction beforeChartFormatter;
 	/**
- A formatter function to create the HTML contents of the hidden screen reader information region before the chart. Receives one argument, chart, referring to the chart object. Should return a string with the HTML content of the region. By defaults this returns an automatic description of the chart based on beforeChartFormat. 
+ A formatter function to create the HTML contents of the hidden screen reader information region before the chart. Receives one argument, `chart`, referring to the chart object. Should return a string with the HTML content of the region. By defaults this returns an automatic description of the chart based on `beforeChartFormat`. 
 	*/
 	public void setBeforeChartFormatter(HIFunction beforeChartFormatter) {
 		this.beforeChartFormatter = beforeChartFormatter;
@@ -44,7 +43,7 @@ public class HIScreenReaderSection extends HIFoundation {
 
 	private HIFunction onPlayAsSoundClick;
 	/**
- Function to run upon clicking the "Play as sound" button in the screen reader region. By defaults Highcharts will call the chart.sonify function. 
+ Function to run upon clicking the "Play as sound" button in the screen reader region. By defaults Highcharts will call the `chart.sonify` function. 
 	*/
 	public void setOnPlayAsSoundClick(HIFunction onPlayAsSoundClick) {
 		this.onPlayAsSoundClick = onPlayAsSoundClick;
@@ -56,8 +55,8 @@ public class HIScreenReaderSection extends HIFoundation {
 
 	private String afterChartFormat;
 	/**
- Format for the screen reader information region after the chart. Analogous to beforeChartFormat. 
-	*/
+ Format for the screen reader information region after the chart. Analogous to `beforeChartFormat`. 
+ <br><br><b>defaults:</b><br><br>&ensp;{endOfChartMarker}	*/
 	public void setAfterChartFormat(String afterChartFormat) {
 		this.afterChartFormat = afterChartFormat;
 		this.setChanged();
@@ -69,7 +68,7 @@ public class HIScreenReaderSection extends HIFoundation {
 	private String axisRangeDateFormat;
 	/**
  Date format to use to describe range of datetime axes. For an overview of the replacement codes, see `dateFormat`. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;%Y-%m-%d %H:%M:%S	*/
 	public void setAxisRangeDateFormat(String axisRangeDateFormat) {
 		this.axisRangeDateFormat = axisRangeDateFormat;
 		this.setChanged();
@@ -80,8 +79,8 @@ public class HIScreenReaderSection extends HIFoundation {
 
 	private String beforeChartFormat;
 	/**
- Format for the screen reader information region before the chart. Supported HTML tags are , , , , , , , and . Attributes are not supported, except for id on , , and . Id is required on  and  in the format . Numbers, lower- and uppercase letters, "-" and "#" are valid characters in IDs. The headingTagName is an auto-detected heading (h1-h6) that corresponds to the heading level below the previous heading in the DOM. Set to empty string to remove the region altogether. 
-	*/
+ Format for the screen reader information region before the chart. Supported HTML tags are `<h1-6>`, `<p>`, `<div>`, `<a>`, `<ul>`, `<ol>`, `<li>`, and `<button>`. Attributes are not supported, except for id on `<div>`, `<a>`, and `<button>`. Id is required on `<a>` and `<button>` in the format `<tag id="abcd">`. Numbers, lower- and uppercase letters, "-" and "#" are valid characters in IDs. The headingTagName is an auto-detected heading (h1-h6) that corresponds to the heading level below the previous heading in the DOM. Set to empty string to remove the region altogether. 
+ <br><br><b>defaults:</b><br><br>&ensp;<{headingTagName}>{chartTitle}</{headingTagName}><div>{typeDescription}</div><div>{chartSubtitle}</div><div>{chartLongdesc}</div><div>{playAsSoundButton}</div><div>{viewTableButton}</div><div>{xAxisDescription}</div><div>{yAxisDescription}</div><div>{annotationsTitle}{annotationsList}</div>	*/
 	public void setBeforeChartFormat(String beforeChartFormat) {
 		this.beforeChartFormat = beforeChartFormat;
 		this.setChanged();
@@ -92,7 +91,7 @@ public class HIScreenReaderSection extends HIFoundation {
 
 	private HIFunction afterChartFormatter;
 	/**
- A formatter function to create the HTML contents of the hidden screen reader information region after the chart. Analogous to beforeChartFormatter. 
+ A formatter function to create the HTML contents of the hidden screen reader information region after the chart. Analogous to `beforeChartFormatter`. 
 	*/
 	public void setAfterChartFormatter(HIFunction afterChartFormatter) {
 		this.afterChartFormatter = afterChartFormatter;
@@ -136,7 +135,7 @@ public class HIScreenReaderSection extends HIFoundation {
 	private String endOfChartMarker;
 	/**
  Label for the end of the chart. Announced by screen readers. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;End of interactive chart.	*/
 	public void setEndOfChartMarker(String endOfChartMarker) {
 		this.endOfChartMarker = endOfChartMarker;
 		this.setChanged();

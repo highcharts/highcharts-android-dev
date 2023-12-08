@@ -61,7 +61,7 @@ public class HISeries extends HIFoundation {
 
 	private String id;
 	/**
- An id for the series. This can be used after render time to get a pointer to the series object through chart.get(). <br><br><b><i>Try it:</b></i><br><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-id/" target="_blank">Get series by id</a>
+ An id for the series. This can be used after render time to get a pointer to the series object through chart.get(). 
 	*/
 	public void setId(String id) {
 		this.id = id;
@@ -97,7 +97,7 @@ public class HISeries extends HIFoundation {
 
 	private String name;
 	/**
- The name of the series as shown in the legend, tooltip etc. <br><br><b><i>Try it:</b></i><br><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/name/" target="_blank">Series name</a>
+ The name of the series as shown in the legend, tooltip etc. 
 	*/
 	public void setName(String name) {
 		this.name = name;
@@ -109,7 +109,7 @@ public class HISeries extends HIFoundation {
 
 	private String stack;
 	/**
- This option allows grouping series in a stacked chart. The stack option can be a string or a number or anything else, as long as the grouped series' stack options match each other. <br><br><b><i>Try it:</b></i><br><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/stack/" target="_blank">Stacked and grouped columns</a>
+ This option allows grouping series in a stacked chart. The stack option can be a string or a number or anything else, as long as the grouped series' stack options match each other. 
 	*/
 	public void setStack(String stack) {
 		this.stack = stack;
@@ -123,7 +123,7 @@ public class HISeries extends HIFoundation {
 	/**
  The type of series. Can be one of area, areaspline,
  bar, column, line, pie,
- scatter or spline. From version 2.3, arearange, areasplinerange and columnrange are supported with the highcharts-more.js component. <br><br><b><i>Try it:</b></i><br><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/type/" target="_blank">Line and column in the same chart</a> <br><br><b>accepted values:</b><br><br>&ensp;[null, "line", "spline", "column", "area", "areaspline", "pie", "arearange", "areasplinerange", "boxplot", "bubble", "columnrange", "errorbar", "funnel", "gauge", "scatter", "waterfall"]
+ scatter or spline. From version 2.3, arearange, areasplinerange and columnrange are supported with the highcharts-more.js component. 
 	*/
 	public void setType(String type) {
 		this.type = type;
@@ -147,7 +147,7 @@ public class HISeries extends HIFoundation {
 
 	private Object /* Number|String */ yAxis;
 	/**
- When using dual or multiple y axes, this number defines which yAxis the particular series is connected to. It refers to either the axis id or the index of the axis in the yAxis array, with 0 being the first. <br><br><b><i>Try it:</b></i><br><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/series/yaxis/" target="_blank">Apply the column series to the secondary Y axis</a>
+ When using dual or multiple y axes, this number defines which yAxis the particular series is connected to. It refers to either the axis id or the index of the axis in the yAxis array, with 0 being the first. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setYAxis(Object /* Number|String */ yAxis) {
 		this.yAxis = yAxis;
@@ -159,8 +159,7 @@ public class HISeries extends HIFoundation {
 
 	private Number zIndex;
 	/**
- Define the visual z index of the series. <br><br><b><i>Try it:</b></i><br><a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-zindex-defaults/" target="_blank">With no z index, the series defined last are on top</a>,
- 			<a href="http://jsfiddle.net/gh/get/jquery/3.1.1/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-zindex/" target="_blank">with a z index, the series with the highest z index is on top</a>.
+ Define the visual z index of the series. 
 	*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
@@ -170,129 +169,9 @@ public class HISeries extends HIFoundation {
 
 	public Number getZIndex(){ return zIndex; }
 
-	private HISVGElement area;
-	/**
- SVG element of area-based charts. Can be used for styling purposes. If zones are configured, this element will be hidden and replaced by multiple zone areas, accessible via `series['zone-area-x']` (where x is a number, starting with 0). 
-	*/
-	public void setArea(HISVGElement area) {
-		this.area = area;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HISVGElement getArea(){ return area; }
-
-	private HIChart chart;
-	/**
- Read only. The chart that the series belongs to. 
-	*/
-	public void setChart(HIChart chart) {
-		this.chart = chart;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIChart getChart(){ return chart; }
-
-	private Number dataMax;
-	/**
- Contains the maximum value of the series' data point. Some series types like `networkgraph` do not support this property as they lack a `y`-value. 
-	*/
-	public void setDataMax(Number dataMax) {
-		this.dataMax = dataMax;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getDataMax(){ return dataMax; }
-
-	private Number dataMin;
-	/**
- Contains the minimum value of the series' data point. Some series types like `networkgraph` do not support this property as they lack a `y`-value. 
-	*/
-	public void setDataMin(Number dataMin) {
-		this.dataMin = dataMin;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getDataMin(){ return dataMin; }
-
-	private HISVGElement graph;
-	/**
- SVG element of line-based charts. Can be used for styling purposes. If zones are configured, this element will be hidden and replaced by multiple zone lines, accessible via `series['zone-graph-x']` (where x is a number, starting with 0). 
-	*/
-	public void setGraph(HISVGElement graph) {
-		this.graph = graph;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HISVGElement getGraph(){ return graph; }
-
-	private Object options;
-	/**
- Read only. The series' current options. To update, use {@link Series#update}. 
-	*/
-	public void setOptions(Object options) {
-		this.options = options;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object getOptions(){ return options; }
-
-	private ArrayList points;
-	/**
- An array containing all currently visible point objects. In case of cropping, the cropped-away points are not part of this array. The `series.points` array starts at `series.cropStart` compared to `series.data` and `series.options.data`. If however the series data is grouped, these can't be correlated one to one. To modify the data, use {@link Highcharts.Series#setData} or {@link Highcharts.Point#update}. 
-	*/
-	public void setPoints(ArrayList points) {
-		this.points = points;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public ArrayList getPoints(){ return points; }
-
-	private Boolean selected;
-	/**
- Read only. The series' selected state as set by {@link Highcharts.Series#select}. 
-	*/
-	public void setSelected(Boolean selected) {
-		this.selected = selected;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getSelected(){ return selected; }
-
-	private Object userOptions;
-	/**
- Contains series options by the user without defaultss. 
-	*/
-	public void setUserOptions(Object userOptions) {
-		this.userOptions = userOptions;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object getUserOptions(){ return userOptions; }
-
-	private Boolean visible;
-	/**
- Read only. The series' visibility state as set by {@link Series#show}, {@link Series#hide}, or in the initial configuration. 
-	*/
-	public void setVisible(Boolean visible) {
-		this.visible = visible;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getVisible(){ return visible; }
-
 	private HIFunction descriptionFormatter;
 	/**
- Formatter function to use instead of the defaults for series descriptions. Receives one argument, series, referring to the series to describe. Should return a string with the description of the series for a screen reader user. If false is returned, the defaults formatter will be used for that series. 
+ Formatter function to use instead of the defaults for series descriptions. Receives one argument, `series`, referring to the series to describe. Should return a string with the description of the series for a screen reader user. If `false` is returned, the defaults formatter will be used for that series. 
 	*/
 	public void setDescriptionFormatter(HIFunction descriptionFormatter) {
 		this.descriptionFormatter = descriptionFormatter;
@@ -304,8 +183,8 @@ public class HISeries extends HIFoundation {
 
 	private Number pointDescriptionEnabledThreshold;
 	/**
- When a series contains more points than this, we no longer expose information about individual points to screen readers. Set to false to disable. 
-	*/
+ When a series contains more points than this, we no longer expose information about individual points to screen readers. Set to `false` to disable. 
+ <br><br><b>defaults:</b><br><br>&ensp;200	*/
 	public void setPointDescriptionEnabledThreshold(Number pointDescriptionEnabledThreshold) {
 		this.pointDescriptionEnabledThreshold = pointDescriptionEnabledThreshold;
 		this.setChanged();
@@ -313,6 +192,18 @@ public class HISeries extends HIFoundation {
 	}
 
 	public Number getPointDescriptionEnabledThreshold(){ return pointDescriptionEnabledThreshold; }
+
+	private String descriptionFormat;
+	/**
+ Format to use for describing the data series group to assistive technology - including screen readers. The series context and its subproperties are available under the variable `{series}`, for example `{series.name}` for the series name, and `{series.points.length}` for the number of data points. The chart context and its subproperties are available under the variable `{chart}`, for example `{chart.series.length}` for the number of series in the chart. `{seriesDescription}` refers to the automatic description of the series type and number of points added by Highcharts by defaults. `{authorDescription}` refers to the description added in `series.description` if one is present. `{axisDescription}` refers to the description added if the chart has multiple X or Y axes. Note that if `series.descriptionFormatter` is declared it will take precedence, and this option will be overridden. 
+ <br><br><b>defaults:</b><br><br>&ensp;{seriesDescription}{authorDescription}{axisDescription}	*/
+	public void setDescriptionFormat(String descriptionFormat) {
+		this.descriptionFormat = descriptionFormat;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDescriptionFormat(){ return descriptionFormat; }
 
 	private Boolean describeSingleSeries;
 	/**
@@ -328,8 +219,8 @@ public class HISeries extends HIFoundation {
 
 	private String definition;
 	/**
- User supplied description text. This is added in the point comment description by defaults if present. 
-	*/
+ User supplied description text. This is added in the point comment description by defaults if present. `{description}` refers to the value given in `point.accessibility.description`. 
+ <br><br><b>defaults:</b><br><br>&ensp;{description}	*/
 	public void setDefinition(String definition) {
 		this.definition = definition;
 		this.setChanged();
@@ -341,7 +232,7 @@ public class HISeries extends HIFoundation {
 	private String xAxisDescription;
 	/**
  xAxis description for series if there are multiple xAxes in the chart. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;X axis, {name}	*/
 	public void setXAxisDescription(String xAxisDescription) {
 		this.xAxisDescription = xAxisDescription;
 		this.setChanged();
@@ -353,7 +244,7 @@ public class HISeries extends HIFoundation {
 	private String yAxisDescription;
 	/**
  yAxis description for series if there are multiple yAxes in the chart. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;Y axis, {name}	*/
 	public void setYAxisDescription(String yAxisDescription) {
 		this.yAxisDescription = yAxisDescription;
 		this.setChanged();
@@ -365,7 +256,7 @@ public class HISeries extends HIFoundation {
 	private String pointAnnotationsDescription;
 	/**
  Description for annotations on a point, as it is made available to assistive technology. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;{#each annotations}Annotation: {this}{/each}	*/
 	public void setPointAnnotationsDescription(String pointAnnotationsDescription) {
 		this.pointAnnotationsDescription = pointAnnotationsDescription;
 		this.setChanged();
@@ -376,7 +267,7 @@ public class HISeries extends HIFoundation {
 
 	private HISummary summary;
 	/**
- Lang configuration for the series main summary. Each series type has two modes: 1. This series type is the only series type used in the  chart 2. This is a combination chart with multiple series types If a definition does not exist for the specific series type and mode, the 'defaults' lang definitions are used. 
+ Lang configuration for the series main summary. Each series type has two modes: 1. This series type is the only series type used in the  chart 2. This is a combination chart with multiple series types If a definition does not exist for the specific series type and mode, the 'defaults' lang definitions are used. Chart and its subproperties can be accessed with the `{chart}` variable. The series and its subproperties can be accessed with the `{series}` variable. The series index (starting from 1) can be accessed with the `{seriesNumber}` variable. 
 	*/
 	public void setSummary(HISummary summary) {
 		this.summary = summary;
@@ -390,7 +281,7 @@ public class HISeries extends HIFoundation {
 	private String nullPointValue;
 	/**
  Description for the value of null points. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;No value	*/
 	public void setNullPointValue(String nullPointValue) {
 		this.nullPointValue = nullPointValue;
 		this.setChanged();
@@ -401,7 +292,7 @@ public class HISeries extends HIFoundation {
 
 	private Boolean includeInDataExport;
 	/**
- When set to false will prevent the series data from being included in any form of data export. Since version 6.0.0 until 7.1.0 the option was existing undocumented as includeInCSVExport. 
+ When set to `false` will prevent the series data from being included in any form of data export. Since version 6.0.0 until 7.1.0 the option was existing undocumented as `includeInCSVExport`. 
 	*/
 	public void setIncludeInDataExport(Boolean includeInDataExport) {
 		this.includeInDataExport = includeInDataExport;
@@ -413,7 +304,7 @@ public class HISeries extends HIFoundation {
 
 	private Number colorIndex;
 	/**
- Styled mode only. A specific color index to use for the series, so its graphic representations are given the class name highcharts-color-{n}. 
+ Styled mode only. A specific color index to use for the series, so its graphic representations are given the class name `highcharts-color-{n}`. Since v11, CSS variables on the form `--highcharts-color-{n}` make changing the color scheme very convenient. 
 	*/
 	public void setColorIndex(Number colorIndex) {
 		this.colorIndex = colorIndex;
@@ -425,7 +316,7 @@ public class HISeries extends HIFoundation {
 
 	private Boolean clip;
 	/**
- Disable this option to allow series rendering in the whole plotting area. **Note:** Clipping should be always enabled when chart.zoomType is set <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-clip/">Disabled clipping</a>
+ Disable this option to allow series rendering in the whole plotting area. **Note:** Clipping should be always enabled when `chart.zoomType` is set 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setClip(Boolean clip) {
 		this.clip = clip;
@@ -437,7 +328,7 @@ public class HISeries extends HIFoundation {
 
 	private HIColor negativeColor;
 	/**
- The color for the parts of the graph or points that are below the threshold. Note that zones takes precedence over the negative color. Using negativeColor is equivalent to applying a zone with value of 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-negative-color/">Spline, area and column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/arearange-negativecolor/">Arearange</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-negative-color/">Styled mode</a>
+ The color for the parts of the graph or points that are below the `threshold`. Note that `zones` takes precedence over the negative color. Using `negativeColor` is equivalent to applying a zone with value of 0. 
 	*/
 	public void setNegativeColor(HIColor negativeColor) {
 		this.negativeColor = negativeColor;
@@ -449,7 +340,7 @@ public class HISeries extends HIFoundation {
 
 	private HIColor color;
 	/**
- The main color of the series. In line type series it applies to the line and the point markers unless otherwise specified. In bar type series it applies to the bars unless a color is specified per point. The defaults value is pulled from the options.colors array. In styled mode, the color can be defined by the colorIndex option. Also, the series color can be set with the .highcharts-series, .highcharts-color-{n}, .highcharts-{type}-series or .highcharts-series-{n} class, or individual classes given by the className option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-color-general/">General plot option</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-color-specific/">One specific series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-color-area/">Area color</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/infographic/">Pattern fill</a>
+ The main color of the series. In line type series it applies to the line and the point markers unless otherwise specified. In bar type series it applies to the bars unless a color is specified per point. The defaults value is pulled from the `options.colors` array. In styled mode, the color can be defined by the `colorIndex` option. Also, the series color can be set with the `.highcharts-series`, `.highcharts-color-{n}`, `.highcharts-{type}-series` or `.highcharts-series-{n}` class, or individual classes given by the `className` option. 
 	*/
 	public void setColor(HIColor color) {
 		this.color = color;
@@ -461,7 +352,7 @@ public class HISeries extends HIFoundation {
 
 	private Number pointInterval;
 	/**
- If no x values are given for the points in a series, pointInterval defines the interval of the x values. For example, if a series contains one value every decade starting from year 0, set pointInterval to 10. In true datetime axes, the pointInterval is set in milliseconds. It can be also be combined with pointIntervalUnit to draw irregular time intervals. If combined with relativeXValue, an x value can be set on each point, and the pointInterval is added x times to the pointStart setting. Please note that this options applies to the _series data_, not the interval of the axis ticks, which is independent. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointstart-datetime/">Datetime X axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-relativexvalue/">Relative x value</a>
+ If no x values are given for the points in a series, `pointInterval` defines the interval of the x values. For example, if a series contains one value every decade starting from year 0, set `pointInterval` to `10`. In true `datetime` axes, the `pointInterval` is set in milliseconds. It can be also be combined with `pointIntervalUnit` to draw irregular time intervals. If combined with `relativeXValue`, an x value can be set on each point, and the `pointInterval` is added x times to the `pointStart` setting. Please note that this options applies to the _series data_, not the interval of the axis ticks, which is independent. 
  <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setPointInterval(Number pointInterval) {
 		this.pointInterval = pointInterval;
@@ -474,7 +365,7 @@ public class HISeries extends HIFoundation {
 	private Number cropThreshold;
 	/**
  When the series contains less points than the crop threshold, all points are drawn, even if the points fall outside the visible plot area at the current zoom. The advantage of drawing all points (including markers and columns), is that animation is performed on updates. On the other hand, when the series contains more points than the crop threshold, the series data is cropped to only contain points that fall within the plot area. The advantage of cropping away invisible points is to increase performance on large series. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;300	*/
 	public void setCropThreshold(Number cropThreshold) {
 		this.cropThreshold = cropThreshold;
 		this.setChanged();
@@ -495,7 +386,7 @@ public class HISeries extends HIFoundation {
 
 	private String colorKey;
 	/**
- Determines what data value should be used to calculate point color if colorAxis is used. Requires to set min and max if some custom point property is used or if approximation for data grouping is set to 'sum'. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/custom-color-key/">Custom color key</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/changed-defaults-color-key/">Changed defaults color key</a>
+ Determines what data value should be used to calculate point color if `colorAxis` is used. Requires to set `min` and `max` if some custom point property is used or if approximation for data grouping is set to `'sum'`. 
  <br><br><b>defaults:</b><br><br>&ensp;y	*/
 	public void setColorKey(String colorKey) {
 		this.colorKey = colorKey;
@@ -507,8 +398,8 @@ public class HISeries extends HIFoundation {
 
 	private Boolean softThreshold;
 	/**
- When this is true, the series will not cause the Y axis to cross the zero plane (or threshold option) unless the data actually crosses the plane. For example, if softThreshold is false, a series of 0, 1, 2, 3 will make the Y axis show negative values according to the minPadding option. If softThreshold is true, the Y axis starts at 0. 
-	*/
+ When this is true, the series will not cause the Y axis to cross the zero plane (or `threshold` option) unless the data actually crosses the plane. For example, if `softThreshold` is `false`, a series of 0, 1, 2, 3 will make the Y axis show negative values according to the `minPadding` option. If `softThreshold` is `true`, the Y axis starts at 0. 
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setSoftThreshold(Boolean softThreshold) {
 		this.softThreshold = softThreshold;
 		this.setChanged();
@@ -519,7 +410,7 @@ public class HISeries extends HIFoundation {
 
 	private HIDragDrop dragDrop;
 	/**
- The draggable-points module allows points to be moved around or modified in the chart. In addition to the options mentioned under the dragDrop API structure, the module fires three events, `point.dragStart`, `point.drag` and `point.drop`. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/resize-column">Draggable column and line series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/bar-series">Draggable bar</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-bubble">Draggable bubbles</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/dragdrop/drag-xrange">Draggable X range series</a>
+ The draggable-points module allows points to be moved around or modified in the chart. In addition to the options mentioned under the `dragDrop` API structure, the module fires three events, `point.dragStart`, `point.drag` and `point.drop`. 
 	*/
 	public void setDragDrop(HIDragDrop dragDrop) {
 		this.dragDrop = dragDrop;
@@ -557,7 +448,7 @@ public class HISeries extends HIFoundation {
 
 	private HIMarker marker;
 	/**
- Options for the point markers of line-like series. Properties like fillColor, lineColor and lineWidth define the visual appearance of the markers. Other series types, like column series, don't have markers, but have visual options on the series level instead. In styled mode, the markers can be styled with the .highcharts-point, .highcharts-point-hover and .highcharts-point-select class names. 
+ Options for the point markers of line and scatter-like series. Properties like `fillColor`, `lineColor` and `lineWidth` define the visual appearance of the markers. The `symbol` option defines the shape. Other series types, like column series, don't have markers, but have visual options on the series level instead. In styled mode, the markers can be styled with the `.highcharts-point`, `.highcharts-point-hover` and `.highcharts-point-select` class names. 
 	*/
 	public void setMarker(HIMarker marker) {
 		this.marker = marker;
@@ -570,7 +461,7 @@ public class HISeries extends HIFoundation {
 
 	private HITooltip tooltip;
 	/**
- A configuration object for the tooltip rendering of each single series. Properties are inherited from tooltip, but only the following properties can be defined on a series level. 
+ A configuration object for the tooltip rendering of each single series. Properties are inherited from `tooltip`, but only the following properties can be defined on a series level. 
 	*/
 	public void setTooltip(HITooltip tooltip) {
 		this.tooltip = tooltip;
@@ -583,7 +474,7 @@ public class HISeries extends HIFoundation {
 
 	private HILabel label;
 	/**
- Series labels are placed as close to the series as possible in a natural way, seeking to avoid other series. The goal of this feature is to make the chart more easily readable, like if a human designer placed the labels in the optimal position. The series labels currently work with series types having a graph or an area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-label/line-chart">Line chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/streamgraph">Stream graph</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-label/stock-chart">Stock chart</a>
+ Series labels are placed as close to the series as possible in a natural way, seeking to avoid other series. The goal of this feature is to make the chart more easily readable, like if a human designer placed the labels in the optimal position. The series labels currently work with series types having a `graph` or an `area`. 
 	*/
 	public void setLabel(HILabel label) {
 		this.label = label;
@@ -596,7 +487,7 @@ public class HISeries extends HIFoundation {
 
 	private HIFunction pointDescriptionFormatter;
 	/**
- Same as accessibility.series.descriptionFormatter, but for an individual series. Overrides the chart wide configuration. 
+ Same as `accessibility.series.descriptionFormatter`, but for an individual series. Overrides the chart wide configuration. 
 	*/
 	public void setPointDescriptionFormatter(HIFunction pointDescriptionFormatter) {
 		this.pointDescriptionFormatter = pointDescriptionFormatter;
@@ -608,7 +499,7 @@ public class HISeries extends HIFoundation {
 
 	private String cursor;
 	/**
- You can set the cursor to "pointer" if you have click events attached to the series, to signal to the user that the points and lines can be clicked. In styled mode, the series cursor can be set with the same classes as listed under series.color. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-cursor-line/">On line graph</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-cursor-column/">On columns</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-cursor-scatter/">On scatter markers</a>
+ You can set the cursor to "pointer" if you have click events attached to the series, to signal to the user that the points and lines can be clicked. In styled mode, the series cursor can be set with the same classes as listed under `series.color`. 
 	*/
 	public void setCursor(String cursor) {
 		this.cursor = cursor;
@@ -620,7 +511,7 @@ public class HISeries extends HIFoundation {
 
 	private String dashStyle;
 	/**
- Name of the dash style to use for the graph, or for some series types the outline of each shape. In styled mode, the [stroke dash-array](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-dashstyle/) can be set with the same classes as listed under series.color. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/">Possible values demonstrated</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle/">Chart suitable for printing in black and white</a>
+ Name of the dash style to use for the graph, or for some series types the outline of each shape. In styled mode, the [stroke dash-array](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-dashstyle/) can be set with the same classes as listed under `series.color`. 
  <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
 	public void setDashStyle(String dashStyle) {
 		this.dashStyle = dashStyle;
@@ -632,7 +523,7 @@ public class HISeries extends HIFoundation {
 
 	private Object /* String, Number */ pointPlacement;
 	/**
- Possible values: "on", "between", number. In a column chart, when pointPlacement is "on", the point will not create any padding of the X axis. In a polar column chart this means that the first column points directly north. If the pointPlacement is "between", the columns will be laid out between ticks. This is useful for example for visualising an amount between two points in time or in a certain sector of a polar chart. Since Highcharts 3.0.2, the point placement can also be numeric, where 0 is on the axis value, -0.5 is between this value and the previous, and 0.5 is between this value and the next. Unlike the textual options, numeric point placement options won't affect axis padding. Note that pointPlacement needs a pointRange to work. For column series this is computed, but for line-type series it needs to be set. For the xrange series type and gantt charts, if the Y axis is a category axis, the pointPlacement applies to the Y axis rather than the (typically datetime) X axis. Defaults to undefined in cartesian charts, "between" in polar charts. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointplacement-between/">Between in a column chart</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointplacement-numeric/">Numeric placement for custom layout</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-pointplacement/">Placement in heatmap</a>
+ Possible values: `"on"`, `"between"`, `number`. In a column chart, when pointPlacement is `"on"`, the point will not create any padding of the X axis. In a polar column chart this means that the first column points directly north. If the pointPlacement is `"between"`, the columns will be laid out between ticks. This is useful for example for visualising an amount between two points in time or in a certain sector of a polar chart. Since Highcharts 3.0.2, the point placement can also be numeric, where 0 is on the axis value, -0.5 is between this value and the previous, and 0.5 is between this value and the next. Unlike the textual options, numeric point placement options won't affect axis padding. Note that pointPlacement needs a `pointRange` to work. For column series this is computed, but for line-type series it needs to be set. For the `xrange` series type and gantt charts, if the Y axis is a category axis, the `pointPlacement` applies to the Y axis rather than the (typically datetime) X axis. Defaults to `undefined` in cartesian charts, `"between"` in polar charts. 
 	*/
 	public void setPointPlacement(Object /* String, Number */ pointPlacement) {
 		this.pointPlacement = pointPlacement;
@@ -644,7 +535,7 @@ public class HISeries extends HIFoundation {
 
 	private Boolean connectNulls;
 	/**
- Whether to connect a graph line across null points, or render a gap between the two points on either side of the null. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-connectnulls-false/">False by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-connectnulls-true/">True</a>
+ Whether to connect a graph line across null points, or render a gap between the two points on either side of the null. In stacked area chart, if `connectNulls` is set to true, null points are interpreted as 0. 
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setConnectNulls(Boolean connectNulls) {
 		this.connectNulls = connectNulls;
@@ -654,9 +545,21 @@ public class HISeries extends HIFoundation {
 
 	public Boolean getConnectNulls(){ return connectNulls; }
 
+	private Boolean inactiveOtherPoints;
+	/**
+ Highlight only the hovered point and fade the remaining points. Scatter-type series require enabling the 'inactive' marker state and adjusting opacity. Note that this approach could affect performance with large datasets. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setInactiveOtherPoints(Boolean inactiveOtherPoints) {
+		this.inactiveOtherPoints = inactiveOtherPoints;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getInactiveOtherPoints(){ return inactiveOtherPoints; }
+
 	private Boolean enableMouseTracking;
 	/**
- Enable or disable the mouse tracking for a specific series. This includes point tooltips and click events on graphs and points. For large datasets it improves performance. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-enablemousetracking-false/">No mouse tracking</a>
+ Enable or disable the mouse tracking for a specific series. This includes point tooltips and click events on graphs and points. For large datasets it improves performance. 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setEnableMouseTracking(Boolean enableMouseTracking) {
 		this.enableMouseTracking = enableMouseTracking;
@@ -668,7 +571,7 @@ public class HISeries extends HIFoundation {
 
 	private HashMap custom;
 	/**
- A reserved subspace to store options and values for customized functionality. Here you can add additional data for your own event callbacks and formatter callbacks. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/point/custom/">Point and series with custom data</a>
+ A reserved subspace to store options and values for customized functionality. Here you can add additional data for your own event callbacks and formatter callbacks. 
 	*/
 	public void setCustom(HashMap custom) {
 		this.custom = custom;
@@ -678,9 +581,22 @@ public class HISeries extends HIFoundation {
 
 	public HashMap getCustom(){ return custom; }
 
+	private HIOnPoint onPoint;
+	/**
+ Options for the _Series on point_ feature. Only `pie` and `sunburst` series are supported at this moment. 
+	*/
+	public void setOnPoint(HIOnPoint onPoint) {
+		this.onPoint = onPoint;
+		this.onPoint.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIOnPoint getOnPoint(){ return onPoint; }
+
 	private String stacking;
 	/**
- Whether to stack the values of each series on top of each other. Possible values are undefined to disable, "normal" to stack by value or "percent". When stacking is enabled, data must be sorted in ascending X order. Some stacking options are related to specific series types. In the streamgraph series type, the stacking option is set to "stream". The second one is "overlap", which only applies to waterfall series. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-line/">Line</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-column/">Column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-bar/">Bar</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-area/">Area</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-percent-line/">Line</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-percent-column/">Column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-percent-bar/">Bar</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stacking-percent-area/">Area</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-waterfall-with-normal-stacking">Waterfall with normal stacking</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-waterfall-with-overlap-stacking">Waterfall with overlap stacking</a> <br><br><b>accepted values:</b><br><br>&ensp;["normal", "overlap", "percent", "stream"]
+ Whether to stack the values of each series on top of each other. Possible values are `undefined` to disable, `"normal"` to stack by value or `"percent"`. When stacking is enabled, data must be sorted in ascending X order. Some stacking options are related to specific series types. In the streamgraph series type, the stacking option is set to `"stream"`. The second one is `"overlap"`, which only applies to waterfall series. 
 	*/
 	public void setStacking(String stacking) {
 		this.stacking = stacking;
@@ -692,7 +608,7 @@ public class HISeries extends HIFoundation {
 
 	private HIAnimationOptionsObject animation;
 	/**
- Enable or disable the initial animation when a series is displayed. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation of the series itself. For other animations, see chart.animation and the animation parameter under the API methods. The following properties are supported: - defer: The animation delay time in milliseconds. - duration: The duration of the animation in milliseconds. - easing: Can be a string reference to an easing function set on  the Math object or a function. See the _Custom easing function_  demo below. Due to poor performance, animation is disabled in old IE browsers for several chart types. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-disabled/">Animation disabled</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-slower/">Slower animation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/">Custom easing function</a>
+ Enable or disable the initial animation when a series is displayed. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation of the series itself. For other animations, see `chart.animation` and the animation parameter under the API methods. The following properties are supported: - `defer`: The animation delay time in milliseconds. - `duration`: The duration of the animation in milliseconds. (Defaults to  `1000`) - `easing`: Can be a string reference to an easing function set on  the `Math` object or a function. See the _Custom easing function_  demo below. (Defaults to `easeInOutSine`) Due to poor performance, animation is disabled in old IE browsers for several chart types. 
  <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
@@ -704,8 +620,8 @@ public class HISeries extends HIFoundation {
 
 	private String findNearestPointBy;
 	/**
- Determines whether the series should look for the nearest point in both dimensions or just the x-dimension when hovering the series. Defaults to 'xy' for scatter series and 'x' for most other series. If the data has duplicate x-values, it is recommended to set this to 'xy' to allow hovering over all points. Applies only to series types using nearest neighbor search (not direct hover) for tooltip. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/findnearestpointby/">Different hover behaviors</a> <br><br><b>accepted values:</b><br><br>&ensp;["x", "xy"]
-	*/
+ Determines whether the series should look for the nearest point in both dimensions or just the x-dimension when hovering the series. Defaults to `'xy'` for scatter series and `'x'` for most other series. If the data has duplicate x-values, it is recommended to set this to `'xy'` to allow hovering over all points. Applies only to series types using nearest neighbor search (not direct hover) for tooltip. 
+ <br><br><b>defaults:</b><br><br>&ensp;x	*/
 	public void setFindNearestPointBy(String findNearestPointBy) {
 		this.findNearestPointBy = findNearestPointBy;
 		this.setChanged();
@@ -716,7 +632,7 @@ public class HISeries extends HIFoundation {
 
 	private Boolean relativeXValue;
 	/**
- When true, X values in the data set are relative to the current pointStart, pointInterval and pointIntervalUnit settings. This allows compression of the data for datasets with irregular X values. The real X values are computed on the formula f(x) = ax + b, where a is the pointInterval (optionally with a time unit given by pointIntervalUnit), and b is the pointStart. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-relativexvalue/">Relative X value</a>
+ When true, X values in the data set are relative to the current `pointStart`, `pointInterval` and `pointIntervalUnit` settings. This allows compression of the data for datasets with irregular X values. The real X values are computed on the formula `f(x) = ax + b`, where `a` is the `pointInterval` (optionally with a time unit given by `pointIntervalUnit`), and `b` is the `pointStart`. 
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setRelativeXValue(Boolean relativeXValue) {
 		this.relativeXValue = relativeXValue;
@@ -728,7 +644,7 @@ public class HISeries extends HIFoundation {
 
 	private Number threshold;
 	/**
- The threshold, also called zero level or base level. For line type series this is only used in conjunction with negativeColor. 
+ The threshold, also called zero level or base level. For line type series this is only used in conjunction with `negativeColor`. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setThreshold(Number threshold) {
 		this.threshold = threshold;
@@ -740,7 +656,7 @@ public class HISeries extends HIFoundation {
 
 	private Boolean showCheckbox;
 	/**
- If true, a checkbox is displayed next to the legend item to allow selecting the series. The state of the checkbox is determined by the selected option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-showcheckbox-true/">Show select box</a>
+ If true, a checkbox is displayed next to the legend item to allow selecting the series. The state of the checkbox is determined by the `selected` option. 
 	*/
 	public void setShowCheckbox(Boolean showCheckbox) {
 		this.showCheckbox = showCheckbox;
@@ -752,7 +668,7 @@ public class HISeries extends HIFoundation {
 
 	private String boostBlending;
 	/**
- Sets the color blending in the boost module. <br><br><b>accepted values:</b><br><br>&ensp;["add", "multiply", "darken"]
+ Sets the color blending in the boost module. 
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setBoostBlending(String boostBlending) {
 		this.boostBlending = boostBlending;
@@ -762,9 +678,21 @@ public class HISeries extends HIFoundation {
 
 	public String getBoostBlending(){ return boostBlending; }
 
+	private String legendSymbol;
+	/**
+ What type of legend symbol to render for this series. Can be one of `lineMarker` or `rectangle`. 
+ <br><br><b>defaults:</b><br><br>&ensp;rectangle	*/
+	public void setLegendSymbol(String legendSymbol) {
+		this.legendSymbol = legendSymbol;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getLegendSymbol(){ return legendSymbol; }
+
 	private HIEvents events;
 	/**
- General event handlers for the series items. These event hooks can also be attached to the series at run time using the Highcharts.addEvent function. 
+ General event handlers for the series items. These event hooks can also be attached to the series at run time using the `Highcharts.addEvent` function. 
 	*/
 	public void setEvents(HIEvents events) {
 		this.events = events;
@@ -775,10 +703,22 @@ public class HISeries extends HIFoundation {
 
 	public HIEvents getEvents(){ return events; }
 
+	private HIFunction pointDescriptionFormat;
+	/**
+ Same as `accessibility.point.descriptionFormat`, but for an individual series. Overrides the chart wide configuration. 
+	*/
+	public void setPointDescriptionFormat(HIFunction pointDescriptionFormat) {
+		this.pointDescriptionFormat = pointDescriptionFormat;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getPointDescriptionFormat(){ return pointDescriptionFormat; }
+
 	private Number opacity;
 	/**
  Opacity of a series parts: line, fill (e.g.area) and dataLabels. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setOpacity(Number opacity) {
 		this.opacity = opacity;
 		this.setChanged();
@@ -789,7 +729,7 @@ public class HISeries extends HIFoundation {
 
 	private Number animationLimit;
 	/**
- For some series, there is a limit that shuts down initial animation by defaults when the total number of points in the chart is too high. For example, for a column chart and its derivatives, animation does not run if there is more than 250 points totally. To disable this cap, set animationLimit to Infinity. 
+ For some series, there is a limit that shuts down animation by defaults when the total number of points in the chart is too high. For example, for a column chart and its derivatives, animation does not run if there is more than 250 points totally. To disable this cap, set `animationLimit` to `Infinity`. This option works if animation is fired on individual points, not on a group of points like e.g. during the initial animation. 
 	*/
 	public void setAnimationLimit(Number animationLimit) {
 		this.animationLimit = animationLimit;
@@ -799,9 +739,21 @@ public class HISeries extends HIFoundation {
 
 	public Number getAnimationLimit(){ return animationLimit; }
 
+	private Number turboThreshold;
+	/**
+ When a series contains a data array that is longer than this, only one dimensional arrays of numbers, or two dimensional arrays with x and y values are allowed. Also, only the first point is tested, and the rest are assumed to be the same format. This saves expensive data checking and indexing in long series. Set it to `0` disable. Note: In boost mode turbo threshold is forced. Only array of numbers or two dimensional arrays are allowed. 
+ <br><br><b>defaults:</b><br><br>&ensp;1000	*/
+	public void setTurboThreshold(Number turboThreshold) {
+		this.turboThreshold = turboThreshold;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getTurboThreshold(){ return turboThreshold; }
+
 	private ArrayList<String> keys;
 	/**
- An array specifying which option maps to which key in the data point array. This makes it convenient to work with unstructured data arrays from different sources. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/data-keys/">An extended data array with keys</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/data-nested-keys/">Nested keys used to access object properties</a>
+ An array specifying which option maps to which key in the data point array. This makes it convenient to work with unstructured data arrays from different sources. 
 	*/
 	public void setKeys(ArrayList<String> keys) {
 		this.keys = keys;
@@ -811,21 +763,21 @@ public class HISeries extends HIFoundation {
 
 	public ArrayList<String> getKeys(){ return keys; }
 
-	private Number turboThreshold;
+	private Boolean selected;
 	/**
- When a series contains a data array that is longer than this, only one dimensional arrays of numbers, or two dimensional arrays with x and y values are allowed. Also, only the first point is tested, and the rest are assumed to be the same format. This saves expensive data checking and indexing in long series. Set it to 0 disable. Note: In boost mode turbo threshold is forced. Only array of numbers or two dimensional arrays are allowed. 
-	*/
-	public void setTurboThreshold(Number turboThreshold) {
-		this.turboThreshold = turboThreshold;
+ Whether to select the series initially. If `showCheckbox` is true, the checkbox next to the series name in the legend will be checked for a selected series. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setSelected(Boolean selected) {
+		this.selected = selected;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getTurboThreshold(){ return turboThreshold; }
+	public Boolean getSelected(){ return selected; }
 
 	private Boolean skipKeyboardNavigation;
 	/**
- If set to true, the accessibility module will skip past the points in this series for keyboard navigation. 
+ If set to `true`, the accessibility module will skip past the points in this series for keyboard navigation. 
 	*/
 	public void setSkipKeyboardNavigation(Boolean skipKeyboardNavigation) {
 		this.skipKeyboardNavigation = skipKeyboardNavigation;
@@ -850,7 +802,7 @@ public class HISeries extends HIFoundation {
 
 	private String step;
 	/**
- Whether to apply steps to the line. Possible values are left, center and right. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/line-step/">Different step line options</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-step/">Stepped, stacked area</a> <br><br><b>accepted values:</b><br><br>&ensp;["left", "center", "right"]
+ Whether to apply steps to the line. Possible values are `left`, `center` and `right`. 
 	*/
 	public void setStep(String step) {
 		this.step = step;
@@ -872,9 +824,22 @@ public class HISeries extends HIFoundation {
 
 	public Boolean getGetExtremesFromAll(){ return getExtremesFromAll; }
 
+	private HISonification sonification;
+	/**
+ Sonification/audio chart options for a series. 
+	*/
+	public void setSonification(HISonification sonification) {
+		this.sonification = sonification;
+		this.sonification.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HISonification getSonification(){ return sonification; }
+
 	private HIShadowOptionsObject /* boolean */ shadow;
 	/**
- Whether to apply a drop shadow to the graph line. Since 2.3 the shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-shadow/">Shadow enabled</a>
+ Whether to apply a drop shadow to the graph line. Since 2.3 the shadow can be an object configuration containing `color`, `offsetX`, `offsetY`, `opacity` and `width`. Note that in some cases, like stacked columns or other dense layouts, the series may cast shadows on each other. In that case, the `chart.seriesGroupShadow` allows applying a common drop shadow to the whole series group. 
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setShadow(HIShadowOptionsObject /* boolean */ shadow) {
 		this.shadow = shadow;
@@ -886,7 +851,7 @@ public class HISeries extends HIFoundation {
 
 	private Boolean allowPointSelect;
 	/**
- Allow this series' points to be selected by clicking on the graphic (columns, point markers, pie slices, map areas etc). The selected points can be handled by point select and unselect events, or collectively by the `getSelectedPoints` function. And alternative way of selecting points is through dragging. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-allowpointselect-line/">Line</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-allowpointselect-column/">Column</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-allowpointselect-pie/">Pie</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/chart/events-selection-points/">Select a range of points through a drag selection</a>
+ Allow this series' points to be selected by clicking on the graphic (columns, point markers, pie slices, map areas etc). The selected points can be handled by point select and unselect events, or collectively by the `getSelectedPoints` function. And alternative way of selecting points is through dragging. 
 	*/
 	public void setAllowPointSelect(Boolean allowPointSelect) {
 		this.allowPointSelect = allowPointSelect;
@@ -898,7 +863,7 @@ public class HISeries extends HIFoundation {
 
 	private Object /* Number, String */ colorAxis;
 	/**
- When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the {@link #colorAxis.id|axis id} or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/coloraxis-with-pie/">Color axis with pie series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/multiple-coloraxis/">Multiple color axis</a>
+ When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the colorAxis.id or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag.
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setColorAxis(Object /* Number, String */ colorAxis) {
 		this.colorAxis = colorAxis;
@@ -910,7 +875,7 @@ public class HISeries extends HIFoundation {
 
 	private String zoneAxis;
 	/**
- Defines the Axis on which the zones are applied. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/color-zones-zoneaxis-x/">Zones on the X-Axis</a>
+ Defines the Axis on which the zones are applied. 
  <br><br><b>defaults:</b><br><br>&ensp;y	*/
 	public void setZoneAxis(String zoneAxis) {
 		this.zoneAxis = zoneAxis;
@@ -922,7 +887,7 @@ public class HISeries extends HIFoundation {
 
 	private ArrayList <HIZones> zones;
 	/**
- An array defining zones within a series. Zones can be applied to the X axis, Y axis or Z axis for bubbles, according to the zoneAxis option. The zone definitions have to be in ascending order regarding to the value. In styled mode, the color zones are styled with the .highcharts-zone-{n} class, or custom classed from the className option ([view live demo](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/)). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series/color-zones-simple/">Color zones</a>
+ An array defining zones within a series. Zones can be applied to the X axis, Y axis or Z axis for bubbles, according to the `zoneAxis` option. The zone definitions have to be in ascending order regarding to the value. In styled mode, the color zones are styled with the `.highcharts-zone-{n}` class, or custom classed from the `className` option ([view live demo](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/)). 
 	*/
 	public void setZones(ArrayList zones) {
 		this.zones = zones;
@@ -934,7 +899,7 @@ public class HISeries extends HIFoundation {
 
 	private String pointIntervalUnit;
 	/**
- On datetime series, this allows for setting the pointInterval to irregular time units, day, month and year. A day is usually the same as 24 hours, but pointIntervalUnit also takes the DST crossover into consideration when dealing with local time. Combine this option with pointInterval to draw weeks, quarters, 6 months, 10 years etc. Please note that this options applies to the _series data_, not the interval of the axis ticks, which is independent. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointintervalunit/">One point a month</a> <br><br><b>accepted values:</b><br><br>&ensp;["day", "month", "year"]
+ On datetime series, this allows for setting the `pointInterval` to irregular time units, `day`, `month` and `year`. A day is usually the same as 24 hours, but `pointIntervalUnit` also takes the DST crossover into consideration when dealing with local time. Combine this option with `pointInterval` to draw weeks, quarters, 6 months, 10 years etc. Please note that this options applies to the _series data_, not the interval of the axis ticks, which is independent. 
 	*/
 	public void setPointIntervalUnit(String pointIntervalUnit) {
 		this.pointIntervalUnit = pointIntervalUnit;
@@ -946,8 +911,8 @@ public class HISeries extends HIFoundation {
 
 	private Number lineWidth;
 	/**
- Pixel width of the graph line. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-linewidth-general/">On all series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-linewidth-specific/">On one single series</a>
-	*/
+ Pixel width of the graph line. 
+ <br><br><b>defaults:</b><br><br>&ensp;2	*/
 	public void setLineWidth(Number lineWidth) {
 		this.lineWidth = lineWidth;
 		this.setChanged();
@@ -958,8 +923,8 @@ public class HISeries extends HIFoundation {
 
 	private Boolean crisp;
 	/**
- When true, each point or column edge is rounded to its nearest pixel in order to render sharp on screen. In some cases, when there are a lot of densely packed columns, this leads to visible difference in column widths or distance between columns. In these cases, setting crisp to false may look better, even though each column is rendered blurry. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-crisp-false/">Crisp is false</a>
-	*/
+ When true, each point or column edge is rounded to its nearest pixel in order to render sharp on screen. In some cases, when there are a lot of densely packed columns, this leads to visible difference in column widths or distance between columns. In these cases, setting `crisp` to `false` may look better, even though each column is rendered blurry. 
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setCrisp(Boolean crisp) {
 		this.crisp = crisp;
 		this.setChanged();
@@ -968,9 +933,21 @@ public class HISeries extends HIFoundation {
 
 	public Boolean getCrisp(){ return crisp; }
 
+	private Boolean visible;
+	/**
+ Set the initial visibility of the series. 
+ <br><br><b>defaults:</b><br><br>&ensp;true	*/
+	public void setVisible(Boolean visible) {
+		this.visible = visible;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getVisible(){ return visible; }
+
 	private String linkedTo;
 	/**
- The id of another series to link to. Additionally, the value can be ":previous" to link to the previous series. When two series are linked, only the first one appears in the legend. Toggling the visibility of this also toggles the linked series. If master series uses data sorting and linked series does not have its own sorting definition, the linked series will be sorted in the same order as the master one. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/arearange-line/">Linked series</a>
+ The `id` of another series to link to. Additionally, the value can be ":previous" to link to the previous series. When two series are linked, only the first one appears in the legend. Toggling the visibility of this also toggles the linked series. If master series uses data sorting and linked series does not have its own sorting definition, the linked series will be sorted in the same order as the master one. 
 	*/
 	public void setLinkedTo(String linkedTo) {
 		this.linkedTo = linkedTo;
@@ -982,7 +959,7 @@ public class HISeries extends HIFoundation {
 
 	private Boolean stickyTracking;
 	/**
- Sticky tracking of mouse events. When true, the mouseOut event on a series isn't triggered until the mouse moves over another series, or out of the plot area. When false, the mouseOut event on a series is triggered when the mouse leaves the area around the series' graph or markers. This also implies the tooltip when not shared. When stickyTracking is false and tooltip.shared is false, the tooltip will be hidden when moving the mouse between series. Defaults to true for line and area type series, but to false for columns, pies etc. **Note:** The boost module will force this option because of technical limitations. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stickytracking-true/">True by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-stickytracking-false/">False</a>
+ Sticky tracking of mouse events. When true, the `mouseOut` event on a series isn't triggered until the mouse moves over another series, or out of the plot area. When false, the `mouseOut` event on a series is triggered when the mouse leaves the area around the series' graph or markers. This also implies the tooltip when not shared. When `stickyTracking` is false and `tooltip.shared` is false, the tooltip will be hidden when moving the mouse between series. Defaults to true for line and area type series, but to false for columns, pies etc. **Note:** The boost module will force this option because of technical limitations. 
  <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setStickyTracking(Boolean stickyTracking) {
 		this.stickyTracking = stickyTracking;
@@ -994,7 +971,7 @@ public class HISeries extends HIFoundation {
 
 	private ArrayList <HIDataLabels> dataLabels;
 	/**
- Options for the series data labels, appearing next to each data point. Since v6.2.0, multiple data labels can be applied to each single point by defining them as an array of configs. In styled mode, the data labels can be styled with the .highcharts-data-label-box and .highcharts-data-label class names ([see example](https://www.highcharts.com/samples/highcharts/css/series-datalabels)). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-enabled">Data labels enabled</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-datalabels-multiple">Multiple data labels on a bar series</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-datalabels">Style mode example</a>
+ Options for the series data labels, appearing next to each data point. Since v6.2.0, multiple data labels can be applied to each single point by defining them as an array of configs. In styled mode, the data labels can be styled with the `.highcharts-data-label-box` and `.highcharts-data-label` class names ([see example](https://www.highcharts.com/samples/highcharts/css/series-datalabels)). 
 	*/
 	public void setDataLabels(ArrayList dataLabels) {
 		this.dataLabels = dataLabels;
@@ -1006,7 +983,7 @@ public class HISeries extends HIFoundation {
 
 	private String className;
 	/**
- An additional class name to apply to the series' graphical elements. This option does not replace defaults class names of the graphical element. 
+ An additional class name to apply to the series' graphical elements. This option does not replace defaults class names of the graphical element. Changes to the series' color will also be reflected in a chart's legend and tooltip. 
 	*/
 	public void setClassName(String className) {
 		this.className = className;
@@ -1018,7 +995,7 @@ public class HISeries extends HIFoundation {
 
 	private Number pointStart;
 	/**
- If no x values are given for the points in a series, pointStart defines on what value to start. For example, if a series contains one yearly value starting from 1945, set pointStart to 1945. If combined with relativeXValue, an x value can be set on each point. The x value from the point options is multiplied by pointInterval and added to pointStart to produce a modified x value. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointstart-linear/">Linear</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-pointstart-datetime/">Datetime</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-relativexvalue/">Relative x value</a>
+ If no x values are given for the points in a series, pointStart defines on what value to start. For example, if a series contains one yearly value starting from 1945, set pointStart to 1945. If combined with `relativeXValue`, an x value can be set on each point. The x value from the point options is multiplied by `pointInterval` and added to `pointStart` to produce a modified x value. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setPointStart(Number pointStart) {
 		this.pointStart = pointStart;
@@ -1042,7 +1019,7 @@ public class HISeries extends HIFoundation {
 
 	private Boolean connectEnds;
 	/**
- Polar charts only. Whether to connect the ends of a line series plot across the extremes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/line-connectends-false/">Do not connect</a>
+ Polar charts only. Whether to connect the ends of a line series plot across the extremes. 
 	*/
 	public void setConnectEnds(Boolean connectEnds) {
 		this.connectEnds = connectEnds;
@@ -1054,7 +1031,7 @@ public class HISeries extends HIFoundation {
 
 	private Number boostThreshold;
 	/**
- Set the point threshold for when a series should enter boost mode. Setting it to e.g. 2000 will cause the series to enter boost mode when there are 2000 or more points in the series. To disable boosting on the series, set the boostThreshold to 0. Setting it to 1 will force boosting. Note that the `cropThreshold` also affects this setting. When zooming in on a series that has fewer points than the cropThreshold, all points are rendered although outside the visible plot area, and the boostThreshold won't take effect. 
+ Set the point threshold for when a series should enter boost mode. Setting it to e.g. 2000 will cause the series to enter boost mode when there are 2000 or more points in the series. To disable boosting on the series, set the `boostThreshold` to 0. Setting it to 1 will force boosting. Note that the `cropThreshold` also affects this setting. When zooming in on a series that has fewer points than the `cropThreshold`, all points are rendered although outside the visible plot area, and the `boostThreshold` won't take effect. 
  <br><br><b>defaults:</b><br><br>&ensp;5000	*/
 	public void setBoostThreshold(Number boostThreshold) {
 		this.boostThreshold = boostThreshold;
@@ -1066,7 +1043,7 @@ public class HISeries extends HIFoundation {
 
 	private Boolean showInLegend;
 	/**
- Whether to display this particular series or series type in the legend. Standalone series are shown in legend by defaults, and linked series are not. Since v7.2.0 it is possible to show series that use colorAxis by setting this option to true. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-showinlegend/">One series in the legend, one hidden</a>
+ Whether to display this particular series or series type in the legend. Standalone series are shown in legend by defaults, and linked series are not. Since v7.2.0 it is possible to show series that use colorAxis by setting this option to `true`. 
 	*/
 	public void setShowInLegend(Boolean showInLegend) {
 		this.showInLegend = showInLegend;
@@ -1075,6 +1052,12 @@ public class HISeries extends HIFoundation {
 	}
 
 	public Boolean getShowInLegend(){ return showInLegend; }
+
+
+
+	public HISeries() {
+
+	}
 
 	/**
 	 * Add a point to the series after render time. The point can be added at the end, or by giving it an X value, to the start or in the middle of the series.
@@ -1623,10 +1606,6 @@ public class HISeries extends HIFoundation {
 		jsProperties.put(name, value);
 	}
 
-	public HISeries() {
-
-	}
-
 	@Override
 public HashMap<String, Object> getParams() {
 
@@ -1644,6 +1623,12 @@ public HashMap<String, Object> getParams() {
 			}
 			params.put("data", array);
 		}
+		if(this.jsProperties != null){
+			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
+				params.put(entry.getKey(), entry.getValue());
+			}
+		}
+
 		if (this.id != null) {
 			params.put("id", this.id);
 		}
@@ -1671,50 +1656,14 @@ public HashMap<String, Object> getParams() {
 		if (this.zIndex != null) {
 			params.put("zIndex", this.zIndex);
 		}
-		if (this.area != null) {
-			params.put("area", this.area.getParams());
-		}
-		if (this.chart != null) {
-			params.put("chart", this.chart.getParams());
-		}
-		if (this.dataMax != null) {
-			params.put("dataMax", this.dataMax);
-		}
-		if (this.dataMin != null) {
-			params.put("dataMin", this.dataMin);
-		}
-		if (this.graph != null) {
-			params.put("graph", this.graph.getParams());
-		}
-		if (this.options != null) {
-			params.put("options", this.options);
-		}
-		if (this.points != null) {
-			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.points) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
-			}
-			params.put("points", array);
-		}
-		if (this.selected != null) {
-			params.put("selected", this.selected);
-		}
-		if (this.userOptions != null) {
-			params.put("userOptions", this.userOptions);
-		}
-		if (this.visible != null) {
-			params.put("visible", this.visible);
-		}
 		if (this.descriptionFormatter != null) {
 			params.put("descriptionFormatter", this.descriptionFormatter);
 		}
 		if (this.pointDescriptionEnabledThreshold != null) {
 			params.put("pointDescriptionEnabledThreshold", this.pointDescriptionEnabledThreshold);
+		}
+		if (this.descriptionFormat != null) {
+			params.put("descriptionFormat", this.descriptionFormat);
 		}
 		if (this.describeSingleSeries != null) {
 			params.put("describeSingleSeries", this.describeSingleSeries);
@@ -1800,11 +1749,17 @@ public HashMap<String, Object> getParams() {
 		if (this.connectNulls != null) {
 			params.put("connectNulls", this.connectNulls);
 		}
+		if (this.inactiveOtherPoints != null) {
+			params.put("inactiveOtherPoints", this.inactiveOtherPoints);
+		}
 		if (this.enableMouseTracking != null) {
 			params.put("enableMouseTracking", this.enableMouseTracking);
 		}
 		if (this.custom != null) {
 			params.put("custom", this.custom);
+		}
+		if (this.onPoint != null) {
+			params.put("onPoint", this.onPoint.getParams());
 		}
 		if (this.stacking != null) {
 			params.put("stacking", this.stacking);
@@ -1827,14 +1782,23 @@ public HashMap<String, Object> getParams() {
 		if (this.boostBlending != null) {
 			params.put("boostBlending", this.boostBlending);
 		}
+		if (this.legendSymbol != null) {
+			params.put("legendSymbol", this.legendSymbol);
+		}
 		if (this.events != null) {
 			params.put("events", this.events.getParams());
+		}
+		if (this.pointDescriptionFormat != null) {
+			params.put("pointDescriptionFormat", this.pointDescriptionFormat);
 		}
 		if (this.opacity != null) {
 			params.put("opacity", this.opacity);
 		}
 		if (this.animationLimit != null) {
 			params.put("animationLimit", this.animationLimit);
+		}
+		if (this.turboThreshold != null) {
+			params.put("turboThreshold", this.turboThreshold);
 		}
 		if (this.keys != null) {
 			ArrayList<Object> array = new ArrayList<>();
@@ -1848,8 +1812,8 @@ public HashMap<String, Object> getParams() {
 			}
 			params.put("keys", array);
 		}
-		if (this.turboThreshold != null) {
-			params.put("turboThreshold", this.turboThreshold);
+		if (this.selected != null) {
+			params.put("selected", this.selected);
 		}
 		if (this.skipKeyboardNavigation != null) {
 			params.put("skipKeyboardNavigation", this.skipKeyboardNavigation);
@@ -1862,6 +1826,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.getExtremesFromAll != null) {
 			params.put("getExtremesFromAll", this.getExtremesFromAll);
+		}
+		if (this.sonification != null) {
+			params.put("sonification", this.sonification.getParams());
 		}
 		if (this.shadow != null) {
 			params.put("shadow", this.shadow.getParams());
@@ -1895,6 +1862,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.crisp != null) {
 			params.put("crisp", this.crisp);
+		}
+		if (this.visible != null) {
+			params.put("visible", this.visible);
 		}
 		if (this.linkedTo != null) {
 			params.put("linkedTo", this.linkedTo);
@@ -1938,11 +1908,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.showInLegend != null) {
 			params.put("showInLegend", this.showInLegend);
-		}
-		if(this.jsProperties != null){
-			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
-				params.put(entry.getKey(), entry.getValue());
-			}
 		}
 		return params;
 	}

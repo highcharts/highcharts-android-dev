@@ -8,11 +8,10 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
@@ -32,7 +31,7 @@ public class HICrosshair extends HIFoundation {
 
 	private String dashStyle;
 	/**
- The dash style for the crosshair. See plotOptions.series.dashStyle for possible values. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-dotted/">Dotted crosshair</a>
+ The dash style for the crosshair. See `plotOptions.series.dashStyle` for possible values. 
  <br><br><b>defaults:</b><br><br>&ensp;Solid	*/
 	public void setDashStyle(String dashStyle) {
 		this.dashStyle = dashStyle;
@@ -42,17 +41,17 @@ public class HICrosshair extends HIFoundation {
 
 	public String getDashStyle(){ return dashStyle; }
 
-	private Object color;
+	private HIColor color;
 	/**
- The color of the crosshair. Defaults to #cccccc for numeric and datetime axes, and rgba(204,214,235,0.25) for category axes, where the crosshair by defaults highlights the whole category. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-customized/">Customized crosshairs</a>
+ The color of the crosshair. Defaults to `#cccccc` for numeric and datetime axes, and `rgba(204,214,235,0.25)` for category axes, where the crosshair by defaults highlights the whole category. 
  <br><br><b>defaults:</b><br><br>&ensp;#cccccc	*/
-	public void setColor(Object color) {
+	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getColor(){ return color; }
+	public HIColor getColor(){ return color; }
 
 	private String className;
 	/**
@@ -68,7 +67,7 @@ public class HICrosshair extends HIFoundation {
 
 	private Number width;
 	/**
- The pixel width of the crosshair. Defaults to 1 for numeric or datetime axes, and for one category width for category axes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-customized/">Customized crosshairs</a>
+ The pixel width of the crosshair. Defaults to 1 for numeric or datetime axes, and for one category width for category axes. 
  <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setWidth(Number width) {
 		this.width = width;
@@ -80,7 +79,7 @@ public class HICrosshair extends HIFoundation {
 
 	private Boolean snap;
 	/**
- Whether the crosshair should snap to the point or follow the pointer independent of points. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/crosshair-snap-false/">True by defaults</a>
+ Whether the crosshair should snap to the point or follow the pointer independent of points. 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setSnap(Boolean snap) {
 		this.snap = snap;
@@ -108,7 +107,7 @@ public HashMap<String, Object> getParams() {
 			params.put("dashStyle", this.dashStyle);
 		}
 		if (this.color != null) {
-			params.put("color", this.color);
+			params.put("color", this.color.getData());
 		}
 		if (this.className != null) {
 			params.put("className", this.className);

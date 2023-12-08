@@ -8,12 +8,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.core.HIFunction;
+
+import java.util.HashMap;
 
 
 
@@ -21,8 +20,8 @@ public class HILabelOptions extends HIFoundation {
 
 	private Boolean includeInDataExport;
 	/**
- Whether the annotation is visible in the exported data table. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/include-in-data-export/">Do not include in the data export</a>
-	*/
+ Whether the annotation is visible in the exported data table. 
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setIncludeInDataExport(Boolean includeInDataExport) {
 		this.includeInDataExport = includeInDataExport;
 		this.setChanged();
@@ -33,8 +32,8 @@ public class HILabelOptions extends HIFoundation {
 
 	private Number borderRadius;
 	/**
- The border radius in pixels for the annotaiton's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
-	*/
+ The border radius in pixels for the annotaiton's label. 
+ <br><br><b>defaults:</b><br><br>&ensp;3	*/
 	public void setBorderRadius(Number borderRadius) {
 		this.borderRadius = borderRadius;
 		this.setChanged();
@@ -45,7 +44,7 @@ public class HILabelOptions extends HIFoundation {
 
 	private String text;
 	/**
- Alias for the format option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-text/">Set labels text</a>
+ Alias for the format option. 
 	*/
 	public void setText(String text) {
 		this.text = text;
@@ -70,7 +69,7 @@ public class HILabelOptions extends HIFoundation {
 
 	private Boolean crop;
 	/**
- Whether to hide the annotation's label that is outside the plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-crop-overflow/">Crop or justify labels</a>
+ Whether to hide the annotation's label that is outside the plot area. 
 	*/
 	public void setCrop(Boolean crop) {
 		this.crop = crop;
@@ -82,8 +81,8 @@ public class HILabelOptions extends HIFoundation {
 
 	private String shape;
 	/**
- The name of a symbol to use for the border around the label. Symbols are predefined functions on the Renderer object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shapes/">Available shapes for labels</a>
-	*/
+ The name of a symbol to use for the border around the label. Symbols are predefined functions on the Renderer object. 
+ <br><br><b>defaults:</b><br><br>&ensp;callout	*/
 	public void setShape(String shape) {
 		this.shape = shape;
 		this.setChanged();
@@ -104,21 +103,21 @@ public class HILabelOptions extends HIFoundation {
 
 	public Boolean getUseHTML(){ return useHTML; }
 
-	private Object borderColor;
+	private HIColor borderColor;
 	/**
- The border color for the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
-	*/
-	public void setBorderColor(Object borderColor) {
+ The border color for the annotation's label. 
+ <br><br><b>defaults:</b><br><br>&ensp;#000000	*/
+	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getBorderColor(){ return borderColor; }
+	public HIColor getBorderColor(){ return borderColor; }
 
 	private HICSSObject style;
 	/**
- Styles for the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
+ Styles for the annotation's label. 
 	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
@@ -130,8 +129,8 @@ public class HILabelOptions extends HIFoundation {
 
 	private HIColor backgroundColor;
 	/**
- The background color or gradient for the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
-	*/
+ The background color or gradient for the annotation's label. 
+ <br><br><b>defaults:</b><br><br>&ensp;rgba(0, 0, 0, 0.75)	*/
 	public void setBackgroundColor(HIColor backgroundColor) {
 		this.backgroundColor = backgroundColor;
 		this.setChanged();
@@ -142,7 +141,7 @@ public class HILabelOptions extends HIFoundation {
 
 	private HIFunction formatter;
 	/**
- Callback JavaScript function to format the annotation's label. Note that if a format or text are defined, the format or text take precedence and the formatter is ignored. This refers to a point object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-text/">Set labels text</a>
+ Callback JavaScript function to format the annotation's label. Note that if a `format` or `text` are defined, the format or text take precedence and the formatter is ignored. `This` refers to a point object. 
  <br><br><b>defaults:</b><br><br>&ensp;function () { return defined(this.y) ? this.y : 'Annotation label'; }	*/
 	public void setFormatter(HIFunction formatter) {
 		this.formatter = formatter;
@@ -154,7 +153,7 @@ public class HILabelOptions extends HIFoundation {
 
 	private Boolean allowOverlap;
 	/**
- Whether to allow the annotation's labels to overlap. To make the labels less sensitive for overlapping, the can be set to 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/tooltip-like/">Hide overlapping labels</a>
+ Whether to allow the annotation's labels to overlap. To make the labels less sensitive for overlapping, the can be set to 0. 
 	*/
 	public void setAllowOverlap(Boolean allowOverlap) {
 		this.allowOverlap = allowOverlap;
@@ -166,7 +165,7 @@ public class HILabelOptions extends HIFoundation {
 
 	private HIShadowOptionsObject /* boolean */ shadow;
 	/**
- The shadow of the box. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
+ The shadow of the box. The shadow can be an object configuration containing `color`, `offsetX`, `offsetY`, `opacity` and `width`. 
 	*/
 	public void setShadow(HIShadowOptionsObject /* boolean */ shadow) {
 		this.shadow = shadow;
@@ -178,7 +177,7 @@ public class HILabelOptions extends HIFoundation {
 
 	private String format;
 	/**
- A [format](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) string for the data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-text/">Set labels text</a>
+ A [format](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) string for the data label. 
 	*/
 	public void setFormat(String format) {
 		this.format = format;
@@ -190,8 +189,8 @@ public class HILabelOptions extends HIFoundation {
 
 	private Number padding;
 	/**
- When either the borderWidth or the backgroundColor is set, this is the padding within the box. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
-	*/
+ When either the borderWidth or the backgroundColor is set, this is the padding within the box. 
+ <br><br><b>defaults:</b><br><br>&ensp;5	*/
 	public void setPadding(Number padding) {
 		this.padding = padding;
 		this.setChanged();
@@ -202,8 +201,8 @@ public class HILabelOptions extends HIFoundation {
 
 	private String overflow;
 	/**
- How to handle the annotation's label that flow outside the plot area. The justify option aligns the label inside the plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-crop-overflow/">Crop or justify labels</a> <br><br><b>accepted values:</b><br><br>&ensp;["allow", "justify"]
-	*/
+ How to handle the annotation's label that flow outside the plot area. The justify option aligns the label inside the plot area. 
+ <br><br><b>defaults:</b><br><br>&ensp;justify	*/
 	public void setOverflow(String overflow) {
 		this.overflow = overflow;
 		this.setChanged();
@@ -214,7 +213,7 @@ public class HILabelOptions extends HIFoundation {
 
 	private Number distance;
 	/**
- The label's pixel distance from the point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a>
+ The label's pixel distance from the point. 
 	*/
 	public void setDistance(Number distance) {
 		this.distance = distance;
@@ -226,8 +225,8 @@ public class HILabelOptions extends HIFoundation {
 
 	private String verticalAlign;
 	/**
- The vertical alignment of the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a>
-	*/
+ The vertical alignment of the annotation's label. 
+ <br><br><b>defaults:</b><br><br>&ensp;bottom	*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
 		this.setChanged();
@@ -238,8 +237,8 @@ public class HILabelOptions extends HIFoundation {
 
 	private String align;
 	/**
- The alignment of the annotation's label. If right, the right side of the label should be touching the point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a>
-	*/
+ The alignment of the annotation's label. If right, the right side of the label should be touching the point. 
+ <br><br><b>defaults:</b><br><br>&ensp;center	*/
 	public void setAlign(String align) {
 		this.align = align;
 		this.setChanged();
@@ -250,8 +249,8 @@ public class HILabelOptions extends HIFoundation {
 
 	private String className;
 	/**
- A class name for styling by CSS. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/annotations">Styled mode annotations</a>
-	*/
+ A class name for styling by CSS. 
+ <br><br><b>defaults:</b><br><br>&ensp;highcharts-no-tooltip	*/
 	public void setClassName(String className) {
 		this.className = className;
 		this.setChanged();
@@ -262,8 +261,8 @@ public class HILabelOptions extends HIFoundation {
 
 	private Number borderWidth;
 	/**
- The border width in pixels for the annotation's label <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
-	*/
+ The border width in pixels for the annotation's label 
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
 		this.setChanged();
@@ -274,8 +273,8 @@ public class HILabelOptions extends HIFoundation {
 
 	private Number y;
 	/**
- The y position offset of the label relative to the point. Note that if a distance is defined, the distance takes precedence over x and y options. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a>
-	*/
+ The y position offset of the label relative to the point. Note that if a `distance` is defined, the distance takes precedence over `x` and `y` options. 
+ <br><br><b>defaults:</b><br><br>&ensp;-16	*/
 	public void setY(Number y) {
 		this.y = y;
 		this.setChanged();
@@ -286,7 +285,7 @@ public class HILabelOptions extends HIFoundation {
 
 	private Number x;
 	/**
- The x position offset of the label relative to the point. Note that if a distance is defined, the distance takes precedence over x and y options. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a>
+ The x position offset of the label relative to the point. Note that if a `distance` is defined, the distance takes precedence over `x` and `y` options. 
 	*/
 	public void setX(Number x) {
 		this.x = x;
@@ -329,7 +328,7 @@ public HashMap<String, Object> getParams() {
 			params.put("useHTML", this.useHTML);
 		}
 		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor);
+			params.put("borderColor", this.borderColor.getData());
 		}
 		if (this.style != null) {
 			params.put("style", this.style.getParams());

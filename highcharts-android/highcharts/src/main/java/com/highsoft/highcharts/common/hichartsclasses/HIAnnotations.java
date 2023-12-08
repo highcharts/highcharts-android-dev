@@ -8,15 +8,13 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
 import java.util.List;
-
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.core.HIFoundation;
 
 
 
@@ -36,8 +34,8 @@ public class HIAnnotations extends HIFoundation {
 
 	private Boolean crop;
 	/**
- Whether to hide the part of the annotation that is outside the plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-crop-overflow/">Crop line annotation</a>
-	*/
+ Whether to hide the part of the annotation that is outside the plot area. 
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setCrop(Boolean crop) {
 		this.crop = crop;
 		this.setChanged();
@@ -48,8 +46,8 @@ public class HIAnnotations extends HIFoundation {
 
 	private Boolean visible;
 	/**
- Whether the annotation is visible. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/visible/">Set annotation visibility</a>
-	*/
+ Whether the annotation is visible. 
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
 		this.setChanged();
@@ -85,8 +83,8 @@ public class HIAnnotations extends HIFoundation {
 
 	private String draggable;
 	/**
- Allow an annotation to be draggable by a user. Possible values are 'x', 'xy', 'y' and '' (disabled). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/draggable/">Annotations draggable: 'xy'</a>
-	*/
+ Allow an annotation to be draggable by a user. Possible values are `'x'`, `'xy'`, `'y'` and `''` (disabled). 
+ <br><br><b>defaults:</b><br><br>&ensp;xy	*/
 	public void setDraggable(String draggable) {
 		this.draggable = draggable;
 		this.setChanged();
@@ -97,7 +95,7 @@ public class HIAnnotations extends HIFoundation {
 
 	private HIAnimationOptionsObject animation;
 	/**
- Enable or disable the initial animation when a series is displayed for the annotation. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation. For other animations, see chart.animation and the animation parameter under the API methods. The following properties are supported: - defer: The animation delay time in milliseconds. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/defer/">Animation defer settings</a>
+ Enable or disable the initial animation when a series is displayed for the `annotation`. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation. For other animations, see `chart.animation` and the animation parameter under the API methods. The following properties are supported: - `defer`: The animation delay time in milliseconds. 
 	*/
 	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
@@ -136,7 +134,7 @@ public class HIAnnotations extends HIFoundation {
 	private Number zIndex;
 	/**
  The Z index of the annotation. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;6	*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
 		this.setChanged();
@@ -209,7 +207,7 @@ public class HIAnnotations extends HIFoundation {
 	private String itemDelimiter;
 	/**
  The way to mark the separator for annotations combined in one export-data table cell. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;; 	*/
 	public void setItemDelimiter(String itemDelimiter) {
 		this.itemDelimiter = itemDelimiter;
 		this.setChanged();
@@ -220,7 +218,7 @@ public class HIAnnotations extends HIFoundation {
 
 	private Boolean join;
 	/**
- When several labels are assigned to a specific point, they will be displayed in one field in the table. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/export-data/join-annotations/">Concatenate point annotations with itemDelimiter set.</a>
+ When several labels are assigned to a specific point, they will be displayed in one field in the table. 
 	*/
 	public void setJoin(Boolean join) {
 		this.join = join;
@@ -229,6 +227,12 @@ public class HIAnnotations extends HIFoundation {
 	}
 
 	public Boolean getJoin(){ return join; }
+
+
+
+	public HIAnnotations() {
+
+	}
 
 	/**
 	 * Hide or show annotaiton attached to points.
@@ -506,10 +510,6 @@ public class HIAnnotations extends HIFoundation {
 		this.notifyObservers(jsClassMethod);
 	}
 
-
-	public HIAnnotations() {
-
-	}
 
 	@Override
 public HashMap<String, Object> getParams() {

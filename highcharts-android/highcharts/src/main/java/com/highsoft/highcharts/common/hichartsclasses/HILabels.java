@@ -21,8 +21,8 @@ public class HILabels extends HIFoundation {
 
 	private Object /* Number, String */ distance;
 	/**
-/** * description: Angular gauges and solid gauges only. The label's pixel distance from the perimeter of the plot area. Since v7.1.2: If it's a percentage string, it is interpreted the same as series.radius, so label can be aligned under the gauge's shape. * demo:  •  Labels centered under the arc
-* defaults: -25
+/** * description: The label's pixel distance from the perimeter of the plot area. On cartesian charts, this is overridden if the `labels.y` setting is set. On polar charts, if it's a percentage string, it is interpreted the same as `series.radius`, so the label can be aligned under the gauge's shape. * demo: * [Polar chart, labels centered under the arc](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/labels-distance/) 
+* defaults: 15
 */
 	public void setDistance(Object /* Number, String */ distance) {
 		this.distance = distance;
@@ -34,8 +34,7 @@ public class HILabels extends HIFoundation {
 
 	private String align;
 	/**
-/** * description: What part of the string the given position is anchored to. Can be one of "left", "center" or "right". The exact position also depends on the labels.x setting. Angular gauges and solid gauges defaultss to "center". Solid gauges with two labels have additional option "auto" for automatic horizontal and vertical alignment. * demo:  •  Left •  Solid gauge labels auto aligned
-* defaults: right
+/** * description: What part of the string the given position is anchored to. Can be one of `"left"`, `"center"` or `"right"`. The exact position also depends on the `labels.x` setting. Angular gauges and solid gauges defaultss to `"center"`. Solid gauges with two labels have additional option `"auto"` for automatic horizontal and vertical alignment. * demo: * [Left](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/labels-align-left/) * [Solid gauge labels auto aligned](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-solidgauge/labels-auto-aligned/) 
 */
 	public void setAlign(String align) {
 		this.align = align;
@@ -47,7 +46,7 @@ public class HILabels extends HIFoundation {
 
 	private Number y;
 	/**
-/** * description: The y position offset of all labels relative to the tick positions on the axis. For polar and radial axis consider the use of the distance option. * demo:  •  Y axis labels placed on grid lines
+/** * description: The y position offset of all labels relative to the tick positions on the axis. For polar and radial axis consider the use of the `distance` option. * demo: * [Y axis labels placed on grid lines](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-x/) 
 * defaults: 3
 */
 	public void setY(Number y) {
@@ -60,7 +59,7 @@ public class HILabels extends HIFoundation {
 
 	private Number x;
 	/**
-/** * description: The x position offset of all labels relative to the tick positions on the axis. Defaults to -15 for left axis, 15 for right axis. * demo:  •  Y axis labels placed on grid lines
+/** * description: The x position offset of all labels relative to the tick positions on the axis. Defaults to -15 for left axis, 15 for right axis. * demo: * [Y axis labels placed on grid lines](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-x/) 
 */
 	public void setX(Number x) {
 		this.x = x;
@@ -72,7 +71,7 @@ public class HILabels extends HIFoundation {
 
 	private Number staggerLines;
 	/**
- Horizontal axes only. The number of lines to spread the labels over to make room or tighter labels. 0 disables staggering. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-staggerlines/">Show labels over two lines</a>
+ Horizontal axes only. The number of lines to spread the labels over to make room or tighter labels. 0 disables staggering. 
 	*/
 	public void setStaggerLines(Number staggerLines) {
 		this.staggerLines = staggerLines;
@@ -84,8 +83,8 @@ public class HILabels extends HIFoundation {
 
 	private Number autoRotationLimit;
 	/**
- When each category width is more than this many pixels, we don't apply auto rotation. Instead, we lay out the axis label with word wrap. A lower limit makes sense when the label contains multiple short words that don't extend the available horizontal space for each label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-autorotationlimit/">Lower limit</a>
-	*/
+ When each category width is more than this many pixels, we don't apply auto rotation. Instead, we lay out the axis label with word wrap. A lower limit makes sense when the label contains multiple short words that don't extend the available horizontal space for each label. 
+ <br><br><b>defaults:</b><br><br>&ensp;80	*/
 	public void setAutoRotationLimit(Number autoRotationLimit) {
 		this.autoRotationLimit = autoRotationLimit;
 		this.setChanged();
@@ -96,8 +95,8 @@ public class HILabels extends HIFoundation {
 
 	private String position3d;
 	/**
- Defines how the labels are be repositioned according to the 3D chart orientation. - 'offset': Maintain a fixed horizontal/vertical distance from  the tick marks, despite the chart orientation. This is the  backwards compatible behavior, and causes skewing of X and Z  axes. - 'chart': Preserve 3D position relative to the chart. This  looks nice, but hard to read if the text isn't forward-facing. - 'flap': Rotated text along the axis to compensate for the  chart orientation. This tries to maintain text as legible as  possible on all orientations. - 'ortho': Rotated text along the axis direction so that the  labels are orthogonal to the axis. This is very similar to  'flap', but prevents skewing the labels (X and Y scaling are  still present). <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/">Skewed labels</a> <br><br><b>accepted values:</b><br><br>&ensp;['offset', 'chart', 'flap', 'ortho']
-	*/
+ Defines how the labels are be repositioned according to the 3D chart orientation. - `'offset'`: Maintain a fixed horizontal/vertical distance from  the tick marks, despite the chart orientation. This is the  backwards compatible behavior, and causes skewing of X and Z  axes. - `'chart'`: Preserve 3D position relative to the chart. This  looks nice, but hard to read if the text isn't forward-facing. - `'flap'`: Rotated text along the axis to compensate for the  chart orientation. This tries to maintain text as legible as  possible on all orientations. - `'ortho'`: Rotated text along the axis direction so that the  labels are orthogonal to the axis. This is very similar to  `'flap'`, but prevents skewing the labels (X and Y scaling are  still present). 
+ <br><br><b>defaults:</b><br><br>&ensp;offset	*/
 	public void setPosition3d(String position3d) {
 		this.position3d = position3d;
 		this.setChanged();
@@ -108,7 +107,7 @@ public class HILabels extends HIFoundation {
 
 	private Number rotation;
 	/**
- Rotation of the labels in degrees. When undefined, the autoRotation option takes precedence. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-rotation/">X axis labels rotated 90Â°</a>
+ Rotation of the labels in degrees. When `undefined`, the `autoRotation` option takes precedence. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;
@@ -120,7 +119,7 @@ public class HILabels extends HIFoundation {
 
 	private HICSSObject style;
 	/**
- CSS styles for the label. Use whiteSpace: 'nowrap' to prevent wrapping of category labels. Use textOverflow: 'none' to prevent ellipsis (dots). In styled mode, the labels are styled with the .highcharts-axis-labels class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-style/">Red X axis labels</a>
+ CSS styles for the label. Use `whiteSpace: 'nowrap'` to prevent wrapping of category labels. Use `textOverflow: 'none'` to prevent ellipsis (dots). In styled mode, the labels are styled with the `.highcharts-axis-labels` class. 
 	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
@@ -132,7 +131,7 @@ public class HILabels extends HIFoundation {
 
 	private Boolean reserveSpace;
 	/**
- Whether to reserve space for the labels. By defaults, space is reserved for the labels in these cases: * On all horizontal axes. * On vertical axes if label.align is right on a left-side axis or left on a right-side axis. * On vertical axes if label.align is center. This can be turned off when for example the labels are rendered inside the plot area instead of outside. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-reservespace/">No reserved space, labels inside plot</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-reservespace-true/">Left-aligned labels on a vertical category axis</a>
+ Whether to reserve space for the labels. By defaults, space is reserved for the labels in these cases: * On all horizontal axes. * On vertical axes if `label.align` is `right` on a left-side axis or `left` on a right-side axis. * On vertical axes if `label.align` is `center`. This can be turned off when for example the labels are rendered inside the plot area instead of outside. 
 	*/
 	public void setReserveSpace(Boolean reserveSpace) {
 		this.reserveSpace = reserveSpace;
@@ -156,7 +155,7 @@ public class HILabels extends HIFoundation {
 
 	private Boolean skew3d;
 	/**
- If enabled, the axis labels will skewed to follow the perspective. This will fix overlapping labels and titles, but texts become less legible due to the distortion. The final appearance depends heavily on labels.position3d. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/3d/skewed-labels/">Skewed labels</a>
+ If enabled, the axis labels will skewed to follow the perspective. This will fix overlapping labels and titles, but texts become less legible due to the distortion. The final appearance depends heavily on `labels.position3d`. 
 	*/
 	public void setSkew3d(Boolean skew3d) {
 		this.skew3d = skew3d;
@@ -168,7 +167,7 @@ public class HILabels extends HIFoundation {
 
 	private HIFunction formatter;
 	/**
- Callback JavaScript function to format the label. The value is given by this.value. Additional properties for this are axis, chart, isFirst, isLast and text which holds the value of the defaults formatter. Defaults to a built in function returning a formatted string depending on whether the axis is category, datetime, numeric or other. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-formatter-linked/">Linked category names</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-formatter-extended/">Modified numeric labels</a>
+ Callback JavaScript function to format the label. The value is given by `this.value`. Additional properties for `this` are `axis`, `chart`, `isFirst`, `isLast` and `text` which holds the value of the defaults formatter. Defaults to a built in function returning a formatted string depending on whether the axis is `category`, `datetime`, `numeric` or other. 
 	*/
 	public void setFormatter(HIFunction formatter) {
 		this.formatter = formatter;
@@ -180,7 +179,7 @@ public class HILabels extends HIFoundation {
 
 	private ArrayList<Number> autoRotation;
 	/**
- For horizontal axes, the allowed degrees of label rotation to prevent overlapping labels. If there is enough space, labels are not rotated. As the chart gets narrower, it will start rotating the labels -45 degrees, then remove every second label and try again with rotations 0 and -45 etc. Set it to undefined to disable rotation, which will cause the labels to word-wrap if possible. Defaults to [-45]on bottom and top axes,undefined` on left and right axes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-autorotation-defaults/">Default auto rotation of 0 or -45</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-autorotation-0-90/">Custom graded auto rotation</a>
+ For horizontal axes, the allowed degrees of label rotation to prevent overlapping labels. If there is enough space, labels are not rotated. As the chart gets narrower, it will start rotating the labels -45 degrees, then remove every second label and try again with rotations 0 and -45 etc. Set it to `undefined` to disable rotation, which will cause the labels to word-wrap if possible. Defaults to `[-45]`` on bottom and top axes, `undefined` on left and right axes. 
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setAutoRotation(ArrayList<Number> autoRotation) {
 		this.autoRotation = autoRotation;
@@ -192,7 +191,7 @@ public class HILabels extends HIFoundation {
 
 	private Boolean allowOverlap;
 	/**
- Whether to allow the axis labels to overlap. When false, overlapping labels are hidden. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-allowoverlap-true/">X axis labels overlap enabled</a>
+ Whether to allow the axis labels to overlap. When false, overlapping labels are hidden. 
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setAllowOverlap(Boolean allowOverlap) {
 		this.allowOverlap = allowOverlap;
@@ -205,7 +204,7 @@ public class HILabels extends HIFoundation {
 	private Number zIndex;
 	/**
  The Z index for the axis labels. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;7	*/
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
 		this.setChanged();
@@ -216,7 +215,7 @@ public class HILabels extends HIFoundation {
 
 	private String format;
 	/**
- A format string for the axis label. The context is available as format string variables. For example, you can use {text} to insert the defaults formatted text. The recommended way of adding units for the label is using text, for example {text} km. To add custom numeric or datetime formatting, use {value} with formatting, for example {value:.1f} or {value:%Y-%m-%d}. See [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) for more examples of formatting. The defaults value is not specified due to the dynamic nature of the defaults implementation. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/yaxis/labels-format/">Add units to Y axis label</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-format-linked/">Linked category names</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-format-custom/">Custom number format</a>
+ A format string for the axis label. The context is available as format string variables. For example, you can use `{text}` to insert the defaults formatted text. The recommended way of adding units for the label is using `text`, for example `{text} km`. To add custom numeric or datetime formatting, use `{value}` with formatting, for example `{value:.1f}` or `{value:%Y-%m-%d}`. See [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) for more examples of formatting. The defaults value is not specified due to the dynamic nature of the defaults implementation. 
 	*/
 	public void setFormat(String format) {
 		this.format = format;
@@ -229,7 +228,7 @@ public class HILabels extends HIFoundation {
 	private Number padding;
 	/**
  The pixel padding for axis labels, to ensure white space between them. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;5	*/
 	public void setPadding(Number padding) {
 		this.padding = padding;
 		this.setChanged();
@@ -240,7 +239,7 @@ public class HILabels extends HIFoundation {
 
 	private Number step;
 	/**
- To show only every _n_'th label on the axis, set the step to _n_. Setting the step to 2 shows every other label. By defaults, when 0, the step is calculated automatically to avoid overlap. To prevent this, set it to 1\. This usually only happens on a category axis, and is often a sign that you have chosen the wrong axis type. Read more at [Axis docs](https://www.highcharts.com/docs/chart-concepts/axes) => What axis should I use? <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-step/">Showing only every other axis label on a categorized x-axis</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-step-auto/">Auto steps on a category axis</a>
+ To show only every _n_'th label on the axis, set the step to _n_. Setting the step to 2 shows every other label. By defaults, when 0, the step is calculated automatically to avoid overlap. To prevent this, set it to 1\. This usually only happens on a category axis, and is often a sign that you have chosen the wrong axis type. Read more at [Axis docs](https://www.highcharts.com/docs/chart-concepts/axes) => What axis should I use? 
 	*/
 	public void setStep(Number step) {
 		this.step = step;
@@ -252,8 +251,8 @@ public class HILabels extends HIFoundation {
 
 	private String overflow;
 	/**
- How to handle overflowing labels on horizontal axis. If set to "allow", it will not be aligned at all. By defaults it "justify" labels inside the chart area. If there is room to move it, it will be aligned to the edge, else it will be removed. <br><br><b>accepted values:</b><br><br>&ensp;["allow", "justify"]
-	*/
+ How to handle overflowing labels on horizontal axis. If set to `"allow"`, it will not be aligned at all. By defaults it `"justify"` labels inside the chart area. If there is room to move it, it will be aligned to the edge, else it will be removed. 
+ <br><br><b>defaults:</b><br><br>&ensp;justify	*/
 	public void setOverflow(String overflow) {
 		this.overflow = overflow;
 		this.setChanged();
@@ -264,7 +263,7 @@ public class HILabels extends HIFoundation {
 
 	private Boolean enabled;
 	/**
- Enable or disable the axis labels. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/xaxis/labels-enabled/">X axis labels disabled</a>
+ Enable or disable the axis labels. 
  <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -276,7 +275,7 @@ public class HILabels extends HIFoundation {
 
 	private HIAnnotationMockPointOptionsObject point;
 	/**
- This option defines the point to which the label will be connected. It can be either the point which exists in the series - it is referenced by the point's id - or a new point with defined x, y properties and optionally axes. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/mock-point/">Attach annotation to a mock point</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/mock-points/">Attach annotation to a mock point with different ways</a>
+ This option defines the point to which the label will be connected. It can be either the point which exists in the series - it is referenced by the point's id - or a new point with defined x, y properties and optionally axes. 
 	*/
 	public void setPoint(HIAnnotationMockPointOptionsObject point) {
 		this.point = point;
@@ -288,8 +287,8 @@ public class HILabels extends HIFoundation {
 
 	private Boolean includeInDataExport;
 	/**
- Whether the annotation is visible in the exported data table. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/include-in-data-export/">Do not include in the data export</a>
-	*/
+ Whether the annotation is visible in the exported data table. 
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setIncludeInDataExport(Boolean includeInDataExport) {
 		this.includeInDataExport = includeInDataExport;
 		this.setChanged();
@@ -300,8 +299,8 @@ public class HILabels extends HIFoundation {
 
 	private Number borderRadius;
 	/**
- The border radius in pixels for the annotaiton's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
-	*/
+ The border radius in pixels for the annotaiton's label. 
+ <br><br><b>defaults:</b><br><br>&ensp;3	*/
 	public void setBorderRadius(Number borderRadius) {
 		this.borderRadius = borderRadius;
 		this.setChanged();
@@ -312,7 +311,7 @@ public class HILabels extends HIFoundation {
 
 	private String text;
 	/**
- Alias for the format option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-text/">Set labels text</a>
+ Alias for the format option. 
 	*/
 	public void setText(String text) {
 		this.text = text;
@@ -337,7 +336,7 @@ public class HILabels extends HIFoundation {
 
 	private Boolean crop;
 	/**
- Whether to hide the annotation's label that is outside the plot area. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-crop-overflow/">Crop or justify labels</a>
+ Whether to hide the annotation's label that is outside the plot area. 
 	*/
 	public void setCrop(Boolean crop) {
 		this.crop = crop;
@@ -349,8 +348,8 @@ public class HILabels extends HIFoundation {
 
 	private String shape;
 	/**
- The name of a symbol to use for the border around the label. Symbols are predefined functions on the Renderer object. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shapes/">Available shapes for labels</a>
-	*/
+ The name of a symbol to use for the border around the label. Symbols are predefined functions on the Renderer object. 
+ <br><br><b>defaults:</b><br><br>&ensp;callout	*/
 	public void setShape(String shape) {
 		this.shape = shape;
 		this.setChanged();
@@ -359,22 +358,22 @@ public class HILabels extends HIFoundation {
 
 	public String getShape(){ return shape; }
 
-	private Object borderColor;
+	private HIColor borderColor;
 	/**
- The border color for the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
-	*/
-	public void setBorderColor(Object borderColor) {
+ The border color for the annotation's label. 
+ <br><br><b>defaults:</b><br><br>&ensp;#000000	*/
+	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getBorderColor(){ return borderColor; }
+	public HIColor getBorderColor(){ return borderColor; }
 
 	private HIColor backgroundColor;
 	/**
- The background color or gradient for the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
-	*/
+ The background color or gradient for the annotation's label. 
+ <br><br><b>defaults:</b><br><br>&ensp;rgba(0, 0, 0, 0.75)	*/
 	public void setBackgroundColor(HIColor backgroundColor) {
 		this.backgroundColor = backgroundColor;
 		this.setChanged();
@@ -385,7 +384,7 @@ public class HILabels extends HIFoundation {
 
 	private HIShadowOptionsObject /* boolean */ shadow;
 	/**
- The shadow of the box. The shadow can be an object configuration containing color, offsetX, offsetY, opacity and width. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
+ The shadow of the box. The shadow can be an object configuration containing `color`, `offsetX`, `offsetY`, `opacity` and `width`. 
 	*/
 	public void setShadow(HIShadowOptionsObject /* boolean */ shadow) {
 		this.shadow = shadow;
@@ -397,8 +396,8 @@ public class HILabels extends HIFoundation {
 
 	private String verticalAlign;
 	/**
- The vertical alignment of the annotation's label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-position/">Set labels position</a>
-	*/
+ The vertical alignment of the annotation's label. 
+ <br><br><b>defaults:</b><br><br>&ensp;bottom	*/
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
 		this.setChanged();
@@ -409,8 +408,8 @@ public class HILabels extends HIFoundation {
 
 	private String className;
 	/**
- A class name for styling by CSS. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/annotations">Styled mode annotations</a>
-	*/
+ A class name for styling by CSS. 
+ <br><br><b>defaults:</b><br><br>&ensp;highcharts-no-tooltip	*/
 	public void setClassName(String className) {
 		this.className = className;
 		this.setChanged();
@@ -421,8 +420,8 @@ public class HILabels extends HIFoundation {
 
 	private Number borderWidth;
 	/**
- The border width in pixels for the annotation's label <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/label-presentation/">Set labels graphic options</a>
-	*/
+ The border width in pixels for the annotation's label 
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
 		this.setChanged();
@@ -430,6 +429,18 @@ public class HILabels extends HIFoundation {
 	}
 
 	public Number getBorderWidth(){ return borderWidth; }
+
+	private Boolean clip;
+	/**
+ Whether to hide labels that are outside the plot area. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setClip(Boolean clip) {
+		this.clip = clip;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getClip(){ return clip; }
 
 
 
@@ -536,7 +547,7 @@ public HashMap<String, Object> getParams() {
 			params.put("shape", this.shape);
 		}
 		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor);
+			params.put("borderColor", this.borderColor.getData());
 		}
 		if (this.backgroundColor != null) {
 			params.put("backgroundColor", this.backgroundColor.getData());
@@ -552,6 +563,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);
+		}
+		if (this.clip != null) {
+			params.put("clip", this.clip);
 		}
 		return params;
 	}

@@ -8,28 +8,26 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
 public class HITargetOptions extends HIFoundation { 
 
-	private Object borderColor;
+	private HIColor borderColor;
 	/**
- The border color of the rectangle representing the target. When not set, the point's border color is used. In styled mode, use class highcharts-bullet-target instead. 
+ The border color of the rectangle representing the target. When not set, the point's border color is used. In styled mode, use class `highcharts-bullet-target` instead. 
 	*/
-	public void setBorderColor(Object borderColor) {
+	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getBorderColor(){ return borderColor; }
+	public HIColor getBorderColor(){ return borderColor; }
 
 	private Number borderRadius;
 	/**
@@ -46,7 +44,7 @@ public class HITargetOptions extends HIFoundation {
 	private Number height;
 	/**
  The height of the rectangle representing the target. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;3	*/
 	public void setHeight(Number height) {
 		this.height = height;
 		this.setChanged();
@@ -58,7 +56,7 @@ public class HITargetOptions extends HIFoundation {
 	private Object /* Number, String */ width;
 	/**
  The width of the rectangle representing the target. Could be set as a pixel value or as a percentage of a column width. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;140%	*/
 	public void setWidth(Object /* Number, String */ width) {
 		this.width = width;
 		this.setChanged();
@@ -69,7 +67,7 @@ public class HITargetOptions extends HIFoundation {
 
 	private Number borderWidth;
 	/**
- The border width of the rectangle representing the target. In styled mode, use class highcharts-bullet-target instead. 
+ The border width of the rectangle representing the target. In styled mode, use class `highcharts-bullet-target` instead. 
 	*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
@@ -81,7 +79,7 @@ public class HITargetOptions extends HIFoundation {
 
 	private HIColor color;
 	/**
- The color of the rectangle representing the target. When not set, point's color (if set in point's options - color) or zone of the target value (if zones or negativeColor are set) or the same color as the point has is used. In styled mode, use class highcharts-bullet-target instead. 
+ The color of the rectangle representing the target. When not set, point's color (if set in point's options - ``color``) or zone of the target value (if ``zones`` or ``negativeColor`` are set) or the same color as the point has is used. In styled mode, use class `highcharts-bullet-target` instead. 
 	*/
 	public void setColor(HIColor color) {
 		this.color = color;
@@ -103,7 +101,7 @@ public HashMap<String, Object> getParams() {
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
 		if (this.borderColor != null) {
-			params.put("borderColor", this.borderColor);
+			params.put("borderColor", this.borderColor.getData());
 		}
 		if (this.borderRadius != null) {
 			params.put("borderRadius", this.borderRadius);

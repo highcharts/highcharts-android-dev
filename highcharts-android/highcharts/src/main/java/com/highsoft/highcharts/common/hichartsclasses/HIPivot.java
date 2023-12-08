@@ -19,7 +19,7 @@ public class HIPivot extends HIFoundation {
 
 	private HIColor borderColor;
 	/**
- The border or stroke color of the pivot. In able to change this, the borderWidth must also be set to something other than the defaults 0. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-pivot/">Pivot options demonstrated</a>
+ The border or stroke color of the pivot. In able to change this, the borderWidth must also be set to something other than the defaults 0. 
  <br><br><b>defaults:</b><br><br>&ensp;#cccccc	*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
@@ -31,7 +31,7 @@ public class HIPivot extends HIFoundation {
 
 	private Number radius;
 	/**
- The pixel radius of the pivot. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-pivot/">Pivot options demonstrated</a>
+ The pixel radius of the pivot. 
  <br><br><b>defaults:</b><br><br>&ensp;5	*/
 	public void setRadius(Number radius) {
 		this.radius = radius;
@@ -43,7 +43,7 @@ public class HIPivot extends HIFoundation {
 
 	private Number borderWidth;
 	/**
- The border or stroke width of the pivot. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-pivot/">Pivot options demonstrated</a>
+ The border or stroke width of the pivot. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
@@ -55,7 +55,7 @@ public class HIPivot extends HIFoundation {
 
 	private HIColor backgroundColor;
 	/**
- The background color or fill of the pivot. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/gauge-pivot/">Pivot options demonstrated</a>
+ The background color or fill of the pivot. 
  <br><br><b>defaults:</b><br><br>&ensp;#000000	*/
 	public void setBackgroundColor(HIColor backgroundColor) {
 		this.backgroundColor = backgroundColor;

@@ -9,20 +9,22 @@
 package com.highsoft.highcharts.common.hichartsclasses;
 
 import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.core.HIFoundation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
+
 	/**
- An xrange series. If the type option is not specified, it is inherited from chart.type. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all xrange series are defined in  `plotOptions.xrange`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     xrange: {       // shared options for all xrange series     }   },   series: [{     // specific options for this series instance     type: 'xrange'   }] }); `       
+ An `xrange` series. If the `type` option is not specified, it is inherited from `chart.type`. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all `xrange` series are defined in  `plotOptions.xrange`. 3. Options for one single series are given in  `the series instance array`. ``` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     xrange: {       // shared options for all xrange series     }   },   series: [{     // specific options for this series instance     type: 'xrange'   }] }); ```       
 	*/
 
 public class HIXrange extends HISeries {
 	private Boolean colorByPoint;
 	/**
-/** * description: In an X-range series, this option makes all points of the same Y-axis category the same color. * demo:  •  False by defaults •  True
-* defaults: false
+/** * description: In an X-range series, this option makes all points of the same Y-axis category the same color. * demo: * [False by defaults](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-false/) * [True](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-colorbypoint-true/) 
+* defaults: True
 */
 	public void setColorByPoint(Boolean colorByPoint) {
 		this.colorByPoint = colorByPoint;
@@ -34,7 +36,7 @@ public class HIXrange extends HISeries {
 
 	private HIPartialFill partialFill;
 	/**
- A partial fill for each point, typically used to visualize how much of a task is performed. The partial fill object can be set either on series or point level. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/x-range">X-range with partial fill</a>
+ A partial fill for each point, typically used to visualize how much of a task is performed. The partial fill object can be set either on series or point level. 
 	*/
 	public void setPartialFill(HIPartialFill partialFill) {
 		this.partialFill = partialFill;
@@ -47,7 +49,8 @@ public class HIXrange extends HISeries {
 
 	private Number borderRadius;
 	/**
-/** * description: The corner radius of the border surrounding each column or bar. * demo:  •  Rounded columns
+/** * description: The corner radius of the border surrounding each column or bar. A number signifies pixels. A percentage string, like for example `50%`, signifies a relative size. For columns this is relative to the column width, for pies it is relative to the radius and the inner radius. * demo: * [Rounded columns](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-borderradius/) * [Column and pie with rounded border](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-border-radius) 
+* defaults: 3
 */
 	public void setBorderRadius(Number borderRadius) {
 		this.borderRadius = borderRadius;
@@ -59,8 +62,8 @@ public class HIXrange extends HISeries {
 
 	private Number pointPadding;
 	/**
- Padding between each column or bar, in x axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-defaults/">0.1 by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-025/">0.25</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointpadding-none/">0 for tightly packed columns</a>
-	*/
+ Padding between each column or bar, in x axis units. 
+ <br><br><b>defaults:</b><br><br>&ensp;0.1	*/
 	public void setPointPadding(Number pointPadding) {
 		this.pointPadding = pointPadding;
 		this.setChanged();
@@ -71,7 +74,7 @@ public class HIXrange extends HISeries {
 
 	private Number minPointLength;
 	/**
- The minimal height for a column or width for a bar. By defaults, 0 values are not shown. To visualize a 0 (or close to zero) point, set the minimal point length to a pixel value like 3\. In stacked column charts, minPointLength might not be respected for tightly packed values. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-minpointlength/">Zero base value</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-minpointlength-pos-and-neg/">Positive and negative close to zero values</a>
+ The minimal height for a column or width for a bar. By defaults, 0 values are not shown. To visualize a 0 (or close to zero) point, set the minimal point length to a pixel value like 3\. In stacked column charts, minPointLength might not be respected for tightly packed values. 
 	*/
 	public void setMinPointLength(Number minPointLength) {
 		this.minPointLength = minPointLength;
@@ -93,21 +96,21 @@ public class HIXrange extends HISeries {
 
 	public Number getGroupZPadding(){ return groupZPadding; }
 
-	private ArrayList<HIColor> colors;
+	private ArrayList<String> colors;
 	/**
- A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true. 
+ A series specific or series type specific color set to apply instead of the global `colors` when `colorByPoint` is true. 
 	*/
-	public void setColors(ArrayList<HIColor> colors) {
+	public void setColors(ArrayList<String> colors) {
 		this.colors = colors;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<HIColor> getColors(){ return colors; }
+	public ArrayList<String> getColors(){ return colors; }
 
 	private HIColor borderColor;
 	/**
- The color of the border surrounding each column or bar. In styled mode, the border stroke can be set with the .highcharts-point rule. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-bordercolor/">Dark gray border</a>
+ The color of the border surrounding each column or bar. In styled mode, the border stroke can be set with the `.highcharts-point` rule. 
  <br><br><b>defaults:</b><br><br>&ensp;#ffffff	*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
@@ -119,7 +122,7 @@ public class HIXrange extends HISeries {
 
 	private Boolean centerInCategory;
 	/**
- When true, the columns will center in the category, ignoring null or missing points. When false, space will be reserved for null or missing points. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-column/centerincategory/">Center in category</a>
+ When `true`, the columns will center in the category, ignoring null or missing points. When `false`, space will be reserved for null or missing points. 
 	*/
 	public void setCenterInCategory(Boolean centerInCategory) {
 		this.centerInCategory = centerInCategory;
@@ -131,7 +134,7 @@ public class HIXrange extends HISeries {
 
 	private Number maxPointWidth;
 	/**
- The maximum allowed pixel width for a column, translated to the height of a bar in a bar chart. This prevents the columns from becoming too wide when there is a small number of points in the chart. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-maxpointwidth-20/">Limited to 50</a>
+ The maximum allowed pixel width for a column, translated to the height of a bar in a bar chart. This prevents the columns from becoming too wide when there is a small number of points in the chart. 
 	*/
 	public void setMaxPointWidth(Number maxPointWidth) {
 		this.maxPointWidth = maxPointWidth;
@@ -143,7 +146,7 @@ public class HIXrange extends HISeries {
 
 	private Number pointWidth;
 	/**
- A pixel value specifying a fixed width for each column or bar point. When set to undefined, the width is calculated from the pointPadding and groupPadding. The width effects the dimension that is not based on the point value. For column series it is the hoizontal length and for bar series it is the vertical length. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointwidth-20/">20px wide columns regardless of chart width or the amount of data points</a>
+ A pixel value specifying a fixed width for each column or bar point. When set to `undefined`, the width is calculated from the `pointPadding` and `groupPadding`. The width effects the dimension that is not based on the point value. For column series it is the hoizontal length and for bar series it is the vertical length. 
 	*/
 	public void setPointWidth(Number pointWidth) {
 		this.pointWidth = pointWidth;
@@ -155,8 +158,8 @@ public class HIXrange extends HISeries {
 
 	private Number groupPadding;
 	/**
- Padding between each value groups, in x axis units. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-grouppadding-defaults/">0.2 by defaults</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-grouppadding-none/">No group padding - all columns are evenly spaced</a>
-	*/
+ Padding between each value groups, in x axis units. 
+ <br><br><b>defaults:</b><br><br>&ensp;0.2	*/
 	public void setGroupPadding(Number groupPadding) {
 		this.groupPadding = groupPadding;
 		this.setChanged();
@@ -167,7 +170,7 @@ public class HIXrange extends HISeries {
 
 	private Number borderWidth;
 	/**
- The width of the border surrounding each column or bar. Defaults to 1 when there is room for a border, but to 0 when the columns are so dense that a border would cover the next column. In styled mode, the stroke width can be set with the .highcharts-point rule. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-borderwidth/">2px black border</a>
+ The width of the border surrounding each column or bar. Defaults to `1` when there is room for a border, but to `0` when the columns are so dense that a border would cover the next column. In styled mode, the stroke width can be set with the `.highcharts-point` rule. 
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
@@ -179,7 +182,7 @@ public class HIXrange extends HISeries {
 
 	private Boolean grouping;
 	/**
- Whether to group non-stacked columns or to let them render independent of each other. Non-grouped columns will be laid out individually and overlap each other. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-grouping-false/">Grouping disabled</a>
+ Whether to group non-stacked columns or to let them render independent of each other. Non-grouped columns will be laid out individually and overlap each other. 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setGrouping(Boolean grouping) {
 		this.grouping = grouping;
@@ -221,8 +224,13 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();
-			for (HIColor hiColor : this.colors) {
-				array.add(hiColor.getData());
+			for (Object obj : this.colors) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
 			}
 			params.put("colors", array);
 		}
