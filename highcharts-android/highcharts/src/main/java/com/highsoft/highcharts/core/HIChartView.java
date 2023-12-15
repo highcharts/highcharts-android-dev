@@ -293,6 +293,8 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
             this.HTML.prepareJavaScript("highcharts", "js/", suffix);
             this.HTML.prepareJavaScript("highcharts-more", "js/", suffix);
             this.HTML.prepareJavaScript("highcharts-3d", "js/", suffix);
+            this.HTML.prepareJavaScript("exporting", "js/", suffix);
+            this.HTML.prepareJavaScript("offline-exporting", "js/", suffix);
 
             if(rawOptionsMap == null) {
                 List plugins = HIGDependency.pluginsForOptions(this.options.getParams());
