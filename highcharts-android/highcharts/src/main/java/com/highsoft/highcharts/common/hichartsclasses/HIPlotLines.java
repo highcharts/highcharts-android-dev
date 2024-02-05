@@ -156,7 +156,6 @@ public class HIPlotLines extends HIFoundation {
 		this.notifyObservers(jsClassMethod);
 	}
 
-
 	@Override
 public HashMap<String, Object> getParams() {
 

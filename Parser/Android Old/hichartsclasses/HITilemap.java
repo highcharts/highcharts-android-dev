@@ -18,14 +18,14 @@ import com.highsoft.highcharts.common.HIColor;
 
 
 	/**
- A tilemap series is a type of heatmap where the tile shapes are configurable. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all tilemap series are defined in  `plotOptions.tilemap`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     tilemap: {       // shared options for all tilemap series     }   },   series: [{     // specific options for this series instance     type: 'tilemap'   }] }); `        <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/honeycomb-usa/">Honeycomb tilemap, USA</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/honeycomb-brazil/">Honeycomb tilemap, Brazil</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/honeycomb-china/">Honeycomb tilemap, China</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/honeycomb-europe/">Honeycomb tilemap, Europe</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/circlemap-africa/">Circlemap tilemap, Africa</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/diamondmap">Diamondmap tilemap</a>
+ A `tilemap` series. If the `type` option is not specified, it is inherited from `chart.type`. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all `tilemap` series are defined in  `plotOptions.tilemap`. 3. Options for one single series are given in  `the series instance array`. ``` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     tilemap: {       // shared options for all tilemap series     }   },   series: [{     // specific options for this series instance     type: 'tilemap'   }] }); ```       
 	*/
 
 public class HITilemap extends HISeries {
 	private Number pointPadding;
 	/**
-/** * description: The padding between points in the tilemap. * demo:  •  Point padding on tiles
-* defaults: 0
+/** * description: The padding between points in the tilemap. * demo: * [Point padding on tiles](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/tilemap-pointpadding) 
+* defaults: 2
 */
 	public void setPointPadding(Number pointPadding) {
 		this.pointPadding = pointPadding;
@@ -37,7 +37,7 @@ public class HITilemap extends HISeries {
 
 	private Number colsize;
 	/**
-/** * description: The column size - how many X axis units each column in the tilemap should span. Works as in Heatmaps. * demo:  •  One day
+/** * description: The column size - how many X axis units each column in the tilemap should span. Works as in `Heatmaps`. * demo: * [One day](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/heatmap/) 
 * defaults: 1
 */
 	public void setColsize(Number colsize) {
@@ -50,7 +50,7 @@ public class HITilemap extends HISeries {
 
 	private Number rowsize;
 	/**
-/** * description: The row size - how many Y axis units each tilemap row should span. Analogous to colsize. * demo:  •  1 by defaults
+/** * description: The row size - how many Y axis units each tilemap row should span. Analogous to `colsize`. * demo: * [1 by defaults](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/heatmap/) 
 * defaults: 1
 */
 	public void setRowsize(Number rowsize) {
@@ -63,8 +63,8 @@ public class HITilemap extends HISeries {
 
 	private String tileShape;
 	/**
- The shape of the tiles in the tilemap. Possible values are hexagon, circle, diamond, and square. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/circlemap-africa">Circular tile shapes</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/demo/diamondmap">Diamond tile shapes</a>
-	*/
+ The shape of the tiles in the tilemap. Possible values are `hexagon`, `circle`, `diamond`, and `square`. 
+ <br><br><b>defaults:</b><br><br>&ensp;hexagon	*/
 	public void setTileShape(String tileShape) {
 		this.tileShape = tileShape;
 		this.setChanged();
@@ -75,7 +75,7 @@ public class HITilemap extends HISeries {
 
 	private Number borderRadius;
 	/**
- The border radius for each heatmap item. 
+ The border radius for each heatmap item. The border's color and width can be set in marker options. 
 	*/
 	public void setBorderRadius(Number borderRadius) {
 		this.borderRadius = borderRadius;
@@ -88,7 +88,7 @@ public class HITilemap extends HISeries {
 	private HIColor nullColor;
 	/**
  The color applied to null points. In styled mode, a general CSS class is applied instead. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;#f7f7f7	*/
 	public void setNullColor(HIColor nullColor) {
 		this.nullColor = nullColor;
 		this.setChanged();
@@ -96,6 +96,18 @@ public class HITilemap extends HISeries {
 	}
 
 	public HIColor getNullColor(){ return nullColor; }
+
+	private Boolean interpolation;
+	/**
+ Make the heatmap render its data points as an interpolated image. 
+	*/
+	public void setInterpolation(Boolean interpolation) {
+		this.interpolation = interpolation;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getInterpolation(){ return interpolation; }
 
 
 
@@ -126,6 +138,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.nullColor != null) {
 			params.put("nullColor", this.nullColor.getData());
+		}
+		if (this.interpolation != null) {
+			params.put("interpolation", this.interpolation);
 		}
 		return params;
 	}

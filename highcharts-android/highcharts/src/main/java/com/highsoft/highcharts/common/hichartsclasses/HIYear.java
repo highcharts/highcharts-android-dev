@@ -10,6 +10,7 @@ package com.highsoft.highcharts.common.hichartsclasses;
 
 import com.highsoft.highcharts.core.HIFoundation;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -25,6 +26,15 @@ public class HIYear extends HIFoundation {
 
 	public String getMain(){ return main; }
 
+	private ArrayList<String> list;
+	public void setList(ArrayList<String> list) {
+		this.list = list;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList<String> getList(){ return list; }
+
 
 
 	public HIYear() {
@@ -38,6 +48,18 @@ public HashMap<String, Object> getParams() {
 		params.put("_wrapperID", this.uuid);
 		if (this.main != null) {
 			params.put("main", this.main);
+		}
+		if (this.list != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.list) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("list", array);
 		}
 		return params;
 	}

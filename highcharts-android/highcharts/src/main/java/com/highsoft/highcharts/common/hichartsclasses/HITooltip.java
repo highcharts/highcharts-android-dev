@@ -143,7 +143,7 @@ public class HITooltip extends HIFoundation {
 
 	private HIColor borderColor;
 	/**
- The color of the tooltip border. When `undefined`, the border takes the color of the corresponding series or point. 
+ The color of the tooltip border. When `undefined`, the border takes the color of the corresponding series or point. Note that the `borderWidth` is usually 0 by defaults, so the border color may not be visible until a border width is set. 
 	*/
 	public void setBorderColor(HIColor borderColor) {
 		this.borderColor = borderColor;
@@ -627,7 +627,6 @@ public class HITooltip extends HIFoundation {
 		this.setChanged();
 		this.notifyObservers(jsClassMethod);
 	}
-
 
 	@Override
 public HashMap<String, Object> getParams() {

@@ -13,20 +13,119 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
 public class HIPoint extends HIFoundation { 
 
-	private HIEvents events;
-	public void setEvents(HIEvents events) {
-		this.events = events;
-		this.events.addObserver(updateObserver);
+	private HIFunction descriptionFormatter;
+	/**
+/** * description: Formatter function to use instead of the defaults for point descriptions. Same as `accessibility.point.descriptionFormatter`, but applies to a series instead of the whole chart. Note: Prefer using `accessibility.point.valueDescriptionFormat` instead if possible, as defaults functionality such as describing annotations will be preserved. 
+*/
+	public void setDescriptionFormatter(HIFunction descriptionFormatter) {
+		this.descriptionFormatter = descriptionFormatter;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIEvents getEvents(){ return events; }
+	public HIFunction getDescriptionFormatter(){ return descriptionFormatter; }
+
+	private String valueDescriptionFormat;
+	/**
+ Format to use for describing the values of data points to assistive technology - including screen readers. The point context is available as `{point}`. Other available context variables include `{index}`, `{value}`, and `{xDescription}`. Additionally, the series name, annotation info, and description added in `point.accessibility.description` is added by defaults if relevant. To override this, use the `accessibility.point.descriptionFormatter` option. 
+ <br><br><b>defaults:</b><br><br>&ensp;{xDescription}{separator}{value}.	*/
+	public void setValueDescriptionFormat(String valueDescriptionFormat) {
+		this.valueDescriptionFormat = valueDescriptionFormat;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getValueDescriptionFormat(){ return valueDescriptionFormat; }
+
+	private String valueSuffix;
+	/**
+ Suffix to add to the values in the point descriptions. Uses `tooltip.valueSuffix` if not defined. 
+	*/
+	public void setValueSuffix(String valueSuffix) {
+		this.valueSuffix = valueSuffix;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getValueSuffix(){ return valueSuffix; }
+
+	private Boolean describeNull;
+	/**
+ Whether or not to describe points with the value `null` to assistive technology, such as screen readers. 
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
+	public void setDescribeNull(Boolean describeNull) {
+		this.describeNull = describeNull;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getDescribeNull(){ return describeNull; }
+
+	private String dateFormat;
+	/**
+ Date format to use for points on datetime axes when describing them to screen reader users. Defaults to the same format as in tooltip. For an overview of the replacement codes, see `dateFormat`. 
+	*/
+	public void setDateFormat(String dateFormat) {
+		this.dateFormat = dateFormat;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDateFormat(){ return dateFormat; }
+
+	private HIFunction dateFormatter;
+	/**
+ Formatter function to determine the date/time format used with points on datetime axes when describing them to screen reader users. Receives one argument, `point`, referring to the point to describe. Should return a date format string compatible with `dateFormat`. 
+	*/
+	public void setDateFormatter(HIFunction dateFormatter) {
+		this.dateFormatter = dateFormatter;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getDateFormatter(){ return dateFormatter; }
+
+	private String valuePrefix;
+	/**
+ Prefix to add to the values in the point descriptions. Uses `tooltip.valuePrefix` if not defined. 
+	*/
+	public void setValuePrefix(String valuePrefix) {
+		this.valuePrefix = valuePrefix;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getValuePrefix(){ return valuePrefix; }
+
+	private String descriptionFormat;
+	/**
+ A [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) to use instead of the defaults for point descriptions. The context of the format string is the point instance. As opposed to `accessibility.point.valueDescriptionFormat`, this option replaces the whole description. 
+	*/
+	public void setDescriptionFormat(String descriptionFormat) {
+		this.descriptionFormat = descriptionFormat;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDescriptionFormat(){ return descriptionFormat; }
+
+	private Number valueDecimals;
+	/**
+ Decimals to use for the values in the point descriptions. Uses `tooltip.valueDecimals` if not defined. 
+	*/
+	public void setValueDecimals(Number valueDecimals) {
+		this.valueDecimals = valueDecimals;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getValueDecimals(){ return valueDecimals; }
 
 	private String category;
 	/**
@@ -40,17 +139,17 @@ public class HIPoint extends HIFoundation {
 
 	public String getCategory(){ return category; }
 
-	private Object color;
+	private HIColor color;
 	/**
  The point's current color. 
 	*/
-	public void setColor(Object color) {
+	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getColor(){ return color; }
+	public HIColor getColor(){ return color; }
 
 	private Number colorIndex;
 	/**
@@ -64,66 +163,6 @@ public class HIPoint extends HIFoundation {
 
 	public Number getColorIndex(){ return colorIndex; }
 
-	private HIDataGroupingInfoObject dataGroup;
-	/**
- Highcharts Stock only. If a point object is created by data grouping, it doesn't reflect actual points in the raw data. In this case, the `dataGroup` property holds information that points back to the raw data. - `dataGroup.start` is the index of the first raw data point in the group. - `dataGroup.length` is the amount of points in the group. 
-	*/
-	public void setDataGroup(HIDataGroupingInfoObject dataGroup) {
-		this.dataGroup = dataGroup;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIDataGroupingInfoObject getDataGroup(){ return dataGroup; }
-
-	private Number high;
-	/**
- Range series only. The high or maximum value for each data point. 
-	*/
-	public void setHigh(Number high) {
-		this.high = high;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getHigh(){ return high; }
-
-	private Number index;
-	/**
- Contains the point's index in the `Series.points` array. 
-	*/
-	public void setIndex(Number index) {
-		this.index = index;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getIndex(){ return index; }
-
-	private Number low;
-	/**
- Range series only. The low or minimum value for each data point. 
-	*/
-	public void setLow(Number low) {
-		this.low = low;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getLow(){ return low; }
-
-	private Boolean mock;
-	/**
- Indicates if this is a mock point for an annotation. 
-	*/
-	public void setMock(Boolean mock) {
-		this.mock = mock;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getMock(){ return mock; }
-
 	private String name;
 	/**
  The name of the point. The name can be given as the first position of the point configuration array, or as a `name` property in the configuration: 
@@ -135,18 +174,6 @@ public class HIPoint extends HIFoundation {
 	}
 
 	public String getName(){ return name; }
-
-	private HIPointOptionsObject options;
-	/**
- The point's options as applied in the initial configuration, or extended through `Point.update`. In TypeScript you have to extend `PointOptionsObject` via an additional interface to allow custom data options: ``` declare interface PointOptionsObject { customProperty: string; } ``` 
-	*/
-	public void setOptions(HIPointOptionsObject options) {
-		this.options = options;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIPointOptionsObject getOptions(){ return options; }
 
 	private Number percentage;
 	/**
@@ -184,30 +211,6 @@ public class HIPoint extends HIFoundation {
 
 	public Number getPlotY(){ return plotY; }
 
-	private Number pointPadding;
-	/**
- Heatmap series only. Padding between the points in the heatmap. 
-	*/
-	public void setPointPadding(Number pointPadding) {
-		this.pointPadding = pointPadding;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getPointPadding(){ return pointPadding; }
-
-	private Object properties;
-	/**
- In Highcharts Maps, when data is loaded from GeoJSON, the GeoJSON item's properies are copied over here. 
-	*/
-	public void setProperties(Object properties) {
-		this.properties = properties;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object getProperties(){ return properties; }
-
 	private Boolean selected;
 	/**
  Whether the point is selected or not. 
@@ -219,30 +222,6 @@ public class HIPoint extends HIFoundation {
 	}
 
 	public Boolean getSelected(){ return selected; }
-
-	private HISeries series;
-	/**
- The series object associated with the point. 
-	*/
-	public void setSeries(HISeries series) {
-		this.series = series;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HISeries getSeries(){ return series; }
-
-	private Object shapeArgs;
-	/**
- The attributes of the rendered SVG shape like in `column` or `pie` series. 
-	*/
-	public void setShapeArgs(Object shapeArgs) {
-		this.shapeArgs = shapeArgs;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object getShapeArgs(){ return shapeArgs; }
 
 	private Boolean sliced;
 	/**
@@ -268,18 +247,6 @@ public class HIPoint extends HIFoundation {
 
 	public Number getTotal(){ return total; }
 
-	private Number value;
-	/**
- Heatmap series only. The value of the point, resulting in a color controled by options as set in the colorAxis configuration. 
-	*/
-	public void setValue(Number value) {
-		this.value = value;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getValue(){ return value; }
-
 	private Boolean visible;
 	/**
  For certain series types, like pie charts, where individual points can be shown or hidden. 
@@ -304,18 +271,6 @@ public class HIPoint extends HIFoundation {
 
 	public Number getX(){ return x; }
 
-	private Number x2;
-	/**
- The ending X value of the range point. 
-	*/
-	public void setX2(Number x2) {
-		this.x2 = x2;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getX2(){ return x2; }
-
 	private Number y;
 	/**
  The y value of the point. 
@@ -328,6 +283,16 @@ public class HIPoint extends HIFoundation {
 
 	public Number getY(){ return y; }
 
+	private HIEvents events;
+	public void setEvents(HIEvents events) {
+		this.events = events;
+		this.events.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIEvents getEvents(){ return events; }
+
 
 
 	public HIPoint() {
@@ -339,38 +304,44 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.events != null) {
-			params.put("events", this.events.getParams());
+		if (this.descriptionFormatter != null) {
+			params.put("descriptionFormatter", this.descriptionFormatter);
+		}
+		if (this.valueDescriptionFormat != null) {
+			params.put("valueDescriptionFormat", this.valueDescriptionFormat);
+		}
+		if (this.valueSuffix != null) {
+			params.put("valueSuffix", this.valueSuffix);
+		}
+		if (this.describeNull != null) {
+			params.put("describeNull", this.describeNull);
+		}
+		if (this.dateFormat != null) {
+			params.put("dateFormat", this.dateFormat);
+		}
+		if (this.dateFormatter != null) {
+			params.put("dateFormatter", this.dateFormatter);
+		}
+		if (this.valuePrefix != null) {
+			params.put("valuePrefix", this.valuePrefix);
+		}
+		if (this.descriptionFormat != null) {
+			params.put("descriptionFormat", this.descriptionFormat);
+		}
+		if (this.valueDecimals != null) {
+			params.put("valueDecimals", this.valueDecimals);
 		}
 		if (this.category != null) {
 			params.put("category", this.category);
 		}
 		if (this.color != null) {
-			params.put("color", this.color);
+			params.put("color", this.color.getData());
 		}
 		if (this.colorIndex != null) {
 			params.put("colorIndex", this.colorIndex);
 		}
-		if (this.dataGroup != null) {
-			params.put("dataGroup", this.dataGroup.getParams());
-		}
-		if (this.high != null) {
-			params.put("high", this.high);
-		}
-		if (this.index != null) {
-			params.put("index", this.index);
-		}
-		if (this.low != null) {
-			params.put("low", this.low);
-		}
-		if (this.mock != null) {
-			params.put("mock", this.mock);
-		}
 		if (this.name != null) {
 			params.put("name", this.name);
-		}
-		if (this.options != null) {
-			params.put("options", this.options.getParams());
 		}
 		if (this.percentage != null) {
 			params.put("percentage", this.percentage);
@@ -381,20 +352,8 @@ public HashMap<String, Object> getParams() {
 		if (this.plotY != null) {
 			params.put("plotY", this.plotY);
 		}
-		if (this.pointPadding != null) {
-			params.put("pointPadding", this.pointPadding);
-		}
-		if (this.properties != null) {
-			params.put("properties", this.properties);
-		}
 		if (this.selected != null) {
 			params.put("selected", this.selected);
-		}
-		if (this.series != null) {
-			params.put("series", this.series.getParams());
-		}
-		if (this.shapeArgs != null) {
-			params.put("shapeArgs", this.shapeArgs);
 		}
 		if (this.sliced != null) {
 			params.put("sliced", this.sliced);
@@ -402,20 +361,17 @@ public HashMap<String, Object> getParams() {
 		if (this.total != null) {
 			params.put("total", this.total);
 		}
-		if (this.value != null) {
-			params.put("value", this.value);
-		}
 		if (this.visible != null) {
 			params.put("visible", this.visible);
 		}
 		if (this.x != null) {
 			params.put("x", this.x);
 		}
-		if (this.x2 != null) {
-			params.put("x2", this.x2);
-		}
 		if (this.y != null) {
 			params.put("y", this.y);
+		}
+		if (this.events != null) {
+			params.put("events", this.events.getParams());
 		}
 		return params;
 	}

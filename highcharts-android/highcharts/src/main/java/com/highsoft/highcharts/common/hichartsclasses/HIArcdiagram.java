@@ -47,7 +47,7 @@ public class HIArcdiagram extends HISeries {
 
 	private Number linkWeight;
 	/**
- The global link weight. If not set, width is calculated per link, depending on the weight value. 
+ The global link weight, in pixels. If not set, width is calculated per link, depending on the weight value. 
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setLinkWeight(Number linkWeight) {
 		this.linkWeight = linkWeight;

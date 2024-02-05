@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 
 
-public class HIDefs extends HIFoundation { 
+public class HIDefs extends HIFoundation {
 
 	private HIASTNode reverseArrow;
 	public void setReverseArrow(HIASTNode reverseArrow) {

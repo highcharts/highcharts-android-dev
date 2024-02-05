@@ -20,7 +20,7 @@ public class HIDrilldown extends HIFoundation {
 
 	private HICSSObject activeDataLabelStyle;
 	/**
- Additional styles to apply to the data label of a point that has drilldown data. By defaults it is underlined and blue to invite to interaction. In styled mode, active data label styles can be applied with the .highcharts-drilldown-data-label class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/labels/">Label styles</a>
+ Additional styles to apply to the data label of a point that has drilldown data. By defaults it is underlined and blue to invite to interaction. In styled mode, active data label styles can be applied with the `.highcharts-drilldown-data-label` class. 
  <br><br><b>defaults:</b><br><br>&ensp;{ "cursor": "pointer", "color": "#003399", "fontWeight": "bold", "textDecoration": "underline" }	*/
 	public void setActiveDataLabelStyle(HICSSObject activeDataLabelStyle) {
 		this.activeDataLabelStyle = activeDataLabelStyle;
@@ -45,7 +45,7 @@ public class HIDrilldown extends HIFoundation {
 
 	private Boolean allowPointDrilldown;
 	/**
- When this option is false, clicking a single point will drill down all points in the same category, equivalent to clicking the X axis label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/allowpointdrilldown-false/">Don't allow point drilldown</a>
+ When this option is false, clicking a single point will drill down all points in the same category, equivalent to clicking the X axis label. 
  <br><br><b>defaults:</b><br><br>&ensp;true	*/
 	public void setAllowPointDrilldown(Boolean allowPointDrilldown) {
 		this.allowPointDrilldown = allowPointDrilldown;
@@ -57,7 +57,7 @@ public class HIDrilldown extends HIFoundation {
 
 	private HIAnimationOptionsObject animation;
 	/**
- Set the animation for all drilldown animations. Animation of a drilldown occurs when drilling between a column point and a column series, or a pie slice and a full pie series. Drilldown can still be used between series and points of different types, but animation will not occur. The animation can either be set as a boolean or a configuration object. If true, it will use the 'swing' jQuery easing and a duration of 500 ms. If used as a configuration object, the following properties are supported: - duration: The duration of the animation in milliseconds. - easing: A string reference to an easing function set on the Math  object. See  [the easing demo](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/). 
+ Set the animation for all drilldown animations. Animation of a drilldown occurs when drilling between a column point and a column series, or a pie slice and a full pie series. Drilldown can still be used between series and points of different types, but animation will not occur. The animation can either be set as a boolean or a configuration object. If `true`, it will use the 'swing' jQuery easing and a duration of 500 ms. If used as a configuration object, the following properties are supported: - `duration`: The duration of the animation in milliseconds. - `easing`: A string reference to an easing function set on the `Math`  object. See  [the easing demo](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/). 
 	*/
 	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
@@ -69,7 +69,7 @@ public class HIDrilldown extends HIFoundation {
 
 	private ArrayList series;
 	/**
- An array of series configurations for the drill down. Each series configuration uses the same syntax as the series option set. These drilldown series are hidden by defaults. The drilldown series is linked to the parent series' point by its id. 
+ An array of series configurations for the drill down. Each series configuration uses the same syntax as the `series` option set. These drilldown series are hidden by defaults. The drilldown series is linked to the parent series' point by its `id`. 
 	*/
 	public void setSeries(ArrayList series) {
 		this.series = series;
@@ -81,7 +81,7 @@ public class HIDrilldown extends HIFoundation {
 
 	private HICSSObject activeAxisLabelStyle;
 	/**
- Additional styles to apply to the X axis label for a point that has drilldown data. By defaults it is underlined and blue to invite to interaction. In styled mode, active label styles can be set with the .highcharts-drilldown-axis-label class. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/drilldown/labels/">Label styles</a>
+ Additional styles to apply to the X axis label for a point that has drilldown data. By defaults it is underlined and blue to invite to interaction. In styled mode, active label styles can be set with the `.highcharts-drilldown-axis-label` class. 
  <br><br><b>defaults:</b><br><br>&ensp;{ "cursor": "pointer", "color": "#003399", "fontWeight": "bold", "textDecoration": "underline" }	*/
 	public void setActiveAxisLabelStyle(HICSSObject activeAxisLabelStyle) {
 		this.activeAxisLabelStyle = activeAxisLabelStyle;

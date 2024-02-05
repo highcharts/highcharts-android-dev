@@ -18,14 +18,15 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 public class HILinkTextPath extends HIFoundation { 
 
-	private HISVGAttributes attributes;
-	public void setAttributes(HISVGAttributes attributes) {
+	private HIAttributes attributes;
+	public void setAttributes(HIAttributes attributes) {
 		this.attributes = attributes;
+		this.attributes.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HISVGAttributes getAttributes(){ return attributes; }
+	public HIAttributes getAttributes(){ return attributes; }
 
 	private Boolean enabled;
 	public void setEnabled(Boolean enabled) {
@@ -35,6 +36,38 @@ public class HILinkTextPath extends HIFoundation {
 	}
 
 	public Boolean getEnabled(){ return enabled; }
+
+	private Boolean defer;
+	public void setDefer(Boolean defer) {
+		this.defer = defer;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getDefer(){ return defer; }
+
+	private HIStyle style;
+	public void setStyle(HIStyle style) {
+		this.style = style;
+		this.style.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIStyle getStyle(){ return style; }
+
+	private HILinkTextPath linkTextPath;
+	/**
+ Options for a _link_ label text which should follow link connection. Border and background are disabled for a label that follows a path. **Note:** Only SVG-based renderer supports this option. Setting `useHTML` to true will disable this option. 
+	*/
+	public void setLinkTextPath(HILinkTextPath linkTextPath) {
+		this.linkTextPath = linkTextPath;
+		this.linkTextPath.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HILinkTextPath getLinkTextPath(){ return linkTextPath; }
 
 
 
@@ -52,6 +85,15 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.enabled != null) {
 			params.put("enabled", this.enabled);
+		}
+		if (this.defer != null) {
+			params.put("defer", this.defer);
+		}
+		if (this.style != null) {
+			params.put("style", this.style.getParams());
+		}
+		if (this.linkTextPath != null) {
+			params.put("linkTextPath", this.linkTextPath.getParams());
 		}
 		return params;
 	}

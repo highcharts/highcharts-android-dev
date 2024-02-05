@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -30,21 +31,21 @@ public class HINodes extends HIFoundation {
 
 	public Number getColorIndex(){ return colorIndex; }
 
-	private Object color;
+	private HIColor color;
 	/**
  The color of the auto generated node. 
 	*/
-	public void setColor(Object color) {
+	public void setColor(HIColor color) {
 		this.color = color;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getColor(){ return color; }
+	public HIColor getColor(){ return color; }
 
 	private ArrayList <HIDataLabels> dataLabels;
 	/**
- Individual data label for each node. The options are the same as the ones for series.networkgraph.dataLabels. 
+ Individual data label for each node. The options are the same as the ones for `series.networkgraph.dataLabels`. 
 	*/
 	public void setDataLabels(ArrayList dataLabels) {
 		this.dataLabels = dataLabels;
@@ -56,7 +57,7 @@ public class HINodes extends HIFoundation {
 
 	private Number mass;
 	/**
- Mass of the node. By defaults, each node has mass equal to it's marker radius . Mass is used to determine how two connected nodes should affect each other: Attractive force is multiplied by the ratio of two connected nodes; if a big node has weights twice as the small one, then the small one will move towards the big one twice faster than the big one to the small one . <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-networkgraph/ragdoll/">Mass determined by marker.radius</a>
+ Mass of the node. By defaults, each node has mass equal to it's marker radius . Mass is used to determine how two connected nodes should affect each other: Attractive force is multiplied by the ratio of two connected nodes; if a big node has weights twice as the small one, then the small one will move towards the big one twice faster than the big one to the small one . 
 	*/
 	public void setMass(Number mass) {
 		this.mass = mass;
@@ -66,9 +67,22 @@ public class HINodes extends HIFoundation {
 
 	public Number getMass(){ return mass; }
 
+	private HIMarker marker;
+	/**
+ Options for the node markers. 
+	*/
+	public void setMarker(HIMarker marker) {
+		this.marker = marker;
+		this.marker.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIMarker getMarker(){ return marker; }
+
 	private String id;
 	/**
- The id of the auto-generated node, refering to the from or to setting of the link. 
+ The id of the auto-generated node, refering to the `from` or `to` setting of the link. 
 	*/
 	public void setId(String id) {
 		this.id = id;
@@ -80,7 +94,7 @@ public class HINodes extends HIFoundation {
 
 	private String name;
 	/**
- The name to display for the node in data labels and tooltips. Use this when the name is different from the id. Where the id must be unique for each node, this is not necessary for the name. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-networkgraph/data-options/">Networkgraph diagram with node options</a>
+ The name to display for the node in data labels and tooltips. Use this when the name is different from the `id`. Where the id must be unique for each node, this is not necessary for the name. 
 	*/
 	public void setName(String name) {
 		this.name = name;
@@ -92,7 +106,7 @@ public class HINodes extends HIFoundation {
 
 	private Object /* Number, String */ offsetVertical;
 	/**
- The vertical offset of a node. Positive values shift the node down, negative shift it up. If a percantage string is given, the node is offset by the percentage of the node size. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-node-column/">Specified node offset</a>
+ The vertical offset of a node. Positive values shift the node down, negative shift it up. If a percantage string is given, the node is offset by the percentage of the node size. 
 	*/
 	public void setOffsetVertical(Object /* Number, String */ offsetVertical) {
 		this.offsetVertical = offsetVertical;
@@ -104,7 +118,7 @@ public class HINodes extends HIFoundation {
 
 	private Number level;
 	/**
- An optional level index of where to place the node. The defaults behaviour is to place it next to the preceding node. Alias of nodes.column, but in inverted sankeys and org charts, the levels are laid out as rows. 
+ An optional level index of where to place the node. The defaults behaviour is to place it next to the preceding node. Alias of `nodes.column`, but in inverted sankeys and org charts, the levels are laid out as rows. 
 	*/
 	public void setLevel(Number level) {
 		this.level = level;
@@ -116,7 +130,7 @@ public class HINodes extends HIFoundation {
 
 	private Object /* Number, String */ offsetHorizontal;
 	/**
- The horizontal offset of a node. Positive values shift the node right, negative shift it left. If a percantage string is given, the node is offset by the percentage of the node size. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-node-column/">Specified node offset</a>
+ The horizontal offset of a node. Positive values shift the node right, negative shift it left. If a percantage string is given, the node is offset by the percentage of the node size. 
 	*/
 	public void setOffsetHorizontal(Object /* Number, String */ offsetHorizontal) {
 		this.offsetHorizontal = offsetHorizontal;
@@ -128,7 +142,7 @@ public class HINodes extends HIFoundation {
 
 	private Number column;
 	/**
- An optional column index of where to place the node. The defaults behaviour is to place it next to the preceding node. Note that this option name is counter intuitive in inverted charts, like for example an organization chart rendered top down. In this case the "columns" are horizontal. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/sankey-node-column/">Specified node column</a>
+ An optional column index of where to place the node. The defaults behaviour is to place it next to the preceding node. Note that this option name is counter intuitive in inverted charts, like for example an organization chart rendered top down. In this case the "columns" are horizontal. 
 	*/
 	public void setColumn(Number column) {
 		this.column = column;
@@ -137,6 +151,54 @@ public class HINodes extends HIFoundation {
 	}
 
 	public Number getColumn(){ return column; }
+
+	private String image;
+	/**
+ An image for the node card, will be inserted by the defaults `dataLabel.nodeFormatter`. 
+	*/
+	public void setImage(String image) {
+		this.image = image;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getImage(){ return image; }
+
+	private String title;
+	/**
+ The job title for the node card, will be inserted by the defaults `dataLabel.nodeFormatter`. 
+	*/
+	public void setTitle(String title) {
+		this.title = title;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTitle(){ return title; }
+
+	private String layout;
+	/**
+ Layout for the node's children. If `hanging`, this node's children will hang below their parent, allowing a tighter packing of nodes in the diagram. Note: Since @next version, the `hanging` layout is set by defaults for children of a parent using `hanging` layout. 
+ <br><br><b>defaults:</b><br><br>&ensp;normal	*/
+	public void setLayout(String layout) {
+		this.layout = layout;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getLayout(){ return layout; }
+
+	private String definition;
+	/**
+ The job description for the node card, will be inserted by the defaults `dataLabel.nodeFormatter`. 
+	*/
+	public void setDefinition(String definition) {
+		this.definition = definition;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDefinition(){ return definition; }
 
 
 
@@ -153,7 +215,7 @@ public HashMap<String, Object> getParams() {
 			params.put("colorIndex", this.colorIndex);
 		}
 		if (this.color != null) {
-			params.put("color", this.color);
+			params.put("color", this.color.getData());
 		}
 		if (this.dataLabels != null) {
 			ArrayList<Object> array = new ArrayList<>();
@@ -169,6 +231,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.mass != null) {
 			params.put("mass", this.mass);
+		}
+		if (this.marker != null) {
+			params.put("marker", this.marker.getParams());
 		}
 		if (this.id != null) {
 			params.put("id", this.id);
@@ -187,6 +252,18 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.column != null) {
 			params.put("column", this.column);
+		}
+		if (this.image != null) {
+			params.put("image", this.image);
+		}
+		if (this.title != null) {
+			params.put("title", this.title);
+		}
+		if (this.layout != null) {
+			params.put("layout", this.layout);
+		}
+		if (this.definition != null) {
+			params.put("definition", this.definition);
 		}
 		return params;
 	}

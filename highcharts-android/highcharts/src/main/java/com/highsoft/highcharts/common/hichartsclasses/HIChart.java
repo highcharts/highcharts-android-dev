@@ -32,18 +32,6 @@ public class HIChart extends HIFoundation {
 
 	public HIParallelAxes getParallelAxes(){ return parallelAxes; }
 
-	private Boolean polar;
-	/**
- When true, cartesian charts like line, spline, area and column are transformed into the polar coordinate system. This produces _polar charts_, also known as _radar charts_. 
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setPolar(Boolean polar) {
-		this.polar = polar;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getPolar(){ return polar; }
-
 	private Number borderRadius;
 	/**
  The corner radius of the outer chart border. 
@@ -91,6 +79,18 @@ public class HIChart extends HIFoundation {
 	}
 
 	public Object /* Number, String */ getHeight(){ return height; }
+
+	private HICSSObject style;
+	/**
+ Additional CSS styles to apply inline to the container `div` and the root SVG. Since v11, the root font size is 1rem by defaults, and all child element are given a relative `em` font size by defaults. This allows implementers to control all the chart's font sizes by only setting the root level. 
+ <br><br><b>defaults:</b><br><br>&ensp;{"fontFamily": Helvetica, Arial, sans-serif","fontSize":"1rem"}	*/
+	public void setStyle(HICSSObject style) {
+		this.style = style;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HICSSObject getStyle(){ return style; }
 
 	private Boolean alignTicks;
 	/**
@@ -188,17 +188,17 @@ public class HIChart extends HIFoundation {
 
 	public String getClassName(){ return className; }
 
-	private HICSSObject style;
+	private Boolean polar;
 	/**
- Additional CSS styles to apply inline to the container `div` and the root SVG. Since v11, the root font size is 1rem by defaults, and all child element are given a relative `em` font size by defaults. This allows implementers to control all the chart's font sizes by only setting the root level. 
- <br><br><b>defaults:</b><br><br>&ensp;{"fontFamily": Helvetica, Arial, sans-serif","fontSize":"1rem"}	*/
-	public void setStyle(HICSSObject style) {
-		this.style = style;
+ When true, cartesian charts like line, spline, area and column are transformed into the polar coordinate system. This produces _polar charts_, also known as _radar charts_. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setPolar(Boolean polar) {
+		this.polar = polar;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HICSSObject getStyle(){ return style; }
+	public Boolean getPolar(){ return polar; }
 
 	private String renderTo;
 	/**
@@ -358,6 +358,18 @@ public class HIChart extends HIFoundation {
 	}
 
 	public Number getSpacingLeft(){ return spacingLeft; }
+
+	private Number axisLayoutRuns;
+	/**
+ When a chart with an x and a y-axis is rendered, we first pre-render the labels of both in order to measure them. Then, if either of the axis labels take up so much space that it significantly affects the length of the other axis, we repeat the process. By defaults we stop at two axis layout runs, but it may be that the second run also alter the space required by either axis, for example if it causes the labels to rotate. In this situation, a subsequent redraw of the chart may cause the tick and label placement to change for apparently no reason. Use the `axisLayoutRuns` option to set the maximum allowed number of repetitions. But keep in mind that the defaults value of 2 is set because every run costs performance time. **Note:** Changing that option to higher than the defaults might decrease performance significantly, especially with bigger sets of data. 
+ <br><br><b>defaults:</b><br><br>&ensp;2	*/
+	public void setAxisLayoutRuns(Number axisLayoutRuns) {
+		this.axisLayoutRuns = axisLayoutRuns;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getAxisLayoutRuns(){ return axisLayoutRuns; }
 
 	private ArrayList<Number> spacing;
 	/**
@@ -615,9 +627,6 @@ public HashMap<String, Object> getParams() {
 		if (this.parallelAxes != null) {
 			params.put("parallelAxes", this.parallelAxes.getParams());
 		}
-		if (this.polar != null) {
-			params.put("polar", this.polar);
-		}
 		if (this.borderRadius != null) {
 			params.put("borderRadius", this.borderRadius);
 		}
@@ -629,6 +638,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.height != null) {
 			params.put("height", this.height);
+		}
+		if (this.style != null) {
+			params.put("style", this.style.getParams());
 		}
 		if (this.alignTicks != null) {
 			params.put("alignTicks", this.alignTicks);
@@ -654,8 +666,8 @@ public HashMap<String, Object> getParams() {
 		if (this.className != null) {
 			params.put("className", this.className);
 		}
-		if (this.style != null) {
-			params.put("style", this.style.getParams());
+		if (this.polar != null) {
+			params.put("polar", this.polar);
 		}
 		if (this.renderTo != null) {
 			params.put("renderTo", this.renderTo);
@@ -695,6 +707,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.spacingLeft != null) {
 			params.put("spacingLeft", this.spacingLeft);
+		}
+		if (this.axisLayoutRuns != null) {
+			params.put("axisLayoutRuns", this.axisLayoutRuns);
 		}
 		if (this.spacing != null) {
 			ArrayList<Object> array = new ArrayList<>();

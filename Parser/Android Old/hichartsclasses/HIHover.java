@@ -48,7 +48,7 @@ public class HIHover extends HIFoundation {
 
 	private Number width;
 	/**
- Set the marker's fixed width on hover state. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-marker-states-hover-width">70px fixed marker's width and height on hover</a>
+ Set the marker's fixed width on hover state. 
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setWidth(Number width) {
 		this.width = width;
@@ -60,7 +60,7 @@ public class HIHover extends HIFoundation {
 
 	private Number heightPlus;
 	/**
- The number of pixels to increase the height of the selected point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-marker-states-hover-widthplus">20px greater width and height on hover</a>
+ The number of pixels to increase the height of the selected point. 
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setHeightPlus(Number heightPlus) {
 		this.heightPlus = heightPlus;
@@ -72,7 +72,7 @@ public class HIHover extends HIFoundation {
 
 	private Number lineWidthPlus;
 	/**
- The additional line width for a hovered point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-marker-states-hover-linewidthplus">5 pixels wider lineWidth on hover</a>
+ The additional line width for a hovered point. 
 	*/
 	public void setLineWidthPlus(Number lineWidthPlus) {
 		this.lineWidthPlus = lineWidthPlus;
@@ -84,7 +84,7 @@ public class HIHover extends HIFoundation {
 
 	private Number widthPlus;
 	/**
- The number of pixels to increase the width of the selected point. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-marker-states-hover-widthplus">20px greater width and height on hover</a>
+ The number of pixels to increase the width of the selected point. 
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setWidthPlus(Number widthPlus) {
 		this.widthPlus = widthPlus;
@@ -96,7 +96,7 @@ public class HIHover extends HIFoundation {
 
 	private Number height;
 	/**
- Set the marker's fixed height on hover state. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/maps/plotoptions/heatmap-marker-states-hover-width">70px fixed marker's width and height on hover</a>
+ Set the marker's fixed height on hover state. 
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setHeight(Number height) {
 		this.height = height;
@@ -108,8 +108,8 @@ public class HIHover extends HIFoundation {
 
 	private Boolean enabled;
 	/**
- Enable or disable the point marker. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-enabled/">Disabled hover state</a>
-	*/
+ Enable or disable the point marker. 
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -120,7 +120,7 @@ public class HIHover extends HIFoundation {
 
 	private Number radius;
 	/**
- The radius of the point marker. In hover state, it defaultss to the normal state's radius + 2 as per the radiusPlus option. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-radius/">10px radius</a>
+ The radius of the point marker. In hover state, it defaultss to the normal state's radius + 2 as per the `radiusPlus` option. 
 	*/
 	public void setRadius(Number radius) {
 		this.radius = radius;
@@ -132,7 +132,7 @@ public class HIHover extends HIFoundation {
 
 	private HIColor fillColor;
 	/**
- The fill color of the marker in hover state. When undefined, the series' or point's fillColor for normal state is used. 
+ The fill color of the marker in hover state. When `undefined`, the series' or point's fillColor for normal state is used. 
 	*/
 	public void setFillColor(HIColor fillColor) {
 		this.fillColor = fillColor;
@@ -144,7 +144,7 @@ public class HIHover extends HIFoundation {
 
 	private HIColor lineColor;
 	/**
- The color of the point marker's outline. When undefined, the series' or point's lineColor for normal state is used. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-linecolor/">White fill color, black line color</a>
+ The color of the point marker's outline. When `undefined`, the series' or point's lineColor for normal state is used. 
 	*/
 	public void setLineColor(HIColor lineColor) {
 		this.lineColor = lineColor;
@@ -156,7 +156,7 @@ public class HIHover extends HIFoundation {
 
 	private Number lineWidth;
 	/**
- The width of the point marker's outline. When undefined, the series' or point's lineWidth for normal state is used. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-marker-states-hover-linewidth/">3px line width</a>
+ The width of the point marker's outline. When `undefined`, the series' or point's lineWidth for normal state is used. 
 	*/
 	public void setLineWidth(Number lineWidth) {
 		this.lineWidth = lineWidth;
@@ -190,8 +190,8 @@ public class HIHover extends HIFoundation {
 
 	private Number brightness;
 	/**
- How much to brighten the point on interaction. Requires the main color to be defined in hex or rgb(a) format. In styled mode, the hover brightening is by defaults replaced with a fill-opacity set in the .highcharts-point:hover rule. 
-	*/
+ How much to brighten the point on interaction. Requires the main color to be defined in hex or rgb(a) format. In styled mode, the hover brightening is by defaults replaced with a fill-opacity set in the `.highcharts-point:hover` rule. 
+ <br><br><b>defaults:</b><br><br>&ensp;0.2	*/
 	public void setBrightness(Number brightness) {
 		this.brightness = brightness;
 		this.setChanged();
@@ -203,7 +203,7 @@ public class HIHover extends HIFoundation {
 	private Number linkOpacity;
 	/**
  Opacity for the links between nodes in the sankey diagram in hover mode. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setLinkOpacity(Number linkOpacity) {
 		this.linkOpacity = linkOpacity;
 		this.setChanged();

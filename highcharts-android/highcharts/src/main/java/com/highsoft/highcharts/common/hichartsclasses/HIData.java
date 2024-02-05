@@ -320,6 +320,18 @@ public class HIData extends HIFoundation {
 
 	public Boolean getSwitchRowsAndColumns(){ return switchRowsAndColumns; }
 
+	private ArrayList columnTypes;
+	/**
+ An array option that specifies the data type for each column in the series loaded within the data module. Possible values: `"string"`, `"number"`, `"float"`, `"date"`. 
+	*/
+	public void setColumnTypes(ArrayList columnTypes) {
+		this.columnTypes = columnTypes;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList getColumnTypes(){ return columnTypes; }
+
 	private String decimalPoint;
 	/**
  The decimal point used for parsing numbers in the CSV. If both this and data.delimiter is set to `undefined`, the parser will attempt to deduce the decimal point automatically. 
@@ -1089,7 +1101,6 @@ public HashMap<String, Object> getParams() {
 				params.put(entry.getKey(), entry.getValue());
 			}
 		}
-
 		if (this.googleSpreadsheetRange != null) {
 			params.put("googleSpreadsheetRange", this.googleSpreadsheetRange);
 		}
@@ -1188,6 +1199,18 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.switchRowsAndColumns != null) {
 			params.put("switchRowsAndColumns", this.switchRowsAndColumns);
+		}
+		if (this.columnTypes != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.columnTypes) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("columnTypes", array);
 		}
 		if (this.decimalPoint != null) {
 			params.put("decimalPoint", this.decimalPoint);

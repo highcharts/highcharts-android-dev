@@ -136,18 +136,6 @@ public class HITitle extends HIFoundation {
 
 	public Boolean getUseHTML(){ return useHTML; }
 
-	private Number rotation;
-	/**
- The rotation of the text in degrees. 0 is horizontal, 270 is vertical reading from bottom to top. 
- <br><br><b>defaults:</b><br><br>&ensp;270	*/
-	public void setRotation(Number rotation) {
-		this.rotation = rotation;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getRotation(){ return rotation; }
-
 	private Boolean reserveSpace;
 	/**
  Whether to reserve space for the title when laying out the axis. 
@@ -195,6 +183,18 @@ public class HITitle extends HIFoundation {
 	}
 
 	public Number getOffset(){ return offset; }
+
+	private Number rotation;
+	/**
+ The rotation of the text in degrees. 0 is horizontal, 270 is vertical reading from bottom to top. Defaults to 0 for horizontal axes, 270 for left-side axes and 90 for right-side axes. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setRotation(Number rotation) {
+		this.rotation = rotation;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getRotation(){ return rotation; }
 
 	private String textAlign;
 	/**
@@ -249,9 +249,6 @@ public HashMap<String, Object> getParams() {
 		if (this.useHTML != null) {
 			params.put("useHTML", this.useHTML);
 		}
-		if (this.rotation != null) {
-			params.put("rotation", this.rotation);
-		}
 		if (this.reserveSpace != null) {
 			params.put("reserveSpace", this.reserveSpace);
 		}
@@ -263,6 +260,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.offset != null) {
 			params.put("offset", this.offset);
+		}
+		if (this.rotation != null) {
+			params.put("rotation", this.rotation);
 		}
 		if (this.textAlign != null) {
 			params.put("textAlign", this.textAlign);

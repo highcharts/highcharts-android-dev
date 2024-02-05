@@ -21,7 +21,7 @@ public class HIShapeOptions extends HIFoundation {
 
 	private String src;
 	/**
- The URL for an image to use as the annotation shape. Note, type has to be set to 'image'. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape-src/">Define a marker image url for annotations</a>
+ The URL for an image to use as the annotation shape. Note, type has to be set to `'image'`. 
 	*/
 	public void setSrc(String src) {
 		this.src = src;
@@ -33,7 +33,7 @@ public class HIShapeOptions extends HIFoundation {
 
 	private String dashStyle;
 	/**
- Name of the dash style to use for the shape's stroke. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/">Possible values demonstrated</a>
+ Name of the dash style to use for the shape's stroke. 
 	*/
 	public void setDashStyle(String dashStyle) {
 		this.dashStyle = dashStyle;
@@ -45,8 +45,8 @@ public class HIShapeOptions extends HIFoundation {
 
 	private Number strokeWidth;
 	/**
- The pixel stroke width of the shape. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
-	*/
+ The pixel stroke width of the shape. 
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
 	public void setStrokeWidth(Number strokeWidth) {
 		this.strokeWidth = strokeWidth;
 		this.setChanged();
@@ -69,7 +69,7 @@ public class HIShapeOptions extends HIFoundation {
 
 	private Number ry;
 	/**
- The radius of the shape in y direction. Used for the ellipse. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/ellipse/">Ellipse annotation</a>
+ The radius of the shape in y direction. Used for the ellipse. 
 	*/
 	public void setRy(Number ry) {
 		this.ry = ry;
@@ -81,7 +81,7 @@ public class HIShapeOptions extends HIFoundation {
 
 	private Number height;
 	/**
- The height of the shape. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
+ The height of the shape. 
 	*/
 	public void setHeight(Number height) {
 		this.height = height;
@@ -93,7 +93,7 @@ public class HIShapeOptions extends HIFoundation {
 
 	private Number width;
 	/**
- The width of the shape. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
+ The width of the shape. 
 	*/
 	public void setWidth(Number width) {
 		this.width = width;
@@ -103,21 +103,21 @@ public class HIShapeOptions extends HIFoundation {
 
 	public Number getWidth(){ return width; }
 
-	private Object stroke;
+	private HIColor stroke;
 	/**
- The color of the shape's stroke. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
-	*/
-	public void setStroke(Object stroke) {
+ The color of the shape's stroke. 
+ <br><br><b>defaults:</b><br><br>&ensp;rgba(0, 0, 0, 0.75)	*/
+	public void setStroke(HIColor stroke) {
 		this.stroke = stroke;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getStroke(){ return stroke; }
+	public HIColor getStroke(){ return stroke; }
 
 	private Number r;
 	/**
- The radius of the shape. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
+ The radius of the shape. 
 	*/
 	public void setR(Number r) {
 		this.r = r;
@@ -142,7 +142,7 @@ public class HIShapeOptions extends HIFoundation {
 	private Number snap;
 	/**
  Defines additional snapping area around an annotation making this annotation to focus. Defined in pixels. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;2	*/
 	public void setSnap(Number snap) {
 		this.snap = snap;
 		this.setChanged();
@@ -153,7 +153,7 @@ public class HIShapeOptions extends HIFoundation {
 
 	private String type;
 	/**
- The type of the shape. Avaliable options are circle, rect and ellipse. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/ellipse/">Ellipse annotation</a>
+ The type of the shape. Avaliable options are circle, rect and ellipse. 
  <br><br><b>defaults:</b><br><br>&ensp;rect	*/
 	public void setType(String type) {
 		this.type = type;
@@ -165,8 +165,8 @@ public class HIShapeOptions extends HIFoundation {
 
 	private HIColor fill;
 	/**
- The color of the shape's fill. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/annotations/shape/">Basic shape annotation</a>
-	*/
+ The color of the shape's fill. 
+ <br><br><b>defaults:</b><br><br>&ensp;rgba(0, 0, 0, 0.75)	*/
 	public void setFill(HIColor fill) {
 		this.fill = fill;
 		this.setChanged();
@@ -208,7 +208,7 @@ public HashMap<String, Object> getParams() {
 			params.put("width", this.width);
 		}
 		if (this.stroke != null) {
-			params.put("stroke", this.stroke);
+			params.put("stroke", this.stroke.getData());
 		}
 		if (this.r != null) {
 			params.put("r", this.r);

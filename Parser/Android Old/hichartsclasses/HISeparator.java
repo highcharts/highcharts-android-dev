@@ -29,7 +29,7 @@ public class HISeparator extends HIFoundation {
 
 	private HICSSObject style;
 	/**
- CSS styles for the breadcrumbs separator. In styled mode, the breadcrumbs separators are styled by the .highcharts-separator rule with its different states. 
+ CSS styles for the breadcrumbs separator. In styled mode, the breadcrumbs separators are styled by the `.highcharts-separator` rule with its different states. 
 	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;

@@ -20,7 +20,7 @@ public class HIAnimation extends HIFoundation {
 
 	private Number defer;
 	/**
- The animation delay time in milliseconds. Set to 0 renders annotation immediately. As undefined inherits defer time from the series.animation.defer. 
+ The animation delay time in milliseconds. Set to `0` renders annotation immediately. As `undefined` inherits defer time from the `series.animation.defer`. 
 	*/
 	public void setDefer(Number defer) {
 		this.defer = defer;
