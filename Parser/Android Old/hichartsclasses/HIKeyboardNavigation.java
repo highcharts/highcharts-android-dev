@@ -21,7 +21,7 @@ public class HIKeyboardNavigation extends HIFoundation {
 	private Boolean enabled;
 	/**
  Enable keyboard navigation for the legend. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -33,7 +33,7 @@ public class HIKeyboardNavigation extends HIFoundation {
 	private Boolean wrapAround;
 	/**
  Whether or not to wrap around when reaching the end of arrow-key navigation for an element in the chart. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setWrapAround(Boolean wrapAround) {
 		this.wrapAround = wrapAround;
 		this.setChanged();
@@ -44,7 +44,7 @@ public class HIKeyboardNavigation extends HIFoundation {
 
 	private HIFocusBorder focusBorder;
 	/**
- Options for the focus border drawn around elements while navigating through them. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/accessibility/custom-focus">Custom focus ring</a>
+ Options for the focus border drawn around elements while navigating through them. 
 	*/
 	public void setFocusBorder(HIFocusBorder focusBorder) {
 		this.focusBorder = focusBorder;
@@ -57,7 +57,7 @@ public class HIKeyboardNavigation extends HIFoundation {
 
 	private ArrayList<String> order;
 	/**
- Order of tab navigation in the chart. Determines which elements are tabbed to first. Available elements are: series, zoom, rangeSelector, chartMenu, legend and container. In addition, any custom components can be added here. Adding container first in order will make the keyboard focus stop on the chart container first, requiring the user to tab again to enter the chart. 
+ Order of tab navigation in the chart. Determines which elements are tabbed to first. Available elements are: `series`, `zoom`, `rangeSelector`, `navigator`, `chartMenu`, `legend` and `container`. In addition, any custom components can be added here. Adding `container` first in order will make the keyboard focus stop on the chart container first, requiring the user to tab again to enter the chart. 
 	*/
 	public void setOrder(ArrayList<String> order) {
 		this.order = order;

@@ -338,17 +338,17 @@ public class HIXAxis extends HIFoundation {
 
 	public Number getMinTickInterval(){ return minTickInterval; }
 
-	private Object /* Number, String */ minorTickInterval;
+	private Number minorTickInterval;
 	/**
- Specific tick interval in axis units for the minor ticks. On a linear axis, if `"auto"`, the minor tick interval is calculated as a fifth of the tickInterval. If `null` or `undefined`, minor ticks are not shown. On logarithmic axes, the unit is the power of the value. For example, setting the minorTickInterval to 1 puts one tick on each of 0.1, 1, 10, 100 etc. Setting the minorTickInterval to 0.1 produces 9 ticks between 1 and 10, 10 and 100 etc. If user settings dictate minor ticks to become too dense, they don't make sense, and will be ignored to prevent performance problems. 
+ Specific tick interval in axis units for the minor ticks. On a linear axis, if `"auto"`, the minor tick interval is calculated as a fifth of the tickInterval. If `undefined`, minor ticks are not shown. On logarithmic axes, the unit is the power of the value. For example, setting the minorTickInterval to 1 puts one tick on each of 0.1, 1, 10, 100 etc. Setting the minorTickInterval to 0.1 produces 9 ticks between 1 and 10, 10 and 100 etc. If user settings dictate minor ticks to become too dense, they don't make sense, and will be ignored to prevent performance problems. 
 	*/
-	public void setMinorTickInterval(Object /* Number, String */ minorTickInterval) {
+	public void setMinorTickInterval(Number minorTickInterval) {
 		this.minorTickInterval = minorTickInterval;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number, String */ getMinorTickInterval(){ return minorTickInterval; }
+	public Number getMinorTickInterval(){ return minorTickInterval; }
 
 	private Number linkedTo;
 	/**
@@ -437,7 +437,7 @@ public class HIXAxis extends HIFoundation {
 
 	private String tickmarkPlacement;
 	/**
- For categorized axes only. If `on` the tick mark is placed in the center of the category, if `between` the tick mark is placed between categories. The defaults is `between` if the `tickInterval` is 1, else `on`. 
+ For categorized axes only. If `on` the tick mark is placed in the center of the category, if `between` the tick mark is placed between categories. The defaults is `between` if the `tickInterval` is 1, else `on`. In order to render tick marks on a category axis it is necessary to provide a `tickWidth`. 
  <br><br><b>defaults:</b><br><br>&ensp;between	*/
 	public void setTickmarkPlacement(String tickmarkPlacement) {
 		this.tickmarkPlacement = tickmarkPlacement;
@@ -812,7 +812,7 @@ public class HIXAxis extends HIFoundation {
 	private Boolean opposite;
 	/**
  Whether to display the axis on the opposite side of the normal. The normal is on the left side for vertical axes and bottom for horizontal, so the opposite sides will be right and top respectively. This is typically used with dual or multiple axes. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setOpposite(Boolean opposite) {
 		this.opposite = opposite;
 		this.setChanged();

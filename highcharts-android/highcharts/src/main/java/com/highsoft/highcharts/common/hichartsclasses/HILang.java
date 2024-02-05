@@ -41,17 +41,17 @@ public class HILang extends HIFoundation {
 
 	public String getDownloadXLS(){ return downloadXLS; }
 
-	private String downloadPNG;
+	private String exportInProgress;
 	/**
- Exporting module only. The text for the PNG download menu item. 
- <br><br><b>defaults:</b><br><br>&ensp;Download PNG image	*/
-	public void setDownloadPNG(String downloadPNG) {
-		this.downloadPNG = downloadPNG;
+ Text to show when export is in progress. 
+ <br><br><b>defaults:</b><br><br>&ensp;Exporting...	*/
+	public void setExportInProgress(String exportInProgress) {
+		this.exportInProgress = exportInProgress;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getDownloadPNG(){ return downloadPNG; }
+	public String getExportInProgress(){ return exportInProgress; }
 
 	private HIAccessibility accessibility;
 	/**
@@ -148,9 +148,21 @@ public class HILang extends HIFoundation {
 
 	public String getLoading(){ return loading; }
 
+	private String downloadPNG;
+	/**
+ Exporting module only. The text for the PNG download menu item. 
+ <br><br><b>defaults:</b><br><br>&ensp;Download PNG image	*/
+	public void setDownloadPNG(String downloadPNG) {
+		this.downloadPNG = downloadPNG;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getDownloadPNG(){ return downloadPNG; }
+
 	private ArrayList<String> numericSymbols;
 	/**
- [Metric prefixes](https://en.wikipedia.org/wiki/Metric_prefix) used to shorten high numbers in axis labels. Replacing any of the positions with `null` causes the full number to be written. Setting `numericSymbols` to `null` disables shortening altogether. 
+ [Metric prefixes](https://en.wikipedia.org/wiki/Metric_prefix) used to shorten high numbers in axis labels. Replacing any of the positions with `null` causes the full number to be written. Setting `numericSymbols` to `undefined` disables shortening altogether. 
  <br><br><b>defaults:</b><br><br>&ensp;["k", "M", "G", "T", "P", "E"]	*/
 	public void setNumericSymbols(ArrayList<String> numericSymbols) {
 		this.numericSymbols = numericSymbols;
@@ -410,8 +422,8 @@ public HashMap<String, Object> getParams() {
 		if (this.downloadXLS != null) {
 			params.put("downloadXLS", this.downloadXLS);
 		}
-		if (this.downloadPNG != null) {
-			params.put("downloadPNG", this.downloadPNG);
+		if (this.exportInProgress != null) {
+			params.put("exportInProgress", this.exportInProgress);
 		}
 		if (this.accessibility != null) {
 			params.put("accessibility", this.accessibility.getParams());
@@ -445,6 +457,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.loading != null) {
 			params.put("loading", this.loading);
+		}
+		if (this.downloadPNG != null) {
+			params.put("downloadPNG", this.downloadPNG);
 		}
 		if (this.numericSymbols != null) {
 			ArrayList<Object> array = new ArrayList<>();

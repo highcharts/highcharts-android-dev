@@ -21,7 +21,7 @@ public class HIDataGrouping extends HIFoundation {
 	private String approximation;
 	/**
  Approximation function for the data grouping. The defaults returns an average of wind speed and a vector average direction weighted by wind speed. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;windbarb	*/
 	public void setApproximation(String approximation) {
 		this.approximation = approximation;
 		this.setChanged();
@@ -33,7 +33,7 @@ public class HIDataGrouping extends HIFoundation {
 	private Boolean enabled;
 	/**
  Whether to enable data grouping. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -45,7 +45,7 @@ public class HIDataGrouping extends HIFoundation {
 	private Number groupPixelWidth;
 	/**
  The approximate data group width. 
-	*/
+ <br><br><b>defaults:</b><br><br>&ensp;30	*/
 	public void setGroupPixelWidth(Number groupPixelWidth) {
 		this.groupPixelWidth = groupPixelWidth;
 		this.setChanged();

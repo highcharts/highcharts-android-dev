@@ -364,7 +364,10 @@ hc_types = {
     # 11.2.0
     "'from'|'gradient'|'to'": 'String',
     "'top'|'center'|'bottom'": 'String',
-    "Array.<(Array.<(number|string), number>|Array.<(number|string), number, number>|*)>": 'ArrayList'
+    "Array.<(Array.<(number|string), number>|Array.<(number|string), number, number>|*)>": 'ArrayList',
+    # 11.3.0
+    "Array.<('string'|'number'|'float'|'date')>": 'ArrayList',
+    "number|'auto'": 'Number'
 }
 
 

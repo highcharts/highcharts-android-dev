@@ -32,7 +32,7 @@ public class HINoData extends HIFoundation {
 
 	private HICSSObject style;
 	/**
- CSS styles for the no-data label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/no-data-to-display/no-data-line">Styled no-data text</a>
+ CSS styles for the no-data label. 
 	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;

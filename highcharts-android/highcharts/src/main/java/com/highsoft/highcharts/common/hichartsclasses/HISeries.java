@@ -680,7 +680,7 @@ public class HISeries extends HIFoundation {
 
 	private String legendSymbol;
 	/**
- What type of legend symbol to render for this series. Can be one of `lineMarker` or `rectangle`. 
+ What type of legend symbol to render for this series. Can be one of `areaMarker`, `lineMarker` or `rectangle`. 
  <br><br><b>defaults:</b><br><br>&ensp;rectangle	*/
 	public void setLegendSymbol(String legendSymbol) {
 		this.legendSymbol = legendSymbol;
@@ -1628,7 +1628,6 @@ public HashMap<String, Object> getParams() {
 				params.put(entry.getKey(), entry.getValue());
 			}
 		}
-
 		if (this.id != null) {
 			params.put("id", this.id);
 		}

@@ -70,6 +70,15 @@ public class HIStyle extends HIFoundation {
 
 	public String getCursor(){ return cursor; }
 
+	private String whiteSpace;
+	public void setWhiteSpace(String whiteSpace) {
+		this.whiteSpace = whiteSpace;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getWhiteSpace(){ return whiteSpace; }
+
 	private Number borderRadius;
 	public void setBorderRadius(Number borderRadius) {
 		this.borderRadius = borderRadius;
@@ -152,6 +161,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.cursor != null) {
 			params.put("cursor", this.cursor);
+		}
+		if (this.whiteSpace != null) {
+			params.put("whiteSpace", this.whiteSpace);
 		}
 		if (this.borderRadius != null) {
 			params.put("borderRadius", this.borderRadius);

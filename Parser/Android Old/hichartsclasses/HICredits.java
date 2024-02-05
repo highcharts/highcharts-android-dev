@@ -32,8 +32,8 @@ public class HICredits extends HIFoundation {
 
 	private String text;
 	/**
- The text for the credits label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/href/">Custom URL and text</a>
-	*/
+ The text for the credits label. 
+ <br><br><b>defaults:</b><br><br>&ensp;Highcharts.com	*/
 	public void setText(String text) {
 		this.text = text;
 		this.setChanged();
@@ -44,8 +44,8 @@ public class HICredits extends HIFoundation {
 
 	private Boolean enabled;
 	/**
- Whether to show the credits text. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/enabled-false/">Credits disabled</a>
-	*/
+ Whether to show the credits text. 
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		this.setChanged();
@@ -56,8 +56,8 @@ public class HICredits extends HIFoundation {
 
 	private String href;
 	/**
- The URL for the credits label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/href/">Custom URL and text</a>
-	*/
+ The URL for the credits label. 
+ <br><br><b>defaults:</b><br><br>&ensp;https://www.highcharts.com?credits	*/
 	public void setHref(String href) {
 		this.href = href;
 		this.setChanged();
@@ -68,7 +68,7 @@ public class HICredits extends HIFoundation {
 
 	private HIAlignObject position;
 	/**
- Position configuration for the credits label. <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/position-left/">Left aligned</a><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/credits/position-left/">Left aligned</a>
+ Position configuration for the credits label. 
 	*/
 	public void setPosition(HIAlignObject position) {
 		this.position = position;

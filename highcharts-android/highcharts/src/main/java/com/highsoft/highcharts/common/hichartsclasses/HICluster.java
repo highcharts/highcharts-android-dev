@@ -114,8 +114,8 @@ public class HICluster extends HIFoundation {
 
 	private HIMarker marker;
 	/**
- Options for the cluster marker. 
-	*/
+	 Options for the cluster marker.
+	 */
 	public void setMarker(HIMarker marker) {
 		this.marker = marker;
 		this.setChanged();

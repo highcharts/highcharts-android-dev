@@ -20,7 +20,7 @@ public class HIBindings extends HIFoundation {
 
 	private HINavigationBindingsOptionsObject rectangleAnnotation;
 	/**
- A rectangle annotation bindings. Includes start and one event in steps array. 
+ A rectangle annotation bindings. Includes `start` and one event in `steps` array. 
 	*/
 	public void setRectangleAnnotation(HINavigationBindingsOptionsObject rectangleAnnotation) {
 		this.rectangleAnnotation = rectangleAnnotation;
@@ -32,7 +32,7 @@ public class HIBindings extends HIFoundation {
 
 	private HINavigationBindingsOptionsObject labelAnnotation;
 	/**
- A label annotation bindings. Includes start event only. 
+ A label annotation bindings. Includes `start` event only. 
 	*/
 	public void setLabelAnnotation(HINavigationBindingsOptionsObject labelAnnotation) {
 		this.labelAnnotation = labelAnnotation;
@@ -44,7 +44,7 @@ public class HIBindings extends HIFoundation {
 
 	private HINavigationBindingsOptionsObject circleAnnotation;
 	/**
- A circle annotation bindings. Includes start and one event in steps array. 
+ A circle annotation bindings. Includes `start` and one event in `steps` array. 
 	*/
 	public void setCircleAnnotation(HINavigationBindingsOptionsObject circleAnnotation) {
 		this.circleAnnotation = circleAnnotation;
@@ -56,7 +56,7 @@ public class HIBindings extends HIFoundation {
 
 	private HINavigationBindingsOptionsObject ellipseAnnotation;
 	/**
- A ellipse annotation bindings. Includes start and two events in steps array. First updates the second point, responsible for a rx width, and second updates the ry width. 
+ A ellipse annotation bindings. Includes `start` and two events in `steps` array. First updates the second point, responsible for a rx width, and second updates the ry width. 
 	*/
 	public void setEllipseAnnotation(HINavigationBindingsOptionsObject ellipseAnnotation) {
 		this.ellipseAnnotation = ellipseAnnotation;

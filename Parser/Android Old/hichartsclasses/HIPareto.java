@@ -17,10 +17,22 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 
 	/**
- A pareto diagram is a type of chart that contains both bars and a line graph, where individual values are represented in descending order by bars, and the cumulative total is represented by the line. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all pareto series are defined in  `plotOptions.pareto`. 3. Options for one single series are given in  `the series instance array`. ` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     pareto: {       // shared options for all pareto series     }   },   series: [{     // specific options for this series instance     type: 'pareto'   }] }); `        <br><br><b><i>Try it:</b></i><br><br>&ensp;&bull;&ensp; <a href="https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/pareto/">Pareto diagram</a>
+ A `pareto` series. If the `type` option is not specified, it is inherited from `chart.type`. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all `pareto` series are defined in  `plotOptions.pareto`. 3. Options for one single series are given in  `the series instance array`. ``` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     pareto: {       // shared options for all pareto series     }   },   series: [{     // specific options for this series instance     type: 'pareto'   }] }); ```       
 	*/
 
 public class HIPareto extends HISeries {
+	private Object /* Number, String */ baseSeries;
+	/**
+ An integer identifying the index to use for the base series, or a string representing the id of the series. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setBaseSeries(Object /* Number, String */ baseSeries) {
+		this.baseSeries = baseSeries;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getBaseSeries(){ return baseSeries; }
+
 
 
 	public HIPareto() {
@@ -33,6 +45,9 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
+		if (this.baseSeries != null) {
+			params.put("baseSeries", this.baseSeries);
+		}
 		return params;
 	}
 

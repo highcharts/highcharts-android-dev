@@ -32,7 +32,7 @@ public class HIColorVariation extends HIFoundation {
 
 	private String key;
 	/**
- The key of a color variation. Currently supports brightness only. <br><br><b>accepted values:</b><br><br>&ensp;["brightness"]
+ The key of a color variation. Currently supports `brightness` only. 
 	*/
 	public void setKey(String key) {
 		this.key = key;
