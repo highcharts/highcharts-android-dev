@@ -60,9 +60,21 @@ public class HIOrganization extends HISeries {
 
 	public HIColor getBorderColor(){ return borderColor; }
 
+	private String hangingSide;
+	/**
+ Whether links connecting hanging nodes should be drawn on the left or right side. Useful for RTL layouts. **Note:** Only effects inverted charts (vertical layout). 
+ <br><br><b>defaults:</b><br><br>&ensp;'left'	*/
+	public void setHangingSide(String hangingSide) {
+		this.hangingSide = hangingSide;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getHangingSide(){ return hangingSide; }
+
 	private Number nodeWidth;
 	/**
-/** * description: In a horizontal chart, the width of the nodes in pixels. Note that most organization charts are vertical, so the name of this option is counterintuitive. 
+/** * description: In a horizontal chart, the width of the nodes in pixels. Note that most organization charts are inverted (vertical), so the name of this option is counterintuitive. * demo: * [Sankey with auto node width combined with node distance](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-sankey/node-distance) * [Organization chart with node distance of 50%](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/series-organization/node-distance) 
 * defaults: 50
 */
 	public void setNodeWidth(Number nodeWidth) {
@@ -161,7 +173,7 @@ public class HIOrganization extends HISeries {
 
 	private Number nodePadding;
 	/**
- The padding between nodes in a sankey diagram or dependency wheel, in pixels. If the number of nodes is so great that it is possible to lay them out within the plot area with the given `nodePadding`, they will be rendered with a smaller padding as a strategy to avoid overflow. 
+ The padding between nodes in a sankey diagram or dependency wheel, in pixels. For sankey charts, this applies to the nodes of the same column, so vertical distance by defaults, or horizontal distance in an inverted (vertical) sankey. If the number of nodes is so great that it is impossible to lay them out within the plot area with the given `nodePadding`, they will be rendered with a smaller padding as a strategy to avoid overflow. 
  <br><br><b>defaults:</b><br><br>&ensp;10	*/
 	public void setNodePadding(Number nodePadding) {
 		this.nodePadding = nodePadding;
@@ -170,6 +182,18 @@ public class HIOrganization extends HISeries {
 	}
 
 	public Number getNodePadding(){ return nodePadding; }
+
+	private Object /* Number, String */ nodeDistance;
+	/**
+ The distance between nodes in a sankey diagram in the longitudinal direction. The longitudinal direction means the direction that the chart flows - in a horizontal chart the distance is horizontal, in an inverted chart (vertical), the distance is vertical. If a number is given, it denotes pixels. If a percentage string is given, the distance is a percentage of the rendered node width. A `nodeDistance` of `100%` will render equal widths for the nodes and the gaps between them. This option applies only when the `nodeWidth` option is `auto`, making the node width respond to the number of columns. 
+ <br><br><b>defaults:</b><br><br>&ensp;30	*/
+	public void setNodeDistance(Object /* Number, String */ nodeDistance) {
+		this.nodeDistance = nodeDistance;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getNodeDistance(){ return nodeDistance; }
 
 	private ArrayList <HILevels> levels;
 	/**
@@ -273,6 +297,9 @@ public HashMap<String, Object> getParams() {
 		if (this.borderColor != null) {
 			params.put("borderColor", this.borderColor.getData());
 		}
+		if (this.hangingSide != null) {
+			params.put("hangingSide", this.hangingSide);
+		}
 		if (this.nodeWidth != null) {
 			params.put("nodeWidth", this.nodeWidth);
 		}
@@ -299,6 +326,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.nodePadding != null) {
 			params.put("nodePadding", this.nodePadding);
+		}
+		if (this.nodeDistance != null) {
+			params.put("nodeDistance", this.nodeDistance);
 		}
 		if (this.levels != null) {
 			ArrayList<Object> array = new ArrayList<>();

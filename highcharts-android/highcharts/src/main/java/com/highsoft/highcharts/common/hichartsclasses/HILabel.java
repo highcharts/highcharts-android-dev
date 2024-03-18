@@ -104,8 +104,8 @@ public class HILabel extends HIFoundation {
 
 	private ArrayList<HILabelIntersectBoxObject> boxesToAvoid;
 	/**
- An array of boxes to avoid when laying out the labels. Each item has a `left`, `right`, `top` and `bottom` property. 
-	*/
+	 An array of boxes to avoid when laying out the labels. Each item has a `left`, `right`, `top` and `bottom` property.
+	 */
 	public void setBoxesToAvoid(ArrayList<HILabelIntersectBoxObject> boxesToAvoid) {
 		this.boxesToAvoid = boxesToAvoid;
 		this.setChanged();

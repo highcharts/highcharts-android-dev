@@ -131,17 +131,17 @@ public class HIArcdiagram extends HISeries {
 
 	public Number getMinLinkWidth(){ return minLinkWidth; }
 
-	private Number nodeWidth;
+	private Object /* Number, String */ nodeDistance;
 	/**
- The pixel width of each node in a sankey diagram or dependency wheel, or the height in case the chart is inverted. 
- <br><br><b>defaults:</b><br><br>&ensp;20	*/
-	public void setNodeWidth(Number nodeWidth) {
-		this.nodeWidth = nodeWidth;
+ The distance between nodes in a sankey diagram in the longitudinal direction. The longitudinal direction means the direction that the chart flows - in a horizontal chart the distance is horizontal, in an inverted chart (vertical), the distance is vertical. If a number is given, it denotes pixels. If a percentage string is given, the distance is a percentage of the rendered node width. A `nodeDistance` of `100%` will render equal widths for the nodes and the gaps between them. This option applies only when the `nodeWidth` option is `auto`, making the node width respond to the number of columns. 
+ <br><br><b>defaults:</b><br><br>&ensp;30	*/
+	public void setNodeDistance(Object /* Number, String */ nodeDistance) {
+		this.nodeDistance = nodeDistance;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getNodeWidth(){ return nodeWidth; }
+	public Object /* Number, String */ getNodeDistance(){ return nodeDistance; }
 
 	private ArrayList <HILevels> levels;
 	/**
@@ -166,6 +166,18 @@ public class HIArcdiagram extends HISeries {
 	}
 
 	public Number getBorderWidth(){ return borderWidth; }
+
+	private Object /* Number, String */ nodeWidth;
+	/**
+ The pixel width of each node in a sankey diagram or dependency wheel, or the height in case the chart is inverted. Can be a number or a percentage string. Sankey series also support setting it to `auto`. With this setting, the nodes are sized to fill up the plot area in the longitudinal direction, regardless of the number of levels. 
+ <br><br><b>defaults:</b><br><br>&ensp;20	*/
+	public void setNodeWidth(Object /* Number, String */ nodeWidth) {
+		this.nodeWidth = nodeWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getNodeWidth(){ return nodeWidth; }
 
 	private Number linkOpacity;
 	/**
@@ -263,8 +275,8 @@ public HashMap<String, Object> getParams() {
 		if (this.minLinkWidth != null) {
 			params.put("minLinkWidth", this.minLinkWidth);
 		}
-		if (this.nodeWidth != null) {
-			params.put("nodeWidth", this.nodeWidth);
+		if (this.nodeDistance != null) {
+			params.put("nodeDistance", this.nodeDistance);
 		}
 		if (this.levels != null) {
 			ArrayList<Object> array = new ArrayList<>();
@@ -280,6 +292,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);
+		}
+		if (this.nodeWidth != null) {
+			params.put("nodeWidth", this.nodeWidth);
 		}
 		if (this.linkOpacity != null) {
 			params.put("linkOpacity", this.linkOpacity);

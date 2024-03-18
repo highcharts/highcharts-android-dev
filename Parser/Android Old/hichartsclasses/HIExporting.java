@@ -189,18 +189,6 @@ public class HIExporting extends HIFoundation {
 
 	public Object /* boolean, String */ getTableCaption(){ return tableCaption; }
 
-	private HIHTMLAttributes formAttributes;
-	/**
- An object containing additional key value data for the POST form that sends the SVG to the export server. For example, a `target` can be set to make sure the generated image is received in another frame, or a custom `enctype` or `encoding` can be set. 
-	*/
-	public void setFormAttributes(HIHTMLAttributes formAttributes) {
-		this.formAttributes = formAttributes;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIHTMLAttributes getFormAttributes(){ return formAttributes; }
-
 	private Boolean useMultiLevelHeaders;
 	/**
  Use multi level headers in data table. If `csv.columnHeaderFormatter` is defined, it has to return objects in order for multi level headers to work. 
@@ -272,6 +260,30 @@ public class HIExporting extends HIFoundation {
 	}
 
 	public Boolean getAllowHTML(){ return allowHTML; }
+
+	private Object fetchOptions;
+	/**
+ Options for the fetch request used when sending the SVG to the export server. See [MDN](https://developer.mozilla.org/en-US/docs/Web/API/fetch) for more information 
+	*/
+	public void setFetchOptions(Object fetchOptions) {
+		this.fetchOptions = fetchOptions;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getFetchOptions(){ return fetchOptions; }
+
+	private Boolean showExportInProgress;
+	/**
+ Display a message when export is in progress. Uses `Chart.setLoading()` The message can be altered by changing [](#lang.exporting.exportInProgress) 
+ <br><br><b>defaults:</b><br><br>&ensp;True	*/
+	public void setShowExportInProgress(Boolean showExportInProgress) {
+		this.showExportInProgress = showExportInProgress;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getShowExportInProgress(){ return showExportInProgress; }
 
 	private HIPdfFont pdfFont;
 	/**
@@ -393,9 +405,6 @@ public HashMap<String, Object> getParams() {
 		if (this.tableCaption != null) {
 			params.put("tableCaption", this.tableCaption);
 		}
-		if (this.formAttributes != null) {
-			params.put("formAttributes", this.formAttributes.getParams());
-		}
 		if (this.useMultiLevelHeaders != null) {
 			params.put("useMultiLevelHeaders", this.useMultiLevelHeaders);
 		}
@@ -413,6 +422,12 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.allowHTML != null) {
 			params.put("allowHTML", this.allowHTML);
+		}
+		if (this.fetchOptions != null) {
+			params.put("fetchOptions", this.fetchOptions);
+		}
+		if (this.showExportInProgress != null) {
+			params.put("showExportInProgress", this.showExportInProgress);
 		}
 		if (this.pdfFont != null) {
 			params.put("pdfFont", this.pdfFont.getParams());

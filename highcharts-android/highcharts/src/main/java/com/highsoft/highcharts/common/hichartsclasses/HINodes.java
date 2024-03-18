@@ -81,7 +81,7 @@ public class HINodes extends HIFoundation {
 
 	private String id;
 	/**
- The id of the auto-generated node, refering to the `from` or `to` setting of the link. 
+ The id of the auto-generated node, referring to the `from` or `to` setting of the link. 
 	*/
 	public void setId(String id) {
 		this.id = id;
@@ -105,7 +105,7 @@ public class HINodes extends HIFoundation {
 
 	private Object /* Number, String */ offsetVertical;
 	/**
- The vertical offset of a node. Positive values shift the node down, negative shift it up. If a percantage string is given, the node is offset by the percentage of the node size. 
+ The vertical offset of a node. Positive values shift the node down, negative shift it up. If a percentage string is given, the node is offset by the percentage of the node size. 
 	*/
 	public void setOffsetVertical(Object /* Number, String */ offsetVertical) {
 		this.offsetVertical = offsetVertical;
@@ -129,7 +129,7 @@ public class HINodes extends HIFoundation {
 
 	private Object /* Number, String */ offsetHorizontal;
 	/**
- The horizontal offset of a node. Positive values shift the node right, negative shift it left. If a percantage string is given, the node is offset by the percentage of the node size. 
+ The horizontal offset of a node. Positive values shift the node right, negative shift it left. If a percentage string is given, the node is offset by the percentage of the node size. 
 	*/
 	public void setOffsetHorizontal(Object /* Number, String */ offsetHorizontal) {
 		this.offsetHorizontal = offsetHorizontal;
@@ -138,6 +138,18 @@ public class HINodes extends HIFoundation {
 	}
 
 	public Object /* Number, String */ getOffsetHorizontal(){ return offsetHorizontal; }
+
+	private Number height;
+	/**
+ The height of the node. 
+	*/
+	public void setHeight(Number height) {
+		this.height = height;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getHeight(){ return height; }
 
 	private Number column;
 	/**
@@ -248,6 +260,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.offsetHorizontal != null) {
 			params.put("offsetHorizontal", this.offsetHorizontal);
+		}
+		if (this.height != null) {
+			params.put("height", this.height);
 		}
 		if (this.column != null) {
 			params.put("column", this.column);

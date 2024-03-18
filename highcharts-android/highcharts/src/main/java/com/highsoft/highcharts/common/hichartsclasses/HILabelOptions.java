@@ -32,7 +32,7 @@ public class HILabelOptions extends HIFoundation {
 
 	private Number borderRadius;
 	/**
- The border radius in pixels for the annotaiton's label. 
+ The border radius in pixels for the annotation's label. 
  <br><br><b>defaults:</b><br><br>&ensp;3	*/
 	public void setBorderRadius(Number borderRadius) {
 		this.borderRadius = borderRadius;

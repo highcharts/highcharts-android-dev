@@ -165,7 +165,7 @@ public class HIBubbleLegend extends HIFoundation {
 
 	private Number maxSize;
 	/**
- Miximum bubble legend range size. If values for ranges are not specified, the `minSize` and the `maxSize` are calculated from bubble series. 
+ Maximum bubble legend range size. If values for ranges are not specified, the `minSize` and the `maxSize` are calculated from bubble series. 
  <br><br><b>defaults:</b><br><br>&ensp;60	*/
 	public void setMaxSize(Number maxSize) {
 		this.maxSize = maxSize;
@@ -213,7 +213,7 @@ public class HIBubbleLegend extends HIFoundation {
 
 	private Number zThreshold;
 	/**
- Ranges with with lower value than zThreshold, are skipped. 
+ Ranges with lower value than zThreshold are skipped. 
 	*/
 	public void setZThreshold(Number zThreshold) {
 		this.zThreshold = zThreshold;

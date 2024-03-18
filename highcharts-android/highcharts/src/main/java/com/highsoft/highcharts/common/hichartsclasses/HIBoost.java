@@ -54,7 +54,7 @@ public class HIBoost extends HIFoundation {
 
 	private Number seriesThreshold;
 	/**
- Set the series threshold for when the boost should kick in globally. Setting to e.g. 20 will cause the whole chart to enter boost mode if there are 20 or more series active. When the chart is in boost mode, every series in it will be rendered to a common canvas. This offers a significant speed improvment in charts with a very high amount of series. 
+ Set the series threshold for when the boost should kick in globally. Setting to e.g. 20 will cause the whole chart to enter boost mode if there are 20 or more series active. When the chart is in boost mode, every series in it will be rendered to a common canvas. This offers a significant speed improvement in charts with a very high amount of series. 
  <br><br><b>defaults:</b><br><br>&ensp;50	*/
 	public void setSeriesThreshold(Number seriesThreshold) {
 		this.seriesThreshold = seriesThreshold;
@@ -78,7 +78,7 @@ public class HIBoost extends HIFoundation {
 
 	private Boolean useGPUTranslations;
 	/**
- Enable or disable GPU translations. GPU translations are faster than doing the translation in JavaScript. This option may cause rendering issues with certain datasets. Namely, if your dataset has large numbers with small increments (such as timestamps), it won't work correctly. This is due to floating point precission. 
+ Enable or disable GPU translations. GPU translations are faster than doing the translation in JavaScript. This option may cause rendering issues with certain datasets. Namely, if your dataset has large numbers with small increments (such as timestamps), it won't work correctly. This is due to floating point precision. 
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setUseGPUTranslations(Boolean useGPUTranslations) {
 		this.useGPUTranslations = useGPUTranslations;

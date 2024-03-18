@@ -23,7 +23,7 @@ import java.util.HashMap;
 public class HIBullet extends HISeries {
 	private HITargetOptions targetOptions;
 	/**
- All options related with look and positiong of targets. 
+ All options related with look and positioning of targets. 
 	*/
 	public void setTargetOptions(HITargetOptions targetOptions) {
 		this.targetOptions = targetOptions;
@@ -156,7 +156,7 @@ public class HIBullet extends HISeries {
 
 	private Number pointWidth;
 	/**
- A pixel value specifying a fixed width for each column or bar point. When set to `undefined`, the width is calculated from the `pointPadding` and `groupPadding`. The width effects the dimension that is not based on the point value. For column series it is the hoizontal length and for bar series it is the vertical length. 
+ A pixel value specifying a fixed width for each column or bar point. When set to `undefined`, the width is calculated from the `pointPadding` and `groupPadding`. The width effects the dimension that is not based on the point value. For column series it is the horizontal length and for bar series it is the vertical length. 
 	*/
 	public void setPointWidth(Number pointWidth) {
 		this.pointWidth = pointWidth;

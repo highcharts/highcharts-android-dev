@@ -204,7 +204,7 @@ public class HIPictorial extends HISeries {
 
 	private ArrayList <HIPaths> paths;
 	/**
- The paths include options describing the point image. 
+ The paths include options describing the series image. For further details on preparing the SVG image, please refer to the [pictorial documentation](https://www.highcharts.com/docs/chart-and-series-types/pictorial). 
 	*/
 	public void setPaths(ArrayList paths) {
 		this.paths = paths;

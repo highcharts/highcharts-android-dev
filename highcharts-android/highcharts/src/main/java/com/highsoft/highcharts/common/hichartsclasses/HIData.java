@@ -82,7 +82,7 @@ public class HIData extends HIFoundation {
 
 	private HIFunction parsed;
 	/**
- A callback function to access the parsed columns, the two-dimentional input data array directly, before they are interpreted into series data and categories. Return `false` to stop completion, or call `this.complete()` to continue async. 
+ A callback function to access the parsed columns, the two-dimensional input data array directly, before they are interpreted into series data and categories. Return `false` to stop completion, or call `this.complete()` to continue async. 
 	*/
 	public void setParsed(HIFunction parsed) {
 		this.parsed = parsed;
@@ -118,7 +118,7 @@ public class HIData extends HIFoundation {
 
 	private ArrayList<ArrayList> rows;
 	/**
- The same as the columns input option, but defining rows intead of columns. 
+ The same as the columns input option, but defining rows instead of columns. 
 	*/
 	public void setRows(ArrayList<ArrayList> rows) {
 		this.rows = rows;
@@ -843,7 +843,7 @@ public class HIData extends HIFoundation {
 
 	private Number value;
 	/**
- The value of the point, resulting in a color controled by options as set in the `colorAxis` configuration. 
+ The value of the point, resulting in a color controlled by options as set in the `colorAxis` configuration. 
 	*/
 	public void setValue(Number value) {
 		this.value = value;
@@ -855,7 +855,7 @@ public class HIData extends HIFoundation {
 
 	private Boolean isIntermediateSum;
 	/**
- When this property is true, the points acts as a summary column for the values added or substracted since the last intermediate sum, or since the start of the series. The `y` value is ignored. 
+ When this property is true, the points acts as a summary column for the values added or subtracted since the last intermediate sum, or since the start of the series. The `y` value is ignored. 
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setIsIntermediateSum(Boolean isIntermediateSum) {
 		this.isIntermediateSum = isIntermediateSum;
@@ -891,7 +891,7 @@ public class HIData extends HIFoundation {
 
 	private Boolean gradientForSides;
 	/**
- By deafult sides fill is set to a gradient through this option being set to `true`. Set to `false` to get solid color for the sides. 
+ By defaults sides fill is set to a gradient through this option being set to `true`. Set to `false` to get solid color for the sides. 
 	*/
 	public void setGradientForSides(Boolean gradientForSides) {
 		this.gradientForSides = gradientForSides;
@@ -1086,7 +1086,6 @@ public class HIData extends HIFoundation {
 		if(jsProperties == null) jsProperties = new HashMap<>();
 		jsProperties.put(name, value);
 	}
-
 
 	@Override
 public HashMap<String, Object> getParams() {

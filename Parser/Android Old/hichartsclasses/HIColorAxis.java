@@ -56,6 +56,18 @@ public class HIColorAxis extends HIFoundation {
 
 	public HILabels getLabels(){ return labels; }
 
+	private Object /* Number, String */ height;
+	/**
+/** * description: The height of the color axis. If it's a number, it is interpreted as pixels. If it's a percentage string, it is interpreted as percentages of the total plot height. * demo: * [Percentage width and pixel height for color axis](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/width-and-height) 
+*/
+	public void setHeight(Object /* Number, String */ height) {
+		this.height = height;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getHeight(){ return height; }
+
 	private HIColor maxColor;
 	/**
  The color to represent the maximum of the color axis. Unless `dataClasses` or `stops` are set, the gradient ends at this value. If dataClasses are set, the color is based on minColor and maxColor unless a color is set for each data class, or the `dataClassColor` is set. 
@@ -117,6 +129,18 @@ public class HIColorAxis extends HIFoundation {
 	}
 
 	public ArrayList<ArrayList> /* <Number, String> */ getStops(){ return stops; }
+
+	private Object /* Number, String */ width;
+	/**
+/** * description: The width of the color axis. If it's a number, it is interpreted as pixels. If it's a percentage string, it is interpreted as percentages of the total plot width. * demo: * [Percentage width and pixel height for color axis](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/coloraxis/width-and-height) 
+*/
+	public void setWidth(Object /* Number, String */ width) {
+		this.width = width;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getWidth(){ return width; }
 
 	private String dataClassColor;
 	/**
@@ -450,17 +474,17 @@ public class HIColorAxis extends HIFoundation {
 
 	public Number getMinorTickWidth(){ return minorTickWidth; }
 
-	private Object /* Number, String */ minorTickInterval;
+	private Number minorTickInterval;
 	/**
- Specific tick interval in axis units for the minor ticks. On a linear axis, if `"auto"`, the minor tick interval is calculated as a fifth of the tickInterval. If `null` or `undefined`, minor ticks are not shown. On logarithmic axes, the unit is the power of the value. For example, setting the minorTickInterval to 1 puts one tick on each of 0.1, 1, 10, 100 etc. Setting the minorTickInterval to 0.1 produces 9 ticks between 1 and 10, 10 and 100 etc. If user settings dictate minor ticks to become too dense, they don't make sense, and will be ignored to prevent performance problems. 
+ Specific tick interval in axis units for the minor ticks. On a linear axis, if `"auto"`, the minor tick interval is calculated as a fifth of the tickInterval. If `undefined`, minor ticks are not shown. On logarithmic axes, the unit is the power of the value. For example, setting the minorTickInterval to 1 puts one tick on each of 0.1, 1, 10, 100 etc. Setting the minorTickInterval to 0.1 produces 9 ticks between 1 and 10, 10 and 100 etc. If user settings dictate minor ticks to become too dense, they don't make sense, and will be ignored to prevent performance problems. 
 	*/
-	public void setMinorTickInterval(Object /* Number, String */ minorTickInterval) {
+	public void setMinorTickInterval(Number minorTickInterval) {
 		this.minorTickInterval = minorTickInterval;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* Number, String */ getMinorTickInterval(){ return minorTickInterval; }
+	public Number getMinorTickInterval(){ return minorTickInterval; }
 
 	private HIColor lineColor;
 	/**
@@ -500,7 +524,7 @@ public class HIColorAxis extends HIFoundation {
 
 	private String tickmarkPlacement;
 	/**
- For categorized axes only. If `on` the tick mark is placed in the center of the category, if `between` the tick mark is placed between categories. The defaults is `between` if the `tickInterval` is 1, else `on`. 
+ For categorized axes only. If `on` the tick mark is placed in the center of the category, if `between` the tick mark is placed between categories. The defaults is `between` if the `tickInterval` is 1, else `on`. In order to render tick marks on a category axis it is necessary to provide a `tickWidth`. 
  <br><br><b>defaults:</b><br><br>&ensp;between	*/
 	public void setTickmarkPlacement(String tickmarkPlacement) {
 		this.tickmarkPlacement = tickmarkPlacement;
@@ -804,6 +828,9 @@ public HashMap<String, Object> getParams() {
 		if (this.labels != null) {
 			params.put("labels", this.labels.getParams());
 		}
+		if (this.height != null) {
+			params.put("height", this.height);
+		}
 		if (this.maxColor != null) {
 			params.put("maxColor", this.maxColor.getData());
 		}
@@ -827,6 +854,9 @@ public HashMap<String, Object> getParams() {
 				}
 			}
 			params.put("stops", array);
+		}
+		if (this.width != null) {
+			params.put("width", this.width);
 		}
 		if (this.dataClassColor != null) {
 			params.put("dataClassColor", this.dataClassColor);

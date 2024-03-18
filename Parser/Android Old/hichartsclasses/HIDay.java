@@ -27,6 +27,15 @@ public class HIDay extends HIFoundation {
 
 	public String getMain(){ return main; }
 
+	private ArrayList<String> list;
+	public void setList(ArrayList<String> list) {
+		this.list = list;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList<String> getList(){ return list; }
+
 
 
 	public HIDay() {
@@ -40,6 +49,18 @@ public HashMap<String, Object> getParams() {
 		params.put("_wrapperID", this.uuid);
 		if (this.main != null) {
 			params.put("main", this.main);
+		}
+		if (this.list != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.list) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("list", array);
 		}
 		return params;
 	}

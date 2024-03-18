@@ -20,7 +20,7 @@ public class HIFilter extends HIFoundation {
 
 	private String operator;
 	/**
- The operator to compare by. Can be one of `>`, `<`, `>=`, `<=`, `==`, and `===`. 
+ The operator to compare by. Can be one of `>`, `<`, `>=`, `<=`, `==`, `===`, `!=` and `!==`. 
 	*/
 	public void setOperator(String operator) {
 		this.operator = operator;

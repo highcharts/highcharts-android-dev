@@ -49,7 +49,7 @@ public class HIDataLabels extends HIFoundation {
 
 	private String rotationMode;
 	/**
- Decides how the data label will be rotated relative to the perimeter of the sunburst. Valid values are `circular`, `auto`, `parallel` and `perpendicular`. When `circular`, the best fit will be computed for the point, so that the label is curved around the center when there is room for it, otherwise perpendicular. The legacy `auto` option works similiar to `circular`, but instead of curving the labels they are tangent to the perimiter. The `rotation` option takes precedence over `rotationMode`. 
+ Decides how the data label will be rotated relative to the perimeter of the sunburst. Valid values are `circular`, `auto`, `parallel` and `perpendicular`. When `circular`, the best fit will be computed for the point, so that the label is curved around the center when there is room for it, otherwise perpendicular. The legacy `auto` option works similar to `circular`, but instead of curving the labels they are tangent to the perimeter. The `rotation` option takes precedence over `rotationMode`. 
  <br><br><b>defaults:</b><br><br>&ensp;circular	*/
 	public void setRotationMode(String rotationMode) {
 		this.rotationMode = rotationMode;
@@ -1649,7 +1649,7 @@ public class HIDataLabels extends HIFoundation {
 
 	private Number pointWidth;
 	/**
- A pixel value specifying a fixed width for each column or bar point. When set to `undefined`, the width is calculated from the `pointPadding` and `groupPadding`. The width effects the dimension that is not based on the point value. For column series it is the hoizontal length and for bar series it is the vertical length. 
+ A pixel value specifying a fixed width for each column or bar point. When set to `undefined`, the width is calculated from the `pointPadding` and `groupPadding`. The width effects the dimension that is not based on the point value. For column series it is the horizontal length and for bar series it is the vertical length. 
 	*/
 	public void setPointWidth(Number pointWidth) {
 		this.pointWidth = pointWidth;

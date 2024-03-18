@@ -16,6 +16,19 @@ import java.util.HashMap;
 
 public class HIAccessibility extends HIFoundation { 
 
+	private HIPoint point;
+	/**
+ Options for descriptions of individual data points. 
+	*/
+	public void setPoint(HIPoint point) {
+		this.point = point;
+		this.point.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIPoint getPoint(){ return point; }
+
 	private String landmarkVerbosity;
 	/**
  Amount of landmarks/regions to create for screen reader users. More landmarks can make navigation with screen readers easier, but can be distracting if there are lots of charts on the page. Three modes are available: - `all`: Adds regions for all series, legend, information   region. - `one`: Adds a single landmark per chart. - `disabled`: No landmarks are added. 
@@ -52,18 +65,17 @@ public class HIAccessibility extends HIFoundation {
 
 	public String getLinkedDescription(){ return linkedDescription; }
 
-	private HIPoint point;
+	private String highContrastMode;
 	/**
- Options for descriptions of individual data points. 
-	*/
-	public void setPoint(HIPoint point) {
-		this.point = point;
-		this.point.addObserver(updateObserver);
+ Controls how `highContrastTheme` is applied. The defaults option is `auto`, which applies the high contrast theme the user's system has a high contrast theme active. 
+ <br><br><b>defaults:</b><br><br>&ensp;auto	*/
+	public void setHighContrastMode(String highContrastMode) {
+		this.highContrastMode = highContrastMode;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIPoint getPoint(){ return point; }
+	public String getHighContrastMode(){ return highContrastMode; }
 
 	private HISeries series;
 	/**
@@ -143,7 +155,7 @@ public class HIAccessibility extends HIFoundation {
 
 	private Object highContrastTheme;
 	/**
- Theme to apply to the chart when Windows High Contrast Mode is detected. By defaults, a high contrast theme matching the high contrast system system colors is used. 
+ Theme to apply to the chart when Windows High Contrast Mode is detected. By defaults, a high contrast theme matching the high contrast system colors is used. 
 	*/
 	public void setHighContrastTheme(Object highContrastTheme) {
 		this.highContrastTheme = highContrastTheme;
@@ -438,6 +450,9 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if (this.point != null) {
+			params.put("point", this.point.getParams());
+		}
 		if (this.landmarkVerbosity != null) {
 			params.put("landmarkVerbosity", this.landmarkVerbosity);
 		}
@@ -447,8 +462,8 @@ public HashMap<String, Object> getParams() {
 		if (this.linkedDescription != null) {
 			params.put("linkedDescription", this.linkedDescription);
 		}
-		if (this.point != null) {
-			params.put("point", this.point.getParams());
+		if (this.highContrastMode != null) {
+			params.put("highContrastMode", this.highContrastMode);
 		}
 		if (this.series != null) {
 			params.put("series", this.series.getParams());
