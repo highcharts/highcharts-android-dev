@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.webkit.ConsoleMessage;
@@ -16,8 +17,12 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIAnimationOptionsObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIAnnotations;
+import com.highsoft.highcharts.common.hichartsclasses.HIChart;
 import com.highsoft.highcharts.common.hichartsclasses.HICredits;
 import com.highsoft.highcharts.common.hichartsclasses.HIGlobal;
 import com.highsoft.highcharts.common.hichartsclasses.HILang;
@@ -172,21 +177,9 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
             });
         }
         this.webView.setFocusableInTouchMode(true);
-        this.webView.setOnFocusChangeListener(new OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus) {
-                    Log.i(TAG, "hasFocus: " + hasFocus);
-                    String strOptions = "javascript:onFocusOut()";
-                    webView.evaluateJavascript(strOptions, new ValueCallback<String>() {
-                        @Override
-                        public void onReceiveValue(String s) {
-                            Log.e("HIChartView", "Focus lost");
-                        }
-                    });
-                } else Log.i(TAG, "hasFocus: " + hasFocus);
-            }
-        });
+
+        setWebViewFocusListener();
+
         this.HTML = new HIGHTML(hiFunctionHandler);
         this.HTML.baseURL = "";
         try {
@@ -197,7 +190,45 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
         this.addView(webView);
     }
 
+    private void setWebViewFocusListener() {
+        this.webView.setOnFocusChangeListener((v, hasFocus) -> {
+            if(!hasFocus) {
+                Log.i(TAG, "hasFocus: " + hasFocus);
+                String strOptions = "javascript:onFocusOut()";
+                webView.evaluateJavascript(strOptions, s -> Log.e("HIChartView", "Focus lost"));
+            } else {
+                Log.i(TAG, "hasFocus: " + hasFocus);
+            }
+        });
+    }
 
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        if (oldw == 0 || oldh == 0 ) return;
+
+        JsonObject jsonObject = new Gson().fromJson(this.HTML.options, JsonObject.class);
+        JsonElement renderTo = jsonObject.getAsJsonObject("chart").get("renderTo");
+        String containerId = (renderTo == null) ? "container" : renderTo.getAsString();
+
+        HIChart chart = options.getChart();
+        if (chart.getWidth() == null) {
+            webView.evaluateJavascript(
+                    "document.querySelector('#" + containerId + "').style.width = '" +
+                            convertPixelsToDp(w, getContext()) +
+                            "px';",
+                    s -> {}
+            );
+        }
+        if (chart.getHeight() == null) {
+            webView.evaluateJavascript(
+                    "document.querySelector('#" + containerId + "').style.height = '" +
+                            convertPixelsToDp(h, getContext()) +
+                            "px';",
+                    s -> {}
+            );
+        }
+    }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec){
@@ -977,6 +1008,10 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
         if(options != null) {
             rawOptionsMap = options;
         }
+    }
+
+    private float convertPixelsToDp(float px, Context context) {
+        return px / ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
 
 }
