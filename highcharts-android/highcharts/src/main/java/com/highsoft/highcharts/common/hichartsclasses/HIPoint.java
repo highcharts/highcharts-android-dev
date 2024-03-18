@@ -562,6 +562,7 @@ public class HIPoint extends HIFoundation {
 		this.notifyObservers(jsClassMethod);
 	}
 
+
 	@Override
 public HashMap<String, Object> getParams() {
 

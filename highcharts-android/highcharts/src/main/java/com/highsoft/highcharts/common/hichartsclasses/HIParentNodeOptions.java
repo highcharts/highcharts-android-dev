@@ -116,7 +116,7 @@ public class HIParentNodeOptions extends HIFoundation {
 
 	private String integration;
 	/**
- Integration type. Available options are `'euler'` and `'verlet'`. Integration determines how forces are applied on particles. In Euler integration, force is applied direct as `newPosition += velocity;`. In Verlet integration, new position is based on a previous posittion without velocity: `newPosition += previousPosition - newPosition`. Note that different integrations give different results as forces are different. In Highcharts v7.0.x only `'euler'` integration was supported. 
+ Integration type. Available options are `'euler'` and `'verlet'`. Integration determines how forces are applied on particles. In Euler integration, force is applied direct as `newPosition += velocity;`. In Verlet integration, new position is based on a previous position without velocity: `newPosition += previousPosition - newPosition`. Note that different integrations give different results as forces are different. In Highcharts v7.0.x only `'euler'` integration was supported. 
  <br><br><b>defaults:</b><br><br>&ensp;euler	*/
 	public void setIntegration(String integration) {
 		this.integration = integration;

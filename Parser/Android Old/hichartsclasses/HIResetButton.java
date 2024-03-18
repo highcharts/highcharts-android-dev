@@ -20,7 +20,7 @@ public class HIResetButton extends HIFoundation {
 
 	private HIAlignObject position;
 	/**
- The position of the button. 
+ The position of the button. Note: Adjusting position values might cause overlap with chart elements. Ensure coordinates do not obstruct other components or data visibility. 
 	*/
 	public void setPosition(HIAlignObject position) {
 		this.position = position;

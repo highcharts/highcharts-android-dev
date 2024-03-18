@@ -54,7 +54,7 @@ public class HIDebug extends HIFoundation {
 
 	private Boolean timeSetup;
 	/**
- Time the the WebGL setup. This outputs the time spent on setting up the WebGL context, creating shaders, and textures. 
+ Time the WebGL setup. This outputs the time spent on setting up the WebGL context, creating shaders, and textures. 
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
 	public void setTimeSetup(Boolean timeSetup) {
 		this.timeSetup = timeSetup;

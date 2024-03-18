@@ -21,6 +21,18 @@ import java.util.HashMap;
 	*/
 
 public class HIColumnrange extends HISeries {
+	private Object pointRange;
+	/**
+/** * description: The X axis range that each point is valid for. This determines the width of the column. On a categorized axis, the range will be 1 by defaults (one category unit). On linear and datetime axes, the range will be computed as the distance between the two closest data points. The defaults `null` means it is computed automatically, but this option can be used to override the automatic value. This option is set by defaults to 1 if data sorting is enabled. * demo: * [Set the point range to one day on a data set with one week between the points](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointrange/) 
+*/
+	public void setPointRange(Object pointRange) {
+		this.pointRange = pointRange;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object getPointRange(){ return pointRange; }
+
 	private HIBorderRadius borderRadius;
 	/**
 /** * description: The corner radius of the border surrounding each column or bar. A number signifies pixels. A percentage string, like for example `50%`, signifies a relative size. For columns this is relative to the column width, for pies it is relative to the radius and the inner radius. * demo: * [Rounded columns](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-borderradius/) * [Column and pie with rounded border](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-border-radius) 
@@ -34,18 +46,6 @@ public class HIColumnrange extends HISeries {
 	}
 
 	public HIBorderRadius getBorderRadius(){ return borderRadius; }
-
-	private Object pointRange;
-	/**
-/** * description: The X axis range that each point is valid for. This determines the width of the column. On a categorized axis, the range will be 1 by defaults (one category unit). On linear and datetime axes, the range will be computed as the distance between the two closest data points. The defaults `null` means it is computed automatically, but this option can be used to override the automatic value. This option is set by defaults to 1 if data sorting is enabled. * demo: * [Set the point range to one day on a data set with one week between the points](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-pointrange/) 
-*/
-	public void setPointRange(Object pointRange) {
-		this.pointRange = pointRange;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object getPointRange(){ return pointRange; }
 
 	private Number pointPadding;
 	/**
@@ -145,7 +145,7 @@ public class HIColumnrange extends HISeries {
 
 	private Number pointWidth;
 	/**
- A pixel value specifying a fixed width for each column or bar point. When set to `undefined`, the width is calculated from the `pointPadding` and `groupPadding`. The width effects the dimension that is not based on the point value. For column series it is the hoizontal length and for bar series it is the vertical length. 
+ A pixel value specifying a fixed width for each column or bar point. When set to `undefined`, the width is calculated from the `pointPadding` and `groupPadding`. The width effects the dimension that is not based on the point value. For column series it is the horizontal length and for bar series it is the vertical length. 
 	*/
 	public void setPointWidth(Number pointWidth) {
 		this.pointWidth = pointWidth;
@@ -239,11 +239,11 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
-		if (this.borderRadius != null) {
-			params.put("borderRadius", this.borderRadius.getParams());
-		}
 		if (this.pointRange != null) {
 			params.put("pointRange", this.pointRange);
+		}
+		if (this.borderRadius != null) {
+			params.put("borderRadius", this.borderRadius.getParams());
 		}
 		if (this.pointPadding != null) {
 			params.put("pointPadding", this.pointPadding);

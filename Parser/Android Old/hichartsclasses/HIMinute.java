@@ -36,6 +36,15 @@ public class HIMinute extends HIFoundation {
 
 	public String getMain(){ return main; }
 
+	private ArrayList<String> list;
+	public void setList(ArrayList<String> list) {
+		this.list = list;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList<String> getList(){ return list; }
+
 
 
 	public HIMinute() {
@@ -52,6 +61,18 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.main != null) {
 			params.put("main", this.main);
+		}
+		if (this.list != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.list) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("list", array);
 		}
 		return params;
 	}

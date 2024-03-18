@@ -153,7 +153,7 @@ public class HIShapeOptions extends HIFoundation {
 
 	private String type;
 	/**
- The type of the shape. Avaliable options are circle, rect and ellipse. 
+ The type of the shape. Available options are circle, rect and ellipse. 
  <br><br><b>defaults:</b><br><br>&ensp;rect	*/
 	public void setType(String type) {
 		this.type = type;

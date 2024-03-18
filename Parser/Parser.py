@@ -367,7 +367,9 @@ hc_types = {
     "Array.<(Array.<(number|string), number>|Array.<(number|string), number, number>|*)>": 'ArrayList',
     # 11.3.0
     "Array.<('string'|'number'|'float'|'date')>": 'ArrayList',
-    "number|'auto'": 'Number'
+    "number|'auto'": 'Number',
+    # 11.4.0
+    "'left'|'right'": 'String'
 }
 
 

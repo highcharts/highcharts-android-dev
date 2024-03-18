@@ -183,7 +183,7 @@ public class HILayoutAlgorithm extends HIFoundation {
 
 	private String integration;
 	/**
- Integration type. Available options are `'euler'` and `'verlet'`. Integration determines how forces are applied on particles. In Euler integration, force is applied direct as `newPosition += velocity;`. In Verlet integration, new position is based on a previous posittion without velocity: `newPosition += previousPosition - newPosition`. Note that different integrations give different results as forces are different. In Highcharts v7.0.x only `'euler'` integration was supported. 
+ Integration type. Available options are `'euler'` and `'verlet'`. Integration determines how forces are applied on particles. In Euler integration, force is applied direct as `newPosition += velocity;`. In Verlet integration, new position is based on a previous position without velocity: `newPosition += previousPosition - newPosition`. Note that different integrations give different results as forces are different. In Highcharts v7.0.x only `'euler'` integration was supported. 
  <br><br><b>defaults:</b><br><br>&ensp;euler	*/
 	public void setIntegration(String integration) {
 		this.integration = integration;
@@ -267,7 +267,7 @@ public class HILayoutAlgorithm extends HIFoundation {
 
 	private String approximation;
 	/**
- Approximation used to calculate repulsive forces affecting nodes. By defaults, when calculateing net force, nodes are compared against each other, which gives O(N^2) complexity. Using Barnes-Hut approximation, we decrease this to O(N log N), but the resulting graph will have different layout. Barnes-Hut approximation divides space into rectangles via quad tree, where forces exerted on nodes are calculated directly for nearby cells, and for all others, cells are treated as a separate node with center of mass. 
+ Approximation used to calculate repulsive forces affecting nodes. By defaults, when calculating net force, nodes are compared against each other, which gives O(N^2) complexity. Using Barnes-Hut approximation, we decrease this to O(N log N), but the resulting graph will have different layout. Barnes-Hut approximation divides space into rectangles via quad tree, where forces exerted on nodes are calculated directly for nearby cells, and for all others, cells are treated as a separate node with center of mass. 
  <br><br><b>defaults:</b><br><br>&ensp;none	*/
 	public void setApproximation(String approximation) {
 		this.approximation = approximation;
@@ -291,7 +291,7 @@ public class HILayoutAlgorithm extends HIFoundation {
 
 	private Number theta;
 	/**
- Barnes-Hut approximation only. Deteremines when distance between cell and node is small enough to caculate forces. Value of `theta` is compared directly with quotient `s / d`, where `s` is the size of the cell, and `d` is distance between center of cell's mass and currently compared node. 
+ Barnes-Hut approximation only. Deteremines when distance between cell and node is small enough to calculate forces. Value of `theta` is compared directly with quotient `s / d`, where `s` is the size of the cell, and `d` is distance between center of cell's mass and currently compared node. 
  <br><br><b>defaults:</b><br><br>&ensp;0.5	*/
 	public void setTheta(Number theta) {
 		this.theta = theta;
