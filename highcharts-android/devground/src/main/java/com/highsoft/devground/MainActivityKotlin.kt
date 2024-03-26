@@ -19,7 +19,7 @@ class MainActivityKotlin : AppCompatActivity() {
         findViewById<BottomNavigationView>(R.id.bottomNavigation).setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.page1 -> {
-                    switchFragment(DummyFragment.newInstance())
+                    switchFragment(BlankFragment())
                     true
                 }
 

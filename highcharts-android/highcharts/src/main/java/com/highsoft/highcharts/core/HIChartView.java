@@ -202,14 +202,25 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
         });
     }
 
+    /**
+     * Overrides the onSizeChanged method to dynamically adjust the size of the chart container.
+     * Determines the container ID based on JSON data; defaults to "container" if it cannot be resolved.
+     * Adjusts the size of the container, which is a div element, to ensure proper view resizing by
+     * injecting JavaScript directly into the WebView.
+     */
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         if (oldw == 0 || oldh == 0 ) return;
 
         JsonObject jsonObject = new Gson().fromJson(this.HTML.options, JsonObject.class);
-        JsonElement renderTo = jsonObject.getAsJsonObject("chart").get("renderTo");
-        String containerId = (renderTo == null) ? "container" : renderTo.getAsString();
+        String containerId;
+        if (jsonObject != null) {
+            JsonElement renderTo = jsonObject.getAsJsonObject("chart").get("renderTo");
+            containerId = (renderTo == null) ? "container" : renderTo.getAsString();
+        } else {
+            containerId = "container";
+        }
 
         HIChart chart = options.getChart();
         if (chart.getWidth() == null) {
