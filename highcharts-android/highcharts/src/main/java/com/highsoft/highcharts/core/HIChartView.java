@@ -3,6 +3,7 @@ package com.highsoft.highcharts.core;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Build;
@@ -104,7 +105,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
     public HIChartView(Context c) {
         super(c);
         this.jsHandlersMap = new HashMap<>();
-        this.activity = (Activity) c;
+        this.activity = unwrapContext(c);
         initialize(c);
     }
 
@@ -118,8 +119,16 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
 //        Log.e(TAG, "XML constructor called.");
         jsHandlersMap = new HashMap<>();
         this.setWillNotDraw(false);
-        this.activity = (Activity) c;
+        this.activity = unwrapContext(c);
         initialize(c);
+    }
+
+    private static Activity unwrapContext(Context context) {
+        while (!(context instanceof Activity) && context instanceof ContextWrapper) {
+            context = ((ContextWrapper) context).getBaseContext();
+        }
+
+        return (Activity) context;
     }
 
 //    @Override
