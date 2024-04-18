@@ -8,12 +8,10 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
@@ -181,6 +179,19 @@ public class HIPlotBands extends HIFoundation {
 
 	public HIPlotBands() {
 
+	}
+
+	/**
+	 * Remove the plot band.
+	 */
+	public void destroy() {
+		this.jsClassMethod = new HashMap<String, Object>() {{
+			put("class", "PlotLineOrBand");
+			put("method", "destroy");
+			put("id", uuid);
+		}};
+		this.setChanged();
+		this.notifyObservers(jsClassMethod);
 	}
 
 	@Override

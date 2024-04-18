@@ -8,11 +8,9 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.HashMap;
 
 
 
@@ -117,14 +115,14 @@ public class HIStyle extends HIFoundation {
 
 	public String getStroke(){ return stroke; }
 
-	private Number stroke-width;
-	public void setStroke-width(Number stroke-width) {
-		this.stroke-width = stroke-width;
+	private Number strokeWidth;
+	public void setStrokeWidth(Number strokeWidth) {
+		this.strokeWidth = strokeWidth;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getStroke-width(){ return stroke-width; }
+	public Number getStrokeWidth(){ return strokeWidth; }
 
 	private String fill;
 	public void setFill(String fill) {
@@ -179,8 +177,8 @@ public HashMap<String, Object> getParams() {
 		if (this.stroke != null) {
 			params.put("stroke", this.stroke);
 		}
-		if (this.stroke-width != null) {
-			params.put("stroke-width", this.stroke-width);
+		if (this.strokeWidth != null) {
+			params.put("stroke-width", this.strokeWidth);
 		}
 		if (this.fill != null) {
 			params.put("fill", this.fill);

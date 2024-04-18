@@ -8,11 +8,10 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 
@@ -77,17 +76,17 @@ public class HICluster extends HIFoundation {
 
 	public HILayoutAlgorithm getLayoutAlgorithm(){ return layoutAlgorithm; }
 
-	private HIDataLabelsOptions dataLabels;
+	private HIDataLabels dataLabels;
 	/**
- Options for the cluster data labels. 
-	*/
-	public void setDataLabels(HIDataLabelsOptions dataLabels) {
+	 Options for the cluster data labels.
+	 */
+	public void setDataLabels(HIDataLabels dataLabels) {
 		this.dataLabels = dataLabels;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIDataLabelsOptions getDataLabels(){ return dataLabels; }
+	public HIDataLabels getDataLabels(){ return dataLabels; }
 
 	private Boolean drillToCluster;
 	/**
@@ -113,17 +112,17 @@ public class HICluster extends HIFoundation {
 
 	public HIAnimationOptionsObject getAnimation(){ return animation; }
 
-	private HIPointMarkerOptionsObject marker;
+	private HIMarker marker;
 	/**
- Options for the cluster marker. 
-	*/
-	public void setMarker(HIPointMarkerOptionsObject marker) {
+	 Options for the cluster marker.
+	 */
+	public void setMarker(HIMarker marker) {
 		this.marker = marker;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIPointMarkerOptionsObject getMarker(){ return marker; }
+	public HIMarker getMarker(){ return marker; }
 
 	private Number minimumClusterSize;
 	/**

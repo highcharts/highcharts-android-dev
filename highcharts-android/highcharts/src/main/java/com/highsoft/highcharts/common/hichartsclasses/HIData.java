@@ -8,12 +8,13 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.core.HIFunction;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 
@@ -1075,11 +1076,27 @@ public class HIData extends HIFoundation {
 
 	}
 
+	private HashMap<String, Object> jsProperties;
+	/**
+	 * Add a custom property to your chart. Those can be accessible later by HIFunction callbacks.
+	 * @param name the name by which you can access property
+	 * @param value the actual value which can be accessed
+	 */
+	public void setProperty(String name, Object value) {
+		if(jsProperties == null) jsProperties = new HashMap<>();
+		jsProperties.put(name, value);
+	}
+
 	@Override
 public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if(this.jsProperties != null){
+			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
+				params.put(entry.getKey(), entry.getValue());
+			}
+		}
 		if (this.enablePolling != null) {
 			params.put("enablePolling", this.enablePolling);
 		}

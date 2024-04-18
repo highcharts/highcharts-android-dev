@@ -8,12 +8,12 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
-import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.core.HIFunction;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 
@@ -491,17 +491,17 @@ public class HIDataLabels extends HIFoundation {
 
 	public String getLinkFormat(){ return linkFormat; }
 
-	private HIDataLabelTextPathOptions linkTextPath;
+	private HILinkTextPath linkTextPath;
 	/**
- Options for a _link_ label text which should follow link connection. 
-	*/
-	public void setLinkTextPath(HIDataLabelTextPathOptions linkTextPath) {
+	 Options for a _link_ label text which should follow link connection.
+	 */
+	public void setLinkTextPath(HILinkTextPath linkTextPath) {
 		this.linkTextPath = linkTextPath;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIDataLabelTextPathOptions getLinkTextPath(){ return linkTextPath; }
+	public HILinkTextPath getLinkTextPath(){ return linkTextPath; }
 
 	private HIFunction linkFormatter;
 	/**
@@ -686,7 +686,9 @@ public class HIDataLabels extends HIFoundation {
 
 	private String type;
 	/**
- The type of series. Can be one of area, areaspline, bar, column, line, pie, scatter or spline. From version 2.3, arearange, areasplinerange and columnrange are supported with the highcharts-more.js component. 
+ The type of series. Can be one of area, areaspline,
+ bar, column, line, pie,
+ scatter or spline. From version 2.3, arearange, areasplinerange and columnrange are supported with the highcharts-more.js component. 
 	*/
 	public void setType(String type) {
 		this.type = type;

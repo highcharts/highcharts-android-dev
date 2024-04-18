@@ -8,11 +8,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import java.util.HashMap;
-import java.util.HashMap;
-import java.util.ArrayList;
-import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.core.HIFunction;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 
@@ -102,17 +102,17 @@ public class HILabel extends HIFoundation {
 
 	public Boolean getOnArea(){ return onArea; }
 
-	private NSArray<HILabelIntersectBoxObject *> boxesToAvoid;
+	private ArrayList<HILabelIntersectBoxObject> boxesToAvoid;
 	/**
  An array of boxes to avoid when laying out the labels. Each item has a `left`, `right`, `top` and `bottom` property. 
 	*/
-	public void setBoxesToAvoid(NSArray<HILabelIntersectBoxObject *> boxesToAvoid) {
+	public void setBoxesToAvoid(ArrayList<HILabelIntersectBoxObject> boxesToAvoid) {
 		this.boxesToAvoid = boxesToAvoid;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public NSArray<HILabelIntersectBoxObject *> getBoxesToAvoid(){ return boxesToAvoid; }
+	public ArrayList<HILabelIntersectBoxObject> getBoxesToAvoid(){ return boxesToAvoid; }
 
 	private HIFunction formatter;
 	/**
@@ -267,7 +267,7 @@ public HashMap<String, Object> getParams() {
 			params.put("onArea", this.onArea);
 		}
 		if (this.boxesToAvoid != null) {
-			params.put("boxesToAvoid", this.boxesToAvoid.getParams());
+			params.put("boxesToAvoid", this.boxesToAvoid);
 		}
 		if (this.formatter != null) {
 			params.put("formatter", this.formatter);
