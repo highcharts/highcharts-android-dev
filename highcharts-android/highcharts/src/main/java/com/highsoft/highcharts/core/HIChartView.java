@@ -156,6 +156,9 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
         this.webView.setBackgroundColor(Color.TRANSPARENT);
         this.webView.getSettings().setJavaScriptEnabled(true);
         this.webView.getSettings().setDomStorageEnabled(true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.webView.getSettings().setSafeBrowsingEnabled(true);
+        }
         HIGWebViewClient webViewClient = new HIGWebViewClient();
         this.webView.setWebViewClient(webViewClient);
         //improve chart loading performance, CSS animations are loading faster!
