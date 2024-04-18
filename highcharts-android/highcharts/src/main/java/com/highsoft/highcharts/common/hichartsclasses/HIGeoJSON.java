@@ -8,10 +8,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.core.HIFoundation;
-
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
@@ -65,18 +66,17 @@ public class HIGeoJSON extends HIFoundation {
 
 	public ArrayList getFeatures(){ return features; }
 
-	private Object hcTransform;
+	private Object hc-transform;
 	/**
-	 Map projections and transformations to be used when calculating between lat/lon and chart values. Required for lat/lon support on maps. Allows resizing, rotating, and moving portions of a map within its projected coordinate system while still retaining lat/lon support. If using lat/lon on a portion of the map that does not match a `hitZone`, the definition with the key `defaults` is used.
-	 */
-	public void setHcTransform(Object hcTransform) {
-		this.hcTransform = hcTransform;
+ Map projections and transformations to be used when calculating between lat/lon and chart values. Required for lat/lon support on maps. Allows resizing, rotating, and moving portions of a map within its projected coordinate system while still retaining lat/lon support. If using lat/lon on a portion of the map that does not match a `hitZone`, the definition with the key `defaults` is used. 
+	*/
+	public void setHc-transform(Object hc-transform) {
+		this.hc-transform = hc-transform;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object getHcTransform(){ return hcTransform; }
-
+	public Object getHc-transform(){ return hc-transform; }
 
 	private String title;
 	/**
@@ -146,8 +146,8 @@ public HashMap<String, Object> getParams() {
 			}
 			params.put("features", array);
 		}
-		if (this.hcTransform != null) {
-			params.put("hc-transform", this.hcTransform);
+		if (this.hc-transform != null) {
+			params.put("hc-transform", this.hc-transform);
 		}
 		if (this.title != null) {
 			params.put("title", this.title);

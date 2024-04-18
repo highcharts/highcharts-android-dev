@@ -8,12 +8,12 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
-
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -491,17 +491,17 @@ public class HIDataLabels extends HIFoundation {
 
 	public String getLinkFormat(){ return linkFormat; }
 
-	private HILinkTextPath linkTextPath;
+	private HIDataLabelTextPathOptions linkTextPath;
 	/**
  Options for a _link_ label text which should follow link connection. 
 	*/
-	public void setLinkTextPath(HILinkTextPath linkTextPath) {
+	public void setLinkTextPath(HIDataLabelTextPathOptions linkTextPath) {
 		this.linkTextPath = linkTextPath;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HILinkTextPath getLinkTextPath(){ return linkTextPath; }
+	public HIDataLabelTextPathOptions getLinkTextPath(){ return linkTextPath; }
 
 	private HIFunction linkFormatter;
 	/**
@@ -686,9 +686,7 @@ public class HIDataLabels extends HIFoundation {
 
 	private String type;
 	/**
- The type of series. Can be one of area, areaspline,
- bar, column, line, pie,
- scatter or spline. From version 2.3, arearange, areasplinerange and columnrange are supported with the highcharts-more.js component. 
+ The type of series. Can be one of area, areaspline, bar, column, line, pie, scatter or spline. From version 2.3, arearange, areasplinerange and columnrange are supported with the highcharts-more.js component. 
 	*/
 	public void setType(String type) {
 		this.type = type;
@@ -1350,7 +1348,7 @@ public class HIDataLabels extends HIFoundation {
 
 	private Object /* Number, String */ colorAxis;
 	/**
- When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the axis id or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag.
+ When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the {@link #colorAxis.id|axis id} or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setColorAxis(Object /* Number, String */ colorAxis) {
 		this.colorAxis = colorAxis;

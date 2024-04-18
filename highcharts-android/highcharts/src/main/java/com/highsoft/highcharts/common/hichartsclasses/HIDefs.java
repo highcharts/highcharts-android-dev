@@ -8,22 +8,24 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
 
-import java.util.HashMap;
 
 
+public class HIDefs extends HIFoundation { 
 
-public class HIDefs extends HIFoundation {
-
-	private HIASTNode reverseArrow;
-	public void setReverseArrow(HIASTNode reverseArrow) {
-		this.reverseArrow = reverseArrow;
+	private HIASTNode reverse-arrow;
+	public void setReverse-arrow(HIASTNode reverse-arrow) {
+		this.reverse-arrow = reverse-arrow;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIASTNode getReverseArrow(){ return reverseArrow; }
+	public HIASTNode getReverse-arrow(){ return reverse-arrow; }
 
 	private HIASTNode arrow;
 	public void setArrow(HIASTNode arrow) {
@@ -45,8 +47,8 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.reverseArrow != null) {
-			params.put("reverse-arrow", this.reverseArrow.getParams());
+		if (this.reverse-arrow != null) {
+			params.put("reverse-arrow", this.reverse-arrow.getParams());
 		}
 		if (this.arrow != null) {
 			params.put("arrow", this.arrow.getParams());

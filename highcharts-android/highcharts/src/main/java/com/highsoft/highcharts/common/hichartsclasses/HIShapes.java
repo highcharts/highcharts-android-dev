@@ -8,11 +8,12 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -30,17 +31,17 @@ public class HIShapes extends HIFoundation {
 
 	public String getSrc(){ return src; }
 
-	private ArrayList<HIAnnotationMockPointOptionsObject> points;
+	private ArrayList<HIAnnotationMockPointOptionsObject *> points;
 	/**
  An array of points for the shape or a callback function that returns that shape point. This option is available for shapes which can use multiple points such as path. A point can be either a point object or a point's id. 
 	*/
-	public void setPoints(ArrayList<HIAnnotationMockPointOptionsObject> points) {
+	public void setPoints(ArrayList<HIAnnotationMockPointOptionsObject *> points) {
 		this.points = points;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<HIAnnotationMockPointOptionsObject> getPoints(){ return points; }
+	public ArrayList<HIAnnotationMockPointOptionsObject *> getPoints(){ return points; }
 
 	private String markerEnd;
 	/**

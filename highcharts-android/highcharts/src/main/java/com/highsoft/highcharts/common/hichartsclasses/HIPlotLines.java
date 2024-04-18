@@ -8,10 +8,12 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -141,19 +143,6 @@ public class HIPlotLines extends HIFoundation {
 
 	public HIPlotLines() {
 
-	}
-
-	/**
-	 * Remove the plot line.
-	 */
-	public void destroy() {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "PlotLineOrBand");
-			put("method", "destroy");
-			put("id", uuid);
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
 	}
 
 	@Override

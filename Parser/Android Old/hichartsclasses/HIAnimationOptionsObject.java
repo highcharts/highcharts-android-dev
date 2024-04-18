@@ -20,7 +20,7 @@ public class HIAnimationOptionsObject extends HIFoundation {
 
 	private HIFunction complete;
 	/**
- A callback function to exectute when the animation finishes. 
+ A callback function to execute when the animation finishes. 
 	*/
 	public void setComplete(HIFunction complete) {
 		this.complete = complete;
