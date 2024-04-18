@@ -863,7 +863,7 @@ public class HISeries extends HIFoundation {
 
 	private Object /* Number, String */ colorAxis;
 	/**
- When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the axis id or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag.
+ When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the colorAxis.id or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag.
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setColorAxis(Object /* Number, String */ colorAxis) {
 		this.colorAxis = colorAxis;
@@ -1611,6 +1611,11 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if(this.jsProperties != null){
+			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
+				params.put(entry.getKey(), entry.getValue());
+			}
+		}
 		if (this.data != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.data) {
@@ -1622,11 +1627,6 @@ public HashMap<String, Object> getParams() {
 				}
 			}
 			params.put("data", array);
-		}
-		if(this.jsProperties != null){
-			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
-				params.put(entry.getKey(), entry.getValue());
-			}
 		}
 		if (this.id != null) {
 			params.put("id", this.id);

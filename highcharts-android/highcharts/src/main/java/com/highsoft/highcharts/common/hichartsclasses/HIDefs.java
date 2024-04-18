@@ -34,8 +34,6 @@ public class HIDefs extends HIFoundation {
 
 	public HIASTNode getArrow(){ return arrow; }
 
-
-
 	public HIDefs() {
 
 	}

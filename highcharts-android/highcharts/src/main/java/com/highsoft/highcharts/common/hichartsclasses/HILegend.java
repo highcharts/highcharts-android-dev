@@ -637,7 +637,6 @@ public class HILegend extends HIFoundation {
 		this.notifyObservers(jsClassMethod);
 	}
 
-
 	@Override
 public HashMap<String, Object> getParams() {
 

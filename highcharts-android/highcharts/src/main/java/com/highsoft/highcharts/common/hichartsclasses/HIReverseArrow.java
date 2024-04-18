@@ -8,6 +8,7 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
+
 import com.highsoft.highcharts.core.HIFoundation;
 
 import java.util.HashMap;
