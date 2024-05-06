@@ -146,7 +146,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
         this.HTML.prepareCustomFont(activity, id);
     }
 
-    @SuppressLint({"AddJavascriptInterface", "SetJavaScriptEnabled"})
+    @SuppressLint({"AddJavascriptInterface", "SetJavaScriptEnabled", "WebViewApiAvailability"})
     private void initialize(final Context context) {
         this.debug = false;
         this.webView = new WebView(context);
@@ -156,11 +156,19 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
         this.webView.setBackgroundColor(Color.TRANSPARENT);
         this.webView.getSettings().setJavaScriptEnabled(true);
         this.webView.getSettings().setDomStorageEnabled(true);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            this.webView.getSettings().setSafeBrowsingEnabled(true);
-        }
         HIGWebViewClient webViewClient = new HIGWebViewClient();
         this.webView.setWebViewClient(webViewClient);
+
+        // enable and initialize safe browsing
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+            this.webView.getSettings().setSafeBrowsingEnabled(true);
+            WebView.startSafeBrowsing(context, success -> {
+                if (!success) {
+                    Log.e(TAG, "Unable to initialize Safe Browsing!");
+                }
+            });
+        }
+
         //improve chart loading performance, CSS animations are loading faster!
         this.webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         // Adding exporting module to the chart
