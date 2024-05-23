@@ -19,6 +19,7 @@ import android.webkit.WebView;
 import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.highsoft.highcharts.common.hichartsclasses.HIAnimationOptionsObject;
@@ -224,7 +225,10 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
 
     /**
      * Overrides the onSizeChanged method to dynamically adjust the size of the chart container.
-     * Determines the container ID based on JSON data; defaults to "container" if it cannot be resolved.
+     * Determines the container ID, width, and height based on provided configuration.
+     * - If `options` is provided, these values are taken from the properties of the `HIChart` object.
+     * - If `rawOptionsMap` is provided, these values are extracted from the JSON data.
+     * - Defaults to "container" for the container ID, and null for width and height if they cannot be resolved.
      * Adjusts the size of the container, which is a div element, to ensure proper view resizing by
      * injecting JavaScript directly into the WebView.
      */
@@ -233,17 +237,36 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
         super.onSizeChanged(w, h, oldw, oldh);
         if (oldw == 0 || oldh == 0 ) return;
 
-        JsonObject jsonObject = new Gson().fromJson(this.HTML.options, JsonObject.class);
-        String containerId;
-        if (jsonObject != null) {
-            JsonElement renderTo = jsonObject.getAsJsonObject("chart").get("renderTo");
+        String containerId = "container";
+        Object chartWidth = null;
+        Object chartHeight = null;
+
+        if (options != null) {
+            HIChart chart = options.getChart();
+            containerId = (chart.getRenderTo() == null) ? "container" : chart.getRenderTo() ;
+            chartWidth = chart.getWidth();
+            chartHeight = chart.getHeight();
+        } else if (rawOptionsMap != null){
+            final Gson gson = new GsonBuilder()
+                    .setPrettyPrinting()
+                    .disableHtmlEscaping()
+                    .create();
+            String gsonFormatted = gson.toJson(rawOptionsMap);
+            JsonObject jsonObject = new Gson().fromJson(gsonFormatted, JsonObject.class);
+
+            JsonObject chart = jsonObject.getAsJsonObject("chart");
+
+            JsonElement renderTo = chart.get("renderTo");
             containerId = (renderTo == null) ? "container" : renderTo.getAsString();
-        } else {
-            containerId = "container";
+
+            JsonElement chartViewWidth = chart.get("width");
+            chartWidth = (chartViewWidth == null) ? null : chartViewWidth.getAsString();
+
+            JsonElement chartViewHeight = chart.get("height");
+            chartHeight = (chartViewHeight == null) ? null : chartViewHeight.getAsString();
         }
 
-        HIChart chart = options.getChart();
-        if (chart.getWidth() == null) {
+        if (chartWidth == null) {
             webView.evaluateJavascript(
                     "document.querySelector('#" + containerId + "').style.width = '" +
                             convertPixelsToDp(w, getContext()) +
@@ -251,7 +274,7 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
                     s -> {}
             );
         }
-        if (chart.getHeight() == null) {
+        if (chartHeight == null) {
             webView.evaluateJavascript(
                     "document.querySelector('#" + containerId + "').style.height = '" +
                             convertPixelsToDp(h, getContext()) +
