@@ -8,9 +8,12 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -46,7 +49,7 @@ public class HIStreamgraph extends HISeries {
 
 	private HIColor negativeFillColor;
 	/**
- A separate color for the negative part of the area. In styled mode, a negative color is set with the `.highcharts-negative` class name. 
+ A separate color for the negative part of the area. Note that `zones` takes precedence over the negative fill color. In styled mode, a negative color is set with the `.highcharts-negative` class name. 
 	*/
 	public void setNegativeFillColor(HIColor negativeFillColor) {
 		this.negativeFillColor = negativeFillColor;

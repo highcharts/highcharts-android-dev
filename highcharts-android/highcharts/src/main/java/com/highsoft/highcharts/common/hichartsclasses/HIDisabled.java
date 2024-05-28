@@ -16,23 +16,24 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-public class HIResponsive extends HIFoundation { 
+public class HIDisabled extends HIFoundation { 
 
-	private ArrayList <HIRules> rules;
+	private HIStyle style;
 	/**
- A set of rules for responsive settings. The rules are executed from the top down. 
+ Disabled state CSS style overrides for the buttons' text 
 	*/
-	public void setRules(ArrayList rules) {
-		this.rules = rules;
+	public void setStyle(HIStyle style) {
+		this.style = style;
+		this.style.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList getRules(){ return rules; }
+	public HIStyle getStyle(){ return style; }
 
 
 
-	public HIResponsive() {
+	public HIDisabled() {
 
 	}
 
@@ -41,17 +42,8 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.rules != null) {
-			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.rules) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
-			}
-			params.put("rules", array);
+		if (this.style != null) {
+			params.put("style", this.style.getParams());
 		}
 		return params;
 	}

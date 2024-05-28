@@ -231,7 +231,7 @@ public class HISeries extends HIFoundation {
 
 	private String xAxisDescription;
 	/**
- xAxis description for series if there are multiple xAxes in the chart. 
+ X-axis description for series if there are multiple xAxes in the chart. 
  <br><br><b>defaults:</b><br><br>&ensp;X axis, {name}	*/
 	public void setXAxisDescription(String xAxisDescription) {
 		this.xAxisDescription = xAxisDescription;
@@ -243,7 +243,7 @@ public class HISeries extends HIFoundation {
 
 	private String yAxisDescription;
 	/**
- yAxis description for series if there are multiple yAxes in the chart. 
+ Y-axis description for series if there are multiple yAxes in the chart. 
  <br><br><b>defaults:</b><br><br>&ensp;Y axis, {name}	*/
 	public void setYAxisDescription(String yAxisDescription) {
 		this.yAxisDescription = yAxisDescription;
@@ -863,7 +863,7 @@ public class HISeries extends HIFoundation {
 
 	private Object /* Number, String */ colorAxis;
 	/**
- When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the colorAxis.id or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag.
+ When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the axis id or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag.
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setColorAxis(Object /* Number, String */ colorAxis) {
 		this.colorAxis = colorAxis;
@@ -1057,6 +1057,17 @@ public class HISeries extends HIFoundation {
 
 	public HISeries() {
 
+	}
+
+	private HashMap<String, Object> jsProperties;
+	/**
+	 * Add a custom property to your chart. Those can be accessible later by HIFunction callbacks.
+	 * @param name the name by which you can access property
+	 * @param value the actual value which can be accessed
+	 */
+	public void setProperty(String name, Object value) {
+		if(jsProperties == null) jsProperties = new HashMap<>();
+		jsProperties.put(name, value);
 	}
 
 	/**
@@ -1595,16 +1606,6 @@ public class HISeries extends HIFoundation {
 		this.notifyObservers(jsClassMethod);
 	}
 
-	private HashMap<String, Object> jsProperties;
-	/**
-	 * Add a custom property to your chart. Those can be accessible later by HIFunction callbacks.
-	 * @param name the name by which you can access property
-	 * @param value the actual value which can be accessed
-	 */
-	public void setProperty(String name, Object value) {
-		if(jsProperties == null) jsProperties = new HashMap<>();
-		jsProperties.put(name, value);
-	}
 
 	@Override
 public HashMap<String, Object> getParams() {

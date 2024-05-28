@@ -225,17 +225,17 @@ public class HILabels extends HIFoundation {
 
 	public String getFormat(){ return format; }
 
-	private Number padding;
+	private String padding;
 	/**
- The pixel padding for axis labels, to ensure white space between them. 
- <br><br><b>defaults:</b><br><br>&ensp;5	*/
-	public void setPadding(Number padding) {
+ The pixel padding for axis labels, to ensure white space between them. Defaults to 4 for horizontal axes, 1 for vertical. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setPadding(String padding) {
 		this.padding = padding;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getPadding(){ return padding; }
+	public String getPadding(){ return padding; }
 
 	private Number step;
 	/**

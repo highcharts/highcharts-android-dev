@@ -16,17 +16,18 @@ import java.util.HashMap;
 
 public class HIGlobal extends HIFoundation { 
 
-	private String VMLRadialGradientURL;
+	private HIButtonTheme buttonTheme;
 	/**
- Path to the pattern image required by VML browsers in order to draw radial gradients. 
+ General theme for buttons. This applies to the zoom button, exporting context menu, map navigation, range selector buttons and custom buttons generated using the `SVGRenderer.button` function. However, each of these may be overridden with more specific options. 
 	*/
-	public void setVMLRadialGradientURL(String VMLRadialGradientURL) {
-		this.VMLRadialGradientURL = VMLRadialGradientURL;
+	public void setButtonTheme(HIButtonTheme buttonTheme) {
+		this.buttonTheme = buttonTheme;
+		this.buttonTheme.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getVMLRadialGradientURL(){ return VMLRadialGradientURL; }
+	public HIButtonTheme getButtonTheme(){ return buttonTheme; }
 
 
 
@@ -39,8 +40,8 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.VMLRadialGradientURL != null) {
-			params.put("VMLRadialGradientURL", this.VMLRadialGradientURL);
+		if (this.buttonTheme != null) {
+			params.put("buttonTheme", this.buttonTheme.getParams());
 		}
 		return params;
 	}

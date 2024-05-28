@@ -41,6 +41,18 @@ public class HITheme extends HIFoundation {
 
 	public HIColor getStroke(){ return stroke; }
 
+	private String strokeLinecap;
+	/**
+ Default stroke linecap for the buttons. 
+ <br><br><b>defaults:</b><br><br>&ensp;round	*/
+	public void setStrokeLinecap(String strokeLinecap) {
+		this.strokeLinecap = strokeLinecap;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getStrokeLinecap(){ return strokeLinecap; }
+
 	private HIColor fill;
 	/**
  The defaults fill exists only to capture hover events. 
@@ -78,6 +90,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.stroke != null) {
 			params.put("stroke", this.stroke.getData());
+		}
+		if (this.strokeLinecap != null) {
+			params.put("stroke-linecap", this.strokeLinecap);
 		}
 		if (this.fill != null) {
 			params.put("fill", this.fill.getData());
