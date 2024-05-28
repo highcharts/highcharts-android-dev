@@ -28,6 +28,79 @@ public class HIButtonTheme extends HIFoundation {
 
 	public HIStyle getStyle(){ return style; }
 
+	private HIStates states;
+	/**
+ State overrides for the buttons 
+	*/
+	public void setStates(HIStates states) {
+		this.states = states;
+		this.states.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIStates getStates(){ return states; }
+
+	private Number padding;
+	/**
+ The padding of buttons 
+ <br><br><b>defaults:</b><br><br>&ensp;8	*/
+	public void setPadding(Number padding) {
+		this.padding = padding;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPadding(){ return padding; }
+
+	private String stroke;
+	/**
+ The stroke color for buttons 
+ <br><br><b>defaults:</b><br><br>&ensp;#cccccc	*/
+	public void setStroke(String stroke) {
+		this.stroke = stroke;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getStroke(){ return stroke; }
+
+	private Number r;
+	/**
+ The border radius for buttons 
+ <br><br><b>defaults:</b><br><br>&ensp;2	*/
+	public void setR(Number r) {
+		this.r = r;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getR(){ return r; }
+
+	private Number stroke-width;
+	/**
+ The stroke width for buttons 
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
+	public void setStroke-width(Number stroke-width) {
+		this.stroke-width = stroke-width;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getStroke-width(){ return stroke-width; }
+
+	private String fill;
+	/**
+ The fill color for buttons 
+ <br><br><b>defaults:</b><br><br>&ensp;#f7f7f7	*/
+	public void setFill(String fill) {
+		this.fill = fill;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getFill(){ return fill; }
+
 
 
 	public HIButtonTheme() {
@@ -41,6 +114,24 @@ public HashMap<String, Object> getParams() {
 		params.put("_wrapperID", this.uuid);
 		if (this.style != null) {
 			params.put("style", this.style.getParams());
+		}
+		if (this.states != null) {
+			params.put("states", this.states.getParams());
+		}
+		if (this.padding != null) {
+			params.put("padding", this.padding);
+		}
+		if (this.stroke != null) {
+			params.put("stroke", this.stroke);
+		}
+		if (this.r != null) {
+			params.put("r", this.r);
+		}
+		if (this.stroke-width != null) {
+			params.put("stroke-width", this.stroke-width);
+		}
+		if (this.fill != null) {
+			params.put("fill", this.fill);
 		}
 		return params;
 	}

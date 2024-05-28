@@ -16,32 +16,24 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-public class HIAnimation extends HIFoundation { 
+public class HIDisabled extends HIFoundation { 
 
-	private Number duration;
-	public void setDuration(Number duration) {
-		this.duration = duration;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getDuration(){ return duration; }
-
-	private Number defer;
+	private HIStyle style;
 	/**
- The animation delay time in milliseconds. Set to `0` renders annotation immediately. As `undefined` inherits defer time from the `series.animation.defer`. 
+ Disabled state CSS style overrides for the buttons' text 
 	*/
-	public void setDefer(Number defer) {
-		this.defer = defer;
+	public void setStyle(HIStyle style) {
+		this.style = style;
+		this.style.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getDefer(){ return defer; }
+	public HIStyle getStyle(){ return style; }
 
 
 
-	public HIAnimation() {
+	public HIDisabled() {
 
 	}
 
@@ -50,11 +42,8 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.duration != null) {
-			params.put("duration", this.duration);
-		}
-		if (this.defer != null) {
-			params.put("defer", this.defer);
+		if (this.style != null) {
+			params.put("style", this.style.getParams());
 		}
 		return params;
 	}

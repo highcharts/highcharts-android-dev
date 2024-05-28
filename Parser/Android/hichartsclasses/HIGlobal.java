@@ -16,32 +16,24 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 
 
-public class HIAnimation extends HIFoundation { 
+public class HIGlobal extends HIFoundation { 
 
-	private Number duration;
-	public void setDuration(Number duration) {
-		this.duration = duration;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getDuration(){ return duration; }
-
-	private Number defer;
+	private HIButtonTheme buttonTheme;
 	/**
- The animation delay time in milliseconds. Set to `0` renders annotation immediately. As `undefined` inherits defer time from the `series.animation.defer`. 
+ General theme for buttons. This applies to the zoom button, exporting context menu, map navigation, range selector buttons and custom buttons generated using the `SVGRenderer.button` function. However, each of these may be overridden with more specific options. 
 	*/
-	public void setDefer(Number defer) {
-		this.defer = defer;
+	public void setButtonTheme(HIButtonTheme buttonTheme) {
+		this.buttonTheme = buttonTheme;
+		this.buttonTheme.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getDefer(){ return defer; }
+	public HIButtonTheme getButtonTheme(){ return buttonTheme; }
 
 
 
-	public HIAnimation() {
+	public HIGlobal() {
 
 	}
 
@@ -50,11 +42,8 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.duration != null) {
-			params.put("duration", this.duration);
-		}
-		if (this.defer != null) {
-			params.put("defer", this.defer);
+		if (this.buttonTheme != null) {
+			params.put("buttonTheme", this.buttonTheme.getParams());
 		}
 		return params;
 	}

@@ -22,6 +22,18 @@ import com.highsoft.highcharts.common.HIColor;
 	*/
 
 public class HIErrorbar extends HISeries {
+	private Boolean grouping;
+	/**
+/** * description: Whether to group non-stacked columns or to let them render independent of each other. Non-grouped columns will be laid out individually and overlap each other. * demo: * [Grouping disabled](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-grouping-false/) 
+*/
+	public void setGrouping(Boolean grouping) {
+		this.grouping = grouping;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getGrouping(){ return grouping; }
+
 	private Number whiskerWidth;
 	/**
 /** * description: The line width of the whiskers, the horizontal lines marking low and high values. When `null`, the general `lineWidth` applies. * demo: * [Error bar styling](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/error-bar-styling/) 
@@ -34,18 +46,6 @@ public class HIErrorbar extends HISeries {
 	}
 
 	public Number getWhiskerWidth(){ return whiskerWidth; }
-
-	private Boolean grouping;
-	/**
-/** * description: Whether to group non-stacked columns or to let them render independent of each other. Non-grouped columns will be laid out individually and overlap each other. * demo: * [Grouping disabled](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/column-grouping-false/) 
-*/
-	public void setGrouping(Boolean grouping) {
-		this.grouping = grouping;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getGrouping(){ return grouping; }
 
 	private HIColor stemColor;
 	/**
@@ -335,11 +335,11 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params = super.getParams();
-		if (this.whiskerWidth != null) {
-			params.put("whiskerWidth", this.whiskerWidth);
-		}
 		if (this.grouping != null) {
 			params.put("grouping", this.grouping);
+		}
+		if (this.whiskerWidth != null) {
+			params.put("whiskerWidth", this.whiskerWidth);
 		}
 		if (this.stemColor != null) {
 			params.put("stemColor", this.stemColor.getData());
