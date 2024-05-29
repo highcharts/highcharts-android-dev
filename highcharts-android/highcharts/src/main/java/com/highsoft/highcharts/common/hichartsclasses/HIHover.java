@@ -198,6 +198,15 @@ public class HIHover extends HIFoundation {
 
 	public Number getBrightness(){ return brightness; }
 
+	private String fill;
+	public void setFill(String fill) {
+		this.fill = fill;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getFill(){ return fill; }
+
 	private Number linkOpacity;
 	/**
  Opacity for the links between nodes in the sankey diagram in hover mode. 
@@ -233,6 +242,18 @@ public class HIHover extends HIFoundation {
 	}
 
 	public HIColor getColor(){ return color; }
+
+	private Number connectorWidthPlus;
+	/**
+ The additional connector line width for a hovered point. 
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
+	public void setConnectorWidthPlus(Number connectorWidthPlus) {
+		this.connectorWidthPlus = connectorWidthPlus;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getConnectorWidthPlus(){ return connectorWidthPlus; }
 
 
 
@@ -293,6 +314,9 @@ public HashMap<String, Object> getParams() {
 		if (this.brightness != null) {
 			params.put("brightness", this.brightness);
 		}
+		if (this.fill != null) {
+			params.put("fill", this.fill);
+		}
 		if (this.linkOpacity != null) {
 			params.put("linkOpacity", this.linkOpacity);
 		}
@@ -301,6 +325,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.color != null) {
 			params.put("color", this.color.getData());
+		}
+		if (this.connectorWidthPlus != null) {
+			params.put("connectorWidthPlus", this.connectorWidthPlus);
 		}
 		return params;
 	}

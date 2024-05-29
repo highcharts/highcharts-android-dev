@@ -164,6 +164,25 @@ public class HISelect extends HIFoundation {
 
 	public HIAnimation getAnimation(){ return animation; }
 
+	private HIStyle style;
+	public void setStyle(HIStyle style) {
+		this.style = style;
+		this.style.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIStyle getStyle(){ return style; }
+
+	private String fill;
+	public void setFill(String fill) {
+		this.fill = fill;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getFill(){ return fill; }
+
 	private Number lineWidthPlus;
 	/**
  The additional line width for the graph of a hovered series. 
@@ -235,6 +254,12 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.animation != null) {
 			params.put("animation", this.animation.getParams());
+		}
+		if (this.style != null) {
+			params.put("style", this.style.getParams());
+		}
+		if (this.fill != null) {
+			params.put("fill", this.fill);
 		}
 		if (this.lineWidthPlus != null) {
 			params.put("lineWidthPlus", this.lineWidthPlus);

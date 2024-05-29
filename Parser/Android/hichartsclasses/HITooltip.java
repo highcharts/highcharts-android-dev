@@ -199,17 +199,17 @@ public class HITooltip extends HIFoundation {
 
 	public Boolean getOutside(){ return outside; }
 
-	private Boolean animation;
+	private HIAnimationOptionsObject animation;
 	/**
  Enable or disable animation of the tooltip. 
- <br><br><b>defaults:</b><br><br>&ensp;true	*/
-	public void setAnimation(Boolean animation) {
+	*/
+	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getAnimation(){ return animation; }
+	public HIAnimationOptionsObject getAnimation(){ return animation; }
 
 	private Boolean split;
 	/**
@@ -285,7 +285,7 @@ public class HITooltip extends HIFoundation {
 
 	private String format;
 	/**
- A [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) for the whole tooltip. When format strings are a requirement, it is usually more convenient to use `headerFormat`, `pointFormat` and `footerFormat`, but the `format` option allows combining them into one setting. The context of the format string is the same as that of the `formatter` callback. 
+ A [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting) for the whole shared tooltip. When format strings are a requirement, it is usually more convenient to use `headerFormat`, `pointFormat` and `footerFormat`, but the `format` option allows combining them into one setting. The context of the format string is the same as that of the `tooltip.formatter` callback. 
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setFormat(String format) {
 		this.format = format;
@@ -554,7 +554,7 @@ public HashMap<String, Object> getParams() {
 			params.put("outside", this.outside);
 		}
 		if (this.animation != null) {
-			params.put("animation", this.animation);
+			params.put("animation", this.animation.getParams());
 		}
 		if (this.split != null) {
 			params.put("split", this.split);

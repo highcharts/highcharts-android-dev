@@ -190,7 +190,7 @@ public class HINodes extends HIFoundation {
 
 	private String layout;
 	/**
- Layout for the node's children. If `hanging`, this node's children will hang below their parent, allowing a tighter packing of nodes in the diagram. Note: Since @next version, the `hanging` layout is set by defaults for children of a parent using `hanging` layout. 
+ Layout for the node's children. If `hanging`, this node's children will hang below their parent, allowing a tighter packing of nodes in the diagram. Note: Since version 10.0.0, the `hanging` layout is set by defaults for children of a parent using `hanging` layout. 
  <br><br><b>defaults:</b><br><br>&ensp;normal	*/
 	public void setLayout(String layout) {
 		this.layout = layout;

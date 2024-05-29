@@ -8,9 +8,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.core.HIFoundation;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
@@ -91,18 +93,17 @@ public class HIDefaultSpeechOptions extends HIFoundation {
 
 	public Boolean getShowPlayMarker(){ return showPlayMarker; }
 
-	private HIActiveWhen activeWhen;
+	private HIFunction activeWhen;
 	/**
  Define a condition for when a track should be active and not. Can either be a function callback or a configuration object. If a function is used, it should return a `boolean` for whether or not the track should be active. The function is called for each audio event, and receives a parameter object with `time`, and potentially `point` and `value` properties depending on the track. `point` is available if the audio event is related to a data point. `value` is available if the track is used as a context track, and `valueInterval` is used. 
 	*/
-	public void setActiveWhen(HIActiveWhen activeWhen) {
+	public void setActiveWhen(HIFunction activeWhen) {
 		this.activeWhen = activeWhen;
-		this.activeWhen.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIActiveWhen getActiveWhen(){ return activeWhen; }
+	public HIFunction getActiveWhen(){ return activeWhen; }
 
 
 
@@ -134,7 +135,7 @@ public HashMap<String, Object> getParams() {
 			params.put("showPlayMarker", this.showPlayMarker);
 		}
 		if (this.activeWhen != null) {
-			params.put("activeWhen", this.activeWhen.getParams());
+			params.put("activeWhen", this.activeWhen);
 		}
 		return params;
 	}

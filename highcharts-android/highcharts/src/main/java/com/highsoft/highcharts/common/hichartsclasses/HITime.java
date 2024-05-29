@@ -9,7 +9,6 @@
 package com.highsoft.highcharts.common.hichartsclasses;
 
 import com.highsoft.highcharts.core.HIFoundation;
-import com.highsoft.highcharts.core.HIFunction;
 
 import java.util.HashMap;
 
@@ -31,7 +30,7 @@ public class HITime extends HIFoundation {
 
 	private String timezone;
 	/**
- A named time zone. Supported time zone names rely on the browser implementations, as described in the [mdn docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat#timezone). If the given time zone is not recognized by the browser, Highcharts provides a warning and falls back to returning a 0 offset, corresponding to the UCT time zone. Until v11.2.0, this option depended on moment.js. 
+ A named time zone. Supported time zone names rely on the browser implementations, as described in the [mdn docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat#timezone). If the given time zone is not recognized by the browser, Highcharts provides a warning and falls back to returning a 0 offset, corresponding to the UTC time zone. Until v11.2.0, this option depended on moment.js. 
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setTimezone(String timezone) {
 		this.timezone = timezone;
@@ -40,30 +39,6 @@ public class HITime extends HIFoundation {
 	}
 
 	public String getTimezone(){ return timezone; }
-
-	private HIFunction getTimezoneOffset;
-	/**
- A callback to return the time zone offset for a given datetime. It takes the timestamp in terms of milliseconds since January 1 1970, and returns the timezone offset in minutes. This provides a hook for drawing time based charts in specific time zones using their local DST crossover dates, with the help of external libraries. 
- <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
-	public void setGetTimezoneOffset(HIFunction getTimezoneOffset) {
-		this.getTimezoneOffset = getTimezoneOffset;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getGetTimezoneOffset(){ return getTimezoneOffset; }
-
-	private Number timezoneOffset;
-	/**
- The timezone offset in minutes. Positive values are west, negative values are east of UTC, as in the ECMAScript [getTimezoneOffset](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset) method. Use this to display UTC based data in a predefined time zone. 
-	*/
-	public void setTimezoneOffset(Number timezoneOffset) {
-		this.timezoneOffset = timezoneOffset;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getTimezoneOffset(){ return timezoneOffset; }
 
 	private Boolean useUTC;
 	/**
@@ -165,12 +140,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.timezone != null) {
 			params.put("timezone", this.timezone);
-		}
-		if (this.getTimezoneOffset != null) {
-			params.put("getTimezoneOffset", this.getTimezoneOffset);
-		}
-		if (this.timezoneOffset != null) {
-			params.put("timezoneOffset", this.timezoneOffset);
 		}
 		if (this.useUTC != null) {
 			params.put("useUTC", this.useUTC);

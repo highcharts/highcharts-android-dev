@@ -201,7 +201,7 @@ public class HISeries extends HIFoundation {
 
 	private String xAxisDescription;
 	/**
- xAxis description for series if there are multiple xAxes in the chart. 
+ X-axis description for series if there are multiple xAxes in the chart. 
  <br><br><b>defaults:</b><br><br>&ensp;X axis, {name}	*/
 	public void setXAxisDescription(String xAxisDescription) {
 		this.xAxisDescription = xAxisDescription;
@@ -213,7 +213,7 @@ public class HISeries extends HIFoundation {
 
 	private String yAxisDescription;
 	/**
- yAxis description for series if there are multiple yAxes in the chart. 
+ Y-axis description for series if there are multiple yAxes in the chart. 
  <br><br><b>defaults:</b><br><br>&ensp;Y axis, {name}	*/
 	public void setYAxisDescription(String yAxisDescription) {
 		this.yAxisDescription = yAxisDescription;

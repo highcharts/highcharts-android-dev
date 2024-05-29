@@ -279,7 +279,7 @@ public class HILegend extends HIFoundation {
 	private HICSSObject itemStyle;
 	/**
  CSS styles for each legend item. Only a subset of CSS is supported, notably those options related to text. The defaults `textOverflow` property makes long texts truncate. Set it to `undefined` to wrap text instead. A `width` property can be added to control the text width. 
- <br><br><b>defaults:</b><br><br>&ensp;{"color": "#333333", "cursor": "pointer", "fontSize": "0.75em", "fontWeight": "bold", "textOverflow": "ellipsis"}	*/
+ <br><br><b>defaults:</b><br><br>&ensp;{"color": "#333333", "cursor": "pointer", "fontSize": "0.8em", "fontWeight": "bold", "textOverflow": "ellipsis"}	*/
 	public void setItemStyle(HICSSObject itemStyle) {
 		this.itemStyle = itemStyle;
 		this.setChanged();
@@ -636,6 +636,7 @@ public class HILegend extends HIFoundation {
 		this.setChanged();
 		this.notifyObservers(jsClassMethod);
 	}
+
 
 	@Override
 public HashMap<String, Object> getParams() {

@@ -8,13 +8,24 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.core.HIFoundation;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
 public class HIAnimation extends HIFoundation { 
+
+	private Number duration;
+	public void setDuration(Number duration) {
+		this.duration = duration;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getDuration(){ return duration; }
 
 	private Number defer;
 	/**
@@ -28,15 +39,6 @@ public class HIAnimation extends HIFoundation {
 
 	public Number getDefer(){ return defer; }
 
-	private Number duration;
-	public void setDuration(Number duration) {
-		this.duration = duration;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getDuration(){ return duration; }
-
 
 
 	public HIAnimation() {
@@ -48,11 +50,11 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.defer != null) {
-			params.put("defer", this.defer);
-		}
 		if (this.duration != null) {
 			params.put("duration", this.duration);
+		}
+		if (this.defer != null) {
+			params.put("defer", this.defer);
 		}
 		return params;
 	}

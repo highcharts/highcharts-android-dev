@@ -8,9 +8,12 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -31,6 +34,36 @@ public class HIDumbbell extends HISeries {
 
 	public String getConnectorColor(){ return connectorColor; }
 
+	private Number connectorWidth;
+	/**
+ Pixel width of the line that connects the dumbbell point's values. 
+ <br><br><b>defaults:</b><br><br>&ensp;1	*/
+	public void setConnectorWidth(Number connectorWidth) {
+		this.connectorWidth = connectorWidth;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getConnectorWidth(){ return connectorWidth; }
+
+	private Number pointPadding;
+	public void setPointPadding(Number pointPadding) {
+		this.pointPadding = pointPadding;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPointPadding(){ return pointPadding; }
+
+	private Number pointRange;
+	public void setPointRange(Number pointRange) {
+		this.pointRange = pointRange;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getPointRange(){ return pointRange; }
+
 	private HILowMarker lowMarker;
 	/**
 /** * description: Options for the lower markers of the dumbbell-like series. When `lowMarker` is not defined, options inherit form the marker. 
@@ -45,9 +78,30 @@ public class HIDumbbell extends HISeries {
 
 	public HILowMarker getLowMarker(){ return lowMarker; }
 
+	private Number groupPadding;
+	public void setGroupPadding(Number groupPadding) {
+		this.groupPadding = groupPadding;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getGroupPadding(){ return groupPadding; }
+
+	private HIColor lowColor;
+	/**
+ Color of the start markers in a dumbbell graph. This option takes priority over the series color. To avoid this, set `lowColor` to `undefined`. 
+ <br><br><b>defaults:</b><br><br>&ensp;#333333	*/
+	public void setLowColor(HIColor lowColor) {
+		this.lowColor = lowColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getLowColor(){ return lowColor; }
+
 	private HIColor negativeFillColor;
 	/**
- A separate color for the negative part of the area. In styled mode, a negative color is set with the `.highcharts-negative` class name. 
+ A separate color for the negative part of the area. Note that `zones` takes precedence over the negative fill color. In styled mode, a negative color is set with the `.highcharts-negative` class name. 
 	*/
 	public void setNegativeFillColor(HIColor negativeFillColor) {
 		this.negativeFillColor = negativeFillColor;
@@ -84,8 +138,23 @@ public HashMap<String, Object> getParams() {
 		if (this.connectorColor != null) {
 			params.put("connectorColor", this.connectorColor);
 		}
+		if (this.connectorWidth != null) {
+			params.put("connectorWidth", this.connectorWidth);
+		}
+		if (this.pointPadding != null) {
+			params.put("pointPadding", this.pointPadding);
+		}
+		if (this.pointRange != null) {
+			params.put("pointRange", this.pointRange);
+		}
 		if (this.lowMarker != null) {
 			params.put("lowMarker", this.lowMarker.getParams());
+		}
+		if (this.groupPadding != null) {
+			params.put("groupPadding", this.groupPadding);
+		}
+		if (this.lowColor != null) {
+			params.put("lowColor", this.lowColor.getData());
 		}
 		if (this.negativeFillColor != null) {
 			params.put("negativeFillColor", this.negativeFillColor.getData());

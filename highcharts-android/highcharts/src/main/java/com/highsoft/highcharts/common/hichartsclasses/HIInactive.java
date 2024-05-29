@@ -8,9 +8,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.core.HIFoundation;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
@@ -18,8 +20,8 @@ public class HIInactive extends HIFoundation {
 
 	private Number opacity;
 	/**
- Opacity of inactive markers. 
- <br><br><b>defaults:</b><br><br>&ensp;0.3	*/
+ Opacity of series elements (dataLabels, line, area). 
+ <br><br><b>defaults:</b><br><br>&ensp;0.2	*/
 	public void setOpacity(Number opacity) {
 		this.opacity = opacity;
 		this.setChanged();
@@ -30,7 +32,7 @@ public class HIInactive extends HIFoundation {
 
 	private HIAnimationOptionsObject animation;
 	/**
- Animation when not hovering over the node. 
+ Animation when not hovering over the marker. 
 	*/
 	public void setAnimation(HIAnimationOptionsObject animation) {
 		this.animation = animation;

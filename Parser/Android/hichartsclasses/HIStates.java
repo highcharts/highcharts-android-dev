@@ -64,6 +64,19 @@ public class HIStates extends HIFoundation {
 
 	public HINormal getNormal(){ return normal; }
 
+	private HIDisabled disabled;
+	/**
+ Disabled state overrides for the buttons are applied in addition to the normal state options 
+	*/
+	public void setDisabled(HIDisabled disabled) {
+		this.disabled = disabled;
+		this.disabled.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIDisabled getDisabled(){ return disabled; }
+
 
 
 	public HIStates() {
@@ -86,6 +99,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.normal != null) {
 			params.put("normal", this.normal.getParams());
+		}
+		if (this.disabled != null) {
+			params.put("disabled", this.disabled.getParams());
 		}
 		return params;
 	}

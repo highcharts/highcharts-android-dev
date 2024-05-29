@@ -8,10 +8,12 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
@@ -89,17 +91,29 @@ public class HIPlotBands extends HIFoundation {
 
 	public Number getFrom(){ return from; }
 
-	private HIColor color;
+	private Number to;
 	/**
- The color of the plot band. 
- <br><br><b>defaults:</b><br><br>&ensp;#e6e9ff	*/
-	public void setColor(HIColor color) {
-		this.color = color;
+ The end position of the plot band in axis units. 
+	*/
+	public void setTo(Number to) {
+		this.to = to;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIColor getColor(){ return color; }
+	public Number getTo(){ return to; }
+
+	private Object /* Number, String */ borderRadius;
+	/**
+ Border radius for the plot band. Applies only to gauges. Can be a pixel value or a percentage, for example `50%`. 
+	*/
+	public void setBorderRadius(Object /* Number, String */ borderRadius) {
+		this.borderRadius = borderRadius;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getBorderRadius(){ return borderRadius; }
 
 	private String className;
 	/**
@@ -113,17 +127,17 @@ public class HIPlotBands extends HIFoundation {
 
 	public String getClassName(){ return className; }
 
-	private Number to;
+	private HIColor color;
 	/**
- The end position of the plot band in axis units. 
-	*/
-	public void setTo(Number to) {
-		this.to = to;
+ The color of the plot band. 
+ <br><br><b>defaults:</b><br><br>&ensp;#e6e9ff	*/
+	public void setColor(HIColor color) {
+		this.color = color;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getTo(){ return to; }
+	public HIColor getColor(){ return color; }
 
 	private Number borderWidth;
 	/**
@@ -194,6 +208,7 @@ public class HIPlotBands extends HIFoundation {
 		this.notifyObservers(jsClassMethod);
 	}
 
+
 	@Override
 public HashMap<String, Object> getParams() {
 
@@ -217,14 +232,17 @@ public HashMap<String, Object> getParams() {
 		if (this.from != null) {
 			params.put("from", this.from);
 		}
-		if (this.color != null) {
-			params.put("color", this.color.getData());
+		if (this.to != null) {
+			params.put("to", this.to);
+		}
+		if (this.borderRadius != null) {
+			params.put("borderRadius", this.borderRadius);
 		}
 		if (this.className != null) {
 			params.put("className", this.className);
 		}
-		if (this.to != null) {
-			params.put("to", this.to);
+		if (this.color != null) {
+			params.put("color", this.color.getData());
 		}
 		if (this.borderWidth != null) {
 			params.put("borderWidth", this.borderWidth);

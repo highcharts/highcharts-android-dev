@@ -43,6 +43,18 @@ public class HIBackground extends HIFoundation {
 
 	public Object /* Number, String */ getOuterRadius(){ return outerRadius; }
 
+	private Object /* Number, String */ borderRadius;
+	/**
+ The border radius of the pane background when the shape is `arc`. Can be a number (pixels) or a percentage string. 
+	*/
+	public void setBorderRadius(Object /* Number, String */ borderRadius) {
+		this.borderRadius = borderRadius;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getBorderRadius(){ return borderRadius; }
+
 	private Object /* Number, String */ innerRadius;
 	/**
  The inner radius of the pane background. Can be either numeric (pixels) or a percentage string. 
@@ -119,6 +131,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.outerRadius != null) {
 			params.put("outerRadius", this.outerRadius);
+		}
+		if (this.borderRadius != null) {
+			params.put("borderRadius", this.borderRadius);
 		}
 		if (this.innerRadius != null) {
 			params.put("innerRadius", this.innerRadius);

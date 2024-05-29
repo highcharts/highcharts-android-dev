@@ -302,7 +302,7 @@ public class HeatMapBuilder {
     /*also try to add this:
     hiDataLabels.setStyle(new HIStyle());
     hiDataLabels.getStyle().setColor("000000");*/
-        hiDataLabels.setColor(HIColor.initWithHexValue("000000"));
+        hiDataLabels.setColor("000000");
         hiDataLabelsArrayList.add(hiDataLabels);
         return hiDataLabelsArrayList;
     }
