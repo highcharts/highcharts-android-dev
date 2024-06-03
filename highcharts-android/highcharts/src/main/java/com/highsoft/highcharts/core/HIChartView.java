@@ -11,6 +11,7 @@ import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.ConsoleMessage;
 import android.webkit.ValueCallback;
@@ -221,6 +222,31 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
                 Log.i(TAG, "hasFocus: " + hasFocus);
             }
         });
+    }
+
+    /**
+     * Overrides dispatchTouchEvent to improve user experience by managing nested scrolling,
+     * disallowing parent intercept touch events when a significant move is detected.
+     */
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event)
+    {
+        final int MOVE_MIN_DISTANCE = 20;
+        float startX = 0;
+        float startY = 0;
+
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            startX = event.getX();
+            startY = event.getY();
+        }
+
+        boolean isMovingVertically = Math.abs(event.getY() - startY) > MOVE_MIN_DISTANCE;
+        boolean isMovingHorizontally = Math.abs(event.getX() - startX) > MOVE_MIN_DISTANCE;
+        boolean isMoving = event.getAction() == MotionEvent.ACTION_MOVE && (isMovingVertically || isMovingHorizontally);
+
+        requestDisallowInterceptTouchEvent(isMoving);
+
+        return super.dispatchTouchEvent(event);
     }
 
     /**
