@@ -1,5 +1,7 @@
-apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
 
 group = 'com.github.highcharts'
 version = '11.4.3'
@@ -30,13 +32,13 @@ ext{
 repositories {
     mavenCentral()
     google()
-    jcenter()
     maven { url "https://jitpack.io" }
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    defaultConfig {
+        compileSdk 30
+    }
 
     defaultConfig {
         minSdkVersion 19
@@ -55,8 +57,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
 }
@@ -76,11 +78,38 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
+                groupId = publishedGroupId
+                artifactId = artifact
+                version = libraryVersion
+
+                pom {
+                    name = libraryName
+                    description = libraryDescription
+                    url = siteUrl
+
+                    licenses {
+                        license {
+                            name = licenseName
+                            url = licenseUrl
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = developerId
+                            name = developerName
+                            email = developerEmail
+                        }
+                    }
+                    scm {
+                        connection = gitUrl
+                        developerConnection = gitUrl
+                        url = siteUrl
+                    }
+                }
             }
         }
     }
 }
 
 apply from: 'bintrayv1.gradle'
-apply from: 'installv1.gradle'
 
