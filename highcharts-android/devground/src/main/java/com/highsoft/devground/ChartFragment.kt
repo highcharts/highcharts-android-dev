@@ -1,11 +1,11 @@
 package com.highsoft.devground
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.highsoft.devground.databinding.FragmentChartBinding
 import com.highsoft.highcharts.common.hichartsclasses.HIBoost
 import com.highsoft.highcharts.common.hichartsclasses.HIChart

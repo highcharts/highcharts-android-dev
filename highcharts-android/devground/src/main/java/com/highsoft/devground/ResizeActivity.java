@@ -1,8 +1,9 @@
 package com.highsoft.devground;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.highsoft.devground.databinding.ActivityResizeBinding;
 
