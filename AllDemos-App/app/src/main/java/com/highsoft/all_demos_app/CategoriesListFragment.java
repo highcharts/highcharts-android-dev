@@ -3,15 +3,16 @@ package com.highsoft.all_demos_app;
 
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 
 /**
@@ -27,7 +28,6 @@ public class CategoriesListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_categories_list, container, false);
-        ((MainActivity) getActivity()).setActionBarTitle("Highcharts demos");
         ListView categoriesListView = view.findViewById(R.id.categoriesListView);
         Resources res = getResources();
         final String[] categoriesArray = res.getStringArray(R.array.charts_categories);

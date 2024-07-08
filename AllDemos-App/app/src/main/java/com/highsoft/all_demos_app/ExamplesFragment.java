@@ -1,22 +1,18 @@
 package com.highsoft.all_demos_app;
 
-
-import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import androidx.fragment.app.Fragment;
 
 import com.highsoft.highcharts.Core.HIChartView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-
 
 public class ExamplesFragment extends Fragment {
 
@@ -31,7 +27,7 @@ public class ExamplesFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static ExamplesFragment newInstance(String mName, String[] mArray) {
+    public static Fragment newInstance(String mName, String[] mArray) {
         ExamplesFragment fragment = new ExamplesFragment();
         Bundle args = new Bundle();
         args.putString(ARG_FRAGMENT_NAME, mName);
@@ -46,7 +42,9 @@ public class ExamplesFragment extends Fragment {
         if (getArguments() != null) {
             mName = getArguments().getString(ARG_FRAGMENT_NAME);
             mArray = getArguments().getStringArray(ARG_STRING_ARRAY);
-            optionsProvider = new OptionsProvider(mName, getContext());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                optionsProvider = new OptionsProvider(mName, getContext());
+            }
         }
     }
 
@@ -54,7 +52,6 @@ public class ExamplesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_examples, container, false);
-        ((MainActivity) getActivity()).setActionBarTitle(mName);
         final HIChartView chartView = view.findViewById(R.id.hc);
         chartView.options = optionsProvider.getChartOptions(mArray[0]);
         chartView.plugins = new ArrayList<>(); //todo move plugins addition to specific chart options
@@ -63,7 +60,10 @@ public class ExamplesFragment extends Fragment {
         chartView.plugins.add("data");
         chartView.plugins.add("boost");
         Spinner spinner = view.findViewById(R.id.spinner);
-        ArrayAdapter<String> examplesAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, mArray);
+        ArrayAdapter<String> examplesAdapter = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            examplesAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, mArray);
+        }
         spinner.setAdapter(examplesAdapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
