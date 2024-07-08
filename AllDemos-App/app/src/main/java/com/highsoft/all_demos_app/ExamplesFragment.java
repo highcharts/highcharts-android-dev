@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import androidx.fragment.app.Fragment;
 
-import com.highsoft.highcharts.Core.HIChartView;
+import com.highsoft.highcharts.core.HIChartView;
 
 import java.util.ArrayList;
 
@@ -53,7 +53,7 @@ public class ExamplesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_examples, container, false);
         final HIChartView chartView = view.findViewById(R.id.hc);
-        chartView.options = optionsProvider.getChartOptions(mArray[0]);
+        chartView.setOptions(optionsProvider.getChartOptions(mArray[0]));
         chartView.plugins = new ArrayList<>(); //todo move plugins addition to specific chart options
         chartView.plugins.add("annotations");
         chartView.plugins.add("series-label");
@@ -68,7 +68,7 @@ public class ExamplesFragment extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                chartView.options = optionsProvider.getChartOptions(mArray[position]);
+                chartView.setOptions(optionsProvider.getChartOptions(mArray[position]));
                 chartView.reload();
             }
 

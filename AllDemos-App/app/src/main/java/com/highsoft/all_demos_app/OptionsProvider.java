@@ -3,7 +3,7 @@ package com.highsoft.all_demos_app;
 import android.content.Context;
 
 import com.highsoft.all_demos_app.demosOptions.areaCharts.BasicArea;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIOptions;
+import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
 
 import java.util.HashMap;
 
