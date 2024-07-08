@@ -5,7 +5,7 @@
     tools:context="com.highsoft.all_demos_app.ExamplesFragment">
 
 
-    <com.highsoft.highcharts.Core.HIChartView
+    <com.highsoft.highcharts.core.HIChartView
         android:id="@+id/hc"
         android:layout_alignParentTop="true"
         android:layout_above="@id/spinner"

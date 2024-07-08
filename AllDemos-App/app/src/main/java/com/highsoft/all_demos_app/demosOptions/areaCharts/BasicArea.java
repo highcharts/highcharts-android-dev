@@ -1,20 +1,20 @@
 package com.highsoft.all_demos_app.demosOptions.areaCharts;
 
-import com.highsoft.highcharts.Common.HIChartsClasses.HIArea;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIChart;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIHover;
-import com.highsoft.highcharts.Common.HIChartsClasses.HILabels;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIMarker;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIOptions;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIPlotOptions;
-import com.highsoft.highcharts.Common.HIChartsClasses.HISeries;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIStates;
-import com.highsoft.highcharts.Common.HIChartsClasses.HISubtitle;
-import com.highsoft.highcharts.Common.HIChartsClasses.HITitle;
-import com.highsoft.highcharts.Common.HIChartsClasses.HITooltip;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIXAxis;
-import com.highsoft.highcharts.Common.HIChartsClasses.HIYAxis;
-import com.highsoft.highcharts.Core.HIFunction;
+import com.highsoft.highcharts.common.hichartsclasses.HIArea;
+import com.highsoft.highcharts.common.hichartsclasses.HIChart;
+import com.highsoft.highcharts.common.hichartsclasses.HIHover;
+import com.highsoft.highcharts.common.hichartsclasses.HILabels;
+import com.highsoft.highcharts.common.hichartsclasses.HIMarker;
+import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
+import com.highsoft.highcharts.common.hichartsclasses.HIPlotOptions;
+import com.highsoft.highcharts.common.hichartsclasses.HISeries;
+import com.highsoft.highcharts.common.hichartsclasses.HIStates;
+import com.highsoft.highcharts.common.hichartsclasses.HISubtitle;
+import com.highsoft.highcharts.common.hichartsclasses.HITitle;
+import com.highsoft.highcharts.common.hichartsclasses.HITooltip;
+import com.highsoft.highcharts.common.hichartsclasses.HIXAxis;
+import com.highsoft.highcharts.common.hichartsclasses.HIYAxis;
+import com.highsoft.highcharts.core.HIFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
