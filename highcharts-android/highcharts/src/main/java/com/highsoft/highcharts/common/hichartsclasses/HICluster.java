@@ -78,8 +78,8 @@ public class HICluster extends HIFoundation {
 
 	private HIDataLabels dataLabels;
 	/**
-	 Options for the cluster data labels.
-	 */
+ Options for the cluster data labels. 
+	*/
 	public void setDataLabels(HIDataLabels dataLabels) {
 		this.dataLabels = dataLabels;
 		this.setChanged();
@@ -114,8 +114,8 @@ public class HICluster extends HIFoundation {
 
 	private HIMarker marker;
 	/**
-	 Options for the cluster marker.
-	 */
+ Options for the cluster marker. 
+	*/
 	public void setMarker(HIMarker marker) {
 		this.marker = marker;
 		this.setChanged();

@@ -8,10 +8,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.core.HIFoundation;
-
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
@@ -103,6 +104,18 @@ public class HITreegraph extends HISeries {
 
 	public Boolean getFillSpace(){ return fillSpace; }
 
+	private Boolean traverseToLeaf;
+	/**
+ This option enables automatic traversing to the last child level upon node interaction. This feature simplifies navigation by immediately focusing on the deepest layer of the data structure without intermediate steps. 
+	*/
+	public void setTraverseToLeaf(Boolean traverseToLeaf) {
+		this.traverseToLeaf = traverseToLeaf;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getTraverseToLeaf(){ return traverseToLeaf; }
+
 	private ArrayList<String> colors;
 	/**
  A series specific or series type specific color set to apply instead of the global `colors` when `colorByPoint` is true. 
@@ -168,6 +181,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.fillSpace != null) {
 			params.put("fillSpace", this.fillSpace);
+		}
+		if (this.traverseToLeaf != null) {
+			params.put("traverseToLeaf", this.traverseToLeaf);
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();

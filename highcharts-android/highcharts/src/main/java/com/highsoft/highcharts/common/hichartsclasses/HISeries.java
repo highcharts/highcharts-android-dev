@@ -741,7 +741,7 @@ public class HISeries extends HIFoundation {
 
 	private Number turboThreshold;
 	/**
- When a series contains a data array that is longer than this, only one dimensional arrays of numbers, or two dimensional arrays with x and y values are allowed. Also, only the first point is tested, and the rest are assumed to be the same format. This saves expensive data checking and indexing in long series. Set it to `0` disable. Note: In boost mode turbo threshold is forced. Only array of numbers or two dimensional arrays are allowed. 
+ When a series contains a `data` array that is longer than this, the Series class looks for data configurations of plain numbers or arrays of numbers. The first and last valid points are checked. If found, the rest of the data is assumed to be the same. This saves expensive data checking and indexing in long series, and makes data-heavy charts render faster. Set it to `0` disable. Note: - In boost mode turbo threshold is forced. Only array of numbers or two  dimensional arrays are allowed. - In version 11.4.3 and earlier, if object configurations were passed  beyond the turbo threshold, a warning was logged in the console and the  data series didn't render. 
  <br><br><b>defaults:</b><br><br>&ensp;1000	*/
 	public void setTurboThreshold(Number turboThreshold) {
 		this.turboThreshold = turboThreshold;
@@ -863,7 +863,7 @@ public class HISeries extends HIFoundation {
 
 	private Object /* Number, String */ colorAxis;
 	/**
- When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the axis id or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag.
+ When using dual or multiple color axes, this number defines which colorAxis the particular series is connected to. It refers to either the colorAxis.id or the index of the axis in the colorAxis array, with 0 being the first. Set this option to false to prevent a series from connecting to the defaults color axis. Since v7.2.0 the option can also be an axis id or an axis index instead of a boolean flag.
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
 	public void setColorAxis(Object /* Number, String */ colorAxis) {
 		this.colorAxis = colorAxis;
@@ -1606,17 +1606,11 @@ public class HISeries extends HIFoundation {
 		this.notifyObservers(jsClassMethod);
 	}
 
-
 	@Override
 public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if(this.jsProperties != null){
-			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
-				params.put(entry.getKey(), entry.getValue());
-			}
-		}
 		if (this.data != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.data) {
@@ -1628,6 +1622,11 @@ public HashMap<String, Object> getParams() {
 				}
 			}
 			params.put("data", array);
+		}
+		if(this.jsProperties != null){
+			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
+				params.put(entry.getKey(), entry.getValue());
+			}
 		}
 		if (this.id != null) {
 			params.put("id", this.id);
@@ -1872,7 +1871,7 @@ public HashMap<String, Object> getParams() {
 		if (this.stickyTracking != null) {
 			params.put("stickyTracking", this.stickyTracking);
 		}
-		if(this.dataLabels !=null) {
+		if(this.dataLabels != null) {
 			if(this instanceof HIPie){
 				HIFoundation obj=(HIFoundation)this.getDataLabels().get(0);
 				if(obj !=null) {
