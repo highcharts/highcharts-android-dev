@@ -305,6 +305,18 @@ public class HIEvents extends HIFoundation {
 
 	public HIFunction getAfterPrint(){ return afterPrint; }
 
+	private HIFunction itemClick;
+	/**
+ Fires when the legend item belonging to the series is clicked. One parameter, `event`, is passed to the function. The defaults action is to toggle the visibility of the series, point or data class. This can be prevented by returning `false` or calling `event.preventDefault()`. 
+	*/
+	public void setItemClick(HIFunction itemClick) {
+		this.itemClick = itemClick;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIFunction getItemClick(){ return itemClick; }
+
 	private HIFunction unselect;
 	/**
  Fires when the point is unselected either programmatically or following a click on the point. One parameter, `event`, is passed to the function. Returning `false` cancels the operation. 
@@ -605,18 +617,6 @@ public class HIEvents extends HIFoundation {
 
 	public HIFunction getOnEnd(){ return onEnd; }
 
-	private HIFunction legendItemClick;
-	/**
- Fires when the legend item belonging to the colorAxis is clicked. One parameter, `event`, is passed to the function. 
-	*/
-	public void setLegendItemClick(HIFunction legendItemClick) {
-		this.legendItemClick = legendItemClick;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HIFunction getLegendItemClick(){ return legendItemClick; }
-
 	private HIFunction hide;
 	/**
  Fires when the series is hidden after chart generation time, either by clicking the legend item or by calling `.hide()`. 
@@ -748,6 +748,9 @@ public HashMap<String, Object> getParams() {
 		if (this.afterPrint != null) {
 			params.put("afterPrint", this.afterPrint);
 		}
+		if (this.itemClick != null) {
+			params.put("itemClick", this.itemClick);
+		}
 		if (this.unselect != null) {
 			params.put("unselect", this.unselect);
 		}
@@ -822,9 +825,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.onEnd != null) {
 			params.put("onEnd", this.onEnd);
-		}
-		if (this.legendItemClick != null) {
-			params.put("legendItemClick", this.legendItemClick);
 		}
 		if (this.hide != null) {
 			params.put("hide", this.hide);

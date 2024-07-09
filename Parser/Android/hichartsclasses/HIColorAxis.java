@@ -180,18 +180,17 @@ public class HIColorAxis extends HIFoundation {
 
 	public String getType(){ return type; }
 
-	private HIEvents events;
+	private Object events;
 	/**
 /** * description: Event handlers for the axis. 
 */
-	public void setEvents(HIEvents events) {
+	public void setEvents(Object events) {
 		this.events = events;
-		this.events.addObserver(updateObserver);
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIEvents getEvents(){ return events; }
+	public Object getEvents(){ return events; }
 
 	private Number tickPixelInterval;
 	/**
@@ -868,7 +867,7 @@ public HashMap<String, Object> getParams() {
 			params.put("type", this.type);
 		}
 		if (this.events != null) {
-			params.put("events", this.events.getParams());
+			params.put("events", this.events);
 		}
 		if (this.tickPixelInterval != null) {
 			params.put("tickPixelInterval", this.tickPixelInterval);

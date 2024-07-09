@@ -74,13 +74,7 @@ class ChartFragment : Fragment() {
         tooltip.setValueDecimals(2)
         options.setTooltip(tooltip)
 
-        val line = HILine().apply {
-            events = HIEvents().apply {
-                legendItemClick = HIFunction {
-                    "function() { return false; }"
-                }
-            }
-        }
+        val line = HILine()
         line.setData(data())
 
         val legend = HILegend()

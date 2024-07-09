@@ -8,10 +8,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.core.HIFoundation;
-
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
@@ -43,6 +44,18 @@ public class HITreemap extends HISeries {
 	}
 
 	public Number getBorderRadius(){ return borderRadius; }
+
+	private Boolean traverseToLeaf;
+	/**
+ This option enables automatic traversing to the last child level upon node interaction. This feature simplifies navigation by immediately focusing on the deepest layer of the data structure without intermediate steps. 
+	*/
+	public void setTraverseToLeaf(Boolean traverseToLeaf) {
+		this.traverseToLeaf = traverseToLeaf;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getTraverseToLeaf(){ return traverseToLeaf; }
 
 	private ArrayList<String> colors;
 	/**
@@ -194,6 +207,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.borderRadius != null) {
 			params.put("borderRadius", this.borderRadius);
+		}
+		if (this.traverseToLeaf != null) {
+			params.put("traverseToLeaf", this.traverseToLeaf);
 		}
 		if (this.colors != null) {
 			ArrayList<Object> array = new ArrayList<>();

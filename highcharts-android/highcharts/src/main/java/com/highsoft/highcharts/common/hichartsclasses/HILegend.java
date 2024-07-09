@@ -239,6 +239,19 @@ public class HILegend extends HIFoundation {
 
 	public HIColor getBackgroundColor(){ return backgroundColor; }
 
+	private HIEvents events;
+	/**
+ General event handlers for the legend. These event hooks can also be attached to the legend at run time using the `Highcharts.addEvent` function. 
+	*/
+	public void setEvents(HIEvents events) {
+		this.events = events;
+		this.events.addObserver(updateObserver);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIEvents getEvents(){ return events; }
+
 	private Number itemMarginTop;
 	/**
  The pixel top margin for each legend item. 
@@ -696,6 +709,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.backgroundColor != null) {
 			params.put("backgroundColor", this.backgroundColor.getData());
+		}
+		if (this.events != null) {
+			params.put("events", this.events.getParams());
 		}
 		if (this.itemMarginTop != null) {
 			params.put("itemMarginTop", this.itemMarginTop);

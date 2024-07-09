@@ -94,19 +94,22 @@ public class HIOptions extends HIFoundation {
 
 	public ArrayList<String> getColors(){ return colors; }
 
-	private HIPane pane;
+	private ArrayList<HIPane> pane;
 
 	/**
  The pane serves as a container for axes and backgrounds for circular gauges and polar charts. 
 	*/
-	public void setPane(HIPane pane) {
+	public void setPane(ArrayList<HIPane> pane) {
 		this.pane = pane;
-		this.pane.addObserver(updateObserver);
+		for(Object listElement : pane){
+			if(listElement instanceof HIFoundation)
+				((HIFoundation)listElement).addObserver(updateObserver);
+		}
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIPane getPane(){ return pane; }
+	public ArrayList<HIPane> getPane(){ return pane; }
 
 	private HIResponsive responsive;
 
@@ -480,7 +483,16 @@ public HashMap<String, Object> getParams() {
 			params.put("colors", array);
 		}
 		if (this.pane != null) {
-			params.put("pane", this.pane.getParams());
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.pane) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+				array.add(obj);
+				}
+			}
+			params.put("pane", array);
 		}
 		if (this.responsive != null) {
 			params.put("responsive", this.responsive.getParams());
