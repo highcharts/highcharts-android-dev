@@ -63,6 +63,20 @@ android {
 
 }
 
+tasks.register('javadoc', Javadoc) {
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    android.libraryVariants.configureEach { variant ->
+        if (variant.name == 'release') {
+            owner.classpath += variant.javaCompileProvider.get().classpath
+        }
+    }
+    options.memberLevel = JavadocMemberLevel.PUBLIC
+
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('nonavbar')
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.test.ext:junit:1.0.0'
