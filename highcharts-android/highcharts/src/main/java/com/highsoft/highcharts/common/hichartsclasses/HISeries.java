@@ -1606,6 +1606,7 @@ public class HISeries extends HIFoundation {
 		this.notifyObservers(jsClassMethod);
 	}
 
+
 	@Override
 public HashMap<String, Object> getParams() {
 
@@ -1624,9 +1625,7 @@ public HashMap<String, Object> getParams() {
 			params.put("data", array);
 		}
 		if(this.jsProperties != null){
-			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
-				params.put(entry.getKey(), entry.getValue());
-			}
+            params.putAll(jsProperties);
 		}
 		if (this.id != null) {
 			params.put("id", this.id);
@@ -1871,7 +1870,7 @@ public HashMap<String, Object> getParams() {
 		if (this.stickyTracking != null) {
 			params.put("stickyTracking", this.stickyTracking);
 		}
-		if(this.dataLabels != null) {
+		if(this.dataLabels !=null) {
 			if(this instanceof HIPie){
 				HIFoundation obj=(HIFoundation)this.getDataLabels().get(0);
 				if(obj !=null) {

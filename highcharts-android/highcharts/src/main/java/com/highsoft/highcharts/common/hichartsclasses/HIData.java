@@ -14,7 +14,6 @@ import com.highsoft.highcharts.core.HIFunction;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 
 
@@ -1092,13 +1091,11 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
+		if(this.jsProperties != null){
+            params.putAll(jsProperties);
+		}
 		if (this.enablePolling != null) {
 			params.put("enablePolling", this.enablePolling);
-		}
-		if(this.jsProperties != null){
-			for (Map.Entry<String, Object> entry : jsProperties.entrySet()) {
-				params.put(entry.getKey(), entry.getValue());
-			}
 		}
 		if (this.googleSpreadsheetRange != null) {
 			params.put("googleSpreadsheetRange", this.googleSpreadsheetRange);
