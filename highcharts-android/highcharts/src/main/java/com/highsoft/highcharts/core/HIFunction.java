@@ -55,7 +55,7 @@ final public class HIFunction {
         this.properties = properties;
         String prefixnsuffix = "__xx__";
         id = UUID.randomUUID().toString();
-        String template = "%sfunction() { eventContexts['%s'] = this; return Native.androidHandler(1, '%s', %s ); }%s";
+        String template = "%sfunction(event) { eventContexts['%s'] = event; return Native.androidHandler(1, '%s', %s ); }%s";
         String script = "getPropertiesDictionary('%s', %s, true)";
         String argsStr = "[";
         for (String arg : properties) {
