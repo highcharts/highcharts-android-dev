@@ -1734,6 +1734,44 @@ def print_unknown_tree_types():
     print("- - - - - - - - - - - - - - - - - - - - - - - - - - -  \n\n")
 
 
+def copy_native_methods():
+    source_folder = 'Native JS methods'
+    target_folder = 'Android/hichartsclasses/'
+
+    source_files = [f for f in os.listdir(source_folder) if f.endswith('.java')]
+
+    for file_name in source_files:
+        source_file_path = os.path.join(source_folder, file_name)
+        target_file_path = os.path.join(target_folder, file_name)
+
+        if os.path.exists(target_file_path):
+            with open(source_file_path, 'r') as source_file:
+                source_content = source_file.read()
+
+            with open(target_file_path, 'r') as target_file:
+                target_content = target_file.readlines()
+
+            # Find the position of the last closing brace in the target file
+            brace_pos = len(target_content) - 1
+            while brace_pos >= 0 and '}' not in target_content[brace_pos]:
+                brace_pos -= 1
+
+            if brace_pos < 0:
+                print 'Error: No closing brace found in ' + target_file_path + '. Cannot copy native methods.'
+                continue
+
+            # Insert the source content before the last closing brace
+            target_content.insert(brace_pos, source_content + '\n')
+
+            # Write the modified content back to the target file
+            with open(target_file_path, 'w') as target_file:
+                target_file.writelines(target_content)
+
+            print 'Copied native methods from ' + source_file_path + ' to ' + target_file_path
+        else:
+            print 'Cannot copy native methods from ' + source_file_path + ' to ' + target_file_path + '. Target file is missing.'
+
+
 def main():
     create_namespace_structure()
     # print_namespace_structure()
@@ -1742,6 +1780,7 @@ def main():
     # print_structure()
     # print_unknown_tree_types()
     create_android_files()
+    copy_native_methods()
 
 
 if __name__ == "__main__":
