@@ -739,12 +739,31 @@ def format_to_java(name, source):
         imports += "\nimport com.highsoft.highcharts.common.HIColor;"
     imports += "\n"
 
+    if class_name in ["HIData", "HISeries"]:
+        methods += "\n\tprivate HashMap<String, Object> jsProperties;\n" \
+                   "\t/**\n" \
+                   "\t * Add a custom property to your chart. Those can be accessible later by HIFunction callbacks.\n"\
+                   "\t * @param name the name by which you can access property\n" \
+                   "\t * @param value the actual value which can be accessed\n" \
+                   "\t */\n" \
+                   "\t public void setProperty(String name, Object value) {\n" \
+                   "\t\t if(jsProperties == null) jsProperties = new HashMap<>();\n" \
+                   "\t\t jsProperties.put(name, value);\n" \
+                   "\t}\n"
+
     methods += "\n\t@Override\npublic HashMap<String, Object> getParams() {\n\n\t\tHashMap<String, Object> params =" \
                " new HashMap<>();\n"
     if source.extends:
         methods += "\t\tparams = super.getParams();\n"
     else:
         methods += "\t\tparams.put(\"_wrapperID\", this.uuid);\n"
+
+    if class_name in ["HIData", "HISeries"]:
+        methods += "\n\t\tif (this.jsProperties != null) {\n" \
+                   "\t\t\tfor (Map.Entry<String, Object> entry : jsProperties.entrySet()) {\n" \
+                   "\t\t\t\tparams.put(entry.getKey(), entry.getValue());\n" \
+                   "\t\t\t}\n" \
+                   "\t\t}\n"
 
     for field in classes[class_name]:
         if field_in_parent(field, source):
