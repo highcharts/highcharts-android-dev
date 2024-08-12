@@ -14,6 +14,8 @@ import json
 import os
 import re
 import sys
+from ast import literal_eval
+
 from bs4 import BeautifulSoup
 
 # from HTMLParser import HTMLParser
@@ -108,15 +110,17 @@ class HIChartsClass:
 
 
 def clean_comment(comment):
-    comment = comment.replace('\n', ' ').replace('  ', ' ').replace('.  ', '. ').replace('(//code.highcharts.com/',
-                                                                                         '(https://code.highcharts.com/').replace(
+    comment = comment.replace('\n', ' ').replace('  ', ' ').replace('.  ', '. ').replace(
+        '(//code.highcharts.com/',
+        '(https://code.highcharts.com/').replace(
         '[code.highcharts.com/', '[https://code.highcharts.com/')
     comment = re.sub('(\(|\[)[\w\.*/ *: *\-*]+[\.\-/_]\s+[\w\.*/ *: *\- *]+(\)|\])',
                      lambda s: s.group(0).replace(' ', ''), comment)
     comment = re.sub('\[(.+?)\]\((.+?)\)',
-                     lambda s: s.group(0) if s.group(2).startswith("http") else s.group(0).replace(s.group(0),
-                                                                                                   '`{}`'.format(
-                                                                                                       s.group(1))),
+                     lambda s: s.group(0) if s.group(2).startswith("http") else s.group(0).replace(
+                         s.group(0),
+                         '`{}`'.format(
+                             s.group(1))),
                      comment)
     comment = re.sub('\((.+?)\)\[(.+?)\]', r'[\1](\2)', comment)
     comment = comment.replace('`<', '__x__').replace('>`', '__y__')
@@ -381,7 +385,7 @@ def get_java_type(x):
 
 
 def upper_first(x):
-    r = x[0].upper() + x[1:]
+    r = x[:1].upper() + x[1:]
     return r
 
 
@@ -545,11 +549,19 @@ def format_to_java(name, source):
 
         # if field.comment:
         #     fields += "\n{0}".format(field.comment)
+
+        enum_code = generate_enum_java_from_values(field)
+        if enum_code:
+            enum_setter = generate_enum_setter(field)
+            fields += enum_code
+            fields += enum_setter
+
         if field.data_type:
             if "Object" in str(get_java_type(field.data_type)) and "List" not in str(
                     get_java_type(field.data_type)) and not \
                     structure[field.name].properties:
-                fields += "\tprivate {0} {1};\n".format(get_java_type(field.data_type), get_last(field.name))
+                fields += "\tprivate {0} {1};\n".format(get_java_type(field.data_type),
+                                                        get_last(field.name))
 
                 if field.comment:
                     fields += "{0}".format(field.comment)
@@ -596,7 +608,8 @@ def format_to_java(name, source):
                 )
                 # imports += "\nimport com.highsoft.highcharts.Common.{0};\n".format("HI" + upper_first(create_name(field.name)))  # check
             elif "List" in str(get_java_type(field.data_type)):
-                fields += "\tprivate {0} {1};\n".format(get_java_type(field.data_type), get_last(field.name))
+                fields += "\tprivate {0} {1};\n".format(get_java_type(field.data_type),
+                                                        get_last(field.name))
                 if field.comment:
                     fields += "{0}".format(field.comment)
                 fields += setter_start.format(
@@ -613,13 +626,15 @@ def format_to_java(name, source):
                     upper_first(get_last(field.name)),
                     get_last(field.name)
                 )
-                hi_match = re.search(r'<(HI[A-Z]{1}[a-zA-Z]+) \*>', get_java_type(field.data_type))  # dodane
+                hi_match = re.search(r'<(HI[A-Z]{1}[a-zA-Z]+) \*>',
+                                     get_java_type(field.data_type))  # dodane
                 if hi_match:
                     import_hi_set.add(hi_match.group(1))
             elif field.data_type == "Object" or field.data_type == "object":
                 if structure[field.name].properties:
-                    fields += "\tprivate {0} {1};\n".format("HI" + upper_first(create_name(field.name)),
-                                                            get_last(field.name))
+                    fields += "\tprivate {0} {1};\n".format(
+                        "HI" + upper_first(create_name(field.name)),
+                        get_last(field.name))
                     if field.comment:
                         fields += "{0}".format(field.comment)
                     fields += setter_start.format(
@@ -658,9 +673,11 @@ def format_to_java(name, source):
             else:
                 if get_java_type(field.data_type) == "HIColor" and not colorAdded:
                     colorAdded = True
-                if structure[field.name].properties and 'HI' not in get_java_type(field.data_type):  # added no array
-                    fields += "\tprivate {0} {1};\n".format("HI" + upper_first(create_name(field.name)),
-                                                            get_last(field.name))
+                if structure[field.name].properties and 'HI' not in get_java_type(
+                        field.data_type):  # added no array
+                    fields += "\tprivate {0} {1};\n".format(
+                        "HI" + upper_first(create_name(field.name)),
+                        get_last(field.name))
                     if field.comment:
                         fields += "{0}".format(field.comment)
                     fields += setter_start.format(
@@ -678,7 +695,8 @@ def format_to_java(name, source):
                         get_last(field.name)
                     )
                 else:
-                    fields += "\tprivate {0} {1};\n".format(get_java_type(field.data_type), get_last(field.name))
+                    fields += "\tprivate {0} {1};\n".format(get_java_type(field.data_type),
+                                                            get_last(field.name))
                     if field.comment:
                         fields += "{0}".format(field.comment)
                     fields += setter_start.format(
@@ -739,12 +757,31 @@ def format_to_java(name, source):
         imports += "\nimport com.highsoft.highcharts.common.HIColor;"
     imports += "\n"
 
+    if class_name in ["HIData", "HISeries"]:
+        methods += "\n\tprivate HashMap<String, Object> jsProperties;\n" \
+                   "\t/**\n" \
+                   "\t * Add a custom property to your chart. Those can be accessible later by HIFunction callbacks.\n" \
+                   "\t * @param name the name by which you can access property\n" \
+                   "\t * @param value the actual value which can be accessed\n" \
+                   "\t */\n" \
+                   "\t public void setProperty(String name, Object value) {\n" \
+                   "\t\t if(jsProperties == null) jsProperties = new HashMap<>();\n" \
+                   "\t\t jsProperties.put(name, value);\n" \
+                   "\t}\n"
+
     methods += "\n\t@Override\npublic HashMap<String, Object> getParams() {\n\n\t\tHashMap<String, Object> params =" \
                " new HashMap<>();\n"
     if source.extends:
         methods += "\t\tparams = super.getParams();\n"
     else:
         methods += "\t\tparams.put(\"_wrapperID\", this.uuid);\n"
+
+    if class_name in ["HIData", "HISeries"]:
+        methods += "\n\t\tif (this.jsProperties != null) {\n" \
+                   "\t\t\tfor (Map.Entry<String, Object> entry : jsProperties.entrySet()) {\n" \
+                   "\t\t\t\tparams.put(entry.getKey(), entry.getValue());\n" \
+                   "\t\t\t}\n" \
+                   "\t\t}\n"
 
     for field in classes[class_name]:
         if field_in_parent(field, source):
@@ -753,12 +790,14 @@ def format_to_java(name, source):
             methods += "\t\tif (this.{0} != null)".format(get_last(field.name)) + " {\n"
             if structure[field.name].data_type:
                 if get_java_type(structure[field.name].data_type) == 'HIColor':
-                    methods += "\t\t\tparams.put(\"{0}\", this.{1}.getData());\n".format(get_last(field.name),
-                                                                                         get_last(field.name))
+                    methods += "\t\t\tparams.put(\"{0}\", this.{1}.getData());\n".format(
+                        get_last(field.name),
+                        get_last(field.name))
                 elif get_java_type(structure[field.name].data_type) == 'ArrayList<HIColor>':
                     imports += "\nimport com.highsoft.highcharts.common.HIColor;"
                     methods += "\t\t\tArrayList<Object> array = new ArrayList<>();\n"
-                    methods += "\t\t\tfor (HIColor hiColor : this.{0})".format(get_last(field.name)) + " {\n"
+                    methods += "\t\t\tfor (HIColor hiColor : this.{0})".format(
+                        get_last(field.name)) + " {\n"
                     methods += "\t\t\t\tarray.add(hiColor.getData());\n".format(
                         get_last(field.name))
                     methods += "\t\t\t}\n"
@@ -766,7 +805,8 @@ def format_to_java(name, source):
                 elif 'List' in str(get_java_type(structure[field.name].data_type)):
                     methods += "\t\t\tArrayList<Object> array = new ArrayList<>();\n"
 
-                    methods += "\t\t\tfor (Object obj : this.{0})".format(get_last(field.name)) + " {\n"
+                    methods += "\t\t\tfor (Object obj : this.{0})".format(
+                        get_last(field.name)) + " {\n"
                     methods += "\t\t\t\tif (obj instanceof HIFoundation)".format(
                         get_last(field.name)) + " {\n"
                     methods += "\t\t\t\t\tarray.add(((HIFoundation) obj).getParams());\n".format(
@@ -780,14 +820,16 @@ def format_to_java(name, source):
                     methods += "\t\t\tparams.put(\"{0}\", this.{1});\n".format(get_last(field.name),
                                                                                get_last(field.name))
                 elif structure[field.name].properties or 'HI' in get_java_type(field.data_type):
-                    methods += "\t\t\tparams.put(\"{0}\", this.{1}.getParams());\n".format(get_last(field.name),
-                                                                                           get_last(field.name))
+                    methods += "\t\t\tparams.put(\"{0}\", this.{1}.getParams());\n".format(
+                        get_last(field.name),
+                        get_last(field.name))
                 else:
                     methods += "\t\t\tparams.put(\"{0}\", this.{1});\n".format(get_last(field.name),
                                                                                get_last(field.name))
             elif structure[field.name].properties:
-                methods += "\t\t\tparams.put(\"{0}\", this.{1}.getParams());\n".format(get_last(field.name),
-                                                                                       get_last(field.name))
+                methods += "\t\t\tparams.put(\"{0}\", this.{1}.getParams());\n".format(
+                    get_last(field.name),
+                    get_last(field.name))
             methods += "\t\t}\n"
     methods += "\t\treturn params;\n"
     methods += "\t}\n"
@@ -798,6 +840,87 @@ def format_to_java(name, source):
     javatext = javatext.replace("\"defaults\"", "\"default\"")
 
     return javatext
+
+
+def generate_enum_setter(field):
+    enum_name = get_last(field.name)
+    setter_code = (
+        "\tpublic void set{0}({1} {2}) {{\n"
+        "\t\tthis.{3} = {4}.getValue();\n"
+        "\t\tthis.setChanged();\n"
+        "\t\tthis.notifyObservers();\n"
+        "\t}}\n\n"
+    ).format(
+        upper_first(enum_name),
+        upper_first(enum_name),
+        enum_name,
+        enum_name,
+        enum_name
+    )
+    return setter_code
+
+
+def generate_enum_java_from_values(field):
+    """
+    Generates Java enum code from string values in a field, only if the field's data type is String.
+
+    Args:
+        field: An object with class properties.
+
+    Returns: str or None: The generated Java enum code as a string, or None if the field values are
+    invalid or if the data type is not String.
+    """
+
+    def to_enum_element_name(enum_element_name):
+        return re.sub(r'([a-z])([A-Z])', r'\1_\2', enum_element_name).upper()
+
+    if not field.values or get_java_type(field.data_type) != "String":
+        return None
+
+    enum_name = upper_first(get_last(field.name))
+
+    unicode_replacements = {
+        'null': 'None',
+        'true': 'True',
+        'false': 'False'
+    }
+
+    try:
+        string_unicode = field.values
+        for old, new in unicode_replacements.items():
+            string_unicode = string_unicode.replace(old, new)
+
+        values_list = literal_eval(string_unicode)
+        if not isinstance(values_list, list):
+            print("Value is not a list for enum: {}".format(enum_name))
+            return None
+
+        string_values_list = [value for value in values_list if isinstance(value, str)]
+        if not string_values_list:
+            print("No valid string values found for enum: {}".format(enum_name))
+            return None
+
+        enum_code = "\tpublic enum {} {{\n".format(enum_name)
+        for value in string_values_list:
+            enum_constant = to_enum_element_name(value)
+            enum_code += "\t\t{}(\"{}\"),\n".format(enum_constant, value)
+
+        enum_code = enum_code.rstrip(',\n') + ";\n\n"
+
+        enum_code += "\t\tprivate final String value;\n\n"
+        enum_code += "\t\t{}(String value) {{\n".format(enum_name)
+        enum_code += "\t\t\tthis.value = value;\n"
+        enum_code += "\t\t}\n\n"
+
+        enum_code += "\t\tpublic String getValue() {\n"
+        enum_code += "\t\t\treturn this.value;\n"
+        enum_code += "\t\t}\n"
+        enum_code += "\t}\n\n"
+
+        return enum_code
+    except (SyntaxError, ValueError) as e:
+        print("Error processing values for enum {}: {}".format(enum_name, e))
+        return None
 
 
 def create_java_options_file():
@@ -967,18 +1090,21 @@ def create_java_options_file():
 
             if field.data_type:
                 if get_java_type(field.data_type) == 'HIColor':
-                    methods += "\t\t\tparamas.put(\"{0}\", this.{1}.getData());\n".format(get_last(field.name),
-                                                                                          get_last(field.name))
+                    methods += "\t\t\tparamas.put(\"{0}\", this.{1}.getData());\n".format(
+                        get_last(field.name),
+                        get_last(field.name))
                 elif get_java_type(field.data_type) == 'ArrayList<HIColor>':
                     methods += "\t\t\tArrayList<Object> array = new ArrayList<>();\n"
-                    methods += "\t\t\tfor (HIColor hiColor : this.{0})".format(get_last(field.name)) + " {\n"
+                    methods += "\t\t\tfor (HIColor hiColor : this.{0})".format(
+                        get_last(field.name)) + " {\n"
                     methods += "\t\t\t\tarray.add(hiColor.getData());\n".format(
                         get_last(field.name))
                     methods += "\t\t\t}\n"
                     methods += "\t\t\tparams.put(\"{0}\", array);\n".format(get_last(field.name))
                 elif "List" in str(get_java_type(field.data_type)):
                     methods += "\t\t\tArrayList<Object> array = new ArrayList<>();\n"
-                    methods += "\t\t\tfor (Object obj : this.{0})".format(get_last(field.name)) + " {\n"
+                    methods += "\t\t\tfor (Object obj : this.{0})".format(
+                        get_last(field.name)) + " {\n"
                     methods += "\t\t\t\tif (obj instanceof HIFoundation)".format(
                         get_last(field.name)) + " {\n"
                     methods += "\t\t\t\t\tarray.add(((HIFoundation) obj).getParams());\n".format(
@@ -989,14 +1115,16 @@ def create_java_options_file():
                     methods += "\t\t\t}\n"
                     methods += "\t\t\tparams.put(\"{0}\", array);\n".format(get_last(field.name))
                 elif structure[field.name].properties:
-                    methods += "\t\t\tparams.put(\"{0}\", this.{1}.getParams());\n".format(get_last(field.name),
-                                                                                           get_last(field.name))
+                    methods += "\t\t\tparams.put(\"{0}\", this.{1}.getParams());\n".format(
+                        get_last(field.name),
+                        get_last(field.name))
                 else:
                     methods += "\t\t\tparams.put(\"{0}\", this.{1});\n".format(get_last(field.name),
                                                                                get_last(field.name))
             elif structure[field.name].properties:
-                methods += "\t\t\tparams.put(\"{0}\", this.{1}.getParams());\n".format(get_last(field.name),
-                                                                                       get_last(field.name))
+                methods += "\t\t\tparams.put(\"{0}\", this.{1}.getParams());\n".format(
+                    get_last(field.name),
+                    get_last(field.name))
             methods += "\t\t}\n"
     methods += "\t\tif (this.additionalOptions != null) {\n\t\t\tparams.putAll(additionalOptions);\n\t\t}\n\n"
     methods += "\t\treturn params;\n\t\t\n}"
@@ -1138,8 +1266,10 @@ def merge_extended_properties(field):
                 for property in structure[field].properties:
                     if property.name == property_name:
                         isExist = True
-                        property.update(parent_property.data_type, parent_property.description, parent_property.demo,
-                                        parent_property.values, parent_property.defaults, parent_property.products,
+                        property.update(parent_property.data_type, parent_property.description,
+                                        parent_property.demo,
+                                        parent_property.values, parent_property.defaults,
+                                        parent_property.products,
                                         parent_property.extends, parent_property.exclude)
 
                     if get_last(property.name) in parent.not_highcharts_properties:
@@ -1269,9 +1399,9 @@ def create_class(node):
         elif name == "description":
             name = "definition"
 
-        c = HIChartsClass(name, data_type, description, demo, values, defaults, products, extends, exclude, source, parent)
+        c = HIChartsClass(name, data_type, description, demo, values, defaults, products, extends,
+                          exclude, source, parent)
         return c
-
 
 
 def add_to_structure(name, source, parent):
@@ -1303,6 +1433,7 @@ def add_to_structure(name, source, parent):
             for children in childrens:
                 add_to_structure(children, childrens[children], fullname)
 
+
 def add_additional_fields_to_point():
     fields = [
         ("category", "string", "For categorized axes this property holds the category name for the point. For other axes it holds the X value."),
@@ -1327,7 +1458,8 @@ def add_additional_fields_to_point():
 
         for field in fields:
             name = acc_point + "." + field[0]
-            hi_class = HIChartsClass(name, field[1], field[2], None, None, None, None, None, None, None, acc_point)
+            hi_class = HIChartsClass(name, field[1], field[2], None, None, None, None, None, None,
+                                     None, acc_point)
             structure[name] = hi_class
             parent.add_property(hi_class)
 
@@ -1337,7 +1469,8 @@ def add_additions_to_series():
         data = json.load(data_file)
 
     if "series" not in structure:
-        structure["series"] = HIChartsClass("series", "Array.<Object>", "General options for all series types.", None,
+        structure["series"] = HIChartsClass("series", "Array.<Object>",
+                                            "General options for all series types.", None,
                                             None, None, ["highcharts"], None, None)
 
     for field in data:
@@ -1373,7 +1506,8 @@ def add_additions_to_series():
         if "parent" in field:
             parent = field["parent"]
 
-        hi_class = HIChartsClass(name, data_type, description, demo, values, defaults, products, None, None, field,
+        hi_class = HIChartsClass(name, data_type, description, demo, values, defaults, products,
+                                 None, None, field,
                                  parent)
 
         if hi_class:
@@ -1475,7 +1609,8 @@ def create_namespace_class(node):
                 if doclet["isDeprecated"]:
                     return None
 
-        c = HIChartsClass(node.name, data_type, description, demo, values, defaults, products, extends, exclude, source, parent)
+        c = HIChartsClass(node.name, data_type, description, demo, values, defaults, products,
+                          extends, exclude, source, parent)
         c.kind = kind
         return c
 
@@ -1569,7 +1704,8 @@ def get_namespace_array_type(type):
         else:
             break
 
-    type = re.sub(r'Array\.<(\(((\w+|\*)\.*\w*)\))>', lambda s: s.group(0).replace('(', '').replace(')', ''), type)
+    type = re.sub(r'Array\.<(\(((\w+|\*)\.*\w*)\))>',
+                  lambda s: s.group(0).replace('(', '').replace(')', ''), type)
     return type
 
 
@@ -1600,7 +1736,8 @@ def get_namespace_type(name):
                 type = '|'.join(splitted)
             elif type == default_type and 'Highcharts.' in ori_type:
                 if ori_type in namespace_structure and \
-                    (namespace_structure[ori_type].kind == 'class' or namespace_structure[ori_type].kind == 'interface'):
+                        (namespace_structure[ori_type].kind == 'class' or namespace_structure[
+                            ori_type].kind == 'interface'):
                     type = ori_type
                     hc_types[type] = ori_type.replace('Highcharts.', 'HI')
                 else:
@@ -1658,7 +1795,8 @@ def find_namespace_array_type(type):
         else:
             break
 
-    type = re.sub(r'Array\.<(\(((\w+|\*)\.*\w*)\))>', lambda s: s.group(0).replace('(', '').replace(')', ''), type)
+    type = re.sub(r'Array\.<(\(((\w+|\*)\.*\w*)\))>',
+                  lambda s: s.group(0).replace('(', '').replace(')', ''), type)
     return type
 
 
@@ -1734,6 +1872,44 @@ def print_unknown_tree_types():
     print("- - - - - - - - - - - - - - - - - - - - - - - - - - -  \n\n")
 
 
+def copy_native_methods():
+    source_folder = 'Native JS methods'
+    target_folder = 'Android/hichartsclasses/'
+
+    source_files = [f for f in os.listdir(source_folder) if f.endswith('.java')]
+
+    for file_name in source_files:
+        source_file_path = os.path.join(source_folder, file_name)
+        target_file_path = os.path.join(target_folder, file_name)
+
+        if os.path.exists(target_file_path):
+            with open(source_file_path, 'r') as source_file:
+                source_content = source_file.read()
+
+            with open(target_file_path, 'r') as target_file:
+                target_content = target_file.readlines()
+
+            # Find the position of the last closing brace in the target file
+            brace_pos = len(target_content) - 1
+            while brace_pos >= 0 and '}' not in target_content[brace_pos]:
+                brace_pos -= 1
+
+            if brace_pos < 0:
+                print 'Error: No closing brace found in ' + target_file_path + '. Cannot copy native methods.'
+                continue
+
+            # Insert the source content before the last closing brace
+            target_content.insert(brace_pos, source_content + '\n')
+
+            # Write the modified content back to the target file
+            with open(target_file_path, 'w') as target_file:
+                target_file.writelines(target_content)
+
+            print 'Copied native methods from ' + source_file_path + ' to ' + target_file_path
+        else:
+            print 'Cannot copy native methods from ' + source_file_path + ' to ' + target_file_path + '. Target file is missing.'
+
+
 def main():
     create_namespace_structure()
     # print_namespace_structure()
@@ -1742,6 +1918,7 @@ def main():
     # print_structure()
     # print_unknown_tree_types()
     create_android_files()
+    copy_native_methods()
 
 
 if __name__ == "__main__":
