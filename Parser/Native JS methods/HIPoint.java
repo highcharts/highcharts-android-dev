@@ -131,6 +131,23 @@
     this.notifyObservers(jsClassMethod);
   }
 
+  public enum State {
+    HOVER("hover"),
+    SELECT("select"),
+    INACTIVE("inactive"),
+    NORMAL("normal");
+
+    private final String value;
+
+    State(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return this.value;
+    }
+  }
+
   /**
    * Set the point's state.
    */
@@ -158,6 +175,16 @@
     this.setChanged();
     this.notifyObservers(jsClassMethod);
   }
+  public void setState(State state){
+    this.jsClassMethod = new HashMap<String, Object>() {{
+      put("class", "Point");
+      put("method", "setState1");
+      put("id", uuid);
+      put("params", Collections.singletonList(state.getValue()));
+    }};
+    this.setChanged();
+    this.notifyObservers(jsClassMethod);
+  }
 
   /**
    * Set the point's state.
@@ -170,6 +197,16 @@
       put("method", "setState2");
       put("id", uuid);
       put("params", Arrays.asList(object, move));
+    }};
+    this.setChanged();
+    this.notifyObservers(jsClassMethod);
+  }
+  public void setState(State state, boolean move){
+    this.jsClassMethod = new HashMap<String, Object>() {{
+      put("class", "Point");
+      put("method", "setState2");
+      put("id", uuid);
+      put("params", Arrays.asList(state.getValue(), move));
     }};
     this.setChanged();
     this.notifyObservers(jsClassMethod);

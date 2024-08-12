@@ -399,6 +399,23 @@
     this.notifyObservers(jsClassMethod);
   }
 
+  public enum State {
+    HOVER("hover"),
+    SELECT("select"),
+    INACTIVE("inactive"),
+    NORMAL("normal");
+
+    private final String value;
+
+    State(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return this.value;
+    }
+  }
+
   /**
    * Set the state of the series. Called internally on mouse interaction operations, but it can also be called directly to visually highlight a series.
    * @param state Can be either hover or undefined to set to normal state.
@@ -409,6 +426,16 @@
       put("method", "setState1");
       put("id", uuid);
       put("params", new ArrayList<>(Collections.singletonList(state)));
+    }};
+    this.setChanged();
+    this.notifyObservers(jsClassMethod);
+  }
+  public void setState(State state){
+    this.jsClassMethod = new HashMap<String, Object>() {{
+      put("class", "Series");
+      put("method", "setState1");
+      put("id", uuid);
+      put("params", new ArrayList<>(Collections.singletonList(state.getValue())));
     }};
     this.setChanged();
     this.notifyObservers(jsClassMethod);
