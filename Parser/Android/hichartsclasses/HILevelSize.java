@@ -30,6 +30,28 @@ public class HILevelSize extends HIFoundation {
 
 	public Number getValue(){ return value; }
 
+	public enum Unit {
+		PERCENTAGE("percentage"),
+		PIXELS("pixels"),
+		WEIGHT("weight");
+
+		private final String value;
+
+		Unit(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return this.value;
+		}
+	}
+
+	public void setUnit(Unit unit) {
+		this.unit = unit.getValue();
+		this.setChanged();
+		this.notifyObservers();
+	}
+
 	private String unit;
 	/**
  How to interpret `levelSize.value`. - `percentage` gives a width relative to result of outer radius  minus inner radius. - `pixels` gives the ring a fixed width in pixels. - `weight` takes the remaining width after percentage and pixels,  and distributes it across all "weighted" levels. The value  relative to the sum of all weights determines the width. 

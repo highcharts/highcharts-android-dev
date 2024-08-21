@@ -17,7 +17,7 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 
 	/**
- A `treemap` series. If the `type` option is not specified, it is inherited from `chart.type`. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all `treemap` series are defined in  `plotOptions.treemap`. 3. Options for one single series are given in  `the series instance array`. ``` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     treemap: {       // shared options for all treemap series     }   },   series: [{     // specific options for this series instance     type: 'treemap'   }] }); ```       
+ A `treemap` series. If the `type` option is not specified, it is inherited from `chart.type`. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all `treemap` series are defined in  `plotOptions.treemap`. 3. Options for one single series are given in  `the series instance array`. ``` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     treemap: {       // shared options for all treemap series     }   },   series: `{     // specific options for this series instance     type: 'treemap'   }] }); ``` **TypeScript:** - the [type` option must always be set. - when accessing an array of series, the combined set of all series types is  represented by `Highcharts.SeriesOptionsType  `. Narrowing down to the  specific type can be done by checking the `type` property. ``` if (chart.options.series?.[0]?.type === treemap) {   // code specific to the treemap series } ```       
 	*/
 
 public class HITreemap extends HISeries {
@@ -118,6 +118,27 @@ public class HITreemap extends HISeries {
 
 	public Boolean getAllowTraversingTree(){ return allowTraversingTree; }
 
+	public enum LayoutStartingDirection {
+		VERTICAL("vertical"),
+		HORIZONTAL("horizontal");
+
+		private final String value;
+
+		LayoutStartingDirection(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return this.value;
+		}
+	}
+
+	public void setLayoutStartingDirection(LayoutStartingDirection layoutStartingDirection) {
+		this.layoutStartingDirection = layoutStartingDirection.getValue();
+		this.setChanged();
+		this.notifyObservers();
+	}
+
 	private String layoutStartingDirection;
 	/**
  Defines which direction the layout algorithm will start drawing. 
@@ -165,6 +186,29 @@ public class HITreemap extends HISeries {
 	}
 
 	public Boolean getAlternateStartingDirection(){ return alternateStartingDirection; }
+
+	public enum LayoutAlgorithm {
+		SLICE_AND_DICE("sliceAndDice"),
+		STRIPES("stripes"),
+		SQUARIFIED("squarified"),
+		STRIP("strip");
+
+		private final String value;
+
+		LayoutAlgorithm(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return this.value;
+		}
+	}
+
+	public void setLayoutAlgorithm(LayoutAlgorithm layoutAlgorithm) {
+		this.layoutAlgorithm = layoutAlgorithm.getValue();
+		this.setChanged();
+		this.notifyObservers();
+	}
 
 	private String layoutAlgorithm;
 	/**

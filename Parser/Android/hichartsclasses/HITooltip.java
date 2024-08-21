@@ -163,6 +163,27 @@ public class HITooltip extends HIFoundation {
 
 	public HICSSObject getStyle(){ return style; }
 
+	public enum HeaderShape {
+		CALLOUT("callout"),
+		RECT("rect");
+
+		private final String value;
+
+		HeaderShape(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return this.value;
+		}
+	}
+
+	public void setHeaderShape(HeaderShape headerShape) {
+		this.headerShape = headerShape.getValue();
+		this.setChanged();
+		this.notifyObservers();
+	}
+
 	private String headerShape;
 	/**
  The name of a symbol to use for the border around the tooltip header. Applies only when `tooltip.split` is enabled. Custom callbacks for symbol path generation can also be added to `Highcharts.SVGRenderer.prototype.symbols` the same way as for `series.marker.symbol`. 
@@ -630,5 +651,128 @@ public HashMap<String, Object> getParams() {
 		}
 		return params;
 	}
+
+    /**
+     In case no user defined formatter is given, this will be used. Note that the context here is an object holding point, series, x, y etc.
+     @param tooltip Tooltip
+     */
+    public void defaultFormatter(HITooltip tooltip){
+      this.jsClassMethod = new HashMap<String, Object>() {{
+        put("class", "Tooltip");
+        put("method", "defaultFormatter");
+        put("id", uuid);
+        put("params", Collections.singletonList(tooltip.getParams()));
+      }};
+      this.setChanged();
+      this.notifyObservers(jsClassMethod);
+    }
+
+    /**
+     Removes and destroys the tooltip and its elements.
+     */
+    public void destroy(){
+      this.jsClassMethod = new HashMap<String, Object>() {{
+        put("class", "Tooltip");
+        put("method", "destroy");
+        put("id", uuid);
+      }};
+      this.setChanged();
+      this.notifyObservers(jsClassMethod);
+    }
+
+
+    /**
+     Creates the Tooltip label element if it does not exist.
+     */
+    public void getLabel(){
+      this.jsClassMethod = new HashMap<String, Object>() {{
+        put("class", "Tooltip");
+        put("method", "getLabel");
+        put("id", uuid);
+      }};
+      this.setChanged();
+      this.notifyObservers(jsClassMethod);
+    }
+
+    /**
+     Hides the tooltip with a fade out animation.
+     */
+    public void hide(){
+      this.jsClassMethod = new HashMap<String, Object>() {{
+        put("class", "Tooltip");
+        put("method", "hide0");
+        put("id", uuid);
+      }};
+      this.setChanged();
+      this.notifyObservers(jsClassMethod);
+    }
+
+    /**
+     Hides the tooltip with a fade out animation.
+     @param delay The fade out in milliseconds. If no value is provided the value of the tooltip.hideDelay option is used. A value of 0 disables the fade out animation.
+     */
+    public void hide(Number delay){
+      this.jsClassMethod = new HashMap<String, Object>() {{
+        put("class", "Tooltip");
+        put("method", "hide1");
+        put("id", uuid);
+        put("params", Collections.singletonList(delay));
+      }};
+      this.setChanged();
+      this.notifyObservers(jsClassMethod);
+    }
+
+        /**
+         Refresh the tooltip's text and position.
+         @param point A point.
+         */
+        public void refreshByPoint(HIPoint point){
+            Map<String, Object> params = point.getParams();
+            String pointID = (String) params.get("_wrapperID");
+            this.jsClassMethod = new HashMap<String, Object>() {{
+                put("class", "Tooltip");
+                put("method", "refreshByPoint");
+                put("id", uuid);
+                put("pointID", pointID);
+            }};
+            this.setChanged();
+            this.notifyObservers(jsClassMethod);
+        }
+
+        /**
+         Refresh the tooltip's text and position.
+         @param points An array of points.
+         */
+        public void refreshByPoints(ArrayList<HIPoint> points){
+            ArrayList<String> pointIDs = new ArrayList<>();
+            for(HIPoint point : points){
+                Map<String, Object> params = point.getParams();
+                pointIDs.add((String) params.get("_wrapperID"));
+            }
+            this.jsClassMethod = new HashMap<String, Object>() {{
+                put("class", "Tooltip");
+                put("method", "refreshByPoints");
+                put("id", uuid);
+                put("pointIDs", pointIDs.toString());
+            }};
+            this.setChanged();
+            this.notifyObservers(jsClassMethod);
+        }
+    /**
+     Updates the tooltip with the provided tooltip options.
+     @param options The tooltip options to update.
+     */
+    public void update(HITooltip options){
+      Map<String, Object> params = options.getParams();
+      params.remove("_wrapperID");
+      this.jsClassMethod = new HashMap<String, Object>() {{
+        put("class", "Tooltip");
+        put("method", "update");
+        put("id", uuid);
+        put("params", Collections.singletonList(params));
+      }};
+      this.setChanged();
+      this.notifyObservers(jsClassMethod);
+    }
 
 }
