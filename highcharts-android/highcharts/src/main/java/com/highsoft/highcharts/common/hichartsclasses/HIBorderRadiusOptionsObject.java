@@ -28,6 +28,27 @@ public class HIBorderRadiusOptionsObject extends HIFoundation {
 
 	public Object /* String, Number */ getRadius(){ return radius; }
 
+	public enum Scope {
+		POINT("point"),
+		STACK("stack");
+
+		private final String value;
+
+		Scope(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return this.value;
+		}
+	}
+
+	public void setScope(Scope scope) {
+		this.scope = scope.getValue();
+		this.setChanged();
+		this.notifyObservers();
+	}
+
 	private String scope;
 	/**
  The scope of the rounding for column charts. In a stacked column chart, the value `point` means each single point will get rounded corners. The value `stack` means the rounding will apply to the full stack, so that only points close to the top or bottom will receive rounding. 
@@ -39,6 +60,27 @@ public class HIBorderRadiusOptionsObject extends HIFoundation {
 	}
 
 	public String getScope(){ return scope; }
+
+	public enum Where {
+		ALL("all"),
+		END("end");
+
+		private final String value;
+
+		Where(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return this.value;
+		}
+	}
+
+	public void setWhere(Where where) {
+		this.where = where.getValue();
+		this.setChanged();
+		this.notifyObservers();
+	}
 
 	private String where;
 	/**

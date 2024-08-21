@@ -199,6 +199,27 @@ public class HILabelOptions extends HIFoundation {
 
 	public Number getPadding(){ return padding; }
 
+	public enum Overflow {
+		ALLOW("allow"),
+		JUSTIFY("justify");
+
+		private final String value;
+
+		Overflow(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return this.value;
+		}
+	}
+
+	public void setOverflow(Overflow overflow) {
+		this.overflow = overflow.getValue();
+		this.setChanged();
+		this.notifyObservers();
+	}
+
 	private String overflow;
 	/**
  How to handle the annotation's label that flow outside the plot area. The justify option aligns the label inside the plot area. 

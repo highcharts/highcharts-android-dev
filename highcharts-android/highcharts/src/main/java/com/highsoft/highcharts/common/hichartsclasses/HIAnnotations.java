@@ -234,6 +234,86 @@ public class HIAnnotations extends HIFoundation {
 
 	}
 
+	@Override
+public HashMap<String, Object> getParams() {
+
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("_wrapperID", this.uuid);
+		if (this.labels != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.labels) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("labels", array);
+		}
+		if (this.crop != null) {
+			params.put("crop", this.crop);
+		}
+		if (this.visible != null) {
+			params.put("visible", this.visible);
+		}
+		if (this.id != null) {
+			params.put("id", this.id);
+		}
+		if (this.controlPointOptions != null) {
+			params.put("controlPointOptions", this.controlPointOptions.getParams());
+		}
+		if (this.draggable != null) {
+			params.put("draggable", this.draggable);
+		}
+		if (this.animation != null) {
+			params.put("animation", this.animation.getParams());
+		}
+		if (this.events != null) {
+			params.put("events", this.events.getParams());
+		}
+		if (this.labelOptions != null) {
+			params.put("labelOptions", this.labelOptions.getParams());
+		}
+		if (this.zIndex != null) {
+			params.put("zIndex", this.zIndex);
+		}
+		if (this.shapes != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.shapes) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("shapes", array);
+		}
+		if (this.shapeOptions != null) {
+			params.put("shapeOptions", this.shapeOptions.getParams());
+		}
+		if (this.descriptionMultiplePoints != null) {
+			params.put("descriptionMultiplePoints", this.descriptionMultiplePoints);
+		}
+		if (this.descriptionSinglePoint != null) {
+			params.put("descriptionSinglePoint", this.descriptionSinglePoint);
+		}
+		if (this.descriptionNoPoints != null) {
+			params.put("descriptionNoPoints", this.descriptionNoPoints);
+		}
+		if (this.heading != null) {
+			params.put("heading", this.heading);
+		}
+		if (this.itemDelimiter != null) {
+			params.put("itemDelimiter", this.itemDelimiter);
+		}
+		if (this.join != null) {
+			params.put("join", this.join);
+		}
+		return params;
+	}
+
 	/**
 	 * Hide or show annotaiton attached to points.
 	 */
@@ -509,86 +589,5 @@ public class HIAnnotations extends HIFoundation {
 		this.setChanged();
 		this.notifyObservers(jsClassMethod);
 	}
-
-
-	@Override
-public HashMap<String, Object> getParams() {
-
-		HashMap<String, Object> params = new HashMap<>();
-		params.put("_wrapperID", this.uuid);
-		if (this.labels != null) {
-			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.labels) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
-			}
-			params.put("labels", array);
-		}
-		if (this.crop != null) {
-			params.put("crop", this.crop);
-		}
-		if (this.visible != null) {
-			params.put("visible", this.visible);
-		}
-		if (this.id != null) {
-			params.put("id", this.id);
-		}
-		if (this.controlPointOptions != null) {
-			params.put("controlPointOptions", this.controlPointOptions.getParams());
-		}
-		if (this.draggable != null) {
-			params.put("draggable", this.draggable);
-		}
-		if (this.animation != null) {
-			params.put("animation", this.animation.getParams());
-		}
-		if (this.events != null) {
-			params.put("events", this.events.getParams());
-		}
-		if (this.labelOptions != null) {
-			params.put("labelOptions", this.labelOptions.getParams());
-		}
-		if (this.zIndex != null) {
-			params.put("zIndex", this.zIndex);
-		}
-		if (this.shapes != null) {
-			ArrayList<Object> array = new ArrayList<>();
-			for (Object obj : this.shapes) {
-				if (obj instanceof HIFoundation) {
-					array.add(((HIFoundation) obj).getParams());
-				}
-				else {
-					array.add(obj);
-				}
-			}
-			params.put("shapes", array);
-		}
-		if (this.shapeOptions != null) {
-			params.put("shapeOptions", this.shapeOptions.getParams());
-		}
-		if (this.descriptionMultiplePoints != null) {
-			params.put("descriptionMultiplePoints", this.descriptionMultiplePoints);
-		}
-		if (this.descriptionSinglePoint != null) {
-			params.put("descriptionSinglePoint", this.descriptionSinglePoint);
-		}
-		if (this.descriptionNoPoints != null) {
-			params.put("descriptionNoPoints", this.descriptionNoPoints);
-		}
-		if (this.heading != null) {
-			params.put("heading", this.heading);
-		}
-		if (this.itemDelimiter != null) {
-			params.put("itemDelimiter", this.itemDelimiter);
-		}
-		if (this.join != null) {
-			params.put("join", this.join);
-		}
-		return params;
-	}
-
+	
 }

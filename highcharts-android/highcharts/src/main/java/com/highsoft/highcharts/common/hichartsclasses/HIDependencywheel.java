@@ -8,16 +8,17 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.core.HIFoundation;
-
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
+import com.highsoft.highcharts.common.HIColor;
 
 
 
 	/**
- A `dependencywheel` series. If the `type` option is not specified, it is inherited from `chart.type`. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all `dependencywheel` series are defined in  `plotOptions.dependencywheel`. 3. Options for one single series are given in  `the series instance array`. ``` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     dependencywheel: {       // shared options for all dependencywheel series     }   },   series: [{     // specific options for this series instance     type: 'dependencywheel'   }] }); ```       
+ A `dependencywheel` series. If the `type` option is not specified, it is inherited from `chart.type`. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all `dependencywheel` series are defined in  `plotOptions.dependencywheel`. 3. Options for one single series are given in  `the series instance array`. ``` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     dependencywheel: {       // shared options for all dependencywheel series     }   },   series: `{     // specific options for this series instance     type: 'dependencywheel'   }] }); ``` **TypeScript:** - the [type` option must always be set. - when accessing an array of series, the combined set of all series types is  represented by `Highcharts.SeriesOptionsType  `. Narrowing down to the  specific type can be done by checking the `type` property. ``` if (chart.options.series?.[0]?.type === dependencywheel) {   // code specific to the dependencywheel series } ```       
 	*/
 
 public class HIDependencywheel extends HISeries {
