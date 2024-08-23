@@ -18,7 +18,7 @@ import com.highsoft.highcharts.common.HIColor;
 
 
 	/**
- A `wordcloud` series. If the `type` option is not specified, it is inherited from `chart.type`. In TypeScript the `type` option must always be set. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all `wordcloud` series are defined in  `plotOptions.wordcloud`. 3. Options for one single series are given in  `the series instance array`. ``` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     wordcloud: {       // shared options for all wordcloud series     }   },   series: [{     // specific options for this series instance     type: 'wordcloud'   }] }); ```       
+ A `wordcloud` series. If the `type` option is not specified, it is inherited from `chart.type`. Configuration options for the series are given in three levels: 1. Options for all series in a chart are defined in the  `plotOptions.series` object. 2. Options for all `wordcloud` series are defined in  `plotOptions.wordcloud`. 3. Options for one single series are given in  `the series instance array`. ``` Highcharts.chart('container', {   plotOptions: {     series: {       // general options for all series     },     wordcloud: {       // shared options for all wordcloud series     }   },   series: `{     // specific options for this series instance     type: 'wordcloud'   }] }); ``` **TypeScript:** - the [type` option must always be set. - when accessing an array of series, the combined set of all series types is  represented by `Highcharts.SeriesOptionsType  `. Narrowing down to the  specific type can be done by checking the `type` property. ``` if (chart.options.series?.[0]?.type === wordcloud) {   // code specific to the wordcloud series } ```       
 	*/
 
 public class HIWordcloud extends HISeries {
@@ -71,6 +71,28 @@ public class HIWordcloud extends HISeries {
 
 	public Number getMaxFontSize(){ return maxFontSize; }
 
+	public enum Spiral {
+		ARCHIMEDEAN("archimedean"),
+		RECTANGULAR("rectangular"),
+		SQUARE("square");
+
+		private final String value;
+
+		Spiral(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return this.value;
+		}
+	}
+
+	public void setSpiral(Spiral spiral) {
+		this.spiral = spiral.getValue();
+		this.setChanged();
+		this.notifyObservers();
+	}
+
 	private String spiral;
 	/**
  Spiral used for placing a word after the initial position experienced a collision with either another word or the borders. It is possible for users to add their own custom spiralling algorithms for use in word cloud. Read more about it in our [documentation](https://www.highcharts.com/docs/chart-and-series-types/word-cloud-series#custom-spiralling-algorithm) 
@@ -107,6 +129,27 @@ public class HIWordcloud extends HISeries {
 	}
 
 	public HIRotation getRotation(){ return rotation; }
+
+	public enum PlacementStrategy {
+		CENTER("center"),
+		RANDOM("random");
+
+		private final String value;
+
+		PlacementStrategy(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return this.value;
+		}
+	}
+
+	public void setPlacementStrategy(PlacementStrategy placementStrategy) {
+		this.placementStrategy = placementStrategy.getValue();
+		this.setChanged();
+		this.notifyObservers();
+	}
 
 	private String placementStrategy;
 	/**

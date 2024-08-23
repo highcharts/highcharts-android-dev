@@ -377,6 +377,27 @@ public class HIColorAxis extends HIFoundation {
 
 	public Number getCrossing(){ return crossing; }
 
+	public enum TickPosition {
+		INSIDE("inside"),
+		OUTSIDE("outside");
+
+		private final String value;
+
+		TickPosition(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return this.value;
+		}
+	}
+
+	public void setTickPosition(TickPosition tickPosition) {
+		this.tickPosition = tickPosition.getValue();
+		this.setChanged();
+		this.notifyObservers();
+	}
+
 	private String tickPosition;
 	/**
  The position of the major tick marks relative to the axis line. Can be one of `inside` and `outside`. 
@@ -436,6 +457,27 @@ public class HIColorAxis extends HIFoundation {
 	}
 
 	public String getGridLineDashStyle(){ return gridLineDashStyle; }
+
+	public enum MinorTickPosition {
+		INSIDE("inside"),
+		OUTSIDE("outside");
+
+		private final String value;
+
+		MinorTickPosition(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return this.value;
+		}
+	}
+
+	public void setMinorTickPosition(MinorTickPosition minorTickPosition) {
+		this.minorTickPosition = minorTickPosition.getValue();
+		this.setChanged();
+		this.notifyObservers();
+	}
 
 	private String minorTickPosition;
 	/**
@@ -520,6 +562,27 @@ public class HIColorAxis extends HIFoundation {
 	}
 
 	public Boolean getShowFirstLabel(){ return showFirstLabel; }
+
+	public enum TickmarkPlacement {
+		ON("on"),
+		BETWEEN("between");
+
+		private final String value;
+
+		TickmarkPlacement(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return this.value;
+		}
+	}
+
+	public void setTickmarkPlacement(TickmarkPlacement tickmarkPlacement) {
+		this.tickmarkPlacement = tickmarkPlacement.getValue();
+		this.setChanged();
+		this.notifyObservers();
+	}
 
 	private String tickmarkPlacement;
 	/**

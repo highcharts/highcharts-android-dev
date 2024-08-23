@@ -143,19 +143,6 @@ public class HIPlotLines extends HIFoundation {
 
 	}
 
-	/**
-	 * Remove the plot line.
-	 */
-	public void destroy() {
-		this.jsClassMethod = new HashMap<String, Object>() {{
-			put("class", "PlotLineOrBand");
-			put("method", "destroy");
-			put("id", uuid);
-		}};
-		this.setChanged();
-		this.notifyObservers(jsClassMethod);
-	}
-
 	@Override
 public HashMap<String, Object> getParams() {
 
@@ -193,5 +180,18 @@ public HashMap<String, Object> getParams() {
 		}
 		return params;
 	}
+
+  /**
+   * Remove the plot line.
+   */
+  public void destroy() {
+    this.jsClassMethod = new HashMap<String, Object>() {{
+      put("class", "PlotLineOrBand");
+      put("method", "destroy");
+      put("id", uuid);
+    }};
+    this.setChanged();
+    this.notifyObservers(jsClassMethod);
+  }
 
 }

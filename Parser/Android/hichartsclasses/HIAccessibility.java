@@ -31,6 +31,28 @@ public class HIAccessibility extends HIFoundation {
 
 	public HIPoint getPoint(){ return point; }
 
+	public enum LandmarkVerbosity {
+		ALL("all"),
+		ONE("one"),
+		DISABLED("disabled");
+
+		private final String value;
+
+		LandmarkVerbosity(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return this.value;
+		}
+	}
+
+	public void setLandmarkVerbosity(LandmarkVerbosity landmarkVerbosity) {
+		this.landmarkVerbosity = landmarkVerbosity.getValue();
+		this.setChanged();
+		this.notifyObservers();
+	}
+
 	private String landmarkVerbosity;
 	/**
  Amount of landmarks/regions to create for screen reader users. More landmarks can make navigation with screen readers easier, but can be distracting if there are lots of charts on the page. Three modes are available: - `all`: Adds regions for all series, legend, information   region. - `one`: Adds a single landmark per chart. - `disabled`: No landmarks are added. 
