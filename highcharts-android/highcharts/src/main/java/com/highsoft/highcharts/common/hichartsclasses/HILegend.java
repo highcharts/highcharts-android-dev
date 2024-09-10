@@ -18,7 +18,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class HILegend extends HIFoundation {
+
+public class HILegend extends HIFoundation { 
 
 	private Number symbolRadius;
 	/**

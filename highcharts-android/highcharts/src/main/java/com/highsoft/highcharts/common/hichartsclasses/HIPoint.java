@@ -18,7 +18,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class HIPoint extends HIFoundation {
+
+public class HIPoint extends HIFoundation { 
 
 	private HIFunction descriptionFormatter;
 	/**
