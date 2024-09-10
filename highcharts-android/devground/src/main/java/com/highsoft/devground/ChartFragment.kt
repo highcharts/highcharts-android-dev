@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.highsoft.devground.databinding.FragmentChartBinding
 import com.highsoft.highcharts.common.hichartsclasses.HIBoost
 import com.highsoft.highcharts.common.hichartsclasses.HIChart
+import com.highsoft.highcharts.common.hichartsclasses.HIEvents
 import com.highsoft.highcharts.common.hichartsclasses.HILegend
 import com.highsoft.highcharts.common.hichartsclasses.HILine
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions
@@ -17,6 +18,7 @@ import com.highsoft.highcharts.common.hichartsclasses.HISubtitle
 import com.highsoft.highcharts.common.hichartsclasses.HITitle
 import com.highsoft.highcharts.common.hichartsclasses.HITooltip
 import com.highsoft.highcharts.common.hichartsclasses.HIZooming
+import com.highsoft.highcharts.core.HIFunction
 
 
 class ChartFragment : Fragment() {
