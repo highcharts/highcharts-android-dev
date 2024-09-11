@@ -234,6 +234,30 @@ public class HILabel extends HIFoundation {
 
 	public String getTextAlign(){ return textAlign; }
 
+	private Boolean allowOverlap;
+	/**
+ Whether or not the label can be hidden if it overlaps with another label. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setAllowOverlap(Boolean allowOverlap) {
+		this.allowOverlap = allowOverlap;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getAllowOverlap(){ return allowOverlap; }
+
+	private Boolean inside;
+	/**
+ Wether or not the text of the label can exceed the width of the label. 
+ <br><br><b>defaults:</b><br><br>&ensp;true	*/
+	public void setInside(Boolean inside) {
+		this.inside = inside;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getInside(){ return inside; }
+
 
 
 	public HILabel() {
@@ -298,6 +322,12 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.textAlign != null) {
 			params.put("textAlign", this.textAlign);
+		}
+		if (this.allowOverlap != null) {
+			params.put("allowOverlap", this.allowOverlap);
+		}
+		if (this.inside != null) {
+			params.put("inside", this.inside);
 		}
 		return params;
 	}
