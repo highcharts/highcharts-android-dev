@@ -13,7 +13,7 @@ class MainActivityKotlin : AppCompatActivity() {
         setContentView(R.layout.activity_bottom_nav)
 
         setupBottomNav()
-        switchFragment(BlankFragment())
+        switchFragment(ChartFragment.newInstance())
     }
 
     private fun setupBottomNav() {
