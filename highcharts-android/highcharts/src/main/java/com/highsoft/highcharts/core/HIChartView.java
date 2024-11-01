@@ -172,6 +172,10 @@ public class HIChartView extends RelativeLayout/*ViewGroup*/{
             });
         }
 
+        this.webView.getSettings().setAllowFileAccess(false);
+        this.webView.getSettings().setAllowFileAccessFromFileURLs(false);
+        this.webView.getSettings().setAllowUniversalAccessFromFileURLs(false);
+
         //improve chart loading performance, CSS animations are loading faster!
         this.webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         // Adding exporting module to the chart
