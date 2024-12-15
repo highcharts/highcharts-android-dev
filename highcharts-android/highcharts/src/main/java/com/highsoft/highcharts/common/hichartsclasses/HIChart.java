@@ -11,7 +11,6 @@ package com.highsoft.highcharts.common.hichartsclasses;
 import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.core.HIFunction;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -83,7 +82,7 @@ public class HIChart extends HIFoundation {
 	private HICSSObject style;
 	/**
  Additional CSS styles to apply inline to the container `div` and the root SVG. According to the CSS syntax documentation, it is recommended to quote font family names that contain white space, digits, or punctuation characters other than hyphens. In such cases, wrap the fontFamily name as follows: `fontFamily: '"Font name"'`. Since v11, the root font size is 1rem by defaults, and all child element are given a relative `em` font size by defaults. This allows implementers to control all the chart's font sizes by only setting the root level. 
- <br><br><b>defaults:</b><br><br>&ensp;{"fontFamily": Helvetica, Arial, sans-serif","fontSize":"1rem"}	*/
+ <br><br><b>defaults:</b><br><br>&ensp;{"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif", "fontSize":"1rem"}	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
 		this.setChanged();

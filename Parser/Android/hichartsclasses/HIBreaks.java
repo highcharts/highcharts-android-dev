@@ -18,17 +18,17 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 public class HIBreaks extends HIFoundation { 
 
-	private Number to;
+	private Object /* Number, String */ to;
 	/**
- The point where the break ends. 
+ The axis value where the break ends. On datetime axes, this may be a date string. 
 	*/
-	public void setTo(Number to) {
+	public void setTo(Object /* Number, String */ to) {
 		this.to = to;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getTo(){ return to; }
+	public Object /* Number, String */ getTo(){ return to; }
 
 	private Number breakSize;
 	/**
@@ -42,17 +42,17 @@ public class HIBreaks extends HIFoundation {
 
 	public Number getBreakSize(){ return breakSize; }
 
-	private Number from;
+	private Object /* Number, String */ from;
 	/**
- The point where the break starts. 
+ The axis value where the break starts. On datetime axes, this may be a date string. 
 	*/
-	public void setFrom(Number from) {
+	public void setFrom(Object /* Number, String */ from) {
 		this.from = from;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getFrom(){ return from; }
+	public Object /* Number, String */ getFrom(){ return from; }
 
 	private Number repeat;
 	/**

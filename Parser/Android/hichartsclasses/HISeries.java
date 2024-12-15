@@ -811,6 +811,18 @@ public class HISeries extends HIFoundation {
 
 	public ArrayList<String> getKeys(){ return keys; }
 
+	private HIColor legendSymbolColor;
+	/**
+ Defines the color of the legend symbol for this series. Defaults to undefined, in which case the series color is used. Does not work with styled mode. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setLegendSymbolColor(HIColor legendSymbolColor) {
+		this.legendSymbolColor = legendSymbolColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getLegendSymbolColor(){ return legendSymbolColor; }
+
 	private Boolean selected;
 	/**
  Whether to select the series initially. If `showCheckbox` is true, the checkbox next to the series name in the legend will be checked for a selected series. 
@@ -1041,17 +1053,17 @@ public class HISeries extends HIFoundation {
 
 	public String getClassName(){ return className; }
 
-	private Number pointStart;
+	private Object /* Number, String */ pointStart;
 	/**
- If no x values are given for the points in a series, pointStart defines on what value to start. For example, if a series contains one yearly value starting from 1945, set pointStart to 1945. If combined with `relativeXValue`, an x value can be set on each point. The x value from the point options is multiplied by `pointInterval` and added to `pointStart` to produce a modified x value. 
+ If no x values are given for the points in a series, `pointStart` defines on what value to start. For example, if a series contains one yearly value starting from 1945, set `pointStart` to 1945. The `pointStart` setting can be a number, or a datetime string that is parsed according to the `time.timezone` setting. If combined with `relativeXValue`, an x value can be set on each point. The x value from the point options is multiplied by `pointInterval` and added to `pointStart` to produce a modified x value. 
  <br><br><b>defaults:</b><br><br>&ensp;0	*/
-	public void setPointStart(Number pointStart) {
+	public void setPointStart(Object /* Number, String */ pointStart) {
 		this.pointStart = pointStart;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getPointStart(){ return pointStart; }
+	public Object /* Number, String */ getPointStart(){ return pointStart; }
 
 	private String linecap;
 	/**
@@ -1323,6 +1335,9 @@ public HashMap<String, Object> getParams() {
 				}
 			}
 			params.put("keys", array);
+		}
+		if (this.legendSymbolColor != null) {
+			params.put("legendSymbolColor", this.legendSymbolColor.getData());
 		}
 		if (this.selected != null) {
 			params.put("selected", this.selected);

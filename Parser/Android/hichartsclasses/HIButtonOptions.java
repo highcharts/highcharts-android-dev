@@ -118,8 +118,8 @@ public class HIButtonOptions extends HIFoundation {
 
 	private Number buttonSpacing;
 	/**
- The pixel spacing between buttons. 
- <br><br><b>defaults:</b><br><br>&ensp;3	*/
+ The pixel spacing between buttons, and between the context button and the title. 
+ <br><br><b>defaults:</b><br><br>&ensp;5	*/
 	public void setButtonSpacing(Number buttonSpacing) {
 		this.buttonSpacing = buttonSpacing;
 		this.setChanged();

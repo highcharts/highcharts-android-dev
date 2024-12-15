@@ -128,17 +128,17 @@ public class HIDragDrop extends HIFoundation {
 
 	public HIGuideBox getGuideBox(){ return guideBox; }
 
-	private Number dragMaxX;
+	private Object /* Number, String */ dragMaxX;
 	/**
  Set the maximum X value the points can be moved to. 
 	*/
-	public void setDragMaxX(Number dragMaxX) {
+	public void setDragMaxX(Object /* Number, String */ dragMaxX) {
 		this.dragMaxX = dragMaxX;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getDragMaxX(){ return dragMaxX; }
+	public Object /* Number, String */ getDragMaxX(){ return dragMaxX; }
 
 	private Number dragMaxY;
 	/**
@@ -176,17 +176,17 @@ public class HIDragDrop extends HIFoundation {
 
 	public Number getDragPrecisionY(){ return dragPrecisionY; }
 
-	private Number dragMinX;
+	private Object /* Number, String */ dragMinX;
 	/**
  Set the minimum X value the points can be moved to. 
 	*/
-	public void setDragMinX(Number dragMinX) {
+	public void setDragMinX(Object /* Number, String */ dragMinX) {
 		this.dragMinX = dragMinX;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getDragMinX(){ return dragMinX; }
+	public Object /* Number, String */ getDragMinX(){ return dragMinX; }
 
 	private Number dragMinY;
 	/**

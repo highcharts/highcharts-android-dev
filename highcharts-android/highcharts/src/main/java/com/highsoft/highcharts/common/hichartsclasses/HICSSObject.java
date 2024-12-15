@@ -138,6 +138,18 @@ public class HICSSObject extends HIFoundation {
 
 	public Number getHeight(){ return height; }
 
+	private Number lineClamp;
+	/**
+ The maximum number of lines. If lines are cropped away, an ellipsis will be added. 
+	*/
+	public void setLineClamp(Number lineClamp) {
+		this.lineClamp = lineClamp;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getLineClamp(){ return lineClamp; }
+
 	private Number lineWidth;
 	/**
  Width of the element border. 
@@ -334,6 +346,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.height != null) {
 			params.put("height", this.height);
+		}
+		if (this.lineClamp != null) {
+			params.put("lineClamp", this.lineClamp);
 		}
 		if (this.lineWidth != null) {
 			params.put("lineWidth", this.lineWidth);

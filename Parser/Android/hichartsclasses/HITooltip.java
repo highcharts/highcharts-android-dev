@@ -69,7 +69,7 @@ public class HITooltip extends HIFoundation {
 
 	private String headerFormat;
 	/**
- The HTML of the tooltip header line. Variables are enclosed by curly brackets. Available variables are `point.key`, `series.name`, `series.color` and other members from the `point` and `series` objects. The `point.key` variable contains the category name, x value or datetime string depending on the type of axis. For datetime axes, the `point.key` date format can be set using `tooltip.xDateFormat`. 
+ The HTML of the tooltip header line. The context is the [Point class](https://api.highcharts.com/class-reference/Highcharts.Point). Variables are enclosed in curly brackets. Examples of common variables to include are `x`, `y`, `series.name` and `series.color` and other properties on the same form. The `point.key` variable contains the category name, x value or datetime string depending on the type of axis. For datetime axes, the `point.key` date format can be set using `tooltip.xDateFormat`. 
 	*/
 	public void setHeaderFormat(String headerFormat) {
 		this.headerFormat = headerFormat;
@@ -210,7 +210,7 @@ public class HITooltip extends HIFoundation {
 
 	private Boolean outside;
 	/**
- Whether to allow the tooltip to render outside the chart's SVG element box. By defaults (`false`), the tooltip is rendered within the chart's SVG element, which results in the tooltip being aligned inside the chart area. For small charts, this may result in clipping or overlapping. When `true`, a separate SVG element is created and overlaid on the page, allowing the tooltip to be aligned inside the page itself. Defaults to `true` if `chart.scrollablePlotArea` is activated, otherwise `false`. 
+ Whether to allow the tooltip to render outside the chart's SVG element box. By defaults (`false`), the tooltip is rendered within the chart's SVG element, which results in the tooltip being aligned inside the chart area. For small charts, this may result in clipping or overlapping. When `true`, a separate SVG element is created and overlaid on the page, allowing the tooltip to be aligned inside the page itself. Beware that with this option active, CSS classes on the chart's target container, with classnames matching the pattern 'highcharts-*', will be set on the tooltip as well. This is done to support theming for tooltips with this option. Defaults to `true` if `chart.scrollablePlotArea` is activated, otherwise `false`. 
  <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setOutside(Boolean outside) {
 		this.outside = outside;
@@ -282,7 +282,7 @@ public class HITooltip extends HIFoundation {
 
 	private HIFunction formatter;
 	/**
- Callback function to format the text of the tooltip from scratch. In case of single or `shared` tooltips, a string should be returned. In case of `split` tooltips, it should return an array where the first item is the header, and subsequent items are mapped to the points. Return `false` to disable tooltip for a specific point on series. A subset of HTML is supported. Unless `useHTML` is true, the HTML of the tooltip is parsed and converted to SVG, therefore this isn't a complete HTML renderer. The following HTML tags are supported: `b`, `br`, `em`, `i`, `span`, `strong`. Spans can be styled with a `style` attribute, but only text-related CSS, that is shared with SVG, is handled. The available data in the formatter differ a bit depending on whether the tooltip is shared or split, or belongs to a single point. In a shared/split tooltip, all properties except `x`, which is common for all points, are kept in an array, `this.points`. Available data are: - **this.percentage (not shared) /**  **this.points[i].percentage (shared)**:  Stacked series and pies only. The point's percentage of the total. - **this.point (not shared) / this.points[i].point (shared)**:  The point object. The point name, if defined, is available through  `this.point.name`. - **this.points**:  In a shared tooltip, this is an array containing all other  properties for each point. - **this.series (not shared) / this.points[i].series (shared)**:  The series object. The series name is available through  `this.series.name`. - **this.total (not shared) / this.points[i].total (shared)**:  Stacked series only. The total value at this point's x value. - **this.x**:  The x value. This property is the same regardless of the tooltip  being shared or not. - **this.y (not shared) / this.points[i].y (shared)**:  The y value. 
+ Callback function to format the text of the tooltip from scratch. In case of single or `shared` tooltips, a string should be returned. In case of `split` tooltips, it should return an array where the first item is the header, and subsequent items are mapped to the points. Return `false` to disable tooltip for a specific point on series. A subset of HTML is supported. Unless `useHTML` is true, the HTML of the tooltip is parsed and converted to SVG, therefore this isn't a complete HTML renderer. The following HTML tags are supported: `b`, `br`, `em`, `i`, `span`, `strong`. Spans can be styled with a `style` attribute, but only text-related CSS, that is shared with SVG, is handled. The context of the formatter (since v12) is the [Point](https://api.highcharts.com/class-reference/Highcharts.Point) instance. If the tooltip is shared or split, an array `this.points` contains all points of the hovered x-value. Common properties from the Point to use in the formatter include: - **Point.percentage**:  Stacked series and pies only. The point's percentage of the total. - **Point.points**:  In a shared or split tooltip, this is an array containing all the  hovered points. - **this.series**:  The series object. The series name is available through  `this.series.name`. - **this.total**:  The total value at this point's x value in a stacked series, or the  sum of all slices in a pie series. - **this.x**:  The x value. - **this.y**:  The y value. 
 	*/
 	public void setFormatter(HIFunction formatter) {
 		this.formatter = formatter;
@@ -318,7 +318,7 @@ public class HITooltip extends HIFoundation {
 
 	private String pointFormat;
 	/**
- The HTML of the point's line in the tooltip. Variables are enclosed by curly brackets. Available variables are `point.x`, `point.y`, `series.name` and `series.color` and other properties on the same form. Furthermore, `point.y` can be extended by the `tooltip.valuePrefix` and `tooltip.valueSuffix` variables. This can also be overridden for each series, which makes it a good hook for displaying units. In styled mode, the dot is colored by a class name rather than the point color. 
+ The HTML of the point's line in the tooltip. The context is the [Point class](https://api.highcharts.com/class-reference/Highcharts.Point). Variables are enclosed in curly brackets. Examples of common variables to include are `x`, `y`, `series.name` and `series.color` and other properties on the same form. Furthermore, `y` can be extended by the `tooltip.valuePrefix` and `tooltip.valueSuffix` variables. This can also be overridden for each series, which makes it a good hook for displaying units. In styled mode, the dot is colored by a class name rather than the point color. 
 	*/
 	public void setPointFormat(String pointFormat) {
 		this.pointFormat = pointFormat;
@@ -328,21 +328,21 @@ public class HITooltip extends HIFoundation {
 
 	public String getPointFormat(){ return pointFormat; }
 
-	private String xDateFormat;
+	private HIDateTimeFormatOptions xDateFormat;
 	/**
  The format for the date in the tooltip header if the X axis is a datetime axis. The defaults is a best guess based on the smallest distance between points in the chart. 
 	*/
-	public void setXDateFormat(String xDateFormat) {
+	public void setXDateFormat(HIDateTimeFormatOptions xDateFormat) {
 		this.xDateFormat = xDateFormat;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getXDateFormat(){ return xDateFormat; }
+	public HIDateTimeFormatOptions getXDateFormat(){ return xDateFormat; }
 
 	private HIDateTimeLabelFormats dateTimeLabelFormats;
 	/**
- For series on datetime axes, the date format in the tooltip's header will by defaults be guessed based on the closest data points. This member gives the defaults string representations used for each unit. For an overview of the replacement codes, see `dateFormat`. 
+ For series on datetime axes, the date format in the tooltip's header will by defaults be guessed based on the closest data points. This member gives the defaults string representations used for each unit. For an overview of the string or object configuration, see `dateFormat`. 
 	*/
 	public void setDateTimeLabelFormats(HIDateTimeLabelFormats dateTimeLabelFormats) {
 		this.dateTimeLabelFormats = dateTimeLabelFormats;
@@ -602,7 +602,7 @@ public HashMap<String, Object> getParams() {
 			params.put("pointFormat", this.pointFormat);
 		}
 		if (this.xDateFormat != null) {
-			params.put("xDateFormat", this.xDateFormat);
+			params.put("xDateFormat", this.xDateFormat.getParams());
 		}
 		if (this.dateTimeLabelFormats != null) {
 			params.put("dateTimeLabelFormats", this.dateTimeLabelFormats.getParams());

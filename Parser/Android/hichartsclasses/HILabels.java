@@ -142,7 +142,7 @@ public class HILabels extends HIFoundation {
 
 	private HICSSObject style;
 	/**
- CSS styles for the label. Use `whiteSpace: 'nowrap'` to prevent wrapping of category labels. Use `textOverflow: 'none'` to prevent ellipsis (dots). In styled mode, the labels are styled with the `.highcharts-axis-labels` class. 
+ CSS styles for the label. Use `lineClamp` to control wrapping of category labels. Use `textOverflow: 'none'` to prevent ellipsis (dots). In styled mode, the labels are styled with the `.highcharts-axis-labels` class. 
 	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;

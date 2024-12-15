@@ -9,28 +9,15 @@
 package com.highsoft.highcharts.common.hichartsclasses;
 
 import com.highsoft.highcharts.core.HIFoundation;
-
 import java.util.HashMap;
 
 
 
 public class HITitle extends HIFoundation { 
 
-	private Number widthAdjust;
-	/**
- Adjustment made to the title width, normally to reserve space for the exporting burger menu. 
- <br><br><b>defaults:</b><br><br>&ensp;-44	*/
-	public void setWidthAdjust(Number widthAdjust) {
-		this.widthAdjust = widthAdjust;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getWidthAdjust(){ return widthAdjust; }
-
 	private HICSSObject style;
 	/**
- CSS styles for the title. Use this for font styling, but use `align`, `x` and `y` for text alignment. In styled mode, the title style is given in the `.highcharts-title` class. 
+ CSS styles for the title. Use this for font styling, but use `align`, `x` and `y` for text alignment. Note that the defaults `title.minScale` option also affects the rendered font size. In order to keep the font size fixed regardless of title length, set `minScale` to 1. In styled mode, the title style is given in the `.highcharts-title` class. 
  <br><br><b>defaults:</b><br><br>&ensp;{ "color": "#333333", "fontSize": "18px" }	*/
 	public void setStyle(HICSSObject style) {
 		this.style = style;
@@ -66,8 +53,8 @@ public class HITitle extends HIFoundation {
 
 	private String align;
 	/**
- The horizontal alignment of the title. Can be one of "left", "center" and "right". 
- <br><br><b>defaults:</b><br><br>&ensp;center	*/
+ The horizontal alignment of the title. Can be one of "left", "center" and "right". Since v12 it defaultss to `undefined`, meaning the alignment is computed for best fit. If the text fits in one line, it aligned to the center, but if it is wrapped into multiple lines, it is aligned to the left. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setAlign(String align) {
 		this.align = align;
 		this.setChanged();
@@ -75,6 +62,18 @@ public class HITitle extends HIFoundation {
 	}
 
 	public String getAlign(){ return align; }
+
+	private Boolean useHTML;
+	/**
+ Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the text. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setUseHTML(Boolean useHTML) {
+		this.useHTML = useHTML;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getUseHTML(){ return useHTML; }
 
 	private Number y;
 	/**
@@ -100,17 +99,17 @@ public class HITitle extends HIFoundation {
 
 	public Number getX(){ return x; }
 
-	private Boolean floating;
+	private Number minScale;
 	/**
- When the title is floating, the plot area will not move to make space for it. 
- <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setFloating(Boolean floating) {
-		this.floating = floating;
+ When the title is too wide to fit in the chart, the defaults behavior is to scale it down to fit, or apply word wrap if it is scaled down to `minScale` and still doesn't fit. The defaults value reflects the scale, when using defaults font sizes, when the title font size matches that of the subtitle. The title still stands out as it is bold by defaults. Set `minScale` to 1 to avoid downscaling. 
+ <br><br><b>defaults:</b><br><br>&ensp;0.67	*/
+	public void setMinScale(Number minScale) {
+		this.minScale = minScale;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getFloating(){ return floating; }
+	public Number getMinScale(){ return minScale; }
 
 	private Number margin;
 	/**
@@ -124,17 +123,17 @@ public class HITitle extends HIFoundation {
 
 	public Number getMargin(){ return margin; }
 
-	private Boolean useHTML;
+	private Boolean floating;
 	/**
- Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the text. 
+ When the title is floating, the plot area will not move to make space for it. 
  <br><br><b>defaults:</b><br><br>&ensp;false	*/
-	public void setUseHTML(Boolean useHTML) {
-		this.useHTML = useHTML;
+	public void setFloating(Boolean floating) {
+		this.floating = floating;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Boolean getUseHTML(){ return useHTML; }
+	public Boolean getFloating(){ return floating; }
 
 	private Boolean reserveSpace;
 	/**
@@ -219,9 +218,6 @@ public HashMap<String, Object> getParams() {
 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
-		if (this.widthAdjust != null) {
-			params.put("widthAdjust", this.widthAdjust);
-		}
 		if (this.style != null) {
 			params.put("style", this.style.getParams());
 		}
@@ -234,20 +230,23 @@ public HashMap<String, Object> getParams() {
 		if (this.align != null) {
 			params.put("align", this.align);
 		}
+		if (this.useHTML != null) {
+			params.put("useHTML", this.useHTML);
+		}
 		if (this.y != null) {
 			params.put("y", this.y);
 		}
 		if (this.x != null) {
 			params.put("x", this.x);
 		}
-		if (this.floating != null) {
-			params.put("floating", this.floating);
+		if (this.minScale != null) {
+			params.put("minScale", this.minScale);
 		}
 		if (this.margin != null) {
 			params.put("margin", this.margin);
 		}
-		if (this.useHTML != null) {
-			params.put("useHTML", this.useHTML);
+		if (this.floating != null) {
+			params.put("floating", this.floating);
 		}
 		if (this.reserveSpace != null) {
 			params.put("reserveSpace", this.reserveSpace);

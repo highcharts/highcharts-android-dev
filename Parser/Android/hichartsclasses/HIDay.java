@@ -18,23 +18,23 @@ import com.highsoft.highcharts.core.HIFoundation;
 
 public class HIDay extends HIFoundation { 
 
-	private String main;
-	public void setMain(String main) {
+	private HIDateTimeFormatOptions main;
+	public void setMain(HIDateTimeFormatOptions main) {
 		this.main = main;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getMain(){ return main; }
+	public HIDateTimeFormatOptions getMain(){ return main; }
 
-	private ArrayList<String> list;
-	public void setList(ArrayList<String> list) {
+	private ArrayList list;
+	public void setList(ArrayList list) {
 		this.list = list;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<String> getList(){ return list; }
+	public ArrayList getList(){ return list; }
 
 
 
@@ -48,7 +48,7 @@ public HashMap<String, Object> getParams() {
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("_wrapperID", this.uuid);
 		if (this.main != null) {
-			params.put("main", this.main);
+			params.put("main", this.main.getParams());
 		}
 		if (this.list != null) {
 			ArrayList<Object> array = new ArrayList<>();

@@ -605,14 +605,14 @@ public class HIDataLabels extends HIFoundation {
 
 	public HIParentNodeTextPath getParentNodeTextPath(){ return parentNodeTextPath; }
 
-	private HIFunction parentNodeFormatter;
-	public void setParentNodeFormatter(HIFunction parentNodeFormatter) {
+	private Object parentNodeFormatter;
+	public void setParentNodeFormatter(Object parentNodeFormatter) {
 		this.parentNodeFormatter = parentNodeFormatter;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public HIFunction getParentNodeFormatter(){ return parentNodeFormatter; }
+	public Object getParentNodeFormatter(){ return parentNodeFormatter; }
 
 	private HISVGAttributes attributes;
 	/**
@@ -818,7 +818,6 @@ public HashMap<String, Object> getParams() {
 			params.put("parentNodeTextPath", this.parentNodeTextPath.getParams());
 		}
 		if (this.parentNodeFormatter != null) {
-			params.put("parentNodeFormatter", this.parentNodeFormatter);
 		}
 		if (this.attributes != null) {
 			params.put("attributes", this.attributes.getParams());

@@ -9,7 +9,6 @@
 package com.highsoft.highcharts.common.hichartsclasses;
 
 import com.highsoft.highcharts.common.HIColor;
-
 import java.util.HashMap;
 
 

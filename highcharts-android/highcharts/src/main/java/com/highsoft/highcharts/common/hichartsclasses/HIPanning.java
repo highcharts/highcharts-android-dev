@@ -8,9 +8,11 @@
 
 package com.highsoft.highcharts.common.hichartsclasses;
 
-import com.highsoft.highcharts.core.HIFoundation;
-
 import java.util.HashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+import com.highsoft.highcharts.core.HIFunction;
+import com.highsoft.highcharts.core.HIFoundation;
 
 
 
@@ -18,7 +20,7 @@ public class HIPanning extends HIFoundation {
 
 	private String type;
 	/**
- Decides in what dimensions the user can pan the chart. Can be one of `x`, `y`, or `xy`. When this option is set to `y` or `xy`, `yAxis.startOnTick` and `yAxis.endOnTick` are overwritten to `false`. 
+ Decides in what dimensions the user can pan the chart. Can be one of `x`, `y`, or `xy`. During panning, all axes will behave as if ``startOnTick`` and ``endOnTick`` were set to `false`. After the panning action is finished, the axes will adjust to their actual settings. 
  <br><br><b>defaults:</b><br><br>&ensp;x	*/
 	public void setType(String type) {
 		this.type = type;

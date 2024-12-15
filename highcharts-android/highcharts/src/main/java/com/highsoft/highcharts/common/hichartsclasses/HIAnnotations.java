@@ -13,14 +13,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashMap;
 import java.util.ArrayList;
-import java.util.List;
-
 import com.highsoft.highcharts.core.HIFunction;
 import com.highsoft.highcharts.core.HIFoundation;
+import java.util.List;
 
-
-
-public class HIAnnotations extends HIFoundation { 
+public class HIAnnotations extends HIFoundation {
 
 	private ArrayList <HILabels> labels;
 	/**

@@ -7,9 +7,7 @@ import android.os.Build;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
 import androidx.annotation.RequiresApi;
-
 import java.util.List;
 
 /** This class provides communication with web browser and exporting module **/

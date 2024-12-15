@@ -54,6 +54,18 @@ public class HILang extends HIFoundation {
 
 	public String getExportInProgress(){ return exportInProgress; }
 
+	private ArrayList<String> locale;
+	/**
+ The browser locale to use for date and number formatting. The actual locale used for each chart is determined in three steps: 1. If this `lang.locale` option is specified, it is used. 2. Else, look for the closest ancestor HTML element with a `lang`  attribute, typically the `<html>` element. 3. If no 'lang' attribute is found, use the defaults browser locale. Use `en-GB`, British English, for approximate consistency with Highcharts v < 12. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+	public void setLocale(ArrayList<String> locale) {
+		this.locale = locale;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public ArrayList<String> getLocale(){ return locale; }
+
 	private HIAccessibility accessibility;
 	/**
  Configure the accessibility strings in the chart. Requires the [accessibility module](https://code.highcharts.com/modules/accessibility.js) to be loaded. For a description of the module and information on its features, see [Highcharts Accessibility](https://www.highcharts.com/docs/chart-concepts/accessibility). The lang options use [Format Strings](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#format-strings) with variables that are replaced at run time. These variables should be used when available, to avoid duplicating text that is defined elsewhere. For more dynamic control over the accessibility functionality, see `accessibility.point.descriptionFormatter`, `accessibility.series.descriptionFormatter`, and `accessibility.screenReaderSection.beforeChartFormatter`. 
@@ -81,7 +93,7 @@ public class HILang extends HIFoundation {
 
 	private ArrayList<String> shortWeekdays;
 	/**
- Short week days, starting Sunday. If not specified, Highcharts uses the first three letters of the `lang.weekdays` option. 
+ Short week days, starting Sunday. Defaults to 'undefined', meaning the defaults short weekday names are used according to the `lang.locale` setting. 
 	*/
 	public void setShortWeekdays(ArrayList<String> shortWeekdays) {
 		this.shortWeekdays = shortWeekdays;
@@ -199,9 +211,8 @@ public class HILang extends HIFoundation {
 
 	private ArrayList<String> weekdays;
 	/**
- An array containing the weekday names. 
- <br><br><b>defaults:</b><br><br>&ensp;["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
-         "Friday", "Saturday"]	*/
+ An array containing the weekday names. Defaults to 'undefined', meaning the defaults weekday names are used according to the `lang.locale` setting. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setWeekdays(ArrayList<String> weekdays) {
 		this.weekdays = weekdays;
 		this.setChanged();
@@ -320,10 +331,8 @@ public class HILang extends HIFoundation {
 
 	private ArrayList<String> months;
 	/**
- An array containing the months names. Corresponds to the `%B` format in `Highcharts.dateFormat()`. 
- <br><br><b>defaults:</b><br><br>&ensp;["January", "February", "March", "April", "May", "June",
-         "July", "August", "September", "October", "November",
-         "December"]	*/
+ An array containing the months names. Corresponds to the `%B` format in `Highcharts.dateFormat()`. Defaults to 'undefined', meaning the defaults month names are used according to the `lang.locale` setting. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setMonths(ArrayList<String> months) {
 		this.months = months;
 		this.setChanged();
@@ -334,9 +343,8 @@ public class HILang extends HIFoundation {
 
 	private ArrayList<String> shortMonths;
 	/**
- An array containing the months names in abbreviated form. Corresponds to the `%b` format in `Highcharts.dateFormat()`. 
- <br><br><b>defaults:</b><br><br>&ensp;["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]	*/
+ An array containing the months names in abbreviated form. Corresponds to the `%b` format in `Highcharts.dateFormat()`. Defaults to 'undefined', meaning the defaults short month names are used according to the `lang.locale` setting. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setShortMonths(ArrayList<String> shortMonths) {
 		this.shortMonths = shortMonths;
 		this.setChanged();
@@ -359,8 +367,8 @@ public class HILang extends HIFoundation {
 
 	private String decimalPoint;
 	/**
- The defaults decimal point used in the `Highcharts.numberFormat` method unless otherwise specified in the function arguments. 
- <br><br><b>defaults:</b><br><br>&ensp;.	*/
+ The defaults decimal point used in the `Highcharts.numberFormat` method unless otherwise specified in the function arguments. Defaults to the locale decimal point as determined by `lang.locale`. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setDecimalPoint(String decimalPoint) {
 		this.decimalPoint = decimalPoint;
 		this.setChanged();
@@ -371,8 +379,8 @@ public class HILang extends HIFoundation {
 
 	private String thousandsSep;
 	/**
- The defaults thousands separator used in the `Highcharts.numberFormat` method unless otherwise specified in the function arguments. Defaults to a single space character, which is recommended in [ISO 31-0](https://en.wikipedia.org/wiki/ISO_31-0#Numbers) and works across Anglo-American and continental European languages. 
- <br><br><b>defaults:</b><br><br>&ensp;\u0020	*/
+ The defaults thousands separator used in the `Highcharts.numberFormat` method unless otherwise specified in the function arguments. Defaults to the locale thousands separator as determined by `lang.locale`. 
+ <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
 	public void setThousandsSep(String thousandsSep) {
 		this.thousandsSep = thousandsSep;
 		this.setChanged();
@@ -425,6 +433,18 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.exportInProgress != null) {
 			params.put("exportInProgress", this.exportInProgress);
+		}
+		if (this.locale != null) {
+			ArrayList<Object> array = new ArrayList<>();
+			for (Object obj : this.locale) {
+				if (obj instanceof HIFoundation) {
+					array.add(((HIFoundation) obj).getParams());
+				}
+				else {
+					array.add(obj);
+				}
+			}
+			params.put("locale", array);
 		}
 		if (this.accessibility != null) {
 			params.put("accessibility", this.accessibility.getParams());
