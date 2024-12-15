@@ -9,7 +9,6 @@
 package com.highsoft.highcharts.common.hichartsclasses;
 
 import com.highsoft.highcharts.core.HIFoundation;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -26,23 +25,23 @@ public class HIHour extends HIFoundation {
 
 	public Boolean getRange(){ return range; }
 
-	private String main;
-	public void setMain(String main) {
+	private HIDateTimeFormatOptions main;
+	public void setMain(HIDateTimeFormatOptions main) {
 		this.main = main;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public String getMain(){ return main; }
+	public HIDateTimeFormatOptions getMain(){ return main; }
 
-	private ArrayList<String> list;
-	public void setList(ArrayList<String> list) {
+	private ArrayList list;
+	public void setList(ArrayList list) {
 		this.list = list;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public ArrayList<String> getList(){ return list; }
+	public ArrayList getList(){ return list; }
 
 
 
@@ -59,7 +58,7 @@ public HashMap<String, Object> getParams() {
 			params.put("range", this.range);
 		}
 		if (this.main != null) {
-			params.put("main", this.main);
+			params.put("main", this.main.getParams());
 		}
 		if (this.list != null) {
 			ArrayList<Object> array = new ArrayList<>();

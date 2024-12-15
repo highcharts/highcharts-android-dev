@@ -34,30 +34,6 @@ public class HIDependencywheel extends HISeries {
 
 	public ArrayList getNodes(){ return nodes; }
 
-	private Object /* Number, String */ size;
-	/**
- Size of the wheel in pixel or percent relative to the canvas space. 
- <br><br><b>defaults:</b><br><br>&ensp;100%	*/
-	public void setSize(Object /* Number, String */ size) {
-		this.size = size;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Object /* Number, String */ getSize(){ return size; }
-
-	private Number startAngle;
-	/**
- The start angle of the dependency wheel, in degrees where 0 is up. 
-	*/
-	public void setStartAngle(Number startAngle) {
-		this.startAngle = startAngle;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getStartAngle(){ return startAngle; }
-
 	private ArrayList /* <Number, String> */ center;
 	/**
  The center of the wheel relative to the plot area. Can be percentages or pixel values. The defaults behaviour is to center the wheel inside the plot area. 
@@ -82,6 +58,42 @@ public class HIDependencywheel extends HISeries {
 	}
 
 	public Number getCurveFactor(){ return curveFactor; }
+
+	private HIBorderRadiusOptionsObject borderRadius;
+	/**
+ The corner radius of the border surrounding each node. A number signifies pixels. A percentage string, like for example `50%`, signifies a relative size. For nodes this is relative to the node width. 
+ <br><br><b>defaults:</b><br><br>&ensp;3	*/
+	public void setBorderRadius(HIBorderRadiusOptionsObject borderRadius) {
+		this.borderRadius = borderRadius;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIBorderRadiusOptionsObject getBorderRadius(){ return borderRadius; }
+
+	private Number startAngle;
+	/**
+ The start angle of the dependency wheel, in degrees where 0 is up. 
+	*/
+	public void setStartAngle(Number startAngle) {
+		this.startAngle = startAngle;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getStartAngle(){ return startAngle; }
+
+	private Object /* Number, String */ size;
+	/**
+ Size of the wheel in pixel or percent relative to the canvas space. 
+ <br><br><b>defaults:</b><br><br>&ensp;100%	*/
+	public void setSize(Object /* Number, String */ size) {
+		this.size = size;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* Number, String */ getSize(){ return size; }
 
 	private Boolean colorByPoint;
 	/**
@@ -240,12 +252,6 @@ public HashMap<String, Object> getParams() {
 			}
 			params.put("nodes", array);
 		}
-		if (this.size != null) {
-			params.put("size", this.size);
-		}
-		if (this.startAngle != null) {
-			params.put("startAngle", this.startAngle);
-		}
 		if (this.center != null) {
 			ArrayList<Object> array = new ArrayList<>();
 			for (Object obj : this.center) {
@@ -260,6 +266,15 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.curveFactor != null) {
 			params.put("curveFactor", this.curveFactor);
+		}
+		if (this.borderRadius != null) {
+			params.put("borderRadius", this.borderRadius.getParams());
+		}
+		if (this.startAngle != null) {
+			params.put("startAngle", this.startAngle);
+		}
+		if (this.size != null) {
+			params.put("size", this.size);
 		}
 		if (this.colorByPoint != null) {
 			params.put("colorByPoint", this.colorByPoint);

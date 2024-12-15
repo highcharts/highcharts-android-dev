@@ -1,7 +1,6 @@
 package com.highsoft.highcharts.core;
 
 import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;

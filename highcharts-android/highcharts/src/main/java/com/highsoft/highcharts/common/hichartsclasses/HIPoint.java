@@ -11,15 +11,12 @@ package com.highsoft.highcharts.common.hichartsclasses;
 import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.core.HIFunction;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-
-
-public class HIPoint extends HIFoundation { 
+public class HIPoint extends HIFoundation {
 
 	private HIFunction descriptionFormatter;
 	/**
