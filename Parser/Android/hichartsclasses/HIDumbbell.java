@@ -99,6 +99,18 @@ public class HIDumbbell extends HISeries {
 
 	public HIColor getLowColor(){ return lowColor; }
 
+	private HIColor fillColor;
+	/**
+/** * description: Fill color or gradient for the area. When `undefined`, the series' `color` is used with the series' `fillOpacity`. In styled mode, the fill color can be set with the `.highcharts-area` class name. * demo: * [Undefined by defaults](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-fillcolor-defaults/) * [Gradient](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/area-fillcolor-gradient/) 
+*/
+	public void setFillColor(HIColor fillColor) {
+		this.fillColor = fillColor;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public HIColor getFillColor(){ return fillColor; }
+
 	private HIColor negativeFillColor;
 	/**
  A separate color for the negative part of the area. Note that `zones` takes precedence over the negative fill color. In styled mode, a negative color is set with the `.highcharts-negative` class name. 
@@ -155,6 +167,9 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.lowColor != null) {
 			params.put("lowColor", this.lowColor.getData());
+		}
+		if (this.fillColor != null) {
+			params.put("fillColor", this.fillColor.getData());
 		}
 		if (this.negativeFillColor != null) {
 			params.put("negativeFillColor", this.negativeFillColor.getData());

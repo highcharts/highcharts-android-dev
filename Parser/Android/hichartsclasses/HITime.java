@@ -32,8 +32,8 @@ public class HITime extends HIFoundation {
 
 	private String timezone;
 	/**
- A named time zone. Supported time zone names rely on the browser implementations, as described in the [mdn docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat#timezone). If the given time zone is not recognized by the browser, Highcharts provides a warning and falls back to returning a 0 offset, corresponding to the UTC time zone. Until v11.2.0, this option depended on moment.js. 
- <br><br><b>defaults:</b><br><br>&ensp;undefined	*/
+ A named time zone. Supported time zone names rely on the browser implementations, as described in the [mdn docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat#timezone). If the given time zone is not recognized by the browser, Highcharts provides a warning and falls back to returning a 0 offset, corresponding to the UTC time zone. The time zone affects axis scaling, tickmark placement and time display in `Highcharts.dateFormat`. Setting `timezone` to `undefined` falls back to the defaults browser timezone setting. Until v11.2.0, this option depended on moment.js. 
+ <br><br><b>defaults:</b><br><br>&ensp;UTC	*/
 	public void setTimezone(String timezone) {
 		this.timezone = timezone;
 		this.setChanged();
@@ -41,18 +41,6 @@ public class HITime extends HIFoundation {
 	}
 
 	public String getTimezone(){ return timezone; }
-
-	private Boolean useUTC;
-	/**
- Whether to use UTC time for axis scaling, tickmark placement and time display in `Highcharts.dateFormat`. Advantages of using UTC is that the time displays equally regardless of the user agent's time zone settings. Local time can be used when the data is loaded in real time or when correct Daylight Saving Time transitions are required. 
- <br><br><b>defaults:</b><br><br>&ensp;True	*/
-	public void setUseUTC(Boolean useUTC) {
-		this.useUTC = useUTC;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Boolean getUseUTC(){ return useUTC; }
 
 	private String mapFunction;
 	/**
@@ -142,9 +130,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.timezone != null) {
 			params.put("timezone", this.timezone);
-		}
-		if (this.useUTC != null) {
-			params.put("useUTC", this.useUTC);
 		}
 		if (this.mapFunction != null) {
 			params.put("mapFunction", this.mapFunction);

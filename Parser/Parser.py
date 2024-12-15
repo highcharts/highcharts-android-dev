@@ -376,7 +376,11 @@ hc_types = {
     "'left'|'right'": 'String',
     # 11.4.3
     "function|*": 'HIFunction',
-    "string|number|function|*": 'Object'
+    "string|number|function|*": 'Object',
+    #12.0.2
+    "string|Highcharts.DateTimeFormatOptions": 'HIDateTimeFormatOptions',
+    "Highcharts.Dictionary.<(string|Highcharts.DateTimeFormatOptions)>": 'HashMap',
+    "Array.<(string|Highcharts.DateTimeFormatOptions)>": 'ArrayList'
 }
 
 

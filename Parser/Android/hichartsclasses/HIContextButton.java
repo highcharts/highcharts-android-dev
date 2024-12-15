@@ -35,7 +35,7 @@ public class HIContextButton extends HIFoundation {
 	private ArrayList<String> menuItems;
 	/**
  A collection of strings pointing to config options for the menu items. The config options are defined in the `menuItemDefinitions` option. By defaults, there is the "View in full screen" and "Print" menu items, plus one menu item for each of the available export types. 
- <br><br><b>defaults:</b><br><br>&ensp;["viewFullscreen", "printChart", "separator", "downloadPNG", "downloadJPEG", "downloadPDF", "downloadSVG"]	*/
+ <br><br><b>defaults:</b><br><br>&ensp;["viewFullscreen", "printChart", "separator", "downloadPNG", "downloadJPEG", "downloadSVG"]	*/
 	public void setMenuItems(ArrayList<String> menuItems) {
 		this.menuItems = menuItems;
 		this.setChanged();
@@ -79,6 +79,19 @@ public class HIContextButton extends HIFoundation {
 	}
 
 	public String getTitleKey(){ return titleKey; }
+
+	private Number y;
+	/**
+/** * description: The vertical offset of the button's position relative to its `verticalAlign`. * demo: * [Buttons at lower right](https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/navigation/buttonoptions-verticalalign/) 
+* defaults: -5
+*/
+	public void setY(Number y) {
+		this.y = y;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Number getY(){ return y; }
 
 	private Number x;
 	/**
@@ -203,8 +216,8 @@ public class HIContextButton extends HIFoundation {
 
 	private Number buttonSpacing;
 	/**
- The pixel spacing between buttons. 
- <br><br><b>defaults:</b><br><br>&ensp;3	*/
+ The pixel spacing between buttons, and between the context button and the title. 
+ <br><br><b>defaults:</b><br><br>&ensp;5	*/
 	public void setButtonSpacing(Number buttonSpacing) {
 		this.buttonSpacing = buttonSpacing;
 		this.setChanged();
@@ -224,18 +237,6 @@ public class HIContextButton extends HIFoundation {
 	}
 
 	public Number getSymbolSize(){ return symbolSize; }
-
-	private Number y;
-	/**
- The vertical offset of the button's position relative to its `verticalAlign`. 
- <br><br><b>defaults:</b><br><br>&ensp;0	*/
-	public void setY(Number y) {
-		this.y = y;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getY(){ return y; }
 
 	private String verticalAlign;
 	/**
@@ -332,6 +333,9 @@ public HashMap<String, Object> getParams() {
 		if (this.titleKey != null) {
 			params.put("titleKey", this.titleKey);
 		}
+		if (this.y != null) {
+			params.put("y", this.y);
+		}
 		if (this.x != null) {
 			params.put("x", this.x);
 		}
@@ -367,9 +371,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.symbolSize != null) {
 			params.put("symbolSize", this.symbolSize);
-		}
-		if (this.y != null) {
-			params.put("y", this.y);
 		}
 		if (this.verticalAlign != null) {
 			params.put("verticalAlign", this.verticalAlign);

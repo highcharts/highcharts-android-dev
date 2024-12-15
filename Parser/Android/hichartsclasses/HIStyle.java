@@ -72,6 +72,15 @@ public class HIStyle extends HIFoundation {
 
 	public String getCursor(){ return cursor; }
 
+	private String textOverflow;
+	public void setTextOverflow(String textOverflow) {
+		this.textOverflow = textOverflow;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public String getTextOverflow(){ return textOverflow; }
+
 	private String whiteSpace;
 	public void setWhiteSpace(String whiteSpace) {
 		this.whiteSpace = whiteSpace;
@@ -98,15 +107,6 @@ public class HIStyle extends HIFoundation {
 	}
 
 	public Number getLineWidth(){ return lineWidth; }
-
-	private String textOverflow;
-	public void setTextOverflow(String textOverflow) {
-		this.textOverflow = textOverflow;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getTextOverflow(){ return textOverflow; }
 
 	private String stroke;
 	public void setStroke(String stroke) {
@@ -164,6 +164,9 @@ public HashMap<String, Object> getParams() {
 		if (this.cursor != null) {
 			params.put("cursor", this.cursor);
 		}
+		if (this.textOverflow != null) {
+			params.put("textOverflow", this.textOverflow);
+		}
 		if (this.whiteSpace != null) {
 			params.put("whiteSpace", this.whiteSpace);
 		}
@@ -172,9 +175,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.lineWidth != null) {
 			params.put("lineWidth", this.lineWidth);
-		}
-		if (this.textOverflow != null) {
-			params.put("textOverflow", this.textOverflow);
 		}
 		if (this.stroke != null) {
 			params.put("stroke", this.stroke);
