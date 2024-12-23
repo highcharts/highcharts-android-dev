@@ -79,29 +79,29 @@ public class HIPlotBands extends HIFoundation {
 
 	public Number getZIndex(){ return zIndex; }
 
-	private Number from;
+	private Object /* Number, String */ from;
 	/**
- The start position of the plot band in axis units. 
+ The start position of the plot band in axis units. On datetime axes, the value can be given as a timestamp or a date string. 
 	*/
-	public void setFrom(Number from) {
+	public void setFrom(Object /* Number, String */ from) {
 		this.from = from;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getFrom(){ return from; }
+	public Object /* Number, String */ getFrom(){ return from; }
 
-	private Number to;
+	private Object /* Number, String */ to;
 	/**
- The end position of the plot band in axis units. 
+ The end position of the plot band in axis units. On datetime axes, the value can be given as a timestamp or a date string. 
 	*/
-	public void setTo(Number to) {
+	public void setTo(Object /* Number, String */ to) {
 		this.to = to;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getTo(){ return to; }
+	public Object /* Number, String */ getTo(){ return to; }
 
 	private Object /* Number, String */ borderRadius;
 	/**

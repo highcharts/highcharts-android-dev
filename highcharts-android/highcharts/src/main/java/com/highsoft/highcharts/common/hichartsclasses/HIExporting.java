@@ -43,18 +43,6 @@ public class HIExporting extends HIFoundation {
 
 	public Object getMenuItemDefinitions(){ return menuItemDefinitions; }
 
-	private HashMap chartOptions;
-	/**
- Additional chart options to be merged into the chart before exporting to an image format. This does not apply to printing the chart via the export menu. For example, a common use case is to add data labels to improve readability of the exported chart, or to add a printer-friendly color scheme to exported PDFs. 
-	*/
-	public void setChartOptions(HashMap chartOptions) {
-		this.chartOptions = chartOptions;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public HashMap getChartOptions(){ return chartOptions; }
-
 	private Number sourceHeight;
 	/**
  Analogous to `sourceWidth`. 
@@ -66,6 +54,18 @@ public class HIExporting extends HIFoundation {
 	}
 
 	public Number getSourceHeight(){ return sourceHeight; }
+
+	private Object /* boolean, String */ tableCaption;
+	/**
+ Caption for the data table. Same as chart title by defaults. Set to `false` to disable. 
+	*/
+	public void setTableCaption(Object /* boolean, String */ tableCaption) {
+		this.tableCaption = tableCaption;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Object /* boolean, String */ getTableCaption(){ return tableCaption; }
 
 	private Number sourceWidth;
 	/**
@@ -177,17 +177,17 @@ public class HIExporting extends HIFoundation {
 
 	public String getType(){ return type; }
 
-	private Object /* boolean, String */ tableCaption;
+	private HashMap chartOptions;
 	/**
- Caption for the data table. Same as chart title by defaults. Set to `false` to disable. 
+ Additional chart options to be merged into the chart before exporting to an image format. This does not apply to printing the chart via the export menu. For example, a common use case is to add data labels to improve readability of the exported chart, or to add a printer-friendly color scheme to exported PDFs. 
 	*/
-	public void setTableCaption(Object /* boolean, String */ tableCaption) {
-		this.tableCaption = tableCaption;
+	public void setChartOptions(HashMap chartOptions) {
+		this.chartOptions = chartOptions;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Object /* boolean, String */ getTableCaption(){ return tableCaption; }
+	public HashMap getChartOptions(){ return chartOptions; }
 
 	private Boolean useMultiLevelHeaders;
 	/**
@@ -213,6 +213,18 @@ public class HIExporting extends HIFoundation {
 
 	public Boolean getUseRowspanHeaders(){ return useRowspanHeaders; }
 
+	private Boolean applyStyleSheets;
+	/**
+ Allow exporting a chart retaining any user-applied CSS. Note that this is is defaults behavior in `styledMode`. 
+ <br><br><b>defaults:</b><br><br>&ensp;false	*/
+	public void setApplyStyleSheets(Boolean applyStyleSheets) {
+		this.applyStyleSheets = applyStyleSheets;
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public Boolean getApplyStyleSheets(){ return applyStyleSheets; }
+
 	private Boolean fallbackToExportServer;
 	/**
  Whether or not to fall back to the export server if the offline-exporting module is unable to export the chart on the client side. This happens for certain browsers, and certain features (e.g. `allowHTML`), depending on the image type exporting to. For very complex charts, it is possible that export can fail in browsers that don't support Blob objects, due to data URL length limits. It is recommended to define the `exporting.error` handler if disabling fallback, in order to notify users in case export fails. 
@@ -228,7 +240,7 @@ public class HIExporting extends HIFoundation {
 	private String url;
 	/**
  The URL for the server module converting the SVG string to an image format. By defaults this points to Highchart's free web service. 
- <br><br><b>defaults:</b><br><br>&ensp;https://export.highcharts.com/	*/
+ <br><br><b>defaults:</b><br><br>&ensp;https://export-svg.highcharts.com/	*/
 	public void setUrl(String url) {
 		this.url = url;
 		this.setChanged();
@@ -369,11 +381,11 @@ public HashMap<String, Object> getParams() {
 		if (this.menuItemDefinitions != null) {
 			params.put("menuItemDefinitions", this.menuItemDefinitions);
 		}
-		if (this.chartOptions != null) {
-			params.put("chartOptions", this.chartOptions);
-		}
 		if (this.sourceHeight != null) {
 			params.put("sourceHeight", this.sourceHeight);
+		}
+		if (this.tableCaption != null) {
+			params.put("tableCaption", this.tableCaption);
 		}
 		if (this.sourceWidth != null) {
 			params.put("sourceWidth", this.sourceWidth);
@@ -402,14 +414,17 @@ public HashMap<String, Object> getParams() {
 		if (this.type != null) {
 			params.put("type", this.type);
 		}
-		if (this.tableCaption != null) {
-			params.put("tableCaption", this.tableCaption);
+		if (this.chartOptions != null) {
+			params.put("chartOptions", this.chartOptions);
 		}
 		if (this.useMultiLevelHeaders != null) {
 			params.put("useMultiLevelHeaders", this.useMultiLevelHeaders);
 		}
 		if (this.useRowspanHeaders != null) {
 			params.put("useRowspanHeaders", this.useRowspanHeaders);
+		}
+		if (this.applyStyleSheets != null) {
+			params.put("applyStyleSheets", this.applyStyleSheets);
 		}
 		if (this.fallbackToExportServer != null) {
 			params.put("fallbackToExportServer", this.fallbackToExportServer);

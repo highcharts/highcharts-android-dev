@@ -78,17 +78,17 @@ public class HIPlotLines extends HIFoundation {
 
 	public HILabel getLabel(){ return label; }
 
-	private Number value;
+	private Object /* Number, String */ value;
 	/**
- The position of the line in axis units. 
+ The position of the line in axis units. On datetime axes, the value can be given as a timestamp or a date string. 
 	*/
-	public void setValue(Number value) {
+	public void setValue(Object /* Number, String */ value) {
 		this.value = value;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getValue(){ return value; }
+	public Object /* Number, String */ getValue(){ return value; }
 
 	private HIEvents events;
 	/**

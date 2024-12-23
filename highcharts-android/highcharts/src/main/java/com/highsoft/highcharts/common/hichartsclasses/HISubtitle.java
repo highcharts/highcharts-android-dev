@@ -54,18 +54,6 @@ public class HISubtitle extends HIFoundation {
 
 	public String getText(){ return text; }
 
-	private String align;
-	/**
- The horizontal alignment of the subtitle. Can be one of "left", "center" and "right". 
- <br><br><b>defaults:</b><br><br>&ensp;center	*/
-	public void setAlign(String align) {
-		this.align = align;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public String getAlign(){ return align; }
-
 	private Number y;
 	/**
  The y position of the subtitle relative to the alignment within `chart.spacingTop` and `chart.spacingBottom`. By defaults the subtitle is laid out below the title unless the title is floating. 
@@ -102,18 +90,6 @@ public class HISubtitle extends HIFoundation {
 
 	public Boolean getFloating(){ return floating; }
 
-	private Number widthAdjust;
-	/**
- Adjustment made to the subtitle width, normally to reserve space for the exporting burger menu. 
- <br><br><b>defaults:</b><br><br>&ensp;-44	*/
-	public void setWidthAdjust(Number widthAdjust) {
-		this.widthAdjust = widthAdjust;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	public Number getWidthAdjust(){ return widthAdjust; }
-
 	private Boolean useHTML;
 	/**
  Whether to [use HTML](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html) to render the text. 
@@ -146,9 +122,6 @@ public HashMap<String, Object> getParams() {
 		if (this.text != null) {
 			params.put("text", this.text);
 		}
-		if (this.align != null) {
-			params.put("align", this.align);
-		}
 		if (this.y != null) {
 			params.put("y", this.y);
 		}
@@ -157,9 +130,6 @@ public HashMap<String, Object> getParams() {
 		}
 		if (this.floating != null) {
 			params.put("floating", this.floating);
-		}
-		if (this.widthAdjust != null) {
-			params.put("widthAdjust", this.widthAdjust);
 		}
 		if (this.useHTML != null) {
 			params.put("useHTML", this.useHTML);

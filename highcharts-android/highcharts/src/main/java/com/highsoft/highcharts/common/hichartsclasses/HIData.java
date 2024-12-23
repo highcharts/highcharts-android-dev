@@ -11,14 +11,11 @@ package com.highsoft.highcharts.common.hichartsclasses;
 import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.core.HIFoundation;
 import com.highsoft.highcharts.core.HIFunction;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
-
-public class HIData extends HIFoundation { 
+public class HIData extends HIFoundation {
 
 	private Boolean enablePolling;
 	/**
@@ -598,17 +595,17 @@ public class HIData extends HIFoundation {
 
 	public String getId(){ return id; }
 
-	private Number x;
+	private Object /* Number, String */ x;
 	/**
- The x value of the point. For datetime axes, the X value is the timestamp in milliseconds since 1970. 
+ The x value of the point. For datetime axes, a number value is the timestamp in milliseconds since 1970, while a date string is parsed according to the [current time zone] (https://api.highcharts.com/highcharts/time.timezone) of the chart. Date strings are supported since v12. 
 	*/
-	public void setX(Number x) {
+	public void setX(Object /* Number, String */ x) {
 		this.x = x;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public Number getX(){ return x; }
+	public Object /* Number, String */ getX(){ return x; }
 
 	private String drilldown;
 	/**
